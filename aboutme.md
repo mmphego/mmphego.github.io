@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About me
-subtitle: The essentials
+title: About Mpho Mphego
+meta-title: About me
+subtitle: ""
 ---
-
