@@ -1,7 +1,7 @@
 mmphego.github.io
 =================
 
-My personal website. Visit [https://mmphego.github.io/](https://mmphego.github.io/) to view it, cloned from [https://mpho112.github.io/](https://mpho112.github.io/)
+My personal website. Visit [https://mmphego.github.io/](https://mmphego.github.io/) to view it, cloned from [http://pinsleepe.github.io/](https://pinsleepe.github.io/)
 
 # How do I clone it locally?
 
