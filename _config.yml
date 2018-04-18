@@ -3,8 +3,9 @@
 # url is the full website URL
 # baseurl is the website's URL without the hostname
 
-# If you are building a simple GitHub user page (http://username.github.io) then use these settings:
-url: "mmphego.github.io"
+# If you are building a simple GitHub user page (username.github.io) then use these settings:
+url: "http://mmphego.github.io"
+baseurl: ""
 
 # If you are building a GitHub project page then use these settings:
 #url: "http://username.github.io/projectname"
@@ -27,7 +28,7 @@ description: Welcome to the geek side!
 navbar-links:
   # About Me: "/aboutme.html"
   # Projects: "/projects.html"
-  Resume / CV: "/resume/MphoMphego.pdf"
+  Resume: "/resume/MphoMphego.pdf"
   Tags: "tags"
 
 # Image to show in the navigation bar - image must be a square (width = height)
@@ -38,7 +39,7 @@ avatar: "/img/main.jpg"
 # then specify the following parameter. The logo will have a height of 40px
 # title-img: /path/to/image
 
-# --- Background colour/image options --- #
+# # --- Background colour/image options --- #
 
 # By default, the navigation bar and footer have a light gray background, and the main page
 # has a white background. You can specify a different background colour or a background image
@@ -50,10 +51,10 @@ avatar: "/img/main.jpg"
 # page-col: "#FF0000"
 # page-img: "/img/bgimage.png"
 
-# --- Footer options --- #
+# # --- Footer options --- #
 
-# Change all these values or delete the ones you don't want.
-# Important: you must keep the "name" parameter, everything else you can remove
+# # Change all these values or delete the ones you don't want.
+# # Important: you must keep the "name" parameter, everything else you can remove
 author:
   name: Mpho Mphego
 # email: "youremail@domain.com"
@@ -120,11 +121,11 @@ google_analytics: "UA-68808612-1"
 
 # Excerpt Word Length
 # Truncates the excerpt to the specified number of words on the index page
-# excerpt_length: 50
+excerpt_length: 50
 
 # Character used to separate site title and description in HTML document title
 # and RSS feed title
-# title-separator: "-"
+title-separator: "-"
 
 # --- Don't need to touch anything below here (but you can if you want) --- #
 
@@ -135,12 +136,12 @@ highlighter: rouge
 permalink: /blog/:year/:month/:day/:title.html  #/:year-:month-:day-:title
 paginate: 5
 
-# kramdown:
-#   input: GFM
+kramdown:
+  input: GFM
 
 # Default YAML values (more information on Jekyll's site)
-# defaults:
-#   -
+defaults:
+  -
     scope:
       path: ""
       type: "posts"
