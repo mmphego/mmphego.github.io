@@ -26,8 +26,8 @@ description: Welcome to the geek side!
 
 # List of links in the navigation bar
 navbar-links:
-  About Me: "aboutme"
-  Projects: "projects"
+  About Me: "aboutme.html"
+  Projects: "projects.html"
   Resume / CV: "resume/MphoMphego.pdf"
 #  Tags: "tags"
 
