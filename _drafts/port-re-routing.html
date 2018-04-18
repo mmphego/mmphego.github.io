@@ -1,0 +1,38 @@
+---
+layout: post
+title: Port re-routing
+date: 
+type: post
+parent_id: '0'
+published: false
+password: ''
+status: draft
+categories:
+- Linux/Ubuntu
+tags: []
+meta: {}
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p><code>iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080</code></p>
+<p>Persist IP Tables Debian/Ubuntu</p>
+<p>To persist any changes you make to your iptables rules, do the following.</p>
+<p>Install iptables-persistent:</p>
+<p>sudo apt-get install -y iptables-persistent<br />
+Make any changes you want to your iptables rules, eg</p>
+<p>sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080<br />
+Then run</p>
+<p>sudo dpkg-reconfigure -y iptables-persistent<br />
+The rules should persist after a reboot now.</p>
+<p>Extra Info</p>
+<p>The dpkg-reconfigure just causes iptables-persistent to do again what it does at install, which is to save the current iptables into a file using a command just like:</p>
+<p>iptables-save &gt;/etc/iptables/rules.v4<br />
+ip6tables-save &gt;/etc/iptables/rules.v6<br />
+The iptables-persistent package causes the os to run something like the following on reboot.</p>
+<p>iptables-restore &lt; /etc/iptables/rules.v4<br />
+ip6tables-restore &lt; /etc/iptables/rules.v6<br />
+Hope this helps : )</p>

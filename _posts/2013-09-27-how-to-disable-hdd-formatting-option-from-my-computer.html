@@ -1,0 +1,55 @@
+---
+layout: post
+title: How to Disable HDD Formatting Option from My Computer
+date: 2013-09-27 09:49:03.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux/Ubuntu
+tags: []
+meta:
+  _oembed_250a75fe1e02d96d292a8f20c663ac08: "{{unknown}}"
+  _oembed_b3274e6fba68e48974848eb423171aa2: "{{unknown}}"
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p align="center"><strong>Note for Beginners</strong></p>
+<p>A while ago, I mistakenly Formatted my disk-drive confusing it for a USB drive, the Drive contained all of my personal information (pictures, documents, eBooks and school stuff).</p>
+<p> And this was not the first time that happened by accident.</p>
+<p>The main problem is I manoeuvre around my computer rather FAST, <br /> and most times I don't get the time to think before I Click Yes/DO the REAL FORMAT!!!</p>
+<p> With my frustrations, I was set on a mission to remove the stupid Microsoft’s option of Formatting disk drives</p>
+<p> <span style="text-decoration:underline;">Here’s how I did it.</span></p>
+<p><span style="text-decoration:underline;"> </span></p>
+<ol>
+<li>Copy “C:\Windows\System32\en-US\ shell32.dll.mui” to “C:\Backup\ shell32.dll.mui”</li>
+<li>Right-click Shell32.dll.mui, Properties, Security, Advanced, Owner, Edit , select Administrators account, Then Permissions, Change Permission, enable Full control to administrators account ,Ok&gt;Close</li>
+<li>Now the fun begins, Download <a href="http://www.angusj.com/resourcehacker/reshack_setup.exe">ResHack</a>  , install, Run as Admin</li>
+</ol>
+<p>PS: Regedit is a bit useless when it comes removing this stupid option</p>
+<p>(<a href="http://www.angusj.com/resourcehacker/reshack_setup.exe">http://www.angusj.com/resourcehacker/reshack_setup.exe</a>)</p>
+<ol>
+<li>Go-to, File, Open, “C:\Windows\System32\en-US\ shell32.dll.mui”</li>
+<li>Expand Menu, 247, 1033</li>
+<li>Delete Line 6, “MENUITEM "Form&amp;at...",  8” and Compile Script</li>
+<li>Expand Dialog, 28672, 1033</li>
+<li>Delete everything from line 6 – 21 and Compile Script</li>
+<li><strong><a href="http://mmphego.files.wordpress.com/2013/09/ef.png"><img id="i-136" alt="Image" src="{{ site.baseurl }}/assets/ef.png?w=487" /></a></strong></li>
+<li>Go-to File, Save ,Close</li>
+<li>10.  Go-to Win+R, type cmd.exe, ok</li>
+</ol>
+<p>11. Type mcbuilder.exe –rebuild, Enter and Exit</p>
+<p>12. Reboot PC</p>
+<p>13. Then viola Format… option from context-menu GONE.</p>
+<p>14. When you want to format you will have to do it under <strong>command prompt.</strong></p>
+<p> </p>
+<h2>DISCLAIMER</h2>
+<p>In no respect shall Mpho incur any liability for any damages, including, but limited to, direct, indirect, special, or consequential damages arising out of, resulting from, or any way connected to the use of the item, whether or not based upon warranty, contract, tort, or otherwise; whether or not injury was sustained by persons or property or otherwise; and whether or not loss was sustained from, or arose out of, the results of, the item, or any services that may be provided by Mpho.</p>
+<p><a href="http://mmphego.files.wordpress.com/2013/09/funny-bill-gates-quote-meme.jpg"><img class="size-full wp-image" id="i-144" alt="Image" src="{{ site.baseurl }}/assets/funny-bill-gates-quote-meme.jpg?w=418" /></a></p>
+<p> </p>

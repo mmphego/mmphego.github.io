@@ -1,0 +1,94 @@
+---
+layout: post
+title: Install and configure NFS server on Ubuntu for serving files
+date: 2014-10-23 03:04:45.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux
+- Ubuntu
+tags:
+- linux
+- nfs
+- NFS Server
+- ubuntu
+meta:
+  _edit_last: '49460244'
+  publicize_facebook_url: https://facebook.com/10203700004395584
+  geo_public: '0'
+  _wpas_done_3508581: '1'
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:1081800551;b:1;}}
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>When it comes to serving media content within your local network, a NFS share is way better than Samba/CIFS share in terms of speed and resource usage. If you have a XBMC box to watch TV shows and movies from a central server then a Network File System (NFS) share should be the choice for a media source. It only takes a few minutes to install and configure NFS server in Ubuntu, and it is a must have item on my server.</p>
+<p><strong>Setup NFS Server on Ubuntu</strong></p>
+<p>If you do not have NFS yet, you will have to install NFS server first using the following commands:<br />
+[sourcecode language="bash"]<br />
+sudo apt-get install nfs-kernel-server<br />
+[/sourcecode]<br />
+That’s the easiest part. It requires just bit more effort to configure NFS server to share files with right permissions.</p>
+<p><strong>Configure NFS Server<br />
+</strong></p>
+<p>After installation you can configure NFS server by editing the /etc/exports file. First make a backup copy of the default NFS configuration file:</p>
+<p>[sourcecode language="bash"]<br />
+sudo cp -a /etc/exports /etc/exports.backup<br />
+[/sourcecode]<br />
+Then open the /etc/exports file using the following command:<br />
+[sourcecode language="bash"]<br />
+sudo nano /etc/exports<br />
+[/sourcecode]<br />
+Edit and comment out all existing lines by adding a “#” in front the line. Next, setup NFS share for each folder you want to make available to the client devices as shown below.</p>
+<p><strong>Setup NFS Share for Media</strong></p>
+<p>One of the primary purposes I configure NFS server on Ubuntu server is to share my media to all my Xbian Raspberry Pi HTPC. As I said before, for sharing within a network the performance of NFS is better than SAMBA. If you a media folder on your central Ubuntu server, then add the following line to line to /etc/exports to setup NFS share for it.<br />
+[sourcecode language="bash"]<br />
+#Export media to all IP address under 192.168.1.X<br />
+/home/user/media   192.168.1.0/24(rw,async,insecure,no_subtree_check,nohide)<br />
+[/sourcecode]</p>
+<p>This will make your media folder located under /home/user available to every device in your local network. The options within parenthesis are specifically chosen to improve performance. We are sharing “non-critical” media files and we are making them available only to devices in your home network (192.168.1.X). So we can afford to go lower on security to improve speed and performance.</p>
+<p><strong>rw</strong> – allows read/write if you want to be able to delete or rename files from XBMC or other devices. On XBMC you write permission to download subtitles.<br />
+<strong>async</strong> – Increases read/write performance. Only to be used for non-critical files.<br />
+<strong>insecure</strong> – Does not mean the files are insecure but rather this setting allow clients (eg. Mac OS X) to use non-reserved ports connect to a NFS server.<br />
+<strong>no_subtree_check</strong> – Improves speed and reliability by eliminating permission checks on parent directories.<br />
+<strong>nohide</strong> – This option allows the client device to see multiple file systems but only works on one host. Since this is rare, you may choose to omit this option as it can potentially cause problems in some cases.</p>
+<p><strong>Starting, Stopping, and Restarting NFS Server</strong></p>
+<p>Once you have setup NFS server, you can start NFS share using the following command:<br />
+[sourcecode language="bash"]<br />
+sudo exportfs -ra<br />
+[/sourcecode]<br />
+Any time you make changes to /etc/exports I recommend that you restart your NFS server using the following command:<br />
+[sourcecode language="bash"]<br />
+sudo service nfs-kernel-server restart<br />
+[/sourcecode]</p>
+<p>On your XBMC just choose Network Filesystem (NFS) when you select the source. Note that NFS does not work on Windows clients but they should work on all Linux-based OSes that run XBMC. For Windows, you will still have to Setup Samba as the file server. </p>
+<p><strong>Setup NFS Client on Ubuntu</strong></p>
+<p>If you would like to connect to the NFS server on your local computer running Linux - prefferably Ubuntu, Do the following:<br />
+[sourcecode language="bash"]<br />
+sudo apt-get install nfs-common<br />
+[/sourcecode]</p>
+<p><strong>Mounts</strong></p>
+<p>Check to see if everything works<br />
+You should try and mount it now. The basic template you will use is:<br />
+[sourcecode language="bash"]<br />
+sudo mount ServerIP:/folder/already/setup/to/be/shared /home/username/folder/in/your/local/computer</p>
+<p>so for example:</p>
+<p>sudo mount 192.168.1.42:/home/music /home/nerd/music<br />
+[/sourcecode]</p>
+<p><strong>Mount at startup</strong></p>
+<p>Add the following lines in your fstab to mount NFS directories automatically after system reboot.<br />
+[sourcecode language="bash"]<br />
+sudo nano /etc/fstab<br />
+[/sourcecode]<br />
+This will mount directories on start up after the server reboots.</p>
+<p>[sourcecode language="bash"]<br />
+Server_IP:/home/music /home/nerd/music  /mnt/music   nfs   auto,noatime,nolock,bg,nfsvers=3,intr,tcp,actimeo=1800 0 0<br />
+[/sourcecode]</p>
+<p><strong>Conclusion</strong><br />
+NFS provides a quick and easy way to access remote systems over a network. However, the protocol itself is not encrypted. If you are using this in a production environment, consider routing NFS over SSH or a VPN connection to create a more secure experience.</p>

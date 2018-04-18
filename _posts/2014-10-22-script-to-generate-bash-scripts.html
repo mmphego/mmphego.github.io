@@ -1,0 +1,44 @@
+---
+layout: post
+title: script to generate BASH scripts
+date: 2014-10-22 05:32:07.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux
+tags:
+- pygame
+- python
+meta:
+  _edit_last: '49460244'
+  publicize_facebook_url: https://facebook.com/10203695151754271
+  geo_public: '0'
+  _wpas_done_3508581: '1'
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:1081800551;b:1;}}
+  _wpas_skip_3508581: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>I create scripts on a day to day basis, and I eventually got bored of manually creating scripts from initial phase everytime, hence this master of scripts.</p>
+<p>[sourcecode language="bash" wraplines="false" collapse="false"]<br />
+#!/bin/bash<br />
+# BASH script to generate BASH scripts<br />
+# Created by Mpho Mphego</p>
+<p>echo &quot;What do you want to call your BASH script?&quot;<br />
+read RESPONSE</p>
+<p>echo &quot;#!/bin/bash&quot; | tee ~/tmp/$RESPONSE.sh<br />
+echo &quot;# Filename:$RESPONSE.sh&quot; | tee -a ~/tmp/$RESPONSE.sh<br />
+echo &quot;# The purpose of this script is to ...&quot; | tee -a ~/tmp/$RESPONSE.sh<br />
+echo &quot;# Script written by Mpho Mphego Marion Island SANSA Engineer 2014-2015&quot; | tee -a ~/tmp/$RESPONSE.sh</p>
+<p>sudo chmod +x ~/tmp/$RESPONSE.sh</p>
+<p>sudo ln -s ~/tmp/$RESPONSE.sh ~/bin/$RESPONSE.sh<br />
+sudo chmod +x ~/bin/$RESPONSE.sh</p>
+<p>gedit ~/tmp/$RESPONSE.sh<br />
+[/sourcecode]</p>

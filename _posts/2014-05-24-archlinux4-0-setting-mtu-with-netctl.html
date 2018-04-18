@@ -1,0 +1,60 @@
+---
+layout: post
+title: 'ArchLinux4.0: Setting MTU with netctl'
+date: 2014-05-24 22:45:36.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux
+tags: []
+meta:
+  _edit_last: '49460244'
+  publicize_facebook_url: https://facebook.com/10202670917509055
+  geo_public: '0'
+  _wpas_done_3508581: '1'
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:1081800551;b:1;}}
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>First things first: Ive been encountering some serious internet problems,with either my gateway or the way the network was set.<br />
+I always felt a huge drop in throughput.<br />
+After some searching I found out, that netctl can handle custom mtu configurations as well. The 'ExecUpPost' entry in a connection profile handles this. Here's the simple ethernet-static profile that I'm using for my work network :</p>
+<p>nerd@trojan:/$ sudo nano /etc/netctl/my_lan</p>
+<p>Description='Science Block private ethernet connection'<br />
+Connection=ethernet<br />
+Interface=enp5s0<br />
+IP=static<br />
+Address='x.x.x.x'<br />
+Gateway='x.x.x.x'<br />
+DNS='x.x.x.x'<br />
+ExecUpPost='/usr/sbin/ip link set enp5s0 mtu 258'</p>
+<p>#And then restart for settings to take effect<br />
+nerd@trojan:/$ sudo netctl my_lan restart</p>
+<p>PS: before setting the MTU size, initially test and determine the optimum size</p>
+<p>optimal MTU value has nothing to do with modem or connected computer. It depends on your ISP</p>
+<p>You can check optimal MTU value pretty easy by pinging any website with different MTU value starting from lower going up to first ping error:<br />
+start with lets say value 1460 and go up:</p>
+<p>In my case 230 has got no error:</p>
+<p>nerd@trojan:/$ ping -c 5 -M do -s 230 mmphego.wordpress.com<br />
+PING lb.wordpress.com (66.155.9.238) 230(258) bytes of data.<br />
+238 bytes from wordpress.com (66.155.9.238): icmp_seq=1 ttl=44 time=1681 ms<br />
+238 bytes from wordpress.com (66.155.9.238): icmp_seq=2 ttl=44 time=1961 ms<br />
+238 bytes from wordpress.com (66.155.9.238): icmp_seq=3 ttl=44 time=2235 ms<br />
+238 bytes from wordpress.com (66.155.9.238): icmp_seq=4 ttl=44 time=1879 ms<br />
+238 bytes from wordpress.com (66.155.9.238): icmp_seq=5 ttl=44 time=1793 ms</p>
+<p>--- lb.wordpress.com ping statistics ---<br />
+5 packets transmitted, 5 received, 0% packet loss, time 7537ms<br />
+rtt min/avg/max/mdev = 1681.069/1910.091/2235.116/187.261 ms, pipe 3</p>
+<p>and remember: pack_size +byte_size = mtu or something along those lines<br />
+in my case: 230+28=258(mtu)</p>
+<p>------<br />
+I'm sharing it here, in case<br />
+a) anyone else encounters the same problem and<br />
+b) I forget again, how to set it</p>

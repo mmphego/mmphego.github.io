@@ -1,0 +1,202 @@
+---
+layout: post
+title: Memory - Card game
+date: 2014-10-26 00:02:26.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux
+- Python
+tags:
+- card game
+- codeskulptor
+- memory game
+- python
+- simplegui
+meta:
+  _edit_last: '49460244'
+  publicize_facebook_url: https://facebook.com/10203718099247944
+  geo_public: '0'
+  _wpas_done_3508581: '1'
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:1081800551;b:1;}}
+  _wpas_skip_3508581: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>I have been spending quite some time learning python for the past few months from text processing to game development using simplegui. And I must say for a person that always thought in C, I find Python completely straight forward and an easy but high level language.<br />
+As my journey to Python continues, This weeks project was a memory game.<br />
+Although it does have a couple of bugs in it, for instance keeping the high score and and and...</p>
+<p>[sourcecode language="python"]<br />
+# 'Introduction to Interactive Programming in Python' Course<br />
+# RICE University - https://class.coursera.org/interactivepython-005<br />
+# by Joe Warren, John Greiner, Stephen Wong, Scott Rixner<br />
+# Mini-project for this week is the implementation of a card game - Memory.<br />
+#<br />
+# Concentration, also known as Memory,<br />
+# is a card game in which all of the cards are laid face down on a surface<br />
+# and two cards are flipped face up over each turn.<br />
+# The object of the game is to turn over pairs of matching cards.<br />
+# Concentration can be played with any number of players or as solitaire<br />
+# and is an especially good game for young children,<br />
+# though adults may find it challenging and stimulating as well</p>
+<p>__author__ = &quot;Mpho Mphego&quot;<br />
+__version__ = &quot;$Revision: 1.14 $&quot;<br />
+__date__ = &quot;$Date: 2014/10/25 21:57 $&quot;<br />
+__copyright__ = &quot;Copyright (c) 2014 Mpho Mphego&quot;<br />
+__url__ = &quot;http://www.codeskulptor.org/#user38_QZuBkN6aVN_14.py&quot;<br />
+__license__ = &quot;Python&quot;</p>
+<p>try:<br />
+    import simplegui<br />
+except:<br />
+    import SimpleGUICS2Pygame.simpleguics2pygame as simplegui<br />
+    # To run simplegui in idle python, install SimpleGUICS2Pygame module<br />
+    # download module : https://pypi.python.org/pypi/SimpleGUICS2Pygame<br />
+import random</p>
+<p>def init():<br />
+    &quot;&quot;&quot; Initializing Global variables&quot;&quot;&quot;<br />
+    global range_of_cards, exposed, exited, count, Turns, reveal_card<br />
+    global click_counter, game_won, restart_game, restart_count, counter#, Best_turn, Best_time<br />
+    counter = 0<br />
+    Turns = 0<br />
+    click_counter = 0<br />
+    count = 0<br />
+    restart_count = 0<br />
+    exited = False<br />
+    game_won = False<br />
+    restart_game = False</p>
+<p>def new_game():<br />
+    global range_of_cards, exposed, exited, count, Turns, reveal_card<br />
+    global click_counter, game_won, restart_game, restart_count, counter, Best_turn, Best_time</p>
+<p>    init()<br />
+    range_of_cards = [ i for i in range(8)] + [ i for i in range(8)]<br />
+    random.shuffle(range_of_cards)<br />
+    &quot;&quot;&quot;Cheat&quot;&quot;&quot;<br />
+    #print range_of_cards<br />
+    exposed = [False for i in range(16)]<br />
+    reveal_card = list()<br />
+    timer.stop()<br />
+    &quot;&quot;&quot;Game still needs some work on keeping the hi score and best time&quot;&quot;&quot;<br />
+    Best_turn = &quot;0&quot;<br />
+    Best_time = &quot;0:00.0&quot;</p>
+<p>def mouseclick(pos):<br />
+    global click_counter, exposed, Turns, game_won</p>
+<p>    if click_counter == 0:<br />
+        reveal_card.append(pos[0]//50)<br />
+        exposed[pos[0]//50] = True<br />
+        click_counter += 1<br />
+        Turns = 1<br />
+        timer.start()</p>
+<p>    elif click_counter == 1:<br />
+        if not (pos[0]//50 in reveal_card):<br />
+            reveal_card.append(pos[0]//50)<br />
+            click_counter = 2</p>
+<p>        exposed[pos[0]//50] = True</p>
+<p>    else:<br />
+        if not (pos[0]//50 in reveal_card):<br />
+            if range_of_cards[reveal_card[-1]]!=range_of_cards[reveal_card[-2]]:<br />
+                exposed[reveal_card[-1]]=False<br />
+                exposed[reveal_card[-2]]=False<br />
+                reveal_card.pop()<br />
+                reveal_card.pop()<br />
+            click_counter = 1<br />
+            Turns += 1<br />
+            exposed[pos[0]//50] = True<br />
+            reveal_card.append(pos[0]//50)</p>
+<p>    if exposed == [True for i in range(16)]:<br />
+        game_won = True<br />
+        #counter = 0<br />
+        timer.stop()<br />
+    else:<br />
+        counter = 0<br />
+        timer.start()</p>
+<p>    return Turns </p>
+<p>def draw(canvas):<br />
+    global range_of_cards, exposed, exited, count, Turns<br />
+    global click_counter, game_won, restart_game, restart_count, newgame<br />
+    global counter, Best_turn, Best_time</p>
+<p>    label.set_text(&quot;Turns = &quot; + str(Turns))<br />
+    if exited == False:<br />
+        label2.set_text(&quot;Timer: &quot; + format(counter))<br />
+#    if Best_turn &gt; str(Turns):<br />
+#        label3.set_text(&quot;High Score = &quot; + str(Best_turn))<br />
+#        label4.set_text(&quot;Best Time: &quot; + str(Best_time))</p>
+<p>    for i in range(16):<br />
+        canvas.draw_polyline([[50*(i%50 + .5) , 80], [50*(i%50 + .5) , 170], [50*(i%50 + .5), 100]], 45, 'White')<br />
+        canvas.draw_text(&quot;Time:&quot; + format(counter), (550, 50), 50, 'Black')<br />
+        canvas.draw_text(&quot;No. of Turns: &quot; + str(Turns), (10, 50), 50, 'Black')</p>
+<p>        if exposed[i]:<br />
+            canvas.draw_polyline([[50*(i%50 + .5) , 80], [50*(i%50 + .5) , 170], [50*(i%50 + .5), 100]], 45, 'Green')<br />
+            canvas.draw_text(str(range_of_cards[i]), (50*(i%50 + .2), 140), 54, 'White', 'monospace')<br />
+            if exposed == [True for i in range(16)]:<br />
+                game_won = True</p>
+<p>    #if counter &gt; 4 :game_won = True;timer.stop() #debugging<br />
+    if game_won == True:<br />
+        for i in range(16):<br />
+            restart_count += 1<br />
+            canvas.draw_polyline([[50*i , 0], [50*(i+1) , 120], [50*i, 100]], 200, 'White')<br />
+            canvas.draw_text(&quot;Congradulations!!!&quot;, (185, 60), 35, 'Black', 'monospace')<br />
+            canvas.draw_text(&quot;You won the game&quot;, (210, 90), 35, 'Black', 'monospace')<br />
+            canvas.draw_text(&quot;In &quot; + str(Turns) + &quot; Turns.&quot;, (250, 120), 35, 'Black', 'monospace')<br />
+            canvas.draw_text(&quot;Time: &quot; + format(counter), (225, 150), 35, 'Black', 'monospace')<br />
+            canvas.draw_text(str(__copyright__), (615, 175), 12, 'Red', 'sans-serif')<br />
+            game_won = False<br />
+            Best_time = format(counter)<br />
+            Best_turn = str(Turns)</p>
+<p>            if restart_count &gt; 10000:<br />
+                new_game()<br />
+                restart_count = 0                               </p>
+<p>    if exited == True:<br />
+        #print timer.is_running()<br />
+        if timer.is_running() == False: timer.start()</p>
+<p>        for i in range(16):<br />
+            canvas.draw_polyline([[50*i , 0], [50*(i+1) , 120], [50*i, 100]], 200, 'White')<br />
+            canvas.draw_text(&quot;Game created by &quot; + str(__author__), (30, 55), 45, 'Black', 'monospace')<br />
+            canvas.draw_text(&quot;Thank you for playing&quot;, (100, 100), 45, 'Black', 'monospace')<br />
+            canvas.draw_text(&quot;Please wait...&quot;, (250, 150), 35, 'Red', 'monospace')</p>
+<p>        #print &quot;Please wait &quot;, counter # debugging<br />
+        if counter &gt; 30:<br />
+            frame.stop()<br />
+            timer.stop()<br />
+    #print Best_turn<br />
+    #print Best_time</p>
+<p>def tick():<br />
+    global counter<br />
+    counter += 1<br />
+    #print counter</p>
+<p>def format(value):<br />
+    A=value//600<br />
+    B=((value//10)%60)//10<br />
+    C=((value//10)%60)%10<br />
+    D=value%10<br />
+    #print str(A)+&quot;:&quot; + str(B) +str(C)+ &quot;.&quot;+str(D)<br />
+    return str(A)+&quot;:&quot; + str(B) +str(C)+ &quot;.&quot;+str(D)</p>
+<p>def exit_game():<br />
+    global exited, count<br />
+    exited = True    </p>
+<p># create frame and add a button and labels<br />
+frame = simplegui.create_frame(&quot;Memory&quot;, 800, 180)<br />
+timer = simplegui.create_timer(100, tick)<br />
+frame.set_canvas_background('Green')<br />
+frame.add_button(&quot;Restart Game&quot;, new_game)<br />
+frame.add_button(&quot;Exit Game&quot;, exit_game)<br />
+label = frame.add_label(&quot;Turns = 0&quot;)<br />
+label2 = frame.add_label(&quot;Time: 0:00.0&quot;)<br />
+label3 = frame.add_label(&quot;High Score = 0&quot;)<br />
+label4 = frame.add_label(&quot;Best Time: 0:00.0&quot;)</p>
+<p># register event handlers<br />
+frame.set_mouseclick_handler(mouseclick)<br />
+frame.set_draw_handler(draw)<br />
+#frame.set_draw_handler(draw_handler)<br />
+# get things rolling<br />
+new_game()<br />
+frame.start()<br />
+#timer.start()</p>
+<p># Always remember to review the grading rubric<br />
+[/sourcecode]</p>

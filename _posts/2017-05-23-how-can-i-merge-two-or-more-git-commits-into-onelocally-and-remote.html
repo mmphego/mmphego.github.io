@@ -1,0 +1,55 @@
+---
+layout: post
+title: How can I merge two or more Git commits into one[locally and remote]?
+date: 2017-05-23 17:39:23.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux/Ubuntu
+- Tricks
+tags: []
+meta:
+  _publicize_failed_16257270: O:13:"Keyring_Error":2:{s:6:"errors";a:1:{s:21:"keyring-request-error";a:1:{i:0;a:6:{s:7:"headers";O:42:"Requests_Utility_CaseInsensitiveDictionary":1:{s:7:"
+  publicize_google_plus_url: https://plus.google.com/+MphoMphego/posts/H8etyV15FYs
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '5355683548'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=97183493&stype=M&topic=6272807992186544128&type=U&a=f1qJ
+  _publicize_done_16016023: '1'
+  _wpas_done_15845576: '1'
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:16076855;s:56:"https://twitter.com/MphoMphego/status/867042306121236480";}}
+  _publicize_done_16257272: '1'
+  _wpas_done_16076855: '1'
+  publicize_twitter_user: MphoMphego
+  _publicize_done_16966120: '1'
+  _wpas_done_16750486: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<div class="post-text">
+<p>You can do this fairly easily without <code>git rebase</code> or <code>git merge --squash</code>. In this example, we'll squash the last 3 commits.</p>
+<p>If you want to write the new commit message from scratch, this suffices:</p>
+<pre><code>git reset --soft HEAD~3 &amp;&amp;
+git commit
+</code></pre>
+<p>If you want to start editing the new commit message with a concatenation of the existing commit messages (i.e. similar to what a pick/squash/squash/…/squash <code>git rebase -i</code> instruction list would start you with), then you need to extract those messages and pass them to <code>git commit</code>:</p>
+<pre><code>git reset --soft HEAD~3 &amp;&amp; 
+git commit --edit -m"$(git log --format=%B --reverse HEAD..HEAD@{1})"
+</code></pre>
+<p>Both of those methods squash the last three commits into a single new commit in the same way. The soft reset just re-points HEAD to the last commit that you do not want to squash. Neither the index nor the working tree are touched by the soft reset, leaving the index in the desired state for your new commit (i.e. it already has all the changes from the commits that you are about to “throw away”).</p>
+<p><strong>Important</strong>: If you've already pushed commits to GitHub, and then squash them locally, you will have to force the push to your branch.</p>
+<pre><code>$ git push origin branch-name --force
+</code></pre>
+<p>Helpful hint: You can always edit your last commit message, before pushing, by using:</p>
+<pre><code>$ git commit --amend
+</code></pre>
+<h3></h3>
+<p><a href="https://stackoverflow.com/a/5201642" target="_blank" rel="noopener noreferrer">Credit</a></p>
+</div>

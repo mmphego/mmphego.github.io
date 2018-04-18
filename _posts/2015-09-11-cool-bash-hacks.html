@@ -1,0 +1,52 @@
+---
+layout: post
+title: Cool bash hack(s)
+date: 2015-09-11 11:22:33.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux/Ubuntu
+tags: []
+meta:
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:3508581;s:38:"https://facebook.com/10205868890936392";}}
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '14664756338'
+  _publicize_done_3700952: '1'
+  _wpas_done_3508581: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<ol>
+<li>This hack ensures that when you log on to a server/pc it will execute a screen session which minimizes the risks of you losing your work in case of network disruptions . Just copy command to your bashrc file and source it.<br />
+#Best used when you have to work on a different server via ssh.</p>
+<p>[sourcecode language="bash"]if [ &quot;$TERM&quot; != &quot;screen&quot; ]; then<br />
+  screen -xRR<br />
+fi[/sourcecode]</p>
+</li>
+<li>This hack enables mouse scrolling and scrollbar history scrolling. Just copy command to your ~/.screenrc file and restart your shell.
+<p>[sourcecode language="bash"]<br />
+# Enable mouse scrolling and scroll bar history scrolling<br />
+defscrollback 5000<br />
+termcapinfo xterm* ti@:te@<br />
+[/sourcecode]</p>
+</li>
+<li>Ever gotten to a point where, you can't remember a certain command you executed and when you try to grep it from history it suddenly disappeared well, this hack fixes that. Copy and paste following codes to ~/.bashrc and source it.<br />
+It creates a file named 'command_log' and logs all executed commands as well as timestamp. Nifty!! very Nifty<br />
+[sourcecode language="bash"]<br />
+# log every command typed and when<br />
+if [ -n &quot;${BASH_VERSION}&quot; ]; then<br />
+    trap &quot;caller &gt;/dev/null || \<br />
+printf '%s\\n' \&quot;\$(date '+%Y-%m-%dT%H:%M:%S%z')\<br />
+ \$(tty) \${BASH_COMMAND}\&quot; 2&gt;/dev/null &gt;&gt;~/.command_log&quot; DEBUG<br />
+fi<br />
+[/sourcecode]
+</li>
+</ol>

@@ -1,0 +1,172 @@
+---
+layout: post
+title: Replacing A Failed Hard Drive In A Software RAID1 Array
+date: 2016-03-31 11:27:55.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux
+- Ubuntu
+tags: []
+meta:
+  _publicize_failed_3700952: 'O:13:"Keyring_Error":2:{s:6:"errors";a:1:{s:21:"keyring-request-error";a:1:{i:0;a:5:{s:7:"headers";a:14:{s:16:"www-authenticate";s:150:"OAuth
+    "Facebook Platform" "invalid_token" "Error validating access token: The session
+    has been invalidated because the user has changed the password."";s:27:"access-control-allow-origin";s:1:"*";s:12:"content-type";s:31:"application/json;
+    charset=UTF-8";s:13:"x-fb-trace-id";s:11:"BmYe5OSVmur";s:8:"x-fb-rev";s:7:"2258686";s:6:"pragma";s:8:"no-cache";s:13:"cache-control";s:8:"no-store";s:7:"expires";s:29:"Sat,
+    01 Jan 2000 00:00:00 GMT";s:4:"vary";s:15:"Accept-Encoding";s:16:"content-encoding";s:4:"gzip";s:10:"x-fb-debug";s:88:"uByrGL0E4dfDztxjX1SnqtpWvITGj12gXxhUKPZnJaY80DujTIN/Ovm4aP6ff+PYyX+wZP/cRDSgbesIqGvD6A==";s:4:"date";s:29:"Thu,
+    31 Mar 2016 08:27:56 GMT";s:10:"connection";s:5:"close";s:14:"content-length";s:3:"179";}s:4:"body";s:212:"{"error":{"message":"Error
+    validating access token: The session has been invalidated because the user has
+    changed the password.","type":"OAuthException","code":190,"error_subcode":460,"fbtrace_id":"BmYe5OSVmur"}}";s:8:"response";a:2:{s:4:"code";i:401;s:7:"message";s:12:"Unauthorized";}s:7:"cookies";a:0:{}s:8:"filename";N;}}}s:10:"error_data";a:0:{}}'
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '21304866378'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>Credit goes to Author:falko</p>
+<p>Replacing A Failed Hard Drive In A Software RAID1 Array. This guide shows how to remove a failed hard drive from a Linux RAID1 array (software RAID), and how to add a new hard disk to the RAID1 array without losing data.</p>
+<p><span class="highlight">NOTE:</span> There is a new version of this tutorial available that uses gdisk instead of sfdisk to support <a href="https://www.howtoforge.com/tutorial/linux-raid-replace-failed-harddisk/">GPT partitions</a>.</p>
+<h3 id="-preliminary-note">1 Preliminary Note</h3>
+<p>In this example I have two hard drives, <span class="system">/dev/sda</span> and <span class="system">/dev/sdb</span>, with the partitions <span class="system">/dev/sda1</span> and <span class="system">/dev/sda2</span> as well as <span class="system">/dev/sdb1</span> and<span class="system">/dev/sdb2</span>.</p>
+<p><span class="system">/dev/sda1</span> and <span class="system">/dev/sdb1</span> make up the RAID1 array <span class="system">/dev/md0</span>.</p>
+<p><span class="system">/dev/sda2</span> and <span class="system">/dev/sdb2</span> make up the RAID1 array <span class="system">/dev/md1</span>.</p>
+<p class="system">/dev/sda1 + /dev/sdb1 = /dev/md0</p>
+<p class="system">/dev/sda2 + /dev/sdb2 = /dev/md1</p>
+<p><span class="system">/dev/sdb</span> has failed, and we want to replace it.</p>
+<h3 id="-how-do-i-tell-if-a-hard-disk-has-failed">2 How Do I Tell If A Hard Disk Has Failed?</h3>
+<p>If a disk has failed, you will probably find a lot of error messages in the log files, e.g. <span class="system">/var/log/messages</span> or <span class="system">/var/log/syslog</span>.</p>
+<p>You can also run</p>
+<p>[sourcecode language="bash"]<br />
+cat /proc/mdstat<br />
+[/sourcecode]</p>
+<p>and instead of the string <span class="system">[UU]</span> you will see <span class="system">[U_]</span> if you have a degraded RAID1 array.</p>
+<h3 id="-removing-the-failed-disk">3 Removing The Failed Disk</h3>
+<p>To remove <span class="system">/dev/sdb</span>, we will mark <span class="system">/dev/sdb1</span> and <span class="system">/dev/sdb2</span> as failed and remove them from their respective RAID arrays (<span class="system">/dev/md0</span> and<span class="system">/dev/md1</span>).</p>
+<p>First we mark /dev/sdb1 as failed:</p>
+<p>[sourcecode language="bash"]<br />
+mdadm --manage /dev/md0 --fail /dev/sdb1<br />
+[/sourcecode]</p>
+<p>The output of</p>
+<p class="command">cat /proc/mdstat</p>
+<p>should look like this:</p>
+<p>[sourcecode language="bash"]<br />
+server1:~# cat /proc/mdstat</p>
+<p>Personalities : [linear] [multipath] [raid0] [raid1] [raid5] [raid4] [raid6] [raid10]<br />
+md0 : active raid1 sda1[0] sdb1[2](F)<br />
+24418688 blocks [2/1] [U_]<br />
+md1 : active raid1 sda2[0] sdb2[1]<br />
+24418688 blocks [2/2] [UU]</p>
+<p>unused devices:<br />
+[/sourcecode]</p>
+<p>Then we remove /dev/sdb1 from /dev/md0:</p>
+<p>[sourcecode language="bash"]<br />
+mdadm --manage /dev/md0 --remove /dev/sdb1<br />
+[/sourcecode]<br />
+The output should be like this:</p>
+<p>[sourcecode language="bash"]<br />
+server1:~# mdadm --manage /dev/md0 --remove /dev/sdb1<br />
+mdadm: hot removed /dev/sdb1<br />
+[/sourcecode]<br />
+And</p>
+<p>cat /proc/mdstat<br />
+should show this:</p>
+<p>[sourcecode language="bash"]<br />
+server1:~# cat /proc/mdstat</p>
+<p>Personalities : [linear] [multipath] [raid0] [raid1] [raid5] [raid4] [raid6] [raid10]<br />
+md0 : active raid1 sda1[0]<br />
+24418688 blocks [2/1] [U_]<br />
+md1 : active raid1 sda2[0] sdb2[1]<br />
+24418688 blocks [2/2] [UU]</p>
+<p>unused devices:<br />
+[/sourcecode]</p>
+<p>Now we do the same steps again for /dev/sdb2 (which is part of /dev/md1):</p>
+<p>[sourcecode language="bash"]<br />
+mdadm --manage /dev/md1 --fail /dev/sdb2<br />
+[/sourcecode]<br />
+then,</p>
+<p>cat /proc/mdstat</p>
+<p>[sourcecode language="bash"]<br />
+server1:~# cat /proc/mdstat<br />
+Personalities : [linear] [multipath] [raid0] [raid1] [raid5] [raid4] [raid6] [raid10]<br />
+md0 : active raid1 sda1[0]<br />
+24418688 blocks [2/1] [U_]</p>
+<p>md1 : active raid1 sda2[0] sdb2[2](F)<br />
+24418688 blocks [2/1] [U_]</p>
+<p>unused devices:<br />
+[/sourcecode]</p>
+<p>mdadm --manage /dev/md1 --remove /dev/sdb2</p>
+<p>[sourcecode language="bash"]<br />
+server1:~# mdadm --manage /dev/md1 --remove /dev/sdb2<br />
+mdadm: hot removed /dev/sdb2<br />
+[/sourcecode]</p>
+<p>Now,<br />
+cat /proc/mdstat</p>
+<p>[sourcecode language="bash"]<br />
+server1:~# cat /proc/mdstat<br />
+Personalities : [linear] [multipath] [raid0] [raid1] [raid5] [raid4] [raid6] [raid10]<br />
+md0 : active raid1 sda1[0]<br />
+24418688 blocks [2/1] [U_]<br />
+md1 : active raid1 sda2[0]<br />
+24418688 blocks [2/1] [U_]</p>
+<p>unused devices:<br />
+[/sourcecode]</p>
+<p>Then power down the system:</p>
+<p>[sourcecode language="bash"]<br />
+shutdown -h now<br />
+[/sourcecode]</p>
+<p>and replace the old /dev/sdb hard drive with a new one (it must have at least the same size as the old one - if it's only a few MB smaller than the old one then rebuilding the arrays will fail).</p>
+<h3 id="-adding-the-new-hard-disk">4 Adding The New Hard Disk</h3>
+<p>After you have changed the hard disk <span class="system">/dev/sdb</span>, boot the system.</p>
+<p>The first thing we must do now is to create the exact same partitioning as on <span class="system">/dev/sda</span>. We can do this with one simple command:</p>
+<p>[sourcecode language="bash"]<br />
+fdisk -d /dev/sda | sfdisk /dev/sdb<br />
+[/sourcecode]<br />
+You can run</p>
+<p>[sourcecode language="bash"]<br />
+fdisk -l<br />
+[/sourcecode]<br />
+to check if both hard drives have the same partitioning now.</p>
+<p>Next we add <span class="system">/dev/sdb1</span> to <span class="system">/dev/md0</span> and <span class="system">/dev/sdb2</span> to <span class="system">/dev/md1</span>:</p>
+<p class="command">mdadm --manage /dev/md0 --add /dev/sdb1</p>
+<p>[sourcecode language="bash"]<br />
+server1:~# mdadm --manage /dev/md0 --add /dev/sdb1<br />
+mdadm: re-added /dev/sdb1<br />
+[/sourcecode]</p>
+<p class="command">mdadm --manage /dev/md1 --add /dev/sdb2</p>
+<p>[sourcecode language="bash"]<br />
+server1:~# mdadm --manage /dev/md1 --add /dev/sdb2<br />
+mdadm: re-added /dev/sdb2<br />
+[/sourcecode]<br />
+Now both arays (<span class="system">/dev/md0</span> and <span class="system">/dev/md1</span>) will be synchronized. Run</p>
+<p class="command">cat /proc/mdstat</p>
+<p>to see when it's finished.</p>
+<p>During the synchronization the output will look like this:</p>
+<p>[sourcecode language="bash"]<br />
+server1:~# cat /proc/mdstat<br />
+Personalities : [linear] [multipath] [raid0] [raid1] [raid5] [raid4] [raid6] [raid10]<br />
+md0 : active raid1 sda1[0] sdb1[1]<br />
+24418688 blocks [2/1] [U_]<br />
+[=&gt;...................]  recovery =  9.9% (2423168/24418688) finish=2.8min speed=127535K/sec</p>
+<p>md1 : active raid1 sda2[0] sdb2[1]<br />
+24418688 blocks [2/1] [U_]<br />
+[=&gt;...................]  recovery =  6.4% (1572096/24418688) finish=1.9min speed=196512K/sec</p>
+<p>unused devices:<br />
+[/sourcecode]</p>
+<p>When the synchronization is finished, the output will look like this:</p>
+<p>[sourcecode language="bash"]<br />
+server1:~# cat /proc/mdstat<br />
+Personalities : [linear] [multipath] [raid0] [raid1] [raid5] [raid4] [raid6] [raid10]<br />
+md0 : active raid1 sda1[0] sdb1[1]<br />
+24418688 blocks [2/2] [UU]</p>
+<p>md1 : active raid1 sda2[0] sdb2[1]<br />
+24418688 blocks [2/2] [UU]</p>
+<p>unused devices:<br />
+[/sourcecode]<br />
+That's it, you have successfully replaced <span class="system">/dev/sdb</span>!</p>

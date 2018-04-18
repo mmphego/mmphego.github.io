@@ -1,0 +1,141 @@
+---
+layout: post
+title: Stopwatch "python"
+date: 2014-10-22 05:17:34.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux
+- Python
+tags:
+- python
+meta:
+  _edit_last: '49460244'
+  geo_public: '0'
+  publicize_facebook_url: https://facebook.com/10203695101753021
+  _wpas_done_3508581: '1'
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:1081800551;b:1;}}
+  _wpas_skip_3508581: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>Well as for this week, we were to create some sort of stopwatch game.<br />
+Player gets a point when, they hit "stop" button if it stops on seconds.<br />
+A bit even more trickier, but challenge was accepted and completed...Hell Yeah.</p>
+<p>[sourcecode language="python" wraplines="false" collapse="false"]<br />
+#http://www.codeskulptor.org/#user38_TSo5mURks3_2.py<br />
+#http://www.codeskulptor.org/#user38_TSo5mURks3_3.py<br />
+#or http://www.codeskulptor.org/#user38_nJvMd8w50P_0.py<br />
+# Mini-project #3 - &quot;Stopwatch: The Game&quot;<br />
+# Created by Mpho &quot;!nerd&quot; Mphego - Marion Island SANSA Engineer 2014-2015<br />
+#<br />
+# 'Introduction to Interactive Programming in Python' Course<br />
+# RICE University - https://class.coursera.org/interactivepython-005<br />
+# by Joe Warren, John Greiner, Stephen Wong, Scott Rixner<br />
+# Our mini-project for this week will focus on combining text drawing in<br />
+# the canvas with timers to build a simple digital stopwatch that keeps<br />
+# track of the time in tenths of a second. The stopwatch should contain<br />
+# &quot;Start&quot;, &quot;Stop&quot; and &quot;Reset&quot; buttons.</p>
+<p>try:<br />
+    import simplegui<br />
+except:<br />
+    import SimpleGUICS2Pygame.simpleguics2pygame as simplegui<br />
+    # To run simplegui in idle python, install SimpleGUICS2Pygame module<br />
+    # download module : https://pypi.python.org/pypi/SimpleGUICS2Pygame</p>
+<p># define global variables<br />
+A_string, B_string, C_string, D_string, count, score, over_all_score = 0, 0, 0, 0, 0, 0, 0<br />
+started = &quot;No&quot;<br />
+clear = &quot;\n&quot; * 100<br />
+# define helper function format that converts time<br />
+# in tenths of seconds into formatted string A:BC.D<br />
+def format(t):<br />
+    global started, count, D_string, B_string, C_string, A_string<br />
+    t = count<br />
+    if started == &quot;Yes&quot;:<br />
+        t = D_string<br />
+        D_string += 1<br />
+        if D_string &amp;gt;= 10: #.1 seconds<br />
+            if D_string == 10:<br />
+                C_string += 1<br />
+                if C_string == 10: # seconds<br />
+                    B_string += 1<br />
+                    if B_string &amp;gt;= 6:<br />
+                        A_string += 1<br />
+                        B_string = 0<br />
+                    C_string = 0<br />
+                D_string = 0<br />
+    return str(A_string) + &quot;:&quot; + str(B_string) + str(C_string) + &quot;.&quot; + str(D_string) </p>
+<p># define event handlers for buttons; &quot;Start&quot;, &quot;Stop&quot;, &quot;Reset&quot;<br />
+def start_button():<br />
+    global started#, count<br />
+    started = &quot;No&quot;<br />
+    #print &quot;Started Button Pressed&quot;,started<br />
+    if started:<br />
+        timer.start()<br />
+        started = &quot;Yes&quot;<br />
+        print &quot;Start Button Pressed&quot;<br />
+        #format(count)<br />
+        #print &quot;.10s Timer is Started&quot;#,timer.is_running()</p>
+<p>def score_board():<br />
+    global score, over_all_score<br />
+    if C_string &amp;gt; 0 and D_string == 0:<br />
+        score += 1<br />
+    #    print &quot;Good&quot;<br />
+    #else:<br />
+        #if score &amp;gt; 0:<br />
+        #    score -= 1<br />
+     #   print &quot;You are Loosing&quot;</p>
+<p>def stop_button():<br />
+    global started, A_string, B_string, C_string, D_string, count, score, over_all_score<br />
+    if started == &quot;Yes&quot;:<br />
+        timer.stop()<br />
+        started = &quot;No&quot;<br />
+        over_all_score += 1<br />
+        score_board()<br />
+        print &quot;Stop Button Pressed&quot;<br />
+        #print &quot;.10s Timer is Stopped&quot;#,timer.is_running()</p>
+<p>def reset_button():<br />
+    global started, count, D_string, B_string, C_string , A_string, score, over_all_score<br />
+    A_string, B_string, C_string, D_string, count, score, over_all_score = 0, 0, 0, 0, 0, 0, 0<br />
+    timer.stop()<br />
+    print &quot;Timer Restarted&quot;#,timer.is_running()</p>
+<p>def exit_button():<br />
+    frame.stop()<br />
+    timer.stop()<br />
+    print clear</p>
+<p># define event handler for timer with 0.1 sec interval<br />
+def timer_handler():<br />
+    global started, count<br />
+    #print &quot;counter running&quot;,started<br />
+    if started == &quot;Yes&quot;:<br />
+        count += 1<br />
+    format(count)</p>
+<p># define draw handler<br />
+def draw_handler(canvas):<br />
+    global score, over_all_score<br />
+    canvas.draw_text(str(A_string) + &quot;:&quot; + str(B_string) +<br />
+                     str(C_string) + &quot;.&quot; + str(D_string) ,<br />
+                     (100, 130), 50, 'White')<br />
+    canvas.draw_text(&quot;Score: &quot; + str(score) + &quot;/&quot; + str(over_all_score), (210, 20), 20, 'Red')</p>
+<p># create frame<br />
+frame = simplegui.create_frame('StopWatch Game!', 300, 200)<br />
+timer = simplegui.create_timer(100, timer_handler)<br />
+# register event handlers<br />
+frame.set_draw_handler(draw_handler)<br />
+frame.add_button('Start', start_button,70)<br />
+frame.add_button('Stop', stop_button,70)<br />
+frame.add_button('Reset', reset_button, 70)<br />
+frame.add_button('Exit', exit_button, 50)<br />
+# start frame<br />
+frame.start()<br />
+timer.start()<br />
+print &quot;Global Timer is running:&quot;,timer.is_running()<br />
+# Please remember to review the grading rubric</p>
+<p>[/sourcecode]</p>

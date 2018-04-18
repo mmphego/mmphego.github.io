@@ -1,0 +1,50 @@
+---
+layout: post
+title: Move files by date into different directory using CLI
+date: 2016-11-01 12:36:28.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux
+- Ubuntu
+tags:
+- Bash
+- linux
+- ubuntu
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '28445290161'
+  timeline_notification: '1477992993'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=97183493&stype=M&topic=6199151926425243648&type=U&a=rHfD
+  _publicize_done_16016023: '1'
+  _wpas_done_15845576: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>A while back I was unfortunate in such a way that my HDD that I primarily use as photo archive started having mechanical issues, and before It died on my arms I had the opportunity to backup most of my pictures, however most of them were truncated and had to be discarded and the ones I could recover their filenames where overwritten with random filenames and ascii codes.</p>
+<p>For over a while I have neglected my pictures and they just piled up in a single and nameless directory, until I took it against myself to clean them up.</p>
+<p>And one of the benefits of using Linux OS is the scripting features.</p>
+<p>[code language="bash"]<br />
+for i in *;<br />
+do d=$(exiftool $i | grep 'Date/Time Original' | cut -f 17 -d ' ');<br />
+newd=`echo ${d//:/-}`;<br />
+echo $i ${newd} ;<br />
+mkdir -p ${newd};<br />
+mv -- ${i} ${newd};<br />
+done<br />
+[/code]</p>
+<ol>
+<li>write this script to a file named <code>mvByDate.sh</code> in your old directory.</li>
+<li>replace the <code>/your/new/directory</code> with your new directory's path</li>
+<li>make this file executable with <code>chmod +x mvByDate.sh</code></li>
+<li>then execute this file by <code>./mvByDate.sh</code></li>
+<li>voila</li>
+</ol>

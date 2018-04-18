@@ -1,0 +1,130 @@
+---
+layout: post
+title: Xilinx PetaLinux 2017.2  installation on Ubuntu 16.04.3
+date: 2017-11-03 10:17:41.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- FPGAs
+- Linux/Ubuntu
+- Tricks
+- Ubuntu
+tags:
+- embedded linux
+- linux
+- petalinux
+- xilinx
+- yocto
+- yoctoproject
+- Zedboard
+- zynq-7000
+meta:
+  publicize_twitter_user: MphoMphego
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '11034280089'
+  _publicize_failed_16257270: O:13:"Keyring_Error":2:{s:6:"errors";a:1:{s:21:"keyring-request-error";a:1:{i:0;a:6:{s:7:"headers";O:42:"Requests_Utility_CaseInsensitiveDictionary":1:{s:7:"
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:16076855;s:56:"https://twitter.com/MphoMphego/status/926362767262605313";}}
+  _publicize_done_16257272: '1'
+  _wpas_done_16076855: '1'
+  publicize_google_plus_url: https://plus.google.com/+MphoMphego/posts/R29b9oCKME3
+  _publicize_done_16966120: '1'
+  _wpas_done_16750486: '1'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=97183493&stype=M&topic=6332128475721330688&type=U&a=50Zq
+  _publicize_done_18636816: '1'
+  _wpas_done_18429879: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<header class="post-header">
+<p class="post-meta">The user guide for Xilinx PetaLinux 2017.2 installation is <strong><a href="http://www.xilinx.com/support/documentation/sw_manuals/petalinux2015_4/ug1144-petalinux-tools-reference-guide.pdf">UG1144</a></strong>. It is best used together with Xilinx Vivado 2017.2 version (see my last post about how to install Vivado). More info about PetaLinux embedded OS can be found on <a href="http://www.xilinx.com/products/design-tools/embedded-software/petalinux-sdk.html">Xilinx Products</a> page, and on the <a href="http://www.wiki.xilinx.com/PetaLinux">Xilinx Wiki</a> site.</p>
+</header>
+<div class="post-content">
+<p>Firstly, we will to the <a href="http://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html">Xilinx Downloads</a> page to obtain the installer. Select version 2017.2 on the left sidebar. Choose <em>“PetaLinux 2017.2 Installer”</em>. It is a single-file executable that is 7.54GB large.</p>
+<p>Note: you have to be a registered user to download it.</p>
+<h2>Installation</h2>
+<p>Firstly we need enable i386 architecture (if running Ubuntu x64):</p>
+<p>[sourcecode language="bash"]sudo dpkg --add-architecture i386[/sourcecode]</p>
+<p>Before you proceed, make sure all the prerequisites are satisfied:</p>
+<p>[sourcecode language="bash"]sudo apt install chrpath socat texinfo gcc-multilib libsdl1.2-dev xinetd tofrodos iproute \<br />
+gawk gcc git-core make net-tools ncurses-dev libncurses5-dev zlib1g-dev flex bison lib32z1 \<br />
+lib32ncurses5 lib32stdc++6 libselinux1 xvfb autoconf libtool libbz2-1.0 xinetd tftpd tftp \<br />
+lib32stdc++6 libgtk2.0-0:i386 libfontconfig1:i386 libx11-6:i386 libxext6:i386 libxrender1:i386 libsm6:i386 libssl-dev \<br />
+libqtgui4:i386[/sourcecode]</p>
+</div>
+<p>for a successful installation, we need to configure tftp</p>
+<p>[sourcecode language="bash"]<br />
+sudo nano /etc/xinetd.d/tftp</p>
+<p>service tftp<br />
+{<br />
+protocol = udp<br />
+port = 69<br />
+socket_type = dgram<br />
+wait = yes<br />
+user = nobody<br />
+server = /usr/sbin/in.tftpd<br />
+server_args = /tftpboot<br />
+disable = no<br />
+}<br />
+[/sourcecode]</p>
+<p>Create a directory <code>/tftpboot</code>(this should match whatever you gave in server_args.)</p>
+<p>[sourcecode language="bash"]<br />
+sudo mkdir /tftpboot<br />
+sudo chmod -R 777 /tftpboot<br />
+sudo chown -R nobody /tftpboot<br />
+[/sourcecode]<br />
+Restart tftp service</p>
+<p>[sourcecode language="bash"]<br />
+sudo /etc/init.d/xinetd stop<br />
+sudo /etc/init.d/xinetd start<br />
+[/sourcecode]</p>
+<p><code class="highlighter-rouge">/bin/sh</code> to bash</p>
+<div class="language-sh highlighter-rouge">
+<pre class="highlight"><code>sudo dpkg-reconfigure dash
+<span class="c"># --&gt; Select Yes</span>
+</code></pre>
+</div>
+<p>Now install PetaLinux into the directory<code>/opt/petaLinux</code>. The installer is a shell script that runs in the terminal.</p>
+<p>[sourcecode language="bash"]<br />
+chmod a+x petalinux-v2017.2-final-installer.run<br />
+export PETADIR=$HOME/.opt/petalinux<br />
+sudo mkdir -p $PETADIR<br />
+sudo chown $USER:$USER -R $PETADIR<br />
+./petalinux-v2017.2-final-installer.run $PETADIR<br />
+[/sourcecode]</p>
+<p>Press '<kbd>ENTER'</kbd> to see the licenses, <kbd>q</kbd> to quit reading the licenses, and <kbd>y</kbd> + <kbd>ENTER</kbd> to accept the licenses. The installation should last for about 15-30 mins.</p>
+<p>Every time you want to use PetaLinux tools, remember to source the “settings” script to have the right environment variables:</p>
+<div class="language-sh highlighter-rouge">
+<pre class="highlight"><code>source $HOME/.opt/petalinux/settings.sh
+</code></pre>
+</div>
+<h2>Creating your first project [Board Support Package]</h2>
+<p>The following is a super simple walk-through of how to use PetaLinux tools.</p>
+<ol>
+<li>To create a PetaLinux project with a specific <a href="https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html">BSP</a>, In my case <a href="https://www.xilinx.com/member/forms/download/xef.html?filename=avnet-digilent-zedboard-v2017.2-final.bsp&amp;akdm=1">Zedboard</a></li>
+</ol>
+<p>Once you have the BSP of your choosing downloaded (and extracted if it was a zip file), go to your terminal and change directory to where you would like to create your new PetaLinux project directory and enter the following command.<br />
+In my case it would be:</p>
+<p><code> $ cd $HOME/Documents/Xilinx/EmbeddedLinux/Petalinux/Projects </code><br />
+Then run the petalinux-create command on terminal:</p>
+<p>[sourcecode language="bash"]<br />
+$ petalinux-create -t project -s avnet-digilent-zedboard-v2017.2-final.bsp[/sourcecode]</p>
+<h3>Rebuilding the reference design system</h3>
+<p>In order to rebuild the system run <code>petalinux-build</code></p>
+<p>[sourcecode language="bash"]$ petalinux-build -v[/sourcecode]</p>
+<p>This step usually takes 15-30min depending on the performance of your system, the step generated a device tree 'DTB' file, the FSBL(First Stage Bootloader), U-Boot, Linux Kernel and the root file-system images</p>
+<p>After the build is complete you can test it in a simulated environment.</p>
+<h3>Pre-built Petalinux image test with QEMU</h3>
+<p>Petalinux provide <a href="https://wiki.debian.org/QEMU">QEMU</a> support to enable testing the image-built in a simulated environment.</p>
+<p>[sourcecode language="bash"]<br />
+$ petalinux-boot --qemu --prebuilt 3<br />
+# The --qemu option test petalinux-boot to boot in QEMU instead of real hardware,<br />
+# and --prebuilt 3 boots the pre-built &lt;span 				data-mce-type=&quot;bookmark&quot; 				id=&quot;mce_SELREST_start&quot; 				data-mce-style=&quot;overflow:hidden;line-height:0&quot; 				style=&quot;overflow:hidden;line-height:0&quot; 			&gt;﻿&lt;/span&gt;linux kernel<br />
+[/sourcecode]</p>

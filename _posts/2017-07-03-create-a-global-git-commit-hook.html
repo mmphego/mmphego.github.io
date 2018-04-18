@@ -1,0 +1,61 @@
+---
+layout: post
+title: Create a global git commit hook
+date: 2017-07-03 13:00:30.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Bash
+- Linux/Ubuntu
+- Tricks
+tags: []
+meta:
+  publicize_google_plus_url: https://plus.google.com/+MphoMphego/posts/dc7GignGcyb
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _wpas_skip_16076853: '1'
+  _publicize_job_id: '6722205711'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=97183493&stype=M&topic=6287595711865454592&type=U&a=GGXY
+  _publicize_done_16016023: '1'
+  _wpas_done_15845576: '1'
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:16076855;s:56:"https://twitter.com/MphoMphego/status/881830023757524992";}}
+  _publicize_done_16257272: '1'
+  _wpas_done_16076855: '1'
+  publicize_twitter_user: MphoMphego
+  _publicize_done_16966120: '1'
+  _wpas_done_16750486: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>Recently found out about these git hooks and they work flawlessly but my only worry was that I had to copy all my hooks over every repo such that I could use them, which was a pain sometimes.</p>
+<p>Then started reading about this so called global git hooks, and found a fix.</p>
+<p>Usually the default template library is found at <code class="prettyprint prettyprinted"><span class="str">/usr/</span><span class="pln">share</span><span class="pun">/</span><span class="pln">git</span><span class="pun">-</span><span class="pln">core</span><span class="pun">/</span><span class="pln">templates</span></code> and we are going to use that directory for all our hooks.</p>
+<p>1. Enable git templates:</p>
+<p><code>git config --global init.templatedir '/usr/share/git-core/templates/'</code></p>
+<p>This tells git to copy everything in /usr/share/git-core/templates/ to your per-project .git/ directory when you run git init</p>
+<p>2. Write your hooks in /usr/share/git-core/templates/hooks.</p>
+<p>For example, here's an update hook (located in /usr/share/git-core/templates/hooks/update):</p>
+<p>[sourcecode language="bash"]<br />
+#!/bin/sh<br />
+# Prevent pushing changes to master branch<br />
+if [ $USER != &quot;mmphego&quot; ];<br />
+then<br />
+  if [ &quot;$1&quot; == refs/heads/master ];<br />
+  then<br />
+    echo &quot;Manual pushing to this repo is restricted&quot;<br />
+    exit 1<br />
+  fi<br />
+fi<br />
+[/sourcecode]<br />
+4. Make sure the hook is executable.</p>
+<p><code>chmod a+x /usr/share/git-core/templates/hooks/update</code></p>
+<p>5. Re-initialize git in each existing repo you'd like to use this in:</p>
+<p><code>git init</code></p>
+<p>NOTE if you already have a hook defined in your local git repo, this will not overwrite it.</p>

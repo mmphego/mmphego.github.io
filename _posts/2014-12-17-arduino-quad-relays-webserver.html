@@ -1,0 +1,178 @@
+---
+layout: post
+title: 'Arduino Quad Relays : Webserver'
+date: 2014-12-17 01:41:58.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Arduino
+- AVR and C
+tags:
+- home automation
+- relays
+- webserver
+meta:
+  _edit_last: '49460244'
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _wpas_skip_google_plus: '1'
+  _wpas_skip_twitter: '1'
+  _wpas_skip_linkedin: '1'
+  _wpas_skip_tumblr: '1'
+  _wpas_skip_path: '1'
+  publicize_facebook_url: https://facebook.com/
+  geo_public: '0'
+  _wpas_skip_3508581: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>Phase 3: Quad Relays controlled via/on webserver<br />
+[sourcecode language="c"]<br />
+/*</p>
+<p> 4 parallel Relayes and Arduino with Ethernet Shield<br />
+ */</p>
+<p>#include &lt;SPI.h&gt;<br />
+#include &lt;Ethernet.h&gt;</p>
+<p>int led = 2, led2 = 3, led3 = 5, led4 = 6;<br />
+byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };   //physical mac address<br />
+byte ip[] = { 172, 18, 30, 197 };                      // ip in lan (that's what you need to use in your browser. (&quot;192.168.1.178&quot;)<br />
+byte gateway[] = { 172, 18, 30, 10 };                   // internet access via router<br />
+byte subnet[] = { 255, 255, 255, 0 };                  //subnet mask<br />
+EthernetServer server(80);                             //server port<br />
+String readString;</p>
+<p>void setup() {<br />
+ // Open serial communications and wait for port to open:<br />
+  Serial.begin(9600);<br />
+   while (!Serial) {<br />
+    ; // wait for serial port to connect. Needed for Leonardo only<br />
+  }<br />
+  pinMode(led, OUTPUT);<br />
+  pinMode(led2, OUTPUT);<br />
+  pinMode(led3, OUTPUT);<br />
+  pinMode(led4, OUTPUT);<br />
+  // start the Ethernet connection and the server:<br />
+  Ethernet.begin(mac, ip, gateway, subnet);<br />
+  server.begin();<br />
+  Serial.print(&quot;server is at &quot;);<br />
+  Serial.println(Ethernet.localIP());<br />
+}</p>
+<p>void loop() {</p>
+<p>  // Create a client connection<br />
+  EthernetClient client = server.available();<br />
+  if (client) {<br />
+    while (client.connected()) {<br />
+      if (client.available()) {<br />
+        char c = client.read();</p>
+<p>        //read char by char HTTP request<br />
+        if (readString.length() &lt; 100) {<br />
+          //store characters to string<br />
+          readString += c;<br />
+          //Serial.print(c);<br />
+         }</p>
+<p>         //if HTTP request has ended<br />
+         if (c == '\n') {<br />
+           Serial.println(readString); //print to serial monitor for debuging</p>
+<p>           client.println(&quot;HTTP/1.1 200 OK&quot;); //send new page<br />
+           client.println(&quot;Content-Type: text/html&quot;);<br />
+           client.println();<br />
+           client.println(&quot;Connection: close&quot;);  // the connection will be closed after completion of the response<br />
+	   client.println(&quot;Refresh: 5&quot;);  // refresh the page automatically every 5 sec<br />
+           client.println();<br />
+           client.println(&quot;&lt;!DOCTYPE HTML&gt;&quot;);<br />
+           client.println(&quot;&lt;HTML&gt;&quot;);<br />
+           client.println(&quot;&lt;CENTER&gt;&lt;HEAD&gt;&quot;);<br />
+           client.println(&quot;&lt;TITLE&gt;Simple Home Automation&lt;/TITLE&gt;&quot;);<br />
+           client.println(&quot;&lt;/HEAD&gt;&quot;);<br />
+           client.println(&quot;&lt;BODY&gt;&quot;);<br />
+           client.println(&quot;&lt;H1&gt;Simple Home Automation&lt;/H1&gt;&quot;);<br />
+           client.println(&quot;&lt;hr /&gt;&quot;);<br />
+           client.println(&quot;<br />
+&quot;);<br />
+           client.println(&quot;&lt;H2&gt;Arduino with Ethernet Shield&lt;/H2&gt;&quot;);<br />
+           client.println(&quot;<br />
+&quot;);<br />
+           client.println(&quot;&lt;a href=\&quot;/button1on\&quot;\&quot;&gt;Turn On LED 1&lt;/a&gt;&quot;);<br />
+           client.println(&quot;&lt;a href=\&quot;/button1off\&quot;\&quot;&gt;Turn Off LED 1&lt;/a&gt;<br />
+&quot;);<br />
+           client.println(&quot;&lt;a href=\&quot;/button2on\&quot;\&quot;&gt;Turn On LED 2&lt;/a&gt;&quot;);<br />
+           client.println(&quot;&lt;a href=\&quot;/button2off\&quot;\&quot;&gt;Turn Off LED 2&lt;/a&gt;<br />
+&quot;);<br />
+           client.println(&quot;&lt;a href=\&quot;/button3on\&quot;\&quot;&gt;Turn On LED 3&lt;/a&gt;&quot;);<br />
+           client.println(&quot;&lt;a href=\&quot;/button3off\&quot;\&quot;&gt;Turn Off LED 3&lt;/a&gt;<br />
+&quot;);<br />
+           client.println(&quot;&lt;a href=\&quot;/button4on\&quot;\&quot;&gt;Turn On LED 4&lt;/a&gt;&quot;);<br />
+           client.println(&quot;&lt;a href=\&quot;/button4off\&quot;\&quot;&gt;Turn Off LED 4&lt;/a&gt;<br />
+&quot;);<br />
+           client.println(&quot;<br />
+&quot;);<br />
+           client.println(&quot;<br />
+&quot;);<br />
+           client.println(&quot;&lt;a href=\&quot;/buttonson\&quot;\&quot;&gt;All on LED&lt;/a&gt;&quot;);<br />
+           client.println(&quot;&lt;a href=\&quot;/buttonsoff\&quot;\&quot;&gt;All Off LED&lt;/a&gt;<br />
+&quot;);<br />
+           client.println(&quot;<br />
+&quot;);<br />
+           client.println(&quot;<br />
+&quot;);<br />
+           client.println(&quot;<br />
+&lt;/CENTER&gt;&quot;);<br />
+           client.println(&quot;&lt;/BODY&gt;&quot;);<br />
+           client.println(&quot;&lt;/HTML&gt;&quot;);</p>
+<p>           delay(1);<br />
+           //stopping client<br />
+           client.stop();<br />
+           //controls the Arduino if you press the buttons<br />
+           if (readString.indexOf(&quot;button1on&quot;) &gt; 0){<br />
+               digitalWrite(led, HIGH);<br />
+           }<br />
+           if (readString.indexOf(&quot;button1off&quot;) &gt; 0){<br />
+               digitalWrite(led, LOW);<br />
+           }<br />
+           if (readString.indexOf(&quot;button2on&quot;) &gt; 0){<br />
+               digitalWrite(led2, HIGH);<br />
+           }<br />
+           if (readString.indexOf(&quot;button2off&quot;) &gt; 0){<br />
+               digitalWrite(led2, LOW);<br />
+           }<br />
+           if (readString.indexOf(&quot;button3on&quot;) &gt; 0){<br />
+               digitalWrite(led3, HIGH);<br />
+           }<br />
+           if (readString.indexOf(&quot;button3off&quot;) &gt; 0){<br />
+               digitalWrite(led3, LOW);<br />
+           }<br />
+           if (readString.indexOf(&quot;button4on&quot;) &gt; 0){<br />
+               digitalWrite(led4, HIGH);<br />
+           }<br />
+           if (readString.indexOf(&quot;button4off&quot;) &gt; 0){<br />
+               digitalWrite(led4, LOW);<br />
+           }<br />
+           if (readString.indexOf(&quot;buttonson&quot;) &gt; 0){<br />
+             //int i;<br />
+             //for (i = 0; i &lt; 4; i++){<br />
+               digitalWrite(led, HIGH);<br />
+               digitalWrite(led2, HIGH);<br />
+               digitalWrite(led3, HIGH);<br />
+               digitalWrite(led4, HIGH);<br />
+             //}<br />
+           }<br />
+           if (readString.indexOf(&quot;buttonsoff&quot;) &gt; 0){<br />
+               digitalWrite(led, LOW);<br />
+               digitalWrite(led2, LOW);<br />
+               digitalWrite(led3, LOW);<br />
+               digitalWrite(led4, LOW);<br />
+           }<br />
+          //clearing string for next read<br />
+           readString=&quot;&quot;;  </p>
+<p>         }<br />
+       }<br />
+    }<br />
+}<br />
+}<br />
+[/sourcecode]</p>

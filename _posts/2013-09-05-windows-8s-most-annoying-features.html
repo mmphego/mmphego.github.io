@@ -1,0 +1,49 @@
+---
+layout: post
+title: Windows 8’s most annoying features
+date: 2013-09-05 12:58:45.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux/Ubuntu
+tags:
+- annoying
+- hacks
+- windows 8
+meta:
+  _edit_last: '49460244'
+  _wpas_skip_3508581: '1'
+  _oembed_e1cfeb854f9bfcd3393ce4b53ad5ca59: "{{unknown}}"
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>http://www.youtube.com/watch?v=pPE2az4sjaw</p>
+<p>I have always been annoyed by the way One has to switch off or sign out on windows 8</p>
+<p>so I made a simple executable that I attached on my taskbar...No more going through the complicated route</p>
+<p>Check my Youtube video for a full tutorial.</p>
+<p>------------------------------------</p>
+<div id="watch-description-text">
+<p id="eow-description">I have always been annoyed about the way one has to switch off(Sleep mode) his/her pc on windows 8.</p>
+<p>So with this tutorial you will make a simple taskbar sleep icon.<br />
+----------------------------------------­----------------------------------------­------------<br />
+for all other applications find command lines below<br />
+--------<br />
+Shutdown %windir%\System32\shutdown.exe -s</p>
+<p>Reboot %windir%\System32\shutdown.exe -r</p>
+<p>Logoff %windir%\System32\shutdown.exe -l</p>
+<p>Standby %windir%\System32\rundll32.exe powrprof.dll,SetSuspendState Standby</p>
+<p>Hibernate %windir%\System32\rundll32.exe powrprof.dll,SetSuspendState Hibernate</p>
+<p>Sleep %windir%\system32\rundll32.exe PowrProf.dll, SetSuspendState 0,1,0</p>
+<p>batch to exe convertor<br />
+<a title="http://www.f2ko.de/programs.php?lang=en&amp;pid=ob2e" href="http://www.f2ko.de/programs.php?lang=en&amp;pid=ob2e" target="_blank" rel="nofollow">http://www.f2ko.de/programs.php?lang=...</a></p>
+<p>Edit: I should really put a few more minutes into looking stuff up before bothering to post. So if you want to use the sleep command from hibernate you actually have to disable hibernation on the machine and use rundll32. To turn off hibernation, (running a command line as administrator) use "powercfg -h off" and then you can put the machine to sleep with "%windir%\System32\RunDLL32.exe powrprof.dll,SetSuspendState 0,1,0"</p>
+<p>Edit 2: Oh, forgot the timer part of it. The "Sleep [seconds]" command will pause it for however many seconds you tell it to, so in this case if I want to put the computer to sleep in an hour I put "Sleep 3600 | %windir%\System32\RunDLL32.exe powrprof.dll,SetSuspendState 0,1,0"</p>
+<p>PS:Video was made on Win7 although the hack can work on Win 8</p>
+</div>

@@ -1,0 +1,108 @@
+---
+layout: post
+title: Node-Red Dashboard running on Nginx port 80
+date: 2017-02-11 16:17:06.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Raspberry Pi
+- Ubuntu
+tags:
+- dashboard
+- nginx
+- node
+- node-red
+- nodered
+meta:
+  _publicize_done_external: a:2:{s:8:"facebook";a:1:{i:16076853;s:38:"https://facebook.com/10209651963230835";}s:7:"twitter";a:1:{i:16076855;s:56:"https://twitter.com/MphoMphego/status/830420445941882881";}}
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '1744234219'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=97183493&stype=M&topic=6236186112658939904&type=U&a=5sPc
+  _publicize_done_16016023: '1'
+  _wpas_done_15845576: '1'
+  _publicize_done_16257270: '1'
+  _wpas_done_16076853: '1'
+  _publicize_done_16257272: '1'
+  _wpas_done_16076855: '1'
+  publicize_twitter_user: MphoMphego
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>After finishing my Node-Red dashboard app, and boy, it's awesome. Everything works great, but I wanted to bind it to port 80 on my nginx server.</p>
+<h2>Nginx</h2>
+<p>A more popular approach is to set up Nginx as a reverse proxy by having it bind to the desired port, forwarding all incoming traffic to my node red dashboard.</p>
+<p>Nginx is a high performance, open source web server (similar to Apache) that is widely-used.</p>
+<p>The main benefit of Nginx is the fact that it takes care of transport optimization.</p>
+<p>Installing Nginx</p>
+<p>[sourcecode]<br />
+sudo apt-get install nginx<br />
+ [/sourcecode]</p>
+<p>Configuring Nginx</p>
+<p>Next, we'll need to configure Nginx so that it forwards traffic to my dashboard. Let's start off by removing the default configuration file:</p>
+<p>[sourcecode]<br />
+sudo rm /etc/nginx/sites-enabled/default<br />
+ [/sourcecode]</p>
+<p>Next, create a new file in /etc/nginx/sites-available/ called node and open it with nano:</p>
+<p>[sourcecode]<br />
+sudo nano /etc/nginx/sites-available/node<br />
+ [/sourcecode]<br />
+Paste the following code in the file and make sure to change example.com to your domain (or IP), and 1880 to your Node-Red Dashboard port:</p>
+<p>[sourcecode]<br />
+server {<br />
+    listen 80;<br />
+    server_name example.com;</p>
+<p>    location /ui {<br />
+        proxy_set_header   X-Forwarded-For $remote_addr;<br />
+        proxy_set_header   Host $http_host;<br />
+        proxy_pass         &quot;http://127.0.0.1:1880&quot;;<br />
+    }<br />
+}<br />
+[/sourcecode]</p>
+<p>The proxy_pass declaration configures Nginx to act as a reverse proxy by forwarding all incoming requests on port 80 to Node-Red dashboard on port 1880, on behalf of the client.</p>
+<p>Next, we need to symlink our configuration to sites-enabled for it to be used by Nginx, since it's currently in sites-available:</p>
+<p>[sourcecode]<br />
+sudo ln -s /etc/nginx/sites-available/node /etc/nginx/sites-enabled/node<br />
+[/sourcecode]</p>
+<p>Applying the Configuration</p>
+<p>Let's restart Nginx so that it loads our configuration:</p>
+<p>[sourcecode]<br />
+sudo service nginx restart<br />
+[/sourcecode]<br />
+run</p>
+<p>[sourcecode]<br />
+sudo service nginx status<br />
+[/sourcecode]<br />
+and you should see something like:</p>
+<p>[sourcecode]<br />
+* nginx.service - A high performance web server and a reverse proxy server<br />
+   Loaded: loaded (/lib/systemd/system/nginx.service; enabled)<br />
+   Active: active (running) since Sat 2017-02-11 14:14:14 UTC; 306ms ago<br />
+  Process: 3103 ExecStop=/sbin/start-stop-daemon --quiet --stop --retry QUIT/5 --pidfile /run/nginx.pid (code=exited, status=0/SUCCESS)<br />
+  Process: 3111 ExecStart=/usr/sbin/nginx -g daemon on; master_process on; (code=exited, status=0/SUCCESS)<br />
+  Process: 3108 ExecStartPre=/usr/sbin/nginx -t -q -g daemon on; master_process on; (code=exited, status=0/SUCCESS)<br />
+ Main PID: 3113 (nginx)<br />
+   CGroup: /system.slice/nginx.service<br />
+           |-3113 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;<br />
+           |-3114 nginx: worker process<br />
+           |-3115 nginx: worker process<br />
+           |-3116 nginx: worker process<br />
+           `-3119 nginx: worker process</p>
+<p>Feb 11 14:14:14 alexapi nginx[3108]: nginx: [warn] server name &quot;127.0.0.1:1880/ui&quot; has suspicious symbols in /etc/nginx/sites-enabled/node:3<br />
+Feb 11 14:14:14 alexapi nginx[3111]: nginx: [warn] server name &quot;127.0.0.1:1880/ui&quot; has suspicious symbols in /etc/nginx/sites-enabled/node:3<br />
+Feb 11 14:14:14 alexapi systemd[1]: Started A high performance web server and a reverse proxy server.<br />
+[/sourcecode]</p>
+<p>All set! Nginx will now forward all incoming requests to your app and even survive a server crash, since it automatically starts up with your machine.</p>
+<p><img class="alignnone size-full wp-image-716" src="{{ site.baseurl }}/assets/screenshot_2017-02-11_16-18-49.png" alt="Screenshot_2017-02-11_16-18-49.png" width="1599" height="865" /></p>
+<p>also see: https://www.digitalocean.com/community/tutorials/how-to-connect-your-internet-of-things-with-node-red-on-ubuntu-16-04</p>
+<p>&nbsp;</p>
+<h2><strong><span style="color:#ff0000;">If you found this helpful, donate some coins</span></strong></h2>
+<p>BTC: 1GLwaJiYo7NT71DFHj7KzcDjcczJUWVCbz</p>
+<p>ETH: 0x5218b473b25Bff87f6820f3A84400cbdf3Ab85AB</p>

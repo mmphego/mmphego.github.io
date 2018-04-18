@@ -1,0 +1,59 @@
+---
+layout: post
+title: 'SSH Tunnel: channel_setup_fwd_listener: cannot listen to port'
+date: 2018-03-14 10:58:38.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- continuous integration
+- Linux/Ubuntu
+- Tricks
+tags: []
+meta:
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:16076855;s:56:"https://twitter.com/MphoMphego/status/973845870700580864";}}
+  timeline_notification: '1521017921'
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '15710949918'
+  _publicize_done_16257272: '1'
+  _wpas_done_16076855: '1'
+  publicize_twitter_user: MphoMphego
+  publicize_google_plus_url: https://plus.google.com/+MphoMphego/posts/81q5BqsGVyo
+  _publicize_done_16966120: '1'
+  _wpas_done_16750486: '1'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=97183493&stype=M&topic=6379611575267000320&type=U&a=kXhZ
+  _publicize_done_19730890: '1'
+  _wpas_done_19719750: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>I was attempting to use SSH to set up a tunnel to my Jenkins server from home, so I typed the following (Like I do in most days):</p>
+<p><code>ssh -f -N -L 8080:remote_host:8080 -p 2222 user@host_address</code></p>
+<p>…only to be greeted with the error:</p>
+<p><code>bind: Address already in use<br />
+channel_setup_fwd_listener: cannot listen to port: 8080</code></p>
+<p>Whats odd is that I was sure I didn't have anything else listening on that port, but I confirmed it with a quick <code>netstat -anpt | grep '8080'</code>. To my realization nothing was listening on the port.</p>
+<p>More strangely, with the SSH session open, I can go to <code>http://localhost:8080</code> and see <a href="https://jenkins.io/">Jenkins</a>.</p>
+<p>To my realization SSH itself had already opened the port(weird), and was complaining that it couldn’t do it a second time.</p>
+<h4>Resolution:</h4>
+<p>A simple <code>pkill-9 ssh</code>, saved the day</p>
+<h4>work around to avoid above scenario:<em><br />
+</em></h4>
+<p>So after few Googling and reading up about ssh custom config, mostly from <a href="https://www.digitalocean.com/community/tutorials/how-to-configure-custom-connection-options-for-your-ssh-client" target="_blank" rel="noopener">digitalocean</a></p>
+<p>I’ve added the following in my <code>~/.ssh/config file</code>:</p>
+<p><code>Host Jenkins<br />
+ControlMaster auto<br />
+LocalForward 8080 host_ip:8080<br />
+Hostname _hostname<br />
+User _username<br />
+Port _custom port</code></p>
+<p>Thereafter a simple,<br />
+<code> ssh -f -N -l Jenkins</code>, was all I needed.</p>
+<p>Know more: <code>man ssh</code></p>

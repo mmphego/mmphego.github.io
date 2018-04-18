@@ -1,0 +1,67 @@
+---
+layout: post
+title: Send email via Linux Terminal[Ubuntu]
+date: 2014-05-30 00:21:39.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux
+tags: []
+meta:
+  _edit_last: '49460244'
+  publicize_facebook_url: https://facebook.com/10202704933759440
+  geo_public: '0'
+  _wpas_done_3508581: '1'
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:1081800551;b:1;}}
+  _wpas_skip_3508581: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>After searching throught the web, I eventually found a simple way to send emails via linux terminal, by using a simple package called Postfix. This guide is tested with Ubuntu 12.04.I use a Gmail account as SMTP server on Ubuntu-Linux server.</p>
+<p>Reason as to why I needed to be sending mails via terminal was for system checks, Server disk space monitoring, Server ping status and etc.</p>
+<h4>Postfix via smtp.gmail.com.</h4>
+<p>First, install all necessary packages:</p>
+<p><strong>$sudo su</strong><br />
+<strong> $apt-get install postfix mailutils libsasl2-2 ca-certificates libsasl2-modules</strong></p>
+<p>If you do not have postfix installed before, postfix configuration wizard will ask you some questions. Just select your server as Internet Site and for FQDN use something like mail.example.com</p>
+<p>Then open your postfix config file:<br />
+<strong>$nano /etc/postfix/main.cf</strong></p>
+<p>and add the following lines and the end of it(ctrl+shift+c and ctrl+shift+v):</p>
+<p><strong>relayhost = [smtp.gmail.com]:587</strong><br />
+<strong> smtp_sasl_auth_enable = yes</strong><br />
+<strong> smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd</strong><br />
+<strong> smtp_sasl_security_options = noanonymous</strong><br />
+<strong> smtp_tls_CAfile = /etc/postfix/cacert.pem</strong><br />
+<strong> smtp_use_tls = yes</strong></p>
+<p>create file and add username and password</p>
+<p><strong>$nano <code class="bash">/etc/postfix/sasl_passwd</code></strong></p>
+<p>add this line and edit</p>
+<pre><code class="no-highlight"><strong>[smtp.gmail.com]:587    USERNAME@gmail.com:PASSWORD</strong>
+
+</code>Fix permission and update postfix config to use sasl_passwd file:</pre>
+<pre><code class="no-highlight"><strong>$chmod 400 /etc/postfix/sasl_passwd
+$postmap /etc/postfix/sasl_passwd</strong>
+
+</code></pre>
+<pre><code class="bash">Next, validate certificates to avoid running into error. Just run following command:
+<strong>$cat /etc/ssl/certs/Thawte_Premium_Server_CA.pem | sudo tee -a /etc/postfix/cacert.pem
+
+</strong></code>Almost there,now reload postfix config for changes to take effect:</pre>
+<pre><strong><code class="bash">$ /etc/init.d/postfix reload
+$ exit
+</code></strong></pre>
+<h4 id="testing" class="rtp-hash-elem">Testing</h4>
+<h5 id="check-if-mails-are-sent-via-gmail-smtp-server" class="rtp-hash-elem">Checking if mails are sent via Gmail SMTP server</h5>
+<p>If you have configured everything correctly, following command should generate a test mail from your server to your mailbox.</p>
+<pre><strong><code class="bash"><span class="keyword">$echo</span> "Test mail from `id -nu`@`hostname`" | mail -s <span class="string">"Postfix Test Success"</span> xxx@gmail.com</code></strong></pre>
+<pre><code class="bash">Make sure the 2-factor authentication is Disabled on Gmail.</code></pre>
+<pre><code class="no-highlight"> </code></pre>
+<pre></pre>
+<p>&nbsp;</p>

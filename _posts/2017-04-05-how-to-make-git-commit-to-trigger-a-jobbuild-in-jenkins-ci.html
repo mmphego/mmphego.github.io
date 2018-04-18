@@ -1,0 +1,89 @@
+---
+layout: post
+title: How to make Git commit to trigger a  job/build in Jenkins CI
+date: 2017-04-05 13:32:54.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux/Ubuntu
+- Tricks
+tags:
+- Automation
+- continuous intergration
+- Git
+- Git Hooks
+- jenkins
+- JenkinsCI
+meta:
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:16076855;s:56:"https://twitter.com/MphoMphego/status/849585666786811909";}}
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '3658446998'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=97183493&stype=M&topic=6255351347542130688&type=U&a=F0I4
+  _publicize_done_16016023: '1'
+  _wpas_done_15845576: '1'
+  _publicize_failed_16257270: O:13:"Keyring_Error":2:{s:6:"errors";a:1:{s:21:"keyring-request-error";a:1:{i:0;a:6:{s:7:"headers";O:42:"Requests_Utility_CaseInsensitiveDictionary":1:{s:7:"
+  _publicize_done_16257272: '1'
+  _wpas_done_16076855: '1'
+  publicize_twitter_user: MphoMphego
+  publicize_google_plus_url: https://plus.google.com/+MphoMphego/posts/LWg1Y6rtfQD
+  _publicize_done_16966120: '1'
+  _wpas_done_16750486: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>In this blog post I will show you how to configure a post commit hook on Git that notifies a Jenkins CI server about repository changes. This means that whenever a new commit is pushed to the Git repository, the cURL command line tool will be launched to initiate a Http request telling Jenkins to trigger a job.</p>
+<p><strong>1. Execute Jenkins build with Curl<br />
+</strong></p>
+<p>In this setup, there is no authentication at Jenkins, considering that I will be responsible for the repository and jenkins server.</p>
+<p>To test, I had to execute jenkins with curl</p>
+<p>[sourcecode language="bash"]</p>
+<p>(Test)mmphego@dbelab04:~/src/mkat_fpga_tests/.git/hooks (GIT_DIR!)<br />
+|_ [2017-04-05 11:58:47] $ &gt;&gt;&gt; curl -D - -X POST http://dbelab04:8080/job/mkat_fpga_tests_4k/build</p>
+<p>HTTP/1.1 201 Created<br />
+Date: Wed, 05 Apr 2017 09:59:23 GMT<br />
+X-Content-Type-Options: nosniff<br />
+Location: http://dbelab04:8080/queue/item/387/<br />
+Content-Length: 0<br />
+Server: Jetty(9.2.z-SNAPSHOT)<br />
+[/sourcecode]</p>
+<p><strong>2. Configure a hook of repository<br />
+</strong><br />
+Create a file in .git/hooks called post-commit and do not forget to make it executable.</p>
+<blockquote><p>$ nano $(pwd)/.git/hooks/post-commit</p></blockquote>
+<p>[sourcecode language="bash"]<br />
+#!/bin/bash<br />
+# Jenkins-Git build trigger<br />
+# Mpho Mphego</p>
+<p>machine=$(uname -n)<br />
+echo 'Notifying Jenkins Server to execute a Build on' $machine<br />
+curl -X POST http://$machine:8080/job/mkat_fpga_tests_4k/build<br />
+[/sourcecode]</p>
+<p><img class="alignnone size-full wp-image-902" src="{{ site.baseurl }}/assets/screenshot_2017-04-05_12-57-44.png" alt="Screenshot_2017-04-05_12-57-44" width="781" height="254" /></p>
+<blockquote><p>Assumptions:<br />
+Git version &gt; 2.6<br />
+Jenkins version &gt; 2.0<br />
+Git Plugin (Jenkins)<br />
+Gitlab hook (Jenkins)</p></blockquote>
+<p><strong>3. Configure Jenkins </strong></p>
+<p>Configure your Jenkins job to be able to “Trigger builds remotely”</p>
+<p><img class="alignnone size-full wp-image-942" src="{{ site.baseurl }}/assets/screenshot_2017-04-05_13-18-19.png" alt="Screenshot_2017-04-05_13-18-19.png" width="1911" height="533" /></p>
+<p>Enable SCM polling for each project you want to notify:</p>
+<ol>
+<li>Go to the <strong>Dashboard</strong>.</li>
+<li>Click on your <strong>project</strong>.</li>
+<li>Click <strong>Configure</strong>.</li>
+<li>Under <em>Build Triggers</em> check the box for <strong>Poll SCM</strong>.</li>
+<li>Repeat for any other projects.</li>
+</ol>
+<p>The notification you send tells Jenkins to poll the repository, so projects will only respond if SCM polling is enabled.</p>
+<p>&nbsp;</p>
+<p>Now Jenkins will runs automatically when I/we commit and push using Git via CLI.</p>
+<p>Done.</p>

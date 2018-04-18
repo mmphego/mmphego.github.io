@@ -1,0 +1,51 @@
+---
+layout: post
+title: How to stop Jenkins CI build by extract a value from a JSON endpoint in bash
+  using Curl
+date: 2017-04-06 12:57:35.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- continuous integration
+- Linux/Ubuntu
+tags:
+- Bash
+- BASH script
+- continuous intergration
+- curl
+- jenkins
+- JenkinsCI
+meta:
+  _publicize_failed_16257270: O:13:"Keyring_Error":2:{s:6:"errors";a:1:{s:21:"keyring-request-error";a:1:{i:0;a:6:{s:7:"headers";O:42:"Requests_Utility_CaseInsensitiveDictionary":1:{s:7:"
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '3696381800'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=97183493&stype=M&topic=6255704860193366016&type=U&a=sNOv
+  _publicize_done_16016023: '1'
+  _wpas_done_15845576: '1'
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:16076855;s:56:"https://twitter.com/MphoMphego/status/849939177260974080";}}
+  _publicize_done_16257272: '1'
+  _wpas_done_16076855: '1'
+  publicize_twitter_user: MphoMphego
+  publicize_google_plus_url: https://plus.google.com/+MphoMphego/posts/2pJsQtUY9Ub
+  _publicize_done_16966120: '1'
+  _wpas_done_16750486: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>Curl the URL to get the JSON response and pipe it to the python tool. The python code will extract the value mapped to the given key (number in this case).</p>
+<p>[sourcecode language="bash"]<br />
+machine='dbelab04'<br />
+machineport=8080<br />
+jobname='mkat_fpga_tests_4k'<br />
+buildnumber=$(curl --silent -X POST http://$machine:$machineport/job/$jobname/lastBuild/api/json?tree=number | python -c 'import json,sys;obj=json.load(sys.stdin);print obj[&quot;'number'&quot;]';)<br />
+curl -X POST http://$machine:$machineport/job/$jobname/$number/stop<br />
+[/sourcecode]</p>
+<p>Note: the above command actually works</p>

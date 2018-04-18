@@ -1,0 +1,45 @@
+---
+layout: post
+title: Cool Bash Tricks
+date: 2016-03-23 11:40:42.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux
+- Ubuntu
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '21042078058'
+  _publicize_failed_3700952: 'O:13:"Keyring_Error":2:{s:6:"errors";a:1:{s:21:"keyring-request-error";a:1:{i:0;a:5:{s:7:"headers";a:14:{s:16:"www-authenticate";s:150:"OAuth
+    "Facebook Platform" "invalid_token" "Error validating access token: The session
+    has been invalidated because the user has changed the password."";s:27:"access-control-allow-origin";s:1:"*";s:12:"content-type";s:31:"application/json;
+    charset=UTF-8";s:13:"x-fb-trace-id";s:11:"EeLVFjfqCk9";s:8:"x-fb-rev";s:7:"2243920";s:6:"pragma";s:8:"no-cache";s:13:"cache-control";s:8:"no-store";s:7:"expires";s:29:"Sat,
+    01 Jan 2000 00:00:00 GMT";s:4:"vary";s:15:"Accept-Encoding";s:16:"content-encoding";s:4:"gzip";s:10:"x-fb-debug";s:88:"YbgjyFohSCmSGMABz29wgL6BV82CxM+X5WzH6M2d+EQLigki+hJEEyd0jyXQ6M9DJ6qO0uAwoLHd/uSWm41x2Q==";s:4:"date";s:29:"Wed,
+    23 Mar 2016 08:40:43 GMT";s:10:"connection";s:5:"close";s:14:"content-length";s:3:"180";}s:4:"body";s:212:"{"error":{"message":"Error
+    validating access token: The session has been invalidated because the user has
+    changed the password.","type":"OAuthException","code":190,"error_subcode":460,"fbtrace_id":"EeLVFjfqCk9"}}";s:8:"response";a:2:{s:4:"code";i:401;s:7:"message";s:12:"Unauthorized";}s:7:"cookies";a:0:{}s:8:"filename";N;}}}s:10:"error_data";a:0:{}}'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>Create ~/.inputrc and fill it with this:</p>
+<p>"\e[A": history-search-backward<br />
+"\e[B": history-search-forward</p>
+<p>This allows you to search through your history using the up and down arrows … i.e. type "cd" and press the up arrow and you'll search through everything in your history that starts with "cd".</p>
+<p>It's a little bit like ctrl-r (mentioned in many of the comments below), but anchored to the start of the line, and the arrow keys allow you to scroll back and forth between matches.</p>
+<p>I use it when I'm looking to (for instance) call up the last ping I did (hit p, up arrow, return), whereas I use ctrl-r more like search, when I'm trying to find a command based on an argument or option that I used.</p>
+<p>Both useful.</p>
+<p>Other options that I find useful to add:</p>
+<p>set show-all-if-ambiguous on</p>
+<p>This alters the default behavior of the completion functions. If set to ‘on’, words which have more than one possible completion cause the matches to be listed immediately instead of ringing the bell. The default value is ‘off’.</p>
+<p>set completion-ignore-case on</p>
+<p>If set to ‘on’, Readline performs filename matching and completion in a case-insensitive fashion. The default value is ‘off’.</p>
+<p>(as miah points out below, this is all actually Readline functionality. The title should be "Readline is the single most useful thing in everything" ;)</p>

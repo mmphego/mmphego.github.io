@@ -1,0 +1,112 @@
+---
+layout: post
+title: System V init script(start-stop-daemon)
+date: 2017-01-27 17:07:58.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Raspberry Pi
+- Ubuntu
+tags:
+- Bash
+- BASH script
+- start-stop-daemon
+- system v init
+- ubuntu
+- upstart
+meta:
+  _oembed_4827fe53d47e3d2f341b8797d3df1341: "{{unknown}}"
+  _oembed_56890ae5d4f9c7a06a4b21f442ebde22: "{{unknown}}"
+  _oembed_9127c10829794503a0aa1b5b8a1dcc6f: "{{unknown}}"
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '1221328505'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=97183493&stype=M&topic=6230763118746836992&type=U&a=_bMX
+  _publicize_done_16016023: '1'
+  _wpas_done_15845576: '1'
+  _oembed_81d164e9eef7b3e7155d00d83fd906db: "{{unknown}}"
+  _oembed_dacc1247d4e5f898b025bd6d71b59908: "{{unknown}}"
+  _oembed_c654e31fb15679dc9e730de1b5546868: "{{unknown}}"
+  _publicize_done_external: a:2:{s:8:"facebook";a:1:{i:16076853;s:38:"https://facebook.com/10209535103549416";}s:7:"twitter";a:1:{i:16076855;s:56:"https://twitter.com/MphoMphego/status/824997453120339971";}}
+  _publicize_done_16257270: '1'
+  _wpas_done_16076853: '1'
+  _publicize_done_16257272: '1'
+  _wpas_done_16076855: '1'
+  publicize_twitter_user: MphoMphego
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>I've been looking for efficient ways to start at boot my NodeJS dependent applications, with inspiration from <a href="https://gist.github.com/alobato/1968852">https://gist.github.com/alobato/1968852</a>, I modified it to my own needs.</p>
+<p>Link might interest you as well:<br />
+http://big-elephants.com/2013-01/writing-your-own-init-scripts/<br />
+https://www.cyberciti.biz/tips/linux-write-sys-v-init-script-to-start-stop-service.html</p>
+<p>Copy <em>template</em> to /etc/init.d and rename it to something meaningful. Then edit the script and enter that name after <em>Provides:</em>(between <em>### BEGIN INIT INFO</em> and <em>### END INIT INFO</em>).</p>
+<p>[sourcecode language="bash"]<br />
+#!/bin/bash<br />
+# Inspired by https://gist.github.com/alobato/1968852<br />
+# Needs Provides, Descriptions</p>
+<p>### BEGIN INIT INFO<br />
+# Provides:<br />
+# Required-Start: $all<br />
+# Required-Stop: $all<br />
+# Default-Start: 2 3 4 5<br />
+# Default-Stop: 0 1 6<br />
+# Short-Description:<br />
+# Description:<br />
+### END INIT INFO</p>
+<p>set -e<br />
+NAME=&quot;&quot;<br />
+PIDFILE=&quot;/run/$NAME/$NAME.pid&quot;<br />
+# Application one wants to upstart<br />
+DAEMON=&quot;&quot;<br />
+DAEMON_OPTS=&quot;&quot;<br />
+# Run as user<br />
+RUN_USER=&quot;&quot;<br />
+RUN_GROUP=&quot;&quot;<br />
+function daemon_run {<br />
+	mkdir -p /run/$NAME<br />
+	chown $RUN_USER:$RUN_GROUP /run/$NAME<br />
+	start-stop-daemon --start --background --quiet --chuid $RUN_USER:$RUN_GROUP --chdir /run/$NAME --pidfile $PIDFILE --make-pidfile --exec $DAEMON $DAEMON_OPTS<br />
+}<br />
+exec &gt; /var/log/$NAME.log 2&gt;&amp;1</p>
+<p>case &quot;$1&quot; in<br />
+start)<br />
+	echo -n &quot;Starting $NAME ... &quot;<br />
+	daemon_run<br />
+	echo &quot;done.&quot;<br />
+;;</p>
+<p>silent)<br />
+	echo -n &quot;Starting $NAME in silent mode ... &quot;<br />
+	daemon_run<br />
+	echo &quot;done.&quot;<br />
+;;</p>
+<p>stop)<br />
+	echo -n &quot;Stopping $NAME ... &quot;<br />
+	start-stop-daemon --stop --quiet --oknodo --pidfile $PIDFILE --remove-pidfile<br />
+	echo &quot;done.&quot;<br />
+;;<br />
+restart|force-reload)<br />
+	echo -n &quot;Restarting $NAME ... &quot;<br />
+	start-stop-daemon --stop --quiet --oknodo --retry 30 --pidfile $PIDFILE --remove-pidfile<br />
+	alexa_run<br />
+	echo &quot;done.&quot;<br />
+;;<br />
+*)<br />
+	echo &quot;Usage: $0 {start|stop|restart}&quot;<br />
+exit 1<br />
+esac<br />
+exit 0<br />
+[/sourcecode]</p>
+<p>When done,</p>
+<p>[sourcecode]<br />
+sudo systemctl enable 'name_of_filename'<br />
+reboot<br />
+[/sourcecode]</p>
+<p>Mpho</p>

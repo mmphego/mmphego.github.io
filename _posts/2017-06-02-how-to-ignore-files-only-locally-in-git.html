@@ -1,0 +1,46 @@
+---
+layout: post
+title: How to ignore files only locally in git?
+date: 2017-06-02 08:27:15.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux/Ubuntu
+- Tricks
+tags: []
+meta:
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:16076855;s:56:"https://twitter.com/MphoMphego/status/870527238856261632";}}
+  publicize_google_plus_url: https://plus.google.com/+MphoMphego/posts/iPLgiohrGJi
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _wpas_skip_16076853: '1'
+  _publicize_job_id: '5692894808'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=97183493&stype=M&topic=6276292925714501633&type=U&a=v2a3
+  _publicize_done_16016023: '1'
+  _wpas_done_15845576: '1'
+  _publicize_done_16257272: '1'
+  _wpas_done_16076855: '1'
+  publicize_twitter_user: MphoMphego
+  _publicize_done_16966120: '1'
+  _wpas_done_16750486: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>I have automated tests running everyday, and the issue is that those tests make necessary changes to certain files depending on which test is running. This becomes a problem when I have to report the changes in the repo, as this will report untracked changed, which means I have to ignore certain files such that local Git doesn't report changes in them specifically.</p>
+<p>By making sure to run <code>git update-index --assume-unchanged ./matplotlibrc</code> after making the addition to the exclude file this means changes won't be picked up until then.</p>
+<p>[sourcecode]</p>
+<p>git update-index --assume-unchanged index.rst<br />
+git update-index --assume-unchanged matplotlibrc<br />
+[/sourcecode]</p>
+<p>Before:<br />
+<img class="alignnone size-full wp-image-1097" src="{{ site.baseurl }}/assets/screenshot_2017-06-02_07-31-01.png" alt="Screenshot_2017-06-02_07-31-01" width="1397" height="81" /></p>
+<p>After:</p>
+<p><img class="alignnone size-full wp-image-1101" src="{{ site.baseurl }}/assets/screenshot_2017-06-02_08-19-20.png" alt="Screenshot_2017-06-02_08-19-20.png" width="1323" height="63" /></p>
+<p>Changes made but untracked, nice!!!</p>

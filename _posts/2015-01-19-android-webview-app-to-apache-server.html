@@ -1,0 +1,100 @@
+---
+layout: post
+title: Android WebView App (to Apache server)
+date: 2015-01-19 08:50:51.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Android
+- Raspberry Pi
+tags:
+- Android App
+- Android Studio
+- webview
+meta:
+  _edit_last: '49460244'
+  geo_public: '0'
+  publicize_facebook_url: https://facebook.com/10204314528718308
+  _wpas_done_3508581: '1'
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:1081800551;b:1;}}
+  _wpas_skip_3508581: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>Yippyyyy!!!</p>
+<p>Just successfully created my first Android App.</p>
+<p>So I have been playing around recently with modifications, improvements and configurations on my current project - <strong>"Smart Home using Raspberry Pi &amp; Android with Voice Recognition."</strong></p>
+<p>I have been thinking of implementing a simple Android application which directly opens up URL, rather than going to my browser each and every time I need to access the web control server(Apache2).</p>
+<p>So one might be wondering what is exactly this WebView 'nonsense' a simple Google search gave me this definition, A “webview” is a browser bundled inside of a mobile application producing what is called a hybrid app. Using a webview allows mobile apps to be built using Web technologies (HTML, JavaScript, CSS, etc.) but still package it as a native app and put it in the app store.</p>
+<p>Now coming back to the App, i'm using the latest Android Studio, source code below.</p>
+<p><a href="https://mmphego.files.wordpress.com/2015/01/mpho.png"><img class=" size-medium wp-image-327 aligncenter" src="{{ site.baseurl }}/assets/mpho.png?w=180" alt="mpho" width="180" height="300" /></a></p>
+<p>Main_Activity.java</p>
+<p>[sourcecode language="java"]<br />
+//__author__ = &quot;Mpho Mphego&quot;<br />
+//__description__ = &quot;Android WebView App controlling Raspberry Pi running Apache2&quot;<br />
+//__version__ = &quot;Revision: 1.0 &quot;<br />
+//__date__ = &quot;Date: 2015/01/17 22:23 &quot;<br />
+//__url__ = &quot;mmphego.wordpress.com&quot;<br />
+//__copyright__ = &quot;Copyright (c) 2015 Mpho Mphego&quot;<br />
+//__license__ = &quot;Java&quot;</p>
+<p>package com.wordpress.mpho112.mobilehomectrl;</p>
+<p>import android.os.Bundle;<br />
+import android.support.v7.app.ActionBarActivity;<br />
+import android.view.Menu;<br />
+import android.view.MenuItem;<br />
+import android.webkit.WebSettings;<br />
+import android.webkit.WebView;</p>
+<p>public class MainActivity extends ActionBarActivity {<br />
+    private WebView mWebView;</p>
+<p>    @Override<br />
+    protected void onCreate(Bundle savedInstanceState) {<br />
+        super.onCreate(savedInstanceState);<br />
+        setContentView(R.layout.activity_main);<br />
+        mWebView = (WebView) findViewById(R.id.activity_main_webview);<br />
+        // Enable Javascript<br />
+        WebSettings webSettings = mWebView.getSettings();<br />
+        webSettings.setJavaScriptEnabled(true);<br />
+        mWebView.loadUrl(&quot;http://172.18.20.41/&quot;);<br />
+    }</p>
+<p>    @Override<br />
+    public boolean onCreateOptionsMenu(Menu menu) {<br />
+        // Inflate the menu; this adds items to the action bar if it is present.<br />
+        getMenuInflater().inflate(R.menu.menu_main, menu);<br />
+        return true;<br />
+    }</p>
+<p>    @Override<br />
+    public boolean onOptionsItemSelected(MenuItem item) {<br />
+        // Handle action bar item clicks here. The action bar will<br />
+        // automatically handle clicks on the Home/Up button, so long<br />
+        // as you specify a parent activity in AndroidManifest.xml.<br />
+        int id = item.getItemId();</p>
+<p>        //noinspection SimplifiableIfStatement<br />
+        if (id == R.id.action_settings) {<br />
+            return true;<br />
+        }</p>
+<p>        return super.onOptionsItemSelected(item);<br />
+    }<br />
+}</p>
+<p>[/sourcecode]</p>
+<p>Activity_main.xml</p>
+<p>[sourcecode]</p>
+<p>&lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;<br />
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;<br />
+    android:id=&quot;@+id/container&quot;<br />
+    android:layout_width=&quot;match_parent&quot;<br />
+    android:layout_height=&quot;match_parent&quot;<br />
+    tools:context=&quot;.MainActivity&quot;&gt;<br />
+    tools:ignore=&quot;MergeRootFrame&quot;&gt;</p>
+<p>    &lt;WebView<br />
+        android:id=&quot;@+id/activity_main_webview&quot;<br />
+        android:layout_width=&quot;match_parent&quot;<br />
+        android:layout_height=&quot;match_parent&quot; /&gt;<br />
+&lt;/FrameLayout&gt;   </p>
+<p>[/sourcecode]</p>

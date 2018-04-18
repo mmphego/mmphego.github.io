@@ -1,0 +1,125 @@
+---
+layout: post
+title: Noise filtering using MATLAB
+date: 2013-07-11 09:44:17.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- MATLAB
+tags:
+- Butterworth
+- Chebyshev
+- Digital Signal processing
+- Elliptic
+- Filters
+- Matlab
+meta:
+  _edit_last: '49460244'
+  _wpas_skip_3508581: '1'
+  _oembed_a7c96350571500dd0e656ae02f1b5ad4: "{{unknown}}"
+  geo_public: '0'
+  _oembed_faf4c473c7135853b1e565f7528692d9: "{{unknown}}"
+  _oembed_e596d16ce79bffc7c879b89db2621c08: "{{unknown}}"
+  _oembed_c7aad8fb7519d3bcd9278d1b338a2384: "{{unknown}}"
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>So last year, i was enrolled in a course in order to obtain my degree. course titled Signal Processing.</p>
+<p>Description:Introduction to signal processing. Analogue signal processing. Signals and systems, and the characteristics of signals and systems. The different domains that continuous-time signals are represented in. Time-domain representation and analysis of continuous-time signals and systems (using convolution and ordinary differential equations), frequency-domain representation and analysis (Fourier series, Fourier Transform) and the Laplace Transform. Applications of signal processing; for example, the design of continuous-time filters</p>
+<p>So for my final year project, The aim for the project was to introduce ourselves to discrete-time signal processing and help me understand that it is tightly linked with analogue (continuous-time) signal processing.</p>
+<p>Discrete-time signal processing has been widely applied in the field of speech processing especially noise suppression. This project explores the application of digital filtering for noise suppression in speech. You will be required to design 4 types of low-pass Infinite Impulse Response (IIR) filters digitally, namely a Butterworth filter, a Chebychev Type I filter, a Chebychev Type II filter, and an Elliptic filter, using MATLAB.</p>
+<p>All the source files and documentations are on the link below.<br />
+https://github.com/mmphego/Signal_Processing_Filters</p>
+<p>I concluded that the Butterworth filter functioned properly compared to the Chebychev Type I&amp;II and Elliptic filter. As the Elliptic filter and Chebychev Type I&amp;II always had some hissing noise in the background.<br />
+And also i had to amplify it by about 60dB's.</p>
+<p>Below is the matlab command for Butterworth filter<br />
+[sourcecode]<br />
+% Butterworth lowpass filter based on the given specification<br />
+%Loading of Values<br />
+F_samp=44100;      % Sampling frequency (Hz)<br />
+F_pass=2500;       % Passband frequency (Hz)<br />
+F_stop=4000;       % Stopband frequency (Hz)<br />
+Rs= 55 ;           % Stopband ripple (dB)<br />
+Rp = 3;            % Passband ripple (dB)<br />
+load projIB.mat    % Noisy to be filtered</p>
+<p>%Derived Parameter<br />
+F_Nyg = F_samp/2;             % Nyguist frequency  (Hz)<br />
+wp= (pi*F_pass)/(F_Nyg*pi);   % Normalized Passband frequency<br />
+ws= (pi*F_stop)/(F_Nyg*pi);   % Normalized Stopband frequency</p>
+<p>%Deteminign coefficients of the num and den of the H(s)<br />
+[b, a]=butter(k, Wk);<br />
+[k, Wk]= buttord(wp,ws,Rp,Rs);</p>
+<p>% Determining the Magnitude responses of the filter in dB and linear scale<br />
+[magnitud,z]=freqz(b,a,256); %freq response<br />
+Hbutter=abs(magnitud);<br />
+w=0:pi/255:pi;<br />
+Hbutter_dB=20*log10(Hbutter);</p>
+<p>%Plot Noisy signal<br />
+figure(3)<br />
+subplot(211)<br />
+plot(noisy)<br />
+title('Original Signal with Noise')<br />
+ylabel('Amplitude')<br />
+xlabel(' t')<br />
+grid</p>
+<p>%Filtering process with Butterworth filter<br />
+FilterdNoise=filter(b,a,noisy)*(20*log10(1000));%Amplifying the filtered signal by 60dB<br />
+subplot(212)<br />
+plot(FilterdNoise)<br />
+title('The Filtered Signal')<br />
+ylabel('Amplitude')<br />
+xlabel('t')<br />
+legend('Filtered Signal');<br />
+grid<br />
+aud=audioplayer(FilterdNoise,fs);    %Testing the noisy signal after filtering<br />
+play(aud)</p>
+<p>%Filter Visualization tool:Manitude and Phase Response<br />
+fvtool(b,a)<br />
+grid</p>
+<p>%Magnitude Response in dB<br />
+subplot(311)<br />
+plot(w,Hbutter_dB,'LineWidth',3) %plot gain in dB<br />
+xlabel('Normalized Frequency')<br />
+ylabel('Magnitude (dB)')<br />
+title('Butterworth Lowpass Filter Magnitude (dB)')<br />
+grid</p>
+<p>%Magnitude Response in Linear Scale<br />
+figure(1)<br />
+subplot(312)<br />
+plot(z/pi,Hbutter,'k', 'LineWidth',3)<br />
+xlabel('Normalized Frequency')<br />
+ylabel('Magnitude')<br />
+title('Butterworth Lowpass Filter Magnitude Response (linear scale)')<br />
+grid</p>
+<p>%Plot the Group Delay<br />
+g_delay=grpdelay(b,a,256);%The group delay of a filter is a measure of the average delay of the filter as a function of frequency<br />
+subplot(313)<br />
+plot(z/pi,g_delay,'y','LineWidth',3)<br />
+ylabel('Group delay (samples)');<br />
+xlabel('Normalized Frequency ')<br />
+title ('Butterworth Group Delay')<br />
+legend('Group delay');<br />
+grid</p>
+<p>%Poles and Zeros<br />
+figure(2)<br />
+subplot(211)<br />
+zplane(b, a);<br />
+title('Poles and Zeros')<br />
+grid</p>
+<p>%Plot the Impulse Response for first 100 samples<br />
+subplot(212)<br />
+imp=[1; zeros(49,1)];<br />
+imp_res=filter(b,a,imp);<br />
+stem(imp_res)<br />
+title('Impulse Response')<br />
+xlabel('Samples')<br />
+ylabel('Amplitude')<br />
+grid</p>
+<p>[/sourcecode]</p>

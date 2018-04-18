@@ -1,0 +1,112 @@
+---
+layout: post
+title: How to make Ubuntu Local Repository
+date: 2014-06-10 19:06:17.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux
+tags: []
+meta:
+  _edit_last: '49460244'
+  publicize_facebook_url: https://facebook.com/10202785281768090
+  geo_public: '0'
+  _wpas_done_3508581: '1'
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:1081800551;b:1;}}
+  _wpas_skip_3508581: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p><strong>1. Open terminal.</strong></p>
+<p><strong>Install dpkg-dev ,apache2 and apt-mirror</strong><br />
+<code><br />
+$ sudo su<br />
+$ apt-get update &amp;&amp; apt-get upgrade<br />
+$ apt-get install dpkg-dev apache2 apt-mirror<br />
+</code><br />
+<strong>2. Create a directory where you will keep your packages. For this example, we'll use /usr/local/mydebs.<br />
+</strong><br />
+<code>$ mkdir -p /usr/local/mydebs</code></p>
+<p><strong>3. Now copy your packages into the directory you've just created.<br />
+</strong></p>
+<p><code>$ rsync -truv /var/cache/apt/archives/* /usr/local/mydebs</code></p>
+<p>#tip: you can place that command on crontab to sync every week</p>
+<p><strong>4. The Script update-mydebs<br />
+</strong><br />
+It's a simple three liner:<br />
+<code><br />
+$ mkdir -p ~/bin<br />
+$ . ~/.bashrc<br />
+$ nano update-mydebs</code></p>
+<p><strong>copy the below code.<br />
+</strong><code><br />
+#! /bin/bash<br />
+cd /usr/local/mydebs<br />
+dpkg-scanpackages . /dev/null | gzip -9c &gt; Packages.gz<br />
+</code><br />
+Next, make the script executable:<br />
+<code><br />
+$ chmod u+x ~/bin/update-mydebs<br />
+</code><br />
+<strong>How the script works:<br />
+</strong>dpkg-scanpackages looks at all the packages in mydebs, and the output is compressed and written to a file (Packages.gz) that apt-get update can read (see below for a reference that explains this in excruciating detail). /dev/null is an empty file; it is a substitute for an override file which holds some additional information about the packages, which in this case is not really needed. See deb-override(5) if you want to know about it.</p>
+<p><strong>5. Update sources.list<br />
+</strong><code><br />
+$ echo "deb file:/usr/local/mydebs ./" | tee -a /etc/apt/sources.list<br />
+</code><br />
+<strong>6. Whenever you put a new deb in the mydebs directory, run<br />
+</strong></p>
+<p><code>$ update-mydebs<br />
+$ apt-get update</code></p>
+<p>Now your local packages can be manipulated with Synaptic, aptitude and the apt commands: apt-get, apt-cache, etc. When you attempt to apt-get install, any dependencies will be resolved for you, as long as they can be met.</p>
+<p>Badly made packages will probably fail, but you won't have endured dpkg hell.</p>
+<p><strong>7. Configuring apt-mirror</strong></p>
+<p><code><br />
+$ cp /etc/apt/mirror.list /etc/apt/mirror.list.orig<br />
+$ cp /etc/apt/sources.list /etc/apt/sources.list.orig<br />
+$ cp /etc/cron/apt-mirror /etc/cron/apt-mirror.orig<br />
+$ cp /var/spool/apt-mirror/var/postmirror.sh /var/spool/apt-mirror/var/postmirror.sh.orig<br />
+</code><br />
+Now edit the files.</p>
+<p><code><br />
+$ echo "deb file:/usr/local/mydebs ./" | tee -a /etc/apt/mirror.list<br />
+$ echo "clean deb file:/usr/local/mydebs ./" | tee -a /etc/apt/mirror.list<br />
+</code></p>
+<p>You can also remove or comment out the lines dealing with source code if you don't expect to need or use them. You can always add repositories later if you want. The time it takes to populate your mirror after adding something is less than the initial population of your mirror, so you can start with the minimum and add more later as the need arises.</p>
+<p><strong>8. Now you can run apt-mirror for the first time. </strong></p>
+<p>You might want to wait on this step since it will take a while for your mirror to build, overnight for example(depending on your internet speed).</p>
+<p><code>$ apt-mirror</code></p>
+<p>You'll see it working, but it will appear slow.<br />
+Once the mirror is populated, link the repository to the web server:</p>
+<p><strong>9. Linking repository to Webserver(apache2)</strong></p>
+<p><code>ln -s /var/spool/apt-mirror/mirror/archive.ubuntu.com/ubuntu /var/www/<br />
+ln -s /var/spool/apt-mirror/mirror/security.ubuntu.com/ubuntu /var/www/<br />
+ln -s /usr/local/mydebs /var/www/</code></p>
+<p><strong>Finally, make apt-mirror an automated task:(Not really necessary)</strong></p>
+<p>remove the comment from the last line.<br />
+<code>$ nano /etc/cron.d/apt-mirror</code></p>
+<p><strong>10. Moving to the client side:</strong></p>
+<p>Edit the sources.list file that will be used to access the mirror.</p>
+<p><code>$ sudo nano /etc/apt/sources.list</code></p>
+<p>The example below assumes using the mirror from the computer that hosts it.<br />
+Using it from other computers on the network simply requires changing the IP address from 172.x.30.100 to whatever IP address is assigned to the mirror host(Server).</p>
+<p><code>deb http://172.x.30.100/debs ./<br />
+deb http://172.x.30.100/debs /</code><br />
+<code><br />
+deb http://172.x.30.100/ubuntu precise main restricted universe multiverse<br />
+deb http://172.x.30.100/ubuntu precise-updates main restricted universe multiverse<br />
+deb http://172.x.30.100/ubuntu precise-security main restricted universe multiverse</code></p>
+<p><code>deb http://172.x.30.100/security precise main restricted universe multiverse<br />
+deb http://172.x.30.100/security precise-updates main restricted universe multiverse<br />
+deb http://172.x.30.100/security precise-security main restricted universe multiverse</code></p>
+<p><strong>11. Update the source.list, run<br />
+</strong></p>
+<p><code>$ sudo su<br />
+$ apt-get update &amp; apt-get upgrade</code></p>

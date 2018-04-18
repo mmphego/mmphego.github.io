@@ -1,0 +1,74 @@
+---
+layout: post
+title: How to mount Google Drive on your Linux(Ubuntu) system
+date: 2015-06-04 15:02:47.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Bash
+- Linux
+- Ubuntu
+tags: []
+meta:
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:3508581;s:38:"https://facebook.com/10205226754283377";}}
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  geo_latitude: "-33.942849"
+  geo_longitude: '18.489235'
+  geo_address: Oude Molen Village, Cape Town, South Africa
+  geo_public: '1'
+  _publicize_job_id: '11328555960'
+  _publicize_done_3700952: '1'
+  _wpas_done_3508581: '1'
+  _edit_last: '49460244'
+  _wpas_skip_3508581: '1'
+  _oembed_f1b82bc4f9d81b467434a31f18d70fe9: "{{unknown}}"
+  _oembed_339df8d4964e65efb3a40c01f7880f51: "{{unknown}}"
+  _oembed_a44d611370cc9cce406340bea3dc408e: "{{unknown}}"
+  _oembed_a1d639412ded1c9962b161398ebb258c: "{{unknown}}"
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>I have always been a fan of cloud storage as anything can happen on my mechanical harddrive, but now that I have completely migrated to Ubuntu and having to realise that the is no support whatsoever for Google drive applications, I was on a quest to find a working and reliable on. Then I stumbled upon Google Drive Ocamlfuse which is a FUSE filesystem backend for Google Drive which you can use to mount your Google Drive under Linux.</p>
+<p><span style="text-decoration:underline;">Link: <a title="https://github.com/astrada/google-drive-ocamlfuse" href="https://github.com/astrada/google-drive-ocamlfuse">https://github.com/astrada/google-drive-ocamlfuse</a></span></p>
+<p><span style="text-decoration:underline;"><strong>Installation</strong></span></p>
+<p>[sourcecode language="bash"]<br />
+sudo add-apt-repository ppa:alessandro-strada/ppa<br />
+sudo apt-get update<br />
+sudo apt-get install google-drive-ocamlfuse<br />
+[/sourcecode]</p>
+<p><strong><span style="text-decoration:underline;">Usage</span></strong></p>
+<p>run:</p>
+<p>[sourcecode language="bash"]<br />
+google-drive-ocamlfuse<br />
+[/sourcecode]</p>
+<p>Make sure you are connected to the internet as this will open your browser and require access to your Google Drive. Click "Allow" and this will give the application access to your files.</p>
+<p><span style="text-decoration:underline;"><strong>Mounting</strong></span></p>
+<p>Now we mount GDrive to your system.</p>
+<p>run:</p>
+<p>[sourcecode language="bash"]<br />
+mkdir -p ~/Google_Drive<br />
+google-drive-ocamlfuse ~/Google_Drive<br />
+[/sourcecode]</p>
+<p>That's about it, unless you want to be heroic and modify changes in the configuration file which is  here:</p>
+<p>[sourcecode language="bash"]<br />
+~/.gdfuse/default/config<br />
+[/sourcecode]</p>
+<p><span style="text-decoration:underline;"><strong>Automount</strong></span></p>
+<p>To mount Google Drive upon startup, run:</p>
+<p>[sourcecode language="bash"]<br />
+crontab -e<br />
+[/sourcecode]</p>
+<p>and insert</p>
+<p>[sourcecode language="bash"]<br />
+@reboot google-drive-ocamlfuse ~/Google_Drive<br />
+[/sourcecode]</p>
+<p>Or go here: <a title="https://github.com/astrada/google-drive-ocamlfuse/wiki/Automounting" href="https://github.com/astrada/google-drive-ocamlfuse/wiki/Automounting">https://github.com/astrada/google-drive-ocamlfuse/wiki/Automounting</a></p>
+<p>Done!!!</p>

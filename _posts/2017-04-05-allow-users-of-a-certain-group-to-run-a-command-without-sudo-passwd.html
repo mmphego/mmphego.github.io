@@ -1,0 +1,73 @@
+---
+layout: post
+title: Allow users of a certain group to run a command without sudo passwd
+date: 2017-04-05 11:23:07.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Bash
+- Linux
+- Linux/Ubuntu
+- Tricks
+tags: []
+meta:
+  publicize_google_plus_url: https://plus.google.com/+MphoMphego/posts/FNCkCa2nvck
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '3654822395'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=97183493&stype=M&topic=6255318690468896768&type=U&a=M004
+  _publicize_done_16016023: '1'
+  _wpas_done_15845576: '1'
+  _publicize_failed_16257270: O:13:"Keyring_Error":2:{s:6:"errors";a:1:{s:21:"keyring-request-error";a:1:{i:0;a:6:{s:7:"headers";O:42:"Requests_Utility_CaseInsensitiveDictionary":1:{s:7:"
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:16076855;s:56:"https://twitter.com/MphoMphego/status/849553004244152321";}}
+  _publicize_done_16257272: '1'
+  _wpas_done_16076855: '1'
+  publicize_twitter_user: MphoMphego
+  _publicize_done_16966120: '1'
+  _wpas_done_16750486: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>Time to time I usually find myself typing sudo to execute commands requiring sudo rights, and this is repetitive which simply means one gets weary of typing sudo password every time, hence this blog post. Reason for this is to remind me how to do it the next time I am faced with such conundrum(s).</p>
+<p>Suppose I wanted to add a group of users who are allowed to run mount and umount without passwords. So I first want to add a group called "staff"</p>
+<p>[sourcecode language="bash"]<br />
+sudo groupadd staff<br />
+[/sourcecode]<br />
+Next we need to edit the /etc/group and add the users</p>
+<p>[sourcecode language="bash"]<br />
+staff:407:<br />
+[/sourcecode]<br />
+will be present ,hence append users you want to add the users separated by commas.</p>
+<p>[sourcecode language="bash"]<br />
+staff:x:407:user1,user2,...<br />
+[/sourcecode]<br />
+Now we need to configure sudo to allow members of the "staff" group to actually invoke the mount and umount commands.</p>
+<blockquote><p>You just need to add the following lines to /etc/sudoers or execute sudo visudo</p></blockquote>
+<p>[sourcecode language="bash"]<br />
+%staff ALL=NOPASSWD: /sbin/mount, /sbin/umount<br />
+[/sourcecode]<br />
+Now sudo mount won't ask password but since it is a pain in the butt typing sudo all the time, we can avoid it by doing the following:</p>
+<p>I can create the following script called "/usr/bin/mount" (and similar script for umount)</p>
+<p>[sourcecode language="bash"]<br />
+#! /bin/sh<br />
+sudo /sbin/mount $*<br />
+[/sourcecode]<br />
+To make this slightly more secure, We might want to change the ownership of these scripts to the "staff" group.</p>
+<p>[sourcecode language="bash"]<br />
+chgrp staff /usr/bin/mount /usr/bin/umount<br />
+[/sourcecode]<br />
+and then make them executable only for the group "staff"</p>
+<p>[sourcecode language="bash"]<br />
+chmod g+x /usr/bin/mount  /usr/bin/umount<br />
+[/sourcecode]<br />
+Note:Depending on the OS you are using please check where mount and umount commands are located. It might be in /bin/ instead of /sbin.<br />
+So you might have to make necessary changes</p>
+<p>&nbsp;</p>
+<p>Done</p>

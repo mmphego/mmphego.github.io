@@ -1,0 +1,110 @@
+---
+layout: post
+title: Guide to Installing and Running MiniDLNA on an Ubuntu Server
+date: 2015-01-20 03:26:20.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux
+- Ubuntu
+tags: []
+meta:
+  _edit_last: '49460244'
+  publicize_facebook_url: https://facebook.com/10204319957054013
+  geo_public: '0'
+  _wpas_done_3508581: '1'
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:1081800551;b:1;}}
+  _wpas_skip_3508581: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>I have recently been experimenting with running MiniDLNA on a headless Ubuntu Server. I have written this guide to hopefully take some of the pain out of installing and configuring an amazing program.<br />
+"minidlna - lightweight DLNA/UPnP-AV server targeted at embedded systems"<br />
+[sourcecode]<br />
+sudo apt-get update<br />
+sudo apt-get upgrade<br />
+sudo apt-get install minidlna<br />
+[/sourcecode]<br />
+Once this is installed, you need to configure the MiniDLNA conf file located at /etc/minidlna.conf.</p>
+<p>My minidlna.conf file reads as follows:</p>
+<p>[sourcecode]<br />
+sudo nano /etc/minidlna.conf</p>
+<p># port for HTTP (descriptions, SOAP, media transfer) traffic<br />
+port=8200</p>
+<p># network interfaces to serve, comma delimited<br />
+#network_interface=eth0</p>
+<p># set this to the directory you want scanned.<br />
+# * if have multiple directories, you can have multiple media_dir= lines<br />
+# * if you want to restrict a media_dir to a specific content type, you<br />
+#   can prepend the type, followed by a comma, to the directory:<br />
+#   + &quot;A&quot; for audio  (eg. media_dir=A,/home/jmaggard/Music)<br />
+#   + &quot;V&quot; for video  (eg. media_dir=V,/home/jmaggard/Videos)<br />
+#   + &quot;P&quot; for images (eg. media_dir=P,/home/jmaggard/Pictures)<br />
+#media_dir=/opt<br />
+media_dir=V,/home/nerd/Videos<br />
+media_dir=A,/home/nerd/Music</p>
+<p># set this if you want to customize the name that shows up on your clients<br />
+friendly_name=Media Server</p>
+<p># set this if you would like to specify the directory where you want MiniDLNA to store its database and album art cache<br />
+db_dir=/var/lib/minidlna</p>
+<p># set this if you would like to specify the directory where you want MiniDLNA to store its log file<br />
+log_dir=/tmp/log</p>
+<p># set this to change the verbosity of the information that is logged<br />
+# each section can use a different level: off, fatal, error, warn, info, or debug<br />
+#log_level=general,artwork,database,inotify,scanner,metadata,http,ssdp,tivo=warn</p>
+<p># this should be a list of file names to check for when searching for album art<br />
+# note: names should be delimited with a forward slash (&quot;/&quot;)<br />
+album_art_names=art.jpg/Art.jpg/front.jpg/Front.jpg/Cover.jpg/cover.jpg/AlbumArtSmall.jpg/albumartsmall.jpg/AlbumArt.jpg/albumart.jpg/Album.jpg/album.jpg/Folder.jpg/folder.jpg/Thumb.jpg/thumb.jpg</p>
+<p># set this to no to disable inotify monitoring to automatically discover new files<br />
+# note: the default is yes<br />
+inotify=yes</p>
+<p># set this to yes to enable support for streaming .jpg and .mp3 files to a TiVo supporting HMO<br />
+enable_tivo=no</p>
+<p># set this to strictly adhere to DLNA standards.<br />
+# * This will allow server-side downscaling of very large JPEG images,<br />
+#   which may hurt JPEG serving performance on (at least) Sony DLNA products.<br />
+strict_dlna=no</p>
+<p># default presentation url is http address on port 80<br />
+# presentation_url=http://www.mylan/index.php</p>
+<p># notify interval in seconds. default is 895 seconds.<br />
+notify_interval=900</p>
+<p># serial and model number the daemon will report to clients<br />
+# in its XML description<br />
+serial=12345678<br />
+model_number=1</p>
+<p># specify the path to the MiniSSDPd socket<br />
+#minissdpdsocket=/var/run/minissdpd.sock</p>
+<p># use different container as root of the tree<br />
+# possible values:<br />
+#   + &quot;.&quot; - use standard container (this is the default)<br />
+#   + &quot;B&quot; - &quot;Browse Directory&quot;<br />
+#   + &quot;M&quot; - &quot;Music&quot;<br />
+#   + &quot;V&quot; - &quot;Video&quot;<br />
+#   + &quot;P&quot; - &quot;Pictures&quot;<br />
+# if you specify &quot;B&quot; and client device is audio-only then &quot;Music/Folders&quot; will be used as root<br />
+#root_container=.<br />
+[/sourcecode]</p>
+<p>After editing it, we need to restart minidlna service.<br />
+[sourcecode]<br />
+sudo /etc/init.d/minidlna restart<br />
+[/sourcecode]</p>
+<p><strong>Adding or Removing Files of Folders from the Database</strong></p>
+<p>In my experience, MiniDLNA tends not to notice if a file has been added or removed from the folders so the database does not update and new files are not shown on your device and old files are still shown even though they have been removed. This seems to be a problem with MiniDLNA and not the receiving soft/hardware. If you change the name of the server, the soft/hardware picks that up fine.</p>
+<p>Running this command will scan and update minidlna<br />
+[sourcecode]<br />
+chmod -Rv 777 /home/nerd/Videos/<br />
+chmod -Rv 777 /home/nerd/Music/<br />
+minidlna -R -f /etc/minidlna.conf<br />
+[/sourcecode]</p>
+<p>Also adding this on crontab comes in handy at time.<br />
+[sourcecode]<br />
+crontab -e<br />
+00 00 * * * minidlna -R -f /etc/minidlna.conf &gt; /dev/null<br />
+[/sourcecode]</p>

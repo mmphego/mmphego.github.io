@@ -1,0 +1,128 @@
+---
+layout: post
+title: 1972 Pong "python"
+date: 2014-10-22 05:22:04.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux/Ubuntu
+tags:
+- python
+meta:
+  _edit_last: '49460244'
+  geo_public: '0'
+  publicize_facebook_url: https://facebook.com/10203695119673469
+  _wpas_done_3508581: '1'
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:1081800551;b:1;}}
+  _wpas_skip_3508581: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>That feeling when, your program compiles and runs like it should...<br />
+So last week, was a pong game challenge, need I say more.<br />
+Here goes nothing.</p>
+<p>[sourcecode language="python" wraplines="false" collapse="false"]<br />
+#http://www.codeskulptor.org/#user38_5WtyGnsPgb_0.py<br />
+# Implementation of classic arcade game Pong<br />
+try:<br />
+    import simplegui<br />
+except:<br />
+    import SimpleGUICS2Pygame.simpleguics2pygame as simplegui<br />
+    # To run simplegui in idle python, install SimpleGUICS2Pygame module<br />
+    # download module : https://pypi.python.org/pypi/SimpleGUICS2Pygame</p>
+<p>import random</p>
+<p># initialize globals - pos and vel encode vertical info for paddles<br />
+WIDTH = 600<br />
+HEIGHT = 400<br />
+BALL_RADIUS = 20<br />
+PAD_WIDTH = 8<br />
+PAD_HEIGHT = 80<br />
+HALF_PAD_WIDTH = PAD_WIDTH / 2<br />
+HALF_PAD_HEIGHT = PAD_HEIGHT / 2<br />
+LEFT = False<br />
+RIGHT = True<br />
+paddle1_vel, paddle2_vel = 0,0</p>
+<p>paddle1_pos = [WIDTH - HALF_PAD_WIDTH,  HEIGHT / 2]#,[WIDTH - PAD_WIDTH, HEIGHT]#[WIDTH / 2, HEIGHT / 2]<br />
+paddle2_pos = [HALF_PAD_WIDTH, HEIGHT / 2]</p>
+<p>ball_pos = [WIDTH / 2, HEIGHT / 2]<br />
+# initialize ball_pos and ball_vel for new bal in middle of table<br />
+# if direction is RIGHT, the ball's velocity is upper right, else upper left<br />
+def spawn_ball(direction):<br />
+    global ball_pos, ball_vel # these are vectors stored as lists</p>
+<p># define event handlers<br />
+def new_game():<br />
+    global paddle1_pos, paddle2_pos, paddle1_vel, paddle2_vel  # these are numbers<br />
+    global score1, score2  # these are ints</p>
+<p>def draw(canvas):<br />
+    global score1, score2, paddle1_pos, paddle2_pos, ball_pos, ball_vel, paddle1_vel, paddle2_vel</p>
+<p>    # draw mid line and gutters<br />
+    canvas.draw_line([WIDTH / 2, 0],[WIDTH / 2, HEIGHT], 1, &quot;White&quot;)<br />
+    canvas.draw_line([PAD_WIDTH, 0],[PAD_WIDTH, HEIGHT], 1, &quot;White&quot;)<br />
+    canvas.draw_line([WIDTH - PAD_WIDTH, 0],[WIDTH - PAD_WIDTH, HEIGHT], 1, &quot;White&quot;)</p>
+<p>    # update ball</p>
+<p>    # draw ball<br />
+    canvas.draw_circle(ball_pos, BALL_RADIUS, 2, &quot;Red&quot;, &quot;White&quot;)</p>
+<p>    &quot;&quot;&quot;Limit keeps the paddle on the screen&quot;&quot;&quot;<br />
+    if paddle1_pos[1] &lt; HALF_PAD_HEIGHT:<br />
+        paddle1_pos[1] = HALF_PAD_HEIGHT<br />
+        paddle1_vel = 0<br />
+    elif paddle1_pos[1] &gt; HEIGHT - HALF_PAD_HEIGHT:<br />
+        paddle1_pos[1] = HEIGHT - HALF_PAD_HEIGHT<br />
+        paddle1_vel = 0<br />
+    if paddle2_pos[1] &lt; HALF_PAD_HEIGHT:<br />
+        paddle2_pos[1] = HALF_PAD_HEIGHT<br />
+        paddle2_vel = 0<br />
+    elif paddle2_pos[1] &gt; HEIGHT - HALF_PAD_HEIGHT:<br />
+        paddle2_pos[1] = HEIGHT - HALF_PAD_HEIGHT<br />
+        paddle2_vel = 0</p>
+<p>    &quot;&quot;&quot;Drawing Paddles&quot;&quot;&quot;<br />
+    paddle1_pos[1] += paddle1_vel<br />
+    paddle2_pos[1] += paddle2_vel</p>
+<p>    paddle1_top =  [paddle1_pos[0], paddle1_pos[1] - HALF_PAD_HEIGHT]<br />
+    paddle1_bot =  [paddle1_pos[0], paddle1_pos[1] + HALF_PAD_HEIGHT]<br />
+    canvas.draw_line(paddle1_top, paddle1_bot, PAD_WIDTH, &quot;White&quot;)</p>
+<p>    paddle2_top =  [paddle2_pos[0], paddle2_pos[1] - HALF_PAD_HEIGHT]<br />
+    paddle2_bot =  [paddle2_pos[0], paddle2_pos[1] + HALF_PAD_HEIGHT]<br />
+    canvas.draw_line(paddle2_top ,paddle2_bot, PAD_WIDTH, &quot;White&quot;)</p>
+<p>    # draw scores</p>
+<p>def keydown(key):<br />
+    global paddle1_vel, paddle2_vel<br />
+    acc = 5<br />
+    if key == simplegui.KEY_MAP[&quot;up&quot;]:<br />
+        paddle1_vel -= acc<br />
+    if key == simplegui.KEY_MAP[&quot;down&quot;]:<br />
+        paddle1_vel += acc<br />
+    if key == simplegui.KEY_MAP[&quot;w&quot;]:<br />
+        paddle2_vel -= acc<br />
+    if key == simplegui.KEY_MAP[&quot;s&quot;]:<br />
+        paddle2_vel += acc</p>
+<p>def keyup(key):<br />
+    global paddle1_vel, paddle2_vel<br />
+    acc = 0<br />
+    if key == simplegui.KEY_MAP[&quot;up&quot;]:<br />
+        paddle1_vel = acc<br />
+    if key == simplegui.KEY_MAP[&quot;down&quot;]:<br />
+        paddle1_vel = acc<br />
+    if key == simplegui.KEY_MAP[&quot;w&quot;]:<br />
+        paddle2_vel = acc<br />
+    if key == simplegui.KEY_MAP[&quot;s&quot;]:<br />
+        paddle2_vel = acc</p>
+<p>def exit_button():<br />
+    frame.stop()</p>
+<p># create frame<br />
+frame = simplegui.create_frame(&quot;Pong&quot;, WIDTH, HEIGHT)<br />
+frame.set_draw_handler(draw)<br />
+frame.set_keydown_handler(keydown)<br />
+frame.set_keyup_handler(keyup)<br />
+frame.add_button('Exit', exit_button, 50)</p>
+<p># start frame<br />
+new_game()<br />
+frame.start()<br />
+[/sourcecode]</p>

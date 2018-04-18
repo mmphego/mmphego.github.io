@@ -1,0 +1,72 @@
+---
+layout: post
+title: Sublime Text useful python snippets
+date: 2017-02-23 12:16:26.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Python
+- Tricks
+tags:
+- python
+- snippets
+- sublime text
+meta:
+  _publicize_done_external: a:2:{s:8:"facebook";a:1:{i:16076853;s:38:"https://facebook.com/10209750672418503";}s:7:"twitter";a:1:{i:16076855;s:56:"https://twitter.com/MphoMphego/status/834708541516701697";}}
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '2165613171'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=97183493&stype=M&topic=6240474213065592832&type=U&a=4Is7
+  _publicize_done_16016023: '1'
+  _wpas_done_15845576: '1'
+  _publicize_done_16257270: '1'
+  _wpas_done_16076853: '1'
+  _publicize_done_16257272: '1'
+  _wpas_done_16076855: '1'
+  publicize_twitter_user: MphoMphego
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>For the past few months, I have been trying to move from using <a href="https://www.geany.org/">Geany</a> to using <a href="https://www.sublimetext.com/">Sublime Text </a>as my primary text editor.</p>
+<p>I find myself repeating some repetitive operations dozen times a day when coding in python, such as import IPython;IPython.embed() and etc.</p>
+<p>So here are some of my Sublime Text snippets to enhance my productivity, and simplify my life.</p>
+<p>Sublime Text 3 makes it super easy to create a snippet. You simply select <em>Tools &gt; Developer &gt; New Snippet</em> from the toolbar menu and you’re off to the races!</p>
+<p>1. IPython debugger</p>
+<p>Type ipyt and press tab to automatically insert IPython debugger under current pointer.</p>
+<p>[sourcecode language="html"]<br />
+&lt;snippet&gt;<br />
+    &lt;content&gt;<br />
+        &lt;![CDATA[import IPython;IPython.embed()]]&gt;<br />
+    &lt;/content&gt;<br />
+    &lt;tabTrigger&gt;ipython&lt;/tabTrigger&gt;<br />
+    &lt;scope&gt;source.python&lt;/scope&gt;<br />
+    &lt;description&gt;Interactive IPython debugger&lt;/description&gt;<br />
+&lt;/snippet&gt;<br />
+[/sourcecode]</p>
+<p>2. Docstring</p>
+<p>Type docstring and press tab to automatically insert a numpy-style valid<br />
+docstring pattern right after your function definition</p>
+<p>[sourcecode language="html"]<br />
+&lt;snippet&gt;<br />
+    &lt;content&gt;&lt;![CDATA[<br />
+&quot;&quot;&quot;${1:One liner description}<br />
+Parameters<br />
+----------<br />
+${2}<br />
+Returns<br />
+-------<br />
+${3}<br />
+&quot;&quot;&quot;<br />
+]]&gt;&lt;/content&gt;<br />
+    &lt;tabTrigger&gt;docstring&lt;/tabTrigger&gt;<br />
+    &lt;scope&gt;source.python&lt;/scope&gt;<br />
+    &lt;description&gt;Adds a docstring skeleton to function&lt;/description&gt;<br />
+&lt;/snippet&gt;[/sourcecode]</p>
+<p>and save your snippets with the .sublime-snippet file extension in /home/$USER/.config/sublime-text-3/Packages/User</p>

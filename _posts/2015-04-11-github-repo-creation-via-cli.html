@@ -1,0 +1,136 @@
+---
+layout: post
+title: GitHub Repo creation via CLI
+date: 2015-04-11 04:41:30.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Bash
+- Linux
+tags: []
+meta:
+  _edit_last: '49460244'
+  publicize_facebook_url: https://facebook.com/10204859232775569
+  geo_public: '0'
+  _wpas_done_3508581: '1'
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:1081800551;b:1;}}
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>I am so excited after creating my first repository on github and successfully adding some test files to it from my local machine!<br />
+But due to my limited internet connection, I stumbled upon some diffulties.</p>
+<p>It took me a lot of time and effort, and there were actually a few times when I thought that I wouldn’t be able to do it. It took me hours, and that is not how much it should have taken to just create a new repository.</p>
+<p>So i had a huge challenge - How do I make more repositories and add my files to it without the need of a browser... mmmhhh after some vigorous Googling I came upon a simple command using 'curl'.</p>
+<p>Challenge was accepted and at 03:10am I was done creating a badass bash script that would not only create a github repository, it would initialise it and push my files to the repository with only a press of a button.</p>
+<p>[sourcecode language="bash"]<br />
+#!/bin/bash<br />
+# -*- coding: utf-8 -*-<br />
+#<br />
+#  gitrep-create<br />
+#<br />
+#  The purpose of this script is to generate Github repository via cli instead of going to github.com<br />
+#  Instructions for use:<br />
+#  1. Install github [debian: sudo apt-get install -y git]<br />
+#  2. Fill in/Enter details<br />
+#     git config --global user.name &quot;Your Name&quot;<br />
+#     git config --global user.email &quot;youremail@domain.com&quot;<br />
+#  3. Generate token on github.com &gt; Settings &gt; Applications &gt; Generate token<br />
+#<br />
+#<br />
+#  Copyright 2015 Mpho Mphego &lt;mpho112@gmail.com&gt;<br />
+#<br />
+#  This program is free software; you can redistribute it and/or modify<br />
+#  it under the terms of the GNU General Public License as published by<br />
+#  the Free Software Foundation; either version 2 of the License, or<br />
+#  (at your option) any later version.<br />
+#<br />
+#  This program is distributed in the hope that it will be useful,<br />
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of<br />
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br />
+#  GNU General Public License for more details.<br />
+#<br />
+#  You should have received a copy of the GNU General Public License<br />
+#  along with this program; if not, write to the Free Software<br />
+#  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,<br />
+#  MA 02110-1301, USA.<br />
+#  </p>
+<p>function progress(){<br />
+echo -n &quot;Please wait...&quot;<br />
+while true<br />
+do<br />
+  echo -n &quot;.&quot;<br />
+  sleep 1<br />
+done</p>
+<p>}</p>
+<p># Note:<br />
+# To run from ~/.bash_profile, uncomment function below. and copy code to ~/.bash_profile<br />
+# else create script and place it in ~/bin.</p>
+<p>#gitrepo-create(){</p>
+<p>  #trap &quot;killall background&quot; EXIT<br />
+  repo_name=$1<br />
+  dir_name=`basename $(pwd)`<br />
+  username=`git config github.user`<br />
+  token=`git config github.token`<br />
+  WGET=&quot;/usr/bin/wget&quot;</p>
+<p> if [ &quot;$repo_name&quot; = &quot;&quot; ]; then<br />
+    echo &quot;Repo name (hit enter to use '$dir_name')?&quot;<br />
+    read repo_name<br />
+  fi</p>
+<p>  if [ &quot;$repo_name&quot; = &quot;&quot; ]; then<br />
+    repo_name=$dir_name<br />
+  fi</p>
+<p>  if [ &quot;$username&quot; = &quot;&quot; ]; then<br />
+    echo &quot;Could not find username, run 'git config --global github.user &lt;username&gt;'&quot;<br />
+    invalid_credentials=1<br />
+  fi</p>
+<p>  echo Git Username: $username</p>
+<p>  if [ &quot;$token&quot; = &quot;&quot; ]; then<br />
+    echo &quot;Could not find token, run 'git config --global github.token &lt;token&gt;'&quot;<br />
+    invalid_credentials=1<br />
+  fi</p>
+<p>  echo &quot;Creating Github repository '$repo_name'&quot;<br />
+  progress &amp;<br />
+  myself=$!</p>
+<p>  $WGET -q --tries=10 --timeout=5 http://www.google.com -O /tmp/index.google &amp;&gt; /dev/null<br />
+  if [ ! -s /tmp/index.google ];then</p>
+<p>    echo &quot;Check your Internet Connection.&quot;<br />
+    kill $myself &amp;&gt; /dev/null</p>
+<p>  else<br />
+    curl -u &quot;$username:$token&quot; https://api.github.com/user/repos -d '{&quot;name&quot;:&quot;'$repo_name'&quot;}' &gt; /dev/null 2&gt;&amp;1<br />
+    kill $myself &amp;&gt; /dev/null<br />
+    echo -n &quot;...done.&quot;<br />
+    echo &quot; &quot;<br />
+    echo &quot;Enter 1 to Create new repository.&quot;<br />
+    echo &quot;Enter 2 to Push on existing repository.&quot;<br />
+    read inputs<br />
+    if [ &quot;$inputs&quot; == &quot;1&quot; ]; then<br />
+      echo &quot;Creating a new repository.&quot;<br />
+      echo &quot;#&quot; $repo_name &gt;&gt; README.md<br />
+      git init<br />
+      echo &quot; &quot;<br />
+      git add README.md<br />
+      echo &quot; &quot;<br />
+      git commit -m &quot;first commit&quot;<br />
+      echo &quot; &quot;<br />
+      git remote add origin git@github.com:$username/$repo_name.git<br />
+      echo &quot; &quot;<br />
+      git push -u origin master<br />
+      echo &quot;.......Done........&quot;<br />
+    fi</p>
+<p>    if [ &quot;$inputs&quot; == &quot;2&quot; ]; then<br />
+      echo &quot;Pushing an existing repository&quot;<br />
+      git remote add origin git@github.com::$username/$repo_name.git<br />
+      echo &quot; &quot;<br />
+      git push -u origin master<br />
+      echo &quot;.......Done........&quot;<br />
+    fi</p>
+<p>  fi<br />
+#}<br />
+[/sourcecode]</p>

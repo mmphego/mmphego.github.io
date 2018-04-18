@@ -1,0 +1,76 @@
+---
+layout: post
+title: Automagically execute a bash function/cmd upon entering a directory.
+date: 2017-11-03 10:18:40.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux
+- Linux/Ubuntu
+- Tricks
+- Ubuntu
+tags:
+- Bash
+- petalinux
+- vivado
+- xilinx
+- yocto
+- yoctoproject
+meta:
+  _wpas_skip_16076853: '1'
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  publicize_google_plus_url: https://plus.google.com/+MphoMphego/posts/j2ZEJj9HvEJ
+  _publicize_job_id: '11034305169'
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:16076855;s:56:"https://twitter.com/MphoMphego/status/926363006392586241";}}
+  _publicize_done_16257272: '1'
+  _wpas_done_16076855: '1'
+  publicize_twitter_user: MphoMphego
+  _publicize_done_16966120: '1'
+  _wpas_done_16750486: '1'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=97183493&stype=M&topic=6332128708555534336&type=U&a=_0EG
+  _publicize_done_18636816: '1'
+  _wpas_done_18429879: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>After growing tired of sourcing Petalinux/Yocto-project settings, I decided to compile a script/code that resides under my <code> ~/.bashrc </code>, the only thing the code/script does it automagically source my settings upon entering the directory else it will just list the contents of that directory.</p>
+<p>[sourcecode language="bash"]<br />
+source $HOME/.opt/Xilinx/Vivado/2017.2/settings64.sh<br />
+export YOCTODIR=$HOME/Documents/Xilinx/EmbeddedLinux/Yocto/poky<br />
+export PETADIR=$HOME/Documents/Xilinx/EmbeddedLinux/Petalinux<br />
+function cd {<br />
+    # The 'builtin' keyword allows you to redefine a Bash builtin without<br />
+    # creating a recursion. Quoting the parameter makes it work in case there are spaces in<br />
+    # directory names.<br />
+    builtin cd &quot;$@&quot;<br />
+    if [ &quot;$PWD&quot; == &quot;$YOCTODIR&quot; ] ;<br />
+        then<br />
+            bash $YOCTODIR/.source_yocto<br />
+    elif [ &quot;$PWD&quot; == &quot;$PETADIR&quot; ] ;<br />
+        then<br />
+            bash $PETADIR/.source_petalinux<br />
+    else<br />
+        ls -lhF;<br />
+    fi<br />
+}</p>
+<p>[/sourcecode]</p>
+<p>The content of source_petalinux listed above.</p>
+<p>[sourcecode language="bash"]<br />
+$ cat $PETADIR/.source_petalinux<br />
+#!/bin/bash<br />
+. ~/.opt/petalinux/settings.sh<br />
+[/sourcecode]</p>
+<p>as well as .source_yocto</p>
+<p>[sourcecode language="bash"]<br />
+$ cat $YOCTODIR/.source_yocto</p>
+<p>#!/bin/bash<br />
+. $HOME/Documents/Xilinx/EmbeddedLinux/Yocto/poky/oe-init-build-env<br />
+[/sourcecode]</p>

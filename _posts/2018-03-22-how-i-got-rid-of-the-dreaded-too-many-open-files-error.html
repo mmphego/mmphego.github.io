@@ -1,0 +1,52 @@
+---
+layout: post
+title: How I got rid of the dreaded 'Too many open files' ERROR.
+date: 2018-03-22 09:29:12.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- continuous integration
+- Linux
+- Linux/Ubuntu
+- Ubuntu
+tags: []
+meta:
+  publicize_google_plus_url: https://plus.google.com/+MphoMphego/posts/QMHap7NbFYK
+  timeline_notification: '1521703757'
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _wpas_skip_16076855: '1'
+  _publicize_job_id: '15983550602'
+  _publicize_done_16966120: '1'
+  _wpas_done_16750486: '1'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=97183493&stype=M&topic=6382488175868280832&type=U&a=b_wF
+  _publicize_done_19730890: '1'
+  _wpas_done_19719750: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>One of the most frustrating thing about continuous integration namely Jenkins, is getting to work in the morning with a happy smile expecting a successful Jenkins build and being faced with the dreaded errors/ or system failures. Not forgetting that these builds take about 3-5 hours to run and run on actual hardware and in real-time/</p>
+<p>Going through the console log, you find yourself faced with....</p>
+<p>Your build failed because of too many opened files, bla bla blah ...</p>
+<p><img class="alignnone size-full wp-image-1524" src="{{ site.baseurl }}/assets/screenshot_2018-03-22_09-14-23.png" alt="Screenshot_2018-03-22_09-14-23.png" width="1077" height="466" /></p>
+<p>After hours of gruesome Googling, I found a solution...</p>
+<p>On Ubuntu at least the open files limit for normal users defaults to 1024.  So, if you are going to have more than ~1000 simultaneous connections you need to bump this up.</p>
+<p><strong>Solution: Raise open file descriptor limits</strong></p>
+<p>Here's how to do it on Ubuntu</p>
+<p>Open and add the following line.<br />
+<code>sudo vim /etc/security/limits.conf</code></p>
+<p><code>* soft nofile 16384<br />
+* hard nofile 16384</code><br />
+The first column describes WHO the limit is to apply for. * is a wildcard, meaning all users. To raise the limits for root, you have to explicitly enter 'root' instead of '*'.</p>
+<p>You also need to edit <code>sudo nano /etc/pam.d/common-session*</code> and add the following line to the end:</p>
+<p><code>session required pam_limits.so</code></p>
+<p>logout and then back in before you can use the new max limit, test with</p>
+<p><code>ulimit -n</code></p>
+<p>Done, No more yada yada Too many open files.</p>

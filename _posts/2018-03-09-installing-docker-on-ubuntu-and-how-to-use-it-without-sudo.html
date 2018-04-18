@@ -1,0 +1,76 @@
+---
+layout: post
+title: Installing Docker on Ubuntu and how to use it without sudo
+date: 2018-03-09 10:14:08.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- continuous integration
+- Docker
+- Linux/Ubuntu
+tags: []
+meta:
+  publicize_google_plus_url: https://plus.google.com/+MphoMphego/posts/Q1we8qFzDjb
+  timeline_notification: '1520583252'
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '15541140140'
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:16076855;s:56:"https://twitter.com/MphoMphego/status/972022734480990208";}}
+  _publicize_done_16257272: '1'
+  _wpas_done_16076855: '1'
+  publicize_twitter_user: MphoMphego
+  _publicize_done_16966120: '1'
+  _wpas_done_16750486: '1'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=97183493&stype=M&topic=6377788437851963392&type=U&a=4xVb
+  _publicize_done_19730890: '1'
+  _wpas_done_19719750: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<header class="article-header">Maybe you have heard about <strong>Docker</strong>, used to package your applications and services into a standardized unit which can be shipped and executed easily without external dependencies in every environment. In this post I want to show you how to install it in an easy way Docker on <strong>Ubuntu 16.04 LTS</strong>, and also how to run it without use it with sudo. Sounds right? Let’s start.</header>
+<div class="article-body">
+<p>&nbsp;</p>
+<p><strong>Introduction</strong></p>
+<p>Developing complex enterprise applications can be tedious when you must mount every external service needed in your new machine, Elastic Search, MongoDB, Rabbitmq, etc. A good way to manage this task is by using Docker. With this container service you can easily download or create small containers with all the services you could need. Also it is essential to perform quick deploys for your code into production in no-time.</p>
+<p><strong>Installing Docker on Ubuntu 16.04</strong></p>
+<p>I will make this guide as simple as i can. I will use Ubuntu 16.04 [LTS]. You will need the 64 bit version and your kernel must be at least in <em>3.10</em>, you can check this typing (uname -r) in the shell. You must type the following commands in your shell, if you have any doubts you can see the official guide in <a href="https://docs.docker.com/">https://docs.docker.com/</a></p>
+<pre><code class="language-bash hljs">sudo apt-get update
+sudo apt-get install apt-transport-https ca-certificates
+sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:<span class="hljs-number">80</span> --recv-keys <span class="hljs-number">58118</span>E89F3A912897C070ADBF76221572C52609D
+</code></pre>
+<p>Write the following line in /etc/apt/sources.list.d/docker.list deb <a href="https://apt.dockerproject.org/repo">https://apt.dockerproject.org/repo</a> ubuntu-xenial main</p>
+<p>You can open a simple editor like nano with this command sudo nano /etc/apt/sources.list.d/docker.list And then paste the text in the file and save it</p>
+<pre><code class="language-bash hljs">sudo apt-get update
+sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual
+sudo apt-get install docker-engine
+sudo service docker start
+</code></pre>
+<p>Excellent, you have installed Docker in your computer, you can check it typing</p>
+<pre><code class="language-bash hljs">sudo docker run hello-world
+</code></pre>
+<p>If the installation has been a success, you will see <em>“Hello from Docker!”</em></p>
+<p>Running Docker without sudo permits Running Docker with sudo all time is not a great idea. We will fix this in this step :) First, we must add the docker group</p>
+<pre><code class="language-bash hljs">sudo groupadd docker
+</code></pre>
+<p>Then add your current user to the docker group</p>
+<pre><code class="language-bash hljs">sudo gpasswd <span class="hljs-operator">-a</span> <span class="hljs-variable">${USER}</span> docker
+</code></pre>
+<p>Now you can restart the daemon</p>
+<pre><code class="language-bash hljs">sudo service docker restart
+</code></pre>
+<p>Now you should be able to run in a new terminal</p>
+<pre><code class="language-bash hljs">docker run hello-world
+</code></pre>
+<p>without sudo If you have any problem, try rebooting your machine.</p>
+<p><strong>Conclusion</strong></p>
+<p>Now you can use Docker in your machine, it is very handy, if you haven’t use it yet, more than you can expect by now. I hope this post has been helpful to you to install and run without sudo Docker.</p>
+</div>
+<aside></aside>
+<p>&nbsp;</p>

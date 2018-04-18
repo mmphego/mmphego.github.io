@@ -1,0 +1,183 @@
+---
+layout: post
+title: 'Arduino Temp Monitor : Webserver'
+date: 2014-12-17 01:31:44.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Arduino
+- AVR and C
+- Linux/Ubuntu
+tags:
+- thermistor
+- webserver
+meta:
+  _wpas_skip_google_plus: '1'
+  _wpas_skip_twitter: '1'
+  _wpas_skip_linkedin: '1'
+  _wpas_skip_tumblr: '1'
+  _wpas_skip_path: '1'
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  publicize_facebook_url: https://facebook.com/
+  _edit_last: '49460244'
+  geo_public: '0'
+  _wpas_skip_3508581: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>Phase 2: Temperature monitoring logged on webserver.<br />
+[sourcecode language="c"]<br />
+/*<br />
+  Web Server</p>
+<p> A simple web server that shows the temperature using an Arduino Wiznet Ethernet shield.</p>
+<p>Parts list:</p>
+<p>10k Thermistor<br />
+Breadboard/Veroboard<br />
+10k resistor<br />
+Arduino ( I use UNO)<br />
+Arduino Wiznet Ethernet shield</p>
+<p>The Thermistor Circuit:<br />
+AREF---+3.3V----Therm----A0(Arduino)----10k res---&amp;gt; Gnd</p>
+<p>Better Readings:<br />
+When doing analog readings, especially with a 'noisy' board like the arduino, we suggest two tricks to improve results.<br />
+One is to use the 3.3V voltage pin as an analog reference and the other is to take a bunch of readings in a row and average them.<br />
+The first trick relies on the fact that the 5V power supply that comes straight from your computer's USB does a lot of stuff on the Arduino,<br />
+and is almost always much noisier than the 3.3V line (which goes through a secondary filter/regulator stage!) It's easy to use, simply connect 3.3V to AREF and use that as the VCC voltage.<br />
+Because our calcuations don't include the VCC voltage, you don't have to change your equation. You do have to set the analog reference but that's a single line of code<br />
+Taking multiple readings to average out the result helps get slightly better results as well, since you may have noise or fluctuations, we suggest about 5 samples.</p>
+<p>Circuit:<br />
+ * Ethernet shield attached to pins 10, 11, 12, 13</p>
+<p> */</p>
+<p>#include &amp;lt;SPI.h&amp;gt;<br />
+#include &amp;lt;Ethernet.h&amp;gt;</p>
+<p>#define THERMISTORPIN A0<br />
+// resistance at 25 degrees C<br />
+#define THERMISTORNOMINAL 10000<br />
+// temp. for nominal resistance (almost always 25 C)<br />
+#define TEMPERATURENOMINAL 25<br />
+// how many samples to take and average, more takes longer<br />
+// but is more 'smooth'<br />
+#define NUMSAMPLES 5<br />
+// The beta coefficient of the thermistor (usually 3000-4000)<br />
+#define BCOEFFICIENT 3950<br />
+// the value of the 'other' resistor<br />
+#define SERIESRESISTOR 10000    </p>
+<p>int samples[NUMSAMPLES];</p>
+<p>// Enter a MAC address and IP address for your controller below.<br />
+// The IP address will be dependent on your local network:<br />
+byte mac[] = {<br />
+  0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };<br />
+IPAddress ip(172,18,30,197);</p>
+<p>// Initialize the Ethernet server library<br />
+// with the IP address and port you want to use<br />
+// (port 80 is default for HTTP):<br />
+EthernetServer server(80);</p>
+<p>void setup() {<br />
+ // Open serial communications and wait for port to open:<br />
+  Serial.begin(9600);<br />
+   while (!Serial) {<br />
+    ; // wait for serial port to connect. Needed for Leonardo only<br />
+  }</p>
+<p>  // start the Ethernet connection and the server:<br />
+  Ethernet.begin(mac, ip);<br />
+  server.begin();<br />
+  Serial.print(&amp;quot;server is at &amp;quot;);<br />
+  Serial.println(Ethernet.localIP());<br />
+}</p>
+<p>void loop() {<br />
+  // listen for incoming clients<br />
+    uint8_t i;<br />
+  float average;</p>
+<p>  // take N samples in a row, with a slight delay<br />
+  for (i=0; i&amp;lt; NUMSAMPLES; i++) {<br />
+   samples[i] = analogRead(THERMISTORPIN);<br />
+   delay(10);<br />
+  }</p>
+<p>  // average all the samples out<br />
+  average = 0;<br />
+  for (i=0; i&amp;lt; NUMSAMPLES; i++) {<br />
+     average += samples[i];<br />
+  }<br />
+  average /= NUMSAMPLES;</p>
+<p>//  Serial.print(&amp;quot;Average analog reading &amp;quot;);<br />
+//  Serial.println(average);</p>
+<p>  // convert the value to resistance<br />
+  average = 1023 / average - 1;<br />
+  average = SERIESRESISTOR / average;<br />
+//-------------------------------------------<br />
+// To display on Serial monitor<br />
+//  Serial.print(&amp;quot;Thermistor resistance &amp;quot;);<br />
+//  Serial.println(average);</p>
+<p>// Read about the Steinhart–Hart equation<br />
+// http://en.wikipedia.org/wiki/Steinhart%E2%80%93Hart_equation</p>
+<p>  float steinhart;<br />
+  steinhart = average / THERMISTORNOMINAL;     // (R/Ro)<br />
+  steinhart = log(steinhart);                  // ln(R/Ro)<br />
+  steinhart /= BCOEFFICIENT;                   // 1/B * ln(R/Ro)<br />
+  steinhart += 1.0 / (TEMPERATURENOMINAL + 273.15); // + (1/To)<br />
+  steinhart = 1.0 / steinhart;                 // Invert<br />
+  steinhart -= 273.15;                         // convert to C</p>
+<p>  EthernetClient client = server.available();<br />
+  if (client) {<br />
+    Serial.println(&amp;quot;new client&amp;quot;);<br />
+    // an http request ends with a blank line<br />
+    boolean currentLineIsBlank = true;<br />
+    while (client.connected()) {<br />
+      if (client.available()) {<br />
+        char c = client.read();<br />
+        Serial.write(c);<br />
+        // if you've gotten to the end of the line (received a newline<br />
+        // character) and the line is blank, the http request has ended,<br />
+        // so you can send a reply<br />
+        if (c == '\n' &amp;amp;&amp;amp; currentLineIsBlank) {<br />
+          // send a standard http response header<br />
+          client.println(&amp;quot;HTTP/1.1 200 OK&amp;quot;);<br />
+          client.println(&amp;quot;Content-Type: text/html&amp;quot;);<br />
+          client.println(&amp;quot;Connection: close&amp;quot;);  // the connection will be closed after completion of the response<br />
+	  client.println(&amp;quot;Refresh: 5&amp;quot;);  // refresh the page automatically every 5 sec<br />
+          client.println();<br />
+          client.println(&amp;quot;&amp;lt;!DOCTYPE HTML&amp;gt;&amp;quot;);<br />
+          client.println(&amp;quot;&amp;lt;html&amp;gt;&amp;quot;);<br />
+          // output the value of each analog input pin<br />
+          //int analogChannel = 0;<br />
+          //for (int analogChannel = 0; analogChannel &amp;lt; 6; analogChannel++) {<br />
+           // int sensorReading = analogRead(analogChannel);<br />
+           client.print(&amp;quot;&amp;lt;CENTER&amp;gt;&amp;lt;H1&amp;gt;&amp;quot;);<br />
+           client.print(&amp;quot;Temperature &amp;quot;);<br />
+            //client.print(analogChannel);<br />
+            client.print(&amp;quot; is &amp;quot;);<br />
+            client.print(steinhart);<br />
+            client.print(&amp;quot; &amp;amp;deg;C&amp;quot;);<br />
+            client.print(&amp;quot;&amp;lt;/H1&amp;gt;&amp;lt;/CENTER&amp;gt;&amp;quot;);<br />
+            client.println(&amp;quot;<br />
+&amp;quot;);<br />
+          //}<br />
+          client.println(&amp;quot;&amp;lt;/html&amp;gt;&amp;quot;);<br />
+          break;<br />
+        }<br />
+        if (c == '\n') {<br />
+          // you're starting a new line<br />
+          currentLineIsBlank = true;<br />
+        }<br />
+        else if (c != '\r') {<br />
+          // you've gotten a character on the current line<br />
+          currentLineIsBlank = false;<br />
+        }<br />
+      }<br />
+    }<br />
+    // give the web browser time to receive the data<br />
+    delay(100);<br />
+    // close the connection:<br />
+    client.stop();<br />
+    Serial.println(&amp;quot;client disonnected&amp;quot;);<br />
+  }<br />
+}<br />
+[/sourcecode]</p>

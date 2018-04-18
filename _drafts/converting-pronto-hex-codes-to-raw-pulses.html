@@ -1,0 +1,41 @@
+---
+layout: post
+title: Converting Pronto hex codes to raw  pulses
+date: 
+type: post
+parent_id: '0'
+published: false
+password: ''
+status: draft
+categories:
+- Linux/Ubuntu
+tags: []
+meta: {}
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>I'm really just getting my feet wet when it comes to IR protocols and IR codes in general, so my knowledge and understanding may be a bit shaky here.</p>
+<p>I am a programmer and am trying to create a tool to convert Pronto Hex codes to RAW IR pulses. To do this I'm trying to understand the process manually. I'm testing this with an IR blaster app on a specific device.</p>
+<p>What I have so far is the result of lots of searching, playing around with tools and piecing things together.</p>
+<p>Considering the following HEX code:</p>
+<p>0000 006E 0011 0006 0012 0052 0014 0051 0014<br />
+0051 0014 0051 0013 0052 0013 0052 0024 0051<br />
+0014 0031 0014 0052 0023 0052 0034 0051 0014<br />
+0051 0014 0052 0013 0052 0013 0052 0014 0051<br />
+0014 0632 0154 0051 0014 0CE5 0154 0051 0014<br />
+0CE5 0154 0051 0014 0CE5</p>
+<p>Here is pseudocode of what I have</p>
+<p>I know the first set, "0000", indicates it's raw oscillated code. I believe the second set "006E" indicates the frequency for the code and can be converted to khz via:</p>
+<p>freq = 1000000 / (toDecimal("006E") * .241246)</p>
+<p>I know that the third and fourth sets of codes have to do with the sequence lengths.</p>
+<p>I know the rest of the sets can be converted to pulses in microseconds with the following, using "0012" as an example</p>
+<p>microSeconds = 1000000 * toDecimal("0012") / freq</p>
+<p>So "0012" would be (rounded) 478. So, applying the above to the full code and separated with commas I end up with:</p>
+<p>478,2176,531,2150,531,2150,531,2150,504,2176,504,2176,955,2150,531,1300,531,2176,929,2176,1380,2150,531,2150,531,2176,504,2176,504,2176,531,2150,531,42088,9023,2150,531,87599,9023,2150,531,87599,9023,2150,531,87599</p>
+<p>When I test this out with an IR blaster I don't see the device I am trying to control respond. However if I prepend the opening pulses for NEC protocol 9000,4500 I get a response from my device.</p>
+<p>My questions are - Could someone tell me if I am on the right track here? How would I discern from the HEX code that I needed to use the 9000 on 4500 as the opening pulses? Any input/advice would be really appreciated, as I've said I'm just getting my feet wet here. Thanks much!<br />
+infrared</p>

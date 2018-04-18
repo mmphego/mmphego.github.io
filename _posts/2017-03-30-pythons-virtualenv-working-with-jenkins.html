@@ -1,0 +1,83 @@
+---
+layout: post
+title: Python's Virtualenv working with Jenkins
+date: 2017-03-30 17:01:59.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- continuous integration
+- Linux/Ubuntu
+- Python
+- Tricks
+- Ubuntu
+tags:
+- continuous intergration
+- jenkins
+- JenkinsCI
+meta:
+  publicize_google_plus_url: https://plus.google.com/+MphoMphego/posts/8wussTSgsKZ
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '3446133693'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=97183493&stype=M&topic=6253229644292722688&type=U&a=CEFx
+  _publicize_done_16016023: '1'
+  _wpas_done_15845576: '1'
+  _publicize_failed_16257270: O:13:"Keyring_Error":2:{s:6:"errors";a:1:{s:21:"keyring-request-error";a:1:{i:0;a:6:{s:7:"headers";O:42:"Requests_Utility_CaseInsensitiveDictionary":1:{s:7:"
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:16076855;s:56:"https://twitter.com/MphoMphego/status/847463956964933632";}}
+  _publicize_done_16257272: '1'
+  _wpas_done_16076855: '1'
+  publicize_twitter_user: MphoMphego
+  _publicize_done_16966120: '1'
+  _wpas_done_16750486: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>If you use <a href="http://www.virtualenv.org/en/latest/" target="_blank">virtualenv</a> to isolate your python project's environment, and want your code tested automatically -- read on, else ignore.</p>
+<p><strong>virtualenv isolates your project's python environment<br />
+</strong><br />
+virtualenv makes sure you lock down your project's main directory and all subdirectories of it. This 'lockdown' means that you never touches your global python binary, or any globally installed libraries (like "sudo pip install ipython" ).</p>
+<p>Once locked down, you install all packages again, even those you have globally installed. This enables you to have one version of flask globally installed, but another version in your project. All dependencies can be listed in a separate file and validate a precise environment for you to work with. Tightly controlled dependencies is key to a deployment without surprises.</p>
+<p><strong>Jenkins checks the health of your project for each change</strong></p>
+<p><a href="https://jenkins.io/" target="_blank">Jenkins</a> is a <a href="https://en.wikipedia.org/wiki/Continuous_integration" target="_blank">CI</a> server which means it does a lot of repeating stuff so you can focus on doing more important stuff. More specifically, it listens for changes to your project's version control system (like git).</p>
+<p>When changes are detected, the project is built and the test suite is executed. If any step fails, the CI server tells you that it did.</p>
+<p><strong>Setup Jenkins, and make it use virtualenv</strong></p>
+<p>Jenkins needs some massaging before it handles the hijacked environment of virtualenv. This is how I did it for my local git repository:</p>
+<ul>
+<li>Download and install Jenkins</li>
+<li>Start it, it should be up on http://localhost:8080</li>
+<li>Install the Git Plugin</li>
+<li>Setup a new project with these properties:
+<ul>
+<li>Source Code Management: add the URI to your local repository,</li>
+<li>/Users/you/Sites/asdf in my case. Make sure the jenkins user can read this directory, otherwise the Jenkins GUI will tell you something random about invalid git repo, without a hint about a permissions error.</li>
+<li>Build Triggers: Poll SCM (with an interval like 0 * * * *). This is needed because<br />
+you're too lazy to build manually; and<br />
+you can not trigger builds with a git post-commit hook otherwise</li>
+<li>Build &gt; Execute shell. I've used two steps, one for setting up the environment and one for the actual tests:</li>
+</ul>
+</li>
+</ul>
+<p>[sourcecode language="bash"]</p>
+<p># Setup a proper path, I call my virtualenv dir &quot;venv&quot; and<br />
+# I've got the virtualenv command installed in /usr/local/bin<br />
+PATH=$WORKSPACE/venv/bin:/usr/local/bin:$PATH<br />
+if [ ! -d &quot;venv&quot; ]; then<br />
+        virtualenv venv<br />
+fi<br />
+. venv/bin/activate<br />
+pip install -r requirements.txt --download-cache=/tmp/$JOB_NAME<br />
+[/sourcecode]<br />
+and</p>
+<p>[sourcecode language="bash"]</p>
+<p>. venv/bin/activate<br />
+which python</p>
+<p># reply should be<br />
+/home/user/.virtualenv/bin/python<br />
+[/sourcecode]</p>

@@ -1,0 +1,60 @@
+---
+layout: post
+title: Led blinking program with ATmega128, AVR Studio 6 and ISIS Proteus
+date: 2013-04-30 14:21:12.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- AVR and C
+tags:
+- atmega
+- atmel
+- Atmel AVR
+- avr studio
+- blinkingled
+- C
+- embedded c
+- Languages
+- Light-emitting diode
+- Programming
+- proteus
+- Source code
+meta:
+  _edit_last: '49460244'
+  _wpas_skip_3508581: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p><em>My 1st blog attempt</em></p>
+<p>So I have been learning/refreshing Embedded C, my initial project was just a simple program. <em>Blinking an Led</em></p>
+<p>I have attached the source code, and schematic</p>
+<p><strong><span style="text-decoration:underline;"><span style="color:#0000ff;text-decoration:underline;">Source Code: </span></span></strong></p>
+<p>#include &lt;avr/io.h&gt;<br />
+#include &lt;util/delay.h&gt;</p>
+<p>void BlnkLED() // function declaration<br />
+{<br />
+DDRA = 0xFF; // set up pin direction<br />
+PORTA ^= 0x01 ; // toggle the pins<br />
+_delay_ms(500); //delay<br />
+}</p>
+<p>int main (void)<br />
+{<br />
+while(1){<br />
+BlnkLED();<br />
+}<br />
+}</p>
+<address><strong><span style="color:#0000ff;">Schematic:</span></strong></address>
+<address><a href="http://mmphego.files.wordpress.com/2013/04/atmega128.jpg"><img id="i-20" src="{{ site.baseurl }}/assets/atmega128.jpg?w=650" alt="Image" /></a></address>
+<address> </address>
+<address>Download<strong><a href="http://www.labcenter.com/download/prodemo_download.cfm#professional" target="_blank"> Proteus</a> </strong>and<strong> <a href="http://www.atmel.com/microsite/atmel_studio6/" target="_blank">Atmel Studio 6</a></strong></address>
+<address>Download Files(Code and Proteus simu):<a href="https://www.box.com/s/mnsht7v5sfg742ufmmnk" target="_blank"> Link</a></address>
+<address> </address>
+<h1>Side Note, check my Youtube Channel</h1>
+<address><a href="https://www.youtube.com/channel/UC7AggQB0Pge-w1M3n8_purg">https://www.youtube.com/channel/UC7AggQB0Pge-w1M3n8_purg </a></address>

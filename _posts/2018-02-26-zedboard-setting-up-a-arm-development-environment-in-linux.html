@@ -1,0 +1,77 @@
+---
+layout: post
+title: Zedboard - Setting up a ARM development environment in Linux
+date: 2018-02-26 11:23:00.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- FPGAs
+- Linux/Ubuntu
+- Ubuntu
+- xilinx
+tags:
+- arm development
+- linux
+- ubuntu
+- xubuntu
+- Zedboard
+meta:
+  _wpas_skip_16076853: '1'
+  timeline_notification: '1519636983'
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '15150543259'
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:16076855;s:56:"https://twitter.com/MphoMphego/status/968053794243338240";}}
+  _publicize_done_16257272: '1'
+  _wpas_done_16076855: '1'
+  publicize_twitter_user: MphoMphego
+  publicize_google_plus_url: https://plus.google.com/+MphoMphego/posts/SKcn8qUkex5
+  _publicize_done_16966120: '1'
+  _wpas_done_16750486: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>Well now that you have your <a href="https://mmphego.wordpress.com/2017/10/04/my-first-experience-with-the-zedboard-soc-board/">Zedboard</a> up and running with <a href="https://mmphego.wordpress.com/2017/11/03/xilinx-petalinux-2017-2-installation-on-ubuntu-16-04-3/">Petalinux installed</a>, and your network is configured to talk to the outside world, let's get some code running on this thing!</p>
+<p>First some environmental comments. I am a big fan of Xubuntu. I like it's feel and it's ease of use when it comes to installing packages using the apt-get command. I will be writing just about all of these blog posts using Xubuntu as my host OS.</p>
+<p>I have installed on a development box Xubuntu 16.04 LTS. The only thing I selected during the install was to install OpenSSH so I could actually interface to the thing. We are going to install just a single additional package to allow us to compile ARM code, and it's going to be really really simple to do!</p>
+<p>Open up a command terminal on the local machine</p>
+<p>In the event that you do not have SSH installed and would like it installed then here is the command:<br />
+<code># sudo apt-get install update<br />
+# sudo apt-get install openssh-server openssh-client</code></p>
+<p>Now that you are at the prompt either on your local machine or via SSH, we can install the arm gcc tools:</p>
+<p><code>$ sudo apt-get install gcc-arm-linux-gnueabi</code></p>
+<p>Once the package is installed, you now have the ability to compile applications for your Zedboard!</p>
+<p>That simple!!!</p>
+<p>I am going to go to my home directory and create a folder to do some development in, and then compile a hello world application:</p>
+<p><code>mmphego@4n0m4ly:~$ cd<br />
+mmphego@4n0m4ly:~$ mkdir arm-devel<br />
+mmphego@4n0m4ly:~$ cd arm-devel/<br />
+mmphego@4n0m4ly:~/arm-devel$ touch helloworld.c<br />
+mmphego@4n0m4ly:~/arm-devel$ cat &gt; helloworld.c<br />
+#include<br />
+#include<br />
+int main(){<br />
+printf("Hello World!\n");<br />
+return 0;<br />
+}</code></p>
+<p>So we have our source file, now we need to compile it. The application we will use is arm-linux-gnueabi-gcc.</p>
+<p><code>$ arm-linux-gnueabi-gcc -o helloworld helloworld.c</code></p>
+<p>Ok, so now we have our application written and compiled. But now what? We can't run it on our development box because it isn't ARM based. So we need to get it over to our Zedboard. The Zedboard conveniently ships with a SCP running on it! So all we need to do is connect to our Zedboard and drop our file there.</p>
+<p><code>$ scp helloworld root@192.168.1.237:~/</code></p>
+<p>On Zedboard:</p>
+<p>Cool. So now our our Zedboard in the /home directory we have a file called helloworld. We need to change it's properties so our shell knows it can be executed. To do this we will use chmod:<br />
+<code>$ ssh root@192.168.1.237<br />
+$ root@avnet-digilent-zedboard-2017_2:~# chmod +x SMV_Pub_Zedboard<br />
+</code><br />
+You will notice that the helloworld app now has the ability to be executed. Well, what are you waiting for!? let's do it!</p>
+<p><code>root@avnet-digilent-zedboard-2017_2:~# ./helloworld<br />
+Hello World!<br />
+</code><br />
+Woohoo! How cool is that!?. So now, you are well on your way to application development for the ARM cores running within the Zynq-7000 on you Zedboard.</p>

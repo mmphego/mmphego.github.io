@@ -1,0 +1,68 @@
+---
+layout: post
+title: Raspberry Pi - using GPIO / WiringPi without root (sudo) access
+date: 2015-08-01 15:29:18.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Python
+- Raspberry Pi
+tags: []
+meta:
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:3508581;s:38:"https://facebook.com/10205608438945255";}}
+  is_reblog: '1'
+  post_id: '271'
+  blog_id: '14128160'
+  reblog_snapshot: "O:8:\"stdClass\":7:{s:5:\"title\";s:63:\"Raspberry Pi - using
+    GPIO / WiringPi without root (sudo) access\";s:4:\"type\";s:4:\"post\";s:9:\"mime_type\";s:0:\"\";s:6:\"format\";b:0;s:12:\"modified_gmt\";s:19:\"2014-07-18
+    17:34:33\";s:9:\"permalink\";s:108:\"https://dissectionbydavid.wordpress.com/2013/10/21/raspberry-pi-using-gpio-wiringpi-without-root-sudo-access\";s:7:\"content\";s:2869:\"<div
+    class=\"reblogged-content\">\n\nJust needing to get this down quickly and succinctly...\r\n\r\nThe
+    Raspberry Pi is super-fun for me as it's a full OS (Linux, which I really like
+    a lot) with Pins! Â Current project: make a (private) website that will let me
+    open/close and check my garage door. Â Maybe more on this later.\r\n\r\nSUPER
+    frustrating is the inability for a web-server to control the GPIO pins on my Raspberry
+    Pi because the web-server is not running as root. Â Really?!? <!--more-->Â The
+    only way to address the GPIO pins of the Pi is as sudo / root?!? Â I can't really
+    complain all that much because I'm not willing to learn and write the C code required
+    for this to happen. Â So I searched and tried and iterated and eventually ended
+    up running shell commands from within the web-server scripts because the <a title=\"WiringPi
+    by Gordon Henderson\" href=\"http://wiringpi.com/\" target=\"_blank\">awesome
+    computer interface programmer Gordon Henderson</a> made a command-line utility
+    (gpio) that WILL write to the GPIO pins without being root.\r\n\r\nOn the RaspberryPi.org
+    site, Gordon has a nice<a title=\"Elro switch without root\" href=\"http://www.raspberrypi.org/phpBB3/viewtopic.php?f=32&amp;t=32177\"
+    target=\"_blank\"> post of how he setup his Raspberry Pi</a> so that his programs
+    can read/write to the GPIO pins without being root. Â I only need the no-root
+    part. Â Gordon's methodÂ <em>almost</em>Â worked for me. Â Here's what I ended
+    up doing.\r\n\r\n1) Create a script that \"exports\" specific GPIO pins and then
+    sets the ownership.\r\n<pre style=\"padding-left:30px;\">cat <strong>/usr/local/bin/set_gpio_pins.sh</strong>\r\n\r\n#
+    filename: /usr/local/bin/set_gpio_pins.sh &lt;&lt; set as executable (chmod +x)\r\n#\r\n#
+    set GPIO pins 17, 22, and 24 to be usable without root access\r\n#  In fact, make
+    them accessible to the web-server (www-data) and\r\n#   the 'typical' user (pi).
+    \ The 'chmod' allows user 'pi' to write\r\n# This script must be run as root (sudo),
+    in root's crontab, or\r\n#   each of the lines in the for-loop need to start with
+    'sudo'\r\nfor pin in 17 22 24; do\r\nÂ Â  /usr/local/bin/gpio export $pin out\r\nÂ Â 
+    chown -R www-data:pi /sys/devices/virtual/gpio/gpio$pin\r\nÂ Â  chmod -R g+w /sys/devices/virtual/gpio/gpio$pin\r\ndone</pre>\r\n \r\n\r\n2)
+    Instead of using /etc/rc.local, I added the running of this script as a cron-job
+    so that it runs on boot-up. Â Staring with 'sudo' means this is the crontab for
+    the root/superuser (hence, no need for 'sudo' in the set_gpio_pins.sh script).
+    Â The \"-e\" brings up the editor.\r\n<pre style=\"padding-left:30px;\">sudo crontab
+    -e\r\n# at end of file add...\r\n@reboot Â  Â Â Â /usr/local/bin/set_gpio_pins.sh
+    Â # file from step #1 above</pre>\r\n \r\n\r\nFINALLY! I can use the pins, inside
+    of scripts (ex. Python or PHP or ____), without having to have the webserver run
+    as root nor using shell-commands inside a script. Whew.\r\n\r\n \r\n\r\n </div>\";}"
+  _publicize_done_3700952: '1'
+  _wpas_done_3508581: '1'
+  _edit_last: '49460244'
+  geo_public: '0'
+  _wpas_skip_3508581: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+

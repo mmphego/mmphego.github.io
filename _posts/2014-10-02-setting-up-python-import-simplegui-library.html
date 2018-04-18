@@ -1,0 +1,71 @@
+---
+layout: post
+title: setting up python-simplegui library
+date: 2014-10-02 21:32:51.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux
+- Python
+tags:
+- linux
+- python
+meta:
+  publicize_facebook_url: https://facebook.com/10203553864622181
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _wpas_skip_google_plus: '1'
+  _wpas_skip_twitter: '1'
+  _wpas_skip_linkedin: '1'
+  _wpas_skip_tumblr: '1'
+  _wpas_skip_path: '1'
+  _wpas_done_3508581: '1'
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:1081800551;b:1;}}
+  _edit_last: '49460244'
+  geo_public: '0'
+  _wpas_skip_3508581: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p><a title="CodeSkulptor" href="http://www.codeskulptor.org/" target="_blank">CodeSkulptor </a>is a web-based python compiler/interpreter, That I have been using for the Interactive Python course offered on <a title="Coursera" href="http://www.coursera.org" target="_blank">Coursera</a> .<br />
+And being were I am now, which is in Marion Island - our internet can be so slow at times so I resulted on running my python codes on my local machine not needing to go to <a title="CodeSkulptor" href="http://www.codeskulptor.org/" target="_blank">CodeSkulptor</a>.</p>
+<p>I had troubles importing simplegui library, So after vigorous google searches I finally found a way to run codes needing simplegui library</p>
+<p>1. Install<br />
+[sourcecode language="bash" wraplines="false" collapse="false"]<br />
+ sudo apt-get install python-dev ipython python-numpy python-matplotlib python-scipy python-pygame python-pip python.h python-setuptools<br />
+[/sourcecode]<br />
+2. Download and install</p>
+<p>[sourcecode language="bash" wraplines="false" collapse="false"]<br />
+wget https://pypi.python.org/packages/source/S/SimpleGUICS2Pygame/SimpleGUICS2Pygame-01.07.00.tar.gz<br />
+tar xzvf SimpleGUICS2Pygame-01.07.00.tar.gz<br />
+sudo python setup.py install<br />
+[/sourcecode]</p>
+<p>3. run python on CLI<br />
+[sourcecode language="python" wraplines="false" collapse="false"]<br />
+import SimpleGUICS2Pygame.simpleguics2pygame as simplegui<br />
+[/sourcecode]</p>
+<p>then test it.</p>
+<p>[sourcecode language="python" wraplines="false" collapse="false"]<br />
+import SimpleGUICS2Pygame.simpleguics2pygame as simplegui<br />
+message = &quot;Welcome!&quot;</p>
+<p># Handler for mouse click<br />
+def click():<br />
+global message<br />
+message = &quot;Good job!&quot;</p>
+<p># Handler to draw on canvas<br />
+def draw(canvas):<br />
+canvas.draw_text(message, [50,112], 48, &quot;Red&quot;)</p>
+<p># Create a frame and assign callbacks to event handlers<br />
+frame = simplegui.create_frame(&quot;Home&quot;, 300, 200)<br />
+frame.add_button(&quot;Click me&quot;, click)<br />
+frame.set_draw_handler(draw)</p>
+<p># Start the frame animation<br />
+frame.start()<br />
+[/sourcecode]</p>

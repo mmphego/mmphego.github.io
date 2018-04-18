@@ -1,0 +1,133 @@
+---
+layout: post
+title: Guess the number [python]
+date: 2014-10-22 02:12:33.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux
+- Python
+tags:
+- python
+meta:
+  _edit_last: '49460244'
+  publicize_facebook_url: https://facebook.com/10203695088112680
+  geo_public: '0'
+  _wpas_done_3508581: '1'
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:1081800551;b:1;}}
+  _wpas_skip_3508581: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>The following weeks mini-project was starting to get a bit trickier.<br />
+A simple game called, "Guess the number"</p>
+<p>[sourcecode language="python" wraplines="false" collapse="false"]<br />
+# http://www.codeskulptor.org/#user38_p561LbO9KO_0.py<br />
+# http://www.codeskulptor.org/#user38_SeTv0Tz7E7nAlil_11.py</p>
+<p># Mini-project #2 - &quot;Guess the number game&quot;<br />
+# Created by Mpho &quot;!nerd&quot; Mphego - Marion Island SANSA Engineer 2014-2015<br />
+#<br />
+# 'Introduction to Interactive Programming in Python' Course<br />
+# RICE University - https://class.coursera.org/interactivepython-005<br />
+# by Joe Warren, John Greiner, Stephen Wong, Scott Rixner<br />
+# One of the simplest two-player games is “Guess the number”<br />
+# The first player thinks of a secret number in some known range while<br />
+# the second player attempts to guess the number. After each guess,<br />
+# the first player answers either “Higher”, “Lower” or “Correct!”<br />
+# depending on whether the secret number is higher, lower or equal to the guess.<br />
+# http://www.codeskulptor.org/#user38_SeTv0Tz7E7nAlil_12.py<br />
+try:<br />
+    import simplegui<br />
+except:<br />
+    import SimpleGUICS2Pygame.simpleguics2pygame as simplegui<br />
+    # To run simplegui in idle python, install SimpleGUICS2Pygame module<br />
+    # download module : https://pypi.python.org/pypi/SimpleGUICS2Pygame<br />
+import random<br />
+import math</p>
+<p># Global Variables<br />
+secret_number = 0<br />
+limit = 100<br />
+No_of_attempts = int(math.ceil(math.log(limit + 1 ,2)))</p>
+<p>def new_game():<br />
+    global secret_number,guess<br />
+    secret_number = random.randint(0, 100)</p>
+<p>def range100():<br />
+    global secret_number, limit, No_of_attempts<br />
+    limit = 100<br />
+    secret_number = random.randint(0, limit)<br />
+    No_of_attempts = int(math.ceil(math.log(limit,2)))<br />
+    #print &quot;Lets Play A Game!!!\n&quot;<br />
+    print &quot;\nNew Game.\nGuess a number between 0 to 100&quot;<br />
+    print &quot;You have about %s attempts at this!&quot; %(No_of_attempts)</p>
+<p>def range1000():<br />
+    global secret_number, limit, No_of_attempts<br />
+    limit = 1000<br />
+    secret_number = random.randint(0, limit)<br />
+    No_of_attempts = int(math.ceil(math.log(limit,2)))<br />
+    print &quot;Lets Play A Game!!!\nGuess a number between 0 to 1000&quot;<br />
+    print &quot;You have about %s attempts at this!&quot; %(No_of_attempts)</p>
+<p>def input_guess(guess):<br />
+    global No_of_attempts, secret_number<br />
+    try:<br />
+        guess = int(guess)<br />
+#		print No_of_attempts<br />
+        #print &quot;\nYour guess was&quot;, guess<br />
+#        print &quot;You have %s &quot;%(No_of_attempts)<br />
+        No_of_attempts -= 1<br />
+        if No_of_attempts &gt; 0:<br />
+            print &quot;\nYour guess was&quot;, guess</p>
+<p>#       for No_of_attempts in range(No_of_attempts):<br />
+#       print guess, secret_number, No_of_attempts<br />
+#		No_of_attempts -= 1<br />
+            if (guess &gt; secret_number):<br />
+                print &quot;Go Lower!!!!!&quot;<br />
+                print &quot;No. of Attempts left:&quot;,No_of_attempts<br />
+            elif(guess &lt; secret_number):<br />
+                print &quot;Go Higher!!!!!&quot;<br />
+                print &quot;No. of Attempts left:&quot;,No_of_attempts<br />
+            else:<br />
+                print &quot;\nCorrect!!!\n&quot;<br />
+                print &quot;You guessed it right!!!\nCorrect number was %s, you had %s attempts left...\nChoose a New game. &quot; %(secret_number, No_of_attempts)</p>
+<p>           #break</p>
+<p>        else :<br />
+            print &quot;\nTime up, You Lost\nCorrect number was %s&quot;%(secret_number)<br />
+            print &quot;Try again a new game.&quot;<br />
+            #new_game()<br />
+            range100()</p>
+<p>    except:<br />
+        print 'Input is not a number!!!\nTry Again!!!'</p>
+<p>def end_game():<br />
+    print &quot;\t*******************&quot;<br />
+    print &quot;\t*                 *&quot;<br />
+    print &quot;\t*    Game Over!!! *&quot;<br />
+    print &quot;\t*                 *&quot;<br />
+    print &quot;\t*******************&quot;<br />
+    frame.stop()</p>
+<p>def Init_screen():<br />
+    print &quot;\t***************************&quot;<br />
+    print &quot;\t*  I want to Play a Game. *&quot;<br />
+    print &quot;\t*  The rules are simple.  *&quot;<br />
+    print &quot;\t*  All you have to do is- *&quot;<br />
+    print &quot;\t*  sit here and guess, a  *&quot;<br />
+    print &quot;\t*  number I am thinking   *&quot;<br />
+    print &quot;\t*  ---JigSaw              *&quot;<br />
+    print &quot;\t*                         *&quot;<br />
+    print &quot;\t***************************&quot;<br />
+    range100()</p>
+<p>frame = simplegui.create_frame('Guess the number', 200, 200)<br />
+frame.add_button('Range is [ 0 - 100 ]', range100,200)<br />
+frame.add_button('Range is [ 0 - 1000 ]', range1000, 200)<br />
+frame.add_input('Enter A Guess', input_guess, 40)<br />
+frame.add_button('End Game', end_game, 70)<br />
+frame.start()<br />
+# call new_game<br />
+Init_screen()<br />
+new_game()</p>
+<p>[/sourcecode]</p>

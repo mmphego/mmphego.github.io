@@ -1,0 +1,126 @@
+---
+layout: post
+title: Rock-paper-scissors-lizard-Spock in Python
+date: 2014-09-26 23:54:18.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux
+- Python
+tags:
+- python
+meta:
+  publicize_facebook_url: https://facebook.com/10203513295887988
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _wpas_skip_google_plus: '1'
+  _wpas_skip_twitter: '1'
+  _wpas_skip_linkedin: '1'
+  _wpas_skip_tumblr: '1'
+  _wpas_skip_path: '1'
+  geo_latitude: "-46.896448"
+  geo_longitude: '37.750885'
+  geo_address: Marion Island
+  geo_public: '0'
+  _wpas_done_3508581: '1'
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:1081800551;b:1;}}
+  _edit_last: '49460244'
+  _wpas_skip_3508581: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>So I recently enrolled for a course from Coursera.org on Introduction to Interactive Python, After I received a certificate on Introduction to Python programming instructed by Prof. Charles Severance. https://www.coursera.org/course/pythonlearn<br />
+My first mini-project is a simple Rock-paper-scissors-lizard-Spock game.<br />
+[sourcecode language="python" wraplines="false" collapse="false"]</p>
+<p># Mini-project #1 - &quot;Rock-paper-scissors-lizard-Spock game&quot;<br />
+# Created by Mpho &quot;!nerd&quot; Mphego - Marion Island SANSA Engineer 2014-2015<br />
+#<br />
+# 'Introduction to Interactive Programming in Python' Course<br />
+# RICE University - https://class.coursera.org/interactivepython-005<br />
+# by Joe Warren, John Greiner, Stephen Wong, Scott Rixner<br />
+#<br />
+# Rock-paper-scissors is a surprisingly popular game that many people play seriously<br />
+# Rock-paper-scissors-lizard-Spock (RPSLS) is a variant of Rock-paper-scissors that allows -<br />
+# five choices. Each choice wins against two other choices, loses against two other choices -<br />
+# and ties against itself. Much of RPSLS's popularity is that it has been featured in 3 episodes -<br />
+# of the TV series &quot;The Big Bang Theory&quot;.<br />
+# The Wikipedia entry for RPSLS gives the complete description of the details of the game.<br />
+# http://en.wikipedia.org/wiki/Rock-paper-scissors-lizard-Spock</p>
+<p># http://www.codeskulptor.org/#user38_e9yDvuII0ZGsvuc.py<br />
+#!/bin/python2<br />
+import random<br />
+#import math</p>
+<p># Function converting string to number<br />
+def name_to_number(name):<br />
+    if name == &quot;rock&quot;:<br />
+       name = 0<br />
+    elif name == &quot;Spock&quot;:<br />
+        name = 1<br />
+    elif name == &quot;paper&quot;:<br />
+        name = 2<br />
+    elif name == &quot;lizard&quot;:<br />
+        name = 3<br />
+#    elif name == &quot;scissors&quot;:<br />
+#        name = 4<br />
+    else:<br />
+        name = 4<br />
+        #print &quot;Error&quot;<br />
+    return name  </p>
+<p># Function converting number to string<br />
+def number_to_name(number):<br />
+    if number == 0:<br />
+       number = &quot;rock&quot;<br />
+    elif number == 1:<br />
+        number = &quot;Spock&quot;<br />
+    elif number == 2:<br />
+        number = &quot;paper&quot;<br />
+    elif number == 3:<br />
+        number = &quot;lizard&quot;<br />
+#    elif number == 4:<br />
+#        number = &quot;scissors&quot;<br />
+    else:<br />
+        number = &quot;scissors&quot;<br />
+#        print &quot;Error&quot;<br />
+    return number </p>
+<p># function to determine the winner<br />
+def rpsls(player_choice):<br />
+    nothing = None </p>
+<p>    print &quot;\n&quot;<br />
+    # print out the message for the player's choice<br />
+    print &quot;Player chooses&quot;, player_choice</p>
+<p>    # convert the player's choice to player_number using the function name_to_number()<br />
+    player_number = name_to_number(player_choice)<br />
+    #print player_number #Debugging</p>
+<p>    # compute random guess for comp_number using random.randrange()<br />
+    comp_number = random.randrange(0, 5)<br />
+    #print comp_number #Debugging</p>
+<p>    # convert comp_number to comp_choice using the function number_to_name()<br />
+    comp_choice = number_to_name(comp_number)<br />
+    #print comp_choice #Debugging</p>
+<p>    # print out the message for computer's choice<br />
+    print &quot;Computer chooses&quot;, comp_choice</p>
+<p>    # compute difference of comp_number and player_number modulo five</p>
+<p>    difference = ( comp_number - player_number) % 5<br />
+    #print difference, comp_number, player_number #Debugging</p>
+<p>    # use if/elif/else to determine winner, print winner message<br />
+    if ( difference == 1 or difference == 2 ):<br />
+        print &quot;Computer Wins!&quot;<br />
+    elif ( difference == 3 or difference == 4 ):<br />
+        print &quot;Player Wins!&quot;<br />
+    else :<br />
+        print &quot;Computer and Player Ties&quot;<br />
+    return nothing</p>
+<p># Play five games with random guesses from computer.<br />
+rpsls(&quot;rock&quot;)<br />
+rpsls(&quot;Spock&quot;)<br />
+rpsls(&quot;paper&quot;)<br />
+rpsls(&quot;lizard&quot;)<br />
+rpsls(&quot;scissors&quot;)</p>
+<p>[/sourcecode]</p>

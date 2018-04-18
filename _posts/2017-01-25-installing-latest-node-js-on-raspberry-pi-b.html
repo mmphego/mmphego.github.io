@@ -1,0 +1,50 @@
+---
+layout: post
+title: Installing latest Node.js on Raspberry Pi B+
+date: 2017-01-25 09:38:05.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Raspberry Pi
+tags:
+- node
+- node.js
+- nodejs
+meta:
+  _publicize_done_external: a:2:{s:8:"facebook";a:1:{i:16076853;s:38:"https://facebook.com/10209515371176119";}s:7:"twitter";a:1:{i:16076855;s:56:"https://twitter.com/MphoMphego/status/824159444250611712";}}
+  _publicize_job_id: '1134547726'
+  _rest_api_client_id: "-1"
+  _rest_api_published: '1'
+  _publicize_failed_16016023: O:13:"Keyring_Error":2:{s:6:"errors";a:1:{s:21:"keyring-request-error";a:1:{i:0;a:6:{s:7:"headers";O:42:"Requests_Utility_CaseInsensitiveDictionary":1:{s:7:"
+  _publicize_done_16257270: '1'
+  _wpas_done_16076853: '1'
+  _publicize_done_16257272: '1'
+  _wpas_done_16076855: '1'
+  publicize_twitter_user: MphoMphego
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>So, I've been battling with updating my node.js via apt-get, for some apparent reason seems like they've discontinued updates or maybe I've been doing it wrong all along - who knows.</p>
+<p>But I found a way to bypass apt-get and go back to the basics.<br />
+Note: This assumes that the latest release is node-v7.4.0, else you can go to <a href="https://nodejs.org/dist/latest" target="_blank">https://nodejs.org/dist/latest</a> and get the required build.</p>
+<p>This assumes the Raspberry Pi is running Rasbian - Jessie</p>
+<p>[sourcecode language="bash"]<br />
+# Download Node.js source Raspberry Pi Model A, B, B+ and Compute Module</p>
+<p>wget -qO- https://nodejs.org/dist/latest/node-v7.4.0-linux-armv6l.tar.gz | tar xvz<br />
+cd node-v7.4.0*</p>
+<p># Raspberry Pi 2 Model B</p>
+<p>wget https://nodejs.org/dist/latest/node-v7.4.0-linux-armv7l.tar.gz | tar xzv<br />
+cd node-v7.4.0-linux-armv7l</p>
+<p># and lastly<br />
+sudo cp -Rv * /usr/local/</p>
+<p># That's it! To check Node.js is properly installed and you have the right version, run the command:</p>
+<p>node -v<br />
+[/sourcecode]</p>
+<p>Mpho</p>

@@ -1,0 +1,65 @@
+---
+layout: post
+title: Raspberry Pi - Stuck in boot after installing upstart
+date: 2017-02-10 09:27:55.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Raspberry Pi
+- Ubuntu
+tags:
+- apt-get
+- chroot
+- proot
+- qemu-user
+- stuck in boot
+- systemd
+- upstart
+meta:
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=97183493&stype=M&topic=6235720754898575360&type=U&a=IQFt
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '1700405722'
+  _publicize_done_16016023: '1'
+  _wpas_done_15845576: '1'
+  _publicize_done_external: a:2:{s:8:"facebook";a:1:{i:16076853;s:38:"https://facebook.com/10209642811442046";}s:7:"twitter";a:1:{i:16076855;s:56:"https://twitter.com/MphoMphego/status/829955084817674240";}}
+  _publicize_done_16257270: '1'
+  _wpas_done_16076853: '1'
+  _publicize_done_16257272: '1'
+  _wpas_done_16076855: '1'
+  publicize_twitter_user: MphoMphego
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>I  installed upstart so I could run a script at startup [native /etc/init/*.conf]  with <em>sudo apt-get install upstart</em> and I then rebooted my RPi.</p>
+<p>Afterwards my RPi running <a href="https://www.raspberrypi.org/downloads/raspbian/">Debian-Jessie</a> was pretty much unresponsive via the network. Right after connecting it to my monitor I then realised that it was stuck on boot.</p>
+<p>CODE:</p>
+<p>[sourcecode language="bash"]<br />
+[   17.777252] init: samba-ad-dc main process (513) terminated with status 1<br />
+[  133.770712] init: failsafe main process (364_ killed by TERM signal<br />
+[info] Using makefile-style concurrent boot in runlevel S<br />
+...<br />
+[info] Loading kernel module fuse.<br />
+[/sourcecode]</p>
+<p>Only at that moment, I started realising that I should have probably backed up my SD Card before, but then it was already too late. It then struck me - So I will have to redo it all over again with a new and fresh raspbian installation. That was not something I was looking forward to do ,especially not after I have invested my time to this project I have undertaken myself on[apts, pips and nodes].</p>
+<p>And then it hit me, A while ago - I had more or less the same issue on my <a href="http://xubuntu.org/">Xubuntu 12.04</a> install and managed to get away with it via <a href="https://help.ubuntu.com/community/BasicChroot" target="_blank" rel="noopener noreferrer">chroot</a> which then worked, then started researching as to if it is possible to chroot my ARM Raspbian install from an Wbuntu system. To my revelation it was...And below is how I managed to rollback to <a href="https://packages.debian.org/sid/systemd-sysv">Systemd-sysv</a> without having to burn a new raspbian image to my sd card.</p>
+<p>First, install two packages on your Ubuntu system: <em>qemu-user</em>, and <em>proot</em>.</p>
+<p>[sourcecode language="bash"]<br />
+sudo apt-get install -y qemu-user proot<br />
+[/sourcecode]</p>
+<p>After you mount the Raspbian SD card, you can do the equivalent of a '<a href="https://help.ubuntu.com/community/BasicChroot" target="_blank" rel="noopener noreferrer">chroot</a>' with:</p>
+<p>[sourcecode language="bash"]<br />
+ sudo proot -q qemu-arm  -r /mnt/raspbian_sd_card<br />
+[/sourcecode]</p>
+<p>I was then able to chroot/proot to my raspbian install and removed upstart:</p>
+<p>[sourcecode language="bash"]<br />
+sudo apt-get -y purge --auto-remove upstart<br />
+[/sourcecode]<br />
+This command will also automatically re-install systemd-sysv</p>

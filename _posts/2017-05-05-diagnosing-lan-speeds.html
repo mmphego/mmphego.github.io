@@ -1,0 +1,83 @@
+---
+layout: post
+title: Diagnosing LAN Speeds
+date: 2017-05-05 12:21:36.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux/Ubuntu
+- Tricks
+- Ubuntu
+tags:
+- bandwidth testing
+- iperf
+- netstat
+- network issues
+- network perfomance
+- network speed
+meta:
+  _wpas_skip_16076853: '1'
+  _publicize_job_id: '4723969199'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=97183493&stype=M&topic=6266205053326098433&type=U&a=Q_Fe
+  _publicize_done_16016023: '1'
+  _wpas_done_15845576: '1'
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:16076855;s:56:"https://twitter.com/MphoMphego/status/860439374881804288";}}
+  _publicize_done_16257272: '1'
+  _wpas_done_16076855: '1'
+  publicize_twitter_user: MphoMphego
+  publicize_google_plus_url: https://plus.google.com/+MphoMphego/posts/ZGeBqHrTxQD
+  _publicize_done_16966120: '1'
+  _wpas_done_16750486: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>After having network issues/degradation while trying to access a work server, I had to diagnose the network the server is connected to. I had to set myself on a mission - and after realising that the seems to be very limited tools for such things, I stumbled upon '<strong>iperf</strong>'.</p>
+<p><strong>Iperf</strong> is a command-line tool used in the diagnostics of network speed issues, it measures the maximum network throughput a server can handle. It is particularly useful when experiencing network speed issues, as you can use Iperf to determine which server is unable to reach maximum throughput.</p>
+<h2>Iperf installation</h2>
+<p>Iperf must be installed on both computers you are testing the connection between.</p>
+<p>[sourcecode]<br />
+sudo apt-get install -y iperf<br />
+[/sourcecode]</p>
+<h2>TCP Clients &amp; Servers</h2>
+<p>Iperf requires two systems because one system must act as a server, while the other acts as a client. The client connects to the server you’re testing the speed of.</p>
+<ol>
+<li>On the node you wish to test, launch Iperf in server mode:</li>
+</ol>
+<p>[sourcecode]<br />
+iperf -s<br />
+[/sourcecode]</p>
+<p>You should see output similar to:</p>
+<p><img class="alignnone size-full wp-image-1023" src="{{ site.baseurl }}/assets/screenshot_2017-05-05_12-02-15.png" alt="Screenshot_2017-05-05_12-02-15" width="651" height="134" /></p>
+<p>2. On your second Linode, connect to the first. Replace <code>dbelab04</code> with the first node’s IP address in my case i'm using the hostname</p>
+<p>[sourcecode]<br />
+iperf -c dbelab04<br />
+[/sourcecode]</p>
+<p>You should see output similar to:<br />
+<img class="alignnone size-full wp-image-1022" src="{{ site.baseurl }}/assets/screenshot_2017-05-05_12-02-53.png" alt="Screenshot_2017-05-05_12-02-53" width="775" height="305" /></p>
+<p>3. You will also see the connection and results on your Iperf server. This will look similar to:</p>
+<p><img class="alignnone size-full wp-image-1021" src="{{ site.baseurl }}/assets/screenshot_2017-05-05_12-03-04.png" alt="Screenshot_2017-05-05_12-03-04" width="808" height="202" /></p>
+<p>4. To stop the Iperf server process, press <code>CTRL + c</code>.</p>
+<p>--------------------------------------------------------------------------------------------------</p>
+<p>You can do pretty much the same thing with plain old <code>nc</code> (netcat) if you're that way inclined. On the server machine:<br />
+[sourcecode]<br />
+nc -vvlnp 12345 &gt;/dev/null<br />
+[/sourcecode]</p>
+<p>You should see something similar to:</p>
+<p><img class="alignnone size-full wp-image-1049" src="{{ site.baseurl }}/assets/screenshot_2017-05-05_12-14-05.png" alt="Screenshot_2017-05-05_12-14-05" width="861" height="86" /></p>
+<p>And the client can pipe a 10Gb of zeros through <code>dd</code> over the <code>nc</code> tunnel.<br />
+[sourcecode]<br />
+dd if=/dev/zero bs=10M count=1K status=progress | nc -vvn 192.168.4.23 12345<br />
+[/sourcecode]</p>
+<p>You should see something similar to:</p>
+<p><img class="alignnone size-full wp-image-1050" src="{{ site.baseurl }}/assets/screenshot_2017-05-05_12-13-54.png" alt="Screenshot_2017-05-05_12-13-54" width="1138" height="90" /></p>
+<p>The timing there is given by <code>dd</code> but it should be accurate enough as it can only output as fast the pipe will take it. If you're unhappy with that you could wrap the whole thing up in a <code>time</code> call.</p>
+<p>Remember that the result is in mega<em>bytes</em> so multiply it by 8 to get a mega<em>bits</em>-per-second speed. The demo above is running at 11.8mbps due to my laptops network limitation and number of hops...</p>

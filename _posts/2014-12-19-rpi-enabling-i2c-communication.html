@@ -1,0 +1,124 @@
+---
+layout: post
+title: RPi enabling I2C communication
+date: 2014-12-19 18:02:51.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- AVR and C
+- Linux
+- Raspberry Pi
+tags:
+- I2C
+- I2C bus
+meta:
+  _edit_last: '49460244'
+  publicize_facebook_url: https://facebook.com/10204030422815838
+  geo_public: '0'
+  _wpas_done_3508581: '1'
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:1081800551;b:1;}}
+  _wpas_skip_3508581: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>I have considered to use a combination of an Arduino Uno and RPi for my Home Automation Project.<br />
+After vigorous research(Googling of cause) on how I am to interface the two, I came to a conclusion that using I2C was the best option as compared to using UART(which required Logic Level Switching as the RPi runs on 3V3 and Arduino on 5V), or as compared to USB communication.</p>
+<p>The idea is to have the Arduino doing all Analogue detections and calculations such as a temp sensor, LDR, IR and etc. And also including extra GPIO's for additional controls.</p>
+<p>Now back to the I2C, in this case the RPi will function as the Master and Arduino as the Slave.<br />
+Hint: The RPI is running on 3V3 while the Arduino is running at 5V. I read some tutorials where they used a level shifter for the I2c communication. This is NOT needed IF the RPI is running as master and the Arduino is running as slave device. You can use the I2C bus without level shifter as only the master will push the data line high!</p>
+<p>Make sure your Raspberry Pi is connected to the internet when installing the drivers.</p>
+<p>The new Raspbian distro already have the I2C driver installed but they are disabled by default.<br />
+We need to download additional drivers and enable I2C.<br />
+[sourcecode language="bash"]</p>
+<p>sudo apt-get update<br />
+sudo apt-get install i2c-tools<br />
+[/sourcecode]<br />
+Note : The installation could take a few minutes to do, depend on how busy the server is.</p>
+<p>Now add a new user to the i2c group:</p>
+<p>[sourcecode language="bash"]<br />
+sudo adduser pi i2c<br />
+[/sourcecode]<br />
+Install the  python-smbus python module:<br />
+[sourcecode language="bash"]</p>
+<p>sudo apt-get install python-smbus<br />
+[/sourcecode]<br />
+Now you are ready to use the i2c with python<br />
+[sourcecode language="bash"]</p>
+<p>sudo cp /etc/modprobe.d/raspi-blacklist.conf /etc/modprobe.d/raspi-blacklist.conf.bak</p>
+<p>sudo cat /etc/modprobe.d/raspi-blacklist.conf</p>
+<p># blacklist spi and i2c by default (many users don't need them)</p>
+<p>blacklist spi-bcm2708<br />
+blacklist i2c-bcm2708<br />
+blacklist snd-soc-pcm512x<br />
+blacklist snd-soc-wm8804<br />
+[sourcecode language=&quot;bash&quot;]</p>
+<p>sudo nano /etc/modprobe.d/raspi-blacklist.conf<br />
+[/sourcecode]<br />
+Remove I2C from the Blacklist:<br />
+[sourcecode language="bash"]</p>
+<p># blacklist spi and i2c by default (many users don't need them)</p>
+<p>#blacklist spi-bcm2708<br />
+#blacklist i2c-bcm2708<br />
+blacklist snd-soc-pcm512x<br />
+blacklist snd-soc-wm8804<br />
+[/sourcecode]</p>
+<p>Press CTRL X then y to save and exit.</p>
+<p>Next edit the modules file by:</p>
+<p>[sourcecode language="bash"]<br />
+sudo nano /etc/modules<br />
+[/sourcecode]<br />
+Add the following to a new line.</p>
+<p>[sourcecode language="bash"]<br />
+i2c-dev<br />
+i2c-bcm2708<br />
+[/sourcecode]<br />
+Press CTRL X then y to save and exit.</p>
+<p>Run command to activate i2c-dev:<br />
+[sourcecode language="bash"]<br />
+sudo modprobe i2c-dev<br />
+[/sourcecode]<br />
+Reboot the Pi by:</p>
+<p>[sourcecode language="bash"]<br />
+sudo shutdown -r now<br />
+[/sourcecode]<br />
+After the reboot test to see any device connected by:</p>
+<p>[sourcecode language="bash"]<br />
+ls -l /dev/i2c*<br />
+[/sourcecode]<br />
+You should get something like this:<br />
+[sourcecode language="bash"]<br />
+crw-rw---T 1 root i2c 89, 1 Dec 19 09:30 /dev/i2c-1<br />
+[/sourcecode]</p>
+<p>Now we run a simple test, scan the i2c bus:</p>
+<p>[sourcecode language="bash"]<br />
+sudo i2cdetect -y 0<br />
+[/sourcecode]<br />
+If your board is the Rev 2 type this:</p>
+<p>[sourcecode language="bash"]<br />
+sudo i2cdetect -y 1<br />
+[/sourcecode]<br />
+You should see something like this:</p>
+<p>[sourcecode language="shell"]<br />
+sudo i2cdetect -y 1</p>
+<p>     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f<br />
+00:          -- 04 -- -- -- -- -- -- -- -- -- -- --<br />
+10: -- -- -- -- -- -- -- -- -- -- -- UU -- -- -- --<br />
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --<br />
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --<br />
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --<br />
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --<br />
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --<br />
+70: -- -- -- -- -- -- -- --  </p>
+<p>[/sourcecode]<br />
+Reboot the Pi by:</p>
+<p>[sourcecode language="bash"]<br />
+sudo shutdown -r now</p>
+<p>[/sourcecode]<br />
+Hint: if you’re using the first revision of the RPI board, use “-y 0″ as parameter. The i2c bus address changed between those two revisions.</p>

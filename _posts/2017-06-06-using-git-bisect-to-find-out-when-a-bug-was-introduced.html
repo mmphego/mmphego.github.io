@@ -1,0 +1,53 @@
+---
+layout: post
+title: Using Git bisect to find out when a bug was introduced!
+date: 2017-06-06 14:51:59.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux/Ubuntu
+tags: []
+meta:
+  publicize_google_plus_url: https://plus.google.com/+MphoMphego/posts/3vQUEB36Cew
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _wpas_skip_16076853: '1'
+  _publicize_job_id: '5831628692'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=97183493&stype=M&topic=6277839292039602176&type=U&a=hfZU
+  _publicize_done_16016023: '1'
+  _wpas_done_15845576: '1'
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:16076855;s:56:"https://twitter.com/MphoMphego/status/872073605508681728";}}
+  _publicize_done_16257272: '1'
+  _wpas_done_16076855: '1'
+  publicize_twitter_user: MphoMphego
+  _publicize_done_16966120: '1'
+  _wpas_done_16750486: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>----Simplified explanation----<br />
+Here's how to use git bisect , step-by-step!<br />
+Step 1: Find a commit where things were working. ...<br />
+Step 2: Find a commit where things are not working. ...<br />
+Step 3 - N: Use git bisect to find the problem commit. ...<br />
+Step 4: Get back to a working state.<br />
+Using Git bisect to figure out when brokenness was introduced</p>
+<p>Step by step with code.</p>
+<p>[sourcecode]<br />
+git log -4 # find previous working commit<br />
+git checkout #hash<br />
+git bisect ?<br />
+[/sourcecode]</p>
+<p>run through previous commits then</p>
+<p>[sourcecode]<br />
+git bisect good or bad<br />
+git checkout #hash<br />
+[/sourcecode]</p>
+<p><a href="http://webchick.net/node/99" target="_blank" rel="noopener">See link to get more info and better understanding.</a></p>

@@ -1,0 +1,56 @@
+---
+layout: post
+title: Installing Latex on Ubuntu
+date: 2014-07-12 18:23:22.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux
+tags:
+- latex
+- linux
+- ubuntu
+meta:
+  _edit_last: '49460244'
+  publicize_facebook_url: https://facebook.com/10203005778680375
+  geo_public: '0'
+  _wpas_done_3508581: '1'
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:1081800551;b:1;}}
+  _wpas_skip_3508581: '1'
+  _wpas_skip_google_plus: '1'
+  _wpas_skip_twitter: '1'
+  _wpas_skip_linkedin: '1'
+  _wpas_skip_tumblr: '1'
+  _wpas_skip_path: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>Latex is a document markup language for the Tex typesetting program. Due to its high quality typesetting capability, {\LaTeX}/TeX system is popularly used in academia and research communities to prepare professional looking documentations and research papers.</p>
+<ul>
+<strong>To install/upgrade to TeX Live 2014: </strong></p>
+<p>Open a terminal with Ctrl+Alt+T </p>
+<p>Add the texlive-backports PPA by typing the below (enter your password when prompted):<br />
+[sourcecode language="bash" wraplines="false" collapse="false"]<br />
+$ sudo add-apt-repository ppa:texlive-backports/ppa<br />
+$ sudo apt-get update<br />
+[/sourcecode]<br />
+Installation: If you are installing TeX Live for the first time,<br />
+type:<br />
+[sourcecode language="bash" wraplines="false" collapse="false"]<br />
+$ sudo apt-get install texlive<br />
+$ sudo apt-get install --no-install-recommends texlive-latex-extra<br />
+$ sudo apt-get install --no-install-recommends texlive-fonts-extra<br />
+[/sourcecode]<br />
+If you already have TeX Live installed and are upgrading, type: sudo apt-get upgrade Warning: this will also upgrade all other packages on your Ubuntu system for which upgrades are available. If you do not wish to do this,<br />
+please use the previous:<br />
+[sourcecode language="bash" wraplines="false" collapse="false"]<br />
+$ sudo apt-get install texlive-base<br />
+[/sourcecode]</p>
+</ul>

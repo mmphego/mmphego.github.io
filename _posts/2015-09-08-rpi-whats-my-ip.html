@@ -1,0 +1,72 @@
+---
+layout: post
+title: RPi What's My IP
+date: 2015-09-08 19:36:52.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Raspberry Pi
+tags: []
+meta:
+  _edit_last: '49460244'
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:3508581;s:38:"https://facebook.com/10205850771323413";}}
+  geo_public: '0'
+  _publicize_job_id: '14568399405'
+  _publicize_done_3700952: '1'
+  _wpas_done_3508581: '1'
+  _wpas_skip_3508581: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p><strong>Do you know what really grinds my gears. </strong> <img class=" wp-image-364 aligncenter" src="{{ site.baseurl }}/assets/grinds-my-gears.png?w=300" alt="grinds my gears" width="404" height="306" /> Having to boot Raspberry Pi with a new image on and no HDTV to configure and find the IP in order to ssh to it, and have fun with it. Grrrrrrrrr...</p>
+<p>That's when I decided why not create a script, that when the pi boots up it sends me the internal and external IP addresses...</p>
+<p>Clever right.</p>
+<p>[sourcecode language="bash"]<br />
+gedit whats_my_ip.py<br />
+[/sourcecode]</p>
+<p>copy and paste the following code and don't forget to edit the username, password and address.</p>
+<p>[sourcecode language="python"]<br />
+import subprocess<br />
+import smtplib<br />
+import socket<br />
+from email.mime.text import MIMEText<br />
+import datetime<br />
+import urllib2<br />
+import time<br />
+time.sleep(10)<br />
+# Change to your own account information<br />
+gmail_user = &quot;***@gmail.com&quot;<br />
+gmail_password= &quot;******&quot;<br />
+to = &quot;***@gmail.com&quot;<br />
+smtpserver = smtplib.SMTP('smtp.gmail.com', 587)<br />
+smtpserver.ehlo()<br />
+smtpserver.starttls()<br />
+smtpserver.ehlo<br />
+smtpserver.login(gmail_user, gmail_password)<br />
+today = datetime.date.today()</p>
+<p>arg='ip route list'<br />
+p=subprocess.Popen(arg,shell=True,stdout=subprocess.PIPE)<br />
+data = p.communicate()<br />
+split_data = data[0].split()<br />
+ipaddr = split_data[split_data.index('src')+1]<br />
+extipaddr = urllib2.urlopen(&quot;http://icanhazip.com&quot;).read()<br />
+my_ip = 'Local address: %s\nExternal address: %s' % (ipaddr, extipaddr)<br />
+msg = MIMEText(my_ip)<br />
+msg['Subject'] = 'IP For RaspberryPi on %s' % today.strftime('%b %d %Y')<br />
+msg['From'] = gmail_user<br />
+msg['To'] = to<br />
+smtpserver.sendmail(gmail_user, [to], msg.as_string())<br />
+smtpserver.quit()</p>
+<p>[/sourcecode]</p>
+<p>Now for this to work you need to link the script to /etc/rc.local this will only run it once on reboot.</p>
+<p>[sourcecode language="bash"]<br />
+python /home/whats_my_ip.py<br />
+[/sourcecode]</p>
+<pre># More mods are underway</pre>

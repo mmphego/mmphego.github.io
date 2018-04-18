@@ -1,0 +1,70 @@
+---
+layout: post
+title: Ubuntu media server WakeOnLan
+date: 2016-11-03 10:27:25.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Ubuntu
+tags:
+- BASH script
+- NFS Server
+- ubuntu
+- wakeonlan
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '28514243086'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=97183493&stype=M&topic=6199844232274993152&type=U&a=GcyM
+  _publicize_done_16016023: '1'
+  _wpas_done_15845576: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>I have always been conservative when it comes to saving electricity in my household not because I want to but because 1 kWh costs me R1.87, hence I had to think of a better solution rather than running my server 24 hours per day with an average load wattage of 532W, if one does the maths it costs me roughly R23.87 per day when always on.</p>
+<p>So not cool, hence why I had to think of a better way to conserve energy:- WakeOnLan</p>
+<p>In Ubuntu 16.04, make changes:</p>
+<p># Install ethtgool (Dependency)<br />
+[code]<br />
+sudo apt-get update &amp;&amp; sudo apt-get -y upgrade &amp;&amp; sudo apt-get install -y ethtool<br />
+[/code]</p>
+<p># To avoid getting WOL disabled by TLP power management make changes to:-<br />
+[code]<br />
+sudo nano /etc/default/tlp<br />
+[/code]</p>
+<p><code>WOL_DISABLE=N</code></p>
+<p># To prevent powering off the network card during shutdown make changes to:-<br />
+[code]<br />
+sudo nano /etc/default/halt<br />
+[/code]</p>
+<p><code><br />
+NETDOWN=no<br />
+</code></p>
+<p># Enable Wake on LAN when static network configuration is used.</p>
+<p>[code]<br />
+sudo nano /etc/network/interfaces&lt;/code&gt;<br />
+[/code]<br />
+# This file describes the network interfaces available on your system<br />
+# and how to activate them. For more information, see interfaces(5).<br />
+# The loopback network interface</p>
+<p>[code]<br />
+auto lo<br />
+iface lo inet loopback<br />
+# The primary network interface</p>
+<p>auto eth0<br />
+iface eth0 inet static<br />
+address 192.168.0.1<br />
+netmask 255.255.255.0<br />
+gateway 192.168.0.1<br />
+dns-nameservers 192.168.0.1<br />
+up ethtool -s eth0 wol g<br />
+[/code]</p>
+<p>Enable wake on lan in BIOS, enter the BIOS setup and look for something called "Wake up on PCI event", "Wake up on LAN" or similar. Change it so that it is enabled. Save your settings and reboot.</p>
+<p>From there you should be good to go.</p>

@@ -1,0 +1,141 @@
+---
+layout: post
+title: Smart Doorbell using RPi with voice and email notification.
+date: 2015-01-11 03:58:43.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Python
+- Raspberry Pi
+tags:
+- doorbell
+- email notification
+- GPIO
+- python
+meta:
+  _edit_last: '49460244'
+  geo_public: '0'
+  publicize_facebook_url: https://facebook.com/10204257360889148
+  _wpas_done_3508581: '1'
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:1081800551;b:1;}}
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>Part of my project involves having a doorbell, I figured a simple doorbell whereby a visitor just presses a button and then it rings/ notify whoever is it the house, That's not really creative in my point of view.</p>
+<p>So I then decided why not have a doorbell that not only rings when the button is pressed but also tell you someone is at the door and then sends you an email notification just in case you might be away(Not able to hear the bell.) as well as log the time that the button was pressed.</p>
+<p>IDEA: It would be really cool if I had a USB Webcam that would take a picture of the person visiting and emails it.</p>
+<p>first things first, we'll need to create the wav file ie TextToSpeech. Using this simple tool below.<br />
+[sourcecode language="bash"]<br />
+pico2wave -w DoorNotify.wav &quot;Someone is ringing the doorbell. Please Go Check&quot;<br />
+[/sourcecode]</p>
+<p>Next, create a python script that will watch the state of GPIO pin 18 on the RPi and take some action when the doorbell brings it to ‘HIGH’.</p>
+<p>[sourcecode language="python"]<br />
+#!/usr/bin/env python2.7<br />
+__author__ = &quot;Mpho Mphego&quot;<br />
+__version__ = &quot;$Revision: 1.1 $&quot;<br />
+__description__ = &quot;Smart Doorbell Notifier with voice and email notification : Interrupt driven&quot;<br />
+__date__ = &quot;$Date: 2015/01/11 02:23 $&quot;<br />
+__copyright__ = &quot;Copyright (c) 2015 Mpho Mphego&quot;<br />
+__url__ = &quot;mmphego.wordpress.com&quot;<br />
+__license__ = &quot;Python&quot;</p>
+<p>import RPi.GPIO as GPIO<br />
+import time<br />
+import os</p>
+<p># Connect to Relay which will control the 12V Buzzer.<br />
+led = 17 #GPIO0<br />
+button = 18 #GPIO1</p>
+<p>GPIO.setwarnings(False)<br />
+GPIO.setmode(GPIO.BCM)<br />
+GPIO.setup(led, GPIO.OUT)<br />
+time.sleep(0.1)<br />
+GPIO.output(led, False)</p>
+<p># GPIO 1 set up as inputs, pulled up to avoid false detection.<br />
+# Both ports are wired to connect to GND on button press.<br />
+# So we'll be setting up falling edge detection for both<br />
+GPIO.setup(button, GPIO.IN, pull_up_down=GPIO.PUD_UP)</p>
+<p># define callback functions<br />
+# this will run when an event are detected<br />
+def buttonHandler(channel):<br />
+    print &quot;falling edge detected on 18&quot;<br />
+    GPIO.output(led, True)<br />
+    time.sleep(1)<br />
+    GPIO.output(led, False)<br />
+    os.system(&quot;aplay /home/pi/Scripts/Smart_DoorBell/DoorNotify.wav&quot;)<br />
+    os.system(&quot;python /home/pi/Scripts/Smart_DoorBell/DoorBellLogger.py&quot;)<br />
+    time.sleep(1)<br />
+    GPIO.output(led, True)<br />
+    time.sleep(1)<br />
+    GPIO.output(led, False)</p>
+<p># when a falling edge is detected on port 1, regardless of whatever<br />
+# else is happening in the program, the function buttonHandler will be run<br />
+GPIO.add_event_detect(button, GPIO.FALLING, callback=buttonHandler, bouncetime=5000)</p>
+<p>try:<br />
+    print &quot;Waiting for button to be pressed&quot;<br />
+    while True:<br />
+        # To ease the CPU Usage have a 10s delay on while loop.<br />
+        time.sleep(10)<br />
+        continue<br />
+except:<br />
+    GPIO.cleanup()       # clean up GPIO on CTRL+C exit<br />
+GPIO.cleanup()           # clean up GPIO on normal exit<br />
+print &quot;Clean up by resetting all GPIO&quot;</p>
+<p>[/sourcecode]</p>
+<p>Now for the fun part, the email notification and data log.<br />
+[sourcecode language="python"]</p>
+<p>#!/usr/bin/env python<br />
+__author__ = &quot;Mpho Mphego&quot;<br />
+__description__ = &quot;Doorbell notifier time logger and email notifier.&quot;<br />
+__version__ = &quot;$Revision: 1.0 $&quot;<br />
+__date__ = &quot;$Date: 2015/01/10 02:09 $&quot;<br />
+__copyright__ = &quot;Copyright (c) 2015 Mpho Mphego&quot;<br />
+__license__ = &quot;Python&quot;</p>
+<p>import time<br />
+import datetime<br />
+import os<br />
+import smtplib<br />
+from email.mime.text import MIMEText</p>
+<p>#-----------------------Data Logger-----------------<br />
+f=open('/home/pi/Logs/DoorBell_Data_Log.txt','a')<br />
+now = datetime.datetime.now()<br />
+timestamp = now.strftime(&quot;%H:%M on %Y/%m/%d&quot;)<br />
+outstring1 = &quot; Someone was at the door at &quot; + str(timestamp)<br />
+outstring2 = &quot;\n********************************************* \n &quot;<br />
+outstring = outstring1 + outstring2<br />
+f.write(outstring)<br />
+f.close()</p>
+<p># -----------------------Email Notifier----------------------<br />
+# Replace with your details.<br />
+USERNAME = &quot;*******@gmail.com&quot;<br />
+PASSWORD = &quot;*********&quot;<br />
+MAILTO  = &quot;******@gmail.com&quot;</p>
+<p>if os.system(&quot;ping -c 1 www.google.com &gt;&gt; /dev/null 2&amp;&gt;1&quot;) == 0 :<br />
+	print &quot;Sending Email Notification&quot;<br />
+	msg = MIMEText('Someone is ringing the doorbell! \nGo Check!')<br />
+	msg['Subject'] = 'Doorbell notification!'<br />
+	msg['From'] = USERNAME<br />
+	msg['To'] = MAILTO</p>
+<p>	server = smtplib.SMTP('smtp.gmail.com:587')<br />
+	server.ehlo_or_helo_if_needed()<br />
+	server.starttls()<br />
+	server.ehlo_or_helo_if_needed()<br />
+	server.login(USERNAME,PASSWORD)<br />
+	server.sendmail(USERNAME, MAILTO, msg.as_string())<br />
+	server.quit()<br />
+else:<br />
+	print &quot;Unable to connect to Internet.&quot;</p>
+<p>[/sourcecode]</p>
+<p>To have this run upon booting, we need to edit /etc/rc.local (as root since this is the owner).</p>
+<p>[sourcecode language="bash"]<br />
+sudo nano /etc/rc.local<br />
+[/sourcecode]</p>
+<p>At the bottom, just above exit 0 we’ll add a call to our script.</p>
+<p>[sourcecode language="bash"]<br />
+python /home/pi/Scripts/Smart_DoorBell/WaitDoorbell.py<br />
+[/sourcecode]</p>

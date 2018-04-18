@@ -1,0 +1,73 @@
+---
+layout: post
+title: use remotecontrols on smartphone [raspberrypi, android]
+date: 2015-01-21 23:06:03.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Linux/Ubuntu
+tags: []
+meta:
+  _oembed_96547638af13224c03fac76bb9f41221: "{{unknown}}"
+  _oembed_8972c64900fa7b308718701eb69022fb: "{{unknown}}"
+  is_reblog: '1'
+  post_id: '533'
+  blog_id: '46846460'
+  _oembed_438e24ad651931824462f5507e2e9321: "{{unknown}}"
+  _oembed_7716d026f0c1170b49a51882f83d810a: "{{unknown}}"
+  reblog_snapshot: "O:8:\"stdClass\":8:{s:5:\"title\";s:55:\"use remotecontrols on
+    smartphone [raspberrypi, android]\";s:4:\"type\";s:4:\"post\";s:9:\"mime_type\";s:0:\"\";s:6:\"format\";b:0;s:12:\"modified_gmt\";s:19:\"2015-01-20
+    13:38:05\";s:9:\"permalink\";s:94:\"https://fredfire1.wordpress.com/2015/01/19/copy-remote-controls-onto-phone-raspberrypi-android\";s:7:\"content\";s:3214:\"<div
+    class=\"reblogged-content\">\n\nshopping list:\r\nwww.amazon.de/gp/product/B009P04XWW?
+    (breadboard)\r\nwww.amazon.de/gp/product/B00EFOTJZE? (infrared diode/e.g. VS1838B)\r\nhttp://www.amazon.de/gp/product/B00DI4ZSRU?
+    (Male - Female jumper wire)\r\n\r\nconnect the device(this is for the model B):\r\nprint
+    out this gpio-pin help so you do not get confused by the pins\r\nhttps://github.com/simonmonk/wiki_images/raw/master/raspberry%20leaf%20r2.pdf\r\nthen
+    connect them like on the following pictures.\r\n<a href=\"https://mpho112.files.wordpress.com/2015/01/irdiode_names.jpg\"><img
+    src=\"https://mpho112.files.wordpress.com/2015/01/irdiode_names.jpg\" alt=\"irdiode_names\"
+    width=\"112\" height=\"300\" class=\"alignnone size-medium wp-image-548\" data-originalSrc=\"https://fredfire1.files.wordpress.com/2015/01/irdiode_names.jpg?w=112\"
+    data-rehosted=\"1\"></a>\r\n<a href=\"https://mpho112.files.wordpress.com/2015/01/20150119_235626v2.jpg\"><img
+    src=\"https://mpho112.files.wordpress.com/2015/01/20150119_235626v2.jpg\" alt=\"20150119_235626v2\"
+    width=\"300\" height=\"297\" class=\"alignnone size-medium wp-image-544\" data-originalSrc=\"https://fredfire1.files.wordpress.com/2015/01/20150119_235626v2.jpg?w=300\"
+    data-rehosted=\"1\"></a>\r\n<a href=\"https://mpho112.files.wordpress.com/2015/01/20150120_001748v2.jpg\"><img
+    src=\"https://mpho112.files.wordpress.com/2015/01/20150120_001748v2.jpg\" alt=\"20150120_001748v2\"
+    width=\"189\" height=\"300\" class=\"alignnone size-medium wp-image-543\" data-originalSrc=\"https://fredfire1.files.wordpress.com/2015/01/20150120_001748v2.jpg?w=189\"
+    data-rehosted=\"1\"></a>\r\n\r\nInstall lirc in raspbian:(based on http://alexba.in/blog/2013/01/06/setting-up-lirc-on-the-raspberrypi
+    )\r\n<code>sudo apt-get install lirc -y</code>\r\n\r\n<code>sudo nano /etc/modules</code>\r\nadd
+    the lines:\r\n<code>lirc_dev\r\nlirc_rpi gpio_in_pin=23 gpio_out_pin=22</code>\r\n\r\nThen
+    exit the file with ctrl+x\r\nPress y to confirm to save the file\r\nPress enter\r\n\r\nsudo
+    nano /etc/lirc/hardware.conf\r\nchange the lines:\r\n<code>DRIVER=\"UNCONFIGURED\"\r\n#
+    usually /dev/lirc0 is the correct setting for systems using udev\r\nDEVICE=\"\"\r\nMODULES=\"\"</code>\r\n\r\nto:\r\n<code>DRIVER=\"default\"\r\n#
+    usually /dev/lirc0 is the correct setting for systems using udev\r\nDEVICE=\"/dev/lirc0\"\r\nMODULES=\"lirc_rpi\"</code>\r\n\r\nThen
+    exit the file with ctrl+x\r\nPress y to confirm to save the file\r\nPress enter\r\n\r\n<code>sudo
+    /etc/init.d/lirc stop\r\nsudo /etc/init.d/lirc start</code>\r\n\r\n<code>sudo
+    reboot</code>\r\n\r\ntest lirc:\r\n<code>sudo /etc/init.d/lirc stop\r\nmode2 -d
+    /dev/lirc0</code>\r\n\r\nuse lirc:\r\n<code>irrecord -f -d /dev/lirc0 RemoteControl.conf
+    --disable-namespace\r\nyou can use --disable-namespace to disable checks for used
+    keys</code>\r\n\r\nif you use the namespace, this is the list of useable names:\r\nhttp://www.ocinside.de/html/modding/linux_ir_irrecord_list.html\r\n\r\nsetup
+    the remote on your smartphone\r\n(you need a smartphone with an ir-transmitter/for
+    example the s4 mini)\r\ninstall irplus:\r\nhttps://play.google.com/store/apps/details?id=net.binarymode.android.irplus\r\n\r\ncopy
+    the raspberrypi-generated .cf or .conf files to the folder /sdcard/Android/data/net.binarymode.android.irplus/files
+    on your smartphone.\r\n\r\ninside the app:\r\nGerät hinzufügen-&gt;Datei-&gt;ok\r\n\r\n\r\n\r\n
+    \r\n\r\n\r\n\r\n</div>\";s:15:\"images_mirrored\";i:3;}"
+  _oembed_b16443c925720432ecadbbedefcc40e6: "{{unknown}}"
+  publicize_facebook_url: https://facebook.com/10204333222825649
+  _wpas_done_3508581: '1'
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:1081800551;b:1;}}
+  _oembed_901c0d0f7c9d38c172caf56fe281c867: "{{unknown}}"
+  _oembed_b22a640fb6b06462e3792d078a0e0d2a: "{{unknown}}"
+  _oembed_47b7a00e21d9ba8fac5fdaaca264029e: "{{unknown}}"
+  _oembed_9bb6a857b1a028001b0f840ce57c0b0d: "{{unknown}}"
+  _oembed_a0664c83717b8d3e3a7bc8bf6aa1c3a6: "{{unknown}}"
+  _oembed_ddf3aecbe4f49a877add1c960cf5d409: "{{unknown}}"
+  _oembed_77cac79041c8114da3352eb784039202: "{{unknown}}"
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p>Mmmmh I need to integrate this to my project.</p>

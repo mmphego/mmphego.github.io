@@ -1,0 +1,47 @@
+---
+layout: post
+title: 'Docker: Remove all images and containers'
+date: 2017-07-12 10:03:05.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Bash
+- Linux/Ubuntu
+- Tricks
+tags: []
+meta:
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:16076855;s:56:"https://twitter.com/MphoMphego/status/885046872162922496";}}
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _wpas_skip_16076853: '1'
+  _publicize_job_id: '7011681063'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=97183493&stype=M&topic=6290812559226478592&type=U&a=pXbS
+  _publicize_done_16016023: '1'
+  _wpas_done_15845576: '1'
+  _publicize_done_16257272: '1'
+  _wpas_done_16076855: '1'
+  publicize_twitter_user: MphoMphego
+  publicize_google_plus_url: https://plus.google.com/+MphoMphego/posts/RK8ow8GC9ZK
+  _publicize_done_16966120: '1'
+  _wpas_done_16750486: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<h3><strong>Problem:</strong></h3>
+<p>You use <a href="http://docker.io/">Docker</a>, but working with it created lots of images and containers. You want to remove all of them to save disk space.</p>
+<h3><strong>Solution:</strong></h3>
+<p><em>Warning:</em> This <em>will</em> destroy <em>all</em> your images and containers. It will not be possible to restore them!</p>
+<p>Run those commands in a shell:<code><br />
+# Delete all containers<br />
+sudo docker rm $(docker ps -a -q)<br />
+# Delete all images<br />
+sudo docker rmi $(docker images -q)<br />
+</code></p>
+<p>This solution has be proposed by GitHub user <a href="https://github.com/crosbymichael">@crosbymichael</a> in <a href="https://github.com/dotcloud/docker/issues/928#issuecomment-23538307">this issue</a></p>

@@ -1,0 +1,57 @@
+---
+layout: post
+title: Include eps in Latex
+date: 2015-06-29 11:34:23.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Latex
+- Linux
+- Tricks
+- Ubuntu
+tags:
+- eps images
+- LaTeX doc­u­ment
+- svg
+- svg file
+meta:
+  _edit_last: '49460244'
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:3508581;s:38:"https://facebook.com/10205404820174913";}}
+  geo_public: '0'
+  _publicize_job_id: '12142478195'
+  _publicize_done_3700952: '1'
+  _wpas_done_3508581: '1'
+  _wpas_skip_3508581: '1'
+author:
+  login: mpho112
+  email: mpho112@gmail.com
+  display_name: Mpho
+  first_name: ''
+  last_name: ''
+---
+<p class="cye-lm-tag">Recently I wanted to include a directed graph in a LaTeX doc­u­ment. unfortunately I couldn't import an svg file to my document. So which meant I had to find another alternative method rather than converting the file to any other image format to avoid rasterization.<br />
+<code><br />
+$ sudo apt-get install inkscape</code></p>
+<p class="cye-lm-tag"><code>$ inkscape -z image.svg image.eps --export-eps=image.eps<br />
+</code><br />
+to receive the <span class="caps cye-lm-tag">EPS(Encapsulated Postscript Vector graphics)</span> file which I wanted to include in LaTeX. Run­ning Gummi with <tt>pdfla­tex</tt> for type­set­ting on a file con­tain­ing<br />
+<code><br />
+\begin{figure}[!htb]<br />
+\centering<br />
+\includegraphics[scale=.7]{image.eps}<br />
+\caption{image}<br />
+\label{fig:image}<br />
+\end{figure}<br />
+</code><br />
+how­ever returns the error<br />
+<code><br />
+! LaTeX Error: Unknown graphics extension: .eps.<br />
+</code></p>
+<p class="cye-lm-tag">This can be resolved by adding<br />
+<code><br />
+\usepackage{epstopdf}<br />
+</code><br />
+which allows to con­vert <tt>eps</tt> images to <tt>pdf</tt> for use with <tt>pdfla­tex</tt>. This works perfect.</p>
