@@ -4,8 +4,7 @@
 # baseurl is the website's URL without the hostname
 
 # If you are building a simple GitHub user page (http://username.github.io) then use these settings:
-# url: "http://Mpho .in"
-baseurl: "mmphego.github.io"
+url: "mmphego.github.io"
 
 # If you are building a GitHub project page then use these settings:
 #url: "http://username.github.io/projectname"
@@ -26,8 +25,8 @@ description: Welcome to the geek side!
 
 # List of links in the navigation bar
 navbar-links:
-  About Me: "/aboutme.html"
-  Projects: "/projects.html"
+  # About Me: "/aboutme.html"
+  # Projects: "/projects.html"
   Resume / CV: "/resume/MphoMphego.pdf"
 #  Tags: "tags"
 
@@ -142,19 +141,19 @@ kramdown:
 # Default YAML values (more information on Jekyll's site)
 # defaults:
 #   -
-#     scope:
-#       path: ""
-#       type: "posts"
-#     values:
-#       layout: "post"
-#       comments: true  # add comments to all blog posts
-#       social-share: false # add social media sharing buttons to all blog posts
-#   -
-#     scope:
-#       path: "" # all files
-#     values:
-#       layout: "page"
-#       show-avatar: true
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      comments: true  # add comments to all blog posts
+      social-share: false # add social media sharing buttons to all blog posts
+  -
+    scope:
+      path: "" # all files
+    values:
+      layout: "page"
+      show-avatar: true
 
 # Use tags index page and make tags on each post clickable
 link-tags: true
