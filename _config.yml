@@ -169,6 +169,7 @@ exclude:
   - LICENSE
   - README.md
   - Vagrantfile
+  - _site
 
 #Meta data for your Posts
 metadata:

@@ -3,7 +3,7 @@ layout: search
 ---
 <style>
 input[type=text] {
-    width: 130px;
+    width: 100%;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -13,13 +13,8 @@ input[type=text] {
     background-position: 10px 10px;
     background-repeat: no-repeat;
     padding: 12px 20px 12px 40px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
 }
-
-input[type=text]:focus {
-    width: 100%;
-}</style>
+</style>
 <form action="/search.html" method="get">
    <!-- <label for="search-box">Search</label> -->
   <input type="text" id="search-box" name="query">
