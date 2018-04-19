@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Guess the number [python]</title>
+
+  <meta name="author" content="Mpho Mphego" />
+  <meta name="theme-color" content="#a50509">
+  <meta name="description" content="Hi! I'm Mpho Mphego, a programmer, software developer. Loves to meet new people, connect, discuss, network and grow, mostly at software developers’ conferences, dev-fests and gaming meet-ups.">
+  <meta name="keywords" content="Mpho , geek, linux, science, math, mathematics, raspberry pi, music, Internet of Things, research, android, ubuntu, python, docker">
+
+  <!-- favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+  <!-- MathJax -->
+  <script type="text/x-mathjax-config">MathJax.Hub.Config({messageStyle: 'none',tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+
+  <link rel="alternate" type="application/rss+xml" title="Mpho Mphego - Welcome to the geek side!" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Guess the number [python]" />
+  
+
+   
+  <meta property="og:description" content="The following weeks mini-project was starting to get a bit trickier. A simple game called, &quot;Guess the number&quot; [sourcecode language=&quot;python&quot; wraplines=&quot;false&quot; collapse=&quot;false&quot;] # http://www.codeskulptor.org/#user38_p561LbO9KO_0.py # http://www.codeskulptor.org/#user38_SeTv0Tz7E7nAlil_11.py # Mini-project #2 - &amp;quot;Guess the number game&amp;quot; # Created by Mpho &amp;quot;!nerd&amp;quot; Mphego - Marion Island SANSA Engineer 2014-2015 # # 'Introduction to...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://localhost:4000/blog/2014/10/22/guess-the-number-python.html" />
+  <link rel="canonical" href="http://localhost:4000/blog/2014/10/22/guess-the-number-python.html" />
+  
+
+  
+  <meta property="og:image" content="http://localhost:4000/img/main.jpg" />
+  
+
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="Guess the number [python]" />
+  
+
+  
+  <meta name="twitter:description" content="The following weeks mini-project was starting to get a bit trickier. A simple game called, &quot;Guess the number&quot; [sourcecode language=&quot;python&quot; wraplines=&quot;false&quot; collapse=&quot;false&quot;] # http://www.codeskulptor.org/#user38_p561LbO9KO_0.py # http://www.codeskulptor.org/#user38_SeTv0Tz7E7nAlil_11.py # Mini-project #2 - &amp;quot;Guess the number game&amp;quot; # Created by Mpho &amp;quot;!nerd&amp;quot; Mphego - Marion Island SANSA Engineer 2014-2015 # # 'Introduction to...">
+  
+
+  
+  <meta name="twitter:image" content="http://localhost:4000/img/main.jpg" />
+  
+
+</head>
+
+
+  <body>
+    
+    
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://localhost:4000">Mpho Mphego</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+
+
+
+
+
+
+<a href="//resume/MphoMphego.pdf">Resume</a>
+          </li>
+        
+        
+        
+          <li>
+            
+
+
+
+
+
+
+<a href="/tags">Tags</a>
+          </li>
+        
+        
+      </ul>
+    </div>
+
+<!-- ALways use my avatar, irrespective of the post image -->
+  <div class="avatar-container">
+    <div class="avatar-img-border">
+      <a href="http://localhost:4000 ">
+        <img class="avatar-img" src="http://localhost:4000/img/av.png" />
+     </a>
+    </div>
+  </div>
+
+  </div>
+</nav>
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+<div class="intro-header"></div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      
+
+      <article role="main" class="blog-post">
+        <p>The following weeks mini-project was starting to get a bit trickier.<br />
+A simple game called, "Guess the number"</p>
+<p>[sourcecode language="python" wraplines="false" collapse="false"]<br />
+# http://www.codeskulptor.org/#user38_p561LbO9KO_0.py<br />
+# http://www.codeskulptor.org/#user38_SeTv0Tz7E7nAlil_11.py</p>
+<p># Mini-project #2 - &quot;Guess the number game&quot;<br />
+# Created by Mpho &quot;!nerd&quot; Mphego - Marion Island SANSA Engineer 2014-2015<br />
+#<br />
+# 'Introduction to Interactive Programming in Python' Course<br />
+# RICE University - https://class.coursera.org/interactivepython-005<br />
+# by Joe Warren, John Greiner, Stephen Wong, Scott Rixner<br />
+# One of the simplest two-player games is “Guess the number”<br />
+# The first player thinks of a secret number in some known range while<br />
+# the second player attempts to guess the number. After each guess,<br />
+# the first player answers either “Higher”, “Lower” or “Correct!”<br />
+# depending on whether the secret number is higher, lower or equal to the guess.<br />
+# http://www.codeskulptor.org/#user38_SeTv0Tz7E7nAlil_12.py<br />
+try:<br />
+    import simplegui<br />
+except:<br />
+    import SimpleGUICS2Pygame.simpleguics2pygame as simplegui<br />
+    # To run simplegui in idle python, install SimpleGUICS2Pygame module<br />
+    # download module : https://pypi.python.org/pypi/SimpleGUICS2Pygame<br />
+import random<br />
+import math</p>
+<p># Global Variables<br />
+secret_number = 0<br />
+limit = 100<br />
+No_of_attempts = int(math.ceil(math.log(limit + 1 ,2)))</p>
+<p>def new_game():<br />
+    global secret_number,guess<br />
+    secret_number = random.randint(0, 100)</p>
+<p>def range100():<br />
+    global secret_number, limit, No_of_attempts<br />
+    limit = 100<br />
+    secret_number = random.randint(0, limit)<br />
+    No_of_attempts = int(math.ceil(math.log(limit,2)))<br />
+    #print &quot;Lets Play A Game!!!\n&quot;<br />
+    print &quot;\nNew Game.\nGuess a number between 0 to 100&quot;<br />
+    print &quot;You have about %s attempts at this!&quot; %(No_of_attempts)</p>
+<p>def range1000():<br />
+    global secret_number, limit, No_of_attempts<br />
+    limit = 1000<br />
+    secret_number = random.randint(0, limit)<br />
+    No_of_attempts = int(math.ceil(math.log(limit,2)))<br />
+    print &quot;Lets Play A Game!!!\nGuess a number between 0 to 1000&quot;<br />
+    print &quot;You have about %s attempts at this!&quot; %(No_of_attempts)</p>
+<p>def input_guess(guess):<br />
+    global No_of_attempts, secret_number<br />
+    try:<br />
+        guess = int(guess)<br />
+#		print No_of_attempts<br />
+        #print &quot;\nYour guess was&quot;, guess<br />
+#        print &quot;You have %s &quot;%(No_of_attempts)<br />
+        No_of_attempts -= 1<br />
+        if No_of_attempts &gt; 0:<br />
+            print &quot;\nYour guess was&quot;, guess</p>
+<p>#       for No_of_attempts in range(No_of_attempts):<br />
+#       print guess, secret_number, No_of_attempts<br />
+#		No_of_attempts -= 1<br />
+            if (guess &gt; secret_number):<br />
+                print &quot;Go Lower!!!!!&quot;<br />
+                print &quot;No. of Attempts left:&quot;,No_of_attempts<br />
+            elif(guess &lt; secret_number):<br />
+                print &quot;Go Higher!!!!!&quot;<br />
+                print &quot;No. of Attempts left:&quot;,No_of_attempts<br />
+            else:<br />
+                print &quot;\nCorrect!!!\n&quot;<br />
+                print &quot;You guessed it right!!!\nCorrect number was %s, you had %s attempts left...\nChoose a New game. &quot; %(secret_number, No_of_attempts)</p>
+<p>           #break</p>
+<p>        else :<br />
+            print &quot;\nTime up, You Lost\nCorrect number was %s&quot;%(secret_number)<br />
+            print &quot;Try again a new game.&quot;<br />
+            #new_game()<br />
+            range100()</p>
+<p>    except:<br />
+        print 'Input is not a number!!!\nTry Again!!!'</p>
+<p>def end_game():<br />
+    print &quot;\t*******************&quot;<br />
+    print &quot;\t*                 *&quot;<br />
+    print &quot;\t*    Game Over!!! *&quot;<br />
+    print &quot;\t*                 *&quot;<br />
+    print &quot;\t*******************&quot;<br />
+    frame.stop()</p>
+<p>def Init_screen():<br />
+    print &quot;\t***************************&quot;<br />
+    print &quot;\t*  I want to Play a Game. *&quot;<br />
+    print &quot;\t*  The rules are simple.  *&quot;<br />
+    print &quot;\t*  All you have to do is- *&quot;<br />
+    print &quot;\t*  sit here and guess, a  *&quot;<br />
+    print &quot;\t*  number I am thinking   *&quot;<br />
+    print &quot;\t*  ---JigSaw              *&quot;<br />
+    print &quot;\t*                         *&quot;<br />
+    print &quot;\t***************************&quot;<br />
+    range100()</p>
+<p>frame = simplegui.create_frame('Guess the number', 200, 200)<br />
+frame.add_button('Range is [ 0 - 100 ]', range100,200)<br />
+frame.add_button('Range is [ 0 - 1000 ]', range1000, 200)<br />
+frame.add_input('Enter A Guess', input_guess, 40)<br />
+frame.add_button('End Game', end_game, 70)<br />
+frame.start()<br />
+# call new_game<br />
+Init_screen()<br />
+new_game()</p>
+<p>[/sourcecode]</p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+          
+            <a href="/tags#python">python</a>
+          
+          
+        </div>
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/blog/2014/10/02/setting-up-python-import-simplegui-library.html" data-toggle="tooltip" data-placement="top" title="setting up python-simplegui library">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="next">
+          <a href="/blog/2014/10/22/stopwatch-python.html" data-toggle="tooltip" data-placement="top" title="Stopwatch "python"">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+
+      
+        <div class="disqus-comments">
+          <div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mmphego-github-io';
+        /* ensure that pages with query string get the same discussion */
+            var url_parts = window.location.href.split("?");
+            var disqus_url = url_parts[0];
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/mmphego" title="GitHub">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">GitHub</span>
+            </a>
+          </li>
+          
+      
+    
+      
+      
+      
+          <li>
+            <a href="https://linkedin.com/in/mphomphego" title="LinkedIn">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">LinkedIn</span>
+            </a>
+          </li>
+          
+      
+      
+          <li>
+            <a href="https://stackoverflow.com/users/6165344/mpho-mphego" title="StackOverflow">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">StackOverflow</span>
+            </a>
+          </li>
+          
+      
+      
+      
+          <li>
+            <a href="https://www.youtube.com/xxXMphoXxx" title="YouTube">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">YouTube</span>
+            </a>
+          </li>
+          
+      
+      
+      
+          <li>
+            <a href="/feed.xml" title="RSS">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">RSS</span>
+            </a>
+          </li>
+          
+      
+      
+      
+        </ul>
+        <p class="copyright text-muted">
+      Mpho Mphego
+      &nbsp;&bull;&nbsp;
+      2018
+
+      
+      </p>
+          <!-- Please don't remove this, keep my open source work credited :) -->
+    <p class="theme-by text-muted">
+      Awesome Theme by
+      <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+    </p>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+        if (typeof jQuery == 'undefined') {
+          document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+        }
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+  <script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+  <script src="/js/main.js"></script>
+    
+  
+
+
+
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-68808612-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+	<!-- End Google Analytics -->
+
+  
+  </body>
+</html>

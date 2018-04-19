@@ -28,7 +28,7 @@ description: Welcome to the geek side!
 navbar-links:
   # About Me: "/aboutme.html"
   # Projects: "/projects.html"
-  Resume: "/resume/MphoMphego.pdf"
+  Resume: "resume/MphoMphego.pdf"
   Tags: "tags"
 
 # Image to show in the navigation bar - image must be a square (width = height)

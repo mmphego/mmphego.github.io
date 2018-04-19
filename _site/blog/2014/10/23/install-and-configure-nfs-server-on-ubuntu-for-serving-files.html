@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Install and configure NFS server on Ubuntu for serving files</title>
+
+  <meta name="author" content="Mpho Mphego" />
+  <meta name="theme-color" content="#a50509">
+  <meta name="description" content="Hi! I'm Mpho Mphego, a programmer, software developer. Loves to meet new people, connect, discuss, network and grow, mostly at software developers’ conferences, dev-fests and gaming meet-ups.">
+  <meta name="keywords" content="Mpho , geek, linux, science, math, mathematics, raspberry pi, music, Internet of Things, research, android, ubuntu, python, docker">
+
+  <!-- favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+  <!-- MathJax -->
+  <script type="text/x-mathjax-config">MathJax.Hub.Config({messageStyle: 'none',tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+
+  <link rel="alternate" type="application/rss+xml" title="Mpho Mphego - Welcome to the geek side!" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Install and configure NFS server on Ubuntu for serving files" />
+  
+
+   
+  <meta property="og:description" content="When it comes to serving media content within your local network, a NFS share is way better than Samba/CIFS share in terms of speed and resource usage. If you have a XBMC box to watch TV shows and movies from a central server then a Network File System (NFS) share...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://localhost:4000/blog/2014/10/23/install-and-configure-nfs-server-on-ubuntu-for-serving-files.html" />
+  <link rel="canonical" href="http://localhost:4000/blog/2014/10/23/install-and-configure-nfs-server-on-ubuntu-for-serving-files.html" />
+  
+
+  
+  <meta property="og:image" content="http://localhost:4000/img/main.jpg" />
+  
+
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="Install and configure NFS server on Ubuntu for serving files" />
+  
+
+  
+  <meta name="twitter:description" content="When it comes to serving media content within your local network, a NFS share is way better than Samba/CIFS share in terms of speed and resource usage. If you have a XBMC box to watch TV shows and movies from a central server then a Network File System (NFS) share...">
+  
+
+  
+  <meta name="twitter:image" content="http://localhost:4000/img/main.jpg" />
+  
+
+</head>
+
+
+  <body>
+    
+    
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://localhost:4000">Mpho Mphego</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+
+
+
+
+
+
+<a href="//resume/MphoMphego.pdf">Resume</a>
+          </li>
+        
+        
+        
+          <li>
+            
+
+
+
+
+
+
+<a href="/tags">Tags</a>
+          </li>
+        
+        
+      </ul>
+    </div>
+
+<!-- ALways use my avatar, irrespective of the post image -->
+  <div class="avatar-container">
+    <div class="avatar-img-border">
+      <a href="http://localhost:4000 ">
+        <img class="avatar-img" src="http://localhost:4000/img/av.png" />
+     </a>
+    </div>
+  </div>
+
+  </div>
+</nav>
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+<div class="intro-header"></div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      
+
+      <article role="main" class="blog-post">
+        <p>When it comes to serving media content within your local network, a NFS share is way better than Samba/CIFS share in terms of speed and resource usage. If you have a XBMC box to watch TV shows and movies from a central server then a Network File System (NFS) share should be the choice for a media source. It only takes a few minutes to install and configure NFS server in Ubuntu, and it is a must have item on my server.</p>
+<p><strong>Setup NFS Server on Ubuntu</strong></p>
+<p>If you do not have NFS yet, you will have to install NFS server first using the following commands:<br />
+[sourcecode language="bash"]<br />
+sudo apt-get install nfs-kernel-server<br />
+[/sourcecode]<br />
+That’s the easiest part. It requires just bit more effort to configure NFS server to share files with right permissions.</p>
+<p><strong>Configure NFS Server<br />
+</strong></p>
+<p>After installation you can configure NFS server by editing the /etc/exports file. First make a backup copy of the default NFS configuration file:</p>
+<p>[sourcecode language="bash"]<br />
+sudo cp -a /etc/exports /etc/exports.backup<br />
+[/sourcecode]<br />
+Then open the /etc/exports file using the following command:<br />
+[sourcecode language="bash"]<br />
+sudo nano /etc/exports<br />
+[/sourcecode]<br />
+Edit and comment out all existing lines by adding a “#” in front the line. Next, setup NFS share for each folder you want to make available to the client devices as shown below.</p>
+<p><strong>Setup NFS Share for Media</strong></p>
+<p>One of the primary purposes I configure NFS server on Ubuntu server is to share my media to all my Xbian Raspberry Pi HTPC. As I said before, for sharing within a network the performance of NFS is better than SAMBA. If you a media folder on your central Ubuntu server, then add the following line to line to /etc/exports to setup NFS share for it.<br />
+[sourcecode language="bash"]<br />
+#Export media to all IP address under 192.168.1.X<br />
+/home/user/media   192.168.1.0/24(rw,async,insecure,no_subtree_check,nohide)<br />
+[/sourcecode]</p>
+<p>This will make your media folder located under /home/user available to every device in your local network. The options within parenthesis are specifically chosen to improve performance. We are sharing “non-critical” media files and we are making them available only to devices in your home network (192.168.1.X). So we can afford to go lower on security to improve speed and performance.</p>
+<p><strong>rw</strong> – allows read/write if you want to be able to delete or rename files from XBMC or other devices. On XBMC you write permission to download subtitles.<br />
+<strong>async</strong> – Increases read/write performance. Only to be used for non-critical files.<br />
+<strong>insecure</strong> – Does not mean the files are insecure but rather this setting allow clients (eg. Mac OS X) to use non-reserved ports connect to a NFS server.<br />
+<strong>no_subtree_check</strong> – Improves speed and reliability by eliminating permission checks on parent directories.<br />
+<strong>nohide</strong> – This option allows the client device to see multiple file systems but only works on one host. Since this is rare, you may choose to omit this option as it can potentially cause problems in some cases.</p>
+<p><strong>Starting, Stopping, and Restarting NFS Server</strong></p>
+<p>Once you have setup NFS server, you can start NFS share using the following command:<br />
+[sourcecode language="bash"]<br />
+sudo exportfs -ra<br />
+[/sourcecode]<br />
+Any time you make changes to /etc/exports I recommend that you restart your NFS server using the following command:<br />
+[sourcecode language="bash"]<br />
+sudo service nfs-kernel-server restart<br />
+[/sourcecode]</p>
+<p>On your XBMC just choose Network Filesystem (NFS) when you select the source. Note that NFS does not work on Windows clients but they should work on all Linux-based OSes that run XBMC. For Windows, you will still have to Setup Samba as the file server. </p>
+<p><strong>Setup NFS Client on Ubuntu</strong></p>
+<p>If you would like to connect to the NFS server on your local computer running Linux - prefferably Ubuntu, Do the following:<br />
+[sourcecode language="bash"]<br />
+sudo apt-get install nfs-common<br />
+[/sourcecode]</p>
+<p><strong>Mounts</strong></p>
+<p>Check to see if everything works<br />
+You should try and mount it now. The basic template you will use is:<br />
+[sourcecode language="bash"]<br />
+sudo mount ServerIP:/folder/already/setup/to/be/shared /home/username/folder/in/your/local/computer</p>
+<p>so for example:</p>
+<p>sudo mount 192.168.1.42:/home/music /home/nerd/music<br />
+[/sourcecode]</p>
+<p><strong>Mount at startup</strong></p>
+<p>Add the following lines in your fstab to mount NFS directories automatically after system reboot.<br />
+[sourcecode language="bash"]<br />
+sudo nano /etc/fstab<br />
+[/sourcecode]<br />
+This will mount directories on start up after the server reboots.</p>
+<p>[sourcecode language="bash"]<br />
+Server_IP:/home/music /home/nerd/music  /mnt/music   nfs   auto,noatime,nolock,bg,nfsvers=3,intr,tcp,actimeo=1800 0 0<br />
+[/sourcecode]</p>
+<p><strong>Conclusion</strong><br />
+NFS provides a quick and easy way to access remote systems over a network. However, the protocol itself is not encrypted. If you are using this in a production environment, consider routing NFS over SSH or a VPN connection to create a more secure experience.</p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+          
+            <a href="/tags#linux">linux</a>
+          
+            <a href="/tags#nfs">nfs</a>
+          
+            <a href="/tags#NFS Server">NFS Server</a>
+          
+            <a href="/tags#ubuntu">ubuntu</a>
+          
+          
+        </div>
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/blog/2014/10/22/script-to-generate-bash-scripts.html" data-toggle="tooltip" data-placement="top" title="script to generate BASH scripts">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="next">
+          <a href="/blog/2014/10/26/memory-card-game.html" data-toggle="tooltip" data-placement="top" title="Memory - Card game">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+
+      
+        <div class="disqus-comments">
+          <div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mmphego-github-io';
+        /* ensure that pages with query string get the same discussion */
+            var url_parts = window.location.href.split("?");
+            var disqus_url = url_parts[0];
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/mmphego" title="GitHub">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">GitHub</span>
+            </a>
+          </li>
+          
+      
+    
+      
+      
+      
+          <li>
+            <a href="https://linkedin.com/in/mphomphego" title="LinkedIn">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">LinkedIn</span>
+            </a>
+          </li>
+          
+      
+      
+          <li>
+            <a href="https://stackoverflow.com/users/6165344/mpho-mphego" title="StackOverflow">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">StackOverflow</span>
+            </a>
+          </li>
+          
+      
+      
+      
+          <li>
+            <a href="https://www.youtube.com/xxXMphoXxx" title="YouTube">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">YouTube</span>
+            </a>
+          </li>
+          
+      
+      
+      
+          <li>
+            <a href="/feed.xml" title="RSS">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">RSS</span>
+            </a>
+          </li>
+          
+      
+      
+      
+        </ul>
+        <p class="copyright text-muted">
+      Mpho Mphego
+      &nbsp;&bull;&nbsp;
+      2018
+
+      
+      </p>
+          <!-- Please don't remove this, keep my open source work credited :) -->
+    <p class="theme-by text-muted">
+      Awesome Theme by
+      <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+    </p>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+        if (typeof jQuery == 'undefined') {
+          document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+        }
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+  <script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+  <script src="/js/main.js"></script>
+    
+  
+
+
+
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-68808612-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+	<!-- End Google Analytics -->
+
+  
+  </body>
+</html>

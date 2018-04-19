@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Stopwatch "python"</title>
+
+  <meta name="author" content="Mpho Mphego" />
+  <meta name="theme-color" content="#a50509">
+  <meta name="description" content="Hi! I'm Mpho Mphego, a programmer, software developer. Loves to meet new people, connect, discuss, network and grow, mostly at software developers’ conferences, dev-fests and gaming meet-ups.">
+  <meta name="keywords" content="Mpho , geek, linux, science, math, mathematics, raspberry pi, music, Internet of Things, research, android, ubuntu, python, docker">
+
+  <!-- favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+  <!-- MathJax -->
+  <script type="text/x-mathjax-config">MathJax.Hub.Config({messageStyle: 'none',tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+
+  <link rel="alternate" type="application/rss+xml" title="Mpho Mphego - Welcome to the geek side!" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Stopwatch "python"" />
+  
+
+   
+  <meta property="og:description" content="Well as for this week, we were to create some sort of stopwatch game. Player gets a point when, they hit &quot;stop&quot; button if it stops on seconds. A bit even more trickier, but challenge was accepted and completed...Hell Yeah. [sourcecode language=&quot;python&quot; wraplines=&quot;false&quot; collapse=&quot;false&quot;] #http://www.codeskulptor.org/#user38_TSo5mURks3_2.py #http://www.codeskulptor.org/#user38_TSo5mURks3_3.py #or http://www.codeskulptor.org/#user38_nJvMd8w50P_0.py # Mini-project...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://localhost:4000/blog/2014/10/22/stopwatch-python.html" />
+  <link rel="canonical" href="http://localhost:4000/blog/2014/10/22/stopwatch-python.html" />
+  
+
+  
+  <meta property="og:image" content="http://localhost:4000/img/main.jpg" />
+  
+
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="Stopwatch "python"" />
+  
+
+  
+  <meta name="twitter:description" content="Well as for this week, we were to create some sort of stopwatch game. Player gets a point when, they hit &quot;stop&quot; button if it stops on seconds. A bit even more trickier, but challenge was accepted and completed...Hell Yeah. [sourcecode language=&quot;python&quot; wraplines=&quot;false&quot; collapse=&quot;false&quot;] #http://www.codeskulptor.org/#user38_TSo5mURks3_2.py #http://www.codeskulptor.org/#user38_TSo5mURks3_3.py #or http://www.codeskulptor.org/#user38_nJvMd8w50P_0.py # Mini-project...">
+  
+
+  
+  <meta name="twitter:image" content="http://localhost:4000/img/main.jpg" />
+  
+
+</head>
+
+
+  <body>
+    
+    
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://localhost:4000">Mpho Mphego</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+
+
+
+
+
+
+<a href="//resume/MphoMphego.pdf">Resume</a>
+          </li>
+        
+        
+        
+          <li>
+            
+
+
+
+
+
+
+<a href="/tags">Tags</a>
+          </li>
+        
+        
+      </ul>
+    </div>
+
+<!-- ALways use my avatar, irrespective of the post image -->
+  <div class="avatar-container">
+    <div class="avatar-img-border">
+      <a href="http://localhost:4000 ">
+        <img class="avatar-img" src="http://localhost:4000/img/av.png" />
+     </a>
+    </div>
+  </div>
+
+  </div>
+</nav>
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+<div class="intro-header"></div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      
+
+      <article role="main" class="blog-post">
+        <p>Well as for this week, we were to create some sort of stopwatch game.<br />
+Player gets a point when, they hit "stop" button if it stops on seconds.<br />
+A bit even more trickier, but challenge was accepted and completed...Hell Yeah.</p>
+<p>[sourcecode language="python" wraplines="false" collapse="false"]<br />
+#http://www.codeskulptor.org/#user38_TSo5mURks3_2.py<br />
+#http://www.codeskulptor.org/#user38_TSo5mURks3_3.py<br />
+#or http://www.codeskulptor.org/#user38_nJvMd8w50P_0.py<br />
+# Mini-project #3 - &quot;Stopwatch: The Game&quot;<br />
+# Created by Mpho &quot;!nerd&quot; Mphego - Marion Island SANSA Engineer 2014-2015<br />
+#<br />
+# 'Introduction to Interactive Programming in Python' Course<br />
+# RICE University - https://class.coursera.org/interactivepython-005<br />
+# by Joe Warren, John Greiner, Stephen Wong, Scott Rixner<br />
+# Our mini-project for this week will focus on combining text drawing in<br />
+# the canvas with timers to build a simple digital stopwatch that keeps<br />
+# track of the time in tenths of a second. The stopwatch should contain<br />
+# &quot;Start&quot;, &quot;Stop&quot; and &quot;Reset&quot; buttons.</p>
+<p>try:<br />
+    import simplegui<br />
+except:<br />
+    import SimpleGUICS2Pygame.simpleguics2pygame as simplegui<br />
+    # To run simplegui in idle python, install SimpleGUICS2Pygame module<br />
+    # download module : https://pypi.python.org/pypi/SimpleGUICS2Pygame</p>
+<p># define global variables<br />
+A_string, B_string, C_string, D_string, count, score, over_all_score = 0, 0, 0, 0, 0, 0, 0<br />
+started = &quot;No&quot;<br />
+clear = &quot;\n&quot; * 100<br />
+# define helper function format that converts time<br />
+# in tenths of seconds into formatted string A:BC.D<br />
+def format(t):<br />
+    global started, count, D_string, B_string, C_string, A_string<br />
+    t = count<br />
+    if started == &quot;Yes&quot;:<br />
+        t = D_string<br />
+        D_string += 1<br />
+        if D_string &amp;gt;= 10: #.1 seconds<br />
+            if D_string == 10:<br />
+                C_string += 1<br />
+                if C_string == 10: # seconds<br />
+                    B_string += 1<br />
+                    if B_string &amp;gt;= 6:<br />
+                        A_string += 1<br />
+                        B_string = 0<br />
+                    C_string = 0<br />
+                D_string = 0<br />
+    return str(A_string) + &quot;:&quot; + str(B_string) + str(C_string) + &quot;.&quot; + str(D_string) </p>
+<p># define event handlers for buttons; &quot;Start&quot;, &quot;Stop&quot;, &quot;Reset&quot;<br />
+def start_button():<br />
+    global started#, count<br />
+    started = &quot;No&quot;<br />
+    #print &quot;Started Button Pressed&quot;,started<br />
+    if started:<br />
+        timer.start()<br />
+        started = &quot;Yes&quot;<br />
+        print &quot;Start Button Pressed&quot;<br />
+        #format(count)<br />
+        #print &quot;.10s Timer is Started&quot;#,timer.is_running()</p>
+<p>def score_board():<br />
+    global score, over_all_score<br />
+    if C_string &amp;gt; 0 and D_string == 0:<br />
+        score += 1<br />
+    #    print &quot;Good&quot;<br />
+    #else:<br />
+        #if score &amp;gt; 0:<br />
+        #    score -= 1<br />
+     #   print &quot;You are Loosing&quot;</p>
+<p>def stop_button():<br />
+    global started, A_string, B_string, C_string, D_string, count, score, over_all_score<br />
+    if started == &quot;Yes&quot;:<br />
+        timer.stop()<br />
+        started = &quot;No&quot;<br />
+        over_all_score += 1<br />
+        score_board()<br />
+        print &quot;Stop Button Pressed&quot;<br />
+        #print &quot;.10s Timer is Stopped&quot;#,timer.is_running()</p>
+<p>def reset_button():<br />
+    global started, count, D_string, B_string, C_string , A_string, score, over_all_score<br />
+    A_string, B_string, C_string, D_string, count, score, over_all_score = 0, 0, 0, 0, 0, 0, 0<br />
+    timer.stop()<br />
+    print &quot;Timer Restarted&quot;#,timer.is_running()</p>
+<p>def exit_button():<br />
+    frame.stop()<br />
+    timer.stop()<br />
+    print clear</p>
+<p># define event handler for timer with 0.1 sec interval<br />
+def timer_handler():<br />
+    global started, count<br />
+    #print &quot;counter running&quot;,started<br />
+    if started == &quot;Yes&quot;:<br />
+        count += 1<br />
+    format(count)</p>
+<p># define draw handler<br />
+def draw_handler(canvas):<br />
+    global score, over_all_score<br />
+    canvas.draw_text(str(A_string) + &quot;:&quot; + str(B_string) +<br />
+                     str(C_string) + &quot;.&quot; + str(D_string) ,<br />
+                     (100, 130), 50, 'White')<br />
+    canvas.draw_text(&quot;Score: &quot; + str(score) + &quot;/&quot; + str(over_all_score), (210, 20), 20, 'Red')</p>
+<p># create frame<br />
+frame = simplegui.create_frame('StopWatch Game!', 300, 200)<br />
+timer = simplegui.create_timer(100, timer_handler)<br />
+# register event handlers<br />
+frame.set_draw_handler(draw_handler)<br />
+frame.add_button('Start', start_button,70)<br />
+frame.add_button('Stop', stop_button,70)<br />
+frame.add_button('Reset', reset_button, 70)<br />
+frame.add_button('Exit', exit_button, 50)<br />
+# start frame<br />
+frame.start()<br />
+timer.start()<br />
+print &quot;Global Timer is running:&quot;,timer.is_running()<br />
+# Please remember to review the grading rubric</p>
+<p>[/sourcecode]</p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+          
+            <a href="/tags#python">python</a>
+          
+          
+        </div>
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/blog/2014/10/22/guess-the-number-python.html" data-toggle="tooltip" data-placement="top" title="Guess the number [python]">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="next">
+          <a href="/blog/2014/10/22/1972-pong-python.html" data-toggle="tooltip" data-placement="top" title="1972 Pong "python"">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+
+      
+        <div class="disqus-comments">
+          <div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mmphego-github-io';
+        /* ensure that pages with query string get the same discussion */
+            var url_parts = window.location.href.split("?");
+            var disqus_url = url_parts[0];
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/mmphego" title="GitHub">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">GitHub</span>
+            </a>
+          </li>
+          
+      
+    
+      
+      
+      
+          <li>
+            <a href="https://linkedin.com/in/mphomphego" title="LinkedIn">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">LinkedIn</span>
+            </a>
+          </li>
+          
+      
+      
+          <li>
+            <a href="https://stackoverflow.com/users/6165344/mpho-mphego" title="StackOverflow">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">StackOverflow</span>
+            </a>
+          </li>
+          
+      
+      
+      
+          <li>
+            <a href="https://www.youtube.com/xxXMphoXxx" title="YouTube">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">YouTube</span>
+            </a>
+          </li>
+          
+      
+      
+      
+          <li>
+            <a href="/feed.xml" title="RSS">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">RSS</span>
+            </a>
+          </li>
+          
+      
+      
+      
+        </ul>
+        <p class="copyright text-muted">
+      Mpho Mphego
+      &nbsp;&bull;&nbsp;
+      2018
+
+      
+      </p>
+          <!-- Please don't remove this, keep my open source work credited :) -->
+    <p class="theme-by text-muted">
+      Awesome Theme by
+      <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+    </p>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+        if (typeof jQuery == 'undefined') {
+          document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+        }
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+  <script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+  <script src="/js/main.js"></script>
+    
+  
+
+
+
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-68808612-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+	<!-- End Google Analytics -->
+
+  
+  </body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>SSH Tunnel: channel_setup_fwd_listener: cannot listen to port</title>
+
+  <meta name="author" content="Mpho Mphego" />
+  <meta name="theme-color" content="#a50509">
+  <meta name="description" content="Hi! I'm Mpho Mphego, a programmer, software developer. Loves to meet new people, connect, discuss, network and grow, mostly at software developers’ conferences, dev-fests and gaming meet-ups.">
+  <meta name="keywords" content="Mpho , geek, linux, science, math, mathematics, raspberry pi, music, Internet of Things, research, android, ubuntu, python, docker">
+
+  <!-- favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+  <!-- MathJax -->
+  <script type="text/x-mathjax-config">MathJax.Hub.Config({messageStyle: 'none',tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+
+  <link rel="alternate" type="application/rss+xml" title="Mpho Mphego - Welcome to the geek side!" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="SSH Tunnel: channel_setup_fwd_listener: cannot listen to port" />
+  
+
+   
+  <meta property="og:description" content="I was attempting to use SSH to set up a tunnel to my Jenkins server from home, so I typed the following (Like I do in most days): ssh -f -N -L 8080:remote_host:8080 -p 2222 user@host_address …only to be greeted with the error: bind: Address already in use channel_setup_fwd_listener: cannot...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://localhost:4000/blog/2018/03/14/ssh-tunnel-channel_setup_fwd_listener-cannot-listen-to-port.html" />
+  <link rel="canonical" href="http://localhost:4000/blog/2018/03/14/ssh-tunnel-channel_setup_fwd_listener-cannot-listen-to-port.html" />
+  
+
+  
+  <meta property="og:image" content="http://localhost:4000/img/main.jpg" />
+  
+
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="SSH Tunnel: channel_setup_fwd_listener: cannot listen to port" />
+  
+
+  
+  <meta name="twitter:description" content="I was attempting to use SSH to set up a tunnel to my Jenkins server from home, so I typed the following (Like I do in most days): ssh -f -N -L 8080:remote_host:8080 -p 2222 user@host_address …only to be greeted with the error: bind: Address already in use channel_setup_fwd_listener: cannot...">
+  
+
+  
+  <meta name="twitter:image" content="http://localhost:4000/img/main.jpg" />
+  
+
+</head>
+
+
+  <body>
+    
+    
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://localhost:4000">Mpho Mphego</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+
+
+
+
+
+
+<a href="//resume/MphoMphego.pdf">Resume</a>
+          </li>
+        
+        
+        
+          <li>
+            
+
+
+
+
+
+
+<a href="/tags">Tags</a>
+          </li>
+        
+        
+      </ul>
+    </div>
+
+<!-- ALways use my avatar, irrespective of the post image -->
+  <div class="avatar-container">
+    <div class="avatar-img-border">
+      <a href="http://localhost:4000 ">
+        <img class="avatar-img" src="http://localhost:4000/img/av.png" />
+     </a>
+    </div>
+  </div>
+
+  </div>
+</nav>
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+<div class="intro-header"></div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      
+
+      <article role="main" class="blog-post">
+        <p>I was attempting to use SSH to set up a tunnel to my Jenkins server from home, so I typed the following (Like I do in most days):</p>
+<p><code>ssh -f -N -L 8080:remote_host:8080 -p 2222 user@host_address</code></p>
+<p>…only to be greeted with the error:</p>
+<p><code>bind: Address already in use<br />
+channel_setup_fwd_listener: cannot listen to port: 8080</code></p>
+<p>Whats odd is that I was sure I didn't have anything else listening on that port, but I confirmed it with a quick <code>netstat -anpt | grep '8080'</code>. To my realization nothing was listening on the port.</p>
+<p>More strangely, with the SSH session open, I can go to <code>http://localhost:8080</code> and see <a href="https://jenkins.io/">Jenkins</a>.</p>
+<p>To my realization SSH itself had already opened the port(weird), and was complaining that it couldn’t do it a second time.</p>
+<h4>Resolution:</h4>
+<p>A simple <code>pkill-9 ssh</code>, saved the day</p>
+<h4>work around to avoid above scenario:<em><br />
+</em></h4>
+<p>So after few Googling and reading up about ssh custom config, mostly from <a href="https://www.digitalocean.com/community/tutorials/how-to-configure-custom-connection-options-for-your-ssh-client" target="_blank" rel="noopener">digitalocean</a></p>
+<p>I’ve added the following in my <code>~/.ssh/config file</code>:</p>
+<p><code>Host Jenkins<br />
+ControlMaster auto<br />
+LocalForward 8080 host_ip:8080<br />
+Hostname _hostname<br />
+User _username<br />
+Port _custom port</code></p>
+<p>Thereafter a simple,<br />
+<code> ssh -f -N -l Jenkins</code>, was all I needed.</p>
+<p>Know more: <code>man ssh</code></p>
+
+      </article>
+
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/blog/2018/03/09/installing-docker-on-ubuntu-and-how-to-use-it-without-sudo.html" data-toggle="tooltip" data-placement="top" title="Installing Docker on Ubuntu and how to use it without sudo">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="next">
+          <a href="/blog/2018/03/22/how-i-got-rid-of-the-dreaded-too-many-open-files-error.html" data-toggle="tooltip" data-placement="top" title="How I got rid of the dreaded 'Too many open files' ERROR.">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+
+      
+        <div class="disqus-comments">
+          <div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mmphego-github-io';
+        /* ensure that pages with query string get the same discussion */
+            var url_parts = window.location.href.split("?");
+            var disqus_url = url_parts[0];
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/mmphego" title="GitHub">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">GitHub</span>
+            </a>
+          </li>
+          
+      
+    
+      
+      
+      
+          <li>
+            <a href="https://linkedin.com/in/mphomphego" title="LinkedIn">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">LinkedIn</span>
+            </a>
+          </li>
+          
+      
+      
+          <li>
+            <a href="https://stackoverflow.com/users/6165344/mpho-mphego" title="StackOverflow">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">StackOverflow</span>
+            </a>
+          </li>
+          
+      
+      
+      
+          <li>
+            <a href="https://www.youtube.com/xxXMphoXxx" title="YouTube">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">YouTube</span>
+            </a>
+          </li>
+          
+      
+      
+      
+          <li>
+            <a href="/feed.xml" title="RSS">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">RSS</span>
+            </a>
+          </li>
+          
+      
+      
+      
+        </ul>
+        <p class="copyright text-muted">
+      Mpho Mphego
+      &nbsp;&bull;&nbsp;
+      2018
+
+      
+      </p>
+          <!-- Please don't remove this, keep my open source work credited :) -->
+    <p class="theme-by text-muted">
+      Awesome Theme by
+      <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+    </p>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+        if (typeof jQuery == 'undefined') {
+          document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+        }
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+  <script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+  <script src="/js/main.js"></script>
+    
+  
+
+
+
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-68808612-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+	<!-- End Google Analytics -->
+
+  
+  </body>
+</html>

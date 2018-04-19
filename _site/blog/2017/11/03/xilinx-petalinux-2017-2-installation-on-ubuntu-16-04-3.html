@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Xilinx PetaLinux 2017.2  installation on Ubuntu 16.04.3</title>
+
+  <meta name="author" content="Mpho Mphego" />
+  <meta name="theme-color" content="#a50509">
+  <meta name="description" content="Hi! I'm Mpho Mphego, a programmer, software developer. Loves to meet new people, connect, discuss, network and grow, mostly at software developers’ conferences, dev-fests and gaming meet-ups.">
+  <meta name="keywords" content="Mpho , geek, linux, science, math, mathematics, raspberry pi, music, Internet of Things, research, android, ubuntu, python, docker">
+
+  <!-- favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+  <!-- MathJax -->
+  <script type="text/x-mathjax-config">MathJax.Hub.Config({messageStyle: 'none',tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+
+  <link rel="alternate" type="application/rss+xml" title="Mpho Mphego - Welcome to the geek side!" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Xilinx PetaLinux 2017.2  installation on Ubuntu 16.04.3" />
+  
+
+   
+  <meta property="og:description" content="The user guide for Xilinx PetaLinux 2017.2 installation is UG1144. It is best used together with Xilinx Vivado 2017.2 version (see my last post about how to install Vivado). More info about PetaLinux embedded OS can be found on Xilinx Products page, and on the Xilinx Wiki site. Firstly, we will to the Xilinx Downloads page to...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://localhost:4000/blog/2017/11/03/xilinx-petalinux-2017-2-installation-on-ubuntu-16-04-3.html" />
+  <link rel="canonical" href="http://localhost:4000/blog/2017/11/03/xilinx-petalinux-2017-2-installation-on-ubuntu-16-04-3.html" />
+  
+
+  
+  <meta property="og:image" content="http://localhost:4000/img/main.jpg" />
+  
+
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="Xilinx PetaLinux 2017.2  installation on Ubuntu 16.04.3" />
+  
+
+  
+  <meta name="twitter:description" content="The user guide for Xilinx PetaLinux 2017.2 installation is UG1144. It is best used together with Xilinx Vivado 2017.2 version (see my last post about how to install Vivado). More info about PetaLinux embedded OS can be found on Xilinx Products page, and on the Xilinx Wiki site. Firstly, we will to the Xilinx Downloads page to...">
+  
+
+  
+  <meta name="twitter:image" content="http://localhost:4000/img/main.jpg" />
+  
+
+</head>
+
+
+  <body>
+    
+    
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://localhost:4000">Mpho Mphego</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+
+
+
+
+
+
+<a href="//resume/MphoMphego.pdf">Resume</a>
+          </li>
+        
+        
+        
+          <li>
+            
+
+
+
+
+
+
+<a href="/tags">Tags</a>
+          </li>
+        
+        
+      </ul>
+    </div>
+
+<!-- ALways use my avatar, irrespective of the post image -->
+  <div class="avatar-container">
+    <div class="avatar-img-border">
+      <a href="http://localhost:4000 ">
+        <img class="avatar-img" src="http://localhost:4000/img/av.png" />
+     </a>
+    </div>
+  </div>
+
+  </div>
+</nav>
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+<div class="intro-header"></div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      
+
+      <article role="main" class="blog-post">
+        <header class="post-header">
+<p class="post-meta">The user guide for Xilinx PetaLinux 2017.2 installation is <strong><a href="http://www.xilinx.com/support/documentation/sw_manuals/petalinux2015_4/ug1144-petalinux-tools-reference-guide.pdf">UG1144</a></strong>. It is best used together with Xilinx Vivado 2017.2 version (see my last post about how to install Vivado). More info about PetaLinux embedded OS can be found on <a href="http://www.xilinx.com/products/design-tools/embedded-software/petalinux-sdk.html">Xilinx Products</a> page, and on the <a href="http://www.wiki.xilinx.com/PetaLinux">Xilinx Wiki</a> site.</p>
+</header>
+<div class="post-content">
+<p>Firstly, we will to the <a href="http://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html">Xilinx Downloads</a> page to obtain the installer. Select version 2017.2 on the left sidebar. Choose <em>“PetaLinux 2017.2 Installer”</em>. It is a single-file executable that is 7.54GB large.</p>
+<p>Note: you have to be a registered user to download it.</p>
+<h2>Installation</h2>
+<p>Firstly we need enable i386 architecture (if running Ubuntu x64):</p>
+<p>[sourcecode language="bash"]sudo dpkg --add-architecture i386[/sourcecode]</p>
+<p>Before you proceed, make sure all the prerequisites are satisfied:</p>
+<p>[sourcecode language="bash"]sudo apt install chrpath socat texinfo gcc-multilib libsdl1.2-dev xinetd tofrodos iproute \<br />
+gawk gcc git-core make net-tools ncurses-dev libncurses5-dev zlib1g-dev flex bison lib32z1 \<br />
+lib32ncurses5 lib32stdc++6 libselinux1 xvfb autoconf libtool libbz2-1.0 xinetd tftpd tftp \<br />
+lib32stdc++6 libgtk2.0-0:i386 libfontconfig1:i386 libx11-6:i386 libxext6:i386 libxrender1:i386 libsm6:i386 libssl-dev \<br />
+libqtgui4:i386[/sourcecode]</p>
+</div>
+<p>for a successful installation, we need to configure tftp</p>
+<p>[sourcecode language="bash"]<br />
+sudo nano /etc/xinetd.d/tftp</p>
+<p>service tftp<br />
+{<br />
+protocol = udp<br />
+port = 69<br />
+socket_type = dgram<br />
+wait = yes<br />
+user = nobody<br />
+server = /usr/sbin/in.tftpd<br />
+server_args = /tftpboot<br />
+disable = no<br />
+}<br />
+[/sourcecode]</p>
+<p>Create a directory <code>/tftpboot</code>(this should match whatever you gave in server_args.)</p>
+<p>[sourcecode language="bash"]<br />
+sudo mkdir /tftpboot<br />
+sudo chmod -R 777 /tftpboot<br />
+sudo chown -R nobody /tftpboot<br />
+[/sourcecode]<br />
+Restart tftp service</p>
+<p>[sourcecode language="bash"]<br />
+sudo /etc/init.d/xinetd stop<br />
+sudo /etc/init.d/xinetd start<br />
+[/sourcecode]</p>
+<p><code class="highlighter-rouge">/bin/sh</code> to bash</p>
+<div class="language-sh highlighter-rouge">
+<pre class="highlight"><code>sudo dpkg-reconfigure dash
+<span class="c"># --&gt; Select Yes</span>
+</code></pre>
+</div>
+<p>Now install PetaLinux into the directory<code>/opt/petaLinux</code>. The installer is a shell script that runs in the terminal.</p>
+<p>[sourcecode language="bash"]<br />
+chmod a+x petalinux-v2017.2-final-installer.run<br />
+export PETADIR=$HOME/.opt/petalinux<br />
+sudo mkdir -p $PETADIR<br />
+sudo chown $USER:$USER -R $PETADIR<br />
+./petalinux-v2017.2-final-installer.run $PETADIR<br />
+[/sourcecode]</p>
+<p>Press '<kbd>ENTER'</kbd> to see the licenses, <kbd>q</kbd> to quit reading the licenses, and <kbd>y</kbd> + <kbd>ENTER</kbd> to accept the licenses. The installation should last for about 15-30 mins.</p>
+<p>Every time you want to use PetaLinux tools, remember to source the “settings” script to have the right environment variables:</p>
+<div class="language-sh highlighter-rouge">
+<pre class="highlight"><code>source $HOME/.opt/petalinux/settings.sh
+</code></pre>
+</div>
+<h2>Creating your first project [Board Support Package]</h2>
+<p>The following is a super simple walk-through of how to use PetaLinux tools.</p>
+<ol>
+<li>To create a PetaLinux project with a specific <a href="https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html">BSP</a>, In my case <a href="https://www.xilinx.com/member/forms/download/xef.html?filename=avnet-digilent-zedboard-v2017.2-final.bsp&amp;akdm=1">Zedboard</a></li>
+</ol>
+<p>Once you have the BSP of your choosing downloaded (and extracted if it was a zip file), go to your terminal and change directory to where you would like to create your new PetaLinux project directory and enter the following command.<br />
+In my case it would be:</p>
+<p><code> $ cd $HOME/Documents/Xilinx/EmbeddedLinux/Petalinux/Projects </code><br />
+Then run the petalinux-create command on terminal:</p>
+<p>[sourcecode language="bash"]<br />
+$ petalinux-create -t project -s avnet-digilent-zedboard-v2017.2-final.bsp[/sourcecode]</p>
+<h3>Rebuilding the reference design system</h3>
+<p>In order to rebuild the system run <code>petalinux-build</code></p>
+<p>[sourcecode language="bash"]$ petalinux-build -v[/sourcecode]</p>
+<p>This step usually takes 15-30min depending on the performance of your system, the step generated a device tree 'DTB' file, the FSBL(First Stage Bootloader), U-Boot, Linux Kernel and the root file-system images</p>
+<p>After the build is complete you can test it in a simulated environment.</p>
+<h3>Pre-built Petalinux image test with QEMU</h3>
+<p>Petalinux provide <a href="https://wiki.debian.org/QEMU">QEMU</a> support to enable testing the image-built in a simulated environment.</p>
+<p>[sourcecode language="bash"]<br />
+$ petalinux-boot --qemu --prebuilt 3<br />
+# The --qemu option test petalinux-boot to boot in QEMU instead of real hardware,<br />
+# and --prebuilt 3 boots the pre-built &lt;span 				data-mce-type=&quot;bookmark&quot; 				id=&quot;mce_SELREST_start&quot; 				data-mce-style=&quot;overflow:hidden;line-height:0&quot; 				style=&quot;overflow:hidden;line-height:0&quot; 			&gt;﻿&lt;/span&gt;linux kernel<br />
+[/sourcecode]</p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+          
+            <a href="/tags#embedded linux">embedded linux</a>
+          
+            <a href="/tags#linux">linux</a>
+          
+            <a href="/tags#petalinux">petalinux</a>
+          
+            <a href="/tags#xilinx">xilinx</a>
+          
+            <a href="/tags#yocto">yocto</a>
+          
+            <a href="/tags#yoctoproject">yoctoproject</a>
+          
+            <a href="/tags#Zedboard">Zedboard</a>
+          
+            <a href="/tags#zynq-7000">zynq-7000</a>
+          
+          
+        </div>
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/blog/2017/10/04/my-first-experience-with-the-zedboard-soc-board.html" data-toggle="tooltip" data-placement="top" title="My first experience with the ZedBoard SoC board.">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="next">
+          <a href="/blog/2017/11/03/automagically-execute-a-bash-functioncmd-upon-entering-a-directory.html" data-toggle="tooltip" data-placement="top" title="Automagically execute a bash function/cmd upon entering a directory.">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+
+      
+        <div class="disqus-comments">
+          <div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mmphego-github-io';
+        /* ensure that pages with query string get the same discussion */
+            var url_parts = window.location.href.split("?");
+            var disqus_url = url_parts[0];
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/mmphego" title="GitHub">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">GitHub</span>
+            </a>
+          </li>
+          
+      
+    
+      
+      
+      
+          <li>
+            <a href="https://linkedin.com/in/mphomphego" title="LinkedIn">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">LinkedIn</span>
+            </a>
+          </li>
+          
+      
+      
+          <li>
+            <a href="https://stackoverflow.com/users/6165344/mpho-mphego" title="StackOverflow">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">StackOverflow</span>
+            </a>
+          </li>
+          
+      
+      
+      
+          <li>
+            <a href="https://www.youtube.com/xxXMphoXxx" title="YouTube">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">YouTube</span>
+            </a>
+          </li>
+          
+      
+      
+      
+          <li>
+            <a href="/feed.xml" title="RSS">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">RSS</span>
+            </a>
+          </li>
+          
+      
+      
+      
+        </ul>
+        <p class="copyright text-muted">
+      Mpho Mphego
+      &nbsp;&bull;&nbsp;
+      2018
+
+      
+      </p>
+          <!-- Please don't remove this, keep my open source work credited :) -->
+    <p class="theme-by text-muted">
+      Awesome Theme by
+      <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+    </p>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+        if (typeof jQuery == 'undefined') {
+          document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+        }
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+  <script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+  <script src="/js/main.js"></script>
+    
+  
+
+
+
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-68808612-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+	<!-- End Google Analytics -->
+
+  
+  </body>
+</html>

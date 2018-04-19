@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>How do I find my optimum MTU setting?</title>
+
+  <meta name="author" content="Mpho Mphego" />
+  <meta name="theme-color" content="#a50509">
+  <meta name="description" content="Hi! I'm Mpho Mphego, a programmer, software developer. Loves to meet new people, connect, discuss, network and grow, mostly at software developers’ conferences, dev-fests and gaming meet-ups.">
+  <meta name="keywords" content="Mpho , geek, linux, science, math, mathematics, raspberry pi, music, Internet of Things, research, android, ubuntu, python, docker">
+
+  <!-- favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+  <!-- MathJax -->
+  <script type="text/x-mathjax-config">MathJax.Hub.Config({messageStyle: 'none',tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+
+  <link rel="alternate" type="application/rss+xml" title="Mpho Mphego - Welcome to the geek side!" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="How do I find my optimum MTU setting?" />
+  
+
+   
+  <meta property="og:description" content="I haven't been updating my blog for the past few months, But hey I finally got to Marion Island(-47.876404, 37.861019), when I got there I found out the internet was a bit crappy, (1mbps Satellite link). So i was set on a mission to optimize my internet experience - I...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://localhost:4000/blog/2014/05/18/how-do-i-find-my-optimum-mtu-setting.html" />
+  <link rel="canonical" href="http://localhost:4000/blog/2014/05/18/how-do-i-find-my-optimum-mtu-setting.html" />
+  
+
+  
+  <meta property="og:image" content="http://localhost:4000/img/main.jpg" />
+  
+
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="How do I find my optimum MTU setting?" />
+  
+
+  
+  <meta name="twitter:description" content="I haven't been updating my blog for the past few months, But hey I finally got to Marion Island(-47.876404, 37.861019), when I got there I found out the internet was a bit crappy, (1mbps Satellite link). So i was set on a mission to optimize my internet experience - I...">
+  
+
+  
+  <meta name="twitter:image" content="http://localhost:4000/img/main.jpg" />
+  
+
+</head>
+
+
+  <body>
+    
+    
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://localhost:4000">Mpho Mphego</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+
+
+
+
+
+
+<a href="//resume/MphoMphego.pdf">Resume</a>
+          </li>
+        
+        
+        
+          <li>
+            
+
+
+
+
+
+
+<a href="/tags">Tags</a>
+          </li>
+        
+        
+      </ul>
+    </div>
+
+<!-- ALways use my avatar, irrespective of the post image -->
+  <div class="avatar-container">
+    <div class="avatar-img-border">
+      <a href="http://localhost:4000 ">
+        <img class="avatar-img" src="http://localhost:4000/img/av.png" />
+     </a>
+    </div>
+  </div>
+
+  </div>
+</nav>
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+<div class="intro-header"></div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      
+
+      <article role="main" class="blog-post">
+        <p>I haven't been updating my blog for the past few months, But hey I finally got to Marion Island(-47.876404, 37.861019), when I got there I found out the internet was a bit crappy, (1mbps Satellite link). So i was set on a mission to optimize my internet experience - I finally found a way to optimize my browsing experience.</p>
+<p>By adjusting the MTU -<a href="https://en.wikipedia.org/wiki/Maximum_transmission_unit" target="_blank"> Maximum Transmission Unit</a></p>
+<p>On Windows:</p>
+<p>Step 1: Find your MTU</p>
+<p>Open Command Prompt as Administrator, Right-click &gt; Open as Administrator</p>
+<p>C:\Windows\system32&gt;netsh interface ipv4 show subinterfaces<br />
+You should get something that looks like this<br />
+MTU            MediaSenseState          Bytes In             Bytes Out          Interface<br />
+------           ---------------                      ---------              --------                   -------------<br />
+1500           1                                            157230870      15309785       Ethernet<br />
+4294967295 1                                       0                           430287            Loopback Pseudo-Interface 1<br />
+1500             5                                           0                          0                          Wi-Fi<br />
+1500            2                                             4432                   16504              Local Area Connection</p>
+<p>If you are using Ethernet cable you will be looking for “Local Area Connection” or “Ethernet”. If you are using Wireless you will be looking for “Wireless Network Connection”. The MTU is in the first column.</p>
+<p>Step 2: Find out what it should be</p>
+<p>In the Command Prompt type:</p>
+<p>C:\Windows\system32&gt;ping www.cantreachthissite.com -f -l 1472<br />
+The host name should be a site you can not reach, -f  marks the packet as one that should not be fragmented the -l 1472 sets the size of the packet (1472 = Ethernet Default MTU – Packet Header, where the Ethernet Default MTU is 1500 and the Packet Header is 28 bytes)</p>
+<p>If the packet can’t be sent because it would need to be fragmented you will get something similar to this:</p>
+<p>Pinging www.cantreachthissite.com [69.43.160.163] with 1472 bytes of data:<br />
+Packet needs to be fragmented but DF set.<br />
+Packet needs to be fragmented but DF set.<br />
+Packet needs to be fragmented but DF set.<br />
+Packet needs to be fragmented but DF set.</p>
+<p>Ping statistics for 69.43.160.163:<br />
+Packets: Sent = 4, Received = 0, Lost = 4 (<strong>100% loss</strong>),<br />
+Keep trying lower packet sizes by 10 (i.e. -l 1460, 1450, 1440, etc.) until you get a successful ping request. Raise your packet sizes by one until you get a “Packet needs to be fragmented but DF set.”. The last successful value plus 28 will be your MTU value.</p>
+<p>In my case a packet size of 260 succeeds, so 260 + 28 = 288.</p>
+<p>Step 3: Set your MTU</p>
+<p>Now you have identified the interface you need to change and the ideal MTU for yourself, now it is time to make the change.</p>
+<p>Again Command Prompt with Administrative rights type the following replacing my MTU of 1500 with your own value:</p>
+<p>C:\Windows\system32&gt;netsh interface ipv4 set subinterface "Local Area Connection" mtu=288 store=persistent</p>
+<p>Or if you are using a Wireless connection:</p>
+<p>netsh interface ipv4 set subinterface "Wireless Network Connection" mtu=288 store=persistent</p>
+<p>If all has gone well you should have a perfectly working internet connection.</p>
+<p>------------------------------</p>
+<p>Also, You can set your MTU permanently on the Registry</p>
+<p><span style="color:#323232;">Press Windows+R, type regedit the navigate to [HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\[Adapter ID]]</span><br style="color:#323232;" /><br style="color:#323232;" /><span style="color:#323232;">(Find the correct adapter you want to change on your machine, there may be multiple entries depending on the number of adopters you may have)</span><br style="color:#323232;" /><br style="color:#323232;" /><span style="color:#323232;">the right click and create a new REG_DWORD, name it MTU, set the value after that, i use 288</span></p>
+<p>*****************************************************************************************</p>
+<p>On Debian Linux(XUbuntu Distro):</p>
+<p>Temporary,Until reboot: sudo ip link set eth0 mtu 288</p>
+<p>Permanent:</p>
+<p>Edit /etc/network/interfaces, enter:</p>
+<p># sudo su</p>
+<p># nano /etc/network/interfaces</p>
+<p>Add mtu as follows for required interface:<br />
+mtu 288</p>
+<p>Save and close the file. Restart the networking, enter:<br />
+# /etc/init.d/networking restart</p>
+<p>&nbsp;</p>
+<p>Good luck</p>
+
+      </article>
+
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/blog/2014/02/19/rogero-4-50-to-rogero-4-55-with-multiman-4-55-and-codghost.html" data-toggle="tooltip" data-placement="top" title="Rogero 4.50 to Rogero 4.55 with Multiman 4.55 and COD:Ghost">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="next">
+          <a href="/blog/2014/05/24/archlinux4-0-setting-mtu-with-netctl.html" data-toggle="tooltip" data-placement="top" title="ArchLinux4.0: Setting MTU with netctl">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+
+      
+        <div class="disqus-comments">
+          <div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mmphego-github-io';
+        /* ensure that pages with query string get the same discussion */
+            var url_parts = window.location.href.split("?");
+            var disqus_url = url_parts[0];
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/mmphego" title="GitHub">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">GitHub</span>
+            </a>
+          </li>
+          
+      
+    
+      
+      
+      
+          <li>
+            <a href="https://linkedin.com/in/mphomphego" title="LinkedIn">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">LinkedIn</span>
+            </a>
+          </li>
+          
+      
+      
+          <li>
+            <a href="https://stackoverflow.com/users/6165344/mpho-mphego" title="StackOverflow">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">StackOverflow</span>
+            </a>
+          </li>
+          
+      
+      
+      
+          <li>
+            <a href="https://www.youtube.com/xxXMphoXxx" title="YouTube">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">YouTube</span>
+            </a>
+          </li>
+          
+      
+      
+      
+          <li>
+            <a href="/feed.xml" title="RSS">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">RSS</span>
+            </a>
+          </li>
+          
+      
+      
+      
+        </ul>
+        <p class="copyright text-muted">
+      Mpho Mphego
+      &nbsp;&bull;&nbsp;
+      2018
+
+      
+      </p>
+          <!-- Please don't remove this, keep my open source work credited :) -->
+    <p class="theme-by text-muted">
+      Awesome Theme by
+      <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+    </p>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+        if (typeof jQuery == 'undefined') {
+          document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+        }
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+  <script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+  <script src="/js/main.js"></script>
+    
+  
+
+
+
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-68808612-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+	<!-- End Google Analytics -->
+
+  
+  </body>
+</html>

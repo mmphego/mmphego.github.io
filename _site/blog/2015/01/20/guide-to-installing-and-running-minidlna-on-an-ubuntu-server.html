@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Guide to Installing and Running MiniDLNA on an Ubuntu Server</title>
+
+  <meta name="author" content="Mpho Mphego" />
+  <meta name="theme-color" content="#a50509">
+  <meta name="description" content="Hi! I'm Mpho Mphego, a programmer, software developer. Loves to meet new people, connect, discuss, network and grow, mostly at software developers’ conferences, dev-fests and gaming meet-ups.">
+  <meta name="keywords" content="Mpho , geek, linux, science, math, mathematics, raspberry pi, music, Internet of Things, research, android, ubuntu, python, docker">
+
+  <!-- favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+  <!-- MathJax -->
+  <script type="text/x-mathjax-config">MathJax.Hub.Config({messageStyle: 'none',tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+
+  <link rel="alternate" type="application/rss+xml" title="Mpho Mphego - Welcome to the geek side!" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Guide to Installing and Running MiniDLNA on an Ubuntu Server" />
+  
+
+   
+  <meta property="og:description" content="I have recently been experimenting with running MiniDLNA on a headless Ubuntu Server. I have written this guide to hopefully take some of the pain out of installing and configuring an amazing program. &quot;minidlna - lightweight DLNA/UPnP-AV server targeted at embedded systems&quot; [sourcecode] sudo apt-get update sudo apt-get upgrade sudo...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://localhost:4000/blog/2015/01/20/guide-to-installing-and-running-minidlna-on-an-ubuntu-server.html" />
+  <link rel="canonical" href="http://localhost:4000/blog/2015/01/20/guide-to-installing-and-running-minidlna-on-an-ubuntu-server.html" />
+  
+
+  
+  <meta property="og:image" content="http://localhost:4000/img/main.jpg" />
+  
+
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="Guide to Installing and Running MiniDLNA on an Ubuntu Server" />
+  
+
+  
+  <meta name="twitter:description" content="I have recently been experimenting with running MiniDLNA on a headless Ubuntu Server. I have written this guide to hopefully take some of the pain out of installing and configuring an amazing program. &quot;minidlna - lightweight DLNA/UPnP-AV server targeted at embedded systems&quot; [sourcecode] sudo apt-get update sudo apt-get upgrade sudo...">
+  
+
+  
+  <meta name="twitter:image" content="http://localhost:4000/img/main.jpg" />
+  
+
+</head>
+
+
+  <body>
+    
+    
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://localhost:4000">Mpho Mphego</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+
+
+
+
+
+
+<a href="//resume/MphoMphego.pdf">Resume</a>
+          </li>
+        
+        
+        
+          <li>
+            
+
+
+
+
+
+
+<a href="/tags">Tags</a>
+          </li>
+        
+        
+      </ul>
+    </div>
+
+<!-- ALways use my avatar, irrespective of the post image -->
+  <div class="avatar-container">
+    <div class="avatar-img-border">
+      <a href="http://localhost:4000 ">
+        <img class="avatar-img" src="http://localhost:4000/img/av.png" />
+     </a>
+    </div>
+  </div>
+
+  </div>
+</nav>
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+<div class="intro-header"></div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      
+
+      <article role="main" class="blog-post">
+        <p>I have recently been experimenting with running MiniDLNA on a headless Ubuntu Server. I have written this guide to hopefully take some of the pain out of installing and configuring an amazing program.<br />
+"minidlna - lightweight DLNA/UPnP-AV server targeted at embedded systems"<br />
+[sourcecode]<br />
+sudo apt-get update<br />
+sudo apt-get upgrade<br />
+sudo apt-get install minidlna<br />
+[/sourcecode]<br />
+Once this is installed, you need to configure the MiniDLNA conf file located at /etc/minidlna.conf.</p>
+<p>My minidlna.conf file reads as follows:</p>
+<p>[sourcecode]<br />
+sudo nano /etc/minidlna.conf</p>
+<p># port for HTTP (descriptions, SOAP, media transfer) traffic<br />
+port=8200</p>
+<p># network interfaces to serve, comma delimited<br />
+#network_interface=eth0</p>
+<p># set this to the directory you want scanned.<br />
+# * if have multiple directories, you can have multiple media_dir= lines<br />
+# * if you want to restrict a media_dir to a specific content type, you<br />
+#   can prepend the type, followed by a comma, to the directory:<br />
+#   + &quot;A&quot; for audio  (eg. media_dir=A,/home/jmaggard/Music)<br />
+#   + &quot;V&quot; for video  (eg. media_dir=V,/home/jmaggard/Videos)<br />
+#   + &quot;P&quot; for images (eg. media_dir=P,/home/jmaggard/Pictures)<br />
+#media_dir=/opt<br />
+media_dir=V,/home/nerd/Videos<br />
+media_dir=A,/home/nerd/Music</p>
+<p># set this if you want to customize the name that shows up on your clients<br />
+friendly_name=Media Server</p>
+<p># set this if you would like to specify the directory where you want MiniDLNA to store its database and album art cache<br />
+db_dir=/var/lib/minidlna</p>
+<p># set this if you would like to specify the directory where you want MiniDLNA to store its log file<br />
+log_dir=/tmp/log</p>
+<p># set this to change the verbosity of the information that is logged<br />
+# each section can use a different level: off, fatal, error, warn, info, or debug<br />
+#log_level=general,artwork,database,inotify,scanner,metadata,http,ssdp,tivo=warn</p>
+<p># this should be a list of file names to check for when searching for album art<br />
+# note: names should be delimited with a forward slash (&quot;/&quot;)<br />
+album_art_names=art.jpg/Art.jpg/front.jpg/Front.jpg/Cover.jpg/cover.jpg/AlbumArtSmall.jpg/albumartsmall.jpg/AlbumArt.jpg/albumart.jpg/Album.jpg/album.jpg/Folder.jpg/folder.jpg/Thumb.jpg/thumb.jpg</p>
+<p># set this to no to disable inotify monitoring to automatically discover new files<br />
+# note: the default is yes<br />
+inotify=yes</p>
+<p># set this to yes to enable support for streaming .jpg and .mp3 files to a TiVo supporting HMO<br />
+enable_tivo=no</p>
+<p># set this to strictly adhere to DLNA standards.<br />
+# * This will allow server-side downscaling of very large JPEG images,<br />
+#   which may hurt JPEG serving performance on (at least) Sony DLNA products.<br />
+strict_dlna=no</p>
+<p># default presentation url is http address on port 80<br />
+# presentation_url=http://www.mylan/index.php</p>
+<p># notify interval in seconds. default is 895 seconds.<br />
+notify_interval=900</p>
+<p># serial and model number the daemon will report to clients<br />
+# in its XML description<br />
+serial=12345678<br />
+model_number=1</p>
+<p># specify the path to the MiniSSDPd socket<br />
+#minissdpdsocket=/var/run/minissdpd.sock</p>
+<p># use different container as root of the tree<br />
+# possible values:<br />
+#   + &quot;.&quot; - use standard container (this is the default)<br />
+#   + &quot;B&quot; - &quot;Browse Directory&quot;<br />
+#   + &quot;M&quot; - &quot;Music&quot;<br />
+#   + &quot;V&quot; - &quot;Video&quot;<br />
+#   + &quot;P&quot; - &quot;Pictures&quot;<br />
+# if you specify &quot;B&quot; and client device is audio-only then &quot;Music/Folders&quot; will be used as root<br />
+#root_container=.<br />
+[/sourcecode]</p>
+<p>After editing it, we need to restart minidlna service.<br />
+[sourcecode]<br />
+sudo /etc/init.d/minidlna restart<br />
+[/sourcecode]</p>
+<p><strong>Adding or Removing Files of Folders from the Database</strong></p>
+<p>In my experience, MiniDLNA tends not to notice if a file has been added or removed from the folders so the database does not update and new files are not shown on your device and old files are still shown even though they have been removed. This seems to be a problem with MiniDLNA and not the receiving soft/hardware. If you change the name of the server, the soft/hardware picks that up fine.</p>
+<p>Running this command will scan and update minidlna<br />
+[sourcecode]<br />
+chmod -Rv 777 /home/nerd/Videos/<br />
+chmod -Rv 777 /home/nerd/Music/<br />
+minidlna -R -f /etc/minidlna.conf<br />
+[/sourcecode]</p>
+<p>Also adding this on crontab comes in handy at time.<br />
+[sourcecode]<br />
+crontab -e<br />
+00 00 * * * minidlna -R -f /etc/minidlna.conf &gt; /dev/null<br />
+[/sourcecode]</p>
+
+      </article>
+
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/blog/2015/01/19/android-webview-app-to-apache-server.html" data-toggle="tooltip" data-placement="top" title="Android WebView App (to Apache server)">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="next">
+          <a href="/blog/2015/01/21/use-remotecontrols-on-smartphone-raspberrypi-android.html" data-toggle="tooltip" data-placement="top" title="use remotecontrols on smartphone [raspberrypi, android]">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+
+      
+        <div class="disqus-comments">
+          <div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mmphego-github-io';
+        /* ensure that pages with query string get the same discussion */
+            var url_parts = window.location.href.split("?");
+            var disqus_url = url_parts[0];
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/mmphego" title="GitHub">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">GitHub</span>
+            </a>
+          </li>
+          
+      
+    
+      
+      
+      
+          <li>
+            <a href="https://linkedin.com/in/mphomphego" title="LinkedIn">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">LinkedIn</span>
+            </a>
+          </li>
+          
+      
+      
+          <li>
+            <a href="https://stackoverflow.com/users/6165344/mpho-mphego" title="StackOverflow">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">StackOverflow</span>
+            </a>
+          </li>
+          
+      
+      
+      
+          <li>
+            <a href="https://www.youtube.com/xxXMphoXxx" title="YouTube">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">YouTube</span>
+            </a>
+          </li>
+          
+      
+      
+      
+          <li>
+            <a href="/feed.xml" title="RSS">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">RSS</span>
+            </a>
+          </li>
+          
+      
+      
+      
+        </ul>
+        <p class="copyright text-muted">
+      Mpho Mphego
+      &nbsp;&bull;&nbsp;
+      2018
+
+      
+      </p>
+          <!-- Please don't remove this, keep my open source work credited :) -->
+    <p class="theme-by text-muted">
+      Awesome Theme by
+      <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+    </p>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+        if (typeof jQuery == 'undefined') {
+          document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+        }
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+  <script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+  <script src="/js/main.js"></script>
+    
+  
+
+
+
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-68808612-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+	<!-- End Google Analytics -->
+
+  
+  </body>
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Rock-paper-scissors-lizard-Spock in Python</title>
+
+  <meta name="author" content="Mpho Mphego" />
+  <meta name="theme-color" content="#a50509">
+  <meta name="description" content="Hi! I'm Mpho Mphego, a programmer, software developer. Loves to meet new people, connect, discuss, network and grow, mostly at software developers’ conferences, dev-fests and gaming meet-ups.">
+  <meta name="keywords" content="Mpho , geek, linux, science, math, mathematics, raspberry pi, music, Internet of Things, research, android, ubuntu, python, docker">
+
+  <!-- favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+  <!-- MathJax -->
+  <script type="text/x-mathjax-config">MathJax.Hub.Config({messageStyle: 'none',tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+
+  <link rel="alternate" type="application/rss+xml" title="Mpho Mphego - Welcome to the geek side!" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Rock-paper-scissors-lizard-Spock in Python" />
+  
+
+   
+  <meta property="og:description" content="So I recently enrolled for a course from Coursera.org on Introduction to Interactive Python, After I received a certificate on Introduction to Python programming instructed by Prof. Charles Severance. https://www.coursera.org/course/pythonlearn My first mini-project is a simple Rock-paper-scissors-lizard-Spock game. [sourcecode language=&quot;python&quot; wraplines=&quot;false&quot; collapse=&quot;false&quot;] # Mini-project #1 - &amp;quot;Rock-paper-scissors-lizard-Spock game&amp;quot; # Created...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://localhost:4000/blog/2014/09/26/rock-paper-scissors-lizard-spock-in-python.html" />
+  <link rel="canonical" href="http://localhost:4000/blog/2014/09/26/rock-paper-scissors-lizard-spock-in-python.html" />
+  
+
+  
+  <meta property="og:image" content="http://localhost:4000/img/main.jpg" />
+  
+
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="Rock-paper-scissors-lizard-Spock in Python" />
+  
+
+  
+  <meta name="twitter:description" content="So I recently enrolled for a course from Coursera.org on Introduction to Interactive Python, After I received a certificate on Introduction to Python programming instructed by Prof. Charles Severance. https://www.coursera.org/course/pythonlearn My first mini-project is a simple Rock-paper-scissors-lizard-Spock game. [sourcecode language=&quot;python&quot; wraplines=&quot;false&quot; collapse=&quot;false&quot;] # Mini-project #1 - &amp;quot;Rock-paper-scissors-lizard-Spock game&amp;quot; # Created...">
+  
+
+  
+  <meta name="twitter:image" content="http://localhost:4000/img/main.jpg" />
+  
+
+</head>
+
+
+  <body>
+    
+    
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://localhost:4000">Mpho Mphego</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+
+
+
+
+
+
+<a href="//resume/MphoMphego.pdf">Resume</a>
+          </li>
+        
+        
+        
+          <li>
+            
+
+
+
+
+
+
+<a href="/tags">Tags</a>
+          </li>
+        
+        
+      </ul>
+    </div>
+
+<!-- ALways use my avatar, irrespective of the post image -->
+  <div class="avatar-container">
+    <div class="avatar-img-border">
+      <a href="http://localhost:4000 ">
+        <img class="avatar-img" src="http://localhost:4000/img/av.png" />
+     </a>
+    </div>
+  </div>
+
+  </div>
+</nav>
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+<div class="intro-header"></div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      
+
+      <article role="main" class="blog-post">
+        <p>So I recently enrolled for a course from Coursera.org on Introduction to Interactive Python, After I received a certificate on Introduction to Python programming instructed by Prof. Charles Severance. https://www.coursera.org/course/pythonlearn<br />
+My first mini-project is a simple Rock-paper-scissors-lizard-Spock game.<br />
+[sourcecode language="python" wraplines="false" collapse="false"]</p>
+<p># Mini-project #1 - &quot;Rock-paper-scissors-lizard-Spock game&quot;<br />
+# Created by Mpho &quot;!nerd&quot; Mphego - Marion Island SANSA Engineer 2014-2015<br />
+#<br />
+# 'Introduction to Interactive Programming in Python' Course<br />
+# RICE University - https://class.coursera.org/interactivepython-005<br />
+# by Joe Warren, John Greiner, Stephen Wong, Scott Rixner<br />
+#<br />
+# Rock-paper-scissors is a surprisingly popular game that many people play seriously<br />
+# Rock-paper-scissors-lizard-Spock (RPSLS) is a variant of Rock-paper-scissors that allows -<br />
+# five choices. Each choice wins against two other choices, loses against two other choices -<br />
+# and ties against itself. Much of RPSLS's popularity is that it has been featured in 3 episodes -<br />
+# of the TV series &quot;The Big Bang Theory&quot;.<br />
+# The Wikipedia entry for RPSLS gives the complete description of the details of the game.<br />
+# http://en.wikipedia.org/wiki/Rock-paper-scissors-lizard-Spock</p>
+<p># http://www.codeskulptor.org/#user38_e9yDvuII0ZGsvuc.py<br />
+#!/bin/python2<br />
+import random<br />
+#import math</p>
+<p># Function converting string to number<br />
+def name_to_number(name):<br />
+    if name == &quot;rock&quot;:<br />
+       name = 0<br />
+    elif name == &quot;Spock&quot;:<br />
+        name = 1<br />
+    elif name == &quot;paper&quot;:<br />
+        name = 2<br />
+    elif name == &quot;lizard&quot;:<br />
+        name = 3<br />
+#    elif name == &quot;scissors&quot;:<br />
+#        name = 4<br />
+    else:<br />
+        name = 4<br />
+        #print &quot;Error&quot;<br />
+    return name  </p>
+<p># Function converting number to string<br />
+def number_to_name(number):<br />
+    if number == 0:<br />
+       number = &quot;rock&quot;<br />
+    elif number == 1:<br />
+        number = &quot;Spock&quot;<br />
+    elif number == 2:<br />
+        number = &quot;paper&quot;<br />
+    elif number == 3:<br />
+        number = &quot;lizard&quot;<br />
+#    elif number == 4:<br />
+#        number = &quot;scissors&quot;<br />
+    else:<br />
+        number = &quot;scissors&quot;<br />
+#        print &quot;Error&quot;<br />
+    return number </p>
+<p># function to determine the winner<br />
+def rpsls(player_choice):<br />
+    nothing = None </p>
+<p>    print &quot;\n&quot;<br />
+    # print out the message for the player's choice<br />
+    print &quot;Player chooses&quot;, player_choice</p>
+<p>    # convert the player's choice to player_number using the function name_to_number()<br />
+    player_number = name_to_number(player_choice)<br />
+    #print player_number #Debugging</p>
+<p>    # compute random guess for comp_number using random.randrange()<br />
+    comp_number = random.randrange(0, 5)<br />
+    #print comp_number #Debugging</p>
+<p>    # convert comp_number to comp_choice using the function number_to_name()<br />
+    comp_choice = number_to_name(comp_number)<br />
+    #print comp_choice #Debugging</p>
+<p>    # print out the message for computer's choice<br />
+    print &quot;Computer chooses&quot;, comp_choice</p>
+<p>    # compute difference of comp_number and player_number modulo five</p>
+<p>    difference = ( comp_number - player_number) % 5<br />
+    #print difference, comp_number, player_number #Debugging</p>
+<p>    # use if/elif/else to determine winner, print winner message<br />
+    if ( difference == 1 or difference == 2 ):<br />
+        print &quot;Computer Wins!&quot;<br />
+    elif ( difference == 3 or difference == 4 ):<br />
+        print &quot;Player Wins!&quot;<br />
+    else :<br />
+        print &quot;Computer and Player Ties&quot;<br />
+    return nothing</p>
+<p># Play five games with random guesses from computer.<br />
+rpsls(&quot;rock&quot;)<br />
+rpsls(&quot;Spock&quot;)<br />
+rpsls(&quot;paper&quot;)<br />
+rpsls(&quot;lizard&quot;)<br />
+rpsls(&quot;scissors&quot;)</p>
+<p>[/sourcecode]</p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+          
+            <a href="/tags#python">python</a>
+          
+          
+        </div>
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/blog/2014/07/13/how-to-install-gummilatex-on-ubuntu.html" data-toggle="tooltip" data-placement="top" title="How to install Gummi(LaTex) on ubuntu">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="next">
+          <a href="/blog/2014/10/02/setting-up-python-import-simplegui-library.html" data-toggle="tooltip" data-placement="top" title="setting up python-simplegui library">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+
+      
+        <div class="disqus-comments">
+          <div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mmphego-github-io';
+        /* ensure that pages with query string get the same discussion */
+            var url_parts = window.location.href.split("?");
+            var disqus_url = url_parts[0];
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/mmphego" title="GitHub">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">GitHub</span>
+            </a>
+          </li>
+          
+      
+    
+      
+      
+      
+          <li>
+            <a href="https://linkedin.com/in/mphomphego" title="LinkedIn">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">LinkedIn</span>
+            </a>
+          </li>
+          
+      
+      
+          <li>
+            <a href="https://stackoverflow.com/users/6165344/mpho-mphego" title="StackOverflow">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">StackOverflow</span>
+            </a>
+          </li>
+          
+      
+      
+      
+          <li>
+            <a href="https://www.youtube.com/xxXMphoXxx" title="YouTube">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">YouTube</span>
+            </a>
+          </li>
+          
+      
+      
+      
+          <li>
+            <a href="/feed.xml" title="RSS">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">RSS</span>
+            </a>
+          </li>
+          
+      
+      
+      
+        </ul>
+        <p class="copyright text-muted">
+      Mpho Mphego
+      &nbsp;&bull;&nbsp;
+      2018
+
+      
+      </p>
+          <!-- Please don't remove this, keep my open source work credited :) -->
+    <p class="theme-by text-muted">
+      Awesome Theme by
+      <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+    </p>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+        if (typeof jQuery == 'undefined') {
+          document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+        }
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+  <script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+  <script src="/js/main.js"></script>
+    
+  
+
+
+
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-68808612-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+	<!-- End Google Analytics -->
+
+  
+  </body>
+</html>
