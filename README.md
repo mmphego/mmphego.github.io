@@ -25,4 +25,4 @@ Run the site
 ```
 bundle exec jekyll serve
 ```
-This start a server in the localhost at the port 4000. Then you can open that [url(http://localhost:4000)] in your browser and see how it looks.
+This start a server in the localhost at the port 4000. Then you can open that [url](http://localhost:4000) in your browser and see how it looks.
