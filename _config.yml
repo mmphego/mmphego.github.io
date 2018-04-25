@@ -134,7 +134,8 @@ title-separator: "-"
 timezone: "Africa/Johannesburg"
 markdown: kramdown
 highlighter: rouge
-permalink: /blog/:year/:month/:day/:title.html  #/:year-:month-:day-:title
+#permalink: /blog/:year/:month/:day/:title.html
+permalink: /:year-:month-:day-:title
 paginate: 5
 
 kramdown:
@@ -211,6 +212,16 @@ metadata:
         label: "Publish"
         help: "Check to publish post, uncheck to hide."
 
+jekyll-archives:
+  enabled: 'all'
+  layout: 'archive'
+  permalinks:
+    year: '/:year/'
+    month: '/:year/:month/'
+    day: '/:year/:month/:day/'
+    tag: '/tag/:name/'
+    category: '/category/:name/'
+
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
@@ -221,3 +232,4 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-categories
+  - jekyll-archives
