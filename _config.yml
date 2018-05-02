@@ -29,6 +29,7 @@ description: Welcome to the geek side!
 navbar-links:
   # About Me: "/aboutme.html"
   # Projects: "/projects.html"
+  # Expedition: ""
   Resume: "resume/MphoMphego.pdf"
   Tags: "tags"
 
@@ -58,7 +59,7 @@ avatar: "/img/main.jpg"
 # # Important: you must keep the "name" parameter, everything else you can remove
 author:
   name: Mpho Mphego
-# email: "youremail@domain.com"
+# email:
   # facebook:
   github: mmphego
   # twitter:
@@ -97,9 +98,9 @@ footer-links-active:
 
 # Select which share links to show in posts
 share-links-active:
-  twitter: false
-  facebook: false
-  google: false
+  twitter: true
+  facebook: true
+  google: true
   linkedin: true
 
 # How to display the link to the website in the footer
@@ -115,7 +116,7 @@ disqus: "mmphego-github-io"
 google_analytics: "UA-68808612-1"
 
 # Google Tag Manager ID
-#gtm: ""
+gtm: "GTM-PDCDJZ3"
 
 # Facebook App ID
 # fb_app_id: ""
@@ -136,7 +137,7 @@ markdown: kramdown
 highlighter: rouge
 #permalink: /blog/:year/:month/:day/:title.html
 permalink: /:year-:month-:day-:title
-paginate: 5
+paginate: 10
 
 kramdown:
   input: GFM
@@ -150,7 +151,7 @@ defaults:
     values:
       layout: "post"
       comments: true  # add comments to all blog posts
-      social-share: false # add social media sharing buttons to all blog posts
+      social-share: true # add social media sharing buttons to all blog posts
   -
     scope:
       path: "" # all files
