@@ -51,60 +51,96 @@ author:
 <p>Note: you have to be a registered user to download it.</p>
 <h2>Installation</h2>
 <p>Firstly we need enable i386 architecture (if running Ubuntu x64):</p>
-<p>[sourcecode language="bash"]sudo dpkg --add-architecture i386[/sourcecode]</p>
-<p>Before you proceed, make sure all the prerequisites are satisfied:</p>
-<p>[sourcecode language="bash"]sudo apt install chrpath socat texinfo gcc-multilib libsdl1.2-dev xinetd tofrodos iproute \<br />
-gawk gcc git-core make net-tools ncurses-dev libncurses5-dev zlib1g-dev flex bison lib32z1 \<br />
-lib32ncurses5 lib32stdc++6 libselinux1 xvfb autoconf libtool libbz2-1.0 xinetd tftpd tftp \<br />
-lib32stdc++6 libgtk2.0-0:i386 libfontconfig1:i386 libx11-6:i386 libxext6:i386 libxrender1:i386 libsm6:i386 libssl-dev \<br />
-libqtgui4:i386[/sourcecode]</p>
+
+<div class="language-bash highlighter-rouge">
+<pre class="highlight">
+  <code>
+  sudo dpkg --add-architecture i386
+  </code></pre>
 </div>
+
+<p>Before you proceed, make sure all the prerequisites are satisfied:</p>
+<div class="language-bash highlighter-rouge">
+<pre class="highlight">
+  <code>
+  sudo apt install chrpath socat texinfo gcc-multilib libsdl1.2-dev xinetd tofrodos iproute \
+  gawk gcc git-core make net-tools ncurses-dev libncurses5-dev zlib1g-dev flex bison lib32z1 \
+  lib32ncurses5 lib32stdc++6 libselinux1 xvfb autoconf libtool libbz2-1.0 xinetd tftpd tftp \
+  lib32stdc++6 libgtk2.0-0:i386 libfontconfig1:i386 libx11-6:i386 libxext6:i386 libxrender1:i386 libsm6:i386 libssl-dev
+  libqtgui4:i386
+  </code></pre>
+</div>
+
 <p>for a successful installation, we need to configure tftp</p>
-<p>[sourcecode language="bash"]<br />
-sudo nano /etc/xinetd.d/tftp</p>
-<p>service tftp<br />
-{<br />
-protocol = udp<br />
-port = 69<br />
-socket_type = dgram<br />
-wait = yes<br />
-user = nobody<br />
-server = /usr/sbin/in.tftpd<br />
-server_args = /tftpboot<br />
-disable = no<br />
-}<br />
-[/sourcecode]</p>
+<div class="language-bash highlighter-rouge">
+<pre class="highlight">
+  <code>sudo nano /etc/xinetd.d/tftp</p>
+    <p>service tftp
+    {
+    protocol = udp
+    port = 69
+    socket_type = dgram
+    wait = yes
+    user = nobody
+    server = /usr/sbin/in.tftpd
+    server_args = /tftpboot
+    disable = no
+    }
+  </code></pre>
+</div>
+
 <p>Create a directory <code>/tftpboot</code>(this should match whatever you gave in server_args.)</p>
-<p>[sourcecode language="bash"]<br />
-sudo mkdir /tftpboot<br />
-sudo chmod -R 777 /tftpboot<br />
-sudo chown -R nobody /tftpboot<br />
-[/sourcecode]<br />
+
+<div class="language-bash highlighter-rouge">
+<pre class="highlight">
+  <code>
+  sudo mkdir /tftpboot
+  sudo chmod -R 777 /tftpboot
+  sudo chown -R nobody /tftpboot
+  </code></pre>
+</div>
+<br />
+
+
 Restart tftp service</p>
-<p>[sourcecode language="bash"]<br />
-sudo /etc/init.d/xinetd stop<br />
-sudo /etc/init.d/xinetd start<br />
-[/sourcecode]</p>
-<p><code class="highlighter-rouge">/bin/sh</code> to bash</p>
+
+<div class="language-bash highlighter-rouge">
+<pre class="highlight">
+  <code>
+  sudo /etc/init.d/xinetd stop
+  sudo /etc/init.d/xinetd start
+  </code></pre>
+</div>
+<br />
+
+
+<p>Change <code>/bin/sh</code> to bash</p>
 <div class="language-sh highlighter-rouge">
 <pre class="highlight"><code>sudo dpkg-reconfigure dash
 <span class="c"># --&gt; Select Yes</span>
 </code></pre>
 </div>
 <p>Now install PetaLinux into the directory<code>/opt/petaLinux</code>. The installer is a shell script that runs in the terminal.</p>
-<p>[sourcecode language="bash"]<br />
-chmod a+x petalinux-v2017.2-final-installer.run<br />
-export PETADIR=$HOME/.opt/petalinux<br />
-sudo mkdir -p $PETADIR<br />
-sudo chown $USER:$USER -R $PETADIR<br />
-./petalinux-v2017.2-final-installer.run $PETADIR<br />
-[/sourcecode]</p>
+<div class="language-bash highlighter-rouge">
+<pre class="highlight">
+  <code>
+  chmod a+x petalinux-v2017.2-final-installer.run
+  export PETADIR=$HOME/.opt/petalinux
+  sudo mkdir -p $PETADIR
+  sudo chown $USER:$USER -R $PETADIR
+  ./petalinux-v2017.2-final-installer.run $PETADIR
+  </code></pre>
+</div>
+<br />
+
 <p>Press '<kbd>ENTER'</kbd> to see the licenses, <kbd>q</kbd> to quit reading the licenses, and <kbd>y</kbd> + <kbd>ENTER</kbd> to accept the licenses. The installation should last for about 15-30 mins.</p>
 <p>Every time you want to use PetaLinux tools, remember to source the “settings” script to have the right environment variables:</p>
+
 <div class="language-sh highlighter-rouge">
-<pre class="highlight"><code>source $HOME/.opt/petalinux/settings.sh
-</code></pre>
+<pre class="highlight">
+  <code>source $HOME/.opt/petalinux/settings.sh</code></pre>
 </div>
+<br/>
 <h2>Creating your first project [Board Support Package]</h2>
 <p>The following is a super simple walk-through of how to use PetaLinux tools.</p>
 <ol>
@@ -114,17 +150,21 @@ sudo chown $USER:$USER -R $PETADIR<br />
 In my case it would be:</p>
 <p><code> $ cd $HOME/Documents/Xilinx/EmbeddedLinux/Petalinux/Projects </code><br />
 Then run the petalinux-create command on terminal:</p>
-<p>[sourcecode language="bash"]<br />
-$ petalinux-create -t project -s avnet-digilent-zedboard-v2017.2-final.bsp[/sourcecode]</p>
+<p><code class="language-sh highlighter-rouge">
+$ petalinux-create -t project -s avnet-digilent-zedboard-v2017.2-final.bsp</code></p>
+
 <h3>Rebuilding the reference design system</h3>
 <p>In order to rebuild the system run <code>petalinux-build</code></p>
-<p>[sourcecode language="bash"]$ petalinux-build -v[/sourcecode]</p>
+<p><code class="language-sh highlighter-rouge">
+  $ petalinux-build -v</code></p>
+
 <p>This step usually takes 15-30min depending on the performance of your system, the step generated a device tree 'DTB' file, the FSBL(First Stage Bootloader), U-Boot, Linux Kernel and the root file-system images</p>
 <p>After the build is complete you can test it in a simulated environment.</p>
 <h3>Pre-built Petalinux image test with QEMU</h3>
 <p>Petalinux provide <a href="https://wiki.debian.org/QEMU">QEMU</a> support to enable testing the image-built in a simulated environment.</p>
-<p>[sourcecode language="bash"]<br />
+
+<p><code class="language-sh highlighter-rouge">
 $ petalinux-boot --qemu --prebuilt 3<br />
 # The --qemu option test petalinux-boot to boot in QEMU instead of real hardware,<br />
-# and --prebuilt 3 boots the pre-built &lt;span 				data-mce-type=&quot;bookmark&quot; 				id=&quot;mce_SELREST_start&quot; 				data-mce-style=&quot;overflow:hidden;line-height:0&quot; 				style=&quot;overflow:hidden;line-height:0&quot; 			&gt;﻿&lt;/span&gt;linux kernel<br />
-[/sourcecode]</p>
+# and --prebuilt 3 boots the pre-built linux kernel
+</code></p>

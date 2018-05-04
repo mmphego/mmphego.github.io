@@ -64,7 +64,7 @@ you can not trigger builds with a git post-commit hook otherwise</li>
 </ul>
 </li>
 </ul>
-<p>[sourcecode language="bash"]</p>
+<p><pre><code></p>
 <p># Setup a proper path, I call my virtualenv dir &quot;venv&quot; and<br />
 # I've got the virtualenv command installed in /usr/local/bin<br />
 PATH=$WORKSPACE/venv/bin:/usr/local/bin:$PATH<br />
@@ -73,11 +73,11 @@ if [ ! -d &quot;venv&quot; ]; then<br />
 fi<br />
 . venv/bin/activate<br />
 pip install -r requirements.txt --download-cache=/tmp/$JOB_NAME<br />
-[/sourcecode]<br />
+</pre></code><br />
 and</p>
-<p>[sourcecode language="bash"]</p>
+<p><pre><code></p>
 <p>. venv/bin/activate<br />
 which python</p>
 <p># reply should be<br />
 /home/user/.virtualenv/bin/python<br />
-[/sourcecode]</p>
+</pre></code></p>

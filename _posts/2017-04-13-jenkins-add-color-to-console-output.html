@@ -47,7 +47,7 @@ Manage Jenkins &gt; Manage Plugins &gt; Available<br />
 Under <strong>Build Environment</strong> section check <strong>Color ANSI Console Output </strong>and select <strong>xterm</strong></p>
 <p><img class="alignnone size-full wp-image-989" src="{{ site.baseurl }}/assets/testerfenster-jenkins-build-environment-color-ansi.png" alt="TesterFenster-Jenkins-Build-Environment-Color-ANSI" width="906" height="104" /><br />
 3. Inside Execute shell step add something like:</p>
-<p>[sourcecode language="bash"]<br />
+<p><pre><code><br />
 set +x<br />
 info() {<br />
 echo &quot;&#092;&#048;33[1;33m[Info]    &#092;&#048;33[0m $1&quot;<br />
@@ -80,7 +80,8 @@ echo &quot;&#092;&#048;33[1;31m Red &#092;&#048;33[0m&quot;<br />
 echo &quot;&#092;&#048;33[1;4;37;42m Green &#092;&#048;33[0m&quot;<br />
 echo &quot;&#092;&#048;33[1;43m Yellow &#092;&#048;33[0m&quot;<br />
 set -x<br />
-[/sourcecode]</p>
+</code></pre></p>
+
 <p>4. On console output</p>
 <p><img class="alignnone size-full wp-image-994" src="{{ site.baseurl }}/assets/screenshot_2017-04-13_11-13-22.png" alt="Screenshot_2017-04-13_11-13-22" width="1154" height="551" /></p>
 <p>Done!!!</p>

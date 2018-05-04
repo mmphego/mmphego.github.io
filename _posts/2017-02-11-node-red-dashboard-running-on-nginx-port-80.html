@@ -41,47 +41,47 @@ author:
 <p>A more popular approach is to set up Nginx as a reverse proxy by having it bind to the desired port, forwarding all incoming traffic to my node red dashboard.</p>
 <p>Nginx is a high performance, open source web server (similar to Apache) that is widely-used.</p>
 <p>The main benefit of Nginx is the fact that it takes care of transport optimization.</p>
-<p>Installing Nginx</p>
-<p>[sourcecode]<br />
-sudo apt-get install nginx<br />
- [/sourcecode]</p>
-<p>Configuring Nginx</p>
+<p><h3>Installing Nginx</h3></p>
+<p><code class="highlighter-rouge">
+sudo apt-get install nginx
+ </code></p>
+<p><h3>Configuring Nginx</h3></p>
 <p>Next, we'll need to configure Nginx so that it forwards traffic to my dashboard. Let's start off by removing the default configuration file:</p>
-<p>[sourcecode]<br />
-sudo rm /etc/nginx/sites-enabled/default<br />
- [/sourcecode]</p>
+<p><code class="highlighter-rouge">
+sudo rm /etc/nginx/sites-enabled/default
+ </code></p>
 <p>Next, create a new file in /etc/nginx/sites-available/ called node and open it with nano:</p>
-<p>[sourcecode]<br />
-sudo nano /etc/nginx/sites-available/node<br />
- [/sourcecode]<br />
+<p><code class="highlighter-rouge">
+sudo nano /etc/nginx/sites-available/node
+ </code><br />
 Paste the following code in the file and make sure to change example.com to your domain (or IP), and 1880 to your Node-Red Dashboard port:</p>
-<p>[sourcecode]<br />
+<p><code class="highlighter-rouge">
 server {<br />
     listen 80;<br />
-    server_name example.com;</p>
-<p>    location /ui {<br />
-        proxy_set_header   X-Forwarded-For $remote_addr;<br />
-        proxy_set_header   Host $http_host;<br />
-        proxy_pass         &quot;http://127.0.0.1:1880&quot;;<br />
-    }<br />
-}<br />
-[/sourcecode]</p>
+    server_name example.com;<br />
+    &emsp;&emsp;&emsp;&emsp;location /ui {<br />
+    &emsp;&emsp;&emsp;&emsp;proxy_set_header   X-Forwarded-For $remote_addr;<br />
+    &emsp;&emsp;&emsp;&emsp;proxy_set_header   Host $http_host;<br />
+    &emsp;&emsp;&emsp;&emsp;proxy_pass         &quot;http://127.0.0.1:1880&quot;;<br />
+    &emsp;&emsp;&emsp;&emsp;}<br />
+  }
+</code></p>
 <p>The proxy_pass declaration configures Nginx to act as a reverse proxy by forwarding all incoming requests on port 80 to Node-Red dashboard on port 1880, on behalf of the client.</p>
 <p>Next, we need to symlink our configuration to sites-enabled for it to be used by Nginx, since it's currently in sites-available:</p>
-<p>[sourcecode]<br />
-sudo ln -s /etc/nginx/sites-available/node /etc/nginx/sites-enabled/node<br />
-[/sourcecode]</p>
+<p><code class="highlighter-rouge">
+sudo ln -s /etc/nginx/sites-available/node /etc/nginx/sites-enabled/node
+</code></p>
 <p>Applying the Configuration</p>
 <p>Let's restart Nginx so that it loads our configuration:</p>
-<p>[sourcecode]<br />
-sudo service nginx restart<br />
-[/sourcecode]<br />
+<p><code class="highlighter-rouge">
+sudo service nginx restart
+</code><br />
 run</p>
-<p>[sourcecode]<br />
-sudo service nginx status<br />
-[/sourcecode]<br />
+<p><code class="highlighter-rouge">
+sudo service nginx status
+</code><br />
 and you should see something like:</p>
-<p>[sourcecode]<br />
+<p><code class="highlighter-rouge"><br />
 * nginx.service - A high performance web server and a reverse proxy server<br />
    Loaded: loaded (/lib/systemd/system/nginx.service; enabled)<br />
    Active: active (running) since Sat 2017-02-11 14:14:14 UTC; 306ms ago<br />
@@ -94,11 +94,11 @@ and you should see something like:</p>
            |-3114 nginx: worker process<br />
            |-3115 nginx: worker process<br />
            |-3116 nginx: worker process<br />
-           `-3119 nginx: worker process</p>
-<p>Feb 11 14:14:14 alexapi nginx[3108]: nginx: [warn] server name &quot;127.0.0.1:1880/ui&quot; has suspicious symbols in /etc/nginx/sites-enabled/node:3<br />
+           `-3119 nginx: worker process<br /><br />
+Feb 11 14:14:14 alexapi nginx[3108]: nginx: [warn] server name &quot;127.0.0.1:1880/ui&quot; has suspicious symbols in /etc/nginx/sites-enabled/node:3<br />
 Feb 11 14:14:14 alexapi nginx[3111]: nginx: [warn] server name &quot;127.0.0.1:1880/ui&quot; has suspicious symbols in /etc/nginx/sites-enabled/node:3<br />
 Feb 11 14:14:14 alexapi systemd[1]: Started A high performance web server and a reverse proxy server.<br />
-[/sourcecode]</p>
+</code></p>
 <p>All set! Nginx will now forward all incoming requests to your app and even survive a server crash, since it automatically starts up with your machine.</p>
 <p><img class="alignnone size-full wp-image-716" src="{{ site.baseurl }}/assets/screenshot_2017-02-11_16-18-49.png" alt="Screenshot_2017-02-11_16-18-49.png" width="1599" height="865" /></p>
 <p>also see: https://www.digitalocean.com/community/tutorials/how-to-connect-your-internet-of-things-with-node-red-on-ubuntu-16-04</p>

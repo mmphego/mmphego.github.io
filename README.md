@@ -26,3 +26,13 @@ Run the site
 bundle exec jekyll serve
 ```
 This start a server in the localhost at the port 4000. Then you can open that [url](http://localhost:4000) in your browser and see how it looks.
+
+
+Note to self: dont forget the header 
+
+    ---
+    layout: post
+    title:  "<Title here>"
+    date:   2016-05-26 14:00:00 +0200
+    categories: jekyll update
+    ---
