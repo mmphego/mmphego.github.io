@@ -57,15 +57,22 @@ Server: Jetty(9.2.z-SNAPSHOT)<br />
 <p><strong>2. Configure a hook of repository<br />
 </strong><br />
 Create a file in .git/hooks called post-commit and do not forget to make it executable.</p>
-<blockquote><p>$ nano $(pwd)/.git/hooks/post-commit</p></blockquote>
-<p><pre><code><br />
-#!/bin/bash<br />
-# Jenkins-Git build trigger<br />
-# Mpho Mphego</p>
-<p>machine=$(uname -n)<br />
-echo 'Notifying Jenkins Server to execute a Build on' $machine<br />
-curl -X POST http://$machine:8080/job/mkat_fpga_tests_4k/build<br />
-</pre></code></p>
+<code>
+  $ nano .git/hooks/post-commit
+</code>
+<p>
+  <pre>
+    <code>
+    #!/bin/bash
+    # Jenkins-Git build trigger
+    # Username
+    machine=$(uname -n)
+    echo 'Notifying Jenkins Server to execute a Build on' $machine
+    curl -X POST http://$machine:8080/job/mkat_fpga_tests_4k/build
+    </code>
+  </pre>
+</p>
+
 <p><img class="alignnone size-full wp-image-902" src="{{ site.baseurl }}/assets/screenshot_2017-04-05_12-57-44.png" alt="Screenshot_2017-04-05_12-57-44" width="781" height="254" /></p>
 <blockquote><p>Assumptions:<br />
 Git version &gt; 2.6<br />
