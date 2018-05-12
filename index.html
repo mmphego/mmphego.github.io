@@ -32,7 +32,27 @@ bigimg:
       </div>
     </div>
   </div>
+
 </div>
+    <div>
+      <input type="text" id="search-input" placeholder="search...">
+      <ul id="results-container"></ul>
+</div>
+
+<script src="{{ site.baseurl }}/js/simple-jekyll-search.min.js"></script>
+<script>
+  window.simpleJekyllSearch = new SimpleJekyllSearch({
+      searchInput: document.getElementById('search-input'),
+      resultsContainer: document.getElementById('results-container'),
+      json: '{{ site.baseurl }}/search.json',
+      searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a></li>',
+      noResultsText: 'No results found',
+      limit: 20,
+      fuzzy: false,
+      // exclude: ['Welcome']
+  })
+</script>
+
 
 <!-- site body (untouched)-->
 <div class="posts-list">
