@@ -13,7 +13,7 @@ tags:
 
 # How to turn your Ubuntu laptop into a WiFi AP
 
-For the past week or so, I have been deployed to a remote area where we are building the largest telescope in the southern hemisphere ([www.ska.ac.za](www.ska.ac.za)). Communication is very limited as they have imposed a number of restrictions related to Radio Frequency Interruptions(RFI's), this simply means No WiFi, No Cellphone towers nearby i.e. No Mobile connection the only connection to the outside world is via Fibre. Before I digress, let me take my focus back on how I managed to turn my Laptop running Ubuntu to a WiFi Hotspot (Note: This is not allowed but seeing that everything was offline, then why not.)
+I have found myself, having to access WiFi connection from my phone and the only available connection was ethernet. Which led to finding ways I can make my laptop behave like a WiFi AP.
 
 First things first, install the dependencies.
 
