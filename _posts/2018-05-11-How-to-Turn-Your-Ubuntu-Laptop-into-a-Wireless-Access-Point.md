@@ -13,7 +13,7 @@ tags:
 
 # How to turn your Ubuntu laptop into a WiFi AP
 
-I have found myself, having to access WiFi connection from my phone and the only available connection was ethernet. Which led to finding ways I can make my laptop behave like a WiFi AP.
+I have found myself, wanting to access WiFi connection from my phone and the Only available connection was ethernet. Which led to finding ways I can make my laptop behave like a WiFi AP.
 
 First things first, install the dependencies.
 
