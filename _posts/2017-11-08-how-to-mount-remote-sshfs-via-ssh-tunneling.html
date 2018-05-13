@@ -43,26 +43,30 @@ author:
 ---
 <p><a href="https://help.ubuntu.com/community/SSHFS">sshfs</a> is very handy for mounting remote directories on your local filesystem. Recently I needed to mount the / directory off a remote server so I can remotely work from home without complicating everything by ssh'ng then vim my code - Painful exercise.</p>
 <p>All that is needed is to copy the code below to a file and chmod +x it.</p>
-<p>[sourcecode language="bash"]<br />
-#!/bin/bash<br />
-if [ -z &quot;$*&quot; ];<br />
-    then echo -e &quot;Usage: $0 USERNAME HOST REMOTEHOST REMOTEPORT MOUNTPOINT \\n<br />
-    USERNAME: Default to local username<br />
-    HOST: Hostname or IP of server to connect to.<br />
-    REMOTEHOST: Host to tunnel via<br />
-    REMOTEPORT: Host port to tunnel via (Default: 2222)<br />
-    MOUNTPOINT: Local mounting point&quot;<br />
-    exit 1;<br />
-fi</p>
-<p>export PATH=&quot;${HOME}/bin:$PATH&quot;<br />
-USERNAME=$1<br />
-HOST=$2<br />
-REMOTEHOST=$3<br />
-REMOTEPORT=$4<br />
-MOUNTPOINT=$5</p>
-<p># Assumptions: ssh keys have been generated and successfully copied over to remotehost, vice versa<br />
-# if necessary, openssh-client, openssh-server and sshfs packages installed<br />
-# The first we need to pre-establish a forwarded port over SSH.<br />
-ssh -v -f -N -L 1233:&quot;${HOST}&quot;:22 -p &quot;${REMOTEPORT}&quot; &quot;${REMOTEHOST}&quot;<br />
-sshfs -p 1233 &quot;${USERNAME}&quot;@localhost:/ &quot;${MOUNTPOINT}&quot; -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3</p>
-<p>[/sourcecode]</p>
+<p>
+  <pre>
+    <code class="language-bash hljs">#!/bin/bash
+      if [ -z &quot;$*&quot; ];
+          then echo -e &quot;Usage: $0 USERNAME HOST REMOTEHOST REMOTEPORT MOUNTPOINT \\n
+          USERNAME: Default to local username
+          HOST: Hostname or IP of server to connect to.
+          REMOTEHOST: Host to tunnel via
+          REMOTEPORT: Host port to tunnel via (Default: 2222)
+          MOUNTPOINT: Local mounting point&quot;
+          exit 1;
+      fi
+
+      export PATH=&quot;${HOME}/bin:$PATH&quot;
+      USERNAME=$1
+      HOST=$2
+      REMOTEHOST=$3
+      REMOTEPORT=$4
+      MOUNTPOINT=$5<br/>
+      # Assumptions: ssh keys have been generated and successfully copied over to remotehost, vice versa
+      # if necessary, openssh-client, openssh-server and sshfs packages installed
+      # The first we need to pre-establish a forwarded port over SSH.
+      ssh -v -f -N -L 1233:&quot;${HOST}&quot;:22 -p &quot;${REMOTEPORT}&quot; &quot;${REMOTEHOST}&quot;
+      sshfs -p 1233 &quot;${USERNAME}&quot;@localhost:/ &quot;${MOUNTPOINT}&quot; -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3</p>
+    </code>
+  </pre>
+</p>
