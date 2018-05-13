@@ -34,7 +34,7 @@
 			<h2 class="{{ include.type }}-subheading">{{ page.subtitle }}</h2>
 			{% endif %}
 		  {% endif %}
-		  
+
 		  {% if include.type == "post" %}
 		  <span class="post-meta">Posted on {{ page.date | date: "%B %-d, %Y" }}</span>
 		  {% endif %}
@@ -59,7 +59,7 @@
 			<h2 class="{{ include.type }}-subheading">{{ page.subtitle }}</h2>
 			{% endif %}
 		  {% endif %}
-		  
+
 		  {% if include.type == "post" %}
 		  <span class="post-meta">Posted on {{ page.date | date: "%B %-d, %Y" }}</span>
 		  {% endif %}
@@ -68,6 +68,24 @@
     </div>
   </div>
 </div>
+
+<div id="banner-12345">
+    Our website is made possible by displaying online advertisements to our visitors.<br>
+    Please consider supporting us by disabling your ad blocker on our website.
+</div>
+<style>
+    #banner-12345 {
+        display: none;
+        margin-bottom: 30px;
+        padding: 20px 10px;
+        border-radius: 5px;
+        background: #D30000;
+        color: #fff;
+        text-align: center;
+        font-weight: bold;
+    }
+</style>
+
 </header>
 
 
