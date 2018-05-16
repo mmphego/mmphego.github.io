@@ -42,16 +42,18 @@ author:
   first_name: ''
   last_name: ''
 ---
+<h1>Configure IPython5 to have IPython3's readline, tab-completion, (lack-of) syntax highlighting, etc? (self.IPython)</h1>
+Like most programmer's I do not like change especially library changes, hence why I had to revert the latest IPython tab-completion back to the previous versions.
 <p>Start by creating a default iPython profile. From your shell, type:</p>
-<p>[sourcecode]$ ipython profile create[/sourcecode]</p>
+<p><code>$ ipython profile create</code></p>
 <p>That should give output similar to this:</p>
-<p>[sourcecode][ProfileCreate] Generating default config file: u'/home/mmphego/.ipython/profile_default/ipython_config.py'<br />
-[ProfileCreate] Generating default config file: u'/home/mmphego/.ipython/profile_default/ipython_kernel_config.py'[/sourcecode]</p>
-<p>Open the newly created file with your favorite text editor, in the above example shown as: [sourcecode]vim /home/mmphego/.ipython/profile_default/ipython_config.py[/sourcecode]</p>
+<pre><code>[ProfileCreate] Generating default config file: u'/home/user/.ipython/profile_default/ipython_config.py'
+[ProfileCreate] Generating default config file: u'/home/user/.ipython/profile_default/ipython_kernel_config.py'</code></pre>
+<p>Open the newly created file with your favourite text editor, in the above example shown as:<br> <code>$ vim /home/user/.ipython/profile_default/ipython_config.py</code></p>
 <p>Add the following lines at the bottom:</p>
-<p>[sourcecode]c.TerminalInteractiveShell.display_completions = 'readlinelike'[/sourcecode]</p>
+<p><code>c.TerminalInteractiveShell.display_completions = 'readlinelike'</code></p>
 <p>Save the file.</p>
-<p><strong>Previous</strong></p>
+<p><strong>Previous(before change)</strong></p>
 <p><img class="alignnone size-full wp-image-1513" src="{{ site.baseurl }}/assets/screenshot_2017-12-18_17-12-15.png" alt="Screenshot_2017-12-18_17-12-15" width="1836" height="277" /></p>
-<p><strong>New</strong></p>
+<p><strong>New(after change)</strong></p>
 <p><img class="alignnone size-full wp-image-1512" src="{{ site.baseurl }}/assets/screenshot_2017-12-18_17-13-11.png" alt="Screenshot_2017-12-18_17-13-11" width="1664" height="405" /></p>

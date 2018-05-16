@@ -48,68 +48,69 @@ author:
   first_name: ''
   last_name: ''
 ---
-<p>I recently registered my Masters and part of my research includes the use of an FPGA for real-time network communications between smart grids. So I am faced with 2 things - learning a new environment as well as a different field (Power Systems) coming from an Electronics and Computer engineering background.</p>
-<p>I am the type of person that is always eager to learn new things, so being thrown into the deep end is nothing foreign to me, sounds like something I took from my resume.</p>
-<p>I was given this <a href="http://zedboard.org/product/zedboard" target="_blank" rel="noopener">board</a> - and I needed to familiarise myself with it.</p>
-<p>This blog will detail my experiences and hacks.</p>
+<h1>My first experience with the ZedBoard SoC board.</h1>
+<p>I recently registered my Masters and part of my research includes the use of an <a href="https://www.xilinx.com/products/silicon-devices/fpga/what-is-an-fpga.html">FPGA</a> for real-time network communications between smart grids. So I am faced with 2 things - learning a new environment as well as a different engineering field which is Power Systems. Coming from an Electronics and Computer engineering background this seemed like an obstacle but worry not. I am the type of person that is always eager to learn new things, so being thrown into the deep end is nothing foreign to me.</p>
+<p>I was handed the board below, <a href="http://zedboard.org/product/zedboard" target="_blank" rel="noopener">Zedboard</a> - and I needed to familiarise myself with it as soon as possible, such that I can hit the ground running.</p>
+<em>This blog will detail my experiences and hacks.</em >
 <p><img class="alignnone size-full wp-image-1212" src="{{ site.baseurl }}/assets/zedboard-2.png" alt="zedboard-2" width="600" height="535" /><img class="alignnone size-full wp-image-1211" src="{{ site.baseurl }}/assets/zedboard-box.jpg" alt="zedboard box" width="506" height="337" /></p>
-<h2></h2>
+
 <h2>Getting started with the ZedBoard SoC</h2>
-<p>Firstly, we will need to download Xilinx Vivado suite, in order to do this we go to the <a href="http://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools.html">Xilinx Downloads</a> page to obtain the installer.<br />
-Select version 2017.2 or later on the left sidebar. I used the “Single File Download” option and chose “Vivado HLx 2017.2: All OS installer Single-File Download”. It is a tarball that is <span style="color:#ff0000;">22Gigs, yes there was no typo - 22Gigs large</span>.<br />
+<p>Firstly, we will need to download <a href="https://www.xilinx.com/products/design-tools/vivado.html">Xilinx Vivado suite</a>, in order to do this we need visit the <a href="http://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools.html">Xilinx Downloads page</a> in order to obtain the installer files.<br />
+Select version 2017.2 or later on the left sidebar. I used the <em>"Single File Download"</em> option and chose <em>"Vivado HLx 2017.2: All OS installer Single-File Download"</em>. It is a tarball and is <span style="color:#ff0000;">22Gigs, yes there was no typo - 22Gigs file</span>.<br />
 Note: You have to be a registered user to download it.</p>
+
 <p>Once the download is completed, untar the tarball, cd into the extracted directory, and execute the GUI installer.</p>
-<p>[sourcecode language="bash"]<br />
-# Confirm the file is valid by checking the md5 hash<br />
-# MD5 SUM Value: 958f190a089ad3f39d327d972c7dcf35<br />
-$ md5sum Xilinx_Vivado_SDK_2017.2_0616_1.tar.gz<br />
-# Once that is confirmed untar and install<br />
-$ tar -zxvf Xilinx_Vivado_SDK_2017.2_0616_1.tar.gz<br />
-$ cd Xilinx_Vivado_SDK_2017.2_0616_1<br />
-$ sudo dpkg --add-architecture i386<br />
-$ sudo ./xsetup<br />
-[/sourcecode]</p>
-<p>Agree to the terms of use and select "Vivado HL WebPACK Edition". Next, tick also Xilinx Software Development Kit (SDK) on the next page, since it’s free and very useful.</p>
-<p>Note: by default, Vivado is installed into the /opt/Xilinx/Vivado/2017.2 directory.</p>
-<p>At the end of the installation, the license manager will ask for a license. The “Obtain a license” button in the license manager if that does not work, just go to Xilinx Licensing site directly and get a WebPACK license and install it.</p>
+<pre><code class="language-bash"># Confirm the file is valid by checking the md5 hash
+# MD5 SUM Value: 958f190a089ad3f39d327d972c7dcf35
+$ md5sum Xilinx_Vivado_SDK_2017.2_0616_1.tar.gz
+# Once that is confirmed untar and install
+$ tar -zxvf Xilinx_Vivado_SDK_2017.2_0616_1.tar.gz
+$ cd Xilinx_Vivado_SDK_2017.2_0616_1
+$ sudo dpkg --add-architecture i386
+$ sudo ./xsetup
+</code></pre>
+<p>Agree to the terms of use and select <em>"Vivado HL WebPACK Edition"</em>. Next, tick also <em>Xilinx Software Development Kit (SDK)</em> on the next page, since it’s free and very useful.</p>
+
+<p>Note: by default, Vivado is installed into the <code><em>/opt/Xilinx/Vivado/2017.2</em></code> directory.</p>
+<p>At the end of the installation, the license manager will ask for a license. The <em>"Obtain a license"</em> button in the license manager if that does not work, just go to Xilinx Licensing site directly and get a WebPACK license and install it.</p>
 <p>Once done with the installation, we need to install the JTAG cable drivers that are needed for many purposes e.g. programming the hardware.</p>
-<p>[sourcecode language="bash"]<br />
-cd /opt/Xilinx/Vivado/2017.2/data/xicom/cable_drivers/lin64/install_script/install_drivers<br />
-sudo ./install_drivers<br />
-[/sourcecode]</p>
-<p>Now, change the ownership of the ~/.Xilinx directory so that you may use Vivado without superuser privilege:<br />
+<pre><code class="language-bash">cd /opt/Xilinx/Vivado/2017.2/data/xicom/cable_drivers/lin64/install_script/install_drivers
+sudo ./install_drivers
+</code></pre>
+
+<p>Now, change the ownership of the <code>~/.Xilinx</code> directory so that you may use Vivado without superuser privilege:<br/>
 <code>sudo chown -hR $USER:$USER $HOME/.Xilinx/</code></p>
-<p>Every time you want to fire up Vivado, remember to source the “settings” scripts to have the right environment variables:</p>
-<p>[sourcecode language="bash"]<br />
-source /opt/Xilinx/Vivado/2017.2/settings64.sh<br />
-source /opt/Xilinx/SDK/2017.2/settings64.sh<br />
-[/sourcecode]</p>
+<p>Every time you want to fire up Vivado, remember to source the <em>"settings"</em> scripts to have the right environment variables:</p>
+<pre><code class="language-bash">source /opt/Xilinx/Vivado/2017.2/settings64.sh
+source /opt/Xilinx/SDK/2017.2/settings64.sh
+</code></pre>
 <p>Lazy people like myself prefer to uncomplicate the complicated, to avoid executing the above commands each and everytime one needs to start Vivado - do the following.</p>
-<p>[sourcecode language="bash"]<br />
-echo &quot;source /opt/Xilinx/Vivado/2017.2/settings64.sh&quot; &gt;&gt; ~/.bashrc<br />
-echo &quot;source /opt/Xilinx/SDK/2017.2/settings64.sh&quot; &gt;&gt; ~/.bashrc<br />
-source ~/.bashrc<br />
-[/sourcecode]</p>
-<p>When done, start-up Vivado from the command line:<br />
+<pre><code class="language-bash">
+echo &quot;source /opt/Xilinx/Vivado/2017.2/settings64.sh&quot; &gt;&gt; ~/.bashrc
+echo &quot;source /opt/Xilinx/SDK/2017.2/settings64.sh&quot; &gt;&gt; ~/.bashrc
+source ~/.bashrc
+</code></pre>
+<p>When done, start-up Vivado from the command line:<br/>
 <code>vivado</code> or SDK: <code>xsdk</code></p>
 <p>Quoting <a href="https://twitter.com/raymondh" target="_blank" rel="noopener">Raymond Hettinger</a>, While hitting the podium and "There must be a better way!"</p>
 <p>Create a new file called <code>vivado.desktop</code></p>
-<p>[sourcecode language="bash"]<br />
-sudo vim /usr/share/applications/vivado.desktop<br />
-# Copy the contents to the file</p>
-<p>[Desktop Entry]<br />
-Type=Application<br />
-Version=1.0<br />
-GenericName=Vivado<br />
-Name=Vivado<br />
-Comment=Vivado<br />
-TryExec=/opt/Xilinx/Vivado/2017.2/bin/vivado<br />
-Exec=/opt/Xilinx/Vivado/2017.2/bin/vivado<br />
-Icon=<br />
-Terminal=false<br />
-Categories=Education;System<br />
-StartupNotify=false<br />
-X-GNOME-Autostart-Delay=5<br />
-[/sourcecode]</p>
+<pre><code class="language-bash">
+sudo vim /usr/share/applications/vivado.desktop
+
+# Copy the contents to the file
+[Desktop Entry]
+Type=Application
+Version=1.0
+GenericName=Vivado
+Name=Vivado
+Comment=Vivado
+TryExec=/opt/Xilinx/Vivado/2017.2/bin/vivado
+Exec=/opt/Xilinx/Vivado/2017.2/bin/vivado
+Icon=
+Terminal=false
+Categories=Education;System
+StartupNotify=false
+X-GNOME-Autostart-Delay=5
+</code></pre>
 <p>When done, log out-in in order to refresh the systems settings.</p>
 <p>Vivado should be available from start-menu and can be copied to the desktop for future executions.</p>

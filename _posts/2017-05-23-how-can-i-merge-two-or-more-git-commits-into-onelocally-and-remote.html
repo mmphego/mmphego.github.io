@@ -33,6 +33,7 @@ author:
   first_name: ''
   last_name: ''
 ---
+<h1>How can I merge two or more Git commits into one[locally and remote]?</h1>
 <div class="post-text">
 <p>You can do this fairly easily without <code>git rebase</code> or <code>git merge --squash</code>. In this example, we'll squash the last 3 commits.</p>
 <p>If you want to write the new commit message from scratch, this suffices:</p>
@@ -40,7 +41,7 @@ author:
 git commit
 </code></pre>
 <p>If you want to start editing the new commit message with a concatenation of the existing commit messages (i.e. similar to what a pick/squash/squash/…/squash <code>git rebase -i</code> instruction list would start you with), then you need to extract those messages and pass them to <code>git commit</code>:</p>
-<pre><code>git reset --soft HEAD~3 &amp;&amp; 
+<pre><code>git reset --soft HEAD~3 &amp;&amp;
 git commit --edit -m"$(git log --format=%B --reverse HEAD..HEAD@{1})"
 </code></pre>
 <p>Both of those methods squash the last three commits into a single new commit in the same way. The soft reset just re-points HEAD to the last commit that you do not want to squash. Neither the index nor the working tree are touched by the soft reset, leaving the index in the desired state for your new commit (i.e. it already has all the changes from the commits that you are about to “throw away”).</p>

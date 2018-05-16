@@ -33,12 +33,13 @@ author:
   first_name: ''
   last_name: ''
 ---
+<h1>How to ignore files only locally in git?</h1>
 <p>I have automated tests running everyday, and the issue is that those tests make necessary changes to certain files depending on which test is running. This becomes a problem when I have to report the changes in the repo, as this will report untracked changed, which means I have to ignore certain files such that local Git doesn't report changes in them specifically.</p>
 <p>By making sure to run <code>git update-index --assume-unchanged ./matplotlibrc</code> after making the addition to the exclude file this means changes won't be picked up until then.</p>
-<p>[sourcecode]</p>
+<p><code></p>
 <p>git update-index --assume-unchanged index.rst<br />
 git update-index --assume-unchanged matplotlibrc<br />
-[/sourcecode]</p>
+</code></p>
 <p>Before:<br />
 <img class="alignnone size-full wp-image-1097" src="{{ site.baseurl }}/assets/screenshot_2017-06-02_07-31-01.png" alt="Screenshot_2017-06-02_07-31-01" width="1397" height="81" /></p>
 <p>After:</p>

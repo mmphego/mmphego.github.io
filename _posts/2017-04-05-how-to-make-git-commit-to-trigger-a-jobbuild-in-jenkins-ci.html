@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to make Git commit to trigger a  job/build in Jenkins CI
+title: How to make Git commit to trigger a job/build in Jenkins CI
 date: 2017-04-05 13:32:54.000000000 +02:00
 type: post
 parent_id: '0'
@@ -39,14 +39,15 @@ author:
   first_name: ''
   last_name: ''
 ---
+<h1>How to make Git commit to trigger a job/build in Jenkins CI</h1>
 <p>In this blog post I will show you how to configure a post commit hook on Git that notifies a Jenkins CI server about repository changes. This means that whenever a new commit is pushed to the Git repository, the cURL command line tool will be launched to initiate a Http request telling Jenkins to trigger a job.</p>
 <p><strong>1. Execute Jenkins build with Curl<br />
 </strong></p>
 <p>In this setup, there is no authentication at Jenkins, considering that I will be responsible for the repository and jenkins server.</p>
 <p>To test, I had to execute jenkins with curl</p>
 <p><pre><code></p>
-<p>(Test)mmphego@dbelab04:~/src/mkat_fpga_tests/.git/hooks (GIT_DIR!)<br />
-|_ [2017-04-05 11:58:47] $ &gt;&gt;&gt; curl -D - -X POST http://dbelab04:8080/job/mkat_fpga_tests_4k/build</p>
+<p>$ ~/src/mkat_fpga_tests/.git/hooks (GIT_DIR!)<br />
+$ &gt;&gt;&gt; curl -D - -X POST http://dbelab04:8080/job/mkat_fpga_tests_4k/build</p>
 <p>HTTP/1.1 201 Created<br />
 Date: Wed, 05 Apr 2017 09:59:23 GMT<br />
 X-Content-Type-Options: nosniff<br />

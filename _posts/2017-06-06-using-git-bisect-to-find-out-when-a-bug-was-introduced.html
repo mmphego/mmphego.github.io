@@ -32,6 +32,7 @@ author:
   first_name: ''
   last_name: ''
 ---
+<h1>Using Git bisect to find out when a bug was introduced!</h1>
 <p>----Simplified explanation----<br />
 Here's how to use git bisect , step-by-step!<br />
 Step 1: Find a commit where things were working. ...<br />
@@ -40,14 +41,14 @@ Step 3 - N: Use git bisect to find the problem commit. ...<br />
 Step 4: Get back to a working state.<br />
 Using Git bisect to figure out when brokenness was introduced</p>
 <p>Step by step with code.</p>
-<p>[sourcecode]<br />
-git log -4 # find previous working commit<br />
-git checkout #hash<br />
-git bisect ?<br />
-[/sourcecode]</p>
+<pre><code>
+git log -4 # find previous working commit
+git checkout #hash
+git bisect ?
+</code></pre>
 <p>run through previous commits then</p>
-<p>[sourcecode]<br />
-git bisect good or bad<br />
-git checkout #hash<br />
-[/sourcecode]</p>
+<pre><code>
+git bisect good or bad
+git checkout #hash
+</code></pre>
 <p><a href="http://webchick.net/node/99" target="_blank" rel="noopener">See link to get more info and better understanding.</a></p>

@@ -40,27 +40,22 @@ author:
   first_name: ''
   last_name: ''
 ---
+<h1>Diagnosing LAN Speeds</h1>
 <p>After having network issues/degradation while trying to access a work server, I had to diagnose the network the server is connected to. I had to set myself on a mission - and after realising that the seems to be very limited tools for such things, I stumbled upon '<strong>iperf</strong>'.</p>
 <p><strong>Iperf</strong> is a command-line tool used in the diagnostics of network speed issues, it measures the maximum network throughput a server can handle. It is particularly useful when experiencing network speed issues, as you can use Iperf to determine which server is unable to reach maximum throughput.</p>
 <h2>Iperf installation</h2>
 <p>Iperf must be installed on both computers you are testing the connection between.</p>
-<p>[sourcecode]<br />
-sudo apt-get install -y iperf<br />
-[/sourcecode]</p>
+<p><code>$ sudo apt-get install -y iperf</code></p>
 <h2>TCP Clients &amp; Servers</h2>
 <p>Iperf requires two systems because one system must act as a server, while the other acts as a client. The client connects to the server you’re testing the speed of.</p>
 <ol>
 <li>On the node you wish to test, launch Iperf in server mode:</li>
 </ol>
-<p>[sourcecode]<br />
-iperf -s<br />
-[/sourcecode]</p>
+<p><code>iperf -s<br /></code></p>
 <p>You should see output similar to:</p>
 <p><img class="alignnone size-full wp-image-1023" src="{{ site.baseurl }}/assets/screenshot_2017-05-05_12-02-15.png" alt="Screenshot_2017-05-05_12-02-15" width="651" height="134" /></p>
 <p>2. On your second Linode, connect to the first. Replace <code>dbelab04</code> with the first node’s IP address in my case i'm using the hostname</p>
-<p>[sourcecode]<br />
-iperf -c dbelab04<br />
-[/sourcecode]</p>
+<p><code>iperf -c dbelab04</code></p>
 <p>You should see output similar to:<br />
 <img class="alignnone size-full wp-image-1022" src="{{ site.baseurl }}/assets/screenshot_2017-05-05_12-02-53.png" alt="Screenshot_2017-05-05_12-02-53" width="775" height="305" /></p>
 <p>3. You will also see the connection and results on your Iperf server. This will look similar to:</p>
@@ -68,15 +63,11 @@ iperf -c dbelab04<br />
 <p>4. To stop the Iperf server process, press <code>CTRL + c</code>.</p>
 <p>--------------------------------------------------------------------------------------------------</p>
 <p>You can do pretty much the same thing with plain old <code>nc</code> (netcat) if you're that way inclined. On the server machine:<br />
-[sourcecode]<br />
-nc -vvlnp 12345 &gt;/dev/null<br />
-[/sourcecode]</p>
+<code>$ nc -vvlnp 12345 &gt;/dev/null</code></p>
 <p>You should see something similar to:</p>
 <p><img class="alignnone size-full wp-image-1049" src="{{ site.baseurl }}/assets/screenshot_2017-05-05_12-14-05.png" alt="Screenshot_2017-05-05_12-14-05" width="861" height="86" /></p>
 <p>And the client can pipe a 10Gb of zeros through <code>dd</code> over the <code>nc</code> tunnel.<br />
-[sourcecode]<br />
-dd if=/dev/zero bs=10M count=1K status=progress | nc -vvn 192.168.4.23 12345<br />
-[/sourcecode]</p>
+<code>$ dd if=/dev/zero bs=10M count=1K status=progress | nc -vvn 192.168.4.23 12345</code></p>
 <p>You should see something similar to:</p>
 <p><img class="alignnone size-full wp-image-1050" src="{{ site.baseurl }}/assets/screenshot_2017-05-05_12-13-54.png" alt="Screenshot_2017-05-05_12-13-54" width="1138" height="90" /></p>
 <p>The timing there is given by <code>dd</code> but it should be accurate enough as it can only output as fast the pipe will take it. If you're unhappy with that you could wrap the whole thing up in a <code>time</code> call.</p>

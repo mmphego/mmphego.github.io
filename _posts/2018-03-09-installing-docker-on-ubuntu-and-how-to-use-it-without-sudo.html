@@ -34,6 +34,7 @@ author:
   first_name: ''
   last_name: ''
 ---
+<h1>Installing Docker on Ubuntu and how to use it without sudo</h1>
 <header class="article-header">Maybe you have heard about <strong>Docker</strong>, used to package your applications and services into a standardized unit which can be shipped and executed easily without external dependencies in every environment. In this post I want to show you how to install it in an easy way Docker on <strong>Ubuntu 16.04 LTS</strong>, and also how to run it without use it with sudo. Sounds right? Let’s start.</header>
 <div class="article-body">
 <p>&nbsp;</p>
@@ -45,8 +46,8 @@ author:
 sudo apt-get install apt-transport-https ca-certificates
 sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:<span class="hljs-number">80</span> --recv-keys <span class="hljs-number">58118</span>E89F3A912897C070ADBF76221572C52609D
 </code></pre>
-<p>Write the following line in /etc/apt/sources.list.d/docker.list deb <a href="https://apt.dockerproject.org/repo">https://apt.dockerproject.org/repo</a> ubuntu-xenial main</p>
-<p>You can open a simple editor like nano with this command sudo nano /etc/apt/sources.list.d/docker.list And then paste the text in the file and save it</p>
+<p>You can open a simple editor like nano with this command <code class="language-bash">$ sudo nano /etc/apt/sources.list.d/docker.list</code> and paste the following line: <br/> deb <a href="https://apt.dockerproject.org/repo">https://apt.dockerproject.org/repo</a> ubuntu-xenial main <br/>save and exit</p>
+
 <pre><code class="language-bash hljs">sudo apt-get update
 sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual
 sudo apt-get install docker-engine

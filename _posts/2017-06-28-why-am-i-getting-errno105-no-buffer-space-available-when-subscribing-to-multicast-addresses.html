@@ -34,7 +34,7 @@ author:
   first_name: ''
   last_name: ''
 ---
-<h2>Why am I getting "Errno(105): No buffer space available" when subscribing to multicast addresses?</h2>
+<h1>Why am I getting "Errno(105): No buffer space available" when subscribing to multicast addresses?</h1>
 <p>I have been experiencing multicast subscription errors on my linux box when trying to subscribe to more that 20 IP's via <a href="https://smcroute.alioth.debian.org/" target="_blank">smcroute</a> and Python-Socket module. See below image to get an idea of the kind of errors I was getting, after multiple Googling attempts I finally found a fix.</p>
 <p><img class="alignnone size-full wp-image-1134" src="{{ site.baseurl }}/assets/screenshot_2017-06-28_11-59-55.png" alt="Screenshot_2017-06-28_11-59-55.png" width="1074" height="556" /></p>
 <p>Linux OS, limit the number of multicast group memberships that a machine can belong to simultaneously. (A "multicast group membership" indicates that a machine is listening to messages for a specific multicast IP address. In other words, there is a limit on how many multicast IP addresses you can listen to).

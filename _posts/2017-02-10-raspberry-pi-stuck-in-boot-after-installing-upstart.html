@@ -38,28 +38,28 @@ author:
   first_name: ''
   last_name: ''
 ---
-<p>I  installed upstart so I could run a script at startup [native /etc/init/*.conf]  with <em>sudo apt-get install upstart</em> and I then rebooted my RPi.</p>
-<p>Afterwards my RPi running <a href="https://www.raspberrypi.org/downloads/raspbian/">Debian-Jessie</a> was pretty much unresponsive via the network. Right after connecting it to my monitor I then realised that it was stuck on boot.</p>
+<h2>Raspberry Pi - Stuck in boot after installing upstart</h2>
+<p>I  installed upstart so I could run a script at startup [native /etc/init/*.conf]  with [<code class="language-bash">sudo apt-get install upstart</code>] and I then rebooted my RPi.
+
+Afterwards my RPi running <a href="https://www.raspberrypi.org/downloads/raspbian/">Debian-Jessie</a> was pretty much unresponsive via the network. Right after connecting it to my monitor I then realised that it was stuck on boot.</p>
 <p>CODE:</p>
-<p>[sourcecode language="bash"]<br />
-[   17.777252] init: samba-ad-dc main process (513) terminated with status 1<br />
-[  133.770712] init: failsafe main process (364_ killed by TERM signal<br />
-[info] Using makefile-style concurrent boot in runlevel S<br />
-...<br />
-[info] Loading kernel module fuse.<br />
-[/sourcecode]</p>
-<p>Only at that moment, I started realising that I should have probably backed up my SD Card before, but then it was already too late. It then struck me - So I will have to redo it all over again with a new and fresh raspbian installation. That was not something I was looking forward to do ,especially not after I have invested my time to this project I have undertaken myself on[apts, pips and nodes].</p>
-<p>And then it hit me, A while ago - I had more or less the same issue on my <a href="http://xubuntu.org/">Xubuntu 12.04</a> install and managed to get away with it via <a href="https://help.ubuntu.com/community/BasicChroot" target="_blank" rel="noopener noreferrer">chroot</a> which then worked, then started researching as to if it is possible to chroot my ARM Raspbian install from an Wbuntu system. To my revelation it was...And below is how I managed to rollback to <a href="https://packages.debian.org/sid/systemd-sysv">Systemd-sysv</a> without having to burn a new raspbian image to my sd card.</p>
-<p>First, install two packages on your Ubuntu system: <em>qemu-user</em>, and <em>proot</em>.</p>
-<p>[sourcecode language="bash"]<br />
-sudo apt-get install -y qemu-user proot<br />
-[/sourcecode]</p>
-<p>After you mount the Raspbian SD card, you can do the equivalent of a '<a href="https://help.ubuntu.com/community/BasicChroot" target="_blank" rel="noopener noreferrer">chroot</a>' with:</p>
-<p>[sourcecode language="bash"]<br />
- sudo proot -q qemu-arm  -r /mnt/raspbian_sd_card<br />
-[/sourcecode]</p>
+<pre><code class="bash">[   17.777252] init: samba-ad-dc main process (513) terminated with status 1
+[  133.770712] init: failsafe main process (364_ killed by TERM signal
+[info] Using makefile-style concurrent boot in runlevel S
+...
+[info] Loading kernel module fuse.
+</code></pre>
+
+<p>Only at that moment, I started realising that I should have probably backed up my SD Card before, but then it was already too late. It then struck me - Does this mean I will have to redo it all over again with a new and fresh raspbian installation. That was definitely not something I was looking forward to do, especially not after I have invested my time to this project, the amount of packages and dependencies I have installed. Reflashing was not an option.</p>
+
+<p>And then it hit me, A while ago - I had more or less the same issue on my <a href="http://xubuntu.org/">Xubuntu 12.04</a> install and managed to get away with it via <a href="https://help.ubuntu.com/community/BasicChroot" target="_blank" rel="noopener noreferrer"><em>chroot</em></a> which then worked, that is when I started researching, if it is possible to chroot my ARM Raspbian install from an Xubuntu system.
+
+To my revelation it was...And below is a recipe I followed which helped me to rollback to <a href="https://packages.debian.org/sid/systemd-sysv">Systemd-sysv</a> without having to burn a new Raspbian image to my SD card.</p>
+
+<p>First, install two packages on your Ubuntu system: <a href="https://www.youtube.com/watch?v=OhUJeuviwhE"><em>qemu-user</em></a>, and <a href="https://wiki.archlinux.org/index.php/PRoot"><em>proot</em></a>.</p>
+<p><code class="language-bash">sudo apt-get install -y qemu-user proot</code></p>
+<p>After you mount the Raspbian SD card, you can do the equivalent of a '<a href="https://help.ubuntu.com/community/BasicChroot" target="_blank" rel="noopener noreferrer"><em>chroot</em></a>' with:</p>
+<p><code class="language-bash">sudo proot -q qemu-arm -r /mnt/raspbian_sd_card</code></p>
 <p>I was then able to chroot/proot to my raspbian install and removed upstart:</p>
-<p>[sourcecode language="bash"]<br />
-sudo apt-get -y purge --auto-remove upstart<br />
-[/sourcecode]<br />
+<p><code class="language-bash">sudo apt-get -y purge --auto-remove upstart</code><br/>
 This command will also automatically re-install systemd-sysv</p>

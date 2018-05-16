@@ -41,36 +41,36 @@ author:
   first_name: ''
   last_name: ''
 ---
-<p>After growing tired of sourcing Petalinux/Yocto-project settings, I decided to compile a script/code that resides under my <code> ~/.bashrc </code>, the only thing the code/script does it automagically source my settings upon entering the directory else it will just list the contents of that directory.</p>
-<p>[sourcecode language="bash"]<br />
-source $HOME/.opt/Xilinx/Vivado/2017.2/settings64.sh<br />
-export YOCTODIR=$HOME/Documents/Xilinx/EmbeddedLinux/Yocto/poky<br />
-export PETADIR=$HOME/Documents/Xilinx/EmbeddedLinux/Petalinux<br />
-function cd {<br />
-    # The 'builtin' keyword allows you to redefine a Bash builtin without<br />
-    # creating a recursion. Quoting the parameter makes it work in case there are spaces in<br />
-    # directory names.<br />
-    builtin cd &quot;$@&quot;<br />
-    if [ &quot;$PWD&quot; == &quot;$YOCTODIR&quot; ] ;<br />
-        then<br />
-            bash $YOCTODIR/.source_yocto<br />
-    elif [ &quot;$PWD&quot; == &quot;$PETADIR&quot; ] ;<br />
-        then<br />
-            bash $PETADIR/.source_petalinux<br />
-    else<br />
-        ls -lhF;<br />
-    fi<br />
-}</p>
-<p>[/sourcecode]</p>
+<h1>Automagically execute a bash function/cmd upon entering a directory.</h1>
+<p>After growing tired of sourcing Petalinux/Yocto-project settings everytime I needed to create/config a project, I decided to compile a script/code that resides under my <code> ~/.bashrc </code>, the only thing the code/script does it automagically source my settings upon entering the directory else it will just list the contents of that directory.</p>
+<pre><code class="language-bash">source $HOME/.opt/Xilinx/Vivado/2017.2/settings64.sh
+export YOCTODIR=$HOME/Documents/Xilinx/EmbeddedLinux/Yocto/poky
+export PETADIR=$HOME/Documents/Xilinx/EmbeddedLinux/Petalinux
+function cd {
+    # The 'builtin' keyword allows you to redefine a Bash builtin without
+    # creating a recursion. Quoting the parameter makes it work in case there are spaces in
+    # directory names.
+    builtin cd &quot;$@&quot;
+    if [ &quot;$PWD&quot; == &quot;$YOCTODIR&quot; ] ;
+        then
+            bash $YOCTODIR/.source_yocto
+    elif [ &quot;$PWD&quot; == &quot;$PETADIR&quot; ] ;
+        then
+            bash $PETADIR/.source_petalinux
+    else
+        ls -lhF;
+    fi
+}</pre>
+<p></code></p>
 <p>The content of source_petalinux listed above.</p>
-<p>[sourcecode language="bash"]<br />
-$ cat $PETADIR/.source_petalinux<br />
-#!/bin/bash<br />
-. ~/.opt/petalinux/settings.sh<br />
-[/sourcecode]</p>
+<p><code class="language-bash">
+$ cat $PETADIR/.source_petalinux</p>
+<pre>#!/bin/bash
+source ~/.opt/petalinux/settings.sh
+</code></pre>
 <p>as well as .source_yocto</p>
-<p>[sourcecode language="bash"]<br />
+<p><code class="language-bash">
 $ cat $YOCTODIR/.source_yocto</p>
-<p>#!/bin/bash<br />
-. $HOME/Documents/Xilinx/EmbeddedLinux/Yocto/poky/oe-init-build-env<br />
-[/sourcecode]</p>
+<pre>#!/bin/bash
+source $HOME/Documents/Xilinx/EmbeddedLinux/Yocto/poky/oe-init-build-env
+</code></pre>

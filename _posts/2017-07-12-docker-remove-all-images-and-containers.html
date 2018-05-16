@@ -34,14 +34,15 @@ author:
   first_name: ''
   last_name: ''
 ---
+<h1>Docker: Remove all images and containers</h1>
 <h3><strong>Problem:</strong></h3>
 <p>You use <a href="http://docker.io/">Docker</a>, but working with it created lots of images and containers. You want to remove all of them to save disk space.</p>
 <h3><strong>Solution:</strong></h3>
 <p><em>Warning:</em> This <em>will</em> destroy <em>all</em> your images and containers. It will not be possible to restore them!</p>
-<p>Run those commands in a shell:<code><br />
-# Delete all containers<br />
-sudo docker rm $(docker ps -a -q)<br />
-# Delete all images<br />
-sudo docker rmi $(docker images -q)<br />
-</code></p>
+<p>Run those commands in a shell:</p>
+<pre><code># Delete all containers
+$ sudo docker rm $(docker ps -a -q)
+# Delete all images
+$ sudo docker rmi $(docker images -q)
+</code></pre>
 <p>This solution has be proposed by GitHub user <a href="https://github.com/crosbymichael">@crosbymichael</a> in <a href="https://github.com/dotcloud/docker/issues/928#issuecomment-23538307">this issue</a></p>

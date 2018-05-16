@@ -40,12 +40,13 @@ author:
   first_name: ''
   last_name: ''
 ---
+<h1>How to stop Jenkins CI build by extract a value from a JSON endpoint in bash using Curl</h1>
 <p>Curl the URL to get the JSON response and pipe it to the python tool. The python code will extract the value mapped to the given key (number in this case).</p>
-<p><pre><code><br />
-machine='dbelab04'<br />
-machineport=8080<br />
-jobname='mkat_fpga_tests_4k'<br />
-buildnumber=$(curl --silent -X POST http://$machine:$machineport/job/$jobname/lastBuild/api/json?tree=number | python -c 'import json,sys;obj=json.load(sys.stdin);print obj[&quot;'number'&quot;]';)<br />
-curl -X POST http://$machine:$machineport/job/$jobname/$number/stop<br />
+<p><pre><code>
+machine='dbelab04'
+machineport=8080
+jobname='mkat_fpga_tests_4k'
+buildnumber=$(curl --silent -X POST http://$machine:$machineport/job/$jobname/lastBuild/api/json?tree=number | python -c 'import json,sys;obj=json.load(sys.stdin);print obj[&quot;'number'&quot;]';)
+curl -X POST http://$machine:$machineport/job/$jobname/$number/stop
 </code></pre></p>
 <p>Note: the above command actually works</p>

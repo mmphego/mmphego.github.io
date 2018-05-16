@@ -34,26 +34,27 @@ author:
   first_name: ''
   last_name: ''
 ---
+<h1>Create a global git commit hook</h1>
 <p>Recently found out about these git hooks and they work flawlessly but my only worry was that I had to copy all my hooks over every repo such that I could use them, which was a pain sometimes.</p>
 <p>Then started reading about this so called global git hooks, and found a fix.</p>
 <p>Usually the default template library is found at <code class="prettyprint prettyprinted"><span class="str">/usr/</span><span class="pln">share</span><span class="pun">/</span><span class="pln">git</span><span class="pun">-</span><span class="pln">core</span><span class="pun">/</span><span class="pln">templates</span></code> and we are going to use that directory for all our hooks.</p>
 <p>1. Enable git templates:</p>
 <p><code>git config --global init.templatedir '/usr/share/git-core/templates/'</code></p>
-<p>This tells git to copy everything in /usr/share/git-core/templates/ to your per-project .git/ directory when you run git init</p>
-<p>2. Write your hooks in /usr/share/git-core/templates/hooks.</p>
-<p>For example, here's an update hook (located in /usr/share/git-core/templates/hooks/update):</p>
-<p>[sourcecode language="bash"]<br />
-#!/bin/sh<br />
-# Prevent pushing changes to master branch<br />
-if [ $USER != &quot;mmphego&quot; ];<br />
-then<br />
-  if [ &quot;$1&quot; == refs/heads/master ];<br />
-  then<br />
-    echo &quot;Manual pushing to this repo is restricted&quot;<br />
-    exit 1<br />
-  fi<br />
-fi<br />
-[/sourcecode]<br />
+<p>This tells git to copy everything in <code>/usr/share/git-core/templates/</code> to your per-project <code>.git/</code> directory when you run git init.</p>
+<p>2. Write your hooks in <code>/usr/share/git-core/templates/hooks</code>.</p>
+<p>For example, here's an update hook (located in <code>/usr/share/git-core/templates/hooks/update</code>):</p>
+<pre><code class="language-bash">
+#!/bin/sh
+# Prevent pushing changes to master branch
+if [ $USER != &quot;mmphego&quot; ];
+then
+  if [ &quot;$1&quot; == refs/heads/master ];
+  then
+    echo &quot;Manual pushing to this repo is restricted&quot;
+    exit 1
+  fi
+fi
+</code></pre>
 4. Make sure the hook is executable.</p>
 <p><code>chmod a+x /usr/share/git-core/templates/hooks/update</code></p>
 <p>5. Re-initialize git in each existing repo you'd like to use this in:</p>

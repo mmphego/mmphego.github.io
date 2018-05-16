@@ -34,13 +34,14 @@ author:
   first_name: ''
   last_name: ''
 ---
+<h1>[Cool trick] Shortcut to mkdir and cd to it!</h1>
 <p>Append following code to <code>/$HOME/.bashrc</code></p>
-<p>[sourcecode]<br />
-function mkdir{<br />
-  command mkdir $1 &amp;&amp; cd $1<br />
-}<br />
-[/sourcecode]</p>
+<pre><code>
+function mkdir{
+  command mkdir $1 &amp;&amp; cd $1
+}
+</code></pre>
 <p>Then, execute .bashrc</p>
-<p>[sourcecode]<br />
-source ~/.bashrc<br />
-[/sourcecode]</p>
+<p><code>
+source ~/.bashrc
+</code></p>
