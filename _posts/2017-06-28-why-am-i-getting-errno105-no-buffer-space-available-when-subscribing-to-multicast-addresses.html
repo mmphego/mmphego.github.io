@@ -34,40 +34,48 @@ author:
   first_name: ''
   last_name: ''
 ---
-<p>I have been experiencing multicast subscription when subscribing to more that 20 IP's via smcroute and python socket module. After vigorous googling I finally found a fix.</p>
+<h2>Why am I getting "Errno(105): No buffer space available" when subscribing to multicast addresses?</h2>
+<p>I have been experiencing multicast subscription errors on my linux box when trying to subscribe to more that 20 IP's via <a href="https://smcroute.alioth.debian.org/" target="_blank">smcroute</a> and Python-Socket module. See below image to get an idea of the kind of errors I was getting, after multiple Googling attempts I finally found a fix.</p>
 <p><img class="alignnone size-full wp-image-1134" src="{{ site.baseurl }}/assets/screenshot_2017-06-28_11-59-55.png" alt="Screenshot_2017-06-28_11-59-55.png" width="1074" height="556" /></p>
-<p>Linux OS, limit the number of multicast group memberships that a machine can belong to simultaneously. (A "multicast group membership" indicates that a machine is listening to messages for a specific multicast IP address. In other words, there is a limit on how many multicast IP addresses you can listen to.)</p>
-<p>On Linux, in particular, the default limit is relatively small (only 20 on many standard kernels). However, this limit can be configured dynamically.</p>
+<p>Linux OS, limit the number of multicast group memberships that a machine can belong to simultaneously. (A "multicast group membership" indicates that a machine is listening to messages for a specific multicast IP address. In other words, there is a limit on how many multicast IP addresses you can listen to).
+On Linux, in particular, the default limit is relatively small (only 20 on many standard kernels). However, this limit can be configured dynamically.</p>
 <p>If you try to subscribe to too many multicast addresses at once, you may run into the error message below:</p>
-<p>[sourcecode]<br />
-daemon error: Warn: ADD MEMBERSHIP failed; Errno(105): No buffer space available<br />
-22<br />
-daemon error: Warn: ADD MEMBERSHIP failed; Errno(105): No buffer space available<br />
-23<br />
-daemon error: Warn: ADD MEMBERSHIP failed; Errno(105): No buffer space available<br />
-[/sourcecode]<br />
+<p><pre>
+  <code>
+  daemon error: Warn: ADD MEMBERSHIP failed; Errno(105): No buffer space available 22
+  daemon error: Warn: ADD MEMBERSHIP failed; Errno(105): No buffer space available 23
+  daemon error: Warn: ADD MEMBERSHIP failed; Errno(105): No buffer space available 24
+  </code>
+</pre>
 The "Errno 105" in this message indicates that the errno value returned by the Linux network stack is 105, or ENOBUFS. This return value while adding a multicast address indicates that your machine is trying to be a member of too many multicast groups at the same time.</p>
+
 <h3>Network Tuning</h3>
-<p>Solution is to tune your kernel, backup your current sysclt.conf and replace contents with the ones below.</p>
-<p><code>sudo vim /etc/sysctl.conf<br />
-</code></p>
-<p>[sourcecode language="bash"]<br />
-# Bigger buffers (to make 40Gb more practical). These are maximums, but<br />
-# the default is unaffected.<br />
-net.core.wmem_max=268435456<br />
-net.core.rmem_max=268435456<br />
-net.core.netdev_max_backlog=10000</p>
-<p># Avoids problems with multicast traffic arriving on non-default interfaces<br />
-net.ipv4.conf.default.rp_filter=0<br />
-net.ipv4.conf.all.rp_filter=0</p>
-<p># Force IGMP v2 (required by CBF switch)<br />
-net.ipv4.conf.all.force_igmp_version=2<br />
-net.ipv4.conf.default.force_igmp_version=2</p>
-<p># Increase the ARP cache table<br />
-net.ipv4.neigh.default.gc_thresh3 = 4096<br />
-net.ipv4.neigh.default.gc_thresh2 = 2048<br />
-net.ipv4.neigh.default.gc_thresh1 = 1024</p>
-<p># Increase number of multicast groups permitted<br />
-net.ipv4.igmp_max_memberships = 1024<br />
-[/sourcecode]</p>
-<p>You can reload the configuration file by executing, <code>sudo sysctl -p</code> or by rebooting your system.</p>
+
+<p>The solution is to tune your kerne. First things first we need to backup our current <code>sysclt.conf</code> and replace the contents with the ones below.</p>
+<code class="language-hljs bash">$ sudo vim /etc/sysctl.conf</code>
+
+<p><pre><code class="language-hljs bash">
+# Bigger buffers (to make 40Gb more practical). These are maximums, but the default is unaffected.
+net.core.wmem_max=268435456
+net.core.rmem_max=268435456
+net.core.netdev_max_backlog=10000
+
+# Avoids problems with multicast traffic arriving on non-default interfaces
+net.ipv4.conf.default.rp_filter=0
+net.ipv4.conf.all.rp_filter=0
+
+# Force IGMP v2 (required by CBF switch)
+net.ipv4.conf.all.force_igmp_version=2
+net.ipv4.conf.default.force_igmp_version=2
+
+# Increase the ARP cache table
+net.ipv4.neigh.default.gc_thresh3=4096
+net.ipv4.neigh.default.gc_thresh2=2048
+net.ipv4.neigh.default.gc_thresh1=1024
+
+# Increase number of multicast groups permitted
+net.ipv4.igmp_max_memberships=1024
+</code></pre>
+
+<p>After you have edited the file, you need to either reload the configuration file by executing, <code>sudo sysctl -p</code> or by rebooting your system.</p>
+<p>At this point you are pretty much Done.</p>

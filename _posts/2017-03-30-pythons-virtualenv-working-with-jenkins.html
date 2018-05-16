@@ -39,6 +39,7 @@ author:
   first_name: ''
   last_name: ''
 ---
+<h3>Python's Virtualenv working with Jenkins</h3>
 <p>If you use <a href="http://www.virtualenv.org/en/latest/" target="_blank">virtualenv</a> to isolate your python project's environment, and want your code tested automatically -- read on, else ignore.</p>
 <p><strong>virtualenv isolates your project's python environment<br />
 </strong><br />
@@ -51,33 +52,36 @@ virtualenv makes sure you lock down your project's main directory and all subdir
 <p>Jenkins needs some massaging before it handles the hijacked environment of virtualenv. This is how I did it for my local git repository:</p>
 <ul>
 <li>Download and install Jenkins</li>
-<li>Start it, it should be up on http://localhost:8080</li>
+<li>Start it, it should be up on <code>http://localhost:8080</code></li>
 <li>Install the Git Plugin</li>
 <li>Setup a new project with these properties:
 <ul>
 <li>Source Code Management: add the URI to your local repository,</li>
-<li>/Users/you/Sites/asdf in my case. Make sure the jenkins user can read this directory, otherwise the Jenkins GUI will tell you something random about invalid git repo, without a hint about a permissions error.</li>
+<li>/Users/you/Sites/asdf in my case. Make sure the Jenkins user can read this directory, otherwise the Jenkins GUI will tell you something random about invalid git repo, without a hint about a permissions error.</li>
 <li>Build Triggers: Poll SCM (with an interval like 0 * * * *). This is needed because<br />
 you're too lazy to build manually; and<br />
 you can not trigger builds with a git post-commit hook otherwise</li>
 <li>Build &gt; Execute shell. I've used two steps, one for setting up the environment and one for the actual tests:</li>
 </ul>
 </li>
-</ul>
-<p><pre><code></p>
-<p># Setup a proper path, I call my virtualenv dir &quot;venv&quot; and<br />
-# I've got the virtualenv command installed in /usr/local/bin<br />
-PATH=$WORKSPACE/venv/bin:/usr/local/bin:$PATH<br />
-if [ ! -d &quot;venv&quot; ]; then<br />
-        virtualenv venv<br />
-fi<br />
-. venv/bin/activate<br />
-pip install -r requirements.txt --download-cache=/tmp/$JOB_NAME<br />
-</pre></code><br />
-and</p>
-<p><pre><code></p>
-<p>. venv/bin/activate<br />
-which python</p>
-<p># reply should be<br />
-/home/user/.virtualenv/bin/python<br />
-</pre></code></p>
+<br/>
+<pre>
+  <code># Setup a proper path, I call my virtualenv dir &quot;venv&quot; and
+  # I've got the virtualenv command installed in /usr/local/bin
+  PATH=$WORKSPACE/venv/bin:/usr/local/bin:$PATH
+  if [ ! -d &quot;venv&quot; ]; then
+          virtualenv venv
+  fi
+  . venv/bin/activate
+  pip install -r requirements.txt --download-cache=/tmp/$JOB_NAME
+  </code>
+</pre>
+<p>and</p>
+<pre>
+  <code>
+  $ source venv/bin/activate
+  $ which python <br/>
+  # reply should be
+  # /home/user/.virtualenv/bin/python
+  </code>
+</pre>
