@@ -21,17 +21,18 @@ title: Mpho Mphego
 # use subtitle: to set the sub heading for that title(meta-title). NOTE: if(meta-title exists){subtilel visiblity = true}
 
 # Short description of your site
-description: Welcome to the geek side!
+description: "Currently employed by the SKA (Square Kilometer Array) / SARAO (South African Radio Astronomy Observatory) as a Software Test & Verification Engineer"
 
 # --- Navigation bar options --- #
 
 # List of links in the navigation bar
 navbar-links:
-  # About Me: "/aboutme.html"
+  Blog: ""
   # Projects: "/projects.html"
   # Expedition: ""
   Resume: "resume/MphoMphego.pdf"
-  Tags: "tags"
+  About / Contact Me: "aboutme"
+  Categories / Tags: "tags"
 
 # Image to show in the navigation bar - image must be a square (width = height)
 # Remove this parameter if you don't want an image in the navbar
@@ -134,10 +135,10 @@ title-separator: "-"
 # Output options (more information on Jekyll's site)
 timezone: "Africa/Johannesburg"
 markdown: kramdown
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
-  #     disable : true
+# kramdown:
+#   input: GFM
+#   syntax_highlighter: rouge
+#       disable : true
 highlighter: rouge
 permalink: /blog/:year/:month/:day/:title.html
 paginate: 10
