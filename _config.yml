@@ -116,6 +116,8 @@ disqus: "mmphego-github-io"
 # Fill in your Google Analytics ID to track your website using GA
 google_analytics: "UA-68808612-1"
 
+google_adsense: "ca-pub-3462291035225536"
+
 # Google Tag Manager ID
 gtm: "GTM-PDCDJZ3"
 

@@ -3,6 +3,7 @@ layout: base
 ---
 
 {% include header.html type="page" %}
+{% include advertisements.html %}
 
 <div class="container" role="main">
   <div class="row">
@@ -10,7 +11,7 @@ layout: base
       {{ content }}
 	    {% if page.comments %}
         <div class="disqus-comments">
-	        {% include disqus.html %}
+	         {% include disqus.html %}
         </div>
 	    {% endif %}
     </div>
