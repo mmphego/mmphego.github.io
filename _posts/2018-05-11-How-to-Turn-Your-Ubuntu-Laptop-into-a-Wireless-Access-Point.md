@@ -2,13 +2,11 @@
 layout: post
 title: "How to Turn Your Ubuntu Laptop into a Wireless Access Point"
 date: 2018-05-11 7:36:22.000000000 +02:00
-categories:
+tags:
 - Bash
-- Linux
 - Linux/Ubuntu
-tags: 
 - Hacks
-- Linux/Ubuntu
+- Tips/Tricks
 ---
 
 # How to turn your Ubuntu laptop into a WiFi AP

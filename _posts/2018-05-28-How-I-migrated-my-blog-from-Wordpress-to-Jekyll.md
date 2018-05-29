@@ -2,11 +2,12 @@
 layout: post
 title: "How I migrated my blog from Wordpress to Jekyll"
 date: 2018-05-28 17:09:12.000000000 +02:00
-tags: 
+tags:
 - Bash
 - Hacks
 - Tips/Tricks
 - Ubuntu
+- Personal
 ---
 
 # Why migrate in the first place?

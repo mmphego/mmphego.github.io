@@ -3,13 +3,9 @@ layout: post
 title:  "How to securely backup your Jenkins Configuration"
 date: 2018-05-25 11:14:30.000000000 +02:00
 tags:
-- Bash
 - Docker
-- Hacks
 - JenkinsCI
 - Continuous Integration
-- Tips/Tricks
-- Ubuntu
 ---
 
 
