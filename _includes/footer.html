@@ -201,6 +201,28 @@
             </a>
           </li>
           {% endif %}
+      {% if site.author.sololearn and site.footer-links-active.sololearn %}
+          <li>
+            <a href="https://www.sololearn.com/Profile/{{ site.author.sololearn }}" title="Sololearn">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-chrome fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">Sololearn</span>
+            </a>
+          </li>
+          {% endif %}
+      {% if site.author.codecademy and site.footer-links-active.codecademy %}
+          <li>
+            <a href="https://www.codecademy.com/{{ site.author.codecademy }}" title="CodeCademy">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-connectdevelop fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">CodeCademy</span>
+            </a>
+          </li>
+          {% endif %}
         </ul>
         <p class="copyright text-muted">
       {{ site.author.name }}
