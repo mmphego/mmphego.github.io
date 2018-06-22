@@ -37,6 +37,8 @@ author:
   last_name: ''
 ---
 <p>After finishing my Node-Red dashboard app, and boy, it's awesome. Everything works great, but I wanted to bind it to port 80 on my nginx server.</p>
+    {% include advertisements.html %}
+
 <h2>Nginx</h2>
 <p>A more popular approach is to set up Nginx as a reverse proxy by having it bind to the desired port, forwarding all incoming traffic to my node red dashboard.</p>
 <p>Nginx is a high performance, open source web server (similar to Apache) that is widely-used.</p>
@@ -45,8 +47,12 @@ author:
 <p><code class="highlighter-rouge">
 sudo apt-get install nginx
  </code></p>
+     {% include advertisements.html %}
+
 <p><h3>Configuring Nginx</h3></p>
 <p>Next, we'll need to configure Nginx so that it forwards traffic to my dashboard. Let's start off by removing the default configuration file:</p>
+    {% include advertisements.html %}
+
 <p><code class="highlighter-rouge">
 sudo rm /etc/nginx/sites-enabled/default
  </code></p>
@@ -54,6 +60,8 @@ sudo rm /etc/nginx/sites-enabled/default
 <p><code class="highlighter-rouge">
 sudo nano /etc/nginx/sites-available/node
  </code><br />
+     {% include advertisements.html %}
+
 Paste the following code in the file and make sure to change example.com to your domain (or IP), and 1880 to your Node-Red Dashboard port:</p>
 <p><code class="highlighter-rouge">
 server {<br />
@@ -77,6 +85,8 @@ sudo ln -s /etc/nginx/sites-available/node /etc/nginx/sites-enabled/node
 sudo service nginx restart
 </code><br />
 run</p>
+    {% include advertisements.html %}
+
 <p><code class="highlighter-rouge">
 sudo service nginx status
 </code><br />
@@ -103,6 +113,8 @@ Feb 11 14:14:14 alexapi systemd[1]: Started A high performance web server and a 
 <p><img class="alignnone size-full wp-image-716" src="{{ site.baseurl }}/assets/screenshot_2017-02-11_16-18-49.png" alt="Screenshot_2017-02-11_16-18-49.png" width="1599" height="865" /></p>
 <p>also see: https://www.digitalocean.com/community/tutorials/how-to-connect-your-internet-of-things-with-node-red-on-ubuntu-16-04</p>
 <p>&nbsp;</p>
+    {% include advertisements.html %}
+
 <h2><strong><span style="color:#ff0000;">If you found this helpful, donate some coins</span></strong></h2>
 <p>BTC: 1GLwaJiYo7NT71DFHj7KzcDjcczJUWVCbz</p>
 <p>ETH: 0x5218b473b25Bff87f6820f3A84400cbdf3Ab85AB</p>

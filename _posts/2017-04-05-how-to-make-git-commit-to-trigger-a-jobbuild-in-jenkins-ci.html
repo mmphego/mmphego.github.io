@@ -39,9 +39,13 @@ author:
 <p>In this blog post I will show you how to configure a post commit hook on Git that notifies a Jenkins CI server about repository changes. This means that whenever a new commit is pushed to the Git repository, the cURL command line tool will be launched to initiate a Http request telling Jenkins to trigger a job.</p>
 <p><strong>1. Execute Jenkins build with Curl<br />
 </strong></p>
+    {% include advertisements.html %}
+
 <p>In this setup, there is no authentication at Jenkins, considering that I will be responsible for the repository and jenkins server.</p>
 <p>To test, I had to execute jenkins with curl</p>
 <p><pre><code></p>
+      {% include advertisements.html %}
+
 <p>$ ~/src/mkat_fpga_tests/.git/hooks (GIT_DIR!)<br />
 $ &gt;&gt;&gt; curl -D - -X POST http://dbelab04:8080/job/mkat_fpga_tests_4k/build</p>
 <p>HTTP/1.1 201 Created<br />
@@ -51,6 +55,8 @@ Location: http://dbelab04:8080/queue/item/387/<br />
 Content-Length: 0<br />
 Server: Jetty(9.2.z-SNAPSHOT)<br />
 </pre></code></p>
+    {% include advertisements.html %}
+
 <p><strong>2. Configure a hook of repository<br />
 </strong><br />
 Create a file in .git/hooks called post-commit and do not forget to make it executable.</p>
@@ -69,6 +75,7 @@ Create a file in .git/hooks called post-commit and do not forget to make it exec
     </code>
   </pre>
 </p>
+    {% include advertisements.html %}
 
 <p><img class="alignnone size-full wp-image-902" src="{{ site.baseurl }}/assets/screenshot_2017-04-05_12-57-44.png" alt="Screenshot_2017-04-05_12-57-44" width="781" height="254" /></p>
 <blockquote><p>Assumptions:<br />
@@ -77,6 +84,8 @@ Jenkins version &gt; 2.0<br />
 Git Plugin (Jenkins)<br />
 Gitlab hook (Jenkins)</p></blockquote>
 <p><strong>3. Configure Jenkins </strong></p>
+    {% include advertisements.html %}
+
 <p>Configure your Jenkins job to be able to “Trigger builds remotely”</p>
 <p><img class="alignnone size-full wp-image-942" src="{{ site.baseurl }}/assets/screenshot_2017-04-05_13-18-19.png" alt="Screenshot_2017-04-05_13-18-19.png" width="1911" height="533" /></p>
 <p>Enable SCM polling for each project you want to notify:</p>
