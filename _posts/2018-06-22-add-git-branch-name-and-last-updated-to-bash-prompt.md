@@ -17,7 +17,7 @@ In order to add branch name to bash prompt we have to edit the PS1 variable(set 
 ## What is PS1 (Not confuse it with PlayStation One ;-)
 PS1 denotes Prompt String 1. It is the one of the prompt available in Linux/UNIX shell. When you open your terminal, it will display the content defined in PS1 variable in your bash prompt.
 
-[For more info read!!!!](https://askubuntu.com/a/186804/445204)
+[For more about PS1!!!!](https://askubuntu.com/a/186804/445204)
 
 ## Display git branch name and last time it was updated
 
@@ -46,6 +46,7 @@ export PS1="\[\033[0;32m\]\[\033[0m\033[0;38m\]\u\[\033[0;36m\]@\[\033[0;36m\]\h
 {% endraw %}
 Let me unpack what is going on with the code above. The ```cd``` function redefines ```cd``` in such a way that every time I change director, it automagically lists the contents of the directory. The ```git_branch()``` function extract the branch name and the ```git_last_update()``` function extract the date and time of the last update  when your are in git repository. This function output used in PS1 variable in order to prompt the branch name and last update.
 {% raw %}
+
 In above PS1 we defined following properties
 - ```\[\033[0;32m\]\[\033[0m\033[0;38m\]\u\[\033[0;36m\]@\[\033[0;36m\]\h``` - user, host name and its displaying colour
 - ```\w\[\033[0;32m\]``` - current working directory and its displaying colour
