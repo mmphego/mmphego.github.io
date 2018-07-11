@@ -13,7 +13,7 @@ baseurl: ""
 #baseurl: "/projectname"
 
 # Name of website
-title: Mpho Mphego
+title: Mpho Mphego (self-taught Python Dev)
 
 #For my changes
 # use meta-title: for the center heading of the page.
@@ -21,7 +21,7 @@ title: Mpho Mphego
 # use subtitle: to set the sub heading for that title(meta-title). NOTE: if(meta-title exists){subtilel visiblity = true}
 
 # Short description of your site
-description: "Hi! I'm Mpho Mphego, a Python developer. Loves to meet new people, connect, discuss, network and grow, mostly at software developers’ conferences, dev-fests and gaming meet-ups"
+description: "Hi! I'm Mpho Mphego, a self-taught Python developer. Loves to meet new people, connect, discuss, network and grow, mostly at software developer’s conferences, dev-fests and meet-ups"
 
 # --- Navigation bar options --- #
 
@@ -30,9 +30,10 @@ navbar-links:
   Blog: ""
   # Projects: "/projects.html"
   # Expedition: ""
+  Uses: "uses"
+  Categories / Tags: "tags"
   Resume: "resume/MphoMphego.pdf"
   About / Contact Me: "aboutme"
-  Categories / Tags: "tags"
 
 # Image to show in the navigation bar - image must be a square (width = height)
 # Remove this parameter if you don't want an image in the navbar
