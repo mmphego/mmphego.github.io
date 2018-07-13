@@ -30,7 +30,7 @@ navbar-links:
   Blog: ""
   # Projects: "/projects.html"
   # Expedition: ""
-  Uses: "uses"
+  "@Mentions": "mentions"
   Categories / Tags: "tags"
   Resume: "resume/MphoMphego.pdf"
   About / Contact Me: "aboutme"
