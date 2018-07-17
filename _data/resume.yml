@@ -8,11 +8,13 @@ contact:
   #   text: your-phone-num
   - icon: fa-globe
     text: https://blog.mphomphego.co.za
+  - icon: fa-linkedin
+    text: https://www.linkedin.com/in/mphomphego/
   - icon: fa-github
     text: https://github.com/mmphego
 
 summary: |
-        I am currently working as a Test & Verification Engineer on Python’s Correlator-Beamformer back-end development packages (mainly corr2 and casperfpga), my main focus is on testing and verifying these packages with Python based Testing Framework and my contribution can be found on Meerkat FPGA Test Framework [https://github.com/ska-sa/mkat_fpga_tests] at the Square Kilometer Array South Africa ska.ac.za.
+        I am currently working as a Test & Verification Engineer on Python’s Correlator-Beamformer back-end development packages (mainly corr2 and casperfpga), my main focus is on testing and verifying these packages with Python based Testing Framework and my contribution can be found on Meerkat FPGA Test Framework [https://github.com/ska-sa/mkat_fpga_tests] at the Square Kilometer Array South Africa (ska.ac.za).
 
         Having completed a Bachelors in Electronic Engineering, and currently pursuing a Masters. I found that I enjoyed the programming aspects of the course most, hence why I decided to diverge to Programming focusing mainly on Python and CLang.
 
@@ -49,7 +51,7 @@ certification:
     authority: SoloLearn
     duration: Jun 2018 - Present
     license:
-    url: https://goo.gl/MqPSdi
+    url:
 
   - name: Xilinx Vivado and Partial Reconfiguration
     authority: Kutleng Technologies
@@ -79,7 +81,7 @@ certification:
     authority: Coursera
     duration:  Sep 2014 - Present
     license:
-    url: https://www.coursera.org/course/interactivepython
+    url:
 
   - name: LFS101x, Introduction to Linux
     authority: edX
@@ -172,27 +174,23 @@ experience:
                   * Monthly Report writing, Creation of Engineering Requirements Templates.
 
 projects:
-  - name:
-    description:
-    contribution:
-
-  - name:
-    description:
-    contribution:
-
-  - name:
-    description:
-    contribution:
-
-  - name:
-    description:
-    contribution:
-
-  - name:
-    description:
-    contribution:
-
-  - name:
-    description:
-    contribution:
-
+  - name: (Work) CBF Tests
+    description:  A Correlator-beamforming unit-testing based framework for MeerKAT signal processing
+    link: https://github.com/ska-sa/mkat_fpga_tests
+    contribution: Mpho Mphego, et al.
+  - name: (Work) CBF-System-Dashboard
+    description: Plotly/Node-Red dashboard running on a Docker container for monitoring Correlator-Beamformer system sensors
+    link: https://github.com/ska-sa/CBF-System-Dashboard
+    contribution: Mpho Mphego
+  - name: (Work) CBF-Tests-Automation
+    description: Automated Jenkins and CBF tests [deployment pipeline] through Docker.
+    link: https://github.com/ska-sa/CBF-Tests-Automation
+    contribution: Mpho Mphego, et al.
+  - name: (Work) nosekatreport
+    description:  Nose plug-in to support Automated Test Framework (AQF)
+    link: https://github.com/ska-sa/nosekatreport
+    contribution: Mpho Mphego, et al.
+  - name: (Personal) DSTV IR remote using esp8266
+    description:  DSTV IR Remote using an esp8266 with support for controlling led strips mounted behind the TV and Amazon-Alexa intergrated.
+    link: https://github.com/mmphego/DSTV_A6_esp8266_IRremote
+    contribution: Mpho Mphego

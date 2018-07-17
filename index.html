@@ -38,7 +38,7 @@ bigimg:
       </div>
     </div>
   </div>
-
+    {% include advertisements.html %}
 </div>
     <div>
       <input type="text" id="search-input" placeholder="search...">
@@ -95,6 +95,8 @@ bigimg:
       </div>
     </div>
 
+    {% include advertisements.html %}
+
     {% if post.tags.size > 0 %}
     <div class="blog-tags">
       Tags:
@@ -111,7 +113,7 @@ bigimg:
    </article>
   {% endfor %}
 </div>
-
+{% include advertisements.html %}
 {% if paginator.total_pages > 1 %}
 <ul class="pager main-pager">
   {% if paginator.previous_page %}

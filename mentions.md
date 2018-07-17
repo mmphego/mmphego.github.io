@@ -78,4 +78,6 @@ Mpho co-authored a journal paper titled: [Revival of the Magnetar PSR J1622–49
 ### SKA MeerKAT Launch [Photo]
 
 ![DP of RSA and Minister of DST]({{ "/assets/20180713_103002.jpg" | absolute_url }})
-Mpho can be seen with the **Mr David Mabuza: Deputy President of the Republic of South Africa**, Minister Mmamoloko Kubayi-Ngubane: The Department of Science and Technology, Dr. Rob Adam: Director of the [Square Kilometer Array radio-telescope](https://ska.ac.za) in South Africa and others...
+
+
+Mpho can be seen with **Mr David Mabuza: Deputy President of the Republic of South Africa**, Minister Mmamoloko Kubayi-Ngubane: The Department of Science and Technology, Dr. Rob Adam: Director of the [Square Kilometer Array radio-telescope](https://ska.ac.za) in South Africa and others...

@@ -31,7 +31,8 @@ css: "/css/resume.css"
         <div id="contact">
           {% for item in site.data.resume.contact %}
           <div class="contact-item">
-            <i class="fa {{ item.icon }} aria-hidden="true></i> {{ item.text }}
+            <i class="fa {{ item.icon }} aria-hidden="true> </i>
+            <a href="{{ item.text }}"> {{ item.text }} </a>
           </div>
           {% endfor %}
         </div>
@@ -84,16 +85,14 @@ css: "/css/resume.css"
             </div>
             <div class="block-subtitle">
               {{ edu.duration }}
+              {% if edu.license %}
+                <br>Licence: {{ edu.license }}
+              {% endif %}
             </div>
-            {% if edu.license %}
-            <div class="block-content">
-              Licence: {{ edu.license }}
-            </div>
-            {% endif %}
 
             {% if edu.url %}
             <div>
-              <a href="{{ edu.url }}">Certificate Link</a>
+              <a href="{{ edu.url }}"> {{ edu.name }}</a>
             </div>
             {% endif %}
           </div>
@@ -143,7 +142,7 @@ css: "/css/resume.css"
         </div>
       </section>
 
-
+      {% if site.data.resume.projects[0].name %}
       <section id="projects">
         <div class="section-title">
           Projects
@@ -152,18 +151,26 @@ css: "/css/resume.css"
           {% for project in site.data.resume.projects %}
           <div class="block">
             <div class="block-title">
-              {{ project.name }}
+                <a href="{{ project.link }}"> {{ project.name }} </a>
             </div>
+
+            {% if project.description %}
+                <div class="block-content">
+                    {{ project.description }}
+                </div>
+            {% endif %}
+
+            {% if project.contribution %}
             <div class="block-subtitle">
               {{ project.contribution }}
             </div>
-            <div class="block-content">
-              {{ project.description }}
-            </div>
+            {% endif %}
+
           </div>
           {% endfor %}
         </div>
       </section>
+      {% endif %}
 
 <!--       <section id="languages">
         <div class="section-title">
@@ -183,7 +190,7 @@ css: "/css/resume.css"
         </div>
       </section> -->
 
-    </div class=clear>
+    </div class="footer">
     <footer>
       <span class="print">( <a href="javascript:window.print()">Save to PDF</a> )</span>
     </footer>

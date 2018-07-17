@@ -3,7 +3,6 @@ layout: base
 ---
 
 {% include header.html type="post" %}
-{% include advertisements.html %}
 
 <div class="container">
   <div class="row">
@@ -33,10 +32,7 @@ layout: base
       {% endif %}
 
       <article role="main" class="blog-post">
-        {% include advertisements.html %}
-
         {{ content }}
-
         {% include advertisements.html %}
       </article>
 
@@ -51,10 +47,7 @@ layout: base
             {{ page.tags | join: ", " }}
           {% endif %}
         </div>
-        {% include advertisements.html %}
       {% endif %}
-
-      {% include advertisements.html %}
 
       {% if page.social-share %}
         {% include social-share.html %}
@@ -62,27 +55,20 @@ layout: base
 
       <ul class="pager blog-pager">
         {% if page.previous.url %}
-        {% include advertisements.html %}
 
         <li class="previous">
           <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">&larr; Previous Post</a>
         </li>
         {% endif %}
 
-        {% include advertisements.html %}
-
         {% if page.next.url %}
-
-        {% include advertisements.html %}
 
         <li class="next">
           <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">Next Post &rarr;</a>
         </li>
-        {% include advertisements.html %}
 
         {% endif %}
       </ul>
-      {% include advertisements.html %}
 
       {% if page.comments %}
         <div class="disqus-comments">
@@ -90,7 +76,5 @@ layout: base
         </div>
       {% endif %}
     </div>
-    {% include advertisements.html %}
   </div>
-  {% include advertisements.html %}
 </div>

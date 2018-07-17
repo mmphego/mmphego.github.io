@@ -1,6 +1,6 @@
 html {
   width: 100%;
-  font-size: 14px;
+  font-size: 16px;
 }
 body {
   text-align: center;
@@ -109,10 +109,11 @@ section {
 footer {
   color: #bbbbbb;
   font-size: 1rem;
-  min-height: 3rem;
-  line-height: 3rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  /*min-height: 3rem;*/
+  /*line-height: 3rem;*/
+  /*margin-top: 1rem;*/
+  /*margin-bottom: 1rem;*/
+  text-align: center;
 }
 @media print {
   html {
@@ -120,6 +121,7 @@ footer {
   }
   .print {
     display: none;
+    text-align: center;
   }
 }
 @media screen and (max-width: 48rem) {
