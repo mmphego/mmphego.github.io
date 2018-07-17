@@ -1,0 +1,198 @@
+title: Mpho Mphego - Résumé
+name: Mpho Mphego
+jobtitle: Test & Verification Engineer
+contact:
+  - icon: fa-envelope
+    text: mpho112(at)gmail(dot)com
+  # - icon: fa-phone-square
+  #   text: your-phone-num
+  - icon: fa-globe
+    text: https://blog.mphomphego.co.za
+  - icon: fa-github
+    text: https://github.com/mmphego
+
+summary: |
+        I am currently working as a Test & Verification Engineer on Python’s Correlator-Beamformer back-end development packages (mainly corr2 and casperfpga), my main focus is on testing and verifying these packages with Python based Testing Framework and my contribution can be found on Meerkat FPGA Test Framework [https://github.com/ska-sa/mkat_fpga_tests] at the Square Kilometer Array South Africa ska.ac.za.
+
+        Having completed a Bachelors in Electronic Engineering, and currently pursuing a Masters. I found that I enjoyed the programming aspects of the course most, hence why I decided to diverge to Programming focusing mainly on Python and CLang.
+
+        I have been working with Python for the past 4+ years mostly on back-end development, I have enjoyed building tools that have proven to save time and improve efficiency as well, some of my work can be found on https://github.com/mmphego
+
+        * How I keep my skills sharp
+
+        To make sure I am always up on my feet when it comes to keeping myself up with latest tech I have been working on a little ‘continuous’ project titled Homely which is a Raspberry Pi based Home Automation System. The project is Python based and C code snippets including HTML/CSS and Android.
+
+        To keep my knowledge base updated I have enrolled on various MOOC's offered by Edx, Coursera and Udacity, and have attended conferences as well as watching various Youtube tuts and lectures.
+
+        * What I want to do next
+
+        I would like to work on projects that are already set to grow big and have scaling issues. I want to work with people that share the same passion as me and with similar interests especially in what they do so I can learn from them and improve where necessary and hopefully teach others as a way of giving back. I, however, do not want to work for a Boss I want a Leader.
+
+        I would like to focus more on building my Python knowledge base and also focusing more on building my reputation around these tools Ansible, Terraform, Kubernetes, Docker and Jenkins.
+
+education:
+  - university: Cape Peninsula University of Technology
+    duration: Jun 2017 - Current
+    location: Cape Town, South Africa
+    degree: Master of Engineering - Electrical/Electronics Engineering
+  - university: Tshwane University of Technology
+    duration: Jun 2012 - Jun 2016
+    location: Pretoria, South Africa
+    degree: Batchelor of Technology - Electrical/Electronics Engineering
+  - university: Tshwane University of Technology
+    duration: Jan 2005 - Dec 2010
+    location: Pretoria, South Africa
+    degree: National Diploma - Electronics and Communications Engineering
+
+certification:
+  - name: Python 3
+    authority: SoloLearn
+    duration: Jun 2018 - Present
+    license:
+    url: https://goo.gl/MqPSdi
+
+  - name: Xilinx Vivado and Partial Reconfiguration
+    authority: Kutleng Technologies
+    duration: Jun 2018 - Present
+    license:
+    url:
+
+  - name: Mellanox Certified Network Professional
+    authority: Mellanox Technologies
+    duration:  Feb 2017 - Present
+    license:
+    url:
+
+  - name: Python Intermediate
+    authority: GetCertified IT Training
+    duration:  Feb 2017 - Present
+    license:
+    url:
+
+  - name: Certificate for Appreciation
+    authority: South African National Antactic Programme (SANAP)
+    duration:  Aug 2015 - Present
+    license:
+    url:
+
+  - name: An Introduction to Interactive Programming in Python
+    authority: Coursera
+    duration:  Sep 2014 - Present
+    license:
+    url: https://www.coursera.org/course/interactivepython
+
+  - name: LFS101x, Introduction to Linux
+    authority: edX
+    duration: Sep 2014 - Present
+    license: "4edbd82b6348437598dbedde3e6d8934"
+    url:
+
+  - name: Programming for Everybody (Python)
+    authority: Coursera
+    duration:  Aug 2014 - Present
+    license:
+    url:
+
+skills:
+  - title: Main Skills
+    items: Docker, Git, Jenkins CI, Linux, Python
+
+  - title: Tools & Technologies
+    items: Altium Designer, Amazon Web Services (AWS), AWS IoT, AWS Lambda, Graphite/Graphana,Hound-CI, JIRA, Travis-CI, Xilinx
+
+  - title: Industry Knowledge
+    items: Agile Methodologies, Electronics, Network Administration, PCB Design, Regression Testing, Scripting (Awk, Bash, Sed), Software Development, Software Documentation, Software Testing Life Cycle, Test Automation, Test Driven Development, Testing (Acceptance, Qualification and Unit)
+
+  - title: Other Skills
+    items: Arduino Development, C-Lang, MQTT, Hardware Development, Hypervisor(VirtualBox, Vagrant)
+
+experience:
+  - title: Test & Verification Engineer
+    duration: Jun 2015 - Present
+    company: SKA SA (Square Kilometer Array South Africa)
+    location: Cape Town, South Africa
+    description: |
+                  * I was employed by SKA SA to develop test and verification procedures for the CBF (Correlator-Beamformer) subsystem which is under the DBE (Digital Back-End) department/division of the SKA SA.
+                  * Writing and debugging (Test driven development process) both unit, integration and acceptance/qualification tests for the MeerKAT's signal processing chain [Integration, verification and testing of components required to run the Meerkat telescopes successfully with minimum failures].
+                  * I have developed new user-facing features from conception to execution, such as regression testing by means of deploying tests to Jenkins CI running under Docker container as well as configuration and deployment as code by means of applying DevOps principles.
+                  * Automated test reports compilation and regeneration of all software documentation to support the above-mentioned tasks using Python-Sphinx
+                  * Research and recommend innovative, and where possible automated approaches for system administration and configuration tasks(Shell Scripting).
+                  * Assist in maturing of software development processes and quality assurance processes towards greater standardization and improved long term maintainability and robustness.
+                  * Facilitate coding standard compliance and code reviews on github.
+
+  - title: Marion Island Systems Engineer (M71 Expedition Member)
+    duration: Mar 2014 - May 2015
+    company: SANSA (South African National Space Agency)
+    location: Marion Island, Prince Edwards Sub-Antactic Islands
+    description: |
+                  ** On the voyage to Marion Island I worked on the S.A. Agulhas 2.
+                  * Field maintenance of the GPS Receiver and Server as well as supervision of the GPS receiver and logger during the voyage.
+
+                  ** On Marion Island,
+                  * I was a System Administrator/Engineer for various project and operational needs and ensured that the SANSA Space Science (SSS) Space Weather Projects runs optimally and as far as possible without interruptions.
+                  * I was responsible for various systems such as Seismometer (Seismometer Real-time Acquisition and Monitoring), Tide Gauge, Magnetometer, GPS Scintillation, WWLLN(World Wide Lightning Location Network), WDS(Whistlers Detection System), DVRAS(Digital VLF recording and analysis system)
+                  * As part of a Systems Admin, I was in charge of Installing new/rebuild existing servers Linux (Debian and RedHat) and configure hardware, peripherals, services, settings, directories, storage. In accordance with standards and project/operational requirements.
+                  * Research and recommend innovative, and where possible automated approaches for system administration tasks (Python and Shell Scripting, crontab)
+                  * Performing daily system monitoring, verifying the integrity and availability of all hardware, server resources, systems and key processes, reviewing system and application logs, and verifying completion of scheduled jobs such as backups.
+                  * Performing daily backup operations, ensuring all required file systems and system data are successfully backed up to the appropriate disks.
+                  * Repair and recover from hardware or software failures.
+                  * Coordinate and communicate with impacted constituencies.
+                  * Maintain data center environmental and monitoring equipment.
+                  * Monthly report writing on systems performance and scientific instruments.
+                  * Internet and bandwidth monitoring for all island users.
+
+  - title: Development Engineering Intern
+    duration: Sep 2013 - Mar 2014
+    company: Powertech System Integrators
+    location: Pretoria, South Africa
+    description: |
+                  * Project planning from concept to close-out phases.
+                  * Hardware design (Research, Schematic design, PCB design) based on MSP430
+                  * Hardware prototype manufacture (Component sourcing, prototype PCB etching, PCB population to IPC standards)
+                  * Hardware testing and fault finding.
+                  * Firmware design, testing and debugging based on MSP430
+                  * Research, Design and Implementation of Electronic designs and fault finding.
+                  * Procurement Of Electronic Components.
+                  * Documenting Schematic and PCB design procedures.
+                  * Monthly Report writing, Creation of Engineering Requirements Templates.
+
+  - title: Electronic Technologist
+    duration: Oct 2012 - Sep 2013
+    company: CSIR (Council for Scientific and Industrial Research)
+    location: Pretoria, South Africa
+    description: |
+                  * Project planning from concept to close-out phases.
+                  * Hardware design (Research, Schematic design, PCB design).
+                  * Hardware prototype manufacture (Component sourcing, prototype PCB etching, PCB population to IPC standards).
+                  * Hardware testing and fault finding.
+                  * Firmware design(C/C++).
+                  * Firmware testing and debugging. Research, Design and Implementation of Electronic designs and fault finding.
+                  * Procurement Of Electronic Components.
+                  * Documenting Schematic and PCB design procedures.
+                  * Monthly Report writing, Creation of Engineering Requirements Templates.
+
+projects:
+  - name:
+    description:
+    contribution:
+
+  - name:
+    description:
+    contribution:
+
+  - name:
+    description:
+    contribution:
+
+  - name:
+    description:
+    contribution:
+
+  - name:
+    description:
+    contribution:
+
+  - name:
+    description:
+    contribution:
+
