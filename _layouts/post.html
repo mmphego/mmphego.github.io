@@ -34,7 +34,9 @@ layout: base
 
       <article role="main" class="blog-post">
         {% include advertisements.html %}
+
         {{ content }}
+
         {% include advertisements.html %}
       </article>
 
@@ -49,7 +51,9 @@ layout: base
             {{ page.tags | join: ", " }}
           {% endif %}
         </div>
+        {% include advertisements.html %}
       {% endif %}
+
       {% include advertisements.html %}
 
       {% if page.social-share %}
@@ -64,12 +68,18 @@ layout: base
           <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">&larr; Previous Post</a>
         </li>
         {% endif %}
+
+        {% include advertisements.html %}
+
         {% if page.next.url %}
+
         {% include advertisements.html %}
 
         <li class="next">
           <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">Next Post &rarr;</a>
         </li>
+        {% include advertisements.html %}
+
         {% endif %}
       </ul>
       {% include advertisements.html %}
@@ -80,5 +90,7 @@ layout: base
         </div>
       {% endif %}
     </div>
+    {% include advertisements.html %}
   </div>
+  {% include advertisements.html %}
 </div>

@@ -17,16 +17,36 @@ common-js:
 <!DOCTYPE html>
 <html lang="en">
   <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+
   {% include head.html %}
+
   <body>
+    {% include advertisements.html %}
+
     <!-- Detect adBlock -->
     <script src="{{ site.baseurl }}/js/ads.js" type="text/javascript"></script>
+
     {% include gtm_body.html %}
+
     {% include advertisements.html %}
+
     {% include nav.html %}
-    {{ content }}
+
     {% include advertisements.html %}
+
+    {{ content }}
+
+    {% include advertisements.html %}
+
     {% include footer.html %}
+
+    {% include advertisements.html %}
+
     {% include footer-scripts.html %}
+
+    {% include advertisements.html %}
+
   </body>
+    {% include advertisements.html %}
+
 </html>
