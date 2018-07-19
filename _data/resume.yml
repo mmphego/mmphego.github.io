@@ -194,3 +194,14 @@ projects:
     description:  DSTV IR Remote using an esp8266 with support for controlling led strips mounted behind the TV and Amazon-Alexa intergrated.
     link: https://github.com/mmphego/DSTV_A6_esp8266_IRremote
     contribution: Mpho Mphego
+
+publications:
+  - title: |
+          Revival of the Magnetar PSR J1622–4950: Observations with MeerKAT, Parkes, XMM-Newton, Swift, Chandra, and NuSTAR
+    link: https://iopscience.iop.org/article/10.3847/1538-4357/aab35a/pdf
+    authors: F. Camilo, P. Scholz, M. Serylak, S. Buchner, M. Merryfield, M. Mphego, et al
+    conference: The Astrophysical Journal
+  - title: Repurpose Old Smartphones for Home Automation by Turning Sensors into Signals
+    link: https://az817975.vo.msecnd.net/wm-418498-cmsimages/p1(3-3).pdf
+    authors: M. Mphego, S. P. D. Chowdhury
+    conference: SAIIE - SmartGrid Conference 2017

@@ -13,7 +13,7 @@ baseurl: ""
 #baseurl: "/projectname"
 
 # Name of website
-title: Mpho Mphego (self-taught Python Dev)
+title: Mpho Mphego
 
 #For my changes
 # use meta-title: for the center heading of the page.
@@ -28,8 +28,6 @@ description: "Hi! I'm Mpho Mphego, a self-taught Python developer. Loves to meet
 # List of links in the navigation bar
 navbar-links:
   Blog: ""
-  # Projects: "/projects.html"
-  # Expedition: ""
   "@Mentions": "mentions"
   Categories / Tags: "tags"
   Resume: "resume"
@@ -110,7 +108,7 @@ share-links-active:
 
 # How to display the link to the website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "mphomphego.co.za"
+url-pretty: "blog.mphomphego.co.za"
 
 # --- Misc --- #
 

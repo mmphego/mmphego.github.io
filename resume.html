@@ -142,6 +142,34 @@ css: "/css/resume.css"
         </div>
       </section>
 
+      {% if site.data.resume.publications[0].title %}
+      <section id="publications">
+        <div class="section-title">
+          Publications
+        </div>
+        <div class="section-content">
+          {% for publication in site.data.resume.publications %}
+          <div class="block">
+            <div class="block-title">
+              {% if publication.link %}
+                <a href="{{ publication.link }}"> {{ publication.title }} </a>
+              {% else %}
+                {{ publication.title }}
+              {% endif %}
+            </div>
+            <div class="block-title-2">
+              {{ publication.authors }}
+            </div>
+            <div class="block-subtitle">
+              {{ publication.conference }}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+      </section>
+      {% endif%}
+
       {% if site.data.resume.projects[0].name %}
       <section id="projects">
         <div class="section-title">
