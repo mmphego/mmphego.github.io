@@ -16,7 +16,7 @@ On a daily basis, I find myself opening/executing [IPython](https://ipython.org/
 However, the post mainly focused more on Python but not [IPython](https://ipython.org/).
 ~~I mean how many people still use Python command shell?~~
 
-I had no idea about this (Did you?), funny enough there is an article about this $PYTHONSTARTUP listed in the [Python docs](https://docs.python.org/2/tutorial/appendix.html#the-interactive-startup-file) - check it out,~~ I blame that on my ignorance.~~
+I had no idea about this (Did you?), funny enough there is an article about this ```$PYTHONSTARTUP``` listed in the [Python docs](https://docs.python.org/2/tutorial/appendix.html#the-interactive-startup-file) - check it out, ~~I blame that on my ignorance.~~
 
 ~~Enough yada yada, let's get down to business.~~
 
