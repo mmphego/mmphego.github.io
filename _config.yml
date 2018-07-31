@@ -62,6 +62,7 @@ author:
   # email:
   # facebook:
   github: mmphego
+  docker: mmphego
   # twitter:
   # google-plus:
   linkedin: mphomphego
@@ -80,25 +81,26 @@ author:
 
 # Select which links to show in the footer
 footer-links-active:
-  rss: true
-  facebook: false
+  codecademy: true
+  docker: true
   email: false
-  twitter: false
-  google-plus: false
+  facebook: false
   github: true
-  linkedin: true
-  stackoverflow: true
+  google-plus: false
   instagram: false
+  linkedin: true
   reddit: false
-  xing: false
+  rss: true
   snapchat: false
-  youtube: true
+  sololearn: true
   spotify: false
+  stackoverflow: true
   steam: false
   twitch: false
+  twitter: false
+  xing: false
   yelp: false
-  sololearn: true
-  codecademy: true
+  youtube: true
 # Select which share links to show in posts
 share-links-active:
   twitter: true
@@ -241,3 +243,4 @@ plugins:
   - jekyll-categories
   - jekyll-archives
 
+jekyll-mentions: https://twitter.com
