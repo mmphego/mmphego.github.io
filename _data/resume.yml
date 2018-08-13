@@ -3,7 +3,7 @@ name: Mpho Mphego
 jobtitle: Test & Verification Engineer
 contact:
   - icon: fa-envelope
-    text: mpho112(at)gmail(dot)com
+    text: hi@mphomphego.co.za
   - icon: fa-globe
     text: https://blog.mphomphego.co.za
   - icon: fa-linkedin
@@ -176,6 +176,10 @@ projects:
     description:  A Correlator-beamforming unit-testing based framework for MeerKAT signal processing
     link: https://github.com/ska-sa/mkat_fpga_tests
     contribution: Mpho Mphego, et al.
+  - name: (Work) AVN Tests
+    description:  An African VLBI Network (AVN) Correlator Unit and Acceptance Testing based Framework (forked from CBF Tests)
+    link: https://github.com/ska-sa/AVNTests
+    contribution: Mpho Mphego
   - name: (Work) CBF-System-Dashboard
     description: Plotly/Node-Red dashboard running on a Docker container for monitoring Correlator-Beamformer system sensors
     link: https://github.com/ska-sa/CBF-System-Dashboard
