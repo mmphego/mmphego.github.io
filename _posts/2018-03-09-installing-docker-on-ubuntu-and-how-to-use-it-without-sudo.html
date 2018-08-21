@@ -42,7 +42,7 @@ author:
 <p><strong>Installing Docker on Ubuntu 16.04</strong></p>
 <p>I will make this guide as simple as i can. I will use Ubuntu 16.04 [LTS]. You will need the 64 bit version and your kernel must be at least in <em>3.10</em>, you can check this typing (uname -r) in the shell. You must type the following commands in your shell, if you have any doubts you can see the official guide in <a href="https://docs.docker.com/">https://docs.docker.com/</a></p>
 <pre><code class="language-bash hljs">sudo apt-get update
-sudo apt-get install apt-transport-https ca-certificates
+sudo apt-get install apt-transport-https ca-certificates curl gnupg software-properties-common
 sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:<span class="hljs-number">80</span> --recv-keys <span class="hljs-number">58118</span>E89F3A912897C070ADBF76221572C52609D
 </code></pre>
 <p>You can open a simple editor like nano with this command <code class="language-bash">$ sudo nano /etc/apt/sources.list.d/docker.list</code> and paste the following line: <br/> deb <a href="https://apt.dockerproject.org/repo">https://apt.dockerproject.org/repo</a> ubuntu-xenial main <br/>save and exit</p>

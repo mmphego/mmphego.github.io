@@ -111,10 +111,12 @@ for i in $(find / -type d -name '.git');
     git init;
 done
 
-# And confirm that it was initialised.
 
-for i in $(find / -type d -name '.git');
-    do head -2 $i/hooks/pre-commit;
+for i in $(find / -type d -name '.git'); do
+    # For all those pricks, that decides to remove your hook - change file attributes that way not even sudo with rm!!!!
+    chattr +i $i/hooks/pre-commit;
+    # confirm that it was initialised.
+    head -2 $i/hooks/pre-commit;
     printf "$i\n\n";
 done
 ```
