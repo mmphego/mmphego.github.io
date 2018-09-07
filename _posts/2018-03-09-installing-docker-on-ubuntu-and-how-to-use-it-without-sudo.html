@@ -60,7 +60,11 @@ sudo service docker start
 <pre><code class="language-bash hljs">sudo groupadd docker
 </code></pre>
 <p>Then add your current user to the docker group</p>
-<pre><code class="language-bash hljs">sudo gpasswd <span class="hljs-operator">-a</span> <span class="hljs-variable">${USER}</span> docker
+<pre><code class="language-bash hljs">sudo gpasswd docker <span class="hljs-operator">-a</span> <span class="hljs-variable">${USER}</span>
+</code></pre>
+<p>Fix permissions on docker sock and command.</p>
+<pre><code class="language-bash hljs">sudo chgrp docker /usr/bin/docker
+sudo chgrp docker /var/run/docker.sock
 </code></pre>
 <p>Now you can restart the daemon</p>
 <pre><code class="language-bash hljs">sudo service docker restart
