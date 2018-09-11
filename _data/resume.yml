@@ -12,11 +12,11 @@ contact:
     text: https://github.com/mmphego
 
 summary: |
-        I am currently working as a Test & Verification Engineer on Python’s Correlator-Beamformer back-end development packages (mainly corr2 and casperfpga), my main focus is on testing and verifying these packages with Python based Testing Framework and my contribution can be found on  <a href="https://github.com/ska-sa/mkat_fpga_tests">Meerkat CBF Test Framework</a> at the <a href="ska.ac.za">Square Kilometer Array South Africa</a>.
+        I am currently working as a Test & Verification Engineer on Python’s Correlator-Beamformer back-end development packages (mainly corr2 and casperfpga), my main focus is on testing and verification these packages with Python based Testing Framework and my contribution can be found on  <a href="https://github.com/ska-sa/mkat_fpga_tests">Meerkat CBF Test Framework</a> at the <a href="ska.ac.za">Square Kilometer Array South Africa</a>.
 
-        Having completed a Bachelors in Electronic Engineering, and currently pursuing a Masters. I found that I enjoyed the programming aspects of the course most, hence why I decided to diverge to Programming focusing mainly on Python and CLang.
+        Having completed a Bachelors in Electronic Engineering, and currently pursuing a Masters. I found that I enjoyed the programming aspects of the course most, hence why I decided to diverge to Programming, focusing mainly on Python and CLang.
 
-        I have been working with Python for the past 4+ years mostly on back-end development, I have enjoyed building tools that have proven to save time and improve efficiency as well, some of my work can be found on my <a href="https://github.com/mmphego">GitHub</a> profile.
+        I have been working with Python for the past 5+ years professionally mostly on back-end development, I have enjoyed building tools that have proven to save time and improve efficiency as well, some of my work can be found on my <a href="https://github.com/mmphego">GitHub</a> profile.
 
         * How I keep my skills sharp
 
@@ -28,7 +28,7 @@ summary: |
 
         I would like to work on projects that are already set to grow big and have scaling issues. I want to work with people that share the same passion as me and with similar interests, especially in what they do such that I can also learn from them and improve where necessary and hopefully teach others as a way of giving back.
 
-        My primary focus is building my Python knowledge base and also focusing more on building my reputation around these tools Ansible, AWS, Terraform, Kubernetes, Docker, Jenkins and <a href="https://xebialabs.com/assets/files/infographics/periodic-table-of-devops-tools-v3.pdf">other tools</a>.
+        My primary focus is building my Python and DevOps knowledge base and also focusing more on building my reputation around these tools Ansible, AWS, Terraform, Kubernetes, Docker, Jenkins and <a href="https://xebialabs.com/assets/files/infographics/periodic-table-of-devops-tools-v3.pdf">other tools</a>.
 
 education:
   - university: Cape Peninsula University of Technology
