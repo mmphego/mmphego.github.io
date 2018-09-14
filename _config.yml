@@ -59,10 +59,10 @@ avatar: "/img/main.jpg"
 # # Important: you must keep the "name" parameter, everything else you can remove
 author:
   name: Mpho Mphego
-  # email:
+  email: mpho112@gmail.com
   # facebook:
   github: mmphego
-  docker: mmphego
+  # docker: mmphego
   twitter: OrifhaMpho
   # google-plus:
   linkedin: mphomphego
@@ -76,30 +76,30 @@ author:
   # steam: yourname
   # twitch: yourname
   # yelp: yourname
-  sololearn: 9539857
-  codecademy: mmphego
+  # sololearn: 9539857
+  # codecademy: mmphego
 
 # Select which links to show in the footer
 footer-links-active:
-  codecademy: true
-  docker: true
-  email: false
-  facebook: false
+  # codecademy: true
+  # docker: true
+  email: true
+  # facebook: false
   github: true
-  google-plus: false
-  instagram: false
+  # google-plus: false
+  # instagram: false
   linkedin: true
-  reddit: false
+  # reddit: false
   rss: true
-  snapchat: false
-  sololearn: true
-  spotify: false
-  stackoverflow: true
-  steam: false
-  twitch: false
+  # snapchat: false
+  # sololearn: true
+  # spotify: false
+  # stackoverflow: true
+  # steam: false
+  # twitch: false
   twitter: true
-  xing: false
-  yelp: false
+  # xing: false
+  # yelp: false
   youtube: true
 # Select which share links to show in posts
 share-links-active:
