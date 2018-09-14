@@ -65,6 +65,11 @@ css: "/css/resume.css"
             <div class="block-content">
               {{ edu.degree }}
             </div>
+            {% if edu.title %}
+            <div class="block-content">
+              Title: {{ edu.title }}
+            </div>
+            {% endif %}
           </div>
           {% endfor %}
         </div>

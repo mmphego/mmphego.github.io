@@ -33,6 +33,7 @@ Reasons why I decided to set up a Jenkins server via Docker to address some key 
     - *Side Note: I have written a detailed post on Git hooks that can be accessed [here.]({{ "/blog/2018/06/28/Automatically-check-your-Python-code-for-errors-before-committing.html" | absolute_url }})*
 - I want the ability to run the build server locally on my machine when I'm experimenting with new features or configurations.
 - I want to easily be able to set up a build server in a new environment easily with minimal commands.
+- I have severe OCD when it comes to bad code quality, so I want to integrate continuous code quality inspection
 
 *NOTE: For this post, I want to get a Jenkins server, managed with Docker, to the point where I can easily set up and teardown a container locally.*
 

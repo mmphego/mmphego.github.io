@@ -22,7 +22,7 @@ summary: |
 
         To make sure I am always up on my feet when it comes to keeping myself up with latest tech, I have been working on a little ‘continuous’ project titled <a href="https://github.com/mmphego/Homely">Homely</a> which is a Raspberry Pi + <a href="https://github.com/mmphego/DSTV_A6_esp8266_IRremote">ESP8266</a> + Amazon Alexa based Home Automation System. The project is primarily written in Python and a bit of Clang, including HTML/CSS and Android.
 
-        To keep my knowledge base updated, I have enrolled on various MOOC's offered by Edx, Coursera and Udacity, and have attended conferences/meetup's as well as watching various <a href="https://github.com/mmphego/programming-talks/blob/Watched-talks">Youtube tuts and lectures </a>.
+        To keep my knowledge base updated, I have enrolled on various MOOC's offered by Edx, Coursera and Udacity, and have attended conferences/meetup's as well as watching various <a href="https://github.com/mmphego/programming-talks/tree/Watched-talks">Youtube tuts and lectures </a>.
 
         * What I want to do next
 
@@ -35,6 +35,7 @@ education:
     duration: Jun 2017 - Current
     location: Cape Town, South Africa
     degree: Master of Engineering - Electrical/Electronics Engineering
+    title: Mapping and Publication of IEC61850 standard communication messages
   - university: Tshwane University of Technology
     duration: Jun 2012 - Jun 2016
     location: Pretoria, South Africa

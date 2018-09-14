@@ -63,7 +63,7 @@ author:
   # facebook:
   github: mmphego
   docker: mmphego
-  # twitter:
+  twitter: OrifhaMpho
   # google-plus:
   linkedin: mphomphego
   stackoverflow: 6165344/mpho-mphego
@@ -97,7 +97,7 @@ footer-links-active:
   stackoverflow: true
   steam: false
   twitch: false
-  twitter: false
+  twitter: true
   xing: false
   yelp: false
   youtube: true
