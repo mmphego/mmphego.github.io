@@ -29,6 +29,7 @@ description: "Hi! I'm Mpho Mphego, a self-taught Python developer. Loves to meet
 navbar-links:
   Blog: ""
   "@Mentions": "mentions"
+  "Must-Watch Talks": "must-watch-talks"
   Categories / Tags: "tags"
   Resume: "resume"
   About / Contact Me: "aboutme"
