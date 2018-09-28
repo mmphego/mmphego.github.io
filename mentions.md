@@ -79,5 +79,16 @@ Mpho co-authored a journal paper titled: [Revival of the Magnetar PSR J1622–49
 
 ![DP of RSA and Minister of DST]({{ "/assets/20180713_103002.jpg" | absolute_url }})
 
-
 Mpho can be seen with **Mr David Mabuza: Deputy President of the Republic of South Africa**, Minister Mmamoloko Kubayi-Ngubane: The Department of Science and Technology, Dr. Rob Adam: Director of the [Square Kilometer Array radio-telescope](https://ska.ac.za) in South Africa and others...
+
+### DevOpsDays Conference
+I gave a talk on how we moved from manual testing to **Automated Qualification Testing for the 64 Antennas MeerKAT Correlator-Beamformer** at the [DevOpsDays CPT](https://www.devopsdays.org/events/2018-cape-town) in Woodstock, Cape Town
+<style>
+.responsive-wrap iframe{ max-width: 100%;}
+</style>
+<div class="responsive-wrap">
+    <!-- <p align="center"> -->
+        <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSL7HOWXUTnFxJu7WmyNtRTjXp9C1UXNpsC5P5aaiXQ0JaFNKZBj-TEejP5gYqh_OpiQjR7kQpfi_bd/embed?start=false&loop=false&delayms=3000" frameborder="0" width="640" height="480" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" align="center">
+        </iframe>
+    <!-- </p> -->
+</div>
