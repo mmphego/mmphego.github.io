@@ -172,28 +172,30 @@ experience:
                   * Documenting Schematic and PCB design procedures.
                   * Monthly Report writing, Creation of Engineering Requirements Templates.
 
-projects:
-  - name: (Work) CBF Tests
+work-projects:
+  - name: CBF Tests
     description:  A Correlator-beamforming unit-testing based framework for MeerKAT signal processing
     link: https://github.com/ska-sa/mkat_fpga_tests
     contribution: Mpho Mphego, et al.
-  - name: (Work) AVN Tests
+  - name: AVN Tests
     description:  An African VLBI Network (AVN) Correlator Unit and Acceptance Testing based Framework (forked from CBF Tests)
     link: https://github.com/ska-sa/AVNTests
     contribution: Mpho Mphego
-  - name: (Work) CBF-System-Dashboard
+  - name: CBF-System-Dashboard
     description: Plotly/Node-Red dashboard running on a Docker container for monitoring Correlator-Beamformer system sensors
     link: https://github.com/ska-sa/CBF-System-Dashboard
     contribution: Mpho Mphego
-  - name: (Work) CBF-Tests-Automation
+  - name: CBF-Tests-Automation
     description: Automated Jenkins and CBF tests [deployment pipeline] through Docker.
     link: https://github.com/ska-sa/CBF-Tests-Automation
     contribution: Mpho Mphego, et al.
-  - name: (Work) nosekatreport
+  - name: nosekatreport
     description:  Nose plug-in to support Automated Test Framework (AQF)
     link: https://github.com/ska-sa/nosekatreport
     contribution: Mpho Mphego, et al.
-  - name: (Personal) DSTV IR remote using esp8266
+
+personal-projects:
+  - name: DSTV IR remote using esp8266
     description:  DSTV IR Remote using an esp8266 with support for controlling led strips mounted behind the TV and Amazon-Alexa intergrated.
     link: https://github.com/mmphego/DSTV_A6_esp8266_IRremote
     contribution: Mpho Mphego

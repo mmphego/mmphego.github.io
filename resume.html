@@ -175,13 +175,44 @@ css: "/css/resume.css"
       </section>
       {% endif%}
 
-      {% if site.data.resume.projects[0].name %}
+      {% if site.data.resume.work-projects[0].name %}
       <section id="projects">
         <div class="section-title">
-          Projects
+          Work Projects
         </div>
         <div class="section-content">
-          {% for project in site.data.resume.projects %}
+          {% for project in site.data.resume.work-projects %}
+          <div class="block">
+            <div class="block-title">
+                <a href="{{ project.link }}"> {{ project.name }} </a>
+            </div>
+
+            {% if project.description %}
+                <div class="block-content">
+                    {{ project.description }}
+                </div>
+            {% endif %}
+
+            {% if project.contribution %}
+            <div class="block-subtitle">
+              {{ project.contribution }}
+            </div>
+            {% endif %}
+
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+      {% endif %}
+
+
+      {% if site.data.resume.personal-projects[0].name %}
+      <section id="projects">
+        <div class="section-title">
+          Personal Projects
+        </div>
+        <div class="section-content">
+          {% for project in site.data.resume.personal-projects %}
           <div class="block">
             <div class="block-title">
                 <a href="{{ project.link }}"> {{ project.name }} </a>
@@ -225,7 +256,7 @@ css: "/css/resume.css"
 
     </div class="footer">
     <footer>
-      <span class="print">( <a href="javascript:window.print()">Save to PDF</a> )</span>
+      <span class="print">( <a href="javascript:window.print()">Save to PDF (Best results using Chrome Browser)</a> )</span>
     </footer>
   </body>
 </html>
