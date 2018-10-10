@@ -58,7 +58,7 @@ The conference was streamed on YouTube and it is available to watch.
 
 <p>
     <div>
-        <iframe width="960" height="749" src="https://www.youtube.com/embed/videoseries?list=PLcM6Lc6Bm3tDSSXxGizQ6QUzQD91gVIOc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLcM6Lc6Bm3tDSSXxGizQ6QUzQD91gVIOc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 </p>
 
