@@ -39,7 +39,7 @@ My talk [abstract](https://www.devopsdays.org/events/2018-cape-town/program/mpho
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Mpho Mphego <a href="https://twitter.com/OrifhaMpho?ref_src=twsrc%5Etfw">@OrifhaMpho</a> from SKA - “Automated Qualification Testing for the 64 Antennas MeerKAT Correlator-Beamformer” <a href="https://twitter.com/hashtag/DevOpsDaysCPT?src=hash&amp;ref_src=twsrc%5Etfw">#DevOpsDaysCPT</a> <a href="https://t.co/FJHRplbUWC">pic.twitter.com/FJHRplbUWC</a></p>&mdash; DevOpsDays Cape Town (@devopsdayscpt) <a href="https://twitter.com/devopsdayscpt/status/1043061935380541440?ref_src=twsrc%5Etfw">September 21, 2018</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
-![MphoDevOpsDays]({{ "/assets/devopsdays.jpeg" | absolute_url }})
+<!-- ![MphoDevOpsDays]({{ "/assets/devopsdays.jpeg" | absolute_url }}) -->
 
 
 If you have any interests on the presentation, see below slides.
@@ -53,26 +53,21 @@ If you have any interests on the presentation, see below slides.
     <!-- </p> -->
 </div>
 
-### DevOpsDays Cape Town 2018 - Day 1 - Full Video
-The conference was streamed on YouTube and it is available to watch. The organizers are hard@work with the final edit such that we are able to watch every talk separately.
+### DevOpsDays Cape Town 2018 - Full Videos
+The conference was streamed on YouTube and it is available to watch.
+
 <p>
     <div>
-        <iframe width="960" height="749" src="https://www.youtube.com/embed/XJJSLfu33ig" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
-</p>
-### DevOpsDays Cape Town 2018 - Day 2 - Full Video
-<p>
-    <div>
-        <iframe  width="960" height="749" src="https://www.youtube-nocookie.com/embed/XJJSLfu33ig" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-        </iframe>
+        <iframe width="960" height="749" src="https://www.youtube.com/embed/videoseries?list=PLcM6Lc6Bm3tDSSXxGizQ6QUzQD91gVIOc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 </p>
 
-## My talk starts @ 1H55
+### My Talk: Automated Qualification Testing for the 64 Antennas MeerKAT Correlator-Beamformer
 Initially, I planned to include a demo but had technical issues - I will upload the demo on a later stage as it forms part of the series, [*How I configured Jenkins CI server in a Docker container*]({{ site.baseurl }}blog/2018/08/20/How-I-configured-JenkinsCI-server-in-a-Docker-container.html).
+
 <p>
     <div>
-        <iframe width="960" height="749" src="https://www.youtube.com/embed/XJJSLfu33ig?start=6949" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+        <iframe width="960" height="749" src="https://www.youtube.com/embed/9lvYsSYVrDM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
         </iframe>
     </div>
 </p>
