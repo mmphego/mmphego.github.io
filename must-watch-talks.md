@@ -45,8 +45,10 @@ With that said, I also watch a lot of talks and love to share with my friends(If
 * [Dynamic Code Instrumentation with Hacked Interpreters](https://www.youtube.com/watch?v=SxPf_pmQoYA) [00:37:37] by **James Powell** (2018)
 
 ## Misc
+* [DevOps Reflections on a Lifetime of Learning](https://www.youtube.com/watch?v=h1jv6Gf-OzI) [00:46:51] by **Joe Nuspl** (2018)
 * [TDD for those who don't need it](https://www.youtube.com/watch?v=a6oP24CSdUg) [00:13:43] by **Chew Choon Keat** (2017)
-* [Imposter Syndrome](https://www.youtube.com/watch?v=zNBmHXS3A6I) [00:14:09] by **Mike Cannon-Brookes**
+* [Imposter Syndrome](https://www.youtube.com/watch?v=zNBmHXS3A6I) [00:14:09] by **Mike Cannon-Brookes** (2017)
+
 
 <div class="disqus-comments">
     {% include social-share.html%}
