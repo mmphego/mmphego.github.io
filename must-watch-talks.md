@@ -43,6 +43,7 @@ With that said, I also watch a lot of talks and love to share with my friends(If
 * [Oops! I Committed My Password To GitHub!](https://www.youtube.com/watch?v=2uaTPmNvH0I) [00:29:44] by **Miguel Grinberg** (2018)
 * [Elegant Solutions For Everyday Python Problems](https://www.youtube.com/watch?v=WiQqqB9MlkA) [00:32:58] by **Nina Zakharenko** (2018)
 * [Dynamic Code Instrumentation with Hacked Interpreters](https://www.youtube.com/watch?v=SxPf_pmQoYA) [00:37:37] by **James Powell** (2018)
+* [Pipenv: The Future of Python Dependency Management](https://www.youtube.com/watch?v=GBQAKldqgZs) [00:35:44] by **Kenneth Reitz** (2018)
 
 ## Misc
 * [DevOps Reflections on a Lifetime of Learning](https://www.youtube.com/watch?v=h1jv6Gf-OzI) [00:46:51] by **Joe Nuspl** (2018)
