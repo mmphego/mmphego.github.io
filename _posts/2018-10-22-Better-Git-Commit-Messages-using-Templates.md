@@ -1,14 +1,14 @@
 ---
 layout: post
 title: "Better Commit Messages using Templates"
-date: 2018-10-22 10:15:20.000000000 +02:00
+date: 2018-10-21 10:15:20.000000000 +02:00
 tags:
 - Git
 - Tips/Tricks
 - Linux/Ubuntu
 ---
 
-# Better Commit Messages using Templates!
+# Better Commit Messages using Templates
 
 As a *developer*, one always needs to be learning consistently in-order to improve they're skills that is exactly what I told my colleague the other day while I was scrolling through my phone trying to clean up some space, I remember he was like, "Mpho why do you have so many apps?"
 
