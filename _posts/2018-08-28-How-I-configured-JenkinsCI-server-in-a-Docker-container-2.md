@@ -10,7 +10,7 @@ tags:
 - Tips/Tricks
 - Linux/Ubuntu
 ---
-# How I configured Jenkins CI server in a Docker container (2 of 3)
+# How I configured Jenkins CI server in a Docker container (2 of 2)
 
 I haven't had time to complete my Jenkins CI Docker container series, but lets put it all together.
 In this post, I will dive down as to how I managed to automate the installation of Jenkins and SonarQube, and I will also add a demo video on how I got everything to work flawlessly.

@@ -10,7 +10,7 @@ tags:
 - Tips/Tricks
 - Linux/Ubuntu
 ---
-# How I configured Jenkins CI server in a Docker container (1 of 3)
+# How I configured Jenkins CI server in a Docker container (1 of 2)
 
 This will be a 3 part article on how, I’ve set up a Jenkins server in a Docker container, with support for Jenkins swarm client - for continuous integration and testing.
 In this post, I will go through the software installation, on the next post I will detail the set up and the last post will demonstrate the final system.
