@@ -15,6 +15,8 @@ tags:
 I haven't had time to complete my Jenkins CI Docker container series, but lets put it all together.
 In this post, I will dive down as to how I managed to automate the installation of Jenkins and SonarQube, and I will also add a demo video on how I got everything to work flawlessly.
 
+Check out my repository for more details: [https://github.com/ska-sa/CBF-Tests-Automation](https://github.com/ska-sa/CBF-Tests-Automation)
+
 ## Putting It All Together!
 
 I created a simple *Makefile* that makes use of commands to control your Jenkins Docker container and other cool things. You can find it here:
