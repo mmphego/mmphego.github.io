@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "How I configured Jenkins CI server in a Docker container (2 of 3)"
-date: 2018-08-24 17:15:20.000000000 +02:00
+title: "How I configured Jenkins CI server in a Docker container (2 of 2)"
+date: 2018-10-23 17:15:20.000000000 +02:00
 tags:
 - Python
 - JenkinsCI
