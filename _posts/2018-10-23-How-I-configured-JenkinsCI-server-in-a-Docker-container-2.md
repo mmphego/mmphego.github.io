@@ -157,11 +157,9 @@ Reasons why I decided to set up a Jenkins server via Docker to address some key 
 
 ## Demo
 Demo is 4x the normal speed - for obvious reasons.
-Enjoy and Thanks for watching!
-<p><div>
-    <iframe width="960" height="720" src="https://www.youtube.com/embed/uK2Qlv3v6jk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-    </iframe>
-</div></p>
+Click the gif, enjoy and Thanks for watching!
+
+[![Demo]({{ "/assets/output.gif" | absolute_url }})](https://www.youtube.com/watch?v=uK2Qlv3v6jk)
 
 ## Conclusion
 
