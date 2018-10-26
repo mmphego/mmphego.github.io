@@ -190,3 +190,5 @@ At this point you should have a fully functional Jenkins master server image set
 - [https://github.com/boxboat/jenkins-demo/blob/develop/docs/part1-jenkins-setup.md](https://github.com/boxboat/jenkins-demo/blob/develop/docs/part1-jenkins-setup.md)
 - [www.donaldsimpson.co.uk/category/jenkins/page/2/](www.donaldsimpson.co.uk/category/jenkins/page/2/)
 
+
+"If you are an intelligent person, you will try to do what you love most. But if you're a Genius, you will do what is needed!" - Sadhguru
