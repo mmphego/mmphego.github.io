@@ -72,6 +72,10 @@ Initially, I planned to include a demo but had technical issues - I will upload 
     </div>
 </p>
 
+### Demo
+I have since, created a demo - it would have been cool to have done this during the talk.
+[![Demo]({{ "/assets/output.gif" | absolute_url }})](https://www.youtube.com/watch?v=uK2Qlv3v6jk)
+
 ## Conclusion
 The overall experience was Amazing! the event was very well organised (Thanks to the organizers), great talks, great people, great food and great beer!. It was my second official talk given and I think I did well if I say so myself (Could improve), definitely not my last. Not being a people's person has it's challenges ie I didn't meet as many people as I had hoped I would, but hoping to make new friends at the next meetup or conference.
 
