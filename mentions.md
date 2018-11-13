@@ -13,7 +13,7 @@ Mpho went on a scientific expedition to [Marion Island](https://en.wikipedia.org
 
 ### YouTube/WordPress [Posts]
 A detailed past experience can be found on my old blog: [Marion Island 71st Expedition](https://mmphego.wordpress.com/marion-island-expedition/)
-
+{:refdef: style="text-align: center;"}
 <div class="image-center embed-video">
     <div class="videoWrapper">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/Drf1xM4JKM4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
@@ -26,8 +26,8 @@ A detailed past experience can be found on my old blog: [Marion Island 71st Expe
         Video by Daniël Kotzé
     </p>
 </div>
-
-
+{: refdef}
+{:refdef: style="text-align: center;"}
 <div class="image-center embed-video">
     <div class="videoWrapper">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/qXdIT_N5Rzg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
@@ -36,11 +36,12 @@ A detailed past experience can be found on my old blog: [Marion Island 71st Expe
 
     <p>Video taken just before we left Marion Island.</p>
 </div>
-
+{: refdef}
 ### Twitter [SANSA]
+{:refdef: style="text-align: center;"}
 <p align="center"><blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Welcome home Jimmy Makoloane &amp; Mpho Mphego who spent 14 months on Marion Island maintaining SANSA&#39;s instrumentation <a href="http://t.co/nyzMuNmvjz">pic.twitter.com/nyzMuNmvjz</a></p>&mdash; SANSA (@SANSA7) <a href="https://twitter.com/SANSA7/status/599214197109628928?ref_src=twsrc%5Etfw">May 15, 2015</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
-
+{: refdef}
 ### NRF-HartRAO [News and Events]
 Mpho was part of the team that installed [Seismic Equipments](https://geodesy.hartrao.ac.za/site/en/news-and-events/82-april-2014-marion-island-seismic-equipment-installation.html) to monitor any Seismic activities occurring in and around Marion Island.
 
@@ -64,7 +65,7 @@ Mpho gave a talk on [Test-Driven Development unit-testing for the development of
 Mpho co-authored a journal paper titled: [Revival of the Magnetar PSR J1622–4950: Observations with MeerKAT, Parkes, XMM-Newton, Swift, Chandra, and NuSTAR](https://iopscience.iop.org/article/10.3847/1538-4357/aab35a/pdf) while at the [SKA](https://ska.ac.za).
 
 ### SABC [News]
-
+{:refdef: style="text-align: center;"}
 <div class="image-center embed-video">
     <div class="videoWrapper">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/QRlvkXYDwI0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
@@ -74,15 +75,16 @@ Mpho co-authored a journal paper titled: [Revival of the Magnetar PSR J1622–49
     <p>Mpho can be seen at 1:48, at the <a href="http://www.ska.ac.za/gallery/meerkat/">launch of the MeerKAT Radio Telescope.</a>
     </p>
 </div>
-
+{: refdef}
 ### SKA MeerKAT Launch [Photo]
-
+{:refdef: style="text-align: center;"}
 ![DP of RSA and Minister of DST]({{ "/assets/20180713_103002.jpg" | absolute_url }})
-
+{: refdef}
 Mpho can be seen with **Mr David Mabuza: Deputy President of the Republic of South Africa**, Minister Mmamoloko Kubayi-Ngubane: The Department of Science and Technology, Dr. Rob Adam: Director of the [Square Kilometer Array radio-telescope](https://ska.ac.za) in South Africa and others...
 
 ### DevOpsDays Conference
 I gave a talk on how we moved from manual testing to **Automated Qualification Testing for the 64 Antennas MeerKAT Correlator-Beamformer** at the [DevOpsDays CPT](https://www.devopsdays.org/events/2018-cape-town) in Woodstock, Cape Town
+{:refdef: style="text-align: center;"}
 <style>
 .responsive-wrap iframe{ max-width: 100%;}
 </style>
@@ -92,3 +94,4 @@ I gave a talk on how we moved from manual testing to **Automated Qualification T
         </iframe>
     <!-- </p> -->
 </div>
+{: refdef}
