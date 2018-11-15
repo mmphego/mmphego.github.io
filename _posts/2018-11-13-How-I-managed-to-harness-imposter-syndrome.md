@@ -10,29 +10,29 @@ tags:
 
 If you are reading this post, either you have suffered from *Imposter Syndrome* knowingly or unknowingly.
 
-**Note:** This isn't one of those motivational or self-help posts, it's more of an introspection to my own experiences of *imposter syndrome* and how I've tried to learned to harness them and turn them from negatives into positives.
+**Note:** This isn't one of those motivational or self-help posts, it's more of an introspection to my own experiences of *imposter syndrome* and how I've tried to learn to harness them and turn them from negatives into positives.
 {:refdef: style="text-align: center;"}
 <div><img src="https://www.brainyquote.com/photos_tr/en/m/michaeljordan/382744/michaeljordan1-2x.jpg" alt="" style="width: 400px;"/>
 </div>
 {: refdef}
-I think it is important that I say harness instead of conquering, because conquering *imposter syndrome* for me it's merely about being aware of that it is there, like that pimple that doesn't want to go away, in fact I'm extremely aware of feeling like an imposter right now as I'm writing this post like some sort of Mr Know-It-all, Mr Psychologist writing about a feeling that I couldn't even put a name to a few months ago.
+I think it is important that I say harness instead of conquering, because conquering *imposter syndrome* for me it's merely about being aware of that it is there, like that pimple that doesn't want to go away, in fact I'm extremely aware of feeling like an imposter right now as I'm writing this post like some sort of Mr. Know-It-all, Mr Psychologist writing about a feeling that I couldn't even put a name to a few months ago.
 
-**Why am I saying that, you will probably ask yourself that.**
+**Why am I saying that you will probably ask yourself that.**
 
 **??** Have you ever felt out of your depth like a fraud or fake and just kind of guessed/bullshitted(Google'd/Stackoverflow'd) your way through a situation, petrified that at any given moment someone was going to call you on it might be your boss or HR - I know I have!
 
-Only recently I have found out that, that phenomenon is called *Imposter Syndrome*, and described by [wikipedia](https://en.wikipedia.org/wiki/Imposter_syndrome) as a psychological pattern in which people doubt their accomplishments and have a persistent, often internalised fear of being exposed as a *"fraud"*.
+Only recently I have found out that, that phenomenon is called *Imposter Syndrome*, and described by [wikipedia](https://en.wikipedia.org/wiki/Imposter_syndrome) as a psychological pattern in which people doubt their accomplishments and have a persistent, often internalized fear of being exposed as a *"fraud"*.
 
-I am certain that at one point in your life you have felt like the above explanation, but didn’t know that there was an official name for it? well there you have it.
+I am certain that at one point in your life you have felt like the above explanation, but didn’t know that there was an official name for it? well, there you have it.
 
-*Imposter Syndrome* is feeling like you’re an imposter and that eventually, the whole world is going to find out. It’s a phenomenon that links itself to insecurity and crippling self doubt over our own abilities, to the point where we feel that we do not deserve any of the nice things that we have worked hard for - shitty feeling ain't it.
+*Imposter Syndrome* is feeling like you’re an imposter and that eventually, the whole world is going to find out. It’s a phenomenon that links itself to insecurity and crippling self-doubt over our own abilities, to the point where we feel that we do not deserve any of the nice things that we have worked hard for - shitty feeling ain't it.
 
-I remember my first meeting at my current company, fresh from an expedition I walked into the meeting thinking what am I going to ask this people, what will I be doing and from nowhere acronyms started flying around I started feeling like a 10-year-old as I started jotting down most of them in my notebook so I can look them up on Wikipedia when I get home (painful feeling - ain't it).
+I remember my first meeting at my current company, fresh from an expedition I walked into the meeting thinking what am I going to ask these people, what will I be doing and from nowhere acronyms started flying around I started feeling like a 10-year-old as I started jotting down most of them in my notebook so I can look them up on Wikipedia when I get home (painful feeling - ain't it).
 
 So for me *imposter syndrome* is a feeling of being well out of your depth yet already entrenched deep in the situation, internally you know you're not skilled enough, experienced enough or qualified enough to justify being there yet you are there and you have to figure a way out because you can't just get out or worse getting out is not an option.
 It's not a fear of failure and it's not a fear of being unable to do it, it's more a sensation of getting away with something. A fear of being discovered that at any given moment someone is going to figure this out, and if and when they do figure it out you'd honestly think oh-well at least I tried to get away with it.
 
-After sometime, I started getting to the realisation that other people felt this as well and that it doesn't go away with any form of success, I had initially assumed that successful/smarted people didn't feel like frauds/fakes - silly me!
+After some time, I started getting to the realization that other people felt this as well and that it doesn't go away with any form of success, I had initially assumed that successful/smarted people didn't feel like frauds/fakes - silly me!
 
 So below I’ve listed a couple of ways in which helped me deal with my *imposter syndrome*.
 
@@ -50,7 +50,7 @@ Acknowledge and accept that you suffer from *Imposter Syndrome*, the moment you 
 </div>
 {: refdef}
 
-A lot of people go through a phase, whereby they loose focus of themselves and start focusing on what the other person is doing. I have only one advice for those people - Get yourself a copy of [Mark Manson - The Subtle Art of Not Giving a F*ck](https://www.goodreads.com/book/show/28257707-the-subtle-art-of-not-giving-a-f-ck?ac=1&from_search=true)
+A lot of people go through a phase, whereby they lose focus of themselves and start focusing on what the other person is doing. I have only one advice for those people - Get yourself a copy of [Mark Manson - The Subtle Art of Not Giving a F*ck](https://www.goodreads.com/book/show/28257707-the-subtle-art-of-not-giving-a-f-ck?ac=1&from_search=true)
 
 Thank me later.
 
@@ -60,7 +60,7 @@ Thank me later.
 </div>
 {: refdef}
 
-I'm frequently out of my depth and it's okay to be out of your depth at times, it's okay to be in a situation where you just can't push the eject button, as long as you don't freeze and try not to get paralysed, the idea is mainly to learn as much as you can and be motivated by the fear of looking like an *idiota*!.
+I'm frequently out of my depth and it's okay to be out of your depth at times, it's okay to be in a situation where you just can't push the eject button, as long as you don't freeze and try not to get paralyzed, the idea is mainly to learn as much as you can and be motivated by the fear of looking like an *idiota*!.
 
 ## The Deep End!
 {:refdef: style="text-align: center;"}
@@ -76,7 +76,7 @@ I'm frequently out of my depth and it's okay to be out of your depth at times, i
 </div>
 {: refdef}
 
-In most cases, you have felt that people held you higher up like some soft of an 'expert' and assumed you knew everything about a specific topic. No human being can know everything about anything, If you are in a situation where there is potential to actually be a fraud and bullshit your way through, **Don't**.
+In most cases, you have felt that people held you higher up like some sort of an 'expert' and assumed you knew everything about a specific topic. No human being can know everything about anything If you are in a situation where there is potential to actually be a fraud and bullshit your way through, **Don't**.
 People respect people who actually accept and admit that they do not know the answer and willing to find out.
 
 ## Realise That You Are Constantly Evolving.
@@ -85,7 +85,7 @@ People respect people who actually accept and admit that they do not know the an
 </div>
 {: refdef}
 
-I remember one of the street performers in Pretoria, CBD once said - *"In life you either get inspired or have expired"*- Street Performer.
+I remember one of the street performers in Pretoria, CBD once said - *"In life, you either get inspired or have expired"*- Street Performer.
 
 My translation to that statement was as human beings we are constantly evolving - improving or declining, our opinions change with new information received. You are growing into something different. You are getting better/worse. (It is all on how you manage the change.) How? By trying to do something better than you actually can.
 
@@ -99,7 +99,7 @@ Yes, you deserve it - You have worked harder for it.
 
 No one gets to your level of success without talent and hard work. Even if luck played a role in your career, it was no accident or fate that prepared you to take advantage of the opportunities presented.
 
-In-closing:
+In closing:
 **Don't try to tell people you're incompetent - they will believe you. Tell them you're competent - they will believe you. And, Celebrate your Awesomeness!**
 
 
