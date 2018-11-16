@@ -79,28 +79,29 @@ author:
   # yelp: yourname
   # sololearn: 9539857
   # codecademy: mmphego
-
+  devto: mmphego
 # Select which links to show in the footer
 footer-links-active:
   # codecademy: true
   # docker: true
-  email: true
   # facebook: false
-  github: true
   # google-plus: false
   # instagram: false
-  linkedin: true
   # reddit: false
-  rss: true
   # snapchat: false
   # sololearn: true
   # spotify: false
   # stackoverflow: true
   # steam: false
   # twitch: false
-  twitter: true
   # xing: false
   # yelp: false
+  devto: true
+  email: true
+  github: true
+  linkedin: true
+  rss: true
+  twitter: true
   youtube: true
 # Select which share links to show in posts
 share-links-active:

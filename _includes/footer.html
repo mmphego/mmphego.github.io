@@ -234,6 +234,16 @@
             </a>
           </li>
           {% endif %}
+      {% if site.author.devto and site.footer-links-active.devto %}
+          <li>
+            <a href="https://dev.to/{{ site.author.devto }}" title="Dev.to">
+              <!-- <span class="fa-stack fa-lg" aria-hidden="true"> -->
+                <img src="https://d2fltix0v2e0sb.cloudfront.net/dev-badge.svg" height="40" width="40" />
+              <!-- </span> -->
+              <span class="sr-only">Dev.to</span>
+            </a>
+          </li>
+          {% endif %}
         </ul>
         <p class="copyright text-muted">
       {{ site.author.name }}
