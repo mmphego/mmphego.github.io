@@ -8,16 +8,16 @@ tags:
 ---
 # How to create a GitHub pull requests from the CLI
 
-If like me, you create a lot pull requests in a day and annoyed of the idea of repeatedly visiting GitHub to create a PR - do not get me wrong the website is great and all, but it can be annoying sometimes having to leave your CLI and open your browser (which has serious implications on your productivity IMHO).
+If like me, you create a lot of pull requests in a day and annoyed of the idea of repeatedly visiting GitHub to create a PR - do not get me wrong the website is great and all, but it can be annoying sometimes having to leave your CLI and open your browser (which has serious implications for your productivity IMHO).
 
-I have a great solution for you, GitHub has a cool tool that you can use to create PR's and other things via CLI which is available to install depending on your architecture.
+I have a great solution for you, *GitHub* has a cool tool that you can use to create PRs and other things via CLI which is available to install depending on your architecture.
 
-**NOTE:** They (GitHub people) say it doesn't store you login details.
+**NOTE ON PRIVACY:** They (GitHub people) say it doesn't store your login details.
 
 ## Installing Hub
-[Hub is available on GitHub](https://github.com/github/hub) so you can download binaries, or install it from source. Unfortunately with `Ubuntu` you cannot easily apt-get it, you will need to download the binary and install it that way.
+[Hub is available on GitHub](https://github.com/github/hub) so you can download binaries, or install it from source. Unfortunately, with `Ubuntu`, you cannot easily `apt-get` it, you will need to download the binary and install it that way.
 
-In this post I will detail the installation and usage.
+In this post, I will detail the installation and usage.
 
 ### Setup
 It is simple to install, see below:
@@ -39,7 +39,7 @@ If you hit `man hub` in your cli you should see something like this.
 ![]({{ "/assets/hub.png" | absolute_url }})
 
 ### Testing
-From image below, I established that the tool works 100%.
+From the image below, I established that the tool works 100%.
 
 ![]({{ "/assets/usage.png" | absolute_url }})
 
@@ -86,11 +86,12 @@ git create-pr
 ```
 
 This will push the branch if necessary and create the pull request for you, all in one (PR title will be your last commit message).
-**Note:** If you want to read more about Git Aliases, I would advice you read this post by [Phil Haack](https://haacked.com/archive/2014/07/28/github-flow-aliases/).
+
+**Note:** If you want to read more about Git Aliases, I would advise you read this post by [Phil Haack](https://haacked.com/archive/2014/07/28/github-flow-aliases/).
 
 #### Bash Functions
 
-I personally prefer, placing useful tools in my `~/.bash_functions` for even much easier access, you can copy the code below and place it in your `.bashrc` if you  do not have a `.bash_functions` file.
+I personally prefer, placing useful tools in my `~/.bash_functions` for even much easier access, you can copy the code below and place it in your `.bashrc`, if you don't have a `.bash_functions` file.
 
 ```shell
 mkpr() {
@@ -103,7 +104,7 @@ mkpr() {
 If like me you like doing things efficiently, also add the following function to your `.bashrc`.
 
 ```shell
-function commiter() {
+function committer() {
     # Add file, commit and push
     if [ $# -eq 0 ]; then
         # Ensure that file is supplied else exits
@@ -120,13 +121,11 @@ function commiter() {
     bash -c "git push -q &"
     }
 ```
-The function `commiter` above does three things:
+The function `committer` above does three things:
 -   `git add -f "$1"`;
-    -  This command updates the index using the current content found in the working tree, to prepare the content
-   staged for the next commit.
+    -  This command updates the index using the current content found in the working tree, to prepare the content staged for the next commit.
 - `git commit -nm"$2"`;
-    - Stores the current contents of the index in a new commit along with a log message from the user describing
-   the changes, if no `message` is supplied, `Updated <filename>` is used as a commit message.
+    - Stores the current contents of the index in a new commit along with a log message from the user describing the changes, if no `message` is supplied, `Updated <filename>` is used as a commit message.
 - `bash -c "git push -q &"`;
     -    Updates remote reference using local references quietly in the background.
 
@@ -135,13 +134,13 @@ The function `commiter` above does three things:
 
 The following command with commit my file `main.py`, push and create a pull request - without the need of me opening up a browser.
 ```shell
-commiter main.py && mkpr
+committer main.py && mkpr
 ```
 
 
 ## Conclusion
 
-[Hub](https://github.com/github/hub) is a great tool that wraps around Git and simplifies some of the things I do couple of times a day. check it out on GitHub and enjoy.
+[Hub](https://github.com/github/hub) is a great tool that wraps around Git and simplifies some of the things I do a couple of times a day. check it out on GitHub and enjoy.
 
 
 
