@@ -19,6 +19,8 @@ I have a great solution for you, *GitHub* has a cool tool that you can use to cr
 
 In this post, I will detail the installation and usage.
 
+Note: I'm using `git version: 1.9.1` and `debian 7.9`
+
 ### Setup
 It is simple to install, see below:
 ```shell
