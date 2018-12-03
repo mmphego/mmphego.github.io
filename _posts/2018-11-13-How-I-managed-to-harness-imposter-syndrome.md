@@ -107,4 +107,7 @@ In closing:
 <div><img src="https://memegenerator.net/img/instances/58213312/thank-you-for-reading-heres-a-potato.jpg" alt="" style="width: 400px;"/>
 </div>
 {: refdef}
+
 If you found this post interesting, please leave a comment or an emoji.
+
+Further reading: [How to Deal with Imposter Syndrome, According to Experts](https://www.vice.com/amp/en_us/article/59vdjx/how-to-deal-with-imposter-syndrome-according-to-experts)
