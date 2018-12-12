@@ -17,7 +17,7 @@ build:
 	@docker build -t jekyll .
 
 run:
-	@docker run --name=jekyll -v "$(PWD)":/site -p 4000:4000 jekyll
+	@docker run --rm -i -v "$(PWD)":/site -p 4000:4000 jekyll
 
 start:
 	@docker start jekyll || true
