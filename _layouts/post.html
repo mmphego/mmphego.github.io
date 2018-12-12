@@ -33,7 +33,10 @@ layout: base
 
       <article role="main" class="blog-post">
         {{ content }}
-        {% include advertisements.html %}
+        {% if page.url != '/resume.html' %}
+          {% include advertisements.html %}
+        {% endif %}
+
       </article>
 
       {% if page.tags.size > 0 %}

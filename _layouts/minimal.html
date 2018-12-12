@@ -20,7 +20,9 @@ common-js:
 
     {% include footer-minimal.html %}
 
-    {% include advertisements.html %}
+    {% if page.url != '/resume.html' %}
+      {% include advertisements.html %}
+    {% endif %}
 
     {% include footer-scripts.html %}
 

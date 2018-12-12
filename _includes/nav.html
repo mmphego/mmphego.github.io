@@ -36,8 +36,9 @@
         {% endfor %}
       </ul>
     </div>
-
-  {% include advertisements.html %}
+    {% if page.url != '/resume.html' %}
+      {% include advertisements.html %}
+    {% endif %}
   <!-- ALways use my avatar, irrespective of the post image -->
   <div class="avatar-container">
     <div class="avatar-img-border">

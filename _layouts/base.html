@@ -21,7 +21,9 @@ common-js:
   {% include head.html %}
 
   <body>
-    {% include advertisements.html %}
+    {% if page.url != '/resume.html' %}
+      {% include advertisements.html %}
+    {% endif %}
 
     <!-- Detect adBlock -->
     <script src="{{ site.baseurl }}/js/ads.js" type="text/javascript"></script>
@@ -32,13 +34,16 @@ common-js:
 
     {{ content }}
 
-    {% include advertisements.html %}
+    {% if page.url != '/resume.html' %}
+      {% include advertisements.html %}
+    {% endif %}
 
     {% include footer.html %}
 
     {% include footer-scripts.html %}
 
   </body>
-    {% include advertisements.html %}
-
+    {% if page.url != '/resume.html' %}
+      {% include advertisements.html %}
+    {% endif %}
 </html>
