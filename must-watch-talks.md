@@ -49,6 +49,7 @@ With that said, I also watch a lot of talks and love to share with my friends(If
 * [DevOps Reflections on a Lifetime of Learning](https://www.youtube.com/watch?v=h1jv6Gf-OzI) [00:46:51] by **Joe Nuspl** (2018)
 * [TDD for those who don't need it](https://www.youtube.com/watch?v=a6oP24CSdUg) [00:13:43] by **Chew Choon Keat** (2017)
 * [Imposter Syndrome](https://www.youtube.com/watch?v=zNBmHXS3A6I) [00:14:09] by **Mike Cannon-Brookes** (2017)
+* [Leadership Without Management: Scaling Organizations by Scaling Engineers](https://www.youtube.com/watch?v=1KeYzjILqDo) [1:03:37] by **Bryan Cantrill** (2013)
 
 
 <div class="disqus-comments">
