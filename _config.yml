@@ -244,5 +244,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-categories
   - jekyll-archives
+  - kramdown
+  - jekyll_github_sample
 
 jekyll-mentions: https://twitter.com
