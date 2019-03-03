@@ -181,7 +181,10 @@ If you want to dive into startup scripts a bit more, Peter Ward explains about [
 ***.bashrc***
 
 `.bashrc` is a shell script that Bash runs whenever it is started interactively ie when you open a new terminal. It initializes an interactive shell session.
-For example, I define my [PS1](https://www.linuxnix.com/linuxunix-shell-ps1-prompt-explained-in-detail/), shell options, keybindings, aliases, functions and custom message
+For example, I define my [PS1](https://www.linuxnix.com/linuxunix-shell-ps1-prompt-explained-in-detail/), shell options, keybindings, aliases, functions and custom message.
+
+![home]({{ "/assets/screenshot.png" | absolute_url }})
+
 
 {% raw %}
 ```shell
