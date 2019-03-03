@@ -136,7 +136,7 @@ We will take a look at the following examples:
 
 This file is located in your `/home` directory is loaded first upon login, it is either called `.profile` or `.bash_profile`.
 What to put in the `.profile` is truly up-to the individual and it can be expanded significantly. I personally like to keep my `.profile` as small possible and only have things I need to be ran once.
-For example, I define all my colors and color functions in my `.profile`
+For example, I define all my colours and colour functions in my `.profile`
 
 {% raw %}
 ```shell
@@ -175,13 +175,13 @@ export -f gecho
 {% endraw %}
 Full example: my [.profile](https://github.com/mmphego/dot-files/blob/master/.dotfiles/.profile)
 
-If you want to dive into startup scripts a bit more, Peter Ward explains about [Shell startup scripts](http://blog.flowblok.id.au/2013-02/shell-startup-scripts.html).
+If you want to dive into start-up scripts a bit more, Peter Ward explains about [Shell startup scripts](http://blog.flowblok.id.au/2013-02/shell-startup-scripts.html).
 
 
 ***.bashrc***
 
-`.bashrc` is a shell script that Bash runs whenever it is started interactively ie when you open a new terminal. It initializes an interactive shell session.
-For example, I define my [PS1](https://www.linuxnix.com/linuxunix-shell-ps1-prompt-explained-in-detail/), shell options, keybindings, aliases, functions and custom message.
+`.bashrc` is a shell script that Bash runs whenever it is started interactively i.e. when you open a new terminal. It initializes an interactive shell session.
+For example, I define my [PS1](https://www.linuxnix.com/linuxunix-shell-ps1-prompt-explained-in-detail/), shell options, key-bindings, aliases, functions and custom message.
 
 ![home]({{ "/assets/screenshot.png" | absolute_url }})
 
@@ -296,7 +296,7 @@ Full example: my [.bash_functions](https://github.com/mmphego/dot-files/blob/mas
 
 ***.docker_aliases***
 
-Similar to `.bash_aliases`, in this file I defined all my `docker run` shotcuts
+Similar to `.bash_aliases`, in this file I defined all my `docker run` shortcut
 
 ```shell
 # bat supports syntax highlighting for a large number of programming and markup languages
@@ -323,7 +323,7 @@ I only listed a subset of dotfiles above, many packages also store their setting
 
 ## Installing the Dotfiles
 
-**NOTE: Becareful you should have some dotfiles defined in your /home directory. Before you continue you need to ensure that they are backed up somewhere.**
+**NOTE: Be careful you should have some dotfiles defined in your /home directory. Before you continue you need to ensure that they are backed up somewhere.**
 **Remember with great power comes great responsibility.**
 
 I wrote a dotfiles installation script to automate symlinking the dotfiles in the repo to your `/home` directory. See this [.dotfiles_setup.sh](https://github.com/mmphego/dot-files/blob/master/.dotfiles/.dotfiles_setup.sh) for an example.
@@ -354,7 +354,7 @@ Go build set up your own dotfiles and the next time when your computer crashes/r
 
 ## Feedback
 
-If you have nice ideas to share or want to collaborate, feel free to send me a @OrifhaMpho or [fork and send me a PR!](https://github.com/mmphego/dot-files)
+If you have nice ideas to share or want to collaborate, feel free to send me a tweet @OrifhaMpho or [fork and send me a PR!](https://github.com/mmphego/dot-files)
 
 ## Reference
 *   [Getting Started With Dotfiles](https://medium.com/@webprolific/getting-started-with-dotfiles-43c3602fd789)
