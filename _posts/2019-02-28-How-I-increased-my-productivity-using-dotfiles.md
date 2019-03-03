@@ -134,7 +134,7 @@ We will take a look at the following examples:
 
 ***.profile***
 
-This file is located in your `/home` directory is loaded first upon login, it is either called `.profile` or '.bash_profile`.
+This file is located in your `/home` directory is loaded first upon login, it is either called `.profile` or `.bash_profile`.
 What to put in the `.profile` is truly up-to the individual and it can be expanded significantly. I personally like to keep my `.profile` as small possible and only have things I need to be ran once.
 For example, I define all my colors and color functions in my `.profile`
 
