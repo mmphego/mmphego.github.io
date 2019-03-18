@@ -42,8 +42,8 @@ There are two parts to this:
 `installer.sh` is what makes this all magically work.
 I will document it in detail on the next post.
 
-    * I have compiled a demo for the installation, check it out
-        [![demo](https://i.makeagif.com/media/3-17-2019/C1f0UT.gif)](https://www.youtube.com/watch?v=ooqxvkyNwiY)
+    * I have compiled a demo for the installation, check it out:
+    [![demo](https://i.makeagif.com/media/3-17-2019/C1f0UT.gif)](https://www.youtube.com/watch?v=ooqxvkyNwiY)
 
 ## My Dotfiles
 
