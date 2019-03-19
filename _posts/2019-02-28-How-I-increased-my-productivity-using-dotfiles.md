@@ -40,10 +40,11 @@ There are two parts to this:
 
 *    The second [repository](https://github.com/mmphego/new-computer) packs a punch, it contains a script which when ran it will install every little package, configs, [githooks](https://github.com/mmphego/git-hooks) and [dotfiles](https://github.com/mmphego/dot-files), I need for my day-to-day productivity from academic, work-related to entertainment.
 `installer.sh` is what makes this all magically work.
-I will document it in detail on the next post.
 
-    * I have compiled a demo for the installation, check it out:
-    [![Demo]({{ "/assets/demo.gif" | absolute_url }})](https://www.youtube.com/watch?v=ooqxvkyNwiY)
+I have compiled a demo for the installation (I'll document it in detail on the next post).
+{:refdef: style="text-align: center;"}
+[![Demo]({{ "/assets/demo.gif" | absolute_url }})](https://www.youtube.com/watch?v=ooqxvkyNwiY)
+{:refdef}
 
 ## My Dotfiles
 
