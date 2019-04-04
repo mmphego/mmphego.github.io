@@ -19,5 +19,5 @@ Then, remove another chimp and replace it with a fresh one. The scenario occurs 
 
 Iterate. After some operations, you have five chimps who are ready to punch any chimp who would dare touch the stepladder -- and none of them knows why.
 
-# Reference
+## Reference
 *   [What technical reasons are there to have low maximum password lengths?](https://security.stackexchange.com/a/33471)
