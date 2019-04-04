@@ -12,7 +12,7 @@ contact:
     text: https://github.com/mmphego
 
 summary: |
-        I am currently working as a Test & Verification Engineer on Python’s Correlator-Beamformer back-end development packages (mainly corr2 and casperfpga), my main focus is on testing and verification these packages with Python based Testing Framework and my contribution can be found on  <a href="https://github.com/ska-sa/mkat_fpga_tests">Meerkat CBF Test Framework</a> at the <a href="ska.ac.za">Square Kilometer Array South Africa</a>.
+        I am currently working as a Software Engineer at the <a href="ska.ac.za">Square Kilometer Array South Africa</a in the Control & Monitoring (CAM) software group.
 
         Having completed a Bachelors in Electronic Engineering, and currently pursuing a Masters. I found that I enjoyed the programming aspects of the course most, hence why I decided to diverge to Programming, focusing mainly on Python and CLang.
 
@@ -108,8 +108,23 @@ skills:
     items: Arduino Development, C-Lang, MQTT, Hardware Development, Hypervisor(VirtualBox, Vagrant)
 
 experience:
+  - title: Software Engineer
+    duration: Mar 2019 - Present
+    company: SKA SA (Square Kilometer Array South Africa)
+    location: Cape Town, South Africa
+    description: |
+                  * Assist in maturing of software development and quality assurance processes towards greater standardization and improved long term maintainability and robustness.
+                  * Collaborate with departmental stakeholders to support engineering, commissioning, operations and early science activities.
+                  * Compile document sets.
+                  * Facilitate coding standard compliance and code reviews, which include mentoring junior engineers.
+                  * Participate in the development of budgets and cost/benefit analysis for compliance with project procurement policies.
+                  * Participate in the development of project schedules and activities.
+                  * Prototyping and software development of the telescope operational software (all stages of the full software development life-cycle may be encountered).
+                  * Provide hands-on technical support in the system administration of the hardware platforms, deployment environments, and processing, which may include site visits to the Karoo.
+                  * Provide project management and progress reporting input as required by the Functional Manager and for team communication.
+
   - title: Test & Verification Engineer
-    duration: Jun 2015 - Present
+    duration: Jun 2015 - Feb 2019
     company: SKA SA (Square Kilometer Array South Africa)
     location: Cape Town, South Africa
     description: |
