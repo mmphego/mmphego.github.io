@@ -20,6 +20,7 @@ With that said, I also watch a lot of talks and love to share with my friends(If
 * [Stop Writing Classes](http://pyvideo.org/video/880/stop-writing-classes) [00:27:29] by **Jack Diederich**
 * [Understanding the Python GIL](https://www.youtube.com/watch?v=Obt-vMVdM8s) [00:46:10] by **David Beazley** (2012)
 * [Inside the Python GIL](https://www.youtube.com/watch?v=ph374fJqFPE) [01:01:03] by **David Beazley** (2012)
+* [Pragmatic Unicode, or, How do I stop the pain?](https://www.youtube.com/watch?v=sgHbC6udIqc) [00:36:20] by **Ned Batchelder** (2012)
 
 ### 2015
 * [Beyond PEP 8 - Best practices for beautiful intelligible code](https://www.youtube.com/watch?v=wf-BqAjZb8M) [00:52:05] by **Raymond Hettinger** (2015)
