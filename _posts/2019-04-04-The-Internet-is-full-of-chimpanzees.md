@@ -20,7 +20,7 @@ Then, remove another chimp and replace it with a fresh one. The scenario occurs 
 Iterate. After some operations, you have five chimps who are ready to punch any chimp who would dare touch the stepladder -- and none of them knows why.
 
 {:refdef: style="text-align: center;"}
-<div><img src="http://i.snag.gy/kdu77.jpg" alt="" style="width: 350px;"/></div>
+<div><img src="http://i.snag.gy/kdu77.jpg" alt="" style="width: 650px;"/></div>
 {: refdef}
 
 ## Reference
