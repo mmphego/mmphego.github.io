@@ -246,5 +246,6 @@ plugins:
   - jekyll-archives
   - kramdown
   - jekyll_github_sample
+  - redcarpet
 
 jekyll-mentions: https://twitter.com
