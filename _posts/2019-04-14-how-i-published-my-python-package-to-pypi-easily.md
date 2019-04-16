@@ -16,7 +16,7 @@ I love reading [Medium](http://medium.com/) post time to time, but never have en
 ![]({{ "/assets/keep.png" | absolute_url }})
 {: refdef}
 
-Over time, I could not take it anymore so I decided to create a Python script that would export the blog posts (using a [Docker Image](https://hub.docker.com/r/mmphego/mediumexporter)) into `mp3` files for me to listen to instead of reading while busy with other boring stuff that boring people do.
+Over time, I could not take it anymore so I decided to create a Python script that would export the blog posts (using a [Docker Image](https://hub.docker.com/r/mmphego/mediumexporter)) into `mp3` files for me to listen to, instead while busy with other boring stuff that boring people do.
 
 In this post, I will walk you through how I managed to publish/deploy my package on PyPi.
 
