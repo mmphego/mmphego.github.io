@@ -53,7 +53,7 @@ So, In order to get our package to PyPI we will need to do the following steps:
 
 ## Step #1: Make your code publish-ready.
 
-In this post, I will take you through my package called `medium-speech` as a real example. You can found it [here](https://pypi.org/project/medium-speech/) on PyPi, source code is [here](https://github.com/mmphego/medium-to-speech) on Github.
+In this post, I will take you through my package called `medium-speech` as a real example. You can find it [here](https://pypi.org/project/medium-speech/) on PyPi, source code is [here](https://github.com/mmphego/medium-to-speech) on Github.
 
 Things to note before deploying:
 *   Remove all print statement from your code. If you want to inform or log something, use Python `logging` module.
