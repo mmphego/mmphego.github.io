@@ -52,7 +52,7 @@ class SlackBot:
         headers = {"content-type": "application/json"}
         data = '{"text":"%s"}' % msg
         resp = requests.post(self._url, data=data, headers=headers)
-        return "Message Sent" if resp.status_code == 200 else "Failed to sent message"
+        return "Message Sent" if resp.status_code == 200 else "Failed to send message"
 
 
 slack = SlackBot(app_id, secret_id, token)
