@@ -20,7 +20,7 @@ Slack provides `Incoming-Webhooks` and they have a well documented [Incoming-Web
 
 The first thing I needed to do was to find out from Slack the correct URL it will use to post the messages.
 
-*   Go to https://api.slack.com/apps?new_app and sign in
+*   Go to [https://api.slack.com/apps?new_app](https://api.slack.com/apps?new_app) and sign in
 then follow the instructions [here](https://api.slack.com/incoming-webhooks)
 *   Choose the channel to which you want to send messages and then Add Incoming WebHooks Integration.
 *   Note that you can find the `Display Name` and change what will appear in the channel.  Slack gives you the URL to which you’ll be posting your messages. Similar to this: `https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX`
