@@ -12,7 +12,7 @@ We use and love [Slack](http://slack.com/) for team messaging, throughout the da
 
 The reason is pretty straight forward, I wanted my devices to SlackMe messages. For example, I have soil moisture sensor(s) planted in my flowers pot at the office as well as in my vegetable garden at home, and I wanted my plants to SlackMe should they need me to water them.
 
-**Note**, this is an ongoing side project if you have interest on it go [here](http://github.com/mmphego/uPython-moisture-sensor/), I will make a detailed blog post soon.
+**Note**, this is an ongoing side project if you have interest on it go [here](http://bit.ly/2WyDjIN), I will make a detailed blog post soon.
 
 My solution was to have a simple Python script that sends me a message in the appropriate Slack channel at specific/random times or when `xValue` goes beyond a certain `threshold`.
 
