@@ -9,6 +9,9 @@ tags:
 # How I Resolved Selenium ("Geckodriver") Webdriver Exception.
 
 -------------------------------------------------------
+{:refdef: style="text-align: center;"}
+![selenium]({{ "/assets/selenium_word_cloud.jpg" | absolute_url }})
+{: refdef}
 
 ## What is Selenium?
 
