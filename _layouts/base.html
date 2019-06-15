@@ -23,6 +23,8 @@ common-js:
   <body>
     {% if page.url != '/resume.html' %}
       {% include advertisements.html %}
+    {% else %}
+      {% include advertisements.html %}
     {% endif %}
 
     <!-- Detect adBlock -->
@@ -38,6 +40,8 @@ common-js:
 
     {% if page.url != '/resume.html' %}
       {% include advertisements.html %}
+    {% else %}
+      {% include advertisements.html %}
     {% endif %}
 
     {% include footer.html %}
@@ -45,7 +49,9 @@ common-js:
     {% include footer-scripts.html %}
 
   </body>
-    {% if page.url != '/resume.html' %}
-      {% include advertisements.html %}
-    {% endif %}
+  {% if page.url != '/resume.html' %}
+    {% include advertisements.html %}
+  {% else %}
+    {% include advertisements.html %}
+  {% endif %}
 </html>

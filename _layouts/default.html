@@ -9,9 +9,11 @@ layout: base
   {{ content }}
 </div>
     {% include head.html %}
-    {% if page.url != '/resume.html' %}
-      {% include advertisements.html %}
-    {% endif %}
+        {% if page.url != '/resume.html' %}
+          {% include advertisements.html %}
+        {% else %}
+          {% include advertisements.html %}
+        {% endif %}
     {% seo %}
   </head>
 </html>

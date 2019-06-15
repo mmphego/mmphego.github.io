@@ -18,13 +18,27 @@ common-js:
       {{ content }}
     </div>
 
+    {% if page.url != '/resume.html' %}
+      {% include advertisements.html %}
+    {% else %}
+      {% include advertisements.html %}
+    {% endif %}
+
     {% include footer-minimal.html %}
 
     {% if page.url != '/resume.html' %}
       {% include advertisements.html %}
-    {% endif %}
+    {% else %}
+      {% include advertisements.html %}
 
     {% include footer-scripts.html %}
+
+    {% endif %}
+    {% if page.url != '/resume.html' %}
+      {% include advertisements.html %}
+    {% else %}
+      {% include advertisements.html %}
+    {% endif %}
 
   </body>
 </html>
