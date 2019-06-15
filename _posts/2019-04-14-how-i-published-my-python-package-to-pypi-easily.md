@@ -20,8 +20,10 @@ Over time, I could not take it anymore so I decided to create a Python script th
 
 In this post, I will walk you through how I managed to publish/deploy my package on PyPi.
 
+{:refdef: style="text-align: center;"}
 <div><img src="http://img.picturequotes.com/2/131/130430/at-first-i-was-like-but-then-i-was-like-quote-1.jpg" alt="" style="width: 250px;"/>
 </div>
+{: refdef}
 
 At first, I always thought that deploying/packaging your Python package was cumbersome until now. It is now easier than ever and below I will tell you all about it.
 
@@ -66,8 +68,9 @@ if __name__ == "__main__":
 ```
 
 ### Create a python package
-
+{:refdef: style="text-align: center;"}
 <div><img src="https://getlighthouse.com/blog/wp-content/uploads/2017/11/reinvent-the-wheel-is-a-bad-idea.png" alt="" style="width: 650px;"/></div>Reinventing the wheel is a bad idea, don't do it.
+{: refdef}
 
 Thanks to @kennethreitz for making it easier with his "[Human's Ultimate Guide to setup.py](https://github.com/kennethreitz/setup.py)".
 
@@ -139,8 +142,9 @@ Let's dive down and explore the files illustrated above, starting with the `setu
 #### The setup.py file.
 
 The `setup.py` file contains information about your package that PyPi needs, like its name, a description, installation requirements and etc. We will look directly into a real simple `setup.py` which you can find [here](https://github.com/mmphego/medium-to-speech/blob/master/setup.py):
-
+{:refdef: style="text-align: center;"}
 <script src="http://gist-it.appspot.com/https://github.com/mmphego/medium-to-speech/blob/master/setup.py"></script>
+{: refdef}
 
 Most of the options are self-explanatory, you can just copy the content of `setup.py` above and modify it to your needs. Don't forget to list all dependencies of your package in `install_requires` list, so that this requirement can be installed automatically while your package is being installed.
 
@@ -205,8 +209,9 @@ From their [website](http://tox.readthedocs.io/)
 > `tox` aims to automate and standardize testing in Python. It is part of a larger vision of easing the packaging, testing and release process of Python software.
 
 Tox allows us to run through tests in multiple environments so that you can be sure your code will work with the differences between Python versions. Let's look directly into a simple `tox.ini` file which you can find [here](https://github.com/mmphego/medium-to-speech/blob/master/tox.ini):
-
+{:refdef: style="text-align: center;"}
 <script src="http://gist-it.appspot.com/https://github.com/mmphego/medium-to-speech/blob/master/tox.ini"></script>
+{: refdef}
 
 The code above simply tells us we are going to test the package using `python3.6` and `python3.7`, as well as a `flake8` environment layer for checking any [pep8](https://www.python.org/dev/peps/pep-0008/) violations.
 
@@ -276,13 +281,16 @@ You will be asked to provide your `username` and `password`. Provide the credent
 
 After successful uploading, go to PyPi website, under your project, you can found your published package.
 
-
+{:refdef: style="text-align: center;"}
 <div><img src="https://blog.mphomphego.co.za/assets/pypi_my_projects.png" alt="" style="width: 400px;"/>
 </div>
+{: refdef}
 
 My public listing is [here](https://pypi.org/project/medium-speech)
 
+{:refdef: style="text-align: center;"}
 <div><img src="https://blog.mphomphego.co.za/assets/pypi.png" alt="" style="width: 400px;"/></div>
+{: refdef}
 
 ## Step #4: Install your own package using pip
 
@@ -315,8 +323,11 @@ pip install -U "yourpackagename"
 That's it. Enjoy building and sharing your Python packages!
 
 Sorry for the long post, here's a Potato!
+
+{:refdef: style="text-align: center;"}
 <div><img src="https://memegenerator.net/img/instances/58213312/thank-you-for-reading-heres-a-potato.jpg" alt="" style="width: 400px;"/>
 </div>
+{: refdef}
 
 If you found this post interesting, please leave a comment or an emoji.
 
