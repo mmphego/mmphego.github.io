@@ -12,10 +12,10 @@ tags:
 
 I love reading [Medium](http://medium.com/) post time to time, but never have enough time between juggling school, work and family the dream of reading daily posts just happens to fade into the abyss over time. And the links to posts that interest me keep on piling up and up on my Google Keep.
 
-{:refdef: style="text-align: center;width: 105px;"}
+<!-- {:refdef: style="text-align: center;width: 105px;"}
 ![]({{ "/assets/keep.png" | absolute_url }})
 {: refdef}
-
+ -->
 Over time, I could not take it anymore so I decided to create a Python script that would export the blog posts (using a [Docker Image](https://hub.docker.com/r/mmphego/mediumexporter)) into `mp3` files for me to listen to, instead while busy with other boring stuff that boring people do.
 
 In this post, I will walk you through how I managed to publish/deploy my package on PyPi.
