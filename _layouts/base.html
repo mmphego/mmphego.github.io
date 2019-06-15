@@ -27,7 +27,9 @@ common-js:
 
     <!-- Detect adBlock -->
     <script src="{{ site.baseurl }}/js/ads.js" type="text/javascript"></script>
-
+    <amp-auto-ads type="adsense"
+              data-ad-client="{{ site.google_adsense}}">
+    </amp-auto-ads>
     {% include gtm_body.html %}
 
     {% include nav.html %}
