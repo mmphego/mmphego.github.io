@@ -9,6 +9,8 @@ tags:
 ---
 # Automating The Creation Of Projects With Python
 
+*6 Min Read*
+
 {:refdef: style="text-align: center;"}
 ![post image]({{ "/assets/2019-07-06-Automating-the-creation-of-projects-with-Python.jpg" | absolute_url }})
 {: refdef}
