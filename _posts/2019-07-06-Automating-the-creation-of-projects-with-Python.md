@@ -17,9 +17,9 @@ tags:
 
 # The Story
 
-As a developer who always has fresh new app/package ideas, I got bored of doing the same thing every single time - the whole task of creating a project directory, `README.md` and extra files. I got so used to the repetition to the point where it was just in my subconscious, until I just had enough.
+As a developer who always has fresh new app/package ideas, I got bored of doing the same thing every single time - the whole task of creating a project directory, `README.md` and extra files. I got so used to the repetition to the point where it was just in my subconscious until I just had enough.
 
-Hence this post, in this post I will try to detail a trick I have added in [my dot-files](http://bit.ly/2FR2AEt). The function/trick automates the process of creating new projects and currently only supports Python, MicroPython and Arduino projects.
+Hence this post, in this post I will try to detail a trick I have added in [my dot-files](http://bit.ly/2FR2AEt). The function/trick automates the process of creating new projects and currently only supports Python, MicroPython, and Arduino projects.
 
 In the past, I wrote a post detailing how I increased my productivity using my dotfiles, check it out [here](http://bit.ly/2G3DoL5)
 
@@ -29,11 +29,11 @@ review the code, and remove things you don’t want or need. Don’t blindly use
 
 # The How
 
-I use [cookiecutter](https://github.com/audreyr/cookiecutter) a CLI utility that creates projects from templates, for both the Python and MicroPython projects, and [Platformio](https://platformio.org/) for the Arduino related projects. After a successful project creation, the function executes a Python script which uses [PyGithub](https://github.com/PyGithub/PyGithub/) to create a repository on Github, then creates an automated commit and pushes my changes to Github. Finally opens the project folder in [sublime text](https://www.sublimetext.com/) for me to continue with my work.
+I use [cookiecutter](https://github.com/audreyr/cookiecutter) a CLI utility that creates projects from templates, for both the Python and MicroPython projects, and [Platformio](https://platformio.org/) for the Arduino related projects. After successful project creation, the function executes a Python script which uses [PyGithub](https://github.com/PyGithub/PyGithub/) to create a repository on Github, then creates an automated commit and pushes my changes to Github. Finally opens the project folder in [sublime text](https://www.sublimetext.com/) for me to continue with my work.
 
 # The Walk-through
 
-First let's install cookiecutter and pygithub
+First, let's install cookiecutter and pygithub
 
 ```bash
 pip install -U cookiecutter pygithub
@@ -44,7 +44,7 @@ pip install -U cookiecutter pygithub
 Once pygithub is installed, either you can generate a token or use your username & password.
 If you opt for using the token, go [here](https://github.com/settings/tokens/new) to generate your token.
 
-Once you have your token, we can test connecting to github using [pygithub](https://github.com/PyGithub/PyGithub/). This should list all your repositories.
+Once you have your token, we can test connecting to GitHub using [pygithub](https://github.com/PyGithub/PyGithub/). This should list all your repositories.
 
 ### Usage
 
@@ -69,9 +69,9 @@ for repo in g.get_user().get_repos():
 
 Now that we have [PyGithub](https://github.com/PyGithub/PyGithub/) set up, we can test [cookiecutter](https://github.com/audreyr/cookiecutter). There's a pantry full of cookiecutters templates for you to choose on, you can find them [here](https://github.com/cookiecutter/cookiecutter#a-pantry-full-of-cookiecutters)
 
-I personally forked the [Cookiecutter template for a Python package.](https://github.com/audreyr/cookiecutter-pypackage), and modified it to suite my needs.
+I personally forked the [Cookiecutter template for a Python package.](https://github.com/audreyr/cookiecutter-pypackage), and modified it to suit my needs.
 
-I added few features such as:
+I added a few features such as:
 
 - Testing setup with `unittest` and/or `py.test`
 - [Travis-CI](http://travis-ci.org/): Ready for Travis Continuous Integration testing
@@ -180,7 +180,7 @@ print('Successfully created repository %s' % proj_name)
 
 # Demo
 
-Also I have challenged myself to VLog my work at least twice in a month (I am being optimistic). Below is a demo I made showing my function implementation and a code walk-through, so please subscribe and smash that notification bell so that you get the content while it is fresh.
+Also, I have challenged myself to VLog my work at least twice in a month (I am being optimistic). Below is a demo I made showing my function implementation and a code walk-through, so please subscribe and smash that notification bell so that you get the content while it is fresh.
 
 <p align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/oy4EqUjabrE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
 Thank you for watching.
