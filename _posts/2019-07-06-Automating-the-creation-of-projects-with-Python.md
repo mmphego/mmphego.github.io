@@ -7,7 +7,7 @@ tags:
 - Tips/Tricks
 - Automation
 ---
-# Automating The Creation Of Projects With Python.
+# Automating The Creation Of Projects With Python
 
 {:refdef: style="text-align: center;"}
 ![post image]({{ "/assets/2019-07-06-Automating-the-creation-of-projects-with-Python.jpg" | absolute_url }})
@@ -34,6 +34,7 @@ I use [cookiecutter](https://github.com/audreyr/cookiecutter) a CLI utility that
 # The Walk-through
 
 First let's install cookiecutter and pygithub
+
 ```bash
 pip install -U cookiecutter pygithub
 ```
@@ -48,6 +49,7 @@ Once you have your token, we can test connecting to github using [pygithub](http
 ### Usage
 
 Run command in your python environment:
+
 ```python
 from github import Github
 
@@ -70,6 +72,7 @@ Now that we have [PyGithub](https://github.com/PyGithub/PyGithub/) set up, we ca
 I personally forked the [Cookiecutter template for a Python package.](https://github.com/audreyr/cookiecutter-pypackage), and modified it to suite my needs.
 
 I added few features such as:
+
 - Testing setup with `unittest` and/or `py.test`
 - [Travis-CI](http://travis-ci.org/): Ready for Travis Continuous Integration testing
 - [Codacy](https://app.codacy.com/): Automated your code quality
