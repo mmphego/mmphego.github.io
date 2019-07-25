@@ -3,7 +3,9 @@ layout: post
 title: "How To Encrypt Multiple Files With Travis CI"
 date: 2019-07-25 22:38:25.000000000 +02:00
 tags:
-
+- Continuous Integration
+- Tips/Tricks
+- Automation
 ---
 # How To Encrypt Multiple Files With Travis CI.
 
