@@ -143,9 +143,9 @@ title-separator: "-"
 # Output options (more information on Jekyll's site)
 timezone: "Africa/Johannesburg"
 markdown: kramdown
-# kramdown:
+kramdown:
 #   input: GFM
-#   syntax_highlighter: rouge
+  syntax_highlighter: rouge
 #       disable : true
 highlighter: rouge
 permalink: /blog/:year/:month/:day/:title.html

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "I Built An Automated Irrigation System Because Im Lazy!"
+title: "I Built An Automated Irrigation System, Because Im Lazy!"
 date: 2019-09-02 07:05:43.000000000 +02:00
 tags:
 - MicroPython
@@ -15,6 +15,7 @@ tags:
 {: refdef}
 
 8 Min Read
+
 -----------------------------------------------------------------------------------------
 
 # The Story
