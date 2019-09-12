@@ -16,6 +16,14 @@ tags:
 
 8 Min Read
 
+{:refdef: style="text-align: right;"}
+<figure>
+    <figcaption>Listen to this article:</figcaption>
+    <audio controls src="https://raw.githubusercontent.com/mmphego/mmphego.github.io/master/assets/2019-09-02-I-built-an-automated-irrigation-system-because-im-lazy.mp3"> Your browser does not support the <code>audio</code> element.
+    </audio>
+</figure>
+{: refdef}
+
 -----------------------------------------------------------------------------------------
 
 # The Story
@@ -211,6 +219,6 @@ It would be great if I add some AI to the system. Adding some blue filters and m
 
 Current setup at the office, Hot glue and prestik mess but works.
 
-![post image]({{ "/assets/IMG_20190902_073749.jpg" | absolute_url }})
+![post image](https://raw.githubusercontent.com/mmphego/uPython-Plant-Irrigation-System/master/assets/IMG_20190902_073749.jpg)
 
-![post image]({{ "/assets/IMG_20190902_073801.jpg" | absolute_url }})
+![post image](https://raw.githubusercontent.com/mmphego/uPython-Plant-Irrigation-System/master/assets/IMG_20190902_073801.jpg)

@@ -16,6 +16,14 @@ tags:
 ![post image]({{ "/assets/2019-07-18-How-to-sign-your-commits-on-GitHub-with-GPG.jpg" | absolute_url }})
 {: refdef}
 
+{:refdef: style="text-align: right;"}
+<figure>
+    <figcaption>Listen to this article:</figcaption>
+    <audio controls src="https://raw.githubusercontent.com/mmphego/mmphego.github.io/master/assets/2019-07-18-How-to-sign-your-commits-on-GitHub-with-GPG.mp3"> Your browser does not support the <code>audio</code> element.
+    </audio>
+</figure>
+{: refdef}
+
 -----------------------------------------------------------------------------------------
 
 # TL;DR
