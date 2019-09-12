@@ -69,7 +69,7 @@ author:
   linkedin: mphomphego
   stackoverflow: 6165344/mpho-mphego
   # instagram:
-  # reddit: yourname
+  # reddit:
   # xing: yourname
   # snapchat: yourname
   youtube: xxXMphoXxx
@@ -83,15 +83,15 @@ author:
 # Select which links to show in the footer
 footer-links-active:
   # codecademy: true
-  # docker: true
+  docker: true
   # facebook: false
   # google-plus: false
   # instagram: false
-  # reddit: false
+  reddit: true
   # snapchat: false
   # sololearn: true
   # spotify: false
-  # stackoverflow: true
+  stackoverflow: true
   # steam: false
   # twitch: false
   # xing: false
@@ -107,8 +107,9 @@ footer-links-active:
 share-links-active:
   twitter: true
   facebook: true
-  google: true
+  # google: false
   linkedin: true
+  reddit: true
 
 # How to display the link to the website in the footer
 # Remove this if you don't want a link in the footer
