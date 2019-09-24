@@ -3,7 +3,11 @@ layout: base
 ---
 
 {% include header.html type="page" %}
-
+  {% if page.url != '/resume.html' %}
+    {% include advertisements.html %}
+  {% else %}
+    {% include advertisements.html %}
+  {% endif %}
 <div class="container" role="main">
   <div class="row">
     <div class="container">

@@ -16,4 +16,9 @@ layout: base
         {% endif %}
     {% seo %}
   </head>
+  {% if page.url != '/resume.html' %}
+    {% include advertisements.html %}
+  {% else %}
+    {% include advertisements.html %}
+  {% endif %}
 </html>

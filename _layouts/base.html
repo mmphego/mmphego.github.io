@@ -33,9 +33,17 @@ common-js:
               data-ad-client="{{ site.google_adsense}}">
     </amp-auto-ads>
     {% include gtm_body.html %}
-
+    {% if page.url != '/resume.html' %}
+      {% include advertisements.html %}
+    {% else %}
+      {% include advertisements.html %}
+    {% endif %}
     {% include nav.html %}
-
+    {% if page.url != '/resume.html' %}
+      {% include advertisements.html %}
+    {% else %}
+      {% include advertisements.html %}
+    {% endif %}
     {{ content }}
 
     {% if page.url != '/resume.html' %}
@@ -45,9 +53,17 @@ common-js:
     {% endif %}
 
     {% include footer.html %}
-
+    {% if page.url != '/resume.html' %}
+      {% include advertisements.html %}
+    {% else %}
+      {% include advertisements.html %}
+    {% endif %}
     {% include footer-scripts.html %}
-
+    {% if page.url != '/resume.html' %}
+      {% include advertisements.html %}
+    {% else %}
+      {% include advertisements.html %}
+    {% endif %}
   </body>
   {% if page.url != '/resume.html' %}
     {% include advertisements.html %}

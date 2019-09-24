@@ -13,7 +13,11 @@ common-js:
   {% include head.html %}
 
   <body>
-
+    {% if page.url != '/resume.html' %}
+      {% include advertisements.html %}
+    {% else %}
+      {% include advertisements.html %}
+    {% endif %}
     <div role="main" class="container main-content">
       {{ content }}
     </div>

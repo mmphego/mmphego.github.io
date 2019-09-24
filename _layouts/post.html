@@ -40,7 +40,11 @@ layout: base
         {% endif %}
 
       </article>
-
+    {% if page.url != '/resume.html' %}
+      {% include advertisements.html %}
+    {% else %}
+      {% include advertisements.html %}
+    {% endif %}
       {% if page.tags.size > 0 %}
         <div class="blog-tags">
           Tags:
@@ -60,21 +64,33 @@ layout: base
 
       <ul class="pager blog-pager">
         {% if page.previous.url %}
-
+    {% if page.url != '/resume.html' %}
+      {% include advertisements.html %}
+    {% else %}
+      {% include advertisements.html %}
+    {% endif %}
         <li class="previous">
           <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">&larr; Previous Post</a>
         </li>
         {% endif %}
 
         {% if page.next.url %}
-
+    {% if page.url != '/resume.html' %}
+      {% include advertisements.html %}
+    {% else %}
+      {% include advertisements.html %}
+    {% endif %}
         <li class="next">
           <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">Next Post &rarr;</a>
         </li>
 
         {% endif %}
       </ul>
-
+    {% if page.url != '/resume.html' %}
+      {% include advertisements.html %}
+    {% else %}
+      {% include advertisements.html %}
+    {% endif %}
       {% if page.comments %}
         <div class="disqus-comments">
           {% include disqus.html %}
