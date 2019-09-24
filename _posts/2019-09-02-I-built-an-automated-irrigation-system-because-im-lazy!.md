@@ -218,7 +218,6 @@ It would be great if I add some AI to the system. Adding some blue filters and m
 # Final Implementations
 
 Current setup at the office, Hot glue and prestik mess but works.
+![post image]({{ "assets/IMG_20190902_073749.jpg" | absolute_url }})
 
-![post image](https://raw.githubusercontent.com/mmphego/uPython-Plant-Irrigation-System/master/assets/IMG_20190902_073749.jpg)
-
-![post image](https://raw.githubusercontent.com/mmphego/uPython-Plant-Irrigation-System/master/assets/IMG_20190902_073801.jpg)
+![post image]({{ "assets/IMG_20190902_073801.jpg" | absolute_url }})
