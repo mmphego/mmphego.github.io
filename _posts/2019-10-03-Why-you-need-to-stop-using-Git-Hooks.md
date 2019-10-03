@@ -5,12 +5,21 @@ date: 2019-10-03 11:28:54.000000000 +02:00
 tags:
 
 ---
-# Why You Need To Stop Using Git-Hooks.
 
 {:refdef: style="text-align: center;"}
 ![post image]({{ "/assets/2019-10-03-Why-you-need-to-stop-using-Git-Hooks.jpg" | absolute_url }})
 {: refdef}
 
+10 Min Read
+
+<!-- {:refdef: style="text-align: right;"}
+<figure>
+    <figcaption>Listen to this article:</figcaption>
+    <audio controls src="https://raw.githubusercontent.com/mmphego/mmphego.github.io/master/assets/2019-09-02-I-built-an-automated-irrigation-system-because-im-lazy.mp3"> Your browser does not support the <code>audio</code> element.
+    </audio>
+</figure>
+{: refdef}
+ -->
 -----------------------------------------------------------------------------------------
 
 # The Story
