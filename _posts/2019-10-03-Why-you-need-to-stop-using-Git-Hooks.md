@@ -12,14 +12,14 @@ tags:
 
 10 Min Read
 
-<!-- {:refdef: style="text-align: right;"}
+{:refdef: style="text-align: right;"}
 <figure>
     <figcaption>Listen to this article:</figcaption>
-    <audio controls src="https://raw.githubusercontent.com/mmphego/mmphego.github.io/master/assets/2019-09-02-I-built-an-automated-irrigation-system-because-im-lazy.mp3"> Your browser does not support the <code>audio</code> element.
+    <audio controls src="https://raw.githubusercontent.com/mmphego/mmphego.github.io/master/assets/2019-10-03-Why-you-need-to-stop-using-Git-Hooks.mp3"> Your browser does not support the <code>audio</code> element.
     </audio>
 </figure>
 {: refdef}
- -->
+
 -----------------------------------------------------------------------------------------
 
 # The Story
@@ -124,9 +124,9 @@ In order to have pre-commit run every time you commit, run;
 
 Now every time you execute `git commit`, `pre-commit` will run the hooks defined above.
 
-**Note:** `git commit -n` bypasses/disables `pre-commit`hooks, but not advised consider benefits gained vs time.
+**Note:** `git commit -n` bypasses/disables `pre-commit`hooks, This is not advised consider benefits gained vs time.
 
-Alternatively, one would like to run `pre-commit` manually time to time.
+Alternatively, if one would like to run `pre-commit` manually time to time.
 Running `pre-commit run --all-files` will run all hooks against current changes in your repository or,
 
 If you wish to execute an individual hooks use `pre-commit run <hook_id>.`
@@ -140,7 +140,7 @@ Example:
 If like me you rather prefer to have `pre-commit hooks` installed every time your clone or create a new repository. Run;
 
 - `mkdir -p ~/.git-template`
-- `git config --global init.templateDir ~/.git-template` : This tells git to copy everything in ~/.git-templates to your per-project .git/ directory when you run git init
+- `git config --global init.templateDir ~/.git-template` : This tells git to copy everything in ~/.git-templates to your project `.git/` directory when you run `git init`
 - `pre-commit init-templatedir ~/.git-template` : This will install the current hooks into the template directory and ensure that everytime you clone or create a repository pre-commit hooks will be installed.
 
 # Custom Hooks
