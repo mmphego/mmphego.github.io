@@ -24,43 +24,43 @@ tags:
 
 # The Story
 
-## TL;DR
+## TL; DR
 
-Native Git-hooks are very useful but have some shortcomings around installation, maintainability and re-usability. But there's a great alternative...
+Native Git-hooks are very useful but have some shortcomings around installation, maintainability, and re-usability. But there's a great alternative...
 
-## TS;RE
+## TS; RE
 
-[Git-Hooks](https://githooks.com/) are great way to execute custom actions triggered by various git events on the local machine, in order to identify bugs/issues before committing and pushing our work for review. Ideally these hooks are ran on every commit to automatically point out issues/bugs in
-the code, for example: missing semicolons, trailing whitespace, docstrings
-violations, Python module sorting and etc.
+[Git-Hooks](https://githooks.com/) is a great way to execute custom actions triggered by various git events on the local machine, to identify bugs/issues before committing and pushing our work for review. Ideally, these hooks run on every commit to automatically point out issues/bugs in
+the code, for example missing semicolons, trailing whitespace, docstrings
+violations, Python module sorting, etc.
 
 For the longest time, I have been using [git-hooks](https://githooks.com/) mainly for `pre-commit` and `prepare-commit-msg`. You can find my *deprecated git-hooks* [here](http://bit.ly/2MOKasK)
 
-- `pre-commit`: A script written in `bash/shell` that gets called by a `git commit`, and then execute linting depending on the file being staged. Exiting this hook with a non-zero status will abort the commit, which makes it extremely useful for last-minute quality checks.
+- `pre-commit`: A script is written in `bash/shell` that gets called by a `git commit`, and then execute linting depending on the file being staged. Exiting this hook with a non-zero status will abort the commit, which makes it extremely useful for last-minute quality checks.
 
 - `prepare-commit-msg`: A script called by `git commit` that automatically prepends the commit message with the [Jira](https://www.atlassian.com/software/jira) ticket link based on the branch name.
 
-Githooks are great for pointing out any issues before committing any form of work and submitting for review, this allows reviewer to direct their focus on the architecture of a change than wasting time on trivial style nitpicks.
+Githooks are great for pointing out any issues before committing any form of work and submitting for review, this allows the reviewer to direct their focus on the architecture of a change than wasting time on trivial style nitpicks.
 
-IMHO, they have some shortcomings around installation, maintainability and re-usability, let me try to explain.
+IMHO, they have some shortcomings around installation, maintainability, and re-usability, let me try to explain.
 
 - Installation:
 
     Git hooks normally live inside the `.git/hooks` folders of local repositories. They can contain one executable per trigger event, such as `pre-commit` or `prepare-commit-msg`, which is run automatically by various git commands. It sounds magical, so you'd think what's the problem with this?
 
-    The `.git` folder is excluded from version control (i.e., You won't be able to track it's life-cycle), it only lives on your machine. To get a hook in place, you either have to copy an executable file with the trigger’s name into the `.git/hooks` folder or symlink one into it. It becomes cumbersome sharing hooks across various libraries or repositories and manually making changes to suit each individual repository.
+    The `.git` folder is excluded from version control (i.e., You won't be able to track its life-cycle), it only lives on your machine. To get a hook in place, you either have to copy an executable file with the trigger’s name into the `.git/hooks` folder or symlink one into it. It becomes cumbersome sharing hooks across various libraries or repositories and manually making changes to suit each repository.
 
 - Maintainability:
 
-    The next problem is that you can have one of these files per event. You can then write a long Bash script (see my [pre-commit](https://github.com/mmphego/git-hooks/blob/master/hooks/pre-commit), for instance) to execute multiple actions for one trigger or split the actions to several individual files, and then create a main entry point to run the additional functionalities in the divided files. It is fully feasible, but it is tedious to maintain
+    The next problem is that you can have one of these files per event. You can then write a long Bash script (see my [pre-commit](https://github.com/mmphego/git-hooks/blob/master/hooks/pre-commit), for instance) to execute multiple actions for one trigger or split the actions to several individual files, and then create the main entry point to run the additional functionalities in the divided files. It is fully feasible, but it is tedious to maintain
 
 - Re-usability:
 
-    The last point concerns the re-usability, both for the setup and for the hooks. Doing so manually, you need to get the hook script and copy it or symlink it in each repository you want to use. You would also like to see your setup move with you when switching workstations/systems, without the going through the above-mentioned setup for each project.
+    The last point concerns the re-usability, both for the setup and the hooks. Doing so manually, you need to get the hook script and copy it or symlink it in each repository you want to use. You would also like to see your setup move with you when switching workstations/systems, without them going through the above-mentioned setup for each project.
 
     You may also want to have these hooks executed for all same type of projects, for example, of updating Python dependencies or executing [flake8](https://flake8.pycqa.org/en/latest/) checks before each commit, etc. You would have to copy and create your hook for each project automatically, with an out-of-the-box setup, which over time became painful and tedious for me to use which led me to use my hooks less.
 
-With all that said, do not get me wrong, I love the concept of Git hooks, and they can be very useful in a number of ways. However, portability and maintenance is an issue.
+With all that said, do not get me wrong, I love the concept of Git hooks, and they can be very useful in several ways. However, portability and maintenance is an issue.
 
 This post will detail why you should probably consider ditching your native git-hooks (Assuming you currently use them), reasons stated above. But nature abhors a vacuum, so we would need to replace native git-hooks with an alternative. Enters [pre-commit](https://pre-commit.com).
 
@@ -118,18 +118,18 @@ You can add all kinds of hooks - linting, automatic formatting, safety checks, t
 
 ## Hooks Installation
 
-In order to have pre-commit run every time you commit, run;
+To have pre-commit run every time you commit, run;
 
 `pre-commit install`
 
 Now every time you execute `git commit`, `pre-commit` will run the hooks defined above.
 
-**Note:** `git commit -n` bypasses/disables `pre-commit`hooks, This is not advised consider benefits gained vs time.
+**Note:** `git commit -n` bypasses/disables `pre-commit` hooks, This is not advised consider benefits gained vs time.
 
-Alternatively, if one would like to run `pre-commit` manually time to time.
+Alternatively, if one would like to run `pre-commit` manually from time to time.
 Running `pre-commit run --all-files` will run all hooks against current changes in your repository or,
 
-If you wish to execute an individual hooks use `pre-commit run <hook_id>.`
+If you wish to execute an individual hook use `pre-commit run <hook_id>.`
 Example:
 
 -   `pre-commit run black`, this will execute
@@ -141,12 +141,12 @@ If like me you rather prefer to have `pre-commit hooks` installed every time you
 
 - `mkdir -p ~/.git-template`
 - `git config --global init.templateDir ~/.git-template` : This tells git to copy everything in ~/.git-templates to your project `.git/` directory when you run `git init`
-- `pre-commit init-templatedir ~/.git-template` : This will install the current hooks into the template directory and ensure that everytime you clone or create a repository pre-commit hooks will be installed.
+- `pre-commit init-templatedir ~/.git-template`: This will install the current hooks into the template directory and ensure that every time you clone or create a repository pre-commit hooks will be installed.
 
 # Custom Hooks
 
-It's easy to [create your own custom hooks](https://pre-commit.com/#new-hooks) and share them with the community.
-Since I deprecated [my native git-hooks](http://bit.ly/2MOKasK), I have been constantly updating (WIP) [my custom hooks](https://github.com/mmphego/pre-commit-hooks) which you are more than welcome to checkout and contributions are welcome.
+It's easy to [create your custom hooks](https://pre-commit.com/#new-hooks) and share them with the community.
+Since I deprecated [my native git-hooks](http://bit.ly/2MOKasK), I have been constantly updating (WIP) [my custom hooks](https://github.com/mmphego/pre-commit-hooks) which you are more than welcome to check out and contributions are welcome.
 
 Alternatively see my `.pre-commit-config.yaml`
 
@@ -288,7 +288,7 @@ repos:
             rev: master
             hooks:
             -   id: prepend-jira-link
-                description: Appends ticket number and link below commit message based on branch name
+                description: Appends ticket number and link below commit message based on the branch name
 
     ####################################### Linters ######################################
     -   repo: local
@@ -306,7 +306,7 @@ repos:
                 flake8-bugbear, # A plugin for flake8 finding likely bugs and design problems in your program.
                                 # Contains warnings that don't belong in pyflakes and pycodestyle.
                 flake8-builtins, # Check for python builtins being used as variables or parameters.
-                flake8-comprehensions, # It helps you write better list/set/dict comprehensions.
+                flake8-comprehensions, # It helps you write a better list/set/dict comprehensions.
                 flake8-copyright, # Adds copyright checks to flake8
                 flake8-deprecated, # Warns about deprecated method calls.
                 dlint, # Dlint is a tool for encouraging best coding practices and helping ensure we're writing secure Python code.
