@@ -33,7 +33,7 @@ To enable this feature is pretty much simple and straight forward, and I will li
 ```bash
  #!/usr/bin/env bash
 # Git pre-commit hook, that will automagically flake8 or PEP8 format your code.
-# Author: Mpho Mphego <mpho112@gmail.com>
+# Author: Mpho Mphego <mpho@mphomphego.co.za>
 
 set -i
 RED=$(tput setaf 1)

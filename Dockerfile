@@ -1,5 +1,5 @@
 FROM ruby:2.5-alpine
-LABEL Mpho Mphego <mpho112@gmail.com>
+LABEL Mpho Mphego <mpho@mphomphego.co.za>
 
 RUN apk add --no-cache build-base gcc bash cmake
 RUN gem install bundler rails jekyll
