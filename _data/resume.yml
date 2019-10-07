@@ -187,33 +187,33 @@ experience:
                   * Documenting Schematic and PCB design procedures.
                   * Monthly Report writing, Creation of Engineering Requirements Templates.
 
-work-projects:
-  - name: CBF Tests
-    description:  A Correlator-beamforming unit-testing based framework for MeerKAT signal processing
-    link: https://github.com/ska-sa/mkat_fpga_tests
-    contribution: Mpho Mphego, et al.
-  - name: AVN Tests
-    description:  An African VLBI Network (AVN) Correlator Unit and Acceptance Testing based Framework (forked from CBF Tests)
-    link: https://github.com/ska-sa/AVNTests
-    contribution: Mpho Mphego
-  - name: CBF-System-Dashboard
-    description: Plotly/Node-Red dashboard running on a Docker container for monitoring Correlator-Beamformer system sensors
-    link: https://github.com/ska-sa/CBF-System-Dashboard
-    contribution: Mpho Mphego
-  - name: CBF-Tests-Automation
-    description: Automated Jenkins and CBF tests [deployment pipeline] through Docker.
-    link: https://github.com/ska-sa/CBF-Tests-Automation
-    contribution: Mpho Mphego, et al.
-  - name: nosekatreport
-    description:  Nose plug-in to support Automated Test Framework (AQF)
-    link: https://github.com/ska-sa/nosekatreport
-    contribution: Mpho Mphego, et al.
+# work-projects:
+#   - name: CBF Tests
+#     description:  A Correlator-beamforming unit-testing based framework for MeerKAT signal processing
+#     link: https://github.com/ska-sa/mkat_fpga_tests
+#     contribution: Mpho Mphego, et al.
+#   - name: AVN Tests
+#     description:  An African VLBI Network (AVN) Correlator Unit and Acceptance Testing based Framework (forked from CBF Tests)
+#     link: https://github.com/ska-sa/AVNTests
+#     contribution: Mpho Mphego
+#   - name: CBF-System-Dashboard
+#     description: Plotly/Node-Red dashboard running on a Docker container for monitoring Correlator-Beamformer system sensors
+#     link: https://github.com/ska-sa/CBF-System-Dashboard
+#     contribution: Mpho Mphego
+#   - name: CBF-Tests-Automation
+#     description: Automated Jenkins and CBF tests [deployment pipeline] through Docker.
+#     link: https://github.com/ska-sa/CBF-Tests-Automation
+#     contribution: Mpho Mphego, et al.
+#   - name: nosekatreport
+#     description:  Nose plug-in to support Automated Test Framework (AQF)
+#     link: https://github.com/ska-sa/nosekatreport
+#     contribution: Mpho Mphego, et al.
 
-personal-projects:
-  - name: DSTV IR remote using esp8266
-    description:  DSTV IR Remote using an esp8266 with support for controlling led strips mounted behind the TV and Amazon-Alexa intergrated.
-    link: https://github.com/mmphego/DSTV_A6_esp8266_IRremote
-    contribution: Mpho Mphego
+# personal-projects:
+#   - name: DSTV IR remote using esp8266
+#     description:  DSTV IR Remote using an esp8266 with support for controlling led strips mounted behind the TV and Amazon-Alexa intergrated.
+#     link: https://github.com/mmphego/DSTV_A6_esp8266_IRremote
+#     contribution: Mpho Mphego
 
 publications:
   - title: |
