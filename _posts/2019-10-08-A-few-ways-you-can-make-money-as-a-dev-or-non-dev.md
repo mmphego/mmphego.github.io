@@ -13,7 +13,7 @@ tags:
 
 14 Min Read
 
-{:refdef: style="text-align: right;"}
+{:refdef: style="text-align: left;"}
 <figure>
     <figcaption>Listen to this article:</figcaption>
     <audio controls src="https://raw.githubusercontent.com/mmphego/mmphego.github.io/master/assets/2019-10-08-A-few-ways-you-can-make-money-as-a-dev-or-non-dev.mp3"> Your browser does not support the <code>audio</code> element.
@@ -26,7 +26,7 @@ tags:
 
 # The Story
 
-Global recession has hit it's peak, there's never been a better time to make some extra money on the side. Especially if like me you have found yourself broke many a times in your life to the point where you would start selling some of my memorable asserts just to make ends meet, the feeling of not having money is no like any other feeling trust me.
+Global recession has hit it's peak, there's never been a better time to make some extra money on the side. Especially if like me you have found yourself broke many a times in your life to the point where you would start selling some of your memorable asserts just to make ends meet, the feeling of not having money is no like any other feeling trust me.
 
 In this post I will detail a few ways I have made extra cash on the side, most of these items are directed for South Africa audiences but I am sure you have something similar in your country.
 
