@@ -24,6 +24,12 @@ tags:
 
 -----------------------------------------------------------------------------------------
 
+{:refdef: style="text-align: center;"}
+<div>
+<a href="https://www.loot.co.za/browse?cat=b&referrer=mphomphego"><img src='https://www.loot.co.za/shop/img/banners/468x60banner.gif'></a>
+</div>
+{: refdef}
+
 # The Story
 
 Global recession has hit it's peak, there's never been a better time to make some extra money on the side. Especially if like me you have found yourself broke many a times in your life to the point where you would start selling some of your memorable asserts just to make ends meet, the feeling of not having money is no like any other feeling trust me.
@@ -38,11 +44,15 @@ Note: This will not get you **RICH** but at least ensure that you always have a 
 {:refdef: style="text-align: center;"}
 [![post image]({{ "/assets/paypal_logo.png" | absolute_url }})](https://paypal.me/mmphego)
 {: refdef}
-<!-- [PayPal Donate button that you may click :)](https://paypal.me/mmphego) -->
+
+{:refdef: style="text-align: center;"}
+[https://paypal.me/mmphego](https://paypal.me/mmphego)
+{: refdef}
 
 {:refdef: style="text-align: center;"}
 ![post image]({{ "/assets/bitcoin_qr_code_png.png" | absolute_url }})
 {: refdef}
+
 {:refdef: style="text-align: center;"}
 **Bitcoin: 12JxrvC3BtfhygBCC6i1dPyF4qwbpERLwu**
 {: refdef}
@@ -62,9 +72,20 @@ Stay on the right side of the law, disclose extra income when you file your taxe
 
 FYI Read everything...
 
+{:refdef: style="text-align: center"}
+[![Alt text](https://www.loot.co.za/shop/img/banners/468x60banner.gif)](https://www.loot.co.za/browse?cat=b&referrer=mphomphego)
+{: refdef}
+
 # The How
 I will divide this in various section, and note is randomized and doesn't really follow a pattern.
 
+<!--
+{:refdef: style="text-align: left;"}
+<div>
+<a href="https://www.loot.co.za/browse?cat=b&referrer=mphomphego"><img src='https://www.loot.co.za/shop/img/banners/468x60banner.gif'></a>
+</div>
+{: refdef}
+ -->
 ## Full-time Job
 
 The most common and obvious is to have a job at a company. Duh!!!
@@ -183,7 +204,7 @@ List of bug bounty programs you can checkout:
     {:refdef: style="text-align: center;"}
     <p>
         <div>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/E-P9USG6kLs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/E-P9USG6kLs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </p>
     {: refdef}
@@ -233,6 +254,7 @@ A list of affiliate marketing programs you can join:
 
 
 ## Referral Programs
+
 Similar to affiliate marketing there's referral programs.
 According to [referralcandy](https://www.referralcandy.com/blog/47-referral-programs/):
 
@@ -254,6 +276,10 @@ A list of referral programs you can join:
 - [AA](https://www.aa.co.za/aa-referrals): Refer your friends and family to join the AA and earn R150 for every friend who joins
 
 ## Advertising
+
+{:refdef: style="text-align: center"}
+[![Alt text](https://www.loot.co.za/shop/img/banners/468x60banner.gif)](https://www.loot.co.za/browse?cat=b&referrer=mphomphego)
+{: refdef}
 
 ### Wrap your car in advertising
 [brandyourcar](https://byc.cash/) turns your commute into cash, but this money-making opportunity is probably not a good fit for car enthusiasts.
@@ -303,3 +329,7 @@ Good luck with your journey to financial freedom.
 - [21 Of The Best Affiliate Programs To Find High Quality Products For Your Website](https://nichehacks.com/best-affiliate-programs/)
 - [An Epic List Of 79 Referral Programs](https://www.referralcandy.com/blog/47-referral-programs/)
 - [Essential Bug Bounty Programs](https://www.tripwire.com/state-of-security/security-data-protection/cyber-security/essential-bug-bounty-programs/)
+
+{:refdef: style="text-align: center"}
+[![Alt text](https://www.loot.co.za/shop/img/banners/468x60banner.gif)](https://www.loot.co.za/browse?cat=b&referrer=mphomphego)
+{: refdef}
