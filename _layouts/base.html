@@ -21,6 +21,7 @@ common-js:
   {% include head.html %}
 
   <body>
+    {% include ads_by_amazon.html %}
     {% if page.url != '/resume.html' %}
       {% include advertisements.html %}
     {% else %}
@@ -35,6 +36,7 @@ common-js:
     {% include gtm_body.html %}
     {% if page.url != '/resume.html' %}
       {% include advertisements.html %}
+
     {% else %}
       {% include advertisements.html %}
     {% endif %}

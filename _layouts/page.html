@@ -5,6 +5,7 @@ layout: base
 {% include header.html type="page" %}
   {% if page.url != '/resume.html' %}
     {% include advertisements.html %}
+    {% include ads_by_amazon.html %}
   {% else %}
     {% include advertisements.html %}
   {% endif %}
@@ -22,6 +23,7 @@ layout: base
     </div>
   </div>
 </div>
+
 {% if page.url != '/resume.html' %}
   {% include advertisements.html %}
 {% else %}
