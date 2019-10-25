@@ -58,7 +58,9 @@ I have a [Dockerfile](https://www.docker.com/) which builds a Docker container a
 [Go here](http://bit.ly/2YslZG6) for detailed installation instructions.
 
 ## Testing
-
+{:refdef}
+<div id="amzn-assoc-ad-b95f659f-7175-4d7a-86e7-2afe0fcc6598"></div><script async src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=b95f659f-7175-4d7a-86e7-2afe0fcc6598"></script>
+{: refdef}
 Verify the installation once it is done, run: `travis version`
 
 Once we have a successful installation, [login](https://github.com/travis-ci/travis.rb#login) on travis using your GitHub username & password or [token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) details.

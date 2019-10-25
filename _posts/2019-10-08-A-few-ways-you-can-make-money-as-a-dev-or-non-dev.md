@@ -132,9 +132,6 @@ If you can come with any kind of solution whether it is a kind of software or an
 Another great way, if you are a good writer or perhaps knowledgeable in a specific field. You can consider writing an ebook/manual and publish it on websites like [https://www.sendowl.com/](https://www.sendowl.com/) and [https://www.lulu.com/](https://www.lulu.com/)
 
 ## Blogging/Vlogging/Podcast
-{:refdef}
-<div id="amzn-assoc-ad-b95f659f-7175-4d7a-86e7-2afe0fcc6598"></div><script async src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=b95f659f-7175-4d7a-86e7-2afe0fcc6598"></script>
-{: refdef}
 
 ### Personal Blog
 Blogging is a fun activity that can improve your quality of life and give you an opportunity to express yourself – and even make extra money online while doing it. Through this blog I have made extra income in the past (via [Google Ads](https://ads.google.com/)). However, the income isn't enough to make you retire and live the rest of your miserable life on a beach house somewhere. The maximum amount of income I have ever received was R2000 (roughly $150) but hey who would give you that kind of cash this day of age.
@@ -308,6 +305,10 @@ Small companies are in great need of social media influencers.
 If you have startup funds you can look at flipping, which is the process of buying and selling products or property for a profit.  A lot of people don’t know what things are worth, and you can take advantage of that by reselling things you find for cheap.  Once you get rolling, it’s a fairly passive source of income.
 
 # Conclusion
+
+{:refdef}
+<div id="amzn-assoc-ad-b95f659f-7175-4d7a-86e7-2afe0fcc6598"></div><script async src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=b95f659f-7175-4d7a-86e7-2afe0fcc6598"></script>
+{: refdef}
 
 **I created this blog post so that you do not have to make your own research.**
 

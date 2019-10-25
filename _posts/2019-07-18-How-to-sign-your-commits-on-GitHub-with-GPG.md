@@ -90,7 +90,9 @@ However, when you *GPG-sign* a git commit, that commit becomes part of that repo
 In this section, we will install all dependencies and tackle some challenges you might encounter when generating GPG keys.
 
 ## Installation
-
+{:refdef}
+<div id="amzn-assoc-ad-b95f659f-7175-4d7a-86e7-2afe0fcc6598"></div><script async src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=b95f659f-7175-4d7a-86e7-2afe0fcc6598"></script>
+{: refdef}
 Before we continue we need to install some packages, run the following command (Assuming you are on Debian):
 
 `sudo apt install --install-suggests gnupg2 pinentry-curses pinentry-gtk2 rng-tools`

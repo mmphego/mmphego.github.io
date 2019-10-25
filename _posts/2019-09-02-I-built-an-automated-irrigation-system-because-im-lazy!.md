@@ -72,7 +72,9 @@ Circuit designed with [fritzing.org](fritzing.org/)
 - [1x Silicone Tubing Hose (Pump)](http://bit.ly/2lQ3mdE)
 
 ## Setup
-
+{:refdef}
+<div id="amzn-assoc-ad-b95f659f-7175-4d7a-86e7-2afe0fcc6598"></div><script async src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=b95f659f-7175-4d7a-86e7-2afe0fcc6598"></script>
+{: refdef}
 ### Calibrating the Soil Moisture Sensor
 
 Calibrating the sensor has two parts, the goal is to make sure sensor functions properly:
@@ -204,7 +206,9 @@ class Ubidots:
             )
             return False
 ```
-
+{:refdef}
+<div id="amzn-assoc-ad-b95f659f-7175-4d7a-86e7-2afe0fcc6598"></div><script async src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=b95f659f-7175-4d7a-86e7-2afe0fcc6598"></script>
+{: refdef}
 # Conclusion
 In this post, you learned how to set up and run **Python** on an esp8266 as well as how use an Analog-to-Digital converter. You then used a sensor to monitor the moisture level of the soil in a plant pot. The software allows us to see this sensor reading on the repl and chart over the Internet and through slack.
 

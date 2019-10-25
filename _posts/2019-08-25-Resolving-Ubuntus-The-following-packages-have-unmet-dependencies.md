@@ -36,7 +36,9 @@ The following packages have unmet dependencies:
          Recommends: thunar-volman (>= 0.8.1) but it is not going to be installed
 E: Unable to correct problems, you have held broken packages.
 ```
-
+{:refdef}
+<div id="amzn-assoc-ad-b95f659f-7175-4d7a-86e7-2afe0fcc6598"></div><script async src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=b95f659f-7175-4d7a-86e7-2afe0fcc6598"></script>
+{: refdef}
 ```bash
 $ sudo apt install --reinstall xubuntu-desktop
 
