@@ -273,7 +273,10 @@ A list of referral programs you can join:
 - [easyequities](http://bit.ly/2mLi8zi): Great way to start investing on the equities and stock think JSE and NASDAQ, sign up with the [link](http://bit.ly/2mLi8zi) and you'll get R50 to start investing.
 - [luno](https://www.luno.com/invite/N6W74): CryptoCurrency is the future of money, and why not start investing with luno. Use this [link](https://www.luno.com/invite/N6W74) to sign up and get R25 worth of BitCoins in your wallet.
 - [loot](https://www.loot.co.za/content/index.php/referral-program): You will earn a R50 voucher to spend on purchases of R250.00 or more, for each new customer that you refer.
-- [AirBnB](https://www.airbnb.com/c/mphom514?currency=ZAR): For every person who completes a stay or goes on an experience, you’ll get up to R450 ZAR in credit.
+- [AirBnB](https://www.airbnb.com/c/charlesm12319?currency=ZAR): For every person who completes a stay or goes on an experience, you’ll get up to R450 ZAR in credit.
+
+    [Clink here to register and on your first booking you'll get R825 off.](https://www.airbnb.com/c/charlesm12319?currency=ZAR)
+
 - [Taxify/Bolt]( http://invite.bolt.eu/2LWGE): You’ll get a free ride up to R75 when your friend takes their first trip
 - [Uber](https://www.uber.com/invite/mphom93ue): Every time a new rider signs up with [link](https://www.uber.com/invite/mphom93ue), they get a free ride or credit.
 - [Skillshare](https://skl.sh/2q65Iax): Invite Friends, Get Free Months of Premium Content
