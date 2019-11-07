@@ -64,10 +64,12 @@ With all that said, do not get me wrong, I love the concept of Git hooks, and th
 
 This post will detail why you should probably consider ditching your native git-hooks (Assuming you currently use them), reasons stated above. But nature abhors a vacuum, so we would need to replace native git-hooks with an alternative. Enters [pre-commit](https://pre-commit.com).
 
-# The How
 {:refdef}
 <div id="amzn-assoc-ad-b95f659f-7175-4d7a-86e7-2afe0fcc6598"></div><script async src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=b95f659f-7175-4d7a-86e7-2afe0fcc6598"></script>
 {: refdef}
+
+
+# The How
 
 According to the [website](https://pre-commit.com):
 > Pre-commit is a framework for managing and maintaining multi-language pre-commit hooks, which is far more flexible and feature-rich than native git-hooks.
