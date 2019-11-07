@@ -203,6 +203,10 @@ Great way to learn and get paid to find vulnerabilities or bugs in/on software(s
 List of bug bounty programs you can checkout:
 - [GitHub Security Bug Bounty](https://bounty.github.com)
 - [Google Vulnerability Reward Program](https://www.google.com/about/appsecurity/reward-program/)
+- [HackerOne](https://hackerone.com/bug-bounty-programs)
+- [Microsoft Bug Bounty Program](https://www.microsoft.com/en-us/msrc/bounty)
+- [Mozilla Security Bug Bounty Program](https://www.mozilla.org/en-US/security/bug-bounty/)
+- [PayPal Bug Bounty Program](https://www.paypal.com/us/webapps/mpp/security-tools/reporting-security-issues)
 
     Checkout this YouTube video, you might get inspired.
     {:refdef: style="text-align: center;"}
@@ -212,10 +216,14 @@ List of bug bounty programs you can checkout:
         </div>
     </p>
     {: refdef}
-- [HackerOne](https://hackerone.com/bug-bounty-programs)
-- [Microsoft Bug Bounty Program](https://www.microsoft.com/en-us/msrc/bounty)
-- [Mozilla Security Bug Bounty Program](https://www.mozilla.org/en-US/security/bug-bounty/)
-- [PayPal Bug Bounty Program](https://www.paypal.com/us/webapps/mpp/security-tools/reporting-security-issues)
+
+    {:refdef: style="text-align: center;"}
+    <p>
+        <div>
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/f3SXDBMGGb8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </p>
+    {: refdef}
 
 ## Paid Code Challenges/Code Reviews/Code Competitions
 
