@@ -13,6 +13,8 @@ tags:
 
 14 Min Read
 
+[Updated: 24/12/19]
+
 {:refdef: style="text-align: left;"}
 <figure>
     <figcaption>Listen to this article:</figcaption>
@@ -233,6 +235,14 @@ Not sure if [https://geektastic.com/developers](https://geektastic.com/developer
 
 If you are more into the *data science and machine learning* field you can also check out [https://www.kaggle.com/competitions](https://www.kaggle.com/competitions) get paid and learn a new skill.
 
+
+While going through my GitHub feed, I found an awesome list of ways devs can make money on the side.
+According to the [README.md](https://github.com/mezod/awesome-indie/blob/master/README.md):
+>Making money from your own code has never been easier, but it's still hard. Here, I try to curate a list of resources to help everyone interested in making money from their digital products get inspired and give it a try. Be it monetizing side-projects, bootstrapping business ideas, etc.
+
+>Projects don't need to be big, actually, it's better if they are not, they just need to be profitable. They might provide a passive income after the initial bulk of work, and who knows, maybe even help you reach financial independence.
+
+You can access the list by hitting this link: https://github.com/mezod/awesome-indie
 
 ## Affiliate Marketing
 
