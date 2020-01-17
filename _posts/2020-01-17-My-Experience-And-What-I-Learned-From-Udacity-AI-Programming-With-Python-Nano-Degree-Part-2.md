@@ -11,16 +11,17 @@ tags:
 # My Experience And What I Learned From Udacity AI Programming With Python Nano-Degree: Part 2.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2020-01-06-My-Experience-And-What-I-Learned-From-Udacity-AI-Programming-With-Python-Nano-Degree:-Part-2.jpg" | absolute_url }})
+![post image]({{ "/assets/2020-01-06-My-Experience-And-What-I-Learned-From-Udacity-AI-Programming-With-Python-Nano-Degree-Part-2.jpg" | absolute_url }})
 {: refdef}
 
 27 Min Read
+
 -----------------------------------------------------------------------------------------
 
 # The Story
 In this post, I will walk you through how I built a deep learning network to identify and classifier 102 different types of flowers using Pytorch library.
 
-The purpose of this post is to help others like me who were eager and curious to learn AI/Machine Learning but did not know where to start.
+The purpose of this post is to help others like me, who were eager and curious to learn AI/Machine Learning but did not know where to start.
 
 Before we get started we need to look at the data we are working with, as well as how the folder structure is set up for this project. The folder structure used in this situation is how you should set up your folders for essentially every PyTorch model you create.
 
@@ -84,7 +85,7 @@ flowers
 
 Within each directory, you will want a separate folder for each class. In the case of the project, this meant a separate folder for each of the 102 flower classes. Each flower was labelled as a number.
 
-For each of the flower types, the training dataset had between 27–206 images, the validation dataset had between 1–28 images, and the testing dataset had between 2–28 images.
+For each of the flower types, the training dataset had between 27-206 images, the validation dataset had between 1-28 images, and the testing dataset had between 2-28 images.
 
 Original images were obtained from the [102 Category Flower Dataset](http://www.robots.ox.ac.uk/~vgg/data/flowers/102/), and they are described in the following way by the authors Maria-Elena Nilsback and Andrew Zisserman
 
@@ -130,9 +131,15 @@ from torchvision import datasets, models, transforms
 
 ## Training data augmentation
 
+{:refdef: style="text-align: center;"}
+<p><div>
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/ypt_BAotCLo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div></p>
+{: refdef}
+
 The dataset is split into three parts, *training, validation, and testing.*
 
-For the training, I needed to apply image transformations such as random scaling (224*224 pixels as required by the pre-trained network), cropping, and flipping. This helped the network generalize leading to better performance.
+For the training, I needed to apply image transformations such as random scaling (`224x224 pixels` as required by the pre-trained network), cropping, and flipping. This helped the network generalize leading to better performance.
 
 The validation and testing sets are used to measure the model's performance on data it hasn't seen yet. I needed to resize and crop the images to the appropriate size.
 
@@ -376,7 +383,7 @@ If everything is set up correctly, you should see something like the following:
 ![post image]({{ "/assets/model_training.png" | absolute_url }})
 {:refdef}
 
-The *densenet161* pre-trained model appears to be learning with each epoch, having an accuracy of **90%** on the second epoch after a few minutes using a GPU and it doesn’t appear that our model is over-fitting.
+The *densenet161* pre-trained model appears to be learning with each epoch, having an accuracy of **90%** in under 20 minutes on training using a **GPU** and it doesn’t appear that our model is over-fitting.
 
 I found that by increasing the number of epochs or decreasing the learning rate this would improve the accuracy of my model but can also be expensive to compute.
 
@@ -587,8 +594,7 @@ This concludes the walk-through and the Jupyter notebook and Python scripts can 
 
 I would encourage you to create your image classifier using this template: [AI Programming with Python Project](https://github.com/udacity/aipnd-project)
 
-
-# Resource
+# Resources
 
 I personally found this talk by @stefanotte titled: Deep Neural Networks with PyTorch very helpful in understanding concepts.
 {:refdef: style="text-align: center;"}
@@ -613,6 +619,7 @@ Other useful resources.
 - [Get Started with PyTorch – Learn How to Build Quick & Accurate Neural Networks](https://www.analyticsvidhya.com/blog/2019/01/guide-pytorch-neural-networks-case-studies/)
 - [Transfer Learning with Convolutional Neural Networks in PyTorch](https://towardsdatascience.com/transfer-learning-with-convolutional-neural-networks-in-pytorch-dd09190245ce)
 - [PyTorch for Deep Learning: A Quick Guide for Starters](https://towardsdatascience.com/pytorch-for-deep-learning-a-quick-guide-for-starters-5b60d2dbb564)
+- [Recommended Free Course: Practical Deep Learning for Coders, v3](https://course.fast.ai/index.html)
 
 # Reference
 
@@ -620,5 +627,6 @@ Other useful resources.
 - [PyTorch](pytorch.org/)
 - [What is Pythonic?](https://blog.startifact.com/posts/older/what-is-pythonic.html)
 - [What’s the difference between a matrix and a tensor?](https://medium.com/@quantumsteinke/whats-the-difference-between-a-matrix-and-a-tensor-4505fbdc576c)
+- [1000x Faster Data Augmentation](https://bair.berkeley.edu/blog/2019/06/07/data_aug/)
 - [The architecture of neural networks](http://neuralnetworksanddeeplearning.com/chap1.html#the_architecture_of_neural_networks)
 - [The State of Machine Learning Frameworks in 2019](https://thegradient.pub/state-of-ml-frameworks-2019-pytorch-dominates-research-tensorflow-dominates-industry/)
