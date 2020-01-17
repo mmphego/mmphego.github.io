@@ -83,4 +83,4 @@ Including interfacing [Amazon's Alexa](https://en.wikipedia.org/wiki/Amazon_Alex
 
 *I will try to detail the design and etc on another post - soon.*
 
-All code is available, just drop me a mail. I have been procrastinating on hosting the code to [GitHub](https://github.com/mmphego).
+All code is available, just drop me a mail. I have been procrastinating on hosting the code to [GitHub](https://github.com/mmphego/smarthome-rpi).
