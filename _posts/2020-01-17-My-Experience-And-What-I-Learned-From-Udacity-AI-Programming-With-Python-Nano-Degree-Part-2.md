@@ -487,6 +487,7 @@ To get the top `K` largest values in a tensor I used `x.topk(k)`. This method re
 
 {:refdef: style="text-align: center;"}
 ![post image]({{ "/assets/labels_mapping.png" | absolute_url }})
+
 ***image**** label_map: class -> flower, class_to_idx: class -> pred**
 {:refdef}
 
