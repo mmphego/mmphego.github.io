@@ -51,33 +51,31 @@ If you would like to register for the scholarship, and learn a new skill-set cli
 ![post image]({{ "/assets/aal_register.png" | absolute_url }})
 {: refdef}
 
-## TL;DR
-
 # The How
 
 The course comprised of a few lessons and a project to complete to receive a [Udacity Nanodegree](https://www.udacity.com/course/ai-programming-python-nanodegree--nd089) certificate.
 
 The list below details the lessons/parts that I had to complete:
 
-**Part 1: Introduction to AI Programming**
+## Part 1: Introduction to AI Programming
 
 This lesson was more of an introduction to the course and what is expected of the student including some of the examples someone that acquired these skills would be capable of doing or achieving.
 
-**Part 2: Intro to Python**
+## Part 2: Intro to Python
 
 This lessons for me was a walk in the park as already I was skilled in Python and the modules listed in part 3.
 
-**Part 3: Numpy, Pandas, Matplotlib**
+## Part 3: Numpy, Pandas, Matplotlib
 
 In this lesson I had to focus more on library packages for Python, such as : Numpy (which adds support for large data), Pandas (which is used for data manipulation and analysis) And Matplotlib (which is used for data visualization).
 
-**Part 4: Linear Algebra Essentials**
+## Part 4: Linear Algebra Essentials
 
 I thought by having completed a degree in Electrical Engineering would add some advantage on part 4 but Noooooooo!
 I realised that most of us while at University only studied to PASS and not study to know - Sad truth, with that said I needed to do some revision especially in differentiation and integration with focus on the chain rule and statistics.
 It boggles me why we are not taught statistics in high school as we use it more than we use geometry but I suppose that is a discussion for another time.
 
-**Part 5: Neural Networks**
+## Part 5: Neural Networks
 
 Deep learning has several applications such as detecting spam in emails, forecasting stock prices even the weather, images or faces in pictures, medical diagnosis, self driving cars and many more.
 
@@ -120,7 +118,7 @@ A great illustration for Convolutional Neural Networks using excel spreadsheet @
 {: refdef}
 
 
-**Part 6: Image Classifier Project**
+## Part 6: Image Classifier Project
 
 The last part of the course was more aimed at tools and how to use them. I learnt about techniques on how to improve the training of a neural network, and how to use [PyTorch](pytorch.org) library for building deep learning models.
 
@@ -150,6 +148,7 @@ The Jupyter notebook and Python scripts can be found on my [GitHub page](http://
 - [Pytorch Tutorials](https://pytorch.org/tutorials/)
 - [Training AlexNet with tips and checks on how to train CNNs: Practical CNNs in PyTorch](https://medium.com/@kushajreal/training-alexnet-with-tips-and-checks-on-how-to-train-cnns-practical-cnns-in-pytorch-1-61daa679c74a)
 - [Get Started with PyTorch – Learn How to Build Quick & Accurate Neural Networks](https://www.analyticsvidhya.com/blog/2019/01/guide-pytorch-neural-networks-case-studies/)
+
 # Reference
 
 - [African App Launchpad Program](www.aal.gov.eg)
