@@ -591,9 +591,18 @@ The function uses the trained model for predictions, and we need to ensure that 
 ![post image]({{ "/assets/image_prediction.png" | absolute_url }})
 {:refdef}
 
+Upon completion I uploaded my code and a day later after reviewing, I was greeted with the message below:
+
+{:refdef: style="text-align: center;"}
+![post image]({{ "/assets/udacity_ai_completion.png" | absolute_url }})
+{:refdef}
+
+----------------------------------------------------------
+
 This concludes the walk-through and the Jupyter notebook and Python scripts can be found on my [GitHub *learning-progress* repository](http://bit.ly/2uSeyuB)
 
 I would encourage you to create your image classifier using this template: [AI Programming with Python Project](https://github.com/udacity/aipnd-project)
+
 
 # Resources
 
