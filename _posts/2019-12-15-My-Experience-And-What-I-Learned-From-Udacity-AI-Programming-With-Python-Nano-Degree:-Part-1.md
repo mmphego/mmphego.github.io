@@ -115,7 +115,7 @@ A friendly introduction to Convolutional Neural Networks and Image Recognition
 A great illustration for Convolutional Neural Networks using excel spreadsheet @ 4:15.
 {:refdef: style="text-align: center;"}
 <p><div>
-<iframe width="100%" height="315" src="https://www.youtube.com/embed/YRhxdVk_sIs?t=260" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/YRhxdVk_sIs?start=253" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div></p>
 {: refdef}
 
