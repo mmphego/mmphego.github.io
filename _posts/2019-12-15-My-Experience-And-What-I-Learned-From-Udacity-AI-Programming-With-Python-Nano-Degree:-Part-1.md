@@ -14,6 +14,8 @@ tags:
 ![post image]({{ "/assets/2019-12-15-My-Experience-And-What-I-Learned-From-Udacity-AI-Programming-With-Python-Nano-Degree:-Part-1.jpg" | absolute_url }})
 {: refdef}
 
+9 Min Read
+
 -----------------------------------------------------------------------------------------
 
 # The Story
