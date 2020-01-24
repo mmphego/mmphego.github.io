@@ -12,6 +12,8 @@ tags:
 ![post image]({{ "/assets/2020-01-24-How-I-managed-to-remove-dependent-child-images-of-a-docker-container.jpg" | absolute_url }})
 {: refdef}
 
+4 Min Read
+
 -----------------------------------------------------------------------------------------
 
 # The Story
