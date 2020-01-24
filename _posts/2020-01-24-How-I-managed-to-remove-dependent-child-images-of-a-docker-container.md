@@ -28,8 +28,8 @@ Error response from daemon: conflict: unable to delete 314f22f50b89
  (cannot be forced) - image has dependent child images
 Error response from daemon: conflict: unable to delete 723771701d55
  (cannot be forced) - image has dependent child images
-Error response from daemon: conflict: unable to delete d61845f233fb (cannot be forced) - image has dependent child images
-
+Error response from daemon: conflict: unable to delete d61845f233fb
+ (cannot be forced) - image has dependent child images
 ```
 
 I tried every trick I got from duckduckgo, StackOverflow, GitHub issues but none of them did what I wanted, which was to just delete only the images I wanted including obviously the parent image. Most of the answers I got where advising one to just remove all images and start afresh that did not seat well with me. How can a problem so simple be solved with that amount of aggression?
