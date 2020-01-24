@@ -42,7 +42,7 @@ Then finally decided to read the [Docker docs](https://docs.docker.com/engine/re
 
 
 # The How
-The code below lists all docker images and pretty-prints the outputs (Repository, Tag name/id, Date created), and only output any image matching a certain `IMAGE` name but only the images over a week old then aggressively remove them. The rest of your images are safe, pheeewwww...
+The code below only outputs all docker images matching a given `IMAGE` name pretty-print the outputs (*Repository, Tag name/id, Date created*) of images over a week old then aggressively removes them which leaves rest of your images are safe, pheeewwww...
 
 {% raw %}
 ```bash
