@@ -30,6 +30,7 @@ navbar-links:
   Blog: ""
   # "@Mentions": "mentions"
   # "Must-Watch Talks": "must-watch-talks"
+  Now: "now"
   Categories / Tags: "tags"
   Resume: "resume"
   About / Contact Me: "aboutme"
