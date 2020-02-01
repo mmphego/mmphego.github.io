@@ -21,4 +21,6 @@ Inspired by [Derek Sivers' /now page movement](https://sivers.org/now3), here's 
 - Reviving my [YouTube channel](https://www.youtube.com/c/MphoMphego1) and creating videos focused on Python/Linux/Git tips and tricks.
 - Daily meditation as part of my "Year of Calm".
 - During the month of January, I've vouched not to drink alcohol and my family is trying out a plant-based diet (However, the smell and taste of meat is...)
-
+- Currently reading: [ Essentialism: The Disciplined Pursuit of Less
+by Greg McKeown
+](https://www.goodreads.com/book/show/18077875-essentialism)
