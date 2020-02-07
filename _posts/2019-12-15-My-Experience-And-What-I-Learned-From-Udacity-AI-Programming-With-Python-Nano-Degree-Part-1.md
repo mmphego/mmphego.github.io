@@ -140,8 +140,7 @@ Pytorch offers few advantages over Tensorflow:
 
 The walk through continues in [My Experience And What I Learned From Udacity AI Programming With Python Nano-Degree: Part 2.]({{ "blog/2020/01/06/My-Experience-And-What-I-Learned-From-Udacity-AI-Programming-With-Python-Nano-Degree-Part-2.html" | absolute_url }})
 
-The Jupyter notebook and Python scripts can be found on my [GitHub page](http://bit.ly/2uSeyuB)
-
+This concludes the walk-through and the Jupyter notebook and Python scripts can be found on my forked [GitHub repository](https://github.com/mmphego/aipnd-project
 # Resource
 
 - [Transfer Learning with Pytorch](https://github.com/udacity/DSND_Term1/tree/master/lessons/DeepLearning/new-intro-to-pytorch)
