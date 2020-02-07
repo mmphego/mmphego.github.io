@@ -621,6 +621,16 @@ This Pytorch tutorial by @Sentdex on Deep Learning and Neural Networks with Pyth
 </div></p>
 {: refdef}
 
+
+I strongly recommend **Neural Network Programming - Deep Learning with PyTorch** by @deeplizard
+
+You might want to also read this medium post on the why: [https://towardsdatascience.com/hidden-gem-a-great-pytorch-youtube-tutorial-series-by-deeplizard-8de677411bc5](https://towardsdatascience.com/hidden-gem-a-great-pytorch-youtube-tutorial-series-by-deeplizard-8de677411bc5)
+
+{:refdef: style="text-align: center;"}
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/videoseries?list=PLZbbT5o_s2xrfNyHZsM6ufI0iZENK9xgG" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+{: refdef}
+
+
 Other useful resources.
 
 - [Transfer Learning with Pytorch](https://github.com/udacity/DSND_Term1/tree/master/lessons/DeepLearning/new-intro-to-pytorch)
