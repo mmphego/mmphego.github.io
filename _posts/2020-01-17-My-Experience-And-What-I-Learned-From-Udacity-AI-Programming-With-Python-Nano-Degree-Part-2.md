@@ -599,9 +599,9 @@ Upon completion I uploaded my code and a day later after reviewing, I was greete
 
 ----------------------------------------------------------
 
-This concludes the walk-through and the Jupyter notebook and Python scripts can be found on my [GitHub *learning-progress* repository](http://bit.ly/2uSeyuB)
+This concludes the walk-through and the Jupyter notebook and Python scripts can be found on my forked [GitHub repository](https://github.com/mmphego/aipnd-project)
 
-I would encourage you to create your image classifier using this template: [AI Programming with Python Project](https://github.com/udacity/aipnd-project)
+I would encourage you to create your image classifier using this template, I forked from: [AI Programming with Python Project](https://github.com/udacity/aipnd-project)
 
 
 # Resources
