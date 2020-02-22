@@ -21,7 +21,8 @@ title: Mpho Mphego
 # use subtitle: to set the sub heading for that title(meta-title). NOTE: if(meta-title exists){subtilel visiblity = true}
 
 # Short description of your site
-description: "Hi! I'm Mpho Mphego, a self-taught Python developer. Loves to meet new people, connect, discuss, network and grow, mostly at software developer’s conferences, dev-fests and meet-ups"
+description: "Hi! I'm Mpho Mphego, a self-taught Python developer."
+#  Loves to meet new people, connect, discuss, network and grow, mostly at software developer’s conferences, dev-fests and meet-ups
 
 # --- Navigation bar options --- #
 
@@ -62,22 +63,12 @@ avatar: "/img/main.jpg"
 author:
   name: Mpho Mphego
   email: mpho@mphomphego.co.za
-  # facebook:
   github: mmphego
   # docker: mmphego
   twitter: MphoMphego
-  # google-plus:
   linkedin: mphomphego
   stackoverflow: 6165344/mpho-mphego
-  # instagram:
-  # reddit:
-  # xing: yourname
-  # snapchat: yourname
   youtube: xxXMphoXxx
-  # spotify: yourname
-  # steam: yourname
-  # twitch: yourname
-  # yelp: yourname
   # sololearn: 9539857
   # codecademy: mmphego
   devto: mmphego
@@ -118,12 +109,9 @@ google_adsense: "ca-pub-3462291035225536"
 # Google Tag Manager ID
 gtm: "GTM-PDCDJZ3"
 
-# Facebook App ID
-# fb_app_id: ""
-
 # Excerpt Word Length
 # Truncates the excerpt to the specified number of words on the index page
-excerpt_length: 50
+excerpt_length: 70
 
 # Character used to separate site title and description in HTML document title
 # and RSS feed title
@@ -135,26 +123,23 @@ title-separator: "-"
 timezone: "Africa/Johannesburg"
 markdown: kramdown
 kramdown:
-#   input: GFM
+  #   input: GFM
   syntax_highlighter: rouge
 #       disable : true
 highlighter: rouge
 permalink: /blog/:year/:month/:day/:title.html
 paginate: 10
 
-
 # Default YAML values (more information on Jekyll's site)
 defaults:
-  -
-    scope:
+  - scope:
       path: ""
       type: "posts"
     values:
       layout: "post"
-      comments: true  # add comments to all blog posts
+      comments: true # add comments to all blog posts
       social-share: true # add social media sharing buttons to all blog posts
-  -
-    scope:
+  - scope:
       path: "" # all files
     values:
       layout: "page"
@@ -215,14 +200,14 @@ metadata:
         help: "Check to publish post, uncheck to hide."
 
 jekyll-archives:
-  enabled: 'all'
-  layout: 'archive'
+  enabled: "all"
+  layout: "archive"
   permalinks:
-    year: '/:year/'
-    month: '/:year/:month/'
-    day: '/:year/:month/:day/'
-    tag: '/tag/:name/'
-    category: '/category/:name/'
+    year: "/:year/"
+    month: "/:year/:month/"
+    day: "/:year/:month/:day/"
+    tag: "/tag/:name/"
+    category: "/category/:name/"
 
 plugins:
   - jekyll-paginate
