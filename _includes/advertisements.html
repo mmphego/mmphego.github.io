@@ -1,16 +1,14 @@
 {% if site.google_adsense %}
-    <!-- Google Adsense -->
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="adBlockFunction();"></script>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({
-              google_ad_client: "{{ site.google_adsense}}",
-              enable_page_level_ads: true
-         });
-    </script>
+<!-- Google Adsense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="adBlockFunction();"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "{{ site.google_adsense}}",
+        enable_page_level_ads: true
+    });
+</script>
 
-    <script async custom-element="amp-auto-ads"
-        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
-    </script>
-    <!-- End Google Adsense -->
+<script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+</script>
+<!-- End Google Adsense -->
 {% endif %}
-

@@ -3,101 +3,106 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>{% if page.use-site-title %}{{ site.title }} {{ site.title-separator }} {{ site.description }}{% elsif page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <title>{% if page.use-site-title %}{{ site.title }} {{ site.title-separator }}
+    {{ site.description }}{% elsif page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
 
   <meta name="author" content="{{ site.author.name }}" />
   <meta name="theme-color" content="#a50509">
   <meta name="description" content="Hi! I'm Mpho Mphego, a Python developer and welcome to my blog.">
-   <!-- Loves to meet new people, connect, discuss, network and grow, mostly at software developers’ conferences, dev-fests and gaming meet-ups -->
-  <meta name="keywords" content="Mpho, geek, linux, science, math, mathematics, raspberry pi, music, Internet of Things, Machine Learning, AI, research, android, ubuntu, python, docker">
+  <!-- Loves to meet new people, connect, discuss, network and grow, mostly at software developers’ conferences, dev-fests and gaming meet-ups -->
+  <meta name="keywords"
+    content="Mpho, geek, linux, science, math, mathematics, raspberry pi, music, Internet of Things, Machine Learning, AI, research, android, ubuntu, python, docker">
 
   <!-- favicon -->
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-<!-- Added dark/light mode support -->
+  <!-- Added dark/light mode support -->
   <link id="theme" rel="stylesheet" type="text/css" href="/css/darkmode-theme.css" />
 
   <!-- MathJax -->
-  <script type="text/x-mathjax-config">MathJax.Hub.Config({messageStyle: 'none',tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({messageStyle: 'none',tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
 
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title }} {{ site.title-separator }} {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
+  <link rel="alternate" type="application/rss+xml"
+    title="{{ site.title }} {{ site.title-separator }} {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
 
   {% include gtm_head.html %}
 
   {% if layout.common-ext-css %}
-    {% for css in layout.common-ext-css %}
-      {% include ext-css.html css=css %}
-    {% endfor %}
+  {% for css in layout.common-ext-css %}
+  {% include ext-css.html css=css %}
+  {% endfor %}
   {% endif %}
 
   {% if layout.common-css %}
-    {% for css in layout.common-css %}
-      <link rel="stylesheet" href="{{ css | prepend: site.baseurl | replace: '//', '/' }}" />
-    {% endfor %}
+  {% for css in layout.common-css %}
+  <link rel="stylesheet" href="{{ css | prepend: site.baseurl | replace: '//', '/' }}" />
+  {% endfor %}
   {% endif %}
 
   {% if layout.common-googlefonts %}
-    {% for font in layout.common-googlefonts %}
-      <link rel="stylesheet" href="//fonts.googleapis.com/css?family={{ font }}" />
-    {% endfor %}
+  {% for font in layout.common-googlefonts %}
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family={{ font }}" />
+  {% endfor %}
   {% endif %}
 
   {% if page.ext-css %}
-    {% for css in page.ext-css %}
-      {% include ext-css.html css=css %}
-    {% endfor %}
+  {% for css in page.ext-css %}
+  {% include ext-css.html css=css %}
+  {% endfor %}
   {% endif %}
 
   {% if page.css %}
-    {% for css in page.css %}
-      <link rel="stylesheet" href="{{ css | prepend: site.baseurl | replace: '//', '/' }}" />
-    {% endfor %}
+  {% for css in page.css %}
+  <link rel="stylesheet" href="{{ css | prepend: site.baseurl | replace: '//', '/' }}" />
+  {% endfor %}
   {% endif %}
 
   {% if page.googlefonts %}
-    {% for font in page.googlefonts %}
-      <link rel="stylesheet" href="//fonts.googleapis.com/css?family={{ font }}" />
-    {% endfor %}
+  {% for font in page.googlefonts %}
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family={{ font }}" />
+  {% endfor %}
   {% endif %}
 
-    <!-- Facebook OpenGraph tags -->
+  <!-- Facebook OpenGraph tags -->
   {% if site.fb_app_id %}
-    <meta property="fb:app_id" content="{{ site.fb_app_id }}" />
+  <meta property="fb:app_id" content="{{ site.fb_app_id }}" />
   {% endif %}
 
   {% if page.meta-title %}
-    <meta property="og:title" content="{{ page.meta-title }}" />
+  <meta property="og:title" content="{{ page.meta-title }}" />
   {% elsif page.title %}
-    <meta property="og:title" content="{{ page.title }}" />
+  <meta property="og:title" content="{{ page.title }}" />
   {% else %}
-    <meta property="og:title" content="{{ site.title }}" />
+  <meta property="og:title" content="{{ site.title }}" />
   {% endif %}
 
   {% if page.meta-description %}
-    <meta property="og:description" content="{{ page.meta-description }}">
+  <meta property="og:description" content="{{ page.meta-description }}">
   {% elsif page.subtitle %}
-    <meta property="og:description" content="{{ page.subtitle }}">
+  <meta property="og:description" content="{{ page.subtitle }}">
   {% else %}
-    <meta property="og:description" content="{{ page.content | strip_html | xml_escape | truncatewords: 50 }}">
+  <meta property="og:description" content="{{ page.content | strip_html | xml_escape | truncatewords: 50 }}">
   {% endif %}
 
   <meta property="og:type" content="website" />
 
   {% if page.id %}
-    <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
-    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
   {% else %}
-    <meta property="og:url" content="{{ site.url }}{{ page.url | remove: '/index.html' | remove: '.html' }}" />
-    <link rel="canonical" href="{{ site.url }}{{ page.url | remove: '/index.html' | remove: '.html' }}" />
+  <meta property="og:url" content="{{ site.url }}{{ page.url | remove: '/index.html' | remove: '.html' }}" />
+  <link rel="canonical" href="{{ site.url }}{{ page.url | remove: '/index.html' | remove: '.html' }}" />
   {% endif %}
 
   {% if page.share-img %}
-    <meta property="og:image" content="{{ page.share-img }}" />
+  <meta property="og:image" content="{{ page.share-img }}" />
   {% elsif site.avatar %}
-    <meta property="og:image" content="{{ site.url }}{{ site.avatar }}" />
+  <meta property="og:image" content="{{ site.url }}{{ site.avatar }}" />
   {% endif %}
 
 
@@ -107,7 +112,7 @@
   <meta name="twitter:site" content="@{{ site.author.twitter }}" />
   <meta name="twitter:creator" content="@{{ site.author.twitter }}" />
 
-{% if page.meta-title %}
+  {% if page.meta-title %}
   <meta name="twitter:title" content="{{ page.meta-title }}" />
   {% elsif page.title %}
   <meta name="twitter:title" content="{{ page.title }}" />
@@ -127,7 +132,7 @@
   <meta name="twitter:image" content="{{ page.share-img }}" />
   {% elsif site.avatar %}
   <meta name="twitter:image" content="{{ site.url }}{{ site.avatar }}" />
-{% endif %}
+  {% endif %}
 
   <link rel="stylesheet" href="{{ "/css/prism.css" | prepend: site.baseurl }}">
 </head>
