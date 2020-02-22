@@ -34,8 +34,14 @@
         </li>
         {% endif %}
         {% endfor %}
+        <a onclick="document.body.classList.toggle('dark')" title="Toggle Dark Mode"
+          class="w3-button w3-bar-item topnav-icons fa fa-adjust"
+          style="font-size:40px;margin-top:-2px;color:black"></a>
       </ul>
+
+
     </div>
+
     <!-- ALways use my avatar, irrespective of the post image -->
     <div class="avatar-container">
       <div class="avatar-img-border">
@@ -43,10 +49,6 @@
           <img class="avatar-img" src="{{ site.baseurl }}/img/av.png" />
         </a>
       </div>
-    </div>
-    <div>
-      <a onclick="document.body.classList.toggle('dark')" title="Toggle Dark Mode"
-        class="w3-button w3-bar-item topnav-icons fa fa-adjust" style="font-size:28px;margin-top:-2px"></a>
     </div>
 
   </div>
