@@ -36,9 +36,6 @@
         {% endfor %}
       </ul>
     </div>
-    {% if page.url != '/resume.html' %}
-      {% include advertisements.html %}
-    {% endif %}
   <!-- ALways use my avatar, irrespective of the post image -->
   <div class="avatar-container">
     <div class="avatar-img-border">
@@ -47,6 +44,12 @@
      </a>
     </div>
   </div>
+<div>
+  <a onclick="document.body.classList.toggle('dark')" title="Toggle Dark Mode" class="w3-button w3-bar-item topnav-icons fa fa-adjust" style="font-size:28px;margin-top:-2px"></a>
+</div>
 
   </div>
 </nav>
+  {% if page.url != '/resume.html' %}
+    {% include advertisements.html %}
+  {% endif %}

@@ -7,12 +7,16 @@
 
   <meta name="author" content="{{ site.author.name }}" />
   <meta name="theme-color" content="#a50509">
-  <meta name="description" content="Hi! I'm Mpho Mphego, a Python developer. Loves to meet new people, connect, discuss, network and grow, mostly at software developers’ conferences, dev-fests and gaming meet-ups.">
+  <meta name="description" content="Hi! I'm Mpho Mphego, a Python developer and welcome to my blog.">
+   <!-- Loves to meet new people, connect, discuss, network and grow, mostly at software developers’ conferences, dev-fests and gaming meet-ups -->
   <meta name="keywords" content="Mpho, geek, linux, science, math, mathematics, raspberry pi, music, Internet of Things, Machine Learning, AI, research, android, ubuntu, python, docker">
 
   <!-- favicon -->
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- Added dark/light mode support -->
+  <link id="theme" rel="stylesheet" type="text/css" href="/css/darkmode-theme.css" />
 
   <!-- MathJax -->
   <script type="text/x-mathjax-config">MathJax.Hub.Config({messageStyle: 'none',tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
@@ -98,12 +102,12 @@
 
 
   <!-- Twitter summary cards -->
-  <!--
+
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@{{ site.author.twitter }}" />
   <meta name="twitter:creator" content="@{{ site.author.twitter }}" />
 
-  {% if page.meta-title %}
+{% if page.meta-title %}
   <meta name="twitter:title" content="{{ page.meta-title }}" />
   {% elsif page.title %}
   <meta name="twitter:title" content="{{ page.title }}" />
@@ -123,8 +127,7 @@
   <meta name="twitter:image" content="{{ page.share-img }}" />
   {% elsif site.avatar %}
   <meta name="twitter:image" content="{{ site.url }}{{ site.avatar }}" />
-  {% endif %}
-  -->
+{% endif %}
 
-  <!-- <link rel="stylesheet" href="{{ "/css/prism.css" | prepend: site.baseurl }}"> -->
+  <link rel="stylesheet" href="{{ "/css/prism.css" | prepend: site.baseurl }}">
 </head>

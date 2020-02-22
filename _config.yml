@@ -65,7 +65,7 @@ author:
   # facebook:
   github: mmphego
   # docker: mmphego
-  twitter: OrifhaMpho
+  twitter: MphoMphego
   # google-plus:
   linkedin: mphomphego
   stackoverflow: 6165344/mpho-mphego
@@ -85,18 +85,8 @@ author:
 footer-links-active:
   # codecademy: true
   docker: true
-  # facebook: false
-  # google-plus: false
-  # instagram: false
   reddit: true
-  # snapchat: false
-  # sololearn: true
-  # spotify: false
   stackoverflow: true
-  # steam: false
-  # twitch: false
-  # xing: false
-  # yelp: false
   devto: true
   email: true
   github: true
@@ -108,7 +98,6 @@ footer-links-active:
 share-links-active:
   twitter: true
   facebook: true
-  # google: false
   linkedin: true
   reddit: true
 
