@@ -643,10 +643,11 @@ Other useful resources.
 
 # Reference
 
-- [African App Launchpad Program](www.aal.gov.eg)
-- [PyTorch](pytorch.org/)
+- [African App Launchpad Program](http://techleaders.eg/aal/)
+- [PyTorch](https://pytorch.org/)
 - [What is Pythonic?](https://blog.startifact.com/posts/older/what-is-pythonic.html)
 - [What’s the difference between a matrix and a tensor?](https://medium.com/@quantumsteinke/whats-the-difference-between-a-matrix-and-a-tensor-4505fbdc576c)
-- [1000x Faster Data Augmentation](https://bair.berkeley.edu/blog/2019/06/07/data_aug/)
-- [The architecture of neural networks](http://neuralnetworksanddeeplearning.com/chap1.html#the_architecture_of_neural_networks)
+- [The architecture of neural networks](https://neuralnetworksanddeeplearning.com/chap1.html#the_architecture_of_neural_networks)
+- [Transfer Learning with Convolutional Neural Networks in PyTorch](https://towardsdatascience.com/transfer-learning-with-convolutional-neural-networks-in-pytorch-dd09190245ce)
+- [PyTorch for Deep Learning: A Quick Guide for Starters](https://towardsdatascience.com/pytorch-for-deep-learning-a-quick-guide-for-starters-5b60d2dbb564)
 - [The State of Machine Learning Frameworks in 2019](https://thegradient.pub/state-of-ml-frameworks-2019-pytorch-dominates-research-tensorflow-dominates-industry/)
