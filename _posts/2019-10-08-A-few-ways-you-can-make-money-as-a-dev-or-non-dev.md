@@ -13,12 +13,12 @@ tags:
 
 14 Min Read
 
-[Updated: 24/12/19]
+**[Updated: 03/03/20]**
 
 {:refdef: style="text-align: left;"}
 <figure>
     <figcaption>Listen to this article:</figcaption>
-    <audio controls src="https://raw.githubusercontent.com/mmphego/mmphego.github.io/master/assets/2019-10-08-A-few-ways-you-can-make-money-as-a-dev-or-non-dev.mp3"> Your browser does not support the <code>audio</code> element.
+    <audio controls src="https://raw.githubusercontent.com/mmphego/mmphego.github.io/master/assets/2019-10-08-A-few-ways-you-can-make-money-as-a-dev-or-non-dev.mp3" style="width: 100%;"> Your browser does not support the <code>audio</code> element.
     </audio>
 </figure>
 {: refdef}
@@ -68,7 +68,8 @@ Note: This will not get you **RICH** but at least ensure that you always have a 
 
 This post is for informational purposes only.
 I am NOT a licensed financial adviser of any kind.
-I am not being endorsed, sponsored, or paid to solicit my opinions or promote products of any kind (*However, should you wish to sponsor me, any form of sponsoring is welcome, drop me a mail: [mpho@mphomphego.co.za](mailto:mpho@mphomphego.co.za)*).
+I am not being endorsed, sponsored, or paid to solicit my opinions or promote products of any kind (*However, should you wish to sponsor me, any form of sponsoring is welcome, drop me a mail: [mpho@mphomphego.co.za](mailto:mpho@mphomphego.co.za)*). **If you are a brand and want to become a sponsor, link up with me: [https://webfluential.com/mphomphego](https://webfluential.com/mphomphego)**
+
 I’m just a nerd trying to keep it real, share my knowledge with the lovely people who happen to stumble upon this blog ;)
 
 Stay on the right side of the law, disclose extra income when you file your taxes or else...
@@ -117,11 +118,19 @@ Hit the button to register your profile. <br/>
 
 I have a couple of gigs listed on [Fiverr](https://track.fiverr.com/visit/?bta=58226&nci=5718), checkout [my gig list](https://www.fiverr.com/mmphego) for inspirations or purchases.
 
-![post image]({{ "/assets/fiverr-gigs.png" | absolute_url }})
+{:refdef: style="text-align: center;"}
+[![post image]({{ "/assets/fiverr-gigs.png" | absolute_url }})](https://www.fiverr.com/mmphego)
+{: refdef}
 
 ### Upwork
 
-I have been on [Upwork](https://www.upwork.com/) for over 2 months mainly doing some software development work for a client 10 hours a week. [Upwork](https://www.upwork.com/) is one of the world’s biggest freelance platforms which offers a wide range of jobs range from content writing to software development - there’s something always something for everyone!
+I was on [Upwork](https://www.upwork.com/) for over 3 months mainly doing some software development work for a client 10 hours a week. [Upwork](https://www.upwork.com/) is one of the world’s biggest freelance platforms which offers a wide range of jobs range from content writing to software development - there’s something always something for everyone!
+
+**If you would like to work with me, link up with me on my [UpWork profile](https://www.upwork.com/o/profiles/users/~018f5d362b03ed799e)**
+
+{:refdef: style="text-align: center;"}
+[![post image]({{ "/assets/upwork_profile1.png" | absolute_url }})](https://www.upwork.com/o/profiles/users/~018f5d362b03ed799e)
+{: refdef}
 
 This platform is great for beginners and hourly jobs are tracked by the UpWork team software from the logged in time till the completion of the project this simply means you'll need to install their app such that it can track your progress as you work. I guess you would need to trade off your privacy for some extra cash else create a virtual machine and use it mainly for [Upwork](https://www.upwork.com/) related work.
 
@@ -219,13 +228,6 @@ List of bug bounty programs you can checkout:
     </p>
     {: refdef}
 
-    {:refdef: style="text-align: center;"}
-    <p>
-        <div>
-        <iframe width="100%" height="315" src="https://www.youtube.com/embed/f3SXDBMGGb8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-    </p>
-    {: refdef}
 
 ## Paid Code Challenges/Code Reviews/Code Competitions
 
@@ -311,15 +313,20 @@ A list of referral programs you can join:
 
 [brandyourcar](https://byc.cash/) is a company that pays you to wrap your car in advertising for their clients. This personally is a great way to make extra cash on the side I have been on the platform for some time now this is best for those with longer commutes think Cape Town N1/N2 peak hour traffic.
 
-In 2017, I signed up to be [CellC's](cellc.co.za) brand ambassador I made R2000 ~ $160 per months for a year.
+In 2017, I signed up to be [CellC's](https://www.cellc.co.za) brand ambassador I made R2000 ~ $160 per months for a year.
 {:refdef: style="text-align: center;"}
-![](https://scontent-lga3-1.cdninstagram.com/vp/26273d0d0109aa7f9706073edab16ac8/5E3B77DE/t51.2885-15/e35/29717691_1887826581251420_6640514082409545728_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=108)
+![post image]({{ "/assets/cellc_car.jpg" | absolute_url }})
 {: refdef}
 
 ### Social Media Influencer/Marketer
-Theres a growing trend of social media influencing these days, if you have enough social media followers on [instagram](instagram.com), [twitter](twitter.com), [facebook](facebook.com) and etc you can make extra income by means of personalized adverts.
+There's a growing trend of social media influencing these days, if you have enough social media followers on [Instagram](instagram.com), [Twitter](twitter.com), [Facebook](facebook.com) and etc you can make extra income by means of personalized adverts. Small companies are in great need of social media influencers.
 
-Small companies are in great need of social media influencers.
+You can setup an account to start getting paid for your tweets/instagram post and extra and I'm inviting you if you are keen to work with brands to develop content and share with their audiences, [click this link to register](https://webfluential.com/users/register/rs9nv9l4):
+
+{:refdef: style="text-align: center;"}
+[![post image]({{ "/assets/webfluential.jpeg" | absolute_url }})](https://webfluential.com/users/register/rs9nv9l4)
+{: refdef}
+
 
 ## Buy And Sell
 
@@ -331,9 +338,11 @@ If you have startup funds you can look at flipping, which is the process of buyi
 <div id="amzn-assoc-ad-b95f659f-7175-4d7a-86e7-2afe0fcc6598"></div><script async src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=b95f659f-7175-4d7a-86e7-2afe0fcc6598"></script>
 {: refdef}
 
+
 **I created this blog post so that you do not have to make your own research.**
 
 **Donations are welcome in the form of Paypal, Bitcoin or drop me a mail: mpho@mphomphego.co.za**
+
 {:refdef: style="text-align: center;"}
 [![post image]({{ "/assets/paypal_logo.png" | absolute_url }})](https://paypal.me/mmphego)
 {: refdef}
