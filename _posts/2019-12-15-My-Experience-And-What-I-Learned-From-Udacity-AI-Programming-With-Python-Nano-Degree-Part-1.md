@@ -98,13 +98,18 @@ The logic of transfer learning is simple and straight-forward, take a model that
 
 This part of the course helped me understand what is under the hood and helped me acquire a solid foundation in deep learning and neural networks which I used to build the image classifier project. I will not cover the course contents but the paragraph above details how AI and Machine learning kinda works.
 
-I found this explanation of Neural Network great by Dr Mike Pound.
+I found this explanation of Neural Network great by **Dr Mike Pound**.
 {:refdef: style="text-align: center;"}
 <p><div>
 <iframe width="100%" height="315" src="https://www.youtube.com/embed/BFdMrDOx_CM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div></p>
 {: refdef}
 
+{:refdef: style="text-align: center;"}
+<p><div>
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/py5byOOHZM8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div></p>
+{: refdef}
 
 This YouTube series by **3Blue1Brown** explains Neural Networks.
 {:refdef: style="text-align: center;"}
