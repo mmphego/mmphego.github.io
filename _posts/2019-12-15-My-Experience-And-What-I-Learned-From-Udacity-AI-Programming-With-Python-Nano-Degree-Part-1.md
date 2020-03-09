@@ -14,6 +14,8 @@ tags:
 ![post image]({{ "/assets/2019-12-15-My-Experience-And-What-I-Learned-From-Udacity-AI-Programming-With-Python-Nano-Degree-Part-1.jpg" | absolute_url }})
 {: refdef}
 
+**Updated: 9 March, 2020**
+
 9 Min Read
 
 -----------------------------------------------------------------------------------------
@@ -95,6 +97,14 @@ Building a neural network from scratch would be fun, but there is no point in re
 The logic of transfer learning is simple and straight-forward, take a model that was trained on a large dataset and transfer its knowledge to a smaller dataset. For object recognition with a Convolutional Neural Network, we freeze the early convolutional layers of the network and only train the last few layers which makes a prediction. The idea is the convolutional layers extract general, low-level features that are applicable across images - such as edges, patterns, gradients - and the later layers identify specific features within an image such as eyes or wheels.
 
 This part of the course helped me understand what is under the hood and helped me acquire a solid foundation in deep learning and neural networks which I used to build the image classifier project. I will not cover the course contents but the paragraph above details how AI and Machine learning kinda works.
+
+I found this explanation of Neural Network great by Dr Mike Pound.
+{:refdef: style="text-align: center;"}
+<p><div>
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/BFdMrDOx_CM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div></p>
+{: refdef}
+
 
 This YouTube series by **3Blue1Brown** explains Neural Networks.
 {:refdef: style="text-align: center;"}
