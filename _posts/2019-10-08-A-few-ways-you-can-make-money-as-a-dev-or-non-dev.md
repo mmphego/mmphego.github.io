@@ -138,9 +138,9 @@ This platform is great for beginners and hourly jobs are tracked by the UpWork t
 
 If you can come with any kind of solution whether it is a kind of software or an app or a website then you can make a lot of money online you can have ads or in-app purchases. Create a dating, fitness or dieting app(s) these are a great way to start making endless income.
 
-## Write eBooks
+## Write e-books
 
-Another great way, if you are a good writer or perhaps knowledgeable in a specific field. You can consider writing an ebook/manual and publish it on websites like [https://www.sendowl.com/](https://www.sendowl.com/) and [https://www.lulu.com/](https://www.lulu.com/)
+Another great way, if you are a good writer or perhaps knowledgeable in a specific field. You can consider writing an e-book/manual and publish it on websites like [https://www.sendowl.com/](https://www.sendowl.com/) and [https://www.lulu.com/](https://www.lulu.com/)
 
 ## Blogging/Vlogging/Podcast
 
@@ -164,11 +164,11 @@ Should you wish for me to market or blog about your product (Preferably in line 
 ### Vlogging/YouTube (Monetization)
 Vlogging or video blogging is where you create and upload great videos on YouTube or other video sharing sites earn income. However, this niche requires a lot of commitment, time and creativity not forgetting content and delivery.
 
-The best thing about YouTube is that even if you eventually get tired of it, your videos will still continue to generate income off of Google ads revenue; making video creation one of the best ways to create a extra income.
+The best thing about YouTube is that even if you eventually get tired of it, your videos will still continue to generate income off of Google Ads revenue; making video creation one of the best ways to create a extra income.
 
 If your videos are special and people like it then you earn revenue by partnering with Google. A lot of people are making good income running their own channel on YouTube most of the YouTubers I follow have even left their full-time jobs and focus more on YouTubing - As with every bubble (think BitCoin) this is not sustainable as Google/YouTube keep updating their t's and c's, algorithms and related in order.
 
-Screenshot of my channel (Unfortunately my monetization has been disable until I get 4000 watch hours Ridiculous.)
+Screenshot of my channel (Unfortunately my monetization has been disabled until I get 4000 watch hours Ridiculous.)
 
 ![post image]({{ "/assets/youtube-monetisation.png" | absolute_url }})
 
@@ -191,7 +191,7 @@ Ideas on how you can monetize your vlogging:
 
 Another great idea to make extra money online that I wasn’t aware of is podcasting. There are so many podcasts out there, and some of them make a lot of money either through Ads or sponsorship.
 
-Some few ideas of podcast topics/subject one can consider are finance, personal health, programming and etc. If you know the subject you can record videos and sell it online or upload on YouTube or similar.
+Some few ideas of podcast topics/subject one can consider are finance, personal health, programming etc. If you know the subject you can record videos and sell it online or upload on YouTube or similar.
 
 ## Coaching/Teaching
 
@@ -202,7 +202,7 @@ Link of great place you can upload your courses:
 - [skillshare](https://www.skillshare.com/teach): is an online learning community with thousands of classes in design, business, tech, and more.
 - [udemy](https://www.udemy.com/teaching/?ref=teach_home-body): is a site where you can set up courses and offer them at a price. On the off chance, you think you're not sufficiently qualified to run a course, you should take a look at what individuals are instructing. There’s a huge number of different topics!
 
-Another great option is **tutoring**, especially if you are knowledgeable in programming, math and science. Either way, if you’re well-educated, mentoring can be an amazing money earner. Parents and guardians will pay tons of cash to help their kids learn or improve their results.
+Another great option is **tutoring**, especially if you are knowledgeable in programming, maths and science. Either way, if you’re well-educated, mentoring can be an amazing money earner. Parents and guardians will pay tons of cash to help their kids learn or improve their results.
 
 ## Bug Bounty Program
 
@@ -302,7 +302,7 @@ A list of referral programs you can join:
 
 - [Offerzen](https://www.offerzen.com/z/7OO14e): A great referral program for developers is [Offerzen](https://www.offerzen.com/z/7OO14e), where if any of your friends find a job through them, they give you both R5000 ~ $330.
 
-    [Clink here to register and find a job and we will get paid.](https://www.offerzen.com/z/7OO14e)
+    [Clink here to register and find a job, and we will get paid.](https://www.offerzen.com/z/7OO14e)
 
 - [easyequities](http://bit.ly/2mLi8zi): Great way to start investing on the equities and stock think JSE and NASDAQ, sign up with the [link](http://bit.ly/2mLi8zi) and you'll get R50 to start investing.
 - [luno](https://www.luno.com/invite/N6W74): CryptoCurrency is the future of money, and why not start investing with luno. Use this [link](https://www.luno.com/invite/N6W74) to sign up and get R25 worth of BitCoins in your wallet.
@@ -333,9 +333,9 @@ In 2017, I signed up to be [CellC's](https://www.cellc.co.za) brand ambassador I
 {: refdef}
 
 ### Social Media Influencer/Marketer
-There's a growing trend of social media influencing these days, if you have enough social media followers on [Instagram](instagram.com), [Twitter](twitter.com), [Facebook](facebook.com) and etc you can make extra income by means of personalized adverts. Small companies are in great need of social media influencers.
+There's a growing trend of social media influencing these days, if you have enough social media followers on [Instagram](instagram.com), [Twitter](twitter.com), [Facebook](facebook.com) etc you can make extra income by means of personalized adverts. Small companies are in great need of social media influencers.
 
-You can setup an account to start getting paid for your tweets/instagram post and extra and I'm inviting you if you are keen to work with brands to develop content and share with their audiences, [click this link to register](https://webfluential.com/users/register/rs9nv9l4):
+You can set up an account to start getting paid for your Tweets/Instagram/Facebook posts and I'm inviting you if you are keen to work with brands to develop content and share with their audiences, [click this link to register](https://webfluential.com/users/register/rs9nv9l4):
 
 {:refdef: style="text-align: center;"}
 [![post image]({{ "/assets/webfluential.jpeg" | absolute_url }})](https://webfluential.com/users/register/rs9nv9l4)
@@ -343,7 +343,7 @@ You can setup an account to start getting paid for your tweets/instagram post an
 
 ## Buy And Sell
 
-If you have startup funds you can look at flipping, which is the process of buying and selling products or property for a profit.  A lot of people don’t know what things are worth, and you can take advantage of that by reselling things you find for cheap.  Once you get rolling, it’s a fairly passive source of income.
+If you have start up funds you can look at flipping, which is the process of buying and selling products or property for a profit.  A lot of people don’t know what things are worth, and you can take advantage of that by reselling things you find for cheap.  Once you get rolling, it’s a fairly passive source of income.
 
 # Conclusion
 
@@ -354,7 +354,7 @@ If you have startup funds you can look at flipping, which is the process of buyi
 
 **I created this blog post so that you do not have to make your own research.**
 
-**Donations are welcome in the form of Paypal, Bitcoin or drop me a mail: mpho@mphomphego.co.za**
+**Donations are welcome in the form of PayPal, Bitcoin or drop me a mail: mpho@mphomphego.co.za**
 
 {:refdef: style="text-align: center;"}
 [![post image]({{ "/assets/paypal_logo.png" | absolute_url }})](https://paypal.me/mmphego)
