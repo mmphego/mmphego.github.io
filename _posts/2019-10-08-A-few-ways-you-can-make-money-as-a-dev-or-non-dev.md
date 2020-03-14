@@ -13,7 +13,7 @@ tags:
 
 14 Min Read
 
-**[Updated: 03/03/20]**
+**[Updated: 14/03/20]**
 
 {:refdef: style="text-align: left;"}
 <figure>
@@ -244,7 +244,21 @@ According to the [README.md](https://github.com/mezod/awesome-indie/blob/master/
 
 >Projects don't need to be big, actually, it's better if they are not, they just need to be profitable. They might provide a passive income after the initial bulk of work, and who knows, maybe even help you reach financial independence.
 
-You can access the list by hitting this link: https://github.com/mezod/awesome-indie
+You can access the list by hitting this link: [https://github.com/mezod/awesome-indie](https://github.com/mezod/awesome-indie)
+
+
+You can get paid for technical articles, share your technical knowledge and get paid. See the links below.
+
+- [https://realpython.com/write-for-us/](https://realpython.com/write-for-us/)
+- [https://www.digitalocean.com/community/pages/write-for-digitalocean](https://www.digitalocean.com/community/pages/write-for-digitalocean)
+
+
+{:refdef: style="text-align: center;"}
+[![post image]({{ "/assets/paid_articles.png" | absolute_url }})](https://twitter.com/TerraMeijar/status/1237979418825568257?s=20)
+
+Credit @TerraMeijar
+{: refdef}
+
 
 ## Affiliate Marketing
 
@@ -326,7 +340,6 @@ You can setup an account to start getting paid for your tweets/instagram post an
 {:refdef: style="text-align: center;"}
 [![post image]({{ "/assets/webfluential.jpeg" | absolute_url }})](https://webfluential.com/users/register/rs9nv9l4)
 {: refdef}
-
 
 ## Buy And Sell
 
