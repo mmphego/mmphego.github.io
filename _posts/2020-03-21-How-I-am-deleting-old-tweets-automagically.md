@@ -50,7 +50,7 @@ python3 -m pip install https://github.com/mmphego/semiphemeral/archive/master.zi
 
 Semiphemeral is a command line tool that you run locally on your computer, or on a server.
 
-```
+```bash
 $ semiphemeral
 Usage: semiphemeral [OPTIONS] COMMAND [ARGS]...
 
@@ -66,13 +66,15 @@ Commands:
   stats      Show stats about tweets in the database
 ```
 
-Start by running `semiphemeral configure`, which starts a local web server at http://127.0.0.1:8080/. Load that website in a browser.
+Start by running `semiphemeral configure`, which starts a local web server at [http://127.0.0.1:8080/](http://127.0.0.1:8080/). Load that website in a browser.
 
-You must supply Twitter API credentials here, which you can get by following [this guide](https://python-twitter.readthedocs.io/en/latest/getting_started.html). Basically, you need to login to https://developer.twitter.com/ and create a new "Twitter app" that only you will be using (when creating an app, you're welcome to use https://github.com/micahflee/semiphemeral as the website URL for your app).
+You must supply Twitter API credentials here, which you can get by following [this guide](https://python-twitter.readthedocs.io/en/latest/getting_started.html). Basically, you need to login to [https://developer.twitter.com/](https://developer.twitter.com/) and create a new "Twitter app" that only you will be using (when creating an app, you're welcome to use [https://github.com/micahflee/semiphemeral](https://github.com/micahflee/semiphemeral) as the website URL for your app).
 
 From the settings page you also tell semiphemeral which tweets to exclude from deletion:
 
+{:refdef: style="text-align: center;"}
 ![Settings](https://raw.githubusercontent.com/micahflee/semiphemeral/master/img/settings.png)
+{: refdef}
 
 Once you have configured semiphemeral, fetch all of the tweets from your account by running `semiphemeral fetch`. (It may take a long time if you have a lot of tweets -- when semiphemeral hits a Twitter rate limit, it just waits the shortest amount of time allowed until it can continue fetching.)
 
@@ -126,7 +128,7 @@ After configuring my docker image, I needed to have it ran weekly on travis-ci.
 Below is the configuration to my `.travis.yaml` file.
 
 
-```
+```bash
 $ cat .travis.yaml
 
 language: minimal
@@ -159,7 +161,8 @@ Below is the travis cronjob configuration.
 
 One thing that must never be done is to push secret tokens to a public repository, so in order to have some security in place, I zipped the `.semipheral` directory and used the Travis-CI CLI tool to encrypt it.
 
->Note: This assumes you have installed Travis-CI CLI and ran `travis login`
+>Note: This assumes you have installed Travis-CI CLI and ran `travis login`.
+
 >See installation instructions: https://github.com/travis-ci/travis.rb#installation
 
 ```
