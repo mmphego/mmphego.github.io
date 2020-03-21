@@ -1,11 +1,12 @@
-
-
 ---
 layout: post
 title: "How I Am Deleting Old Tweets Automagically!"
 date: 2020-03-21 20:44:14.000000000 +02:00
 tags:
-
+- Tips/Tricks
+- Social Media
+- Docker
+- Travis-CI
 ---
 # How I Am Deleting Old Tweets Automagically!.
 
