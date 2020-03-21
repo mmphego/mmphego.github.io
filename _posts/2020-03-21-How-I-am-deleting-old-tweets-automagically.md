@@ -32,7 +32,7 @@ In this post, I will detail how I managed to automatically delete my old tweets 
 
 # The How
 
-I could have written something that would do this, but with the number of side projects I have, I did not even want to spend more time than I should. So I decided to go on a hunting spree until I found a great open-source project written by @micahflee called [semiphemeral](https://github.com/micahflee/semiphemeral), which according to the *read me*:
+I might have written anything that will accomplish that, but with the amount of side projects I have, I didn't really want to waste more time than I would have. So I decided to go on a hunting spree until I found a great open-source project written by @micahflee called [semiphemeral](https://github.com/micahflee/semiphemeral), which according to the *read me*:
 
 > There are plenty of tools that let you make your Twitter feed ephemeral, automatically deleting tweets older than some threshold, like one month.
 >
