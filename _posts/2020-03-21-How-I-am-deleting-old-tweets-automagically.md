@@ -10,7 +10,7 @@ tags:
 # How I Am Deleting Old Tweets Automagically!.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2020-03-21-How-I-am-deleting-old-tweets-automagically.jpg" | absolute_url }})
+![post image]({{ "/assets/2020-03-21-How-I-am-deleting-old-tweets-automagically.png" | absolute_url }})
 {: refdef}
 
 -----------------------------------------------------------------------------------------
