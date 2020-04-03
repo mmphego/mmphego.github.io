@@ -15,30 +15,40 @@ tags:
 {: refdef}
 
 -----------------------------------------------------------------------------------------
+---
+title: How I Am Deleting Old Tweets Automagically
+published: false
+date: 2020-03-20 22:00:00 UTC
+tags:
+- Tips/Tricks
+- Travis CI
+- Docker
+canonical_url: https://blog.mphomphego.co.za/blog/2020/03/21/How-I-am-deleting-old-tweets-automagically.html
+---
 
 # The Story
 
 As we all know the internet never forgets and if you are like me you have probably tweeted or wrote something that on a sober day you wouldn't have.
 We are all aware that our tweets are well preserved and that anyone can
 easily go back to your past and remember what you said with complete precision.
-This is not alarming for most people but me. I've seen enough people who were flogged publicly for something they posted years ago to know it was happening.
+This is not alarming for most people but for me. I've seen enough people who were flogged publicly for something they posted years ago to know it was happening.
 
-You're not the same person you've been to last month-you've seen things, read
+You're not the same person you've been to the last month-you've seen things, read
 things, understood and learned things that have changed you in a small way. While a person may have the same sense of self and identity throughout
 most of his or her life, even this grows over the years and changes.
 We change our views, our desires and our habits. We are not stagnant beings, and we should not allow ourselves to be represented as such, so why should your tweets not disappear together with your old self.
 
-In this post, I will detail how I managed to automatically delete my old tweets that are older than 10 days, I am doing this for the same reasons that I don’t like hanging onto stuff that I no longer use or have interest in any more - that stuff isn’t relevant to me any more it neither represent me so why hang on to old tweets.
+In this post, I will detail how I managed to automatically delete my old tweets that are older than 10 days, I am doing this for the same reasons that I don’t like hanging onto stuff that I no longer use or have interest in any more - that stuff isn’t relevant to me any more it neither represents me so why hang on to old tweets.
 
 # The How
 
-I might have written anything that will accomplish that, but with the amount of side projects I have, I didn't really want to waste more time than I would have. So I decided to go on a hunting spree until I found a great open-source project written by @micahflee called [semiphemeral](https://github.com/micahflee/semiphemeral), which according to the *read me*:
+I might have written anything that will accomplish that, but with the number of side projects I have, I didn't really want to waste more time than I would have. So I decided to go on a hunting spree until I found a great open-source project written by @micahflee called [semiphemeral](https://github.com/micahflee/semiphemeral), which according to the *read me*:
 
 > There are plenty of tools that let you make your Twitter feed ephemeral, automatically deleting tweets older than some threshold, like one month.
 >
 > **Semiphemeral** does this, but also lets you automatically exclude tweets based on criteria: how many RTs or likes they have, and if they're part of a thread where one of your tweets has that many RTs or likes. It also lets you manually select tweets you'd like to exclude from deleting.
 
-He also has a great [blog post](https://micahflee.com/2019/06/semiphemeral-automatically-delete-your-old-tweets-except-for-the-ones-you-want-to-keep/) detailing the setup and the why, you should probably check it out.
+He also has a great [blog post](https://micahflee.com/2019/06/semiphemeral-automatically-delete-your-old-tweets-except-for-the-ones-you-want-to-keep/) detailing the setup and the why you should probably check it out.
 
 ## Initial Setup
 
@@ -48,7 +58,7 @@ I forked the original repository and added a few changes, see [diff](https://git
 python3 -m pip install https://github.com/mmphego/semiphemeral/archive/master.zip
 ```
 
-Semiphemeral is a command line tool that you run locally on your computer, or on a server.
+Semiphemeral is a command-line tool that you run locally on your computer, or on a server.
 
 ```bash
 $ semiphemeral
@@ -60,7 +70,7 @@ Options:
   --help  Show this message and exit.
 
 Commands:
-  configure  Start the web server to configure semiphemeral
+  configure  Start the webserver to configure semiphemeral
   delete     Delete tweets that aren't automatically or manually excluded
   fetch      Download all tweets
   stats      Show stats about tweets in the database
@@ -78,7 +88,7 @@ From the settings page you also tell semiphemeral which tweets to exclude from d
 
 Once you have configured semiphemeral, fetch all of the tweets from your account by running `semiphemeral fetch`. (It may take a long time if you have a lot of tweets -- when semiphemeral hits a Twitter rate limit, it just waits the shortest amount of time allowed until it can continue fetching.)
 
-Then go back to the configuration web app and look at the tweets page. From here, you can look at all of the tweets that are going to get deleted the next time you run `semiphemeral delete`, and choose to manually exclude some of them from deletion. This interface paginates all of the tweets that are staged for deletion, and allows you to filter them by searching for phrases in the text of your tweets.
+Then go back to the configuration web app and look at the tweets page. From here, you can look at all of the tweets that are going to get deleted the next time you run `semiphemeral delete` and choose to manually exclude some of them from deletion. This interface paginates all of the tweets that are staged for deletion and allows you to filter them by searching for phrases in the text of your tweets.
 
 Once you have chosen all tweets you want to exclude, you may want to [download your Twitter archive](https://help.twitter.com/en/managing-your-account/how-to-download-your-twitter-archive) for your records.
 
@@ -166,6 +176,7 @@ One thing that must never be done is to push secret tokens to a public repositor
 >See installation instructions: https://github.com/travis-ci/travis.rb#installation
 
 ```
+cp -r ~/.semipheral .
 zip -r secrets.zip .semipheral
 travis encrypt-file --com secrets.zip --add
 rm -rf secrets.zip .semipheral
