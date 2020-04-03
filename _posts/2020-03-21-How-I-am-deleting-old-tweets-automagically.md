@@ -15,16 +15,6 @@ tags:
 {: refdef}
 
 -----------------------------------------------------------------------------------------
----
-title: How I Am Deleting Old Tweets Automagically
-published: false
-date: 2020-03-20 22:00:00 UTC
-tags:
-- Tips/Tricks
-- Travis CI
-- Docker
-canonical_url: https://blog.mphomphego.co.za/blog/2020/03/21/How-I-am-deleting-old-tweets-automagically.html
----
 
 # The Story
 
