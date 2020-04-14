@@ -107,7 +107,7 @@ google_analytics: "UA-68808612-1"
 google_adsense: "ca-pub-3462291035225536"
 
 # Google Tag Manager ID
-gtm: "GTM-PDCDJZ3"
+gtm: GTM-PDCDJZ3
 
 # Excerpt Word Length
 # Truncates the excerpt to the specified number of words on the index page

@@ -21,6 +21,8 @@ common-js:
   {% include head.html %}
 
   <body>
+    {% include gtm_body.html %}
+
     {% include ads_by_amazon.html %}
 
     {% include advertisements.html %}
@@ -30,7 +32,6 @@ common-js:
     <amp-auto-ads type="adsense"
               data-ad-client="{{ site.google_adsense}}">
     </amp-auto-ads>
-    {% include gtm_body.html %}
 
     {% include nav.html %}
 
