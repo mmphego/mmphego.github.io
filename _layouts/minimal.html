@@ -13,36 +13,16 @@ common-js:
   {% include head.html %}
 
   <body>
-    {% if page.url != '/resume.html' %}
-      {% include advertisements.html %}
-    {% else %}
-      {% include advertisements.html %}
-    {% endif %}
-    <div role="main" class="container main-content">
-      {{ content }}
-    </div>
 
-    {% if page.url != '/resume.html' %}
-      {% include advertisements.html %}
-    {% else %}
-      {% include advertisements.html %}
-    {% endif %}
+    <div role="main" class="container main-content">
+
+      {{ content }}
+
+    </div>
 
     {% include footer-minimal.html %}
 
-    {% if page.url != '/resume.html' %}
-      {% include advertisements.html %}
-    {% else %}
-      {% include advertisements.html %}
-
     {% include footer-scripts.html %}
-
-    {% endif %}
-    {% if page.url != '/resume.html' %}
-      {% include advertisements.html %}
-    {% else %}
-      {% include advertisements.html %}
-    {% endif %}
 
   </body>
 </html>

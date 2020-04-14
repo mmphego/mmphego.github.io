@@ -8,6 +8,8 @@ bigimg:
   - "/img/new_post_word_cloud.jpg" : "New Post: Word Cloud"
 ---
 
+{% include advertisements.html %}
+
 <!-- Typed.js -->
 <script src="/js/jquery-1.11.2.min.js"></script>
 <script src="/js/typed.js" type="text/javascript"></script>
@@ -49,7 +51,6 @@ bigimg:
       </div>
     </div>
   </div>
-    {% include advertisements.html %}
 </div>
     <div>
       <input type="text" style="width:100%" id="search-input" placeholder="search...">
@@ -69,7 +70,6 @@ bigimg:
       // exclude: ['Welcome']
   })
 </script>
-
 
 <!-- site body (untouched)-->
 <div class="posts-list">
@@ -106,8 +106,6 @@ bigimg:
       </div>
     </div>
 
-    {% include advertisements.html %}
-
     {% if post.tags.size > 0 %}
     <div class="blog-tags">
       Tags:
@@ -124,7 +122,7 @@ bigimg:
    </article>
   {% endfor %}
 </div>
-{% include advertisements.html %}
+
 {% if paginator.total_pages > 1 %}
 <ul class="pager main-pager">
   {% if paginator.previous_page %}
