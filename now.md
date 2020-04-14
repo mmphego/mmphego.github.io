@@ -19,7 +19,7 @@ Inspired by [Derek Sivers' /now page movement](https://sivers.org/now3), here's 
 - Contributing to open-source at least once a week, in order to maintain my position on [https://commits.top/south_africa.html](https://commits.top/south_africa.html)
 - Attempting to build a writing habit by creating a new article every 2nd week on this blog. [Haven't made any progress in over 30 days :(]
 - Reviving my [YouTube channel](https://www.youtube.com/c/MphoMphego1) and creating videos focused on Python/Linux/Git tips and tricks. [Haven't made any progress in over 30 days :(]
-- Daily meditation as part of my "Year of Calm". [Haven't made any progress since the lockdown :(]
+- Daily meditation as part of my "Year of Calm". [Haven't made any progress since the SALockDown :(]
 - Currently reading: [Essentialism: The Disciplined Pursuit of Less
 by Greg McKeown
-](https://www.goodreads.com/book/show/18077875-essentialism) [Haven't made any progress since the lockdown :(]
+](https://www.goodreads.com/book/show/18077875-essentialism) [Haven't made any progress since the SALockDown :(]
