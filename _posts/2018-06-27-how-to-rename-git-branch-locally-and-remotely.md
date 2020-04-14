@@ -31,7 +31,6 @@ By following this simple steps, I was able to rename my local and rename branch 
 
     ```git push --set-upstream origin new_branch```
 
-{% include advertisements.html %}
 
 **Note:** Remember to pull before! Or you may lose every commit not yet on your local branch
 

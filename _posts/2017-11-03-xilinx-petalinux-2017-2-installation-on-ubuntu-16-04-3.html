@@ -54,7 +54,6 @@ author:
   sudo dpkg --add-architecture i386
   </code></pre>
 </div>
-{% include advertisements.html %}
 
 <p>Before you proceed, make sure all the prerequisites are satisfied:</p>
 <div class="language-bash highlighter-rouge">
@@ -67,7 +66,6 @@ author:
   libqtgui4:i386
   </code></pre>
 </div>
-    {% include advertisements.html %}
 
 <p>for a successful installation, we need to configure tftp</p>
 <div class="language-bash highlighter-rouge">
@@ -98,7 +96,6 @@ author:
   </code></pre>
 </div>
 <br />
-    {% include advertisements.html %}
 
 
 Restart tftp service</p>
@@ -112,7 +109,6 @@ Restart tftp service</p>
 </div>
 <br />
 
-    {% include advertisements.html %}
 
 <p>Change <code>/bin/sh</code> to bash</p>
 <div class="language-sh highlighter-rouge">
@@ -135,7 +131,6 @@ Restart tftp service</p>
 
 <p>Press '<kbd>ENTER'</kbd> to see the licenses, <kbd>q</kbd> to quit reading the licenses, and <kbd>y</kbd> + <kbd>ENTER</kbd> to accept the licenses. The installation should last for about 15-30 mins.</p>
 <p>Every time you want to use PetaLinux tools, remember to source the “settings” script to have the right environment variables:</p>
-    {% include advertisements.html %}
 
 <div class="language-sh highlighter-rouge">
 <pre class="highlight">
@@ -158,13 +153,11 @@ $ petalinux-create -t project -s avnet-digilent-zedboard-v2017.2-final.bsp</cod
 <p>In order to rebuild the system run <code>petalinux-build</code></p>
 <p><code class="language-sh highlighter-rouge">
   $ petalinux-build -v</code></p>
-    {% include advertisements.html %}
 
 <p>This step usually takes 15-30min depending on the performance of your system, the step generated a device tree 'DTB' file, the FSBL(First Stage Bootloader), U-Boot, Linux Kernel and the root file-system images</p>
 <p>After the build is complete you can test it in a simulated environment.</p>
 <h3>Pre-built Petalinux image test with QEMU</h3>
 <p>Petalinux provide <a href="https://wiki.debian.org/QEMU">QEMU</a> support to enable testing the image-built in a simulated environment.</p>
-    {% include advertisements.html %}
 
 <p><code class="language-sh highlighter-rouge">
 $ petalinux-boot --qemu --prebuilt 3<br />

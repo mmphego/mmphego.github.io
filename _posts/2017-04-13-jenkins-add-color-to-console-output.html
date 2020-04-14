@@ -37,7 +37,6 @@ author:
 <h1>Jenkins - Add Color to Console Output</h1>
 <p>Jenkins console output is place where you can spend decent amount of time trying to figure out what went wrong (or perhaps right?).</p>
 <p><a href="https://wiki.jenkins-ci.org/display/JENKINS/AnsiColor+Plugin" target="_blank">AnsiColor plugins</a> gives you opportunity to color monochromatic Jenkins console output.</p>
-    {% include advertisements.html %}
 
 <p>1. Install AnsiColor plugin
 On Jenkins:
@@ -47,7 +46,6 @@ Manage Jenkins &gt; Manage Plugins &gt; Available
 Under <strong>Build Environment</strong> section check <strong>Color ANSI Console Output </strong>and select <strong>xterm</strong></p>
 <p><img class="alignnone size-full wp-image-989" src="{{ site.baseurl }}/assets/testerfenster-jenkins-build-environment-color-ansi.png" alt="TesterFenster-Jenkins-Build-Environment-Color-ANSI" width="906" height="104" />
 3. Inside Execute shell step add something like:</p>
-    {% include advertisements.html %}
 
 <p><pre><code>
 set +x
@@ -84,9 +82,7 @@ echo &quot;&#092;&#048;33[1;4;37;42m Green &#092;&#048;33[0m&quot;
 echo &quot;&#092;&#048;33[1;43m Yellow &#092;&#048;33[0m&quot;
 set -x
 </code></pre></p>
-    {% include advertisements.html %}
 
 <p>4. On console output</p>
 <p><img class="alignnone size-full wp-image-994" src="{{ site.baseurl }}/assets/screenshot_2017-04-13_11-13-22.png" alt="Screenshot_2017-04-13_11-13-22" width="1154" height="551" /></p>
 <p>Done!!!</p>
-    {% include advertisements.html %}
