@@ -88,7 +88,10 @@ You can verify if the upgrade was successful by checking the Ubuntu version from
 
 You can also check the version from command line by running the following command:
 
-`$ lsb_release -a`
+```bash
+lsb_release -a
+```
+
 {:refdef: style="text-align: center;"}
 ![post image]({{ "/assets/ubuntu_lsb.png" | absolute_url }})
 {: refdef}
