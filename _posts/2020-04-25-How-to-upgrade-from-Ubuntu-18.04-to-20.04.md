@@ -160,6 +160,16 @@ Then select the **Dpkg** option which allows fixes and uninstall any potentially
 
 Reboot system after Dpkg has finished installing the packages.
 
+## Broken virtualenv due to missing Python3.6: Fix
+
+Since Ubuntu 20.04 comes with Python3.8 by default and not Python3.6, this meant that my virtual environments where messed up. So all I needed was to install Python3.6 to support my legacy virtualenvs
+
+```bash
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt-get update
+sudo apt-get install python3.6-dev
+```
+
 # Reference
 
 - [What’s new in Ubuntu Desktop 20.04 LTS?](https://ubuntu.com/blog/whats-new-in-ubuntu-desktop-20-04-lts)
