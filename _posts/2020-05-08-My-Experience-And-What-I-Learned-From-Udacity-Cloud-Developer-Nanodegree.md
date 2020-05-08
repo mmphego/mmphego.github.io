@@ -11,6 +11,8 @@ tags:
 ![post image]({{ "/assets/2020-05-08-My-Experience-And-What-I-Learned-From-Udacity-Cloud-Developer-Nanodegree.png" | absolute_url }})
 {: refdef}
 
+10 Min Read
+
 -----------------------------------------------------------------------------------------
 
 # The Story
