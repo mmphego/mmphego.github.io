@@ -11,6 +11,8 @@ tags:
 ![post image]({{ "/assets/2020-04-25-How-to-upgrade-from-Ubuntu-18.04-to-20.04.jpg" | absolute_url }})
 {: refdef}
 
+6 Min Read
+
 -----------------------------------------------------------------------------------------
 
 # The Story

@@ -14,6 +14,8 @@ tags:
 ![post image]({{ "/assets/2020-03-21-How-I-am-deleting-old-tweets-automagically.png" | absolute_url }})
 {: refdef}
 
+9 Min Read
+
 -----------------------------------------------------------------------------------------
 
 # The Story
