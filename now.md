@@ -12,6 +12,7 @@ css: "/css/aboutme.css"
 
 Inspired by [Derek Sivers' /now page movement](https://sivers.org/now3), here's what I'm focused on right now in no particular order:
 
+- Read and Listened to *Letters From An Astrophysicist* by Neil deGrasse Tyson (inspirational and eye opening read)
 - Daily meditation as part of my "Year of Calm".
 - Started [#100DaysOfCode challenge](https://www.100daysofcode.com/) from mid-April with focuses on ML/AI and Computer Vision, [follow my progress](https://twitter.com/search?q=%23100DaysOfCode%20%40mphomphego&src=typed_query)
 - Enrolled for an [Intel Edge AI for IoT Developer Nano degree](https://www.udacity.com/course/intel-edge-ai-for-iot-developers-nanodegree--nd131) with [Udacity](https://www.udacity.com).
