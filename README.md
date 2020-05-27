@@ -1,6 +1,8 @@
 mmphego.github.io
 =================
 
+![Jekyll site CI](https://github.com/mmphego/mmphego.github.io/workflows/Jekyll%20site%20CI/badge.svg?branch=master&event=deployment_status)
+
 My personal website. Visit [https://mmphego.github.io/](https://mmphego.github.io/) to view it, cloned from [http://anuditverma.github.io/](https://anuditverma.github.io/)
 
 # How do I clone it locally?
