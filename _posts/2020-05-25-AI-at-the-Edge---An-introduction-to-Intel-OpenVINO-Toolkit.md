@@ -14,6 +14,8 @@ tags:
 ![post image]({{ "/assets/2020-05-25-AI-at-the-Edge---An-introduction-to-Intel-OpenVINO-Toolkit.png" | absolute_url }})
 {: refdef}
 
+14 Min Read
+
 -----------------------------------------------------------------------------------------
 
 # The Story
@@ -173,6 +175,6 @@ You can also find most of my notes and exercises on my GitHub profile: [https://
 - [Content for Udacity's Intel® Edge AI for IoT Developers nanodegree](https://github.com/mmphego/Udacity-EdgeAI/)
 - [OpenVINO™ Toolkit Documentation](https://docs.openvinotoolkit.org/latest/index.html)
 - [ How to Get Started as a Developer in AI ](https://software.intel.com/content/www/us/en/develop/articles/how-to-get-started-as-a-developer-in-ai.html)
-- [TensorFlow Lite | ML for Mobile and Edge Devices](https://www.tensorflow.org/lite/)
+- [TensorFlow Lite - ML for Mobile and Edge Devices](https://www.tensorflow.org/lite/)
 - [Edge Machine Learning with Zach Shelby](https://softwareengineeringdaily.com/2020/05/26/edge-machine-learning-with-zach-shelby/)
 - [Artificial Intelligence (AI) Solutions on Edge Devices](https://medium.com/@mehulved1503/artificial-intelligence-ai-solutions-on-edge-devices-1cc08d411a7c)
