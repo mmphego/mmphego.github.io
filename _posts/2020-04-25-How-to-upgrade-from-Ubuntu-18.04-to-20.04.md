@@ -3,7 +3,8 @@ layout: post
 title: "How To Upgrade From Ubuntu 18.04 To 20.04"
 date: 2020-04-25 10:43:12.000000000 +02:00
 tags:
-
+    - Tips/Tricks
+    - Ubuntu
 ---
 # How To Upgrade From Ubuntu 18.04 To 20.04
 

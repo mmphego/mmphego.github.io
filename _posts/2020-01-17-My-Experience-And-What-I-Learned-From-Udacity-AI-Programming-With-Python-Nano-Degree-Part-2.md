@@ -7,6 +7,7 @@ tags:
 - Machine Learning
 - AI
 - Pytorch
+- Udacity
 ---
 # My Experience And What I Learned From Udacity AI Programming With Python Nano-Degree: Part 2.
 
