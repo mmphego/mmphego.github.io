@@ -24,6 +24,10 @@ As more and more [COVID-19 cases are reported each day and South Africa's](https
 In this post, I will walk you through the processes of creating a Face Mask Detector application using pre-trained models and Intel OpenVINO toolkit with OpenCV.
 This application can be improved and then integrated with CCTV or other types of cameras to detect and identify people without masks in public areas such as shopping centres and etc. The application could be useful in controlling the spread of the ever-increasing COVID-19 virus.
 
+{:refdef: style="text-align: center;"}
+[![smaller.gif](https://i.postimg.cc/Y2JbSRJC/smaller.gif)](https://postimg.cc/w3QhfXqC)
+{: refdef}
+
 ## TL;DR
 This project uses pre-trained models with OpenVINO toolkit and code can be found [here](https://github.com/mmphego/face_mask_detection_openvino)
 
@@ -342,6 +346,11 @@ xhost -;
 - `--volume="/tmp/.X11-unix:/tmp/.X11-unix:rw"`: Enable GUI applications
 - `--device /dev/snd`: Enable sound from container
 - `--device /dev/video0`: Share webcam with container
+
+{:refdef: style="text-align: center;"}
+[![smaller.gif](https://i.postimg.cc/Y2JbSRJC/smaller.gif)](https://postimg.cc/w3QhfXqC)
+{: refdef}
+
 
 # Reference
 
