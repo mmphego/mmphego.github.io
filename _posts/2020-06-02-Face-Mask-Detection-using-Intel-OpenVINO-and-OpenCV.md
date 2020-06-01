@@ -54,7 +54,7 @@ Face Mask Detection application uses Deep Learning/Machine Learning to recognize
 Watch the complete tutorial and code walk-through. Positive and building comments will be appreciated
 {:refdef: style="text-align: center;"}
 <p><div>
-<iframe width="100%" height="315" src="https://www.youtube.com/embed/6r6foGbCHQ0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="100%" height="480" src="https://www.youtube.com/embed/6r6foGbCHQ0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div></p>
 {: refdef}
 
