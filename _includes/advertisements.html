@@ -1,6 +1,6 @@
 {% if site.google_adsense %}
 <!-- Google Adsense -->
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="adBlockFunction();"></script>
+<!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" onerror="adBlockFunction();"></script>
 <script>
     (adsbygoogle = window.adsbygoogle || []).push({
         google_ad_client: "{{ site.google_adsense}}",
@@ -10,5 +10,7 @@
 
 <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
 </script>
+ -->
+<script data-ad-client="{{ site.google_adsense}}" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- End Google Adsense -->
 {% endif %}
