@@ -32,7 +32,7 @@ Follow this simple steps:
 - Head over to your GitHub profile and voila!
 
 ---
-Here is [mine](https://github.com/mmphego/mmphego)
+Here is [mine](https://github.com/mmphego)
 
 {:refdef: style="text-align: center;"}
 ![Peek 2020-07-09 15-59](https://user-images.githubusercontent.com/7910856/87130857-d8b5de00-c293-11ea-9eeb-2fc432ae8267.gif)
