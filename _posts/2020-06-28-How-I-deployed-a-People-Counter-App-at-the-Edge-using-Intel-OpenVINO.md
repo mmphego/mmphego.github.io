@@ -3,16 +3,20 @@ layout: post
 title: "How I Deployed A People Counter App At The Edge Using Intel OpenVINO"
 date: 2020-06-28 05:41:39.000000000 +02:00
 tags:
-- AI
-- Python
+- AI/Artificial Intelligence
 - Docker
 - MQTT
+- OpenCV
+- OpenVINO
+- Python
 ---
 # How I Deployed A People Counter App At The Edge Using Intel OpenVINO.
 
 {:refdef: style="text-align: center;"}
 ![post image]({{ "/assets/2020-06-28-How-I-deployed-a-People-Counter-App-at-the-Edge-using-Intel-OpenVINO.png" | absolute_url }})
 {: refdef}
+
+13 Min Read
 
 -----------------------------------------------------------------------------------------
 
