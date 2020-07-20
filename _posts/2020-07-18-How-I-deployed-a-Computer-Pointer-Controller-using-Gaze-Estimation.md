@@ -45,34 +45,43 @@ To get these inputs, use the three other OpenVino models model below:
 
 Implementation: [https://github.com/mmphego/computer-pointer-controller/blob/bb5f13c6d2567c0856407db6c35b3fa6345f97c2/src/model.py#L156](https://github.com/mmphego/computer-pointer-controller/blob/bb5f13c6d2567c0856407db6c35b3fa6345f97c2/src/model.py#L156)
 
+{:refdef: style="text-align: center;"}
 ![face_Detection](https://user-images.githubusercontent.com/7910856/87830444-4a3bf080-c881-11ea-993a-7f76c979449f.gif)
+{: refdef}
 
 - [Facial Landmarks Detection](https://docs.openvinotoolkit.org/latest/_models_intel_landmarks_regression_retail_0009_description_landmarks_regression_retail_0009.html).
 
 Implementation: [https://github.com/mmphego/computer-pointer-controller/blob/bb5f13c6d2567c0856407db6c35b3fa6345f97c2/src/model.py#L239](https://github.com/mmphego/computer-pointer-controller/blob/bb5f13c6d2567c0856407db6c35b3fa6345f97c2/src/model.py#L239)
 
+{:refdef: style="text-align: center;"}
 ![facial_landmarks](https://user-images.githubusercontent.com/7910856/87830446-4c05b400-c881-11ea-90a5-d1b80d984f01.gif)
+{: refdef}
 
 - [Head Pose Estimation](https://docs.openvinotoolkit.org/latest/_models_intel_head_pose_estimation_adas_0001_description_head_pose_estimation_adas_0001.html)
 
 Implementation: [https://github.com/mmphego/computer-pointer-controller/blob/bb5f13c6d2567c0856407db6c35b3fa6345f97c2/src/model.py#L305](https://github.com/mmphego/computer-pointer-controller/blob/bb5f13c6d2567c0856407db6c35b3fa6345f97c2/src/model.py#L305)
-
+{:refdef: style="text-align: center;"}
 ![head_pose](https://user-images.githubusercontent.com/7910856/87830450-4f00a480-c881-11ea-9d0b-4b43316456a2.gif)
+{: refdef}
 
 - [Gaze Estimation](https://docs.openvinotoolkit.org/latest/_models_intel_gaze_estimation_adas_0002_description_gaze_estimation_adas_0002.html)
 
 Implementation: [https://github.com/mmphego/computer-pointer-controller/blob/bb5f13c6d2567c0856407db6c35b3fa6345f97c2/src/model.py#L422](https://github.com/mmphego/computer-pointer-controller/blob/bb5f13c6d2567c0856407db6c35b3fa6345f97c2/src/model.py#L422)
-
+{:refdef: style="text-align: center;"}
 ![all](https://user-images.githubusercontent.com/7910856/87830436-47d99680-c881-11ea-8c22-6a0a7e17c78d.gif)
+{: refdef}
 
 ### Project Pipeline
 Coordinate the flow of data from the input, and then amongst the different models and finally to the mouse controller. The flow of data looks like this:
 
+{:refdef: style="text-align: center;"}
 ![image](https://user-images.githubusercontent.com/7910856/87787550-1db1b580-c83c-11ea-9f21-5048c803bf5c.png)
+{: refdef}
 
 ## Demo
-
+{:refdef: style="text-align: center;"}
 ![vide-demo](https://user-images.githubusercontent.com/7910856/87830451-50ca6800-c881-11ea-87cf-3943795a76e8.gif)
+{: refdef}
 
 ## Project Set Up and Installation
 
@@ -107,7 +116,7 @@ tree && du -sh
 ### Setup and Installation
 There are two (2) ways of running the project.
 1. Download and install [Intel OpenVINO Toolkit](https://software.intel.com/content/www/us/en/develop/tools/openvino-toolkit.html) and install.
-    - After you've cloned the repo, you need to install the dependecies using this command:
+    - After you've cloned the repo, you need to install the dependencies using this command:
       `pip3 install -r requirements.txt`
 
 2. Run the project in the [Docker image](https://hub.docker.com/r/mmphego/intel-openvino) that I have baked Intel OpenVINO and dependencies in.
@@ -258,7 +267,7 @@ bash -c "\
 - No Face Detection: it will skip the frame and inform the user
 
 ## Future Improvement
-- [Intel® DevCloud](https://devcloud.intel.com/edge/get_started/guide/): Benchmark the application on various devices to ensure optimum perfomance.
+- [Intel® DevCloud](https://devcloud.intel.com/edge/get_started/guide/): Benchmark the application on various devices to ensure optimum performance.
 - [Intel® VTune™ Profiler](https://software.intel.com/content/www/us/en/develop/tools/vtune-profiler/choose-download.html): Profile my application and locate any bottlenecks.
 - Gaze estimations: We could revisit the logic of determining and calculating the coordinates as it is a bit flaky.
 - Lighting condition: We might use HSV based pre-processing steps to minimize error due to different lighting conditions.
