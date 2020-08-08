@@ -6,3 +6,7 @@ gem "github-pages", '163', group: :jekyll_plugins
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'jekyll-paginate'
 gem 'jekyll_github_sample'
+gem 'jekyll-tweetsert'
+gem 'jekyll-twitter-plugin'
+gem 'jekyll-twitter-plugin-2'
+gem 'jekyll-hashtags'

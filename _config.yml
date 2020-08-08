@@ -222,5 +222,6 @@ plugins:
   - jekyll-archives
   - kramdown
   - jekyll_github_sample
+  - jekyll-gist
 
 jekyll-mentions: https://twitter.com
