@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Face Blurring Using Scikit-image using Cascade Classifiers"
+title: "Face Blurring Using Scikit-image Cascade Classifiers"
 date: 2020-08-19 16:47:12.000000000 +02:00
 tags:
 
 ---
-# Face Blurring Using Scikit-image using Cascade Classifiers.
+# Face Blurring Using Scikit-image Cascade Classifiers.
 
 {:refdef: style="text-align: center;"}
 ![post image]({{ "/assets/2020-08-19-Face-blurring-using-scikit-image-cascade-classifiers.png" | absolute_url }})
