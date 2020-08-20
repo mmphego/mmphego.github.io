@@ -22,7 +22,8 @@ Photos and videos of these protests have been used for facial recognition or ide
 In this post, I will walk you through a simple way of using [scikit-image](https://scikit-image.org/) for image processing to detect faces using [local binary patterns](https://en.wikipedia.org/wiki/Local_binary_patterns) supported [cascade classifiers](https://en.wikipedia.org/wiki/Haar-like_feature) [*almost 20 yrs old tech*] thereafter blur them using a [Gaussian blur filters](https://en.wikipedia.org/wiki/Gaussian_blur). However, I will not dive deep into how face detection works with *cascade classifiers*, I found a good read [here](https://becominghuman.ai/face-detection-using-opencv-with-haar-cascade-classifiers-941dbb25177)
 
 **Note:** False detections are inevitable using `cascade classifiers` and if you want to have a really precise detector, you will have to train it yourself using [OpenCV train cascade utility](https://docs.opencv.org/2.4.13.7/doc/user_guide/ug_traincascade.html) or toggle the knobs [here.](https://github.com/mmphego/privacy_protection/blob/f8a9ec6b07d11000e5931674407c28ef46e485fe/main.py#L81)
-Alternatively, use Intel's OpenVINO face-detection models or pre-trained models.
+
+Alternatively, use Intel's OpenVINO face-detection models or CNN's pre-trained models.
 
 Some good resources wrt to *haar cascaded classifier* and the *Viola-Jones Algorithm*
 
