@@ -89,9 +89,17 @@ bash -c "\
 
 Understand Docker extra parameters [here.](https://blog.mphomphego.co.za/blog/2020/06/02/Face-Mask-Detection-using-Intel-OpenVINO-and-OpenCV.html#usage)
 
-Results: 
+Original Image:
 
+{:refdef: style="text-align: center;"}
+![](https://raw.githubusercontent.com/mmphego/privacy_protection/master/blm.jpg)
+{: refdef}
+
+Blurred Faces (Well sort-off): 
+
+{:refdef: style="text-align: center;"}
 ![](https://raw.githubusercontent.com/mmphego/privacy_protection/master/Blurred_Faces.jpg)
+{: refdef}
 
 ## Code Walkthrough
 
