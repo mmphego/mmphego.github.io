@@ -3,7 +3,7 @@ name: Mpho Mphego
 jobtitle: Software Engineer
 contact:
   - icon: fa-envelope
-    text: mpho@mphomphego.co.za
+    text: mpho (at) mphomphego (dot) co (dot) za
   - icon: fa-globe
     text: https://blog.mphomphego.co.za
   - icon: fa-linkedin
@@ -31,11 +31,6 @@ summary: |
         My primary focus is building my Python and DevOps knowledge base and also focusing more on building my reputation around these tools Ansible, AWS, Terraform, Kubernetes, Docker, Jenkins and <a href="https://xebialabs.com/assets/files/infographics/periodic-table-of-devops-tools-v3.pdf">other tools</a>.
 
 education:
-  - university: Cape Peninsula University of Technology
-    duration: Jun 2017 - Current
-    location: Cape Town, South Africa
-    degree: Master of Engineering - Electrical/Electronics Engineering
-    title: Mapping and Publication of IEC61850 standard communication messages
   - university: Tshwane University of Technology
     duration: Jun 2012 - Jun 2016
     location: Pretoria, South Africa
@@ -44,55 +39,6 @@ education:
     duration: Jan 2005 - Dec 2010
     location: Pretoria, South Africa
     degree: National Diploma - Electronics and Communications Engineering
-
-certification:
-  - name: Python 3
-    authority: SoloLearn
-    duration: Jun 2018 - Present
-    license:
-    url:
-
-  - name: Xilinx Vivado and Partial Reconfiguration
-    authority: Kutleng Technologies
-    duration: Jun 2018 - Present
-    license:
-    url:
-
-  - name: Mellanox Certified Network Professional
-    authority: Mellanox Technologies
-    duration:  Feb 2017 - Present
-    license:
-    url:
-
-  - name: Python Intermediate
-    authority: GetCertified IT Training
-    duration:  Feb 2017 - Present
-    license:
-    url:
-
-  - name: Certificate for Appreciation
-    authority: South African National Antactic Programme (SANAP)
-    duration:  Aug 2015 - Present
-    license:
-    url:
-
-  - name: An Introduction to Interactive Programming in Python
-    authority: Coursera
-    duration:  Sep 2014 - Present
-    license:
-    url:
-
-  - name: LFS101x, Introduction to Linux
-    authority: edX
-    duration: Sep 2014 - Present
-    license: "4edbd82b6348437598dbedde3e6d8934"
-    url:
-
-  - name: Programming for Everybody (Python)
-    authority: Coursera
-    duration:  Aug 2014 - Present
-    license:
-    url:
 
 skills:
   - title: Main Skills
@@ -186,42 +132,3 @@ experience:
                   * Procurement Of Electronic Components.
                   * Documenting Schematic and PCB design procedures.
                   * Monthly Report writing, Creation of Engineering Requirements Templates.
-
-# work-projects:
-#   - name: CBF Tests
-#     description:  A Correlator-beamforming unit-testing based framework for MeerKAT signal processing
-#     link: https://github.com/ska-sa/mkat_fpga_tests
-#     contribution: Mpho Mphego, et al.
-#   - name: AVN Tests
-#     description:  An African VLBI Network (AVN) Correlator Unit and Acceptance Testing based Framework (forked from CBF Tests)
-#     link: https://github.com/ska-sa/AVNTests
-#     contribution: Mpho Mphego
-#   - name: CBF-System-Dashboard
-#     description: Plotly/Node-Red dashboard running on a Docker container for monitoring Correlator-Beamformer system sensors
-#     link: https://github.com/ska-sa/CBF-System-Dashboard
-#     contribution: Mpho Mphego
-#   - name: CBF-Tests-Automation
-#     description: Automated Jenkins and CBF tests [deployment pipeline] through Docker.
-#     link: https://github.com/ska-sa/CBF-Tests-Automation
-#     contribution: Mpho Mphego, et al.
-#   - name: nosekatreport
-#     description:  Nose plug-in to support Automated Test Framework (AQF)
-#     link: https://github.com/ska-sa/nosekatreport
-#     contribution: Mpho Mphego, et al.
-
-# personal-projects:
-#   - name: DSTV IR remote using esp8266
-#     description:  DSTV IR Remote using an esp8266 with support for controlling led strips mounted behind the TV and Amazon-Alexa intergrated.
-#     link: https://github.com/mmphego/DSTV_A6_esp8266_IRremote
-#     contribution: Mpho Mphego
-
-publications:
-  - title: |
-          Revival of the Magnetar PSR J1622–4950: Observations with MeerKAT, Parkes, XMM-Newton, Swift, Chandra, and NuSTAR
-    link: https://iopscience.iop.org/article/10.3847/1538-4357/aab35a/pdf
-    authors: F. Camilo, P. Scholz, M. Serylak, S. Buchner, M. Merryfield, M. Mphego, et al
-    conference: The Astrophysical Journal
-  - title: Repurpose Old Smartphones for Home Automation by Turning Sensors into Signals
-    link: https://az817975.vo.msecnd.net/wm-418498-cmsimages/p1(3-3).pdf
-    authors: M. Mphego, S. P. D. Chowdhury
-    conference: SAIIE - SmartGrid Conference 2017
