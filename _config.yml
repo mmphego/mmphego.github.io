@@ -121,12 +121,26 @@ title-separator: "-"
 
 # Output options (more information on Jekyll's site)
 timezone: "Africa/Johannesburg"
+
 markdown: kramdown
+highlighter: rouge
 kramdown:
-  #   input: GFM
+  input: GFM
   syntax_highlighter: rouge
 #       disable : true
-highlighter: rouge
+  syntax_highlighter_opts:
+    default_lang: python
+
+    css_class : 'highlight'
+  #   # Rouge Options › https://github.com/jneen/rouge#full-options
+  #   #line_numbers: true # bad idea, spans don't need linenos and would inherit this option
+    # span:
+      # line_numbers: false
+      # disable: true
+    # block:
+      # line_numbers: true
+      # start_line: 1
+
 permalink: /blog/:year/:month/:day/:title.html
 paginate: 10
 
