@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Create Face Detection Application With Less Than 10 Lines Of Code"
+title: "Create A Face Detection Application With Less Than 10 Lines Of Code"
 date: 2020-09-17 22:48:33.000000000 +02:00
 tags:
 
 ---
-# Create Face Detection Application With Less Than 10 Lines Of Code.
+# Create A Face Detection Application With Less Than 10 Lines Of Code.
 
 {:refdef: style="text-align: center;"}
 ![post image]({{ "/assets/2020-09-17-Create-Face-Detection-application-with-less-than-10-lines-of-code.png" | absolute_url }})
@@ -25,7 +25,8 @@ I will also create a simple face detection application in under 10 lines, jump o
 
 ## TL;DR
 
-Link to `PyVINO-Utils` library: https://github.com/mmphego/pyvino_utils
+Link to `PyVINO-Utils` library: [https://github.com/mmphego/pyvino_utils](https://github.com/mmphego/pyvino_utils)
+
 Star it, fork it and make a PR
 
 # The How
@@ -116,7 +117,8 @@ Watch the complete tutorial and code walk-through.
 
 # Conclusion
 
-The example above illustrates how simple it is to create a face detection application in under **10 lines** of code (excluding the `arg_parser` function, assuming that the `model` and `input` are hard-corded.). This is because of the `pyvino_utils` library which does all the heavy lifting for us since we need not create modules/classes to handle/process the input and inference. 
+The example above illustrates how simple it is to create a face detection application in under **10 lines** of code (excluding the `arg_parser` function, assuming that the `model` and `input` are hard-corded.). This is because of the `pyvino_utils` library which does all the heavy lifting for us since we need not create modules/classes to handle/process the input and inference.
+ 
 Future work includes auto-downloading the models from [Open Model Zoo](https://github.com/openvinotoolkit/open_model_zoo) and expanding the library to handle other functions such as instance segmentation and text recognition to name a few.
 
 # Reference
