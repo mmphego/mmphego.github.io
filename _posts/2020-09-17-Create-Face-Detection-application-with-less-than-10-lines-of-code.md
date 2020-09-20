@@ -53,14 +53,14 @@ We start by importing our necessary packages on **Lines 1-4**. We need `argparse
 
 {% highlight python linenos %}
 def arg_parser():
-  parser = argparse.ArgumentParser(</div>
+  parser = argparse.ArgumentParser(
      description="A simple OpenVINO based Face Detection running on CPU."
    )
   parser.add_argument("-i", "--input", help="Video or image input.", required=True)
-  parser.add_argument(</div>
+  parser.add_argument(
     "-m", "--model", help="Face detection model name (no extension).", required=True
    )
-  parser.add_argument(</div>
+  parser.add_argument(
     "-b", "--show-bbox", action="store_true", help="Show bounding box."
    )
   return parser.parse_args()
@@ -72,7 +72,7 @@ The function `arg_parser`, handles the parsing of our two (required) command-lin
 {% highlight python linenos %}
 def main(args):
    input_feed = InputFeeder(input_feed=args.input)
-   face_detector = face_detection.FaceDetection(</div>
+   face_detector = face_detection.FaceDetection(
      model_name=args.model, input_feed=input_feed
    )
 
