@@ -15,10 +15,9 @@ Inspired by [Derek Sivers' /now page movement](https://sivers.org/now3), here's 
 - Currently pursuing a [Deep Learning Specialization](https://www.coursera.org/specializations/deep-learning) course from [Coursera](https://www.coursera.org) [Completed 1 of 5 courses].
     - My progress can be accessed [here](https://github.com/mmphego/DeepLearning-AI)
 - Few days left on my [#100DaysOfCode challenge](https://www.100daysofcode.com/) which started mid-April focusing on ML/AI and Computer Vision, [follow my progress](https://twitter.com/search?q=%23100DaysOfCode%20%40mphomphego&src=typed_query)
-- Contributing to open-source at least once a week, in order to maintain my position on [https://commits.top/south_africa.html](https://commits.top/south_africa.html)
 - Attempting to build a writing habit by creating a new article every 2nd week on this blog.
 - Reviving my [YouTube channel](https://www.youtube.com/c/MphoMphego1) and creating videos focused on Python/Linux/Git tips and tricks.
-    - My latest video is a tutorial on [building a Face Mask Detection using Pre-trained models with Intel OpenVINO](https://www.youtube.com/watch?v=6r6foGbCHQ0)
+    - My latest video is a tutorial on [Simplified Face Detection Implementation using OpenVINO in under 10 lines of code.](https://www.youtube.com/watch?v=mOG-6VfB2cI)
 - Helping my son post more video's on his [YouTube channel](https://www.youtube.com/channel/UC7irAd6J3HB3ulU5j5xO3Dw)
     - Checkout his latest video.
 
