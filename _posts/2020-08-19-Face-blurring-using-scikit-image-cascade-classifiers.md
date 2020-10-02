@@ -49,6 +49,8 @@ Go ahead and clone the repo: https://github.com/mmphego/privacy_protection
 
 After completing the course on [Image Processing with Python](https://datacamp.com/courses/image-processing-in-python) from @datacamp, I decided to take the knowledge gained and apply it on a real-life problem that we are facing wrt to the high number of protests happening around us.
 
+[Click Here: Learn Data Science Online for FREE](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 The course offered a hands-on approach on the subject of image processing using the [scikit-image](https://scikit-image.org/) library, from image restoration, denoising, segmentation and canny edges.
 
 From my previous experience working with image processing libraries, I found that `scikit-image` is well documented and the API is easy-to-use. However, `OpenCV` outperforms it mainly since `OpenCV` API is essentially a C++ API that wraps around Python.
