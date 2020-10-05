@@ -12,7 +12,7 @@ css: "/css/aboutme.css"
 
 Inspired by [Derek Sivers' /now page movement](https://sivers.org/now3), here's what I'm focused on right now in no particular order:
 
-- Currently pursuing a [Deep Learning Specialization](https://www.coursera.org/specializations/deep-learning) course from [Coursera](https://www.coursera.org) [Completed 1 of 5 courses].
+- Currently pursuing a [Deep Learning Specialization](https://www.coursera.org/specializations/deep-learning) course from [Coursera](https://www.coursera.org) [Completed 2 of 5 courses].
     - My progress can be accessed [here](https://github.com/mmphego/DeepLearning-AI)
 - Few days left on my [#100DaysOfCode challenge](https://www.100daysofcode.com/) which started mid-April focusing on ML/AI and Computer Vision, [follow my progress](https://twitter.com/search?q=%23100DaysOfCode%20%40mphomphego&src=typed_query)
 - Attempting to build a writing habit by creating a new article every 2nd week on this blog.
