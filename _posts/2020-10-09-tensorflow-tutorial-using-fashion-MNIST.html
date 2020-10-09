@@ -13242,7 +13242,7 @@ Requirement already satisfied: nnv in /usr/local/lib/python3.6/dist-packages (0.
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The first line merely assigns the name fashion_mnist to a particular dataset located within Keras' dataset library. The second line defines four arrays containing the training and testing data, cleaved again into separate structures for images and labels, and then loads all of that data into our standup of Python. The training data arrays will be used to --you guessed it-- train the model, and the testing arrays will allow us to evaluate the performance of our model.</p>
+<p>The first line merely assigns the name fashion_mnist to a particular dataset located within <a href="https://keras.io/">Keras</a>' dataset library. The second line defines four arrays containing the training and testing data, cleaved again into separate structures for images and labels, and then loads all of that data into our standup of Python. The training data arrays will be used to --you guessed it-- train the model, and the testing arrays will allow us to evaluate the performance of our model.</p>
 
 </div>
 </div>
@@ -13360,9 +13360,17 @@ Test images dimensions: (10000, 28, 28)
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Model-Generation">Model Generation<a class="anchor-link" href="#Model-Generation">&#182;</a></h2><p>Every NN is constructed from a series of connected layers that are full of connection nodes. Simple mathematical operations are undertaken at each node in each layer, yet through the volume of connections and operations, these ML models can perform impressive and complex tasks.</p>
+<h2 id="Model-Generation">Model Generation<a class="anchor-link" href="#Model-Generation">&#182;</a></h2><p>Every Neural Network is constructed from a series of connected layers that are full of connection nodes. Simple mathematical operations are undertaken at each node in each layer, yet through the volume of connections and operations, these ML models can perform impressive and complex tasks.</p>
+
+<p>To read and understand more about the underlying maths, checkout some of the notes I made when I took the <a href="https://www.coursera.org/specializations/deep-learning">deeplearning.ai</a> course <a href="https://refined-github-html-preview.kidonng.workers.dev/mmphego/DeepLearning-AI/raw/master/Course%201%20-%20Neural%20Networks%20and%20Deep%20Learning/notes/Course%201%20Neural%20Networks%20and%20Deep%20Learning.html">here.</a></p>
+
 <p>Our model will be constructed from 3 layers. The first layer – often referred to as the Input Layer – will intake an image and format the data structure in a method acceptable for the subsequent layers. In our case, this first layer will be a Flatten layer that intakes a multi-dimensional array and produces an array of a single dimension, this places all the pixel data on an equal depth during input. Both of the next layers will be simple fully connected layers, referred to as Dense layers, with 128 and 10 nodes respectively. These fully connected layers are the simplest layer in the sense of understanding, yet allow for the greatest number of layer-to-layer connections and relationships.</p>
-<p>The final bit of hyper-technical knowledge you'll need to learn is that each layer can have its own particular mathematical operation. These activation functions determine the form and relationship between the information provided by the layer. The first dense layer will feature a Rectified Linear Unit (ReLU) Activation Function that outputs values between zero and 1; mathematically, the activation function behaves like f(x)=max(0,x). The final layer uses the softmax activation function. This function also produces values in the 0-1 range, BUT generates these values such that the sum of the outputs will be 1! This makes the softmax a layer that is excellent at outputting probabilities.</p>
+<p>The final bit of hyper-technical knowledge you'll need to learn is that each layer can have its own particular mathematical operation. These activation functions determine the form and relationship between the information provided by the layer. The first dense layer will feature a Rectified Linear Unit (ReLU) Activation Function that outputs values between zero and 1; mathematically, the activation function behaves like <code>f(x)=max(0,x)</code>. The final layer uses the softmax activation function. This function also produces values in the 0-1 range, BUT generates these values such that the sum of the outputs will be 1!</p><p>This makes the softmax a layer that is excellent at outputting probabilities.</p>
+
+<p>Read more about hyperparameters optimisation (especially about Softmax Regression) on some of my <a href="https://refined-github-html-preview.kidonng.workers.dev/mmphego/DeepLearning-AI/raw/master/Course%202%20-%20Improving%20Deep%20Neural%20Networks/notes/Course%202%20Improving%20Deep%20Neural%20Networks%20Hyperparam/Week%203.html">notes.</a></p>
+
+<p>I found this lecture video very insightful into why we need to flatten the array.</br><iframe width="640" height="480" src="https://www.youtube.com/embed/qcSEP17uKKY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+</br>
 
 </div>
 </div>
@@ -13594,7 +13602,7 @@ Epoch 5/5
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Evaluating-Our-Model">Evaluating Our Model<a class="anchor-link" href="#Evaluating-Our-Model">&#182;</a></h2><p>Now we are working with a functional and trained NN model. Following our logic from the top, we have built a NN that intakes a (28,28) array, flattens the data into a (784) array, compiled and trained 2 dense layers, and the softmax activation function of the final output layer will provide a probability that the image belongs to each of the 10 label categories.</p>
+<h2 id="Evaluating-Our-Model">Evaluating Our Model<a class="anchor-link" href="#Evaluating-Our-Model">&#182;</a></h2><p>Now we are working with a functional and trained Neural Network model. Following our logic from the top, we have built a Neural Network that intakes a (28,28) array, flattens the data into a (784) array, compiled and trained 2 dense layers, and the softmax activation function of the final output layer will provide a probability that the image belongs to each of the 10 label categories.</p>
 <p>Our model can be evaluated by using the <code>model.evaluate</code> command, that takes in the images and labels so that it can compare its predictions to the ground truth provided by the labels. <code>model.evaluate</code> provides two outputs, the value of the loss function over the testing examples, and the accuracy of the model over this testing population. The important output for us is the model's accuracy.</p>
 
 </div>
@@ -13636,8 +13644,8 @@ Model Accuracy: 87.80999779701233%
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This is great! Our model performs at an accuracy of 87.21%. As good as that is, it is lower than the model accuracy promised above (89.01%). This lower performance is due to the model overfitting on the training data. Overfitting occurs when there are too many parameters within the model when compared to the number of training instances; this allows the model to over learn on those limited examples. Overfitting leads to better model performance over non-training data.</p>
-<p>That said, 87.21% is a decent number! Let's finally learn how you can feed our model the series of test examples from the <code>test_images</code> array, and have it provide its predictions.</p>
+<p>This is great! Our model performs at an accuracy of 87.80%. As good as that is, it is lower than the model accuracy promised above (89.01%). This lower performance is due to the model overfitting on the training data. Overfitting occurs when there are too many parameters within the model when compared to the number of training instances; this allows the model to over learn on those limited examples. Overfitting leads to better model performance over non-training data.</p>
+<p>That said, 87.80% is a decent number! Let's finally learn how you can feed our model the series of test examples from the <code>test_images</code> array, and have it provide its predictions.</p>
 
 </div>
 </div>
@@ -13688,7 +13696,7 @@ Model Accuracy: 87.80999779701233%
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As we can see, most of the entries in our prediction array are very close to 0. They are written in scientific notation--the value after the e being the number decimal places to adjust the value (for example 5.1 e-04 is actually 0.00051). The entry that stands out is <code>predictions[0][9]</code> at .8658, or 86.58%, certainty that this image should be classified as a boot!</p>
+<p>As we can see, most of the entries in our prediction array are very close to 0. They are written in scientific notation--the value after the e being the number decimal places to adjust the value (for example 5.1 e-04 is actually 0.00051). The entry that stands out is <code>predictions[1][9]</code> at .9951, or 99.51%, certainty that this image should be classified as a shirt!</p>
 <p>If you prefer to not look through a list to determine the class label, we can simplify the output by:</p>
 
 </div>
