@@ -3,7 +3,11 @@ layout: post
 title: "Face Blurring Using Scikit-image Cascade Classifiers"
 date: 2020-08-19 16:47:12.000000000 +02:00
 tags:
-
+- Deep Learning
+- Machine Learning
+- Python
+- Scikit learn
+- Tips/Tricks
 ---
 # Face Blurring Using Scikit-image Cascade Classifiers.
 

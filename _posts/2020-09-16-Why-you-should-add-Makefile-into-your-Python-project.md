@@ -3,7 +3,9 @@ layout: post
 title: "Why You Should Add Makefile Into Your Python Project"
 date: 2020-09-16 11:03:06.000000000 +02:00
 tags:
-
+- Python
+- Makefile
+- Tips/Tricks
 ---
 # Why You Should Add Makefile Into Your Python Project.
 

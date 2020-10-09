@@ -3,7 +3,13 @@ layout: post
 title: "Create A Face Detection Application With Less Than 10 Lines Of Code"
 date: 2020-09-17 22:48:33.000000000 +02:00
 tags:
-
+- AI
+- Deep Learning
+- Face Detection
+- Machine Learning
+- OpenVINO
+- Python
+- Tips/Tricks
 ---
 # Create A Face Detection Application With Less Than 10 Lines Of Code.
 

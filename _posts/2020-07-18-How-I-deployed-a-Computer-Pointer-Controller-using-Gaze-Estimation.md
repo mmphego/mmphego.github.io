@@ -4,8 +4,11 @@ title: "How I Deployed A Computer Pointer Controller Using Gaze Estimation"
 date: 2020-07-18 00:09:06.000000000 +02:00
 tags:
 - AI
-- Python
+- Deep Learning
 - Docker
+- Machine Learning
+- OpenVINO
+- Python
 - Tips/Tricks
 ---
 # How I Deployed A Computer Pointer Controller Using Gaze Estimation.
