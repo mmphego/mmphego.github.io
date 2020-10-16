@@ -3,9 +3,6 @@ layout: page
 title: My learning log
 subtitle: Never stop learning!
 ---
-<div class='jekyll-twitter-plugin' align="center">
-    {% twitter https://twitter.com/MphoMphego/status/1290032440069636097 %}
-</div>
 
 <div>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Day 81-83:<br>- Learned how to do restore images in order to remove objects, logos, text, or damaged areas in images!<br>- Also learned how to denoise, segmentation, and find elements in images by their contours using <a href="https://twitter.com/hashtag/SkikitImage?src=hash&amp;ref_src=twsrc%5Etfw">#SkikitImage</a><a href="https://twitter.com/hashtag/100DaysOfCode?src=hash&amp;ref_src=twsrc%5Etfw">#100DaysOfCode</a> <a href="https://twitter.com/hashtag/EdgeAI?src=hash&amp;ref_src=twsrc%5Etfw">#EdgeAI</a> <a href="https://twitter.com/hashtag/Python?src=hash&amp;ref_src=twsrc%5Etfw">#Python</a> <a href="https://twitter.com/hashtag/ImageProcessing?src=hash&amp;ref_src=twsrc%5Etfw">#ImageProcessing</a></p>&mdash; Mpho Mphego (@MphoMphego) <a href="https://twitter.com/MphoMphego/status/1290862578969845761?ref_src=twsrc%5Etfw">August 5, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
