@@ -34,6 +34,7 @@ navbar-links:
   Now: "now"
   Categories / Tags: "tags"
   # Resume: "resume"
+  # 100daysofcode: "my-learning-log"
   About / Contact Me: "aboutme"
 
 # Image to show in the navigation bar - image must be a square (width = height)
@@ -224,18 +225,24 @@ jekyll-archives:
     category: "/category/:name/"
 
 plugins:
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-mentions
-  - jemoji
-  - jekyll-redirect-from
-  - jekyll-sitemap
-  - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-categories
+  - jekyll-admin
   - jekyll-archives
-  - kramdown
-  - jekyll_github_sample
+  - jekyll-categories
+  - jekyll-feed
   - jekyll-gist
+  - jekyll-include-cache
+  - jekyll-mentions
+  - jekyll-paginate
+  - jekyll-redirect-from
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-toc
+  - jekyll_github_sample
+  - jemoji
+  - kramdown
+  - jekyll-twitter-plugin
 
 jekyll-mentions: https://twitter.com
+sass:
+  style: compact
+theme: minimal-mistakes-jekyll
