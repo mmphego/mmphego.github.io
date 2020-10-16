@@ -243,6 +243,3 @@ plugins:
   - jekyll-twitter-plugin
 
 jekyll-mentions: https://twitter.com
-sass:
-  style: compact
-theme: minimal-mistakes-jekyll

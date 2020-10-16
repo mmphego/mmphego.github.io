@@ -15,4 +15,3 @@ gem 'jekyll-twitter-plugin-2'
 gem 'jekyll-hashtags' , group: :jekyll_plugins
 gem 'jekyll-toc' , group: :jekyll_plugins
 gem 'jemoji' , group: :jekyll_plugins
-gem "minimal-mistakes-jekyll"

@@ -2,8 +2,6 @@
 layout: page
 title: My learning log
 subtitle: Never stop learning!
-permalink: /my-learning-log
-custom-css: "learning-log"
 ---
 
 {% twitter https://twitter.com/MphoMphego/status/1290032440069636097 %}
