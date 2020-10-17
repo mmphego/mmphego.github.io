@@ -2,6 +2,9 @@
 layout: page
 title: My learning log
 subtitle: Never stop learning!
+tags:
+    - 100daysofcode
+    - #100daysofcode
 ---
 
 <div>
