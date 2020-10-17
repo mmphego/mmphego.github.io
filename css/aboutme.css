@@ -44,3 +44,34 @@
   font-size: 1.2em;
   font-family: arial;
 }
+
+
+.badge-yellow{
+  border-color: #d2b06a69;
+  background: #fff7df;
+  color: #7b561a;
+}
+
+.badge-green{
+  border-color: #6ad27099;
+  background: #dfffe5;
+  color: #1a7b2b;
+}
+
+.certbadge{
+  font-family: 'Open Sans';
+  /*font-size: 50px;*/
+  padding: 2px 5px;
+  line-height: 1.2;
+  border: 1px solid;
+  display: inline-block;
+  font-weight: normal;
+  white-space: nowrap;
+  a{
+    color: inherit;
+  }
+  &.small{
+    font-size: 0.8rem;
+    padding: 0 3px 2px 3px;
+  }
+}
