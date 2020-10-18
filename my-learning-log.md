@@ -6,7 +6,7 @@ tags:
     - 100daysofcode
 ---
 
-# 100 Days Of Code
+# 100 Days Of Code Challenge
 
 {:refdef: style="text-align: center;"}
 ![post image]({{ "/assets/my-learning-log.png" | absolute_url }})
