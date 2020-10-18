@@ -8,6 +8,8 @@ tags:
 
 # 100 Days Of Code
 
+My #100daysofcode progress logs via twitter.
+
 ## April 2020
 
 <center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Day 1: As part of <a href="https://twitter.com/hashtag/100DaysOfCode?src=hash&amp;ref_src=twsrc%5Etfw">#100DaysOfCode</a><br><br>- I created a twitting bot for posting tweets from CLI, less distraction and can still track my learning progress.<br>- Added <a href="https://twitter.com/IntelSoftware?ref_src=twsrc%5Etfw">@intelsoftware</a> OpenVINO Toolkit docker based image for portability: <a href="https://t.co/WTRpfMzE18">https://t.co/WTRpfMzE18</a><a href="https://twitter.com/hashtag/100DaysOfCode?src=hash&amp;ref_src=twsrc%5Etfw">#100DaysOfCode</a> <a href="https://twitter.com/hashtag/Code?src=hash&amp;ref_src=twsrc%5Etfw">#Code</a> <a href="https://t.co/WHHkqICnsU">pic.twitter.com/WHHkqICnsU</a></p>&mdash; Mpho Mphego (@MphoMphego) <a href="https://twitter.com/MphoMphego/status/1251196773852463106?ref_src=twsrc%5Etfw">April 17, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
