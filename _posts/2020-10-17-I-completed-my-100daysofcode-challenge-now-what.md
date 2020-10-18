@@ -11,6 +11,7 @@ tags:
 ![post image]({{ "/assets/2020-10-17-I-completed-my-100daysofcode-now-what.png" | absolute_url }})
 {: refdef}
 
+5 Min Read
 
 -----------------------------------------------------------------------------------------
 
@@ -74,6 +75,7 @@ For obvious reasons not all 100 days of the challenge were related to a single s
 # Conclusion
 
 Personally, I believe that these challenges are exceptional for everyone wanting to dedicate time and focus on learning something new in order to level up their skills. I know a lot more than what I knew 100+ days ago and I continue to learn on a daily basis even though I do not tweet about it.
+If you still need some inspiration head out to Twitter and just search for #100daysofcode and see what other people are involved in.
 
 Some of the key takeaways from this challenge for me were:
 - Try to learn something new every day, especially something outside your comfort zone.

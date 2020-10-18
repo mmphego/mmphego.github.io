@@ -8,6 +8,15 @@ tags:
 
 # 100 Days Of Code
 
+{:refdef: style="text-align: center;"}
+![post image]({{ "/assets/my-learning-log.png" | absolute_url }})
+{: refdef}
+
+19 Min Read
+
+-----------------------------------------------------------------------------------------
+
+
 My #100daysofcode progress logs via twitter.
 
 ## April 2020
