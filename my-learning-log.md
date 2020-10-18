@@ -1,6 +1,6 @@
 ---
-layout: post
-title: My learning log
+layout: page
+title: My 100 days of learning log
 subtitle: Never stop learning!
 tags:
     - 100daysofcode
