@@ -16,17 +16,19 @@ tags:
 
 # The Story
 
-On April 17, I publicly committed to the [#100daysofcode](https://www.100daysofcode.com/) challenge. The purpose of the challenge is to help you form a habit and do something out of your comfort zone for at least an hour each day for 100 days (obviously there are some exceptions). 
+On April 17, I publicly committed to the [#100daysofcode](https://www.100daysofcode.com/) challenge. 
+The purpose of the challenge is to help you form a habit and do something out of your comfort zone for at least an hour each day for 100 days (obviously there are some exceptions). 
 
 Every day during that period one also needs to:
 - Tweet their progress using the #100DaysOfCode hashtag (My progress can be found [here]({{ "my-learning-log" | absolute_url }}))
 - Engage with others who are also doing the challenge.
 
+
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">I&#39;ve publicly committed to the 100DaysOfCode Challenge starting today! Learn More and Join me! <a href="https://t.co/hSRY2VPK8q">https://t.co/hSRY2VPK8q</a> <a href="https://twitter.com/hashtag/100DaysOfCode?src=hash&amp;ref_src=twsrc%5Etfw">#100DaysOfCode</a></p>&mdash; Mpho Mphego (@MphoMphego) <a href="https://twitter.com/MphoMphego/status/1251201117159120897?ref_src=twsrc%5Etfw">April 17, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">I&#39;ve pledged to learn or code for 100 days in the *<a href="https://twitter.com/hashtag/100DaysOfCode?src=hash&amp;ref_src=twsrc%5Etfw">#100DaysOfCode</a>* challenge (Main focus on ML and Computer Vision).<br><br>Day 1 of <a href="https://twitter.com/hashtag/100DaysOfCode?src=hash&amp;ref_src=twsrc%5Etfw">#100DaysOfCode</a>: Created a Python based CLI twitter bot that will help me to post daily <a href="https://twitter.com/hashtag/100daysofcode?src=hash&amp;ref_src=twsrc%5Etfw">#100daysofcode</a> tweets.</p>&mdash; Mpho Mphego (@MphoMphego) <a href="https://twitter.com/MphoMphego/status/1251108695393677312?ref_src=twsrc%5Etfw">April 17, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-While my full-time job involves coding and analytics, I solemnly decided to take on this challenge to devote time into learning *Machine Learning and Computer Vision* as well as put more focus on some of my side projects. The other motivation was just to challenge me to take on something out of my comfort zone.
+While my full-time job involves coding and analytics, I solemnly decided to take on this challenge to devote time and focus into learning *Machine Learning and Computer Vision* as well as put more focus on some of my side projects. The other motivation was just to challenge me to take on something out of my comfort zone.
 
 More details about the challenge can be found here: [https://www.100daysofcode.com/](https://www.100daysofcode.com/)
 
