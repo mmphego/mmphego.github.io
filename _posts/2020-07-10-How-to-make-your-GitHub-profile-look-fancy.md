@@ -3,8 +3,8 @@ layout: post
 title: "How To Make Your GitHub Profile Look Fancy"
 date: 2020-07-10 09:43:10.000000000 +02:00
 tags:
-    - Tips/Tricks
-    - GitHub
+- Tips/Tricks
+- GitHub
 ---
 # How To Make Your GitHub Profile Look Fancy.
 
