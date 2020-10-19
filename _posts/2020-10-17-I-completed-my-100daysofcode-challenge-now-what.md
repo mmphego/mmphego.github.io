@@ -11,7 +11,7 @@ tags:
 ![post image]({{ "/assets/2020-10-17-I-completed-my-100daysofcode-now-what.png" | absolute_url }})
 {: refdef}
 
-5 Min Read
+6 Min Read
 
 -----------------------------------------------------------------------------------------
 
@@ -31,6 +31,8 @@ Every day during that period one also needs to:
 
 While my full-time job involves coding and analytics, I solemnly decided to take on this challenge to devote time and focus into learning *Machine Learning and Computer Vision* as well as put more focus on some of my side projects. The other motivation was just to challenge me to take on something out of my comfort zone.
 
+My hope in writing this post is that it may give you enough insight into the challenge and that it motivates you to take the challenge for yourself!
+
 More details about the challenge can be found here: [https://www.100daysofcode.com/](https://www.100daysofcode.com/)
 
 ## TL;DR
@@ -49,6 +51,13 @@ Having a learning plan helped me immensely as I was able to schedule my time and
   </a>
 </p>
 
+Going into the challenge some of my goals were:
+- Machine Learning with focus on Computer Vision (from fundamentals)
+- Improve my Python skills
+- Learn a new language
+- Dab into serverless and cloud computing
+- Read and write more technical blogs
+- Build stuff...
 
 ## Struggles
 
@@ -74,16 +83,14 @@ For obvious reasons not all 100 days of the challenge were related to a single s
 
 # Conclusion
 
-Personally, I believe that these challenges are exceptional for everyone wanting to dedicate time and focus on learning something new in order to level up their skills. I know a lot more than what I knew 100+ days ago and I continue to learn on a daily basis even though I do not tweet about it.
-If you still need some inspiration head out to Twitter and just search for #100daysofcode and see what other people are involved in.
+Personally, I believe that these challenges are exceptional for everyone wanting to dedicate time and focus on learning something new in order to level up their skills. If you still need some inspiration head out to Twitter and just search for #100daysofcode and see what other people are involved in.
 
 Some of the key takeaways from this challenge for me were:
-- Try to learn something new every day, especially something outside your comfort zone.
+- Try to learn something new every day, especially something outside your comfort zone and consistency is key.
 - Find what really motivates you, this will help you push through the struggles of learning
 - Find a community or someone to partner with for support and inspiration.
 
-My hope in writing this post is that it may give you enough insight into the challenge and that it motivates you to take the challenge for yourself!
-
+I know a lot more than what I knew 100+ days ago and I continue to learn on a daily basis even though I do not tweet about it. However, I have started documenting my learning with [notion](https://www.notion.so/) and GitHub & GitHub projects.
 
 # Reference
 
