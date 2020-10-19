@@ -82,6 +82,8 @@ Some of the key takeaways from this challenge for me were:
 - Find what really motivates you, this will help you push through the struggles of learning
 - Find a community or someone to partner with for support and inspiration.
 
+My hope in writing this post is that it may give you enough insight into the challenge and that it motivates you to take the challenge for yourself!
+
 
 # Reference
 
