@@ -3,11 +3,11 @@ layout: post
 title: "Face Mask Detection Using Intel OpenVINO And OpenCV"
 date: 2020-06-02 00:58:30.000000000 +02:00
 tags:
-    - OpenVINO
-    - OpenCV
-    - Python
-    - Docker
-    - Artificial Intelligence
+- AI
+- Docker
+- OpenCV
+- OpenVINO
+- Python
 ---
 # Face Mask Detection Using Intel OpenVINO And OpenCV.
 

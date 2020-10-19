@@ -3,10 +3,10 @@ layout: post
 title: "AI At The Edge - An Introduction To Intel OpenVINO Toolkit"
 date: 2020-05-25 17:31:33.000000000 +02:00
 tags:
-    - AI
-    - Machine Learning
-    - Deep Learning
-    - Udacity
+- AI
+- Machine Learning
+- Deep Learning
+- Udacity
 ---
 # AI At The Edge - An Introduction To Intel OpenVINO Toolkit.
 

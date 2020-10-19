@@ -5,7 +5,6 @@ date: 2020-09-17 22:48:33.000000000 +02:00
 tags:
 - AI
 - Deep Learning
-- Face Detection
 - Machine Learning
 - OpenVINO
 - Python

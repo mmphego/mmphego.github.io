@@ -3,14 +3,14 @@ layout: post
 title: "My Experience And What I Learned From Udacity Cloud Developer Nanodegree"
 date: 2020-05-08 04:20:48.000000000 +02:00
 tags:
-    - Udacity
-    - Cloud Developer
-    - AWS
-    - NodeJS
-    - Docker
-    - Kubernetes
-    - Travis
-    - Serverless
+- Udacity
+- Cloud Developer
+- AWS
+- NodeJS
+- Docker
+- Kubernetes
+- Travis-CI
+- Serverless
 ---
 # My Experience And What I Learned From Udacity Cloud Developer Nanodegree.
 
