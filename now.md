@@ -15,7 +15,8 @@ Inspired by [Derek Sivers' /now page movement](https://sivers.org/now3), here's 
 - Reading: [AIQ: How People and Machines Are Smarter Together by Nick Polson, James Scott](https://www.goodreads.com/book/show/39328092-aiq)
 - Re-reading: [Essentialism: The Disciplined Pursuit of Less by Greg McKeown](https://www.goodreads.com/book/show/18077875-essentialism)
 - Daily meditation as part of my "Year of Calm".
-- Currently pursuing a [Deep Learning Specialization](https://www.coursera.org/specializations/deep-learning) course from [Coursera](https://www.coursera.org) [Completed 2 of 5 courses].
+- Currently pursuing a [Deep Learning Specialization](https://www.coursera.org/specializations/deep-learning) course from [Coursera](https://www.coursera.org) [Completed 3 of 5 
+courses].
     - My progress can be accessed [here](https://github.com/mmphego/DeepLearning-AI)
 - Completed my [#100DaysOfCode challenge](https://www.100daysofcode.com/) which started mid-April focusing on ML/AI and Computer Vision, [follow my progress]({{ "my-learning-log" | absolute_url }})
 - Attempting to build a writing habit by creating a new article every 2nd week on this blog.
