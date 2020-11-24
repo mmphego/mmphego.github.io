@@ -14,7 +14,7 @@ tags:
 ![post image]({{ "/assets/2020-11-24-Personal-notes-from-deeplearning.ai-course.png" | absolute_url }})
 {: refdef}
 
-<<TIME TO READ>>
+10 Min Read
 
 -----------------------------------------------------------------------------------------
 
