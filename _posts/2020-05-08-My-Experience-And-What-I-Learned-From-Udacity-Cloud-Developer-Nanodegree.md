@@ -24,6 +24,9 @@ tags:
 -----------------------------------------------------------------------------------------
 
 # The Story
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 Since completing a [Udacity AI Programming with Python Nanodegree](https://blog.mphomphego.co.za/blog/2019/12/15/My-Experience-And-What-I-Learned-From-Udacity-AI-Programming-With-Python-Nano-Degree-Part-1.html) funded by [AAL (African App Launchpad Program)](http://www.aal.gov.eg/) 2 months earlier than the course completion date, they (AAL) allowed me to apply for a second grant for which I was grateful for.
 
 {:refdef: style="text-align: center;"}
@@ -43,6 +46,8 @@ This simply meant that I had to work twice as much, being thrown or throwing mys
 A few weeks ago, I eventually graduated from the [**Udacity Cloud Developer Nano degree**](https://www.udacity.com/course/cloud-developer-nanodegree--nd9990) program. I decided to share my experience and what I learned in the past 4 months (Jan - Apr 2020) in this post.
 
 ## TL;DR
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
 
 As part of the Nanodegree program, I needed to come up with a project using the skills I learned and I decided to build a serverless-based diary before I could graduate.
 
@@ -81,6 +86,9 @@ I learned the hard way that when you are done with your (EC2 and RDS) instances,
 {: refdef}
 
 ### What I learned
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 In this project, I had to take my existing project from the previous lesson which was a monolith application (front-end, back-end and REST-API all in separate packages) named *Udagram* and refactor it into a microservice architecture with lean services. I had to build out a CI/CD process using [Travis CI](https://www.travis-ci.com) that automatically builds and deploys [Docker](https://www.docker.com/) images which were a walk in the park as I already had some experience with Docker and Travis-CI.
 
 I had to deploy the docker images to a [Kubernetes](https://kubernetes.io/) clusters. This is one of the sections I struggled with for some time. Eventually, I managed to configure my Kubernetes cluster which helped solve common challenges related to scaling and security.
@@ -106,6 +114,9 @@ S3, and Elasticsearch. The app had to be deployed to Amazon Web Services using a
 Github Project Link: [https://github.com/mmphego/cloud-developer/tree/master/course-04/project/c4-final-project-starter-code](https://github.com/mmphego/cloud-developer/tree/master/course-04/project/c4-final-project-starter-code)
 
 # Capstone Project
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 For the capstone project, I decided to build an application based on the lesson I felt strong with which was Serverless. I decided to build a serverless based Diary which allowed creating/removing/updating/fetching diary entries.
 
 See [TL;DR](#tldr)
@@ -116,6 +127,9 @@ Done!
 {: refdef}
 
 # Conclusion
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 Overall, This was a very good program that gave me an opportunity get out of my comfort zone and enabled me to build actual applications using a wide variety of tools and services offered by AWS (Amazon Web Services). I was able to grasp some concepts that I had ignored or did not know in the past. Throwing myself into the deep-end wrt working with both backend and frontend had its own challenges, however, I endured and ended up completing the program 3 weeks before the deadline, I kind of feel that going into #SALockdown due to COVID-19 enabled me to spend more time on this course else, I wouldn't have made it.
 
 The support system from Udacity was great and it offered a great platform where one can discuss the project and ask questions, and when in doubt offered an opportunity to interact one-on-one with a mentor. The code review process was pretty seamless and they generally got back to me within 24 hours with positive feedback (though sometimes they go over this depending on how busy they are). Below I added a snippet from one of the motivating review responses from one of the reviewers.

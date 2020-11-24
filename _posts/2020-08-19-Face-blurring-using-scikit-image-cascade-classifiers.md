@@ -20,10 +20,15 @@ tags:
 -----------------------------------------------------------------------------------------
 
 # The Story
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 With the mass protesting happen around the world, social media privacy has become very important. One thing a lot of people do not consider when taking photos of protesters is to protect the protesters themselves. 
 Photos and videos of these protests have been used for facial recognition or identifying protesters, arresting or mistreating them [*](https://www.independent.co.uk/news/world/americas/sammy-rivera-artist-posting-photos-protests-police-arrest-activist-a9651616.html)
 
 In this post, I will walk you through a simple way of using [scikit-image](https://scikit-image.org/) for image processing to detect faces using [local binary patterns](https://en.wikipedia.org/wiki/Local_binary_patterns) supported [cascade classifiers](https://en.wikipedia.org/wiki/Haar-like_feature) [*almost 20 yrs old tech*] thereafter blur them using a [Gaussian blur filters](https://en.wikipedia.org/wiki/Gaussian_blur). However, I will not dive deep into how face detection works with *cascade classifiers*, I found a good read [here](https://becominghuman.ai/face-detection-using-opencv-with-haar-cascade-classifiers-941dbb25177)
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
 
 **Note:** False detections are inevitable using `cascade classifiers` and if you want to have a really precise detector, you will have to train it yourself using [OpenCV train cascade utility](https://docs.opencv.org/2.4.13.7/doc/user_guide/ug_traincascade.html) or toggle the knobs [here.](https://github.com/mmphego/privacy_protection/blob/f8a9ec6b07d11000e5931674407c28ef46e485fe/main.py#L81)
 
@@ -55,6 +60,8 @@ After completing the course on [Image Processing with Python](https://datacamp.c
 
 [Click Here: Learn Data Science Online for FREE](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
 
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 The course offered a hands-on approach on the subject of image processing using the [scikit-image](https://scikit-image.org/) library, from image restoration, denoising, segmentation and canny edges.
 
 From my previous experience working with image processing libraries, I found that `scikit-image` is well documented and the API is easy-to-use. However, `OpenCV` outperforms it mainly since `OpenCV` API is essentially a C++ API that wraps around Python.
@@ -70,6 +77,8 @@ As part of my [#100DaysOfCode](https://twitter.com/search?q=%23100DaysOfCode%20%
 {: refdef}
 
 # The Walk-through
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
 
 The application runs from a [Docker image](https://hub.docker.com/r/mmphego/intel-openvino) that I have baked Intel OpenVINO and dependencies in, alternatively install `scikit-image` and `opencv2` library. 
 
@@ -112,6 +121,7 @@ Blurred Faces (Well sort-off):
 
 The code contains enough comments for one to understand what is happening under the hood when in doubt leave a comment else Google.
 
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
 
 ```python
 import argparse
@@ -256,6 +266,8 @@ if __name__ == "__main__":
     imsave("Blurred_Faces.jpg", resulting_image)
 
 ```
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
 
 # Reference
 - [*Police arrest artist who stopped posting protest photos to shield activists from law](https://www.independent.co.uk/news/world/americas/sammy-rivera-artist-posting-photos-protests-police-arrest-activist-a9651616.html)

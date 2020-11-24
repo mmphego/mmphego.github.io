@@ -22,6 +22,9 @@ tags:
 -----------------------------------------------------------------------------------------
 
 # The Story
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 In this post, I will walk you through how I deployed a people counter application which will demonstrate how one would create a smart video IoT solution using Intel® hardware and software tools.
 
 The app will detect people in a designated area, providing the number of people in the frame, average duration of people in frame, and total count.
@@ -47,6 +50,8 @@ The app uses the Inference Engine included in the [Intel® Distribution of OpenV
 {: refdef}
 
 The app can be used in different scenario. If high accuracy is required, then all factors including lighting, camera focal length, image size/resolution, position of camera and model accuracy contribute to output result.
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
 
 Lighting should be reasonable to detected objects, It should not to dark so that model fail to detect objects. Camera position also matters for accuracy purposes. If object structure is clear from current camera position, model will easily able to detect. Image Size should not too small or too big, it should be according to model used. More pre-processing is required if it is far from required size. Most critical is model accuracy we are currently using. Model with high accuracy will provide more accurate inference
 
@@ -88,6 +93,8 @@ Refer to the relevant instructions for your operating system for this step.
 - [Windows](https://raw.githubusercontent.com/mmphego/people-counter-openvino-edgeai-project/master/windows-setup.md)
 
 ### Install npm
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
 
 There are three components that need to be running in separate terminals for this application to work:
 

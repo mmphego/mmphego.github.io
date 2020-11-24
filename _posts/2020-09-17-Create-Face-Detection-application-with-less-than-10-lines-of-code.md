@@ -22,11 +22,15 @@ tags:
 
 # The Story
 
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 In the past few months, I've been getting my hands dirty with the [Intel® distribution of OpenVINO™ Toolkit](https://software.intel.com/content/www/us/en/develop/tools/openvino-toolkit.html) and made a few projects along the way just to illustrate how powerful this toolkit is.
 
 In this post, I will introduce a library I have been working on in the past few weeks (the project is ongoing). This library simplifies OpenVINO's model's implementation with Python by doing more of the heavy lifting for you, giving you more time to have fun i.e. less is more!!!
 
 I will also create a simple face detection application in under 10 lines, jump over to [the How](#the-how) for more.
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
 
 ## TL;DR
 
@@ -107,6 +111,9 @@ if __name__ == "__main__":
 
 Thus, running the logic below the block, in this case, it will call the `arg_parser` and the results will be stored in `args` thereafter call out the `main` function defined above while passing the `args`.
 
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
+
 ---
 
 Clone the repository or check out the example [face detection application](https://github.com/mmphego/pyvino_utils/tree/master/examples/face_detection)
@@ -121,6 +128,8 @@ Watch the complete tutorial and code walk-through.
 {: refdef}
 
 # Conclusion
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
 
 The example above illustrates how simple it is to create a face detection application in under **10 lines** of code (excluding the `arg_parser` function, assuming that the `model` and `input` are hard-corded.). This is because of the `pyvino_utils` library which does all the heavy lifting for us since we need not create modules/classes to handle/process the input and inference.
  

@@ -20,6 +20,9 @@ tags:
 -----------------------------------------------------------------------------------------
 
 # The Story
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 During mid-November 2019, I stumbled upon a [Udacity scholarship](https://www.udacity.com/scholarships) from their website and decided to apply. The course being offered was more on Computer Vision and this is one field that has always interested me from my days interning at CSIR in the robotics department, but I always had that impostor syndrome when it came to CV. This course couple Computer Vision and AI but was more focused on AI on the edge using Intel’s OpenVINO Toolkit.
 
 {:refdef: style="text-align: center;"}
@@ -44,6 +47,8 @@ As per the title of the post, this post detail the first 2 lessons of the course
 "[**Introduction to AI at the Edge**](#now-what-is-ai-at-the-edge) & [**Leveraging Pre-trained Models**](#leveraging-pre-trained-models)."
 
 ## Overview of the course
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
 
 Below is a brief overview of the course offered by Udacity on Intel® Edge AI for IoT Developers Nanodegree:
 
@@ -115,6 +120,8 @@ Some examples of why Edge AI is important includes:
 
 ## Leveraging Pre-trained Models
 
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 The OpenVINO™ Toolkit's name comes from "**Open** **V**isual **I**nferencing and Neural **N**etwork **O**ptimization". It is largely focused around optimizing neural network inference and is open source.
 
 It is developed by Intel® and helps support fast inference across Intel® CPUs, GPUs, FPGAs and Neural Compute Stick with a common API. OpenVINO™ can take models built with multiple different frameworks, like TensorFlow or Caffe, and use its *Model Optimizer* to optimize for inference. This optimized model can then be used with the *[Inference Engine](https://docs.openvinotoolkit.org/latest/_docs_IE_DG_Introduction.html#IE)*, which helps speed inference on the related hardware. The inference is a relatively lower compute-intensive task than training, where latency is of greater importance for providing real-time results on a model. It also has a wide variety of Pre-Trained Models already put through *Model Optimizer*.
@@ -160,6 +167,8 @@ emotional and visual interactions.
 As we step into an ever-increasingly linked global world, knowledge ultimately is on the verge. The powerful combination of AI and IoT opens up new perspectives for organizations to truly feel and respond to events and opportunities around them in real-time.
 
 # Conclusion
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
 
 Intel® Distribution of OpenVINO™ toolkit is an extremely useful framework where we can optimize models and execute computer vision using deep learning on edge systems. This enables us to deploy such systems at edge level where the computational resource is scarce.
 

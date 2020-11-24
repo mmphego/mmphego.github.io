@@ -15,11 +15,17 @@ tags:
 -----------------------------------------------------------------------------------------
 
 # The Story
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 Github recently added a new feature, you can finally add a README to your GitHub profile which you can showcase your profile - Kinda like a portfolio page.
 
 In this post, I will show you how you can create your own.
 
 # The Walk-through
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 Follow this simple steps:
 
 - Goto [https://github.com/new](https://github.com/new) and create a repo with your github username (e.g. [https://github.com/mmphego/mmphego](https://github.com/mmphego/mmphego))

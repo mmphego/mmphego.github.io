@@ -23,6 +23,8 @@ tags:
 
 ## Story
 
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 Imagine controlling your computer mouse pointer using nothing else other than your eyes and head pose. Well stop imagining it.
 
 In post project, I will walk you through a project I created using the Intel® OpenVINO toolkit utilizing the [Gaze Detection model](https://docs.openvinotoolkit.org/latest/_models_intel_gaze_estimation_adas_0002_description_gaze_estimation_adas_0002.html) to control the mouse pointer of my computer.
@@ -34,6 +36,9 @@ This project demonstrated the ability of running multiple models in the same mac
 Checkout the code here: [https://github.com/mmphego/computer-pointer-controller/tree/v1.0](https://github.com/mmphego/computer-pointer-controller/tree/v1.0)
 
 ## How It Works
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 Used the Inference Engine API from Intel's OpenVino ToolKit to build the project.
 
 The gaze estimation model used requires three inputs:
@@ -130,6 +135,9 @@ Not sure what Docker is, [watch this](https://www.youtube.com/watch?v=rOTqprHv1Y
 For this project I used the latter method.
 
 #### Models Used
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 I have already downloaded the Models, which are located in `./models/`.
 Should you wish to download your own models run:
 

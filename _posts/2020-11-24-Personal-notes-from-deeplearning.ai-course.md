@@ -22,6 +22,8 @@ tags:
 
 # The Story
 
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 Having a solid grasp fundamental in deep learning is a great achievement these days as the world is moving more into AI and big data. AI/ML/DL continues to break new ground on a daily basis from Telsa's self-driving cars, Smart speakers (Siri, Alexa and etc) and not forgetting Netflix that recommends content based on your interest, the list is endless. 
 
 Noticeably this field has been trending (Over-hyped if you ask me!) but a ton of folks (myself included) don't know where to start? what to learn and which key concepts? and the volume of information in the interweb makes it even harder. 
@@ -67,6 +69,8 @@ This course also teaches you how Deep Learning actually works, rather than prese
 
 ### Course 2: Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization [Completed]
 
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 This course will teach you the "magic" of getting deep learning to work well. Rather than the deep learning process being a black box, you will understand what drives performance, and be able to more systematically get good results. You will also learn TensorFlow.
 
 After 3 weeks, I should be able to:
@@ -93,6 +97,8 @@ This is the second course of the Deep Learning Specialization.
 - Week 3: Hyperparameter tuning, Batch Normalization and Programming Frameworks
 
 ### Course 3: Structuring Machine Learning Projects [Completed]
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
 
 You will learn how to build a successful machine learning project. If you aspire to be a technical leader in AI and know-how to set a direction for your team's work, this course will show you how.
 
@@ -123,6 +129,8 @@ This is the third course in the Deep Learning Specialization.
 
 ### Course 4: Convolutional Neural Networks [Completed]
 
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 This course will teach you how to build convolutional neural networks and apply them to image data. Thanks to deep learning, computer vision is working far better than just two years ago, and this is enabling numerous exciting applications ranging from safe autonomous driving to accurate face recognition, to automatic reading of radiology images.
 
 I should be able to:
@@ -149,6 +157,8 @@ This is the fourth course of the Deep Learning Specialization.
 - Week 4: Discovered how CNNs can be applied to multiple fields, including art generation and face recognition. Implemented my own algorithm to generate art and recognize faces!
 
 ### Course 5: Sequence Models [Pending-Enrolment]
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
 
 This course will teach you how to build models for natural language, audio, and other sequence data. Thanks to deep learning, sequence algorithms are working far better than just two years ago, and this is enabling numerous exciting applications in speech recognition, music synthesis, chatbots, machine translation, natural language understanding, and many others.
 

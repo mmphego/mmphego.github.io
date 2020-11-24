@@ -18,6 +18,8 @@ tags:
 
 # The Story
 
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 On April 17, I publicly committed to the [#100daysofcode](https://www.100daysofcode.com/) challenge. 
 The purpose of the challenge is to help you form a habit and do something out of your comfort zone for at least an hour each day for 100 days (obviously there are some exceptions). 
 
@@ -62,6 +64,8 @@ Going into the challenge some of my goals were:
 
 ## Struggles
 
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 Obviously, life is unpredictable and some days I felt as if I wasn't progressing at the rate I wanted also with everything going on (COVID19 related) this took a toll on me so I struggled a bit but eventually bounced back and was then able to complete the challenge.
 
 ## Commitment
@@ -83,6 +87,8 @@ Daily progress documentation is essential as it offers a way to log your progres
 For obvious reasons not all 100 days of the challenge were related to a single subject, I dabbed into various subjects. I feel like I learned a lot over that period and it's hard to put it into words.
 
 # Conclusion
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
 
 Personally, I believe that these challenges are exceptional for everyone wanting to dedicate time and focus on learning something new in order to level up their skills. If you still need some inspiration head out to Twitter and just search for #100daysofcode and see what other people are involved in.
 

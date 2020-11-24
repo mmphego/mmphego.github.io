@@ -19,6 +19,8 @@ tags:
 
 # The Story
 
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 There's a quote that goes like, *"I choose a lazy person to do a hard job. Because a lazy person will find an easy way to do it."* by [Bill Gates](https://en.wikipedia.org/wiki/Bill_Gates) and I think when he mentioned lazy people he also included me in the same pool. You could ask yourself, Why am I saying that about myself. The reason is, over time I have found myself doing the same thing over and over again and I'm sure that you also have been caught in that repetitive loop before you might not be aware of it.
 
 When creating and working on a new Python or related project, I would find myself repeating the same things over and over. 
@@ -42,6 +44,8 @@ Below is an example of a generic `Makefile` I have been using. I usually remove 
 <script src="https://gist.github.com/mmphego/dc933ba1bf9630fe57e46e0da5ef7820.js"></script>
 
 # The Walk-through
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
 
 Running the `make` without any targets generates a detailed usage doc. I will not go through the `Makefile` as it is well documented and self-explanatory.
 
@@ -109,6 +113,9 @@ Further your learning:
 If you found this post helpful or unsure about something, leave a comment or reach out @mphomphego
 
 # Reference
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 This post was inspired by these posts below:
 
 - [Makefiles in python projects](https://krzysztofzuraw.com/blog/2016/makefiles-in-python-projects)

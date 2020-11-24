@@ -19,6 +19,8 @@ tags:
 
 # The Story
 
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 As more and more [COVID-19 cases are reported each day and South Africa's](https://sacoronavirus.co.za/) lock down restrictions have been loosen, we will be seeing an increase on the number of cases due to the lack of social distancing and the usage of facial masks.
 
 In this post, I will walk you through the processes of creating a Face Mask Detector application using pre-trained models and Intel OpenVINO toolkit with OpenCV.
@@ -43,6 +45,9 @@ Using a set of the following pre-trained models:
 
 
 # The Walk-through
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
 Face Mask Detection application uses Deep Learning/Machine Learning to recognize if a user is not wearing a mask and issues an alert as shown in the image below.
 
 {:refdef: style="text-align: center;"}
@@ -284,6 +289,8 @@ if __name__ == "__main__":
 
 
 ### Running the application
+
+[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
 
 - Download the docker images with a pre-installed version of OpenVINO 2020.2
 ```bash
