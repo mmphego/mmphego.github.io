@@ -26,13 +26,13 @@ Noticeably this field has been trending (Over-hyped if you ask me!) but a ton of
 
 For one to understand how everything works one has to go to the grassroots (I don't know what that means, definitely not a rock-band or political movement, It just jelled together and I was like myeee!), as [Andy Grove](https://en.wikipedia.org/wiki/Andrew_Grove) puts it, *"You have no choice but to operate in a world shaped by globalization and the information revolution. There are two options: adapt or die"*. 
 
-Well, in this post I'll share some of the notes I made (using [notion](https://www.notion.so/)) which highlighted key concepts I learned in the past few months on the [deeplearning.ai](https://www.deeplearning.ai/) specialization course (which I found immensely helpful in my learning journey) offered by [Coursera](https://www.coursera.org/) taught by [Andrew Ng](https://en.wikipedia.org/wiki/Andrew_Ng) and co.
+Well, in this post I'll share some of the notes I made (using [notion](https://www.notion.so/)) which highlighted key concepts I learned in the past few months on the [deeplearning.ai](https://www.deeplearning.ai/) specialization course (which I found immensely helpful in my learning journey) offered by [Coursera](https://www.coursera.org/specializations/deep-learning) taught by [Andrew Ng](https://en.wikipedia.org/wiki/Andrew_Ng) and co.
 
 ## TL;DR
 
 My notes can be found here: [https://github.com/mmphego/DeepLearning-AI](https://github.com/mmphego/DeepLearning-AI)
 
-## DeepLearning AI
+## DeepLearning AI Specialization
 
 There are 5 Courses in this specialization offered on [Coursera](https://www.coursera.org/specializations/deep-learning)
 
