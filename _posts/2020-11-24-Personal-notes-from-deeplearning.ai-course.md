@@ -7,6 +7,8 @@ tags:
 - AI
 - TensorFlow
 - Notes
+- Learning
+- Coursera
 ---
 # Personal Notes From Deeplearning.ai Specialization Course.
 

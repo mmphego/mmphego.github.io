@@ -3,7 +3,8 @@ layout: post
 title: "I Completed My #100daysofcode Challenge, Now What!"
 date: 2020-10-17 01:55:06.000000000 +02:00
 tags:
-    - 100daysofcode
+- 100daysofcode
+- Learning
 ---
 # I Completed My #100daysofcode Challenge, Now What!
 

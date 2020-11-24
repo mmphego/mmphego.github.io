@@ -7,6 +7,7 @@ tags:
 - Machine Learning
 - Deep Learning
 - Udacity
+- Learning
 ---
 # AI At The Edge - An Introduction To Intel OpenVINO Toolkit.
 

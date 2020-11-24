@@ -3,9 +3,10 @@ layout: post
 title: "My Experience And What I Learned From Udacity AI Programming With Python Nano-Degree: Part 1"
 date: 2019-12-15 12:57:07.000000000 +02:00
 tags:
-- Python
-- Machine Learning
 - AI
+- Learning
+- Machine Learning
+- Python
 - Pytorch
 - Udacity
 ---
