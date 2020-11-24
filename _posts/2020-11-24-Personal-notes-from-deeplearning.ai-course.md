@@ -162,6 +162,7 @@ This is the fifth and final course of the Deep Learning Specialization.
 ---
 
 - [My Notes]()
+
 ---
 
 #### What I've learned from this course
