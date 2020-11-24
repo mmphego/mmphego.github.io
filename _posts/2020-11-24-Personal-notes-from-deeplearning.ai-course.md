@@ -3,7 +3,7 @@ layout: post
 title: "Personal Notes From Deeplearning.ai Specialization Course"
 date: 2020-11-24 13:44:50.000000000 +02:00
 tags:
-- DeepLearning
+- Deep Learning
 - AI
 - TensorFlow
 - Notes
