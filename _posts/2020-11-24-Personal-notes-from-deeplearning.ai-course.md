@@ -20,11 +20,11 @@ tags:
 
 # The Story
 
-Having a solid grasp fundamentals in deep learning is a great achievement these days as the world is moving more into AI and big data. AI/ML/DL continues to break new ground on a daily basis from Telsa's self-driving cars, Smart speakers (Siri, Alexa and etc) and not forgetting Netflix that recommends content based on your interest, the list is endless. 
+Having a solid grasp fundamental in deep learning is a great achievement these days as the world is moving more into AI and big data. AI/ML/DL continues to break new ground on a daily basis from Telsa's self-driving cars, Smart speakers (Siri, Alexa and etc) and not forgetting Netflix that recommends content based on your interest, the list is endless. 
 
 Noticeably this field has been trending (Over-hyped if you ask me!) but a ton of folks (myself included) don't know where to start? what to learn and which key concepts? and the volume of information in the interweb makes it even harder. 
 
-For one to understand how everything works one has to go to the grass roots, as [Andy Grove](https://en.wikipedia.org/wiki/Andrew_Grove) puts it, *"You have no choice but to operate in a world shaped by globalization and the information revolution. There are two options: adapt or die"*. 
+For one to understand how everything works one has to go to the grassroots, as [Andy Grove](https://en.wikipedia.org/wiki/Andrew_Grove) puts it, *"You have no choice but to operate in a world shaped by globalization and the information revolution. There are two options: adapt or die"*. 
 
 Well, in this post I'll share some of the notes I made (using [notion](https://www.notion.so/)) which highlighted key concepts I learned in the past few months on the [deeplearning.ai](https://www.deeplearning.ai/) specialization course (which I found immensely helpful in my learning journey) offered by [Coursera](https://www.coursera.org/) taught by [Andrew Ng](https://en.wikipedia.org/wiki/Andrew_Ng) and co.
 
@@ -92,9 +92,9 @@ This is the second course of the Deep Learning Specialization.
 
 ### Course 3: Structuring Machine Learning Projects [Completed]
 
-You will learn how to build a successful machine learning project. If you aspire to be a technical leader in AI, and know how to set direction for your team's work, this course will show you how.
+You will learn how to build a successful machine learning project. If you aspire to be a technical leader in AI and know-how to set a direction for your team's work, this course will show you how.
 
-Much of this content has never been taught elsewhere, and is drawn from my experience building and shipping many deep learning products. This course also has two "flight simulators" that let you practice decision-making as a machine learning project leader. This provides "industry experience" that you might otherwise get only after years of ML work experience.
+Much of this content has never been taught elsewhere and is drawn from my experience building and shipping many deep learning products. This course also has two "flight simulators" that let you practice decision-making as a machine learning project leader. This provides "industry experience" that you might otherwise get only after years of ML work experience.
 
 After 2 weeks, I should be able to:
 
@@ -117,7 +117,7 @@ This is the third course in the Deep Learning Specialization.
 #### What I've learned from this course
 
 - Week 1: Ways to diagnose and analyse errors in an ML system
-- Week 2: Understand complex ML settings, data mismatch and leveraging pretrained systems.
+- Week 2: Understand complex ML settings, data mismatch and leveraging pre-trained systems.
 
 ### Course 4: Convolutional Neural Networks [Completed]
 
@@ -143,7 +143,7 @@ This is the fourth course of the Deep Learning Specialization.
 
 - Week 1: Implemented foundational layers of CNNs (pooling, convolutions) and stacked them properly in a deep network to solve multi-class image classification problems.
 - Week 2: Learned about the practical tricks and methods used in deep CNNs straight from the research papers.
-- Week 3: Learned how to apply my knowledge of CNNs to one of the toughest but hottest field of computer vision: Object detection.
+- Week 3: Learned how to apply my knowledge of CNNs to one of the toughest but hottest fields of computer vision: Object detection.
 - Week 4: Discovered how CNNs can be applied to multiple fields, including art generation and face recognition. Implemented my own algorithm to generate art and recognize faces!
 
 ### Course 5: Sequence Models [Pending-Enrolment]
@@ -157,7 +157,7 @@ I should be able to:
 - Be able to apply sequence models to audio applications, including speech recognition and music synthesis.
 
 This is the fifth and final course of the Deep Learning Specialization.
-deeplearning.ai is also partnering with the NVIDIA Deep Learning Institute (DLI) in Course 5, Sequence Models, to provide a programming assignment on Machine Translation with deep learning. You will have the opportunity to build a deep learning project with cutting-edge, industry-relevant content.
+[deeplearning.ai](deeplearning.ai) is also partnering with the NVIDIA Deep Learning Institute (DLI) in Course 5, Sequence Models, to provide a programming assignment on Machine Translation with deep learning. You will have the opportunity to build a deep learning project with cutting-edge, industry-relevant content.
 
 ---
 
