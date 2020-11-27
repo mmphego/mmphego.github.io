@@ -17,6 +17,8 @@ tags:
 -----------------------------------------------------------------------------------------
 
 
+# 2020
+
 My #100daysofcode progress logs via twitter.
 
 ## April 2020
@@ -153,3 +155,18 @@ My #100daysofcode progress logs via twitter.
 
 ## September 2020
 <center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Day 97-125+:<br>- Finalizing my game controller using body movements.<br>- Wrote 2 blogs: How to create face detection in under 10 lines and adding makefiles to your projects<br>- Created a <a href="https://twitter.com/hashtag/OpenVINO?src=hash&amp;ref_src=twsrc%5Etfw">#OpenVINO</a> utility library and a youtube video demoing it.<a href="https://twitter.com/hashtag/100DaysOfCode?src=hash&amp;ref_src=twsrc%5Etfw">#100DaysOfCode</a> <a href="https://twitter.com/hashtag/Python?src=hash&amp;ref_src=twsrc%5Etfw">#Python</a> <a href="https://twitter.com/hashtag/DeepLearning?src=hash&amp;ref_src=twsrc%5Etfw">#DeepLearning</a></p>&mdash; Mpho Mphego (@MphoMphego) <a href="https://twitter.com/MphoMphego/status/1309009070137970688?ref_src=twsrc%5Etfw">September 24, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
+
+## November 2020
+
+Completed course 4 of 5 of Deep Learning Specialization offered on [Coursera](https://www.coursera.org/specializations/deep-learning)
+
+- Course 1: Neural Networks and Deep Learning -> [Cert](https://www.coursera.org/account/accomplishments/verify/TE9VXM6XW25G)
+- Course 2: Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization -> [Cert](https://www.coursera.org/account/accomplishments/verify/ZURGHWGGD5UD)
+- Course 3: Structuring Machine Learning Projects -> [Cert](https://www.coursera.org/account/accomplishments/verify/BAYZTYTQ8HL9)
+- Course 4: Convolutional Neural Networks -> [Cert](https://coursera.org/share/ed8ab98d1f10d6bf93b611d03da65ddc)
+
+
+## December 2020
+
+
+# 2021
