@@ -12,6 +12,7 @@ css: "/css/aboutme.css"
 
 Inspired by [Derek Sivers' /now page movement](https://sivers.org/now3), here's what I'm focused on right now in no particular order:
 
+- I’m currently learning more about *Applied Machine Learning* and, 
 - Starting with [#100DaysOfML challenge](https://www.100daysofcode.com/) in December, 2020 with the primary focus on [Hands-on Machine Learning with Scikit-Learn, Keras, and TensorFlow - Concepts, Tools, and Techniques to Build Intelligent Systems book](https://www.goodreads.com/book/show/40363665-hands-on-machine-learning-with-scikit-learn-keras-and-tensorflow) I recently bought.
 - Reading: [AIQ: How People and Machines Are Smarter Together by Nick Polson, James Scott](https://www.goodreads.com/book/show/39328092-aiq)
 - Re-reading: [Essentialism: The Disciplined Pursuit of Less by Greg McKeown](https://www.goodreads.com/book/show/18077875-essentialism)
