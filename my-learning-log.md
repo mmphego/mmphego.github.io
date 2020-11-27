@@ -19,7 +19,7 @@ tags:
 
 # 2020
 
-My #100daysofcode progress logs via twitter.
+My #100daysofcode progress logs via twitter, and beyond.
 
 ## April 2020
 
