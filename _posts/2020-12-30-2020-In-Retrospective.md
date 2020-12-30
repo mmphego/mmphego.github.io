@@ -27,7 +27,7 @@ Well, that's a wrap. This has been one of the most unpredictable year ever. In t
 
 ## What Went Well
 
-Most of my other goals were financial and personal, however I would like to reflect on some of my other goals I had set out for 2020.
+Most of my other goals were financial and personal, however, I would like to reflect on some of my other goals I had set out for 2020.
 
 - I was inspired by [Derek Sivers’ /now page movement](https://sivers.org/now3) and started documenting things I was focused on each month from January 2020. This is what I am doing [now.](https://blog.mphomphego.co.za/now)
 
@@ -56,7 +56,7 @@ Most of my other goals were financial and personal, however I would like to refl
         - [Udacity Mentorship](https://confirm.udacity.com/CR7THQTA)
     - 2x DataCamp Certificates:
         - [Data Engineering for Everyone](https://www.datacamp.com/statement-of-accomplishment/course/d4b904060f7b8f9cc09108d67e8b38090e5366ea)
-        - [Image Proessing in Python](https://www.datacamp.com/statement-of-accomplishment/course/83dd4580afecb275fc8bbc3b33e9c2b37d1b0941?raw=1)
+        - [Image Processing in Python](https://www.datacamp.com/statement-of-accomplishment/course/83dd4580afecb275fc8bbc3b33e9c2b37d1b0941?raw=1)
     - 2x IBM/Cognitive.ai Certificates
         + [Deep Learning Essentials](https://www.youracclaim.com/badges/ad832d4d-1fd9-414c-8a15-c7bb785c7ff8)
         + [Docker Essentials: A Developer Introduction](https://courses.cognitiveclass.ai/certificates/1cc20979bb2541b98ebe89b7dddba922)
@@ -90,7 +90,7 @@ I am looking forward to 2021 (2020 won!) with a different perspective and expect
 - Completing **#100DaysOfML challenge** with the primary focus on the [Hands-on Machine Learning with Scikit-Learn, Keras, and TensorFlow - Concepts, Tools, and Techniques to Build Intelligent Systems](https://www.goodreads.com/book/show/40363665-hands-on-machine-learning-with-scikit-learn-keras-and-tensorflow) book I recently bought.
 - Work with my son on building and programming the [AlphaBot2 and Raspberry Pi Zero](https://twitter.com/MphoMphego/status/1338402741685727234?s=20) together with the [Intel Neural Compute Stick 2](https://twitter.com/MphoMphego/status/1324097569417560078?s=20) I won.
 - Learn more about the fundamentals of MLOps and how to integrate it with software engineering.
-- Revive TechTalk Tuesday which is an informal meeting (Meetup), where colleagues/external talent prepares a Tech Talk on Tuesdays during lunch time.
+- Revive TechTalk Tuesday which is an informal meeting (Meetup), where colleagues/external talent prepares a Tech Talk on Tuesdays during lunchtime.
 - Be present on user groups around the world through virtual presentations.
 
 # Conclusion
