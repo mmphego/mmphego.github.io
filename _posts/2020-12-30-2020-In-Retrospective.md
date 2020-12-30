@@ -23,6 +23,8 @@ Well, that's a wrap. This has been one of the most unpredictable year ever. In t
 
 ![image](https://user-images.githubusercontent.com/7910856/103348815-d2b2f400-4aa3-11eb-8887-4761ea9f1637.png)
 
+[https://twitter.com/MphoMphego/status/1341658595780386819?s=20](https://twitter.com/MphoMphego/status/1341658595780386819?s=20)
+
 ## What Went Well
 
 Most of my other goals were financial and personal, however I would like to reflect on some of my other goals I had set out for 2020.
