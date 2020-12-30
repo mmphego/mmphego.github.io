@@ -19,6 +19,9 @@ tags:
 
 Well, that's a wrap. This has been one of the most unpredictable year ever. In this post, I look back at how 2020 was for me and this will just be a little retrospection summary of things that went well and things that did not. I am starting this new tradition of celebrating the end of year as I looking back at some of my highlights of that year.
 
+![image](https://user-images.githubusercontent.com/7910856/103358803-2b43ba80-4abf-11eb-9366-8444636c14d4.png)
+
+
 ## TL;DR
 
 ![image](https://user-images.githubusercontent.com/7910856/103348815-d2b2f400-4aa3-11eb-8887-4761ea9f1637.png)
