@@ -1,14 +1,14 @@
 ---
 layout: post
-title: "2020 Retrospective"
+title: "2020 In Retrospective"
 date: 2020-12-30 12:01:22.000000000 +02:00
 tags:
 
 ---
-# 2020 Retrospective.
+# 2020 In Retrospective.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2020-12-30-2020-Retrospective.png" | absolute_url }})
+![post image]({{ "/assets/2020-12-30-2020-In-Retrospective.png" | absolute_url }})
 {: refdef}
 
 6 Min Read
