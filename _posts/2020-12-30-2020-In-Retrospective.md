@@ -70,9 +70,9 @@ Most of my other goals were financial and personal, however, I would like to ref
         + [Computer Vision Basics](https://www.coursera.org/account/accomplishments/records/AU55ZKBNNWV8)
         + [Neural Networks and Deep Learning](https://bit.ly/2Qxyo65)
         + [Structuring Machine Learning Projects](https://www.coursera.org/account/accomplishments/verify/BAYZTYTQ8HL9)
-        + [Improving Deep Neural Networks: Hyperparmeter tuning, Regularization and Optimization](https://www.coursera.org/account/accomplishments/verify/ZURGHWGGD5UD)
+        + [Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization](https://www.coursera.org/account/accomplishments/verify/ZURGHWGGD5UD)
         + [Convolutional Neural Networks](https://coursera.org/share/ed8ab98d1f10d6bf93b611d03da65ddc)
-        + [Sequencial Models](https://www.coursera.org/account/accomplishments/certificate/DSDUZ8J6S7RC)
+        + [Sequential Models](https://www.coursera.org/account/accomplishments/certificate/DSDUZ8J6S7RC)
         + [Exploratory Data Analysis for Machine Learning](https://coursera.org/share/1c238ff3b9ffd2b3162716eaa0daed78)
         + [Supervised Learning: Regression](https://www.coursera.org/account/accomplishments/certificate/JTVYGECVVQTQ)
 
@@ -81,7 +81,7 @@ Most of my other goals were financial and personal, however, I would like to ref
 - The sudden change of environment from working in the office and working from home with my wife and 2 kids at home, I had mental health issues, Dude it wasn't fun!!!
 - One of my goals was to exercise at least 3 times a week, this didn't go well for obvious reasons my health deteriorated.
 - Struggled to split time between learning, working and spending time with my family.
-- I felt burnout during lockdown which causes me a lot of stress and sleeps deprivation; but looking on the bright-side I learned new skills while up all night ;-)
+- I felt burnout during the COVID19 lockdown which caused me a lot of stress and sleeps deprivation; but looking on the bright-side I learned new skills while up all night ;-)
 - The list goes on and on ...
 
 
@@ -98,6 +98,6 @@ I am looking forward to 2021 (2020 won!) with a different perspective and expect
 
 # Conclusion
 
-This was the year of Deep Learning for me, one of the skills I gained was to be patient with myself, to take it easy and always remember that the meaning of life is; If you think about it, is that on the very beginning, the development of the first cell divided into two cells-the sole purposes of life has been to pass on what was learned. There is no higher purpose. So, this year I learned to start passing on the knowledge I have accumulated. 
+This was the year of Deep Learning for me, one of the skills I gained was to be patient with myself, to take it easy and always remember that the meaning of life is; If you think about it, is that on the very beginning, the development of the first cell divided into two cells - the sole purposes of life has been to pass on what was learned. There is no higher purpose. So, this year I learned to start passing on the knowledge I have accumulated. 
 
 ![image](https://user-images.githubusercontent.com/7910856/103353089-8f12b700-4ab0-11eb-89dd-535a767c1871.png)
