@@ -3,7 +3,15 @@ layout: post
 title: "2020 In Retrospective"
 date: 2020-12-30 12:01:22.000000000 +02:00
 tags:
-
+- 100daysofcode
+- AI
+- Coursera
+- DataCamp
+- Deep Learning
+- Learning
+- Machine Learning
+- Retrospective
+- Udacity
 ---
 # 2020 In Retrospective.
 
