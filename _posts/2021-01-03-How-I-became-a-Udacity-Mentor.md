@@ -21,7 +21,7 @@ tags:
 
 Last December, I was awarded an opportunity to become a [Udacity Mentor & Project Reviewer](https://www.udacity.com/start-mentoring). This started as an interest to me while I was working on my 3rd Udacity nanodegree, one of the motivations for me to apply was the idea of learning from other individuals and disseminating what I have already learned.
 
-In this post, I want to give you some insights on how I landed the role and a brief overview of the program I reviewed.
+This is my first post of 2021, I want to give you some insights on how I landed the role and a brief overview of the program I reviewed.
 
 # The How
 
