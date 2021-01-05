@@ -21,3 +21,4 @@ jobs:
         owner: mmphego
         repo: mmphego
         github_token: ${{ secrets.TOKEN_ID }}
+        workflow_file_name: blog-post-workflow.yml
