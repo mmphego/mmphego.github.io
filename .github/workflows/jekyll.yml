@@ -15,7 +15,8 @@ jobs:
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
         jekyll/builder:3 /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
 
-    - uses: convictional/trigger-workflow-and-wait
+    - name: Trigger Workflow and Wait
+      uses: convictional/trigger-workflow-and-wait@v1.2.0
       with:
         owner: mmphego
         repo: mmphego
