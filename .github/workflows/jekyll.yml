@@ -14,3 +14,9 @@ jobs:
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
         jekyll/builder:3 /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
+
+    - uses: convictional/trigger-workflow-and-wait
+      with:
+        owner: mmphego
+        repo: mmphego
+        github_token: ${{ secrets.GITHUB_PERSONAL_ACCESS_TOKEN }}
