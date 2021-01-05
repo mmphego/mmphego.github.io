@@ -20,4 +20,4 @@ jobs:
       with:
         owner: mmphego
         repo: mmphego
-        github_token: ${{ secrets.GITHUB_PERSONAL_ACCESS_TOKEN }}
+        github_token: ${{ secrets.TOKEN_ID }}
