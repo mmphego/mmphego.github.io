@@ -11,7 +11,7 @@ tags:
 ![post image]({{ "/assets/2021-01-07-A-VirtualBox-machine-with-the-name-already-exists..png" | absolute_url }})
 {: refdef}
 
-<<TIME TO READ>>
+3 Min Read
 
 -----------------------------------------------------------------------------------------
 
