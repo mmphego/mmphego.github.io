@@ -1,14 +1,14 @@
 ---
 layout: post
 title: "Note To Self: A VirtualBox Machine With The Name Already Exists."
-date: 2021-01-07 11:31:18.000000000 +02:00
+date: 2021-01-14 23:31:18.000000000 +02:00
 tags:
 
 ---
 # Note To Self: A VirtualBox Machine With The Name Already Exists...
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2021-01-07-A-VirtualBox-machine-with-the-name-already-exists..png" | absolute_url }})
+![post image]({{ "/assets/2021-01-14-A-VirtualBox-machine-with-the-name-already-exists..png" | absolute_url }})
 {: refdef}
 
 3 Min Read
