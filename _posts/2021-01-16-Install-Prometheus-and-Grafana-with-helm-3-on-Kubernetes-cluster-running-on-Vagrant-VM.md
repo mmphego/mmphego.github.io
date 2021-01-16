@@ -188,6 +188,10 @@ Do the same for `promethues-operator`:
 kubectl edit svc --namespace monitoring prometheus-kube-prometheus-operator
 ```
 
+Verify that services where updated, and we should see service type as `NodePort` and exposed/forwarded ports.
+
+![image](https://user-images.githubusercontent.com/7910856/104798447-908df000-57cf-11eb-8613-05861105ccb8.png)
+
 Alternatively, you can patch the config. Read more [here](https://stackoverflow.com/a/51559833)
 
 Verify that you can access the localhost through port `30100`
@@ -197,6 +201,26 @@ Verify that you can access the localhost through port `30100`
 Also check out more details [on best practices when accessing Applications in a Cluster.](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/)
 
 ## Troubleshooting
+
+**Vagrant cannot forward the specified ports on this VM**
+
+```bash
+Vagrant cannot forward the specified ports on this VM, since they
+would collide with another VirtualBox virtual machine's forwarded
+ports! The forwarded port to 4567 is already in use on the host
+machine.
+
+To fix this, modify your current projects Vagrantfile to use another
+port. Example, where '1234' would be replaced by a unique host port:
+
+  config.vm.forward_port 80, 1234
+```
+
+As the message says, the port collides with another port on the host box. I would simply change the port to some other value on the host machine or let [Vagrant auto correct itself if it encounters any collisions](https://www.vagrantup.com/docs/networking/forwarded_ports#port-collisions-and-correction).
+
+In the Vagrantfile, append `, auto_corrent: true` and the end of `master.vm.network "forwarded_port", guest: 6443, host: 6443`
+
+Read more [here](https://www.vagrantup.com/docs/networking/forwarded_ports)
 
 **Communicate with the K3s cluster through local `kubectl`**
 
@@ -281,5 +305,7 @@ vagrant@master:~> kubectl config view --raw >~/.kube/config
 
 # Reference
 
-- []()
-- []()
+- [Kubernetes multi-node cluster with k3s and multipass](https://levelup.gitconnected.com/kubernetes-cluster-with-k3s-and-multipass-7532361affa3)
+- [Deploying Prometheus and Grafana in Kubernetes](https://blog.exxactcorp.com/deploying-prometheus-and-grafana-in-kubernetes/)
+- [Install Prometheus & Grafana with helm 3 on local machine/ VM](https://dev.to/ko_kamlesh/install-prometheus-grafana-with-helm-3-on-local-machine-vm-1kgj)
+- [Vagrant: Forwarded Ports](https://www.vagrantup.com/docs/networking/forwarded_ports)
