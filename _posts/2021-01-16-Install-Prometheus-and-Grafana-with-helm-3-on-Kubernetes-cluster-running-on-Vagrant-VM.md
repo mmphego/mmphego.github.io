@@ -42,8 +42,8 @@ cat Vagrantfile
 
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
-default_box = "generic/opensuse42"
-
+default_box = "opensuse/Leap-15.2.x86_64"
+box_version = "15.2.31.309"
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
@@ -58,24 +58,28 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "master" do |master|
     master.vm.box = default_box
+    master.vm.box_version = box_version
     master.vm.hostname = "master"
-    master.vm.network 'private_network', ip: "192.168.0.200",  virtualbox__intnet: true
+    master.vm.network 'private_network', ip: "192.168.33.10",  virtualbox__intnet: true
     master.vm.network "forwarded_port", guest: 22, host: 2222, id: "ssh", disabled: true
     master.vm.network "forwarded_port", guest: 22, host: 2000 # Master Node SSH
     master.vm.network "forwarded_port", guest: 6443, host: 6443 # API Access
     for p in 30000..30100 # expose NodePort IP's
       master.vm.network "forwarded_port", guest: p, host: p, protocol: "tcp"
-      end
-    master.vm.provider "virtualbox" do |v|
-      v.memory = "2048"
-      v.name = "k3s"
-      end
+    end
+    master.vm.provider "virtualbox" do |vb|
+      # v.memory = "3072"
+      vb.memory = "2048"
+      vb.name = "k3s"
+    end
+
     master.vm.provision "shell", inline: <<-SHELL
+      echo "******** Installing dependencies ********"
       sudo zypper refresh
       sudo zypper --non-interactive install bzip2
       sudo zypper --non-interactive install etcd
       sudo zypper --non-interactive install lsof
-      
+
       echo "******** Begin installing k3s ********"
       curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.19.2+k3s1 K3S_KUBECONFIG_MODE="644" sh -
       echo "******** End installing k3s ********"
@@ -88,7 +92,6 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-
 ```bash
 vagrant up
 ```
@@ -97,7 +100,7 @@ The command will take a while and will leverage `VirtualBox` to load an [OpenSus
 
 # The Walk-through
 
-**Install Prometheus with Helm3**
+**Install Prometheus with Helm 3**
 
 - Let's `ssh` into our freshly baked VM
 ```bash
@@ -180,7 +183,7 @@ kubectl edit svc --namespace monitoring prometheus-grafana
 
 Make some modification to the yaml config such that you can access graphana from your local machine:
 - `type: ClusterIP` with `type: NodePort`, and 
-- Change `nodePort` to `30100`
+- Change `nodePort` and choose from range `30000 - 30100` as defined in the `Vagrantfile`.
 
 Do the same for `promethues-operator`:
 
@@ -289,6 +292,11 @@ Error: Kubernetes cluster unreachable: Get "http://localhost:8080/version?timeou
 ```
 
 Let `helm` use the same config `kubectl` uses, this fixes it.
+
+```bash
+vagrant@master:~> echo "export KUBECONFIG=/etc/rancher/k3s/k3s.yaml" >> ~/.bashrc
+```
+or
 
 ```bash
 vagrant@master:~> kubectl config view --raw >~/.kube/config
