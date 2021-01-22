@@ -84,11 +84,11 @@ So, coming back to the course I am reviewing and you are probably wondering what
 
 To graduate (which I haven't) there's 2 project one needs to complete:
 
-- [UdaConnect](https://github.com/udacity/nd064-c2-message-passing-projects-starter): The idea is to refactor the monolithic app into a microservice app while introducing other message-passing techniques such as gRPC and Kafka
+- [UdaConnect](https://github.com/mmphego/udaconnect): The idea is to refactor the monolithic app into a microservice app while introducing other message-passing techniques such as gRPC and Kafka
 
     This project has been a tricky one to complete, mostly due to the timeframe they gave us between going through the lessons and completing the project.
 
-- [Building a Metrics Dashboard](https://github.com/udacity/CNAND_nd064_C4_Observability_Starter_Files): This project is about creating dashboards that use multiple graphs to monitor an application that is deployed on a Kubernetes cluster.
+- [Building a Metrics Dashboard](https://github.com/mmphego/Cloud-Native-Observability-Metrics-Dash): This project is about creating dashboards that use multiple graphs to monitor an application that is deployed on a Kubernetes cluster.
 
 # Conclusion
 
