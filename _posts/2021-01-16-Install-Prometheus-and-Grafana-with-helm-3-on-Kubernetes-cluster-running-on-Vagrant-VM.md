@@ -38,7 +38,7 @@ For this application, we need a Kubernetes cluster running locally and to interf
 
 
 ```ruby
-cat Vagrantfile 
+$ cat Vagrantfile 
 
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
@@ -112,7 +112,7 @@ vagrant ssh
 kubectl create namespace monitoring
 ```
 
-- Install `prometheus` using `helm 3` on `monitoring` namespace
+- Install `Prometheus` using `helm 3` on `monitoring` namespace
   | *Helm* is a popular package manager for Kubernetes (think `apt` for `Ubuntu` or `pip` for `Python`). It uses a templating language to make the managing of multiple Kubernetes items in a single application easier to package, install, and update.
 
 ```bash
@@ -127,7 +127,7 @@ If the installation was successful you should be able to see **6** running pods:
 - Alert manager: This allows us to create alerts with Prometheus
 - Operator: This is the application itself
 - Exporter: This is responsible for getting the logs from the nodes
-- Graphana and other matrics tools
+- Grafana and other metrics tools
 
 ```bash
 kubectl get pods --namespace=monitoring
@@ -141,7 +141,7 @@ helm ls --namespace monitoring
 
 ![image](https://user-images.githubusercontent.com/7910856/104797759-3be77680-57c9-11eb-9c38-5bd7e9e8ac15.png)
 
-Once everything is up and running we need to access *Graphana*.
+Once everything is up and running we need to access *Grafana*.
 
 It is highly advisable to use some kind of ingress to expose the services to the world, an example would be to use [NGINX](https://kubernetes.github.io/ingress-nginx/). 
 
@@ -181,11 +181,11 @@ prometheus-grafana                        ClusterIP    10.43.31.19    <none>    
 kubectl edit svc --namespace monitoring prometheus-grafana
 ```
 
-Make some modification to the yaml config such that you can access graphana from your local machine:
+Make some modification to the YAML config such that you can access Grafana from your local machine:
 - `type: ClusterIP` with `type: NodePort`, and 
 - Change `nodePort` and choose from range `30000 - 30100` as defined in the `Vagrantfile`.
 
-Do the same for `promethues-operator`:
+Do the same for `prometheus-operator`:
 
 ```bash
 kubectl edit svc --namespace monitoring prometheus-kube-prometheus-operator
@@ -201,7 +201,7 @@ Verify that you can access the localhost through port `30100`
 
 ![image](https://user-images.githubusercontent.com/7910856/104797296-b1514800-57c5-11eb-8c81-257d17eb4d56.png)
 
-Also check out more details [on best practices when accessing Applications in a Cluster.](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/)
+Also, check out more details [on best practices when accessing Applications in a Cluster.](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/)
 
 ## Troubleshooting
 
@@ -219,7 +219,7 @@ port. Example, where '1234' would be replaced by a unique host port:
   config.vm.forward_port 80, 1234
 ```
 
-As the message says, the port collides with another port on the host box. I would simply change the port to some other value on the host machine or let [Vagrant auto correct itself if it encounters any collisions](https://www.vagrantup.com/docs/networking/forwarded_ports#port-collisions-and-correction).
+As the message says, the port collides with another port on the host box. I would simply change the port to some other value on the host machine or let [Vagrant auto-correct itself if it encounters any collisions](https://www.vagrantup.com/docs/networking/forwarded_ports#port-collisions-and-correction).
 
 In the Vagrantfile, append `, auto_corrent: true` and the end of `master.vm.network "forwarded_port", guest: 6443, host: 6443`
 
@@ -252,8 +252,8 @@ Afterwards, you can test that `kubectl` works by running `kubectl describe servi
 
 ![image](https://user-images.githubusercontent.com/7910856/104796952-3d15a500-57c3-11eb-8561-5590df88b02e.png)
 
-I encountered a few issues trying to access graphana through port-forwarding, This was related to the way I configured port-forwarding on vagrant. A walk-around is to either;
-- Expand number of `forwarded_port` on `Vagrantfile` or
+I encountered a few issues trying to access Grafana through port-forwarding, This was related to the way I configured port-forwarding on vagrant. A walk-around is to either;
+- Expand the number of `forwarded_port` on `Vagrantfile` or
 - Use existing `forwarded_port`'s available.
 
 Lastly, check all listening ports, run `netstat -tulpn`:
@@ -302,7 +302,7 @@ or
 vagrant@master:~> kubectl config view --raw >~/.kube/config
 ```
 
-# Access Graphana
+# Access Grafana
 
 **Note:** When installing via the Prometheus Helm chart, the default Grafana admin password is actually `prom-operator`
 
