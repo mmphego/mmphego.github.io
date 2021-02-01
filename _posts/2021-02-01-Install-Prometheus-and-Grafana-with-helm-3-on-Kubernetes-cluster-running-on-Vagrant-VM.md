@@ -29,6 +29,7 @@ We would like to install the monitoring tool [Prometheus](https://prometheus.io/
 # The How
 
 ## Prerequisites
+
 For this application, we need a Kubernetes cluster running locally and to interface with it via `kubectl`. The list below shows some of the tools that we'll need to use for getting our environment set up properly.
 
 - We will use [Vagrant](https://www.vagrantup.com/docs/installation) 
@@ -36,18 +37,19 @@ For this application, we need a Kubernetes cluster running locally and to interf
 - To run [K3s](https://k3s.io/) and,
 - Interface with it via [`kubectl`](https://rancher.com/docs/rancher/v2.x/en/cluster-admin/cluster-access/kubectl/)
 
+## Configuration
+
+All Vagrant configuration is shown below. Vagrant leverages VirtualBox which loads an [openSUSE](https://www.opensuse.org/) OS and automatically installs OS dependencies, [K3s](https://k3s.io/) and [helm](https://v3.helm.sh/). Some useful vagrant commands can be found in [this cheatsheet](https://gist.github.com/wpscholar/a49594e2e2b918f4d0c4).
+
+Running `cat Vagrantfile`, results in the config:
 
 ```ruby
-$ cat Vagrantfile 
-
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 default_box = "opensuse/Leap-15.2.x86_64"
 box_version = "15.2.31.309"
-# All Vagrant configuration is done below. The "2" in Vagrant.configure
-# configures the configuration version (we support older styles for
-# backwards compatibility). Please don't change it unless you know what
-# you're doing.
+# The "2" in `Vagrant.configure` configures the configuration version (we 
+# support older styles for backwards compatibility). Please don't change it # # unless you know what you're doing.
 Vagrant.configure("2") do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
@@ -92,11 +94,11 @@ Vagrant.configure("2") do |config|
 end
 ```
 
+Running the following command will start up the virtual machine and install the relevant dependencies.
+
 ```bash
 vagrant up
 ```
-
-The command will take a while and will leverage `VirtualBox` to load an [OpenSuse](https://www.opensuse.org/) OS and automatically install [K3s](https://k3s.io/) and [Helm 3](https://v3.helm.sh/).
 
 # The Walk-through
 
