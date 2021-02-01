@@ -15,7 +15,7 @@ tags:
 ![post image]({{ "/assets/2021-02-01-Install-Prometheus-and-Grafana-with-helm-3-on-Kubernetes-cluster-running-on-Vagrant-VM.png" | absolute_url }})
 {: refdef}
 
-<<TIME TO READ>>
+6 Min Read
 
 -----------------------------------------------------------------------------------------
 
