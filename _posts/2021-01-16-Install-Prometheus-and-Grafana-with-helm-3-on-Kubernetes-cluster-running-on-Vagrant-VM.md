@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Install Prometheus & Grafana With Helm 3 On Kubernetes Cluster Running On Vagrant VM"
-date: 2021-01-16 06:08:40.000000000 +02:00
+date: 2021-02-01 06:08:40.000000000 +02:00
 tags:
 - Kubernetes
 - Vagrant
@@ -12,7 +12,7 @@ tags:
 # Install Prometheus & Grafana With Helm 3 On Kubernetes Cluster Running On Vagrant VM.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2021-01-16-Install-Prometheus-and-Grafana-with-helm-3-on-Kubernetes-cluster-running-on-Vagrant-VM.png" | absolute_url }})
+![post image]({{ "/assets/2021-02-01-Install-Prometheus-and-Grafana-with-helm-3-on-Kubernetes-cluster-running-on-Vagrant-VM.png" | absolute_url }})
 {: refdef}
 
 <<TIME TO READ>>
