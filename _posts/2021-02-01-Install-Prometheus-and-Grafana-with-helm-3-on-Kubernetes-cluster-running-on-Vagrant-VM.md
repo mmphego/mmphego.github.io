@@ -94,25 +94,15 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-Running the following command will start up the virtual machine and install the relevant dependencies.
-
-```bash
-vagrant up
-```
+Running the following command will start up the virtual machine and install the relevant dependencies: `vagrant up`
 
 # The Walk-through
 
 **Install Prometheus with Helm 3**
 
-- Let's `ssh` into our freshly baked VM
-```bash
-vagrant ssh
-```
+- Let's `ssh` into our freshly baked VM: `vagrant ssh`
 
-- Let's create a namespace `monitoring` for bundling all monitoring tools
-```bash
-kubectl create namespace monitoring
-```
+- Let's create a namespace `monitoring` for bundling all monitoring tools: `kubectl create namespace monitoring`
 
 - Install `Prometheus` using `helm 3` on `monitoring` namespace
   | *Helm* is a popular package manager for Kubernetes (think `apt` for `Ubuntu` or `pip` for `Python`). It uses a templating language to make the managing of multiple Kubernetes items in a single application easier to package, install, and update.
@@ -131,15 +121,12 @@ If the installation was successful you should be able to see **6** running pods:
 - Exporter: This is responsible for getting the logs from the nodes
 - Grafana and other metrics tools
 
-```bash
-kubectl get pods --namespace=monitoring
-```
+`kubectl get pods --namespace=monitoring`
+
 ![image](https://user-images.githubusercontent.com/7910856/104797733-080c5100-57c9-11eb-96ac-348502975c13.png)
 
 and,
-```bash
-helm ls --namespace monitoring
-```
+`helm ls --namespace monitoring`
 
 ![image](https://user-images.githubusercontent.com/7910856/104797759-3be77680-57c9-11eb-9c38-5bd7e9e8ac15.png)
 
@@ -179,9 +166,7 @@ prometheus-kube-prometheus-operator       ClusterIP    10.43.242.43   <none>    
 prometheus-grafana                        ClusterIP    10.43.31.19    <none>        80/TCP                 40m
 ```
 
-```bash
-kubectl edit svc --namespace monitoring prometheus-grafana
-```
+`kubectl edit svc --namespace monitoring prometheus-grafana`
 
 Make some modification to the YAML config such that you can access Grafana from your local machine:
 - `type: ClusterIP` with `type: NodePort`, and 
@@ -189,9 +174,7 @@ Make some modification to the YAML config such that you can access Grafana from 
 
 Do the same for `prometheus-operator`:
 
-```bash
-kubectl edit svc --namespace monitoring prometheus-kube-prometheus-operator
-```
+`kubectl edit svc --namespace monitoring prometheus-kube-prometheus-operator`
 
 Verify that services where updated, and we should see service type as `NodePort` and exposed/forwarded ports.
 
@@ -231,20 +214,15 @@ Read more [here](https://www.vagrantup.com/docs/networking/forwarded_ports)
 
 After `vagrant up` is done, you will SSH into the Vagrant environment and retrieve the Kubernetes config file used by `kubectl`. We want to copy the contents of this file into our local environment so that `kubectl` knows how to communicate with the K3s cluster.
 
-```bash
-vagrant ssh
-```
+`vagrant ssh`
 
 Print out the contents of the file. 
 
 `sudo cat /etc/rancher/k3s/k3s.yaml`
 
-
 On a separate terminal, create the file (or replace if it already exists) 
 
-```bash
-vim ~/.kube/config` 
-```
+`vim ~/.kube/config`
 
 and paste the contents of the `k3s.yaml` output here.
 
