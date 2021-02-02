@@ -21,7 +21,9 @@ tags:
 
 # The Story
 
-We would like to install the monitoring tool [Prometheus](https://prometheus.io/docs/introduction/overview/) and [Grafana](https://grafana.com/) with [helm 3](https://v3.helm.sh/) on our local machine/VM running a [Kubernetes](https://kubernetes.io/) cluster.
+We would like to install the monitoring tool [Prometheus](https://prometheus.io/docs/introduction/overview/) and [Grafana](https://grafana.com/) with [helm 3](https://v3.helm.sh/) on our local machine/VM running a [Kubernetes](https://kubernetes.io/) cluster. 
+
+In this post we will go through the procedure of deploying Prometheus and Grafana in a Kubernetes Cluster.
 
 ## TL;DR
 
@@ -36,6 +38,8 @@ For this application, we need a Kubernetes cluster running locally and to interf
 - With [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 - To run [K3s](https://k3s.io/) and,
 - Interface with it via [`kubectl`](https://rancher.com/docs/rancher/v2.x/en/cluster-admin/cluster-access/kubectl/)
+
+# The Walk-through
 
 ## Configuration
 
@@ -96,7 +100,7 @@ end
 
 Running the following command will start up the virtual machine and install the relevant dependencies: `vagrant up`
 
-# The Walk-through
+
 
 **Install Prometheus with Helm 3**
 
@@ -146,7 +150,7 @@ These are simple ways of forwarding a Kubernetes service's port to a local port 
 
 `kubectl port-forward prometheus-prometheus-kube-prometheus-prometheus-0 --address 0.0.0.0 3000:80 -n monitoring`
 
-![image](https://user-images.githubusercontent.com/7910856/104796952-3d15a500-57c3-11eb-8561-5590df88b02e.png)
+In my case this was never successful and I had to opt for the second option.
 
 **Port-forwarding with NodePort service**
 
@@ -166,9 +170,11 @@ prometheus-kube-prometheus-operator       ClusterIP    10.43.242.43   <none>    
 prometheus-grafana                        ClusterIP    10.43.31.19    <none>        80/TCP                 40m
 ```
 
-`kubectl edit svc --namespace monitoring prometheus-grafana`
 
-Make some modification to the YAML config such that you can access Grafana from your local machine:
+You will need to make some modification to the `prometheus-grafana` YAML config such that you can access Grafana from your local machine.
+
+Run `kubectl edit svc --namespace monitoring prometheus-grafana` and make the following changes:
+
 - `type: ClusterIP` with `type: NodePort`, and 
 - Change `nodePort` and choose from range `30000 - 30100` as defined in the `Vagrantfile`.
 
@@ -188,7 +194,18 @@ Verify that you can access the localhost through port `30100`
 
 Also, check out more details [on best practices when accessing Applications in a Cluster.](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/)
 
-## Troubleshooting
+# Access Grafana
+
+If the installation was successful we should be able to access Grafana from our local system. Thanks to [port-forwarding](https://portforward.com/).
+
+**Note:** When installing via the Prometheus Helm chart, the default Grafana admin password is actually `prom-operator`
+
+![image](https://user-images.githubusercontent.com/7910856/104797296-b1514800-57c5-11eb-8c81-257d17eb4d56.png)
+
+![image](https://user-images.githubusercontent.com/7910856/104796998-85cd5e00-57c3-11eb-9a83-ab35b5b72baf.png)
+
+
+# Troubleshooting
 
 **Vagrant cannot forward the specified ports on this VM**
 
@@ -273,22 +290,10 @@ Error: Kubernetes cluster unreachable: Get "http://localhost:8080/version?timeou
 
 Let `helm` use the same config `kubectl` uses, this fixes it.
 
-```bash
-vagrant@master:~> echo "export KUBECONFIG=/etc/rancher/k3s/k3s.yaml" >> ~/.bashrc
-```
+`vagrant@master:~> echo "export KUBECONFIG=/etc/rancher/k3s/k3s.yaml" >> ~/.bashrc`
 or
 
-```bash
-vagrant@master:~> kubectl config view --raw >~/.kube/config
-```
-
-# Access Grafana
-
-**Note:** When installing via the Prometheus Helm chart, the default Grafana admin password is actually `prom-operator`
-
-![image](https://user-images.githubusercontent.com/7910856/104797296-b1514800-57c5-11eb-8c81-257d17eb4d56.png)
-
-![image](https://user-images.githubusercontent.com/7910856/104796998-85cd5e00-57c3-11eb-9a83-ab35b5b72baf.png)
+`vagrant@master:~> kubectl config view --raw >~/.kube/config`
 
 
 # Reference
