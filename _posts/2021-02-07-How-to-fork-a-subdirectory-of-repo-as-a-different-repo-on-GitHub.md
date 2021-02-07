@@ -65,7 +65,7 @@ git fetch origin '+refs/heads/*:refs/heads/*'
 git checkout fork-src-dir
 ```
 
-You now have a "fork" of the `/mmphego/src` subdirectory.
+You now have a "fork" of the `src` subdirectory.
 
 # Reference
 
