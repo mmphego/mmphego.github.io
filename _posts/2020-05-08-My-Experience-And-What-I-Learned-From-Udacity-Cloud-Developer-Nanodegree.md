@@ -102,9 +102,11 @@ I had to deploy the docker images to a [Kubernetes](https://kubernetes.io/) clus
 Github Project Link: [https://github.com/mmphego/cloud-developer-course3-microservices/tree/master/Project_Refactor-Udagram-app-into-Microservices-and-Deploy](https://github.com/mmphego/cloud-developer-course3-microservices/tree/master/Project_Refactor-Udagram-app-into-Microservices-and-Deploy)
 
 ## Develop and Deploy a Serverless App
+
 Learn both the theory of using serverless technologies with the practice of developing a complex serverless application and focuses on learning by doing. You will learn advanced serverless features such as implementing WebSockets and stream processing.
 
 ### What I learned
+
 In this project, I had to develop a TODO app based on serverless service.
 The application allowed creating/removing/updating/fetching TODO items. Each TODO item could optionally have an attachment image and each user only had access to TODO items that he/she has created.
 
@@ -112,6 +114,8 @@ This application consisted of a React-based front-end which allowed user authent
 S3, and Elasticsearch. The app had to be deployed to Amazon Web Services using a [Serverless Framework](https://serverless.com/).
 
 Github Project Link: [https://github.com/mmphego/cloud-developer/tree/master/course-04/project/c4-final-project-starter-code](https://github.com/mmphego/cloud-developer/tree/master/course-04/project/c4-final-project-starter-code)
+
+I found this [blog post](https://www.g2i.co/blog/react-separation-of-concerns) on [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns) when it comes to React very useful.
 
 # Capstone Project
 
