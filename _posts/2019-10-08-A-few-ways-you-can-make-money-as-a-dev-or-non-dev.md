@@ -24,10 +24,6 @@ tags:
 {: refdef}
 
 
-{:refdef: style="text-align: center;"}
-<iframe src="//rcm-na.amazon-adsystem.com/e/cm?o=1&p=7&l=ez&f=ifr&linkID=0ede6905933e2afe1b42e26deab86c07&t=mphomphego-20&tracking_id=mphomphego-20" width="468" height="40" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
-{: refdef}
-
 -----------------------------------------------------------------------------------------
 
 {:refdef: style="text-align: center;"}
@@ -86,13 +82,6 @@ FYI Read everything...
 # The How
 I will divide this in various section, and note is randomized and doesn't really follow a pattern.
 
-<!--
-{:refdef: style="text-align: left;"}
-<div>
-<a href="https://www.loot.co.za/browse?cat=b&referrer=mphomphego"><img src='https://www.loot.co.za/shop/img/banners/468x60banner.gif'></a>
-</div>
-{: refdef}
- -->
 ## Full-time Job
 
 The most common and obvious is to have a job at a company. Duh!!!
