@@ -26,12 +26,6 @@ tags:
 
 -----------------------------------------------------------------------------------------
 
-{:refdef: style="text-align: center;"}
-<div>
-<a href="https://www.loot.co.za/browse?cat=b&referrer=mphomphego"><img src='https://www.loot.co.za/shop/img/banners/468x60banner.gif'></a>
-</div>
-{: refdef}
-
 # The Story
 
 Global recession has hit it's peak, there's never been a better time to make some extra money on the side. Especially if like me you have found yourself broke many a times in your life to the point where you would start selling some of your memorable asserts just to make ends meet, the feeling of not having money is no like any other feeling trust me.
@@ -74,10 +68,6 @@ Stay on the right side of the law, disclose extra income when you file your taxe
 ## TL;DR
 
 FYI Read everything...
-
-{:refdef: style="text-align: center"}
-[![Alt text](https://www.loot.co.za/shop/img/banners/468x60banner.gif)](https://www.loot.co.za/browse?cat=b&referrer=mphomphego)
-{: refdef}
 
 # The How
 I will divide this in various section, and note is randomized and doesn't really follow a pattern.
@@ -307,10 +297,6 @@ A list of referral programs you can join:
 
 ## Advertising
 
-{:refdef: style="text-align: center"}
-[![Alt text](https://www.loot.co.za/shop/img/banners/468x60banner.gif)](https://www.loot.co.za/browse?cat=b&referrer=mphomphego)
-{: refdef}
-
 ### Wrap your car in advertising
 [brandyourcar](https://byc.cash/) turns your commute into cash, but this money-making opportunity is probably not a good fit for car enthusiasts.
 
@@ -335,10 +321,6 @@ You can set up an account to start getting paid for your Tweets/Instagram/Facebo
 If you have start up funds you can look at flipping, which is the process of buying and selling products or property for a profit.  A lot of people don’t know what things are worth, and you can take advantage of that by reselling things you find for cheap.  Once you get rolling, it’s a fairly passive source of income.
 
 # Conclusion
-
-{:refdef}
-<div id="amzn-assoc-ad-b95f659f-7175-4d7a-86e7-2afe0fcc6598"></div><script async src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=b95f659f-7175-4d7a-86e7-2afe0fcc6598"></script>
-{: refdef}
 
 
 **I created this blog post so that you do not have to make your own research.**
@@ -370,6 +352,3 @@ Good luck with your journey to financial freedom.
 - [An Epic List Of 79 Referral Programs](https://www.referralcandy.com/blog/47-referral-programs/)
 - [Essential Bug Bounty Programs](https://www.tripwire.com/state-of-security/security-data-protection/cyber-security/essential-bug-bounty-programs/)
 
-{:refdef: style="text-align: center"}
-[![Alt text](https://www.loot.co.za/shop/img/banners/468x60banner.gif)](https://www.loot.co.za/browse?cat=b&referrer=mphomphego)
-{: refdef}
