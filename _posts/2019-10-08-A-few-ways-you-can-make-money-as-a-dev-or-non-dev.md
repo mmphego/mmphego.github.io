@@ -92,7 +92,7 @@ You can work as little or as much as you want and set your price at **$5** per g
 
 <p>
 Hit the button to register your profile. <br/>
-<a href="https://track.fiverr.com/visit/?bta=58226&nci=5718" Target="_Top"><img border="0" src="https://fiverr.ck-cdn.com/tn/serve/?cid=1801812"  width="120" height="20"></a>
+<a href="https://track.fiverr.com/visit/?bta=58226&nci=5718" Target="_Top"><img border="0" src="https://central.ck-cdn.com/fiverr/2020-01-08/3238Connectionbanners120x20_2926ae56.jpg"  width="120" height="20"></a>
 </p>
 
 I have a couple of gigs listed on [Fiverr](https://track.fiverr.com/visit/?bta=58226&nci=5718), checkout [my gig list](https://www.fiverr.com/mmphego) for inspirations or purchases.
