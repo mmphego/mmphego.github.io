@@ -67,6 +67,18 @@ git checkout dir-you-want-to-fork
 
 You now have a "fork" of the `src` subdirectory.
 
+## Merge to main/dev branch (troubleshooting)
+
+If you ever you run `git merge master` and get the error **fatal: refusing to merge unrelated histories**; run
+
+```bash
+git checkout dir-you-want-to-fork
+git merge --allow-unrelated-histories master
+# Fix conflicts and
+git commit -a
+git push origin dir-you-want-to-fork
+```
+
 # Reference
 
 - [Splitting a subfolder out into a new repository](https://docs.github.com/en/github/using-git/splitting-a-subfolder-out-into-a-new-repository)
