@@ -26,15 +26,15 @@ Note: I do not think you can fork subdirectories through GitHub's web interface
 ## Clone the repo
 
 ```bash
-git clone https://github.com/<username>/<my-repo>
-cd my-repo
+git clone https://github.com/<someones-username>/<some-repo-you-want-to-fork>
+cd some-repo-you-want-to-fork
 ```
 
 ## Create a branch using the `git subtree` command for the folder only
 
 ```bash
-git subtree split --prefix=./src -b fork-src-dir
-git checkout fork-src-dir
+git subtree split --prefix=./src -b dir-you-want-to-fork
+git checkout dir-you-want-to-fork
 ```
 
 ## Create a new GitHub repo
@@ -44,15 +44,15 @@ Head over to GitHub and create a new repository you wish to fork the directory t
 ## Add the newly created repo as a remote
 
 ```bash
-cd my-repo
-git remote add upstream https://github.com/<username>/<new_repo>.git
+cd some-repo-you-want-to-fork
+git remote set-url origin https://github.com/<username>/<new_repo>.git
 ```
 
 ## Push the subtree to the new repository
 
 ```bash
 git fetch origin -pa
-git push -u origin fork-src-dir
+git push -u origin dir-you-want-to-fork
 ```
 
 ## Fetch all remote branches in the new repository
@@ -62,7 +62,7 @@ git clone https://github.com/<username>/<new_repo>.git
 cd new_repo
 git checkout --detach
 git fetch origin '+refs/heads/*:refs/heads/*'
-git checkout fork-src-dir
+git checkout dir-you-want-to-fork
 ```
 
 You now have a "fork" of the `src` subdirectory.
