@@ -12,10 +12,10 @@ help:
 	@echo "  superclean     	to clean and delete jekyll images"
 
 build:
-	@docker build -t mmphego/jekyll .
+	@docker build --memory 256mb --no-cache=true -t mmphego/jekyll .
 
 run:
-	@docker run --name jekyll -i -v "$(PWD)":/site -p 4000:4000 mmphego/jekyll
+	@docker run --restart=on-failure:5 --memory 256mb --cpus="1.5" --name jekyll -i -v "$(PWD)":/site -p 4000:4000 mmphego/jekyll
 
 start:
 	@docker start jekyll || true
