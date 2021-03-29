@@ -19,11 +19,12 @@ tags:
 
 -----------------------------------------------------------------------------------------
 
+
 # The Story
 
 We would like to install the monitoring tool [Prometheus](https://prometheus.io/docs/introduction/overview/) and [Grafana](https://grafana.com/) with [helm 3](https://v3.helm.sh/) on our local machine/VM running a [Kubernetes](https://kubernetes.io/) cluster. 
 
-In this post we will go through the procedure of deploying Prometheus and Grafana in a Kubernetes Cluster.
+In this post, we will go through the procedure of deploying Prometheus and Grafana in a Kubernetes Cluster.
 
 ## TL;DR
 
@@ -55,7 +56,7 @@ box_version = "15.2.31.309"
 # The "2" in `Vagrant.configure` configures the configuration version (we 
 # support older styles for backwards compatibility). Please don't change it # # unless you know what you're doing.
 Vagrant.configure("2") do |config|
-  # The most common configuration options are documented and commented below.
+  # The most common configuration options are documented and commented on below.
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
 
@@ -108,7 +109,7 @@ Running the following command will start up the virtual machine and install the 
 
 - Let's create a namespace `monitoring` for bundling all monitoring tools: `kubectl create namespace monitoring`
 
-- Install `Prometheus` using `helm 3` on `monitoring` namespace
+- Install `Prometheus` using `helm 3` on the `monitoring` namespace
   | *Helm* is a popular package manager for Kubernetes (think `apt` for `Ubuntu` or `pip` for `Python`). It uses a templating language to make the managing of multiple Kubernetes items in a single application easier to package, install, and update.
 
 ```bash
@@ -138,7 +139,7 @@ Once everything is up and running we need to access *Grafana*.
 
 It is highly advisable to use some kind of ingress to expose the services to the world, an example would be to use [NGINX](https://kubernetes.github.io/ingress-nginx/). 
 
-But for the testing purposes, we can either use;
+But for testing purposes, we can either use;
 - `kubectl port-forward` or,
 - Expose pods with [**NodePort** service](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport). 
 
@@ -150,11 +151,11 @@ These are simple ways of forwarding a Kubernetes service's port to a local port 
 
 `kubectl port-forward prometheus-prometheus-kube-prometheus-prometheus-0 --address 0.0.0.0 3000:80 -n monitoring`
 
-In my case this was never successful and I had to opt for the second option.
+In my case, this was never successful and I had to opt for the second option.
 
 **Port-forwarding with NodePort service**
 
-Retrieve all services running on `monitoring` namespace
+Retrieve all services running on the `monitoring` namespace
 
 ```bash
 vagrant@master:~> kubectl get svc --namespace monitoring
@@ -182,7 +183,7 @@ Do the same for `prometheus-operator`:
 
 `kubectl edit svc --namespace monitoring prometheus-kube-prometheus-operator`
 
-Verify that services where updated, and we should see service type as `NodePort` and exposed/forwarded ports.
+Verify that services were updated, and we should see service type as `NodePort` and exposed/forwarded ports.
 
 ![image](https://user-images.githubusercontent.com/7910856/104798447-908df000-57cf-11eb-8613-05861105ccb8.png)
 
@@ -216,7 +217,7 @@ ports! The forwarded port to 4567 is already in use on the host
 machine.
 
 To fix this, modify your current projects Vagrantfile to use another
-port. Example, where '1234' would be replaced by a unique host port:
+port. For example, where '1234' would be replaced by a unique host port:
 
   config.vm.forward_port 80, 1234
 ```
@@ -237,7 +238,7 @@ Print out the contents of the file.
 
 `sudo cat /etc/rancher/k3s/k3s.yaml`
 
-On a separate terminal, create the file (or replace if it already exists) 
+On a separate terminal, create the file (or replace it if it already exists) 
 
 `vim ~/.kube/config`
 

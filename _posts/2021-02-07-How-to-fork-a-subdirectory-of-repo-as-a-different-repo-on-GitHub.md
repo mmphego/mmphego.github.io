@@ -17,7 +17,7 @@ tags:
 
 # The Story
 
-Ever wanted to fork a subdirectory and not the whole git/github repository. Well I have, I recently had to fork a subdirectory of one of the repositories I wanted to work on without the need to forking the whole repository. In this post I will show you how it's done.
+Ever wanted to fork a subdirectory and not the whole Git/GitHub repository. Well I have, I recently had to fork a subdirectory of one of the repositories I wanted to work on without the need to fork the whole repository. In this post, I will show you how it's done.
 
 Note: I do not think you can fork subdirectories through GitHub's web interface
 
@@ -69,7 +69,7 @@ You now have a "fork" of the `src` subdirectory.
 
 ## Merge to main/dev branch (troubleshooting)
 
-If you ever you run `git merge master` and get the error **fatal: refusing to merge unrelated histories**; run
+If you ever run `git merge master` and get the error **fatal: refusing to merge unrelated histories**; run
 
 ```bash
 git checkout dir-you-want-to-fork
