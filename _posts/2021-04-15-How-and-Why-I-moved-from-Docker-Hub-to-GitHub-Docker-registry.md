@@ -13,7 +13,7 @@ tags:
 # How And Why I Moved From Docker Hub To GitHub Docker Registry.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2021-04-15-How-and-Why,-I-moved-from-Docker-Hub-to-GitHub-Docker-registry..png" | absolute_url }})
+![post image]({{ "assets/2021-04-15-How-and-Why-I-moved-from-Docker-Hub-to-GitHub-Docker-registry.png" | absolute_url }})
 {: refdef}
 
 10 Min Read
