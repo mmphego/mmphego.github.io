@@ -24,7 +24,7 @@ tags:
 
 On [August 2020](https://www.docker.com/blog/what-you-need-to-know-about-upcoming-docker-hub-rate-limiting/), [Docker](https://www.docker.com/) announced that they are introducing rate-limiting for Docker container pulls for free or anonymous users, which meant if you did not login to your DockerHub registry via command-line you would be limited to 100 pulls per 6 hours. At first, this did not affect me as I rarely pulled 10 images per day, but recently I have been tinkering with Kubernetes, Prometheus, Jaeger (you can check this [post](https://blog.mphomphego.co.za/blog/2021/02/01/Install-Prometheus-and-Grafana-with-helm-3-on-Kubernetes-cluster-running-on-Vagrant-VM.html) on how to install Prometheus&Grafana on K3s cluster) and other tools which usually pulls multiple images per run. You can check
 
-This meant that I would be pulling images more frequently than I used to in the past. That's when I got the dreaded error message, **"You have reached your pull rate limit. You may increase the limit by authenticating and upgrading: https://www.docker.com/increase-rate-limits"**.
+This meant that I would be pulling images more frequently than I used to in the past. That's when I got the dreaded error message, **"429 Too Many Requests - Server message: toomanyrequests: You have reached your pull rate limit. You may increase the limit by authenticating and upgrading: https://www.docker.com/increase-rate-limit"**.
 
 {:refdef: style="text-align: center;"}
 ![](https://camo.githubusercontent.com/aaa6bb5fed0b77cc6c2251b347043382cec926ef56814602c5556799b7317687/68747470733a2f2f6d656469612e67697068792e636f6d2f6d656469612f6c34364362417578466b32437a307332412f736f757263652e676966)
