@@ -190,8 +190,8 @@ Setting up your container registry is straight forward.
     ```
 
     Paste the following code snippet into your `docker-image-publisher.yaml`. This workflow will build and push images on pull requests and master branches.
-    Note: The location of the
-
+   
+    {% raw %}
     ```yaml
     ---
     name: Docker Image CI
@@ -224,10 +224,12 @@ Setting up your container registry is straight forward.
             echo "${{ secrets.DOCKER_PASSWORD }}" | docker login ghcr.io -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
             docker-compose -f deployment/docker/docker-compose-file.yaml push
     ```
-
+    {% endraw %}
     Run the GitHub Action build manually...
 
     ![image](https://user-images.githubusercontent.com/7910856/116215157-b2d8c780-a747-11eb-9978-6a8073dc7cf6.png)
+
+    Alternatively, checkout the [Docker Build & Push Action](https://github.com/marketplace/actions/docker-build-push-action) or [Build and push Docker images](https://github.com/marketplace/actions/build-and-push-docker-images)
 
 7. Configure Kubernetes to use your new container registry **(Optional)**
 
