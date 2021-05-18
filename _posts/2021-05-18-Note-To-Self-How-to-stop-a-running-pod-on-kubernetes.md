@@ -34,15 +34,15 @@ kubectl scale --help
 
 # The How
 
-Running a basic `kubectl run` command to bring up a few mining pods where `rke_config_cluster.yml` is my RKE config file.
+Running a basic `kubectl run` command to bring up a few mining pods where `kube_config_cluster.yml` is my RKE config file.
 
 ```bash
 #start monero_cpu_moneropool
-kubectl run --kubeconfig rke_config_cluster.yml moneropool --image=servethehome/monero_cpu_moneropool:latest --replicas=1
+kubectl run --kubeconfig kube_config_cluster.yml moneropool --image=servethehome/monero_cpu_moneropool:latest --replicas=1
 #start minergate
-kubectl run --kubeconfig rke_config_cluster.yml minergate --image=servethehome/monero_cpu_minergate:latest --replicas=1
+kubectl run --kubeconfig kube_config_cluster.yml minergate --image=servethehome/monero_cpu_minergate:latest --replicas=1
 #start cryptotonight
-kubectl run --kubeconfig rke_config_cluster.yml minergate --image=servethehome/universal_cryptonight:latest --replicas=1
+kubectl run --kubeconfig kube_config_cluster.yml minergate --image=servethehome/universal_cryptonight:latest --replicas=1
 ```
 
 After realising that my CPU was choking, I then tried to stop the mining pods.
@@ -60,8 +60,8 @@ That's when it hinted to me, the command I copied ensures that there's always 1 
 I managed to stop all my mining pods by ensuring that there are no working deployments which is simply done by setting the number of replicas to 0. Duh!!!
 
 ```bash
-kubectl --kubeconfig=rke_config_cluster.yml  scale --replicas=0 deployment minergate moneropool
-kubectl --kubeconfig=rke_config_cluster.yml  scale --replicas=0 replicaset minergate-686c565775 moneropool-69fbc5b6d5
+kubectl --kubeconfig=kube_config_cluster.yml  scale --replicas=0 deployment minergate moneropool
+kubectl --kubeconfig=kube_config_cluster.yml  scale --replicas=0 replicaset minergate-686c565775 moneropool-69fbc5b6d5
 ```
 
 ![image](https://user-images.githubusercontent.com/7910856/118584808-fa2b0480-b797-11eb-9bee-13bfb4661286.png)
