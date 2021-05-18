@@ -8,7 +8,7 @@ tags:
 # Note To Self: How To Stop A Running Pod On Kubernetes.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2021-05-18-Note-To-Self:-How-to-stop-a-running-pod-on-kubernetes.png" | absolute_url }})
+![post image]({{ "/assets/2021-05-18-Note-To-Self-How-to-stop-a-running-pod-on-kubernetes.png" | absolute_url }})
 {: refdef}
 
 3 Min Read
