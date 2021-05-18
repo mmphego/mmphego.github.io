@@ -21,7 +21,7 @@ OMG, I just ran a Kubernetes command from the wild and now I cannot seem to stop
 
 So, this is what happened right. I have a [RKE Kubernetes](https://rancher.com/products/rke/) cluster running on a Vagrant box and I thought to myself. Why not try to use it to mine a few cryptos while at it; since the crypto business has been booming recently.
 
-So the idea was to test it on my Vagrant box, and some how let it find its way to run it elsewhere so that I can mine while I sleep and then one day wake up as a Gajillionare or something close.
+So the idea was to test it on my Vagrant box, and somehow let it find its way to run it elsewhere so that I can mine while I sleep and then one day wake up as a Gajillionare or something close.
 
 Note To Self: Never blindly run commands on your system especially from the wild.
 
@@ -49,15 +49,15 @@ After realising that my CPU was choking, I then tried to stop the mining pods.
 
 ![image](https://user-images.githubusercontent.com/7910856/118583866-09a94e00-b796-11eb-8c16-5cfef8008c24.png)
 
-Little did I know that, Kubernetes doesn't support stop/pause of current state of pod(s). Then I started deleting the pods thinking that this will automagically stop and delete the pods and sure enough that didn't work.
+Little did I know that Kubernetes doesn't support the stop/pause of the current state of the pod(s). Then I started deleting the pods thinking that this will automagically stop and delete the pods and sure enough that didn't work.
 
 ![image](https://user-images.githubusercontent.com/7910856/118583540-85ef6180-b795-11eb-9e77-dcaa69607795.png)
 
-That's when it hinted me, that the command I copied ensures that there's always 1 replica running which was why the pods kept on being re-spawned.
+That's when it hinted to me, the command I copied ensures that there's always 1 replica running, which was why the pods kept on being re-spawned.
 
 # The Walk-through
 
-I managed to stop all my mining pods by ensuring that there are no working deployments which is simply done by setting number of replicas to 0. Duh!!!
+I managed to stop all my mining pods by ensuring that there are no working deployments which is simply done by setting the number of replicas to 0. Duh!!!
 
 ```bash
 kubectl --kubeconfig=rke_config_cluster.yml  scale --replicas=0 deployment minergate moneropool
@@ -75,4 +75,3 @@ And that's how I failed to become a Gajillionare, maybe I should just run this i
 # Reference
 
 - [Rancher Kubernetes Engine (RKE)](https://rancher.com/products/rke/)
-- []()
