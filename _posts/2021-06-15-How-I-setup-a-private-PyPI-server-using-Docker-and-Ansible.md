@@ -15,26 +15,26 @@ tags:
 ![post image]({{ "/assets/2021-06-15-How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible.png" | absolute_url }})
 {: refdef}
 
-<<TIME TO READ>>
+7 Min Read
 
 -----------------------------------------------------------------------------------------
 
 # The Story
 
-Recently, I worked on a [Jira](https://www.atlassian.com/software/jira) ticket that has been in the backlog for a while. The story goes like this, we (my team @ work) have a [PyPI](https://en.wikipedia.org/wiki/Python_Package_Index) server (running on [devpi](https://github.com/devpi/devpi)) which hosts our packages. There were a couple of issues which we saw as potential risks, namely:
+Recently, I worked on a [Jira](https://www.atlassian.com/software/jira) ticket that has been in the backlog for a while. The story goes like this, we (my team @ work) have a [PyPI](https://en.wikipedia.org/wiki/Python_Package_Index) server (running on [devpi](https://github.com/devpi/devpi)) which hosts our packages. There were a couple of issues that we saw as potential risks, namely:
 
 - The setup was not under config management, meaning we didn't know how we would reconstitute it if it dies and like every software project there wasn't much detailed documentation on the how-to.
 - The Python packages did not have any backups, so if something was to happen it would be bye-bye to old packages i.e. It would be tricky to tests old system releases.
 - The server needed to be restarted occasionally to forcefully refresh the packages as our package index had grown over the past few years.
 
 My initial approach to this was:
-- Research and evaluating existing tools that Python ecosystem had to offer, [devpi](https://github.com/devpi/devpi) and [pypiserver](https://pypi.org/project/pypiserver/) being the most prominent ones.
+- Research and evaluating existing tools that the Python ecosystem had to offer, [devpi](https://github.com/devpi/devpi) and [pypi-server](https://pypi.org/project/pypiserver/) being the most prominent ones.
 - Run the PyPI server in a container preferably Docker (current setup was running in a [ProxMox LXC container](https://pve.proxmox.com/wiki/Linux_Container).)
 - Ensure that the deployment is deterministic and,
-- PyPi repository that can be torn down and recreated adhoc by a single command (preferably through [Ansible](https://docs.ansible.com/ansible/latest/index.html)) .
-- Overall ensure that there isn't any significant downtime between the change-over i.e. The client side shouldn't have to make any changes.
+- PyPi repository that can be torn down and recreated ad-hoc by a single command (preferably through [Ansible](https://docs.ansible.com/ansible/latest/index.html)) .
+- Overall ensure that there isn't any significant downtime between the change-over i.e. The client-side shouldn't have to make any changes.
 
-In this post, I will try to detail how I how i setup a private local PyPI server using [Docker](https://docs.docker.com/get-docker) And [Ansible](https://docs.ansible.com/ansible/latest/index.html).
+In this post, I will try to detail how I set up a private local PyPI server using [Docker](https://docs.docker.com/get-docker) And [Ansible](https://docs.ansible.com/ansible/latest/index.html).
 
 # TL;DR
 
@@ -42,23 +42,23 @@ Deploy/destroy devpi server running in Docker container using a single command.
 
 # The How
 
-After my initial research between [devpi](https://github.com/devpi/devpi) and [pypiserver](https://pypi.org/project/pypiserver/). Devpi won for various and obvious reasons!
+After my initial research between [devpi](https://github.com/devpi/devpi) and [pypi-server](https://pypi.org/project/pypiserver/). Devpi won for various and obvious reasons!
 
-I could have just [bash scripted](https://www.linux.com/training-tutorials/writing-simple-bash-script/) everything quickly before putting it all together but then were is the fun in that? Also this has to run in Prod. Hence, why I decided on a over-engineered approach which would be a good learning platform. 
+I could have just [bash scripted](https://www.linux.com/training-tutorials/writing-simple-bash-script/) everything quickly before putting it all together but then where is the fun in that? Also, this has to run in Prod. Hence, why I decided on an over-engineered approach which would be a good learning platform. 
 
 # The Walk-through
 
-The setup is divided into two sections, [Containerisation](#containerisation) and [Automation](#automation).
+The setup is divided into two sections, [Containerization](#containerization) and [Automation](#automation).
 
-This post walk-through mainly focuses on the containerisation. Go [here]() for the automation.
+This post-walk-through mainly focuses on containerisation. Go [here]({{ "/blog/2021/06/15/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible-Continues.html" | absolute_url }}) for the automation.
 
 ## Prerequisite
 
-If you already have [Docker](https://docs.docker.com/get-docker/) and [Docker-Compose](https://docs.docker.com/compose/) installed and configured you can skip this step else you can search for your own installation methods.
+If you already have [Docker](https://docs.docker.com/get-docker/) and [Docker-Compose](https://docs.docker.com/compose/) installed and configured you can skip this step else you can search for your installation methods.
 
 ```bash
 sudo apt install docker.io
-# The Docker service needs to be setup to run at startup.
+# The Docker service needs to be set up to run at startup.
 sudo systemctl start docker
 sudo systemctl enable docker
 python3 -m pip install docker-compose
@@ -83,16 +83,17 @@ python3 -m pip install docker-compose
 
 #### Makefile
 
-Below is a snippet from our Makefile, which make it a lot easier for our [CI](https://en.wikipedia.org/wiki/Continuous_integration) system to lint, build, tag and push images to our local [Docker Registry](https://docs.docker.com/registry/). This means that instead of typing the whole docker command to build/tag or push, we can run something like:
+Below is a snippet from our Makefile, which makes it a lot easier for our [CI](https://en.wikipedia.org/wiki/Continuous_integration) system to lint, build, tag and pushes images to our local [Docker Registry](https://docs.docker.com/registry/). This means that instead of typing the whole docker command to build/tag or push, we can run something like:
 
 ```bash
-make push_pypi_server
 # Which will lint the Dockerfile, build, tag and push the image to our local registry
+make push_pypi_server
 ```
 
-You can also checkout my over-engineered Makefile [here](https://github.com/mmphego/Generic_Makefile).
+You can also check out my over-engineered Makefile [here](https://github.com/mmphego/Generic_Makefile).
 
 ```bash
+cat >> Makefile << EOF 
 SHELL := /bin/bash -eo pipefail
 # Defined images here
 .PHONY: $(IMAGES)
@@ -150,27 +151,29 @@ push_%: IMAGE = $(subst push_,,$@)
 push_%: tag_%  ## Push tagged container to cam registry.
     docker push $(REGISTRY)/$(IMAGE):latest
     rm -rf ".build_$(IMAGE)"
+EOF
 ```
 
 #### Devpi configuration
 
 This is a YAML [devpi configuration](https://devpi.net/docs/devpi/devpi/stable/+doc/quickstart-server.html#using-a-configuration-file-for-devpi-server).
 
-```yaml
-# config.yml
+```bash
+cat >> config.yml << EOF 
 ---
 devpi-server:
   host: 0.0.0.0
   port: 3141
   restrict-modify: root
+EOF
 ```
 
 #### Compose file(s)
 
-This is a developmental docker-compose which builds the image locally instead of using the image from the registry.
+This is a developmental docker-compose that builds the image locally instead of using the image from the registry.
 
-```yaml
-# docker-compose-dev.yaml
+```bash
+cat >> docker-compose-dev.yaml << EOF 
 ---
 version: '3'
 services:
@@ -184,9 +187,10 @@ services:
        - "${DEVPI_HOME:-./devpi}:/root/.devpi"
     tty: true
     stdin_open: true
+EOF
 ```
 
-The only difference between the `docker-compose-dev.yaml` and `docker-compose-stable.yaml` is one has a [build context and other has a defined image it pulls from](https://docs.docker.com/compose/compose-file/compose-file-v3/#service-configuration-reference)
+The only difference between the `docker-compose-dev.yaml` and `docker-compose-stable.yaml` is one has a [build context and the other has a defined image it pulls from](https://docs.docker.com/compose/compose-file/compose-file-v3/#service-configuration-reference)
 
 Run the command below to build the image and run the container on localhost
 
@@ -205,10 +209,10 @@ env DEVPI_HOME="${HOME}/.devpi" docker-compose -f docker-compose-dev.yaml up --b
 
 #### Dockerfile and scripts
 
-I created the following Dockerfile, which executes a script `entrypoint.sh` upon container startup and also copies a `create_pypi_index.sh` script which should be ran once when the devpi-server is up. This script [creates and configures the indices](https://devpi.net/docs/devpi/devpi/stable/+d/userman/devpi_indices.html).
+I created the following Dockerfile, which executes a script `entrypoint.sh` upon container startup and also copies a `create_pypi_index.sh` script which should be run once when the devpi-server is up. This script [creates and configures the indices](https://devpi.net/docs/devpi/devpi/stable/+d/userman/devpi_indices.html).
 
-```bash
-# Dockerfile
+```bash 
+cat >> Dockerfile << EOF 
 FROM python:3.7
 
 RUN pip install --no-cache-dir \
@@ -229,6 +233,7 @@ ENTRYPOINT ["bash", "/data/entrypoint.sh"]
 
 COPY config.yml /data/config.yml
 CMD ["devpi-server", "-c", "/data/config.yml"]
+EOF
 ```
 
 **`entrypoint.sh`**
@@ -236,17 +241,17 @@ CMD ["devpi-server", "-c", "/data/config.yml"]
 According to the [docs](https://devpi.net/docs/devpi/devpi/stable/+d/quickstart-server.html?highlight=devpi%2520init#installing-devpi-server-and-client):
 > When started afresh, `devpi-server` will not contain any users or indexes except for the root user and the `root/pypi` index (see using root/pypi index) which represents and caches https://pypi.org packages.
 
-Note: The `root/pypi` index is a read only cache of https://pypi.org, hence why a new index creation is necessary if you want to push packages as well.
+Note: The `root/pypi` index is a read-only cache of https://pypi.org, hence why a new index creation is necessary if you want to push packages as well.
 
 ```bash
-# entrypoint.sh
+cat >> entrypoint.sh << EOF 
 #!/usr/bin/env bash
 if ! [ -f /root/.devpi/server ]; then
     devpi-init
 fi
 
 exec "$@"
-
+EOF
 ```
 
 **`create_pypi_index.sh`**
@@ -254,31 +259,34 @@ exec "$@"
 Read more about indices creation [here](https://devpi.net/docs/devpi/devpi/stable/+d/userman/devpi_indices.html#devpi-um-indices-chapter)
 
 ```bash
-# create_pypi_index.sh
+cat >> create_pypi_index.sh << EOF 
 #!/usr/bin/env bash
 
-# Creates pypi user and an index for uploading packages to.
+# Creates PyPI user and an index for uploading packages to.
 
 devpi use http://localhost:3141
 devpi login root --password=
 devpi user -c pypi email= password=${PYPI_PASSWORD:-}
 devpi user -l
 devpi index -c pypi/stable bases=root/pypi volatile=True mirror_whitelist=*
+EOF
 ```
 
 Once the image has been build and a container is running, we can create an index by running the following:
 
+{% raw %}
 ```bash
 PYPI_CONTAINER=$(docker ps --filter "name=pypi" --filter "status=running" --format "{{.Names}}")
 docker exec -ti ${PYPI_CONTAINER} /bin/bash -c "/data/create_pypi_index.sh"
 ```
+{% endraw %}
 
 ### Client: Permanent index configuration for pip
 
 To avoid having to re-type index URLs with `pip` or `easy-install` , you can configure `pip` by setting the `index-url` entry in your `$HOME/.pip/pip.conf` (posix) or `$HOME/pip/pip.ini` (windows). Let’s do it for the `root/pypi` index:
 
 ```bash
-mkdir -p ~/.pip && cat << ~/.pip/pip.conf > EOF
+mkdir -p ~/.pip && cat >> ~/.pip/pip.conf << EOF 
 [global]
 no-cache-dir = false
 timeout = 60
@@ -291,7 +299,7 @@ EOF
 Alternatively, you can add a special environment variable to your shell settings (e.g. `.bashrc`):
 
 ```bash
-cat << ~/.bashrc >> EOF
+cat >> ~/.bashrc << EOF 
 export PIP_INDEX_URL=http://localhost:3141/root/pypi/stable/
 EOF
 ```
@@ -299,20 +307,21 @@ EOF
 ## Automation
 
 I didn't want the post to be too long.
-Post continues [here]()
+
+Post continues [here]({{ "/blog/2021/06/15/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible-Continues.html" | absolute_url }})
 
 # Conclusion
 
 Congratulations!!!
-Assuming that everything was setup correctly. You now have a container running a local/private PyPI server and you can download or upload (using [twine](https://pypi.org/project/twine/) or [devpi-client](https://pypi.org/project/devpi-client/)) packages. 
+Assuming that everything was set up correctly. You now have a container running a local/private PyPI server and you can download or upload (using [twine](https://pypi.org/project/twine/) or [devpi-client](https://pypi.org/project/devpi-client/)) packages. 
 
-We've been using this private package index for a few months, and also noticed significant improvement on downloading and installing packages. 
+We've been using this private package index for a few months, and also noticed a significant improvement in downloading and installing packages. 
 The image shows the time it takes to download and install packages before and after.
 ![image](https://user-images.githubusercontent.com/7910856/122068583-cffb4f80-cdf4-11eb-90c8-6f70cbbaa831.png)
 
 Note: 
 - Uploading packages to the local PyPI server is beyond the scope of this post.
-- The purpose of this post was mainly to share the approach that worked well for us. You may use it to host your own private package repository and index, adapting it the cloud provider and web server of your choice.
+- The purpose of this post was mainly to share the approach that worked well for us. You may use it to host your private package repository and index, adapting it to the cloud provider and web server of your choice.
 
 # Reference
 
