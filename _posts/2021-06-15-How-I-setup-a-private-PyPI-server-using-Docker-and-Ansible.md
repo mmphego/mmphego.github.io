@@ -50,7 +50,7 @@ I could have just [bash scripted](https://www.linux.com/training-tutorials/writi
 
 The setup is divided into two sections, [Containerization](#containerization) and [Automation](#automation).
 
-This post-walk-through mainly focuses on containerisation. Go [here]({{ "/blog/2021/06/15/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible-Continues.html" | absolute_url }}) for the automation.
+This post-walk-through mainly focuses on containerisation. Go [here]({{ "/blog/2021/06/16/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible-Continues.html" | absolute_url }}) for the automation.
 
 ## Prerequisite
 
@@ -66,7 +66,7 @@ python3 -m pip install docker-compose
 
 ## Containerization
 
-Part of my solution was that the PyPI server run in a container preferably Docker for obvious reasons (current setup was running in a [ProxMox LXC container](https://pve.proxmox.com/wiki/Linux_Container)).
+Part of my solution was that the PyPI server runs in a container preferably Docker for obvious reasons (current setup was running in a [ProxMox LXC container](https://pve.proxmox.com/wiki/Linux_Container)).
 Using a container offers convenience meaning deployments are deterministic.
 
 ### Directory Structure
@@ -159,50 +159,6 @@ push_%: tag_%  ## Push tagged container to cam registry.
 EOF
 ```
 
-#### Compose file(s)
-
-This is a developmental docker-compose that builds the image locally instead of using the image from the registry.
-
-```
-cat >> docker-compose-dev.yaml << EOF 
----
-version: '3'
-services:
-  devpi:
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    ports:
-      - "${DEVPI_PORT:-3141}:3141"
-    volumes:
-       - "${DEVPI_HOME:-./devpi}:/root/.devpi"
-    tty: true
-    stdin_open: true
-EOF
-```
-
-The only difference between the `docker-compose-dev.yaml` and `docker-compose-stable.yaml` is one has a [build context and the other has a defined image it pulls from](https://docs.docker.com/compose/compose-file/compose-file-v3/#service-configuration-reference)
-
-Run the command below to build the image and run the container on localhost
-
-```bash
-env DEVPI_HOME="${HOME}/.devpi" docker-compose -f docker-compose-dev.yaml up --build -d
-# or 
-# cat << EOF > .env
-# DEVPI_HOME="${HOME}/.devpi"
-# EOF
-# docker-compose --env-file ./.env -f docker-compose-dev.yaml up --build -d
-# --------------------------------------------------------------------------
-# or native
-# docker build -t pypi_server . 
-# docker run -d -ti -v "${HOME}/.devpi:/root/.devpi" -p 3141:3141 pypi_server
-```
-
-The PyPI server available at: http://localhost:3141. 
-If all went well you should see an image like below.
-
-![image](https://user-images.githubusercontent.com/7910856/122209330-b1ed2800-cea4-11eb-8e3e-92a3350f4c16.png)
-
 #### Dockerfile and scripts
 
 I created the following Dockerfile, which executes a script `entrypoint.sh` upon container startup and also copies a `create_pypi_index.sh` script which should be run once when the devpi-server is up. This script [creates and configures the indices](https://devpi.net/docs/devpi/devpi/stable/+d/userman/devpi_indices.html).
@@ -291,6 +247,50 @@ devpi-server:
 EOF
 ```
 
+#### Compose file(s)
+
+This is a developmental docker-compose that builds the image locally instead of using the image from the registry.
+
+```
+cat >> docker-compose-dev.yaml << EOF 
+---
+version: '3'
+services:
+  devpi:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "${DEVPI_PORT:-3141}:3141"
+    volumes:
+       - "${DEVPI_HOME:-./devpi}:/root/.devpi"
+    tty: true
+    stdin_open: true
+EOF
+```
+
+The only difference between the `docker-compose-dev.yaml` and `docker-compose-stable.yaml` is one has a [build context and the other has a defined image it pulls from](https://docs.docker.com/compose/compose-file/compose-file-v3/#service-configuration-reference)
+
+Run the command below to build the image and run the container on localhost
+
+```bash
+env DEVPI_HOME="${HOME}/.devpi" docker-compose -f docker-compose-dev.yaml up --build -d
+# or 
+# cat << EOF > .env
+# DEVPI_HOME="${HOME}/.devpi"
+# EOF
+# docker-compose --env-file ./.env -f docker-compose-dev.yaml up --build -d
+# --------------------------------------------------------------------------
+# or native
+# docker build -t pypi_server . 
+# docker run -d -ti -v "${HOME}/.devpi:/root/.devpi" -p 3141:3141 pypi_server
+```
+
+The PyPI server available at: http://localhost:3141. 
+If all went well you should see an image like below.
+
+![image](https://user-images.githubusercontent.com/7910856/122209330-b1ed2800-cea4-11eb-8e3e-92a3350f4c16.png)
+
 #### Garbage Collection
 
 To clean up for whatever reason run the following command:
@@ -331,14 +331,15 @@ Post continues [here]({{ "/blog/2021/06/15/How-I-setup-a-private-PyPI-server-usi
 
 # Conclusion
 
-Congratulations!!!
+**Congratulations!!!**
+
 Assuming that everything was set up correctly. You now have a container running a local/private PyPI server and you can download or upload (using [twine](https://pypi.org/project/twine/) or [devpi-client](https://pypi.org/project/devpi-client/)) packages. 
 
 We've been using this private package index for a few months, and also noticed a significant improvement in downloading and installing packages. 
 The image shows the time it takes to download and install packages before and after.
 ![image](https://user-images.githubusercontent.com/7910856/122068583-cffb4f80-cdf4-11eb-90c8-6f70cbbaa831.png)
 
-Note: 
+**Note:**
 - Uploading packages to the local PyPI server is beyond the scope of this post.
 - The purpose of this post was mainly to share the approach that worked well for us. You may use it to host your private package repository and index, adapting it to the cloud provider and web server of your choice.
 
