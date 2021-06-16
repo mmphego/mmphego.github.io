@@ -146,7 +146,7 @@ According to the [docs](https://www.vagrantup.com/intro#introduction-to-vagrant)
 
 
 Below is a `Vagrantfile`, used for local development which you may use, you would just need to run `vagrant up` and everything is installed and configured for you to work. 
-
+{% raw %}
 ```
 cat >> Vagrantfile << EOF
 # -*- mode: ruby -*-
@@ -180,6 +180,7 @@ Vagrant.configure(2) do |config|
 end
 EOF
 ```
+{% endraw %}
 
 Thereafter run the following command which allows you to install an SSH key on a remote server's authorized keys and it facilitates SSH key login, which removes the need for a password for each login, thus ensuring a password-less, automatic login process.
 
@@ -226,7 +227,7 @@ By default Ansible will look in each directory within a role for a `main.yml `fi
 ### Playbook
 
 We defined our playbook which deploys the PyPI server below.
-
+{% raw %}
 ```
 cat >> up_pypi.yml <<EOF
 ---
@@ -241,6 +242,7 @@ cat >> up_pypi.yml <<EOF
         nginx_reverse_proxy: reverse_proxy
 EOF
 ```
+{% endraw %}
 
 I found these posts relevant to the way we set up our `nginx_reverse_proxy`:
 - [NGINX Reverse Proxy](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
@@ -307,7 +309,7 @@ In this `main.yml` file we have a list of tasks that the role executes in sequen
 **Note:** These tasks are executed on the remote server, in this case, a vagrant box.
 
 Below is the `main.yml` which details the configuration, deployment and testing of the PyPI server (in a vagrant box).
-
+{% raw %}
 ```
 cat >> tasks/main.yml << EOF
 ---
@@ -424,16 +426,17 @@ cat >> tasks/main.yml << EOF
   tags: [tests]
 EOF
 ```
+{% endraw %}
 
 
 **`templates/`**:
 
 Ansible uses [Jinja2 templating](https://jinja2docs.readthedocs.io/) to enable dynamic expressions and access to variables.
 
-Below is an [Nginx](https://nginx.org/en/) templated config file used for routing from localhost to a dedicated [fqdn (Fully qualified domain name
+Below is an [Nginx](https://nginx.org/en/) templated config file used for routing from localhost to a dedicated [FQDN (Fully qualified domain name
 )](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)
 
-
+{% raw %}
 ```
 cat >> nginx-pypi.conf.j2 <<EOF
 server {
@@ -482,6 +485,7 @@ server {
 }
 EOF
 ```
+{% endraw %}
 
 #### Makefile
 Below is a snippet from our Makefile, which makes it a lot easier to install dependencies and set up a PyPI server. This means that instead of typing the whole `pip` or `ansible-playbook` commands to install dependencies and bring up a PyPI server, we can run something like:
@@ -491,7 +495,7 @@ make install_pkgs pypi
 ```
 
 You can also check out my over-engineered Makefile [here](https://github.com/mmphego/Generic_Makefile).
-
+{% raw %}
 ```
 cat >> Makefile << EOF 
 .DEFAULT_GOAL := help
@@ -522,6 +526,7 @@ pypi: ## Setup and start PyPI server
     ansible-playbook -i host_inventory -Kk up_pypi.yml
 EOF
 ```
+{% endraw %}
 
 
 ## Final Testing
@@ -531,7 +536,7 @@ To ensure deterministic `pypi_server` builds, I ran/did the following:
 - [x] Stopped `pypi_server` container, delete `pypi_server` on server
 - [x] Ran a CI job that builds and pushes Docker images to our local docker registry.
 - [x] Started `pypi_server` container by executing `make pypi` whilst in the current working directory (ansible roles) on an ansible dedicated server.
-- [x] Verified if `pypi.domain` fqdn is up (`curl http://pypi.domain && dig pypi.domain`) 
+- [x] Verified if `pypi.domain` FQDN is up (`curl http://pypi.domain && dig pypi.domain`) 
 - [x] In a virtual environment, installed a random Python package then rebuilt the wheel before pushing it to `pypi.domain`
 
 # Conclusion

@@ -256,7 +256,7 @@ EOF
 #### Compose file(s)
 
 This is a developmental docker-compose that builds the image locally instead of using the image from the registry.
-
+{% raw %}
 ```
 cat >> docker-compose-dev.yaml << EOF 
 ---
@@ -274,11 +274,12 @@ services:
     stdin_open: true
 EOF
 ```
+{% endraw %}
 
 The only difference between the `docker-compose-dev.yaml` and `docker-compose-stable.yaml` is one has a [build context and the other has a defined image it pulls from](https://docs.docker.com/compose/compose-file/compose-file-v3/#service-configuration-reference)
 
 Run the command below to build the image and run the container on localhost
-
+{% raw %}
 ```bash
 env DEVPI_HOME="${HOME}/.devpi" docker-compose -f docker-compose-dev.yaml up --build -d
 # or 
@@ -291,6 +292,7 @@ env DEVPI_HOME="${HOME}/.devpi" docker-compose -f docker-compose-dev.yaml up --b
 # docker build -t pypi_server . 
 # docker run -d -ti -v "${HOME}/.devpi:/root/.devpi" -p 3141:3141 pypi_server
 ```
+{% endraw %}
 
 The PyPI server available at: http://localhost:3141. 
 If all went well you should see an image like below.
@@ -300,10 +302,11 @@ If all went well you should see an image like below.
 #### Garbage Collection
 
 To clean up for whatever reason run the following command:
-
+{% raw %}
 ```bash
 env DEVPI_HOME="${HOME}/.devpi" docker-compose -f docker-compose-dev.yaml down --volumes --rmi all
 ```
+{% endraw %}
 
 ### Client: Permanent index configuration for pip
 
