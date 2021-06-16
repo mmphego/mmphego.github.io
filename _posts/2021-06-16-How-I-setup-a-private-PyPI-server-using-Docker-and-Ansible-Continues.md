@@ -1,11 +1,15 @@
 ---
 layout: post
-title: "How I Setup A Private PyPI Server Using Docker And Ansible [Continues]"
+title: "How I Setup A Private Local PyPI Server Using Docker And Ansible. [Continues]"
 date: 2021-06-16 16:18:48.000000000 +02:00
 tags:
-
+- Python
+- PyPI
+- Docker
+- Tips and Tricks
+- DevOps
 ---
-# How I Setup A Private PyPI Server Using Docker And Ansible [Continues].
+# How I Setup A Private Local PyPI Server Using Docker And Ansible. [Continues].
 
 {:refdef: style="text-align: center;"}
 ![post image]({{ "/assets/2021-06-16-How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible-Continues.png" | absolute_url }})
