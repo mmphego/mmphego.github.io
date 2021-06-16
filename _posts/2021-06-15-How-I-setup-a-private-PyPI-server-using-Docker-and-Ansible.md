@@ -97,7 +97,7 @@ make push_pypi_server
 
 You can also check out my over-engineered Makefile [here](https://github.com/mmphego/Generic_Makefile).
 
-```bash
+```
 cat >> Makefile << EOF 
 SHELL := /bin/bash -eo pipefail
 # Defined images here
@@ -163,7 +163,7 @@ EOF
 
 This is a developmental docker-compose that builds the image locally instead of using the image from the registry.
 
-```bash
+```
 cat >> docker-compose-dev.yaml << EOF 
 ---
 version: '3'
@@ -207,7 +207,7 @@ If all went well you should see an image like below.
 
 I created the following Dockerfile, which executes a script `entrypoint.sh` upon container startup and also copies a `create_pypi_index.sh` script which should be run once when the devpi-server is up. This script [creates and configures the indices](https://devpi.net/docs/devpi/devpi/stable/+d/userman/devpi_indices.html).
 
-```bash 
+``` 
 cat >> Dockerfile << EOF 
 FROM python:3.7
 
@@ -254,7 +254,7 @@ EOF
 
 Read more about indices creation [here](https://devpi.net/docs/devpi/devpi/stable/+d/userman/devpi_indices.html#devpi-um-indices-chapter)
 
-```bash
+```
 cat >> create_pypi_index.sh << EOF 
 #!/usr/bin/env bash
 
@@ -281,7 +281,7 @@ docker exec -ti ${PYPI_CONTAINER} /bin/bash -c "/data/create_pypi_index.sh"
 
 This is a YAML [devpi configuration](https://devpi.net/docs/devpi/devpi/stable/+doc/quickstart-server.html#using-a-configuration-file-for-devpi-server).
 
-```bash
+```
 cat >> config.yml << EOF 
 ---
 devpi-server:
@@ -303,8 +303,9 @@ env DEVPI_HOME="${HOME}/.devpi" docker-compose -f docker-compose-dev.yaml down -
 
 To avoid having to re-type index URLs with `pip` or `easy-install` , you can configure `pip` by setting the `index-url` entry in your `$HOME/.pip/pip.conf` (posix) or `$HOME/pip/pip.ini` (windows). Let’s do it for the `root/pypi` index:
 
-```bash
-mkdir -p ~/.pip && cat >> ~/.pip/pip.conf << EOF 
+```
+mkdir -p ~/.pip
+cat >> ~/.pip/pip.conf << EOF 
 [global]
 no-cache-dir = false
 timeout = 60
@@ -316,7 +317,7 @@ EOF
 
 Alternatively, you can add a special environment variable to your shell settings (e.g. `.bashrc`):
 
-```bash
+```
 cat >> ~/.bashrc << EOF 
 export PIP_INDEX_URL=http://localhost:3141/root/pypi/stable/
 EOF

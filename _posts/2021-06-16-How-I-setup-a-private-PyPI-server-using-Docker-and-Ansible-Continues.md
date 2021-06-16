@@ -19,25 +19,24 @@ tags:
 
 This post continues from [How I Setup A Private PyPI Server Using Docker And Ansible]({{ "/blog/2021/06/15/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible.html" | absolute_url }})
 
-In this post, I will try to detail how I set up a private local PyPI server using [Docker](https://docs.docker.com/get-docker) And [**Ansible**](https://docs.ansible.com/ansible/latest/index.html).
+In this post, I will try to detail how to set up a private local PyPI server using [Docker](https://docs.docker.com/get-docker) And [**Ansible**](https://docs.ansible.com/ansible/latest/index.html).
 
 ## TL;DR
 
-Deploy/destroy devpi server running in Docker container using a single command.
+Deploy/destroy [devpi](https://devpi.net/) server running in [Docker](https://www.docker.com/) container using a single command.
 
 # The How
 
-After my initial [research]({{ "/blog/2021/06/15/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible.html#the-story" | absolute_url }}), I wanted to ensure that the deployment is deterministic and the PyPi repository can be torn down and recreated ad-hoc by a single command. In our case a simple `make pypi` deploys an instance of PyPI server through an [Ansible playbook](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html).
+After my initial [research]({{ "/blog/2021/06/15/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible.html#the-story" | absolute_url }}), I wanted to ensure that the deployment is deterministic and the PyPi repository can be torn down and recreated ad-hoc by a single command. In our case, a simple `make pypi` deploys an instance of PyPI server through an [Ansible playbook](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html).
 
 According to the [docs](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html):
 > Ansible Playbooks offer a repeatable, re-usable, simple configuration management and multi-machine deployment system, one that is well suited to deploying complex applications. If you need to execute a task with Ansible more than once, write a playbook and put it under source control. Then you can use the playbook to push out new configuration or confirm the configuration of remote systems.
 
-A basic Ansible command or playbook:
+A basic Ansible playbook:
 
-- selects machines to execute against from inventory
-- connects to those machines (or network devices, or other managed nodes), usually over SSH
-- copies one or more modules to the remote machines and starts execution there
-
+- Selects machines to execute against from inventory
+- Connects to those machines (or network devices, or other managed nodes), usually over SSH
+- Copies one or more modules to the remote machines and starts execution there
 
 You can read more about Ansible [here](https://www.ansible.com/)
 
@@ -90,7 +89,7 @@ In this section, I will go through each file in our `pypi_server` directory, whi
 
 #### Ansible Configuration
 
-Certain settings in Ansible are adjustable via a configuration file (ansible.cfg). The stock configuration is sufficient for most users, but in our case we wanted certain configurations. Below is a sample of our `ansible.cfg`
+Certain settings in Ansible are adjustable via a configuration file (ansible.cfg). The stock configuration is sufficient for most users, but in our case, we wanted certain configurations. Below is a sample of our `ansible.cfg`
 
 ```
 cat >> ansible.cfg << EOF
@@ -107,7 +106,7 @@ EOF
 
 If installing Ansible from a package manager such as `apt`, the latest `ansible.cfg` file should be present in `/etc/ansible`.
 
-If you installed Ansible from `pip` or from source, you may want to create this file in order to override default settings in Ansible. 
+If you installed Ansible from `pip` or the source, you may want to create this file to override default settings in Ansible. 
 
 ```bash
 wget https://raw.githubusercontent.com/ansible/ansible/devel/examples/ansible.cfg
@@ -126,7 +125,7 @@ vagrant
 EOF
 ```
 
-For the purpose of this post, I will be using a [Vagrant](https://www.vagrantup.com/intro) box.
+For this post, I will be using a [Vagrant](https://www.vagrantup.com/intro) box.
 
 According to the [docs](https://www.vagrantup.com/intro#introduction-to-vagrant):
 > Vagrant is a tool for building and managing virtual machine environments in a single workflow. With an easy-to-use workflow and focus on automation, Vagrant lowers development environment setup time, increases production parity, and makes the "works on my machine" excuse a relic of the past.
@@ -189,7 +188,7 @@ You should see output for each host in your inventory, similar to the image belo
 #### Ansible Roles
 
 According to the [docs](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html):
->Roles let you automatically load related vars, files, tasks, handlers, and other Ansible artifacts based on a known file structure. After you group your content in roles, you can easily reuse them and share them with other users.
+>Roles let you automatically load related vars, files, tasks, handlers, and other Ansible artefacts based on a known file structure. After you group your content into roles, you can easily reuse them and share them with other users.
 
 >An Ansible role has a defined directory structure with eight main standard directories. You must include at least one of these directories in each role. You can omit any directories the role does not use. 
 
@@ -248,7 +247,7 @@ Download: [simple_test-1.0.zip](https://files.pythonhosted.org/packages/48/1d/73
 
 **`defaults/main.yml`**:
 
-These are default variables for the role and they have the lowest priority of any variables available, and can be easily overridden by any other variable, including inventory variables. They are used as default variables in the `tasks`
+These are default variables for the role and they have the lowest priority of any variables available and can be easily overridden by any other variable, including inventory variables. They are used as default variables in the `tasks`
 
 ```
 cat >> defaults/main.yml << EOF
@@ -293,7 +292,7 @@ In this `main.yml` file we have a list of tasks that the role executes in sequen
     + Install `python` package from PyPI server.
     + Garbage cleaning.
 
-**Note:** These tasks are executed on the remote server, in this case a vagrant box.
+**Note:** These tasks are executed on the remote server, in this case, a vagrant box.
 
 Below is the `main.yml` which details the configuration, deployment and testing of the PyPI server (in a vagrant box).
 
@@ -302,7 +301,7 @@ cat >> tasks/main.yml << EOF
 ---
 - name: Install apt and python packages
   block:
-  - name: update apt cache and install python3-pip.
+  - name: update apt-cache and install python3-pip.
     apt:
       name: python3-pip
       state: latest
@@ -316,9 +315,9 @@ cat >> tasks/main.yml << EOF
   become: yes
   tags: [devpi, packages]
 
-- name: start devpi and configure nginx routings
+- name: start devpi and configure Nginx routings
   block:
-  - name: start devpi server on docker container.
+  - name: start devpi server on the docker container.
     community.docker.docker_container:
       name: "{{ container_name }}"
       image: "{{ base_image }}"
@@ -419,7 +418,7 @@ EOF
 
 Ansible uses [Jinja2 templating](https://jinja2docs.readthedocs.io/) to enable dynamic expressions and access to variables.
 
-Below is an [Nginx](https://nginx.org/en/) templated config file used for routing from localhost to a dedicate [fqdn (Fully qualified domain name
+Below is an [Nginx](https://nginx.org/en/) templated config file used for routing from localhost to a dedicated [fqdn (Fully qualified domain name
 )](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)
 
 
@@ -473,7 +472,7 @@ EOF
 ```
 
 #### Makefile
-Below is a snippet from our Makefile, which makes it a lot easier to install dependencies and setup a PyPI server. This means that instead of typing the whole `pip` or `ansible-playbook` commands to install dependencies and bring up a PyPI server, we can run something like:
+Below is a snippet from our Makefile, which makes it a lot easier to install dependencies and set up a PyPI server. This means that instead of typing the whole `pip` or `ansible-playbook` commands to install dependencies and bring up a PyPI server, we can run something like:
 
 ```bash
 make install_pkgs pypi
@@ -518,7 +517,7 @@ EOF
 To ensure deterministic `pypi_server` builds, I ran/did the following:
 
 - [x] Stopped `pypi_server` container, delete `pypi_server` on server
-- [x] Ran a CI job which builds and pushes docker images to our local docker registry.
+- [x] Ran a CI job that builds and pushes Docker images to our local docker registry.
 - [x] Started `pypi_server` container by executing `make pypi` whilst in the current working directory (ansible roles) on an ansible dedicated server.
 - [x] Verified if `pypi.domain` fqdn is up (`curl http://pypi.domain && dig pypi.domain`) 
 - [x] In a virtual environment, installed a random Python package then rebuilt the wheel before pushing it to `pypi.domain`
@@ -526,10 +525,10 @@ To ensure deterministic `pypi_server` builds, I ran/did the following:
 # Conclusion
 Congratulations!!!
 
-Accessing your fqdn you should see the devpi home page listing your indices:
+Accessing your FQDN you should see the devpi home page listing your indices:
 ![image](https://user-images.githubusercontent.com/7910856/122233152-1cf62900-cebc-11eb-979c-474ed3465823.png)
 
-Assuming that everything was set up correctly. You now have local/private PyPI server running in a Docker container which is under config management, thus ensuring deterministic builds and a single command can torn it down or bring it up.
+Assuming that everything was set up correctly. You now have a local/private PyPI server running in a Docker container that is under config management, thus ensuring deterministic builds and a single command can tear it down or bring it up.
 
 This was a great Ansible and Nginx learning curve for me and if you have reached the end of this post. I appreciate you!
 
