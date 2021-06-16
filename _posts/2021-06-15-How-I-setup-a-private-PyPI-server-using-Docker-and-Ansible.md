@@ -21,7 +21,13 @@ tags:
 
 # The Story
 
-Recently, I worked on a [Jira](https://www.atlassian.com/software/jira) ticket that has been in the backlog for a while. The story goes like this, we (my team @ work) have a [PyPI](https://en.wikipedia.org/wiki/Python_Package_Index) server (running on [devpi](https://github.com/devpi/devpi)) which hosts our packages. There were a couple of issues that we saw as potential risks, namely:
+Recently, I worked on a [Jira](https://www.atlassian.com/software/jira) ticket that has been in the backlog for a while. 
+
+{:refdef: style="text-align: center;"}
+![image](https://user-images.githubusercontent.com/7910856/122241859-29ca4b00-cec3-11eb-94ca-ba484c3bb733.png)
+{: refdef}
+
+The story goes like this, we (my team @ work) have a [PyPI](https://en.wikipedia.org/wiki/Python_Package_Index) server (running on [devpi](https://github.com/devpi/devpi)) which hosts our packages. There were a couple of issues that we saw as potential risks, namely:
 
 - The setup was not under config management, meaning we didn't know how we would reconstitute it if it dies and like every software project there wasn't much detailed documentation on the how-to.
 - The Python packages did not have any backups, so if something was to happen it would be bye-bye to old packages i.e. It would be tricky to tests old system releases.
@@ -48,7 +54,7 @@ I could have just [bash scripted](https://www.linux.com/training-tutorials/writi
 
 # The Walk-through
 
-The setup is divided into two sections, [Containerization](#containerization) and [Automation](#automation).
+The setup is divided into two sections, [Containerization](#Containerization) and [Automation](#automation).
 
 This post-walk-through mainly focuses on containerisation. Go [here]({{ "/blog/2021/06/16/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible-Continues.html" | absolute_url }}) for the automation.
 
@@ -67,7 +73,7 @@ python3 -m pip install docker-compose
 ## Containerization
 
 Part of my solution was that the PyPI server runs in a container preferably Docker for obvious reasons (current setup was running in a [ProxMox LXC container](https://pve.proxmox.com/wiki/Linux_Container)).
-Using a container offers convenience meaning deployments are deterministic.
+Using a container offers convenience and ensuring that deployments are deterministic.
 
 ### Directory Structure
 

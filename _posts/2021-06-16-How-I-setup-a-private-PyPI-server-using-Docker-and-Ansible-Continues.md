@@ -11,7 +11,7 @@ tags:
 ![post image]({{ "/assets/2021-06-16-How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible-Continues.png" | absolute_url }})
 {: refdef}
 
-<<TIME TO READ>>
+10 Min Read
 
 -----------------------------------------------------------------------------------------
 
@@ -61,6 +61,14 @@ If you already have [Ansible](https://www.ansible.com/) installed and configured
 
 ```bash
 python3 -m pip install ansible paramiko
+```
+
+Ensure dependency plugins have been installed as well.
+
+```bash
+ansible-galaxy collection install \
+    ansible.posix \
+    community.docker
 ```
 
 ### Directory Structure
