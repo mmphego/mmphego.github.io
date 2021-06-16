@@ -3,7 +3,9 @@ layout: post
 title: "Note To Self: How To Stop A Running Pod On Kubernetes"
 date: 2021-05-18 04:36:19.000000000 +02:00
 tags:
-
+- DevOps
+- Kubernetes
+- Tips and Tricks
 ---
 # Note To Self: How To Stop A Running Pod On Kubernetes.
 

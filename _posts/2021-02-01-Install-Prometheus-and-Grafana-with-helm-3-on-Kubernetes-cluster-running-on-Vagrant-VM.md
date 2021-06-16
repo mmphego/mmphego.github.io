@@ -7,7 +7,7 @@ tags:
 - Vagrant
 - K8s
 - DevOps
-
+- Observability
 ---
 # Install Prometheus & Grafana With Helm 3 On Kubernetes Cluster Running On Vagrant VM.
 

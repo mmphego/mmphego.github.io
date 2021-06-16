@@ -3,7 +3,9 @@ layout: post
 title: "Note To Self: Error Loading Config File /etc/rancher/k3s/k3s.yaml"
 date: 2021-04-19 02:07:25.000000000 +02:00
 tags:
-
+- k3s
+- Kubernetes
+- Tips and Tricks
 ---
 # Note To Self: Error Loading Config File `/etc/rancher/k3s/k3s.yaml`
 
