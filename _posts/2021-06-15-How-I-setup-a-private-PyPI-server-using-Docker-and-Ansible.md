@@ -31,10 +31,10 @@ My initial approach to this was:
 - Research and evaluating existing tools that the Python ecosystem had to offer, [devpi](https://github.com/devpi/devpi) and [pypi-server](https://pypi.org/project/pypiserver/) being the most prominent ones.
 - Run the PyPI server in a container preferably Docker (current setup was running in a [ProxMox LXC container](https://pve.proxmox.com/wiki/Linux_Container).)
 - Ensure that the deployment is deterministic and,
-- PyPi repository that can be torn down and recreated ad-hoc by a single command (preferably through [Ansible](https://docs.ansible.com/ansible/latest/index.html)) .
+- PyPi repository that can be torn down and recreated ad hoc by a single command (preferably through [Ansible](https://docs.ansible.com/ansible/latest/index.html)) .
 - Overall ensure that there isn't any significant downtime between the change-over i.e. The client-side shouldn't have to make any changes.
 
-In this post, I will try to detail how I set up a private local PyPI server using [Docker](https://docs.docker.com/get-docker) And [Ansible](https://docs.ansible.com/ansible/latest/index.html).
+In this post, I will try to detail how I set up a private local PyPI server using [**Docker**](https://docs.docker.com/get-docker) And [Ansible](https://docs.ansible.com/ansible/latest/index.html).
 
 # TL;DR
 
@@ -66,7 +66,12 @@ python3 -m pip install docker-compose
 
 ## Containerization
 
+Part of my solution was that the PyPI server run in a container preferably Docker for obvious reasons (current setup was running in a [ProxMox LXC container](https://pve.proxmox.com/wiki/Linux_Container)).
+Using a container offers convenience meaning deployments are deterministic.
+
 ### Directory Structure
+
+In this section, I will go through each file in our `pypi_server` directory, which houses the configurations.
 
 ```bash
 ├── Makefile
@@ -154,20 +159,6 @@ push_%: tag_%  ## Push tagged container to cam registry.
 EOF
 ```
 
-#### Devpi configuration
-
-This is a YAML [devpi configuration](https://devpi.net/docs/devpi/devpi/stable/+doc/quickstart-server.html#using-a-configuration-file-for-devpi-server).
-
-```bash
-cat >> config.yml << EOF 
----
-devpi-server:
-  host: 0.0.0.0
-  port: 3141
-  restrict-modify: root
-EOF
-```
-
 #### Compose file(s)
 
 This is a developmental docker-compose that builds the image locally instead of using the image from the registry.
@@ -206,6 +197,11 @@ env DEVPI_HOME="${HOME}/.devpi" docker-compose -f docker-compose-dev.yaml up --b
 # docker build -t pypi_server . 
 # docker run -d -ti -v "${HOME}/.devpi:/root/.devpi" -p 3141:3141 pypi_server
 ```
+
+The PyPI server available at: http://localhost:3141. 
+If all went well you should see an image like below.
+
+![image](https://user-images.githubusercontent.com/7910856/122209330-b1ed2800-cea4-11eb-8e3e-92a3350f4c16.png)
 
 #### Dockerfile and scripts
 
@@ -280,6 +276,28 @@ PYPI_CONTAINER=$(docker ps --filter "name=pypi" --filter "status=running" --form
 docker exec -ti ${PYPI_CONTAINER} /bin/bash -c "/data/create_pypi_index.sh"
 ```
 {% endraw %}
+
+#### Devpi configuration
+
+This is a YAML [devpi configuration](https://devpi.net/docs/devpi/devpi/stable/+doc/quickstart-server.html#using-a-configuration-file-for-devpi-server).
+
+```bash
+cat >> config.yml << EOF 
+---
+devpi-server:
+  host: 0.0.0.0
+  port: 3141
+  restrict-modify: root
+EOF
+```
+
+#### Garbage Collection
+
+To clean up for whatever reason run the following command:
+
+```bash
+env DEVPI_HOME="${HOME}/.devpi" docker-compose -f docker-compose-dev.yaml down --volumes --rmi all
+```
 
 ### Client: Permanent index configuration for pip
 
