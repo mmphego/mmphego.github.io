@@ -36,8 +36,8 @@ The story goes like this, we (my team @ work) have a [PyPI](https://en.wikipedia
 My initial approach to this was:
 - Research and evaluating existing tools that the Python ecosystem had to offer, [devpi](https://github.com/devpi/devpi) and [pypi-server](https://pypi.org/project/pypiserver/) being the most prominent ones.
 - Run the PyPI server in a container preferably Docker (current setup was running in a [ProxMox LXC container](https://pve.proxmox.com/wiki/Linux_Container).)
-- Ensure that the deployment is deterministic and,
-- PyPi repository that can be torn down and recreated ad hoc by a single command (preferably through [Ansible](https://docs.ansible.com/ansible/latest/index.html)) .
+- Ensure that deployments are deterministic and,
+- PyPI repository can be torn down and recreated ad hoc by a single command (preferably through [Ansible](https://docs.ansible.com/ansible/latest/index.html)).
 - Overall ensure that there isn't any significant downtime between the change-over i.e. The client-side shouldn't have to make any changes.
 
 In this post, I will try to detail how I set up a private local PyPI server using [**Docker**](https://docs.docker.com/get-docker) And [Ansible](https://docs.ansible.com/ansible/latest/index.html).

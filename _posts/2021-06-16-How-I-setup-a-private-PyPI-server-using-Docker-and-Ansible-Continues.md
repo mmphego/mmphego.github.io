@@ -31,7 +31,7 @@ Deploy/destroy [devpi](https://devpi.net/) server running in [Docker](https://ww
 
 # The How
 
-After my initial [research]({{ "/blog/2021/06/15/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible.html#the-story" | absolute_url }}), I wanted to ensure that the deployment is deterministic and the PyPi repository can be torn down and recreated ad-hoc by a single command. In our case, a simple `make pypi` deploys an instance of PyPI server through an [Ansible playbook](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html).
+After my initial [research]({{ "/blog/2021/06/15/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible.html#the-story" | absolute_url }}), I wanted to ensure that the deployment is deterministic and the PyPI repository can be torn down and recreated ad-hoc by a single command. In our case, a simple `make pypi` deploys an instance of PyPI server through an [Ansible playbook](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html).
 
 According to the [docs](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html):
 > Ansible Playbooks offer a repeatable, re-usable, simple configuration management and multi-machine deployment system, one that is well suited to deploying complex applications. If you need to execute a task with Ansible more than once, write a playbook and put it under source control. Then you can use the playbook to push out new configuration or confirm the configuration of remote systems.
