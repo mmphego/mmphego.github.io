@@ -11,7 +11,7 @@ tags:
 ![post image]({{ "/assets/2021-07-12-Note-To-Self-How-to-fix-CreateContainerError-on-all-pods.png" | absolute_url }})
 {: refdef}
 
-<<TIME TO READ>>
+3 Min Read
 
 -----------------------------------------------------------------------------------------
 
