@@ -8,10 +8,9 @@ tags:
 # How To Configure Jaeger Data Source On Grafana And Debug Network Issues With Bind-utilities.
 
 {:refdef: style="text-align: center;"}
-
 ![post image]({{ "/assets/2021-07-25-How-to-configure-Jaeger-Data-source-on-Grafana-and-debug-network-issues-with-Bind-utilities.png" | absolute_url }})
-
 {: refdef}
+
 
 11 Min Read
 
@@ -19,7 +18,7 @@ tags:
 
 # The Story
 
-As a [mentor for a Udacity nanodegree](https://blog.mphomphego.co.za/blog/2021/01/03/How-I-became-a-Udacity-Mentor.html), I realized that most students have difficulty adding [data source](https://grafana.com/docs/grafana/latest/datasources/) Jaeger tracing on the Grafana and Prometheus clusters of Kubernetes.
+As a [mentor for a Udacity nanodegree](https://blog.mphomphego.co.za/blog/2021/01/03/How-I-became-a-Udacity-Mentor.html), I realized that most students had difficulties adding [Jaeger](https://www.jaegertracing.io) tracing [data source](https://grafana.com/docs/grafana/latest/datasources/) on Grafana & Prometheus running in a Kubernetes cluster.
 
 According to the [docs](https://www.jaegertracing.io/docs/1.24/):
 > Jaeger is a distributed tracing system released as open source by Uber Technologies. It is used for monitoring and troubleshooting microservices-based distributed systems, including distributed context propagation, distributed transaction monitoring, root cause analysis, service dependency analysis and performance/latency optimization
@@ -32,7 +31,7 @@ At this point, one might be wondering what _distributed tracing_ is?
 
 I, therefore, decided to document this guide below which takes you through the installation of Jaeger to incorporate it into Grafana and troubleshooting.
 
-**Note:** This post will not be about using Jaeger for distributed tracing and backend/frontend application performance/latency optimization.
+**Note:** This post will not be about using Jaeger for distributed tracing and backend/frontend application performance/latency optimization. If that's something that interests you then checkout this [post](https://www.digitalocean.com/community/tutorials/how-to-implement-distributed-tracing-with-jaeger-on-kubernetes) very useful.
 
 **Note:** This post assumes that:
 
@@ -199,6 +198,7 @@ done
 ```
 
 Below is an image, highlighting the hostname of a particular service of interest, which is `my-traces-query.observability.svc.cluster.local`
+
 ![image](https://user-images.githubusercontent.com/7910856/126897114-e91d582b-4e34-4f08-aaa9-1e2e0141260c.png)
 
 Then investigate the port: `16686` on the hostname if it's up by using [nmap](https://nmap.org/) utility. But since `nmap` doesn't come preinstalled in the container then we can manually install it.
@@ -219,6 +219,8 @@ The image below shows that port `16686` is open and running this validates that 
 
 I will try to update this post with new ways to debug as I find my ways around Kubernetes, Jaeger and Grafana.
 
+If you have any suggestions, leave a comment below and we will get in touch.
+
 # Reference
 
 - [Grafana Data Sources](https://www.metricfire.com/blog/grafana-data-sources/)
@@ -228,6 +230,7 @@ I will try to update this post with new ways to debug as I find my ways around K
 - [A Guide to Deploying Jaeger on Kubernetes in Production](https://medium.com/jaegertracing/a-guide-to-deploying-jaeger-on-kubernetes-in-production-69afb9a7c8e5)
 - [Distributed Tracing with Jaeger on Kubernetes](https://abirami-ece-09.medium.com/distributed-tracing-with-jaeger-on-kubernetes-b6364b3719d4)
 - [Build a monitoring infrastructure for your Jaeger installation](https://developers.redhat.com/blog/2019/08/28/build-a-monitoring-infrastructure-for-your-jaeger-installation#create_a_podmonitor)
+- [How To Implement Distributed Tracing with Jaeger on Kubernetes](https://www.digitalocean.com/community/tutorials/how-to-implement-distributed-tracing-with-jaeger-on-kubernetes)
 - [An Introduction to the Kubernetes DNS Service](https://www.digitalocean.com/community/tutorials/an-introduction-to-the-kubernetes-dns-service)
 - [Kubernetes DNS for Services and Pods](https://medium.com/kubernetes-tutorials/kubernetes-dns-for-services-and-pods-664804211501)
 - [How To Use Nmap to Scan for Open Ports](https://www.digitalocean.com/community/tutorials/how-to-use-nmap-to-scan-for-open-ports)
