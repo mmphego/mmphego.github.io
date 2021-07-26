@@ -31,7 +31,7 @@ At this point, one might be wondering what _distributed tracing_ is?
 
 I, therefore, decided to document this guide below which takes you through the installation of Jaeger to incorporate it into Grafana and troubleshooting.
 
-**Note:** This post will not be about using Jaeger for distributed tracing and backend/frontend application performance/latency optimization. If that's something that interests you then checkout this [post](https://www.digitalocean.com/community/tutorials/how-to-implement-distributed-tracing-with-jaeger-on-kubernetes) very useful.
+**Note:** This post will not be about using Jaeger for distributed tracing and backend/frontend application performance/latency optimization. If that's something that interests you then check out this [post](https://www.digitalocean.com/community/tutorials/how-to-implement-distributed-tracing-with-jaeger-on-kubernetes) very useful.
 
 **Note:** This post assumes that:
 
