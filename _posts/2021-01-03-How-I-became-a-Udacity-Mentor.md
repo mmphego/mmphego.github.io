@@ -23,6 +23,8 @@ Last December, I was awarded an opportunity to become a [Udacity Mentor & Projec
 
 This is my first post of 2021, I want to give you some insights on how I landed the role and a brief overview of the program I reviewed.
 
+Use code UPSKILL21 for [50% off online tech courses at Udacity](https://imp.pxf.io/i/2851051/1131184/11298)! Save up to $200 per month and get the skills you need to increase your salary!
+
 # The How
 
 It was mid-November 2020 when I received a [Slack](https://slack.com/) message from the Udacity Alumni channel about a few opportunities for Mentors for new programs being introduced in 2021. Before we go on, I'd like to point out some of the benefits of becoming a Udacity Mentor that motivated me.

@@ -47,6 +47,9 @@ I, therefore, decided to document this guide below which takes you through the i
 
 If not, refer to a previous post on how to [install Prometheus & Grafana using Helm 3 on Kubernetes cluster running on Vagrant VM](https://blog.mphomphego.co.za/blog/2021/02/01/Install-Prometheus-and-Grafana-with-helm-3-on-Kubernetes-cluster-running-on-Vagrant-VM.html)
 
+Use code UPSKILL21 for [50% off online tech courses at Udacity](https://imp.pxf.io/i/2851051/1131184/11298)! Save up to $200 per month and get the skills you need to increase your salary!
+
+
 ## The Walk-through
 
 This section is divided into 4 parts:

@@ -26,6 +26,8 @@ We would like to install the monitoring tool [Prometheus](https://prometheus.io/
 
 In this post, we will go through the procedure of deploying Prometheus and Grafana in a Kubernetes Cluster.
 
+Use code UPSKILL21 for [50% off online tech courses at Udacity](https://imp.pxf.io/i/2851051/1131184/11298)! Save up to $200 per month and get the skills you need to increase your salary!
+
 ## TL;DR
 
 
