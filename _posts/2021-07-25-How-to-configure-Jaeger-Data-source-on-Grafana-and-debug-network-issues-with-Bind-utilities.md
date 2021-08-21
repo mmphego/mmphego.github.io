@@ -20,6 +20,9 @@ tags:
 
 11 Min Read
 
+<h3 id="1125890"><a href="https://imp.i115008.net/c/2851051/1125890/11298">Get up to 75% OFF online tech courses at Udacity! Unlock your Personalized Discount and start saving today!</a></h3>
+<img height="0" width="0" src="https://imp.pxf.io/i/2851051/1125890/11298" style="position:absolute;visibility:hidden;" border="0" />
+
 ---
 
 # The Story
