@@ -22,7 +22,8 @@ tags:
 
 # The Story
 
-[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
 
 In the past few months, I've been getting my hands dirty with the [Intel® distribution of OpenVINO™ Toolkit](https://software.intel.com/content/www/us/en/develop/tools/openvino-toolkit.html) and made a few projects along the way just to illustrate how powerful this toolkit is.
 
@@ -30,7 +31,8 @@ In this post, I will introduce a library I have been working on in the past few 
 
 I will also create a simple face detection application in under 10 lines, jump over to [the How](#the-how) for more.
 
-[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
 
 ## TL;DR
 
@@ -39,10 +41,10 @@ Link to `PyVINO-Utils` library: [https://github.com/mmphego/pyvino_utils](https:
 Star it, fork it and make a PR
 
 # The How
-The library does the heavy lifting by implementing an [abstract base class](https://github.com/mmphego/pyvino_utils/blob/master/pyvino_utils/models/openvino_base/base_model.py) which handles the loading of models, processing the input and inference (prediction). 
+The library does the heavy lifting by implementing an [abstract base class](https://github.com/mmphego/pyvino_utils/blob/master/pyvino_utils/models/openvino_base/base_model.py) which handles the loading of models, processing the input and inference (prediction).
 [Detection](https://github.com/mmphego/pyvino_utils/blob/master/pyvino_utils/models/detection/face_detection.py), recognition and pose estimates models inherit the base class implementation while implementing functions for post-processing the inference output and drawing of bounding boxes around a region of interest(ROI).
 
-This cuts down application development time by a fraction, ensuring that the developer focuses more on implementing user specifications. 
+This cuts down application development time by a fraction, ensuring that the developer focuses more on implementing user specifications.
 
 *I sound more like a salesman than a tinkerer now...*
 
@@ -75,7 +77,7 @@ def arg_parser():
   return parser.parse_args()
 {% endhighlight %}
 
-The function `arg_parser`, handles the parsing of our two (required) command-line arguments and an optional `show-bbox` argument which enables the output to be displayed onto our screen. 
+The function `arg_parser`, handles the parsing of our two (required) command-line arguments and an optional `show-bbox` argument which enables the output to be displayed onto our screen.
 `input` argument takes in either an image or video path and the WebCam feed. Our second required argument will be the name and path (excluding the extension) of were our OpenVINO `model` is located. Since we have our packages imported and our command-line arguments parsed, we can continue to implement our main function.
 
 {% highlight python linenos %}
@@ -111,7 +113,8 @@ if __name__ == "__main__":
 
 Thus, running the logic below the block, in this case, it will call the `arg_parser` and the results will be stored in `args` thereafter call out the `main` function defined above while passing the `args`.
 
-[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
 
 
 ---
@@ -129,10 +132,11 @@ Watch the complete tutorial and code walk-through.
 
 # Conclusion
 
-[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
 
 The example above illustrates how simple it is to create a face detection application in under **10 lines** of code (excluding the `arg_parser` function, assuming that the `model` and `input` are hard-corded.). This is because of the `pyvino_utils` library which does all the heavy lifting for us since we need not create modules/classes to handle/process the input and inference.
- 
+
 Future work includes auto-downloading the models from [Open Model Zoo](https://github.com/openvinotoolkit/open_model_zoo) and expanding the library to handle other functions such as instance segmentation and text recognition to name a few.
 
 # Reference

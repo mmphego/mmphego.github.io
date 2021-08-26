@@ -23,7 +23,7 @@ tags:
 
 # The Story
 
-[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
 
 In this post, I will walk you through how I deployed a people counter application which will demonstrate how one would create a smart video IoT solution using Intel® hardware and software tools.
 
@@ -38,7 +38,7 @@ Some other example potential use cases for this app are as follows:
 **Note:** The applications is not perfect and it might result in false-positives or true-negatives. For example, a person could enter with a blanket covering themselves and the app (as it is presented here) will not make a detection. It is possible to include other elements to avoid this situations, but as for today, there are not perfect people detection models.
 
 ## TL; DR
-
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
 Code can be found here: [https://github.com/mmphego/people-counter-openvino-edgeai-project](https://github.com/mmphego/people-counter-openvino-edgeai-project)
 
 ## How it Works
@@ -51,7 +51,7 @@ The app uses the Inference Engine included in the [Intel® Distribution of OpenV
 
 The app can be used in different scenario. If high accuracy is required, then all factors including lighting, camera focal length, image size/resolution, position of camera and model accuracy contribute to output result.
 
-[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
 
 Lighting should be reasonable to detected objects, It should not to dark so that model fail to detect objects. Camera position also matters for accuracy purposes. If object structure is clear from current camera position, model will easily able to detect. Image Size should not too small or too big, it should be according to model used. More pre-processing is required if it is far from required size. Most critical is model accuracy we are currently using. Model with high accuracy will provide more accurate inference
 
@@ -75,7 +75,7 @@ Lighting should be reasonable to detected objects, It should not to dark so that
 *   MQTT Mosca server
 
 ## Setup
-
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
 ### Install Intel® Distribution of OpenVINO™ toolkit
 
 Refer to the relevant instructions for your operating system for this step.
@@ -94,7 +94,7 @@ Refer to the relevant instructions for your operating system for this step.
 
 ### Install npm
 
-[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
 
 There are three components that need to be running in separate terminals for this application to work:
 
@@ -129,7 +129,7 @@ npm install
 ```
 
 ## What model to use
-
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
 Some of the models evaluated before opting for the one used for this project:
 
 | Model Name | Model Size [*Post Conversion*] (MB) | Average Precision (AP) (%)| Inference Ave. Time (ms) | N. People Detected | Completion Time (s)| Running Project |
@@ -145,7 +145,7 @@ After careful consideration, the selected model for the project was one of the I
 
 
 ### Downloading The Model
-
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
 An example as to how to download a model from the Open Model Zoo and convert to Intermediate Representations. Alternatively download [TensorFlow Object Detection Model](https://github.com/tensorflow/models/blob/7bf0b599b88e7f97b52cdb7c154b73025ae6f285/README.md) from the Model Zoo which contains many pre-trained models. For this project, various classes of models were tested from the Open Model Zoo and TensorFlow Model Zoo.
 
 
@@ -176,7 +176,7 @@ rsync -truv --remove-source-files ssd_mobilenet_v2_coco.{bin,xml} ../../../model
 ```
 
 ## Run the application
-
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
 Note: In order to run the app locally export the 2 envvars (See: #a-note-on-running-locally)
 ```bash
 export CAMERA_FEED_SERVER="http://localhost:3004"
@@ -365,6 +365,8 @@ xhost -
 
 #### Running on the Intel® Neural Compute Stick
 
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
+
 To run on the Intel® Neural Compute Stick, use the ```-d MYRIAD``` command-line argument:
 
 ```bash
@@ -386,6 +388,9 @@ To see the output on a web based interface, open the link [http://0.0.0.0:3004](
 **Note:** The Intel® Neural Compute Stick can only run FP16 models at this time. The model that is passed to the application, through the `-m <path_to_model>` command-line argument, must be of data type FP16.
 
 #### Using a camera stream instead of a video file
+
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
+
 
 To get the input video from the camera, use the `-i CAM` command-line argument. Specify the resolution of the camera using the `-video_size` command line argument.
 
@@ -428,6 +433,9 @@ export MQTT_SERVER="ws://localhost:3002"
 ```
 
 ## Future Work
+
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
+
 
 - Dockerize the application (hint: docker-compose)
 - Benchmark application on various devices.

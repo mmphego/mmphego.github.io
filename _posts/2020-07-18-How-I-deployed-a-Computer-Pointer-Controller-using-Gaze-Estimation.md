@@ -23,7 +23,8 @@ tags:
 
 ## Story
 
-[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
 
 Imagine controlling your computer mouse pointer using nothing else other than your eyes and head pose. Well stop imagining it.
 
@@ -37,7 +38,8 @@ Checkout the code here: [https://github.com/mmphego/computer-pointer-controller/
 
 ## How It Works
 
-[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
 
 Used the Inference Engine API from Intel's OpenVino ToolKit to build the project.
 
@@ -122,6 +124,8 @@ tree && du -sh
 ```
 
 ### Setup and Installation
+
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
 There are two (2) ways of running the project.
 1. Download and install [Intel OpenVINO Toolkit](https://software.intel.com/content/www/us/en/develop/tools/openvino-toolkit.html) and install.
     - After you've cloned the repo, you need to install the dependencies using this command:
@@ -136,7 +140,8 @@ For this project I used the latter method.
 
 #### Models Used
 
-[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
 
 I have already downloaded the Models, which are located in `./models/`.
 Should you wish to download your own models run:
@@ -159,6 +164,7 @@ Models used in this project:
 
 ## Application Usage
 
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
 ```bash
 
 $ python main.py -h
@@ -250,6 +256,8 @@ mmphego/intel-openvino bash -c "\
 
 ```
 
+
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
 ## OpenVino API for Layer Analysis
 Queries performance measures per layer to get feedback of what is the most time consuming layer: [Read docs.](https://docs.openvinotoolkit.org/latest/ie_python_api/classie__api_1_1InferRequest.html#a2194bc8c557868822bbfd260e8ef1a08)
 
@@ -283,6 +291,8 @@ bash -c "\
 - Gaze estimations: We could revisit the logic of determining and calculating the coordinates as it is a bit flaky.
 - Lighting condition: We might use HSV based pre-processing steps to minimize error due to different lighting conditions.
 
+
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
 ## Reference
 - [OpenCV Face Recognition](https://www.pyimagesearch.com/2018/09/24/opencv-face-recognition/)
 - [Tracking your eyes with Python](https://medium.com/@stepanfilonov/tracking-your-eyes-with-python-3952e66194a6)

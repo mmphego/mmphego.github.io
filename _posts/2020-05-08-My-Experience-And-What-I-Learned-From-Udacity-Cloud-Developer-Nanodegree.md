@@ -25,7 +25,7 @@ tags:
 
 # The Story
 
-[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939035-e23d1893-3fa2-4609-ba5b-1c0ee912a9fb.png)](https://imp.i115008.net/c/2851051/828292/11298)
 
 Since completing a [Udacity AI Programming with Python Nanodegree](https://blog.mphomphego.co.za/blog/2019/12/15/My-Experience-And-What-I-Learned-From-Udacity-AI-Programming-With-Python-Nano-Degree-Part-1.html) funded by [AAL (African App Launchpad Program)](http://www.aal.gov.eg/) 2 months earlier than the course completion date, they (AAL) allowed me to apply for a second grant for which I was grateful for.
 
@@ -33,7 +33,7 @@ Since completing a [Udacity AI Programming with Python Nanodegree](https://blog.
 ![post image]({{ "/assets/aal_cloud.png" | absolute_url }})
 {: refdef}
 
-A few days later, I woke up to some good news that my application was a success. After some thought, I decided to enrol for a [**Udacity Cloud Developer Nano degree**](https://www.udacity.com/course/cloud-developer-nanodegree--nd9990) as it aligned with my interest.
+A few days later, I woke up to some good news that my application was a success. After some thought, I decided to enrol for a [**Udacity Cloud Developer Nano degree**](https://imp.i115008.net/MXN25Y) as it aligned with my interest.
 I have always wanted to learn more about [AWS (Amazon Web Services)](https://aws.amazon.com) but always moved it down on my *things to learn priority list* for various reasons, some of them are highlight below.
 
 This offered me a great opportunity for me to familiarise myself with the services offer by AWS (Amazon Web Services), however, one of the major prerequisites for the course was **JavaScipt** (also including HTML and CSS) and as someone who is a more on the back-end development (Python, etc.), I knew that this would not be easy.
@@ -43,11 +43,11 @@ This simply meant that I had to work twice as much, being thrown or throwing mys
 ![post image](https://media.giphy.com/media/LOu8FUhPgpeUAi0wiu/giphy.gif)
 {: refdef}
 
-A few weeks ago, I eventually graduated from the [**Udacity Cloud Developer Nano degree**](https://www.udacity.com/course/cloud-developer-nanodegree--nd9990) program. I decided to share my experience and what I learned in the past 4 months (Jan - Apr 2020) in this post.
+A few weeks ago, I eventually graduated from the [**Udacity Cloud Developer Nano degree**](https://imp.i115008.net/MXN25Y) program. I decided to share my experience and what I learned in the past 4 months (Jan - Apr 2020) in this post.
 
 ## TL;DR
 
-[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+[![Alt text](https://user-images.githubusercontent.com/7910856/130938347-05e8a13d-62a7-4def-bbc5-022a1c89c1d2.png)](https://imp.i115008.net/c/2851051/828292/11298)
 
 As part of the Nanodegree program, I needed to come up with a project using the skills I learned and I decided to build a serverless-based diary before I could graduate.
 
@@ -87,7 +87,7 @@ I learned the hard way that when you are done with your (EC2 and RDS) instances,
 
 ### What I learned
 
-[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939035-e23d1893-3fa2-4609-ba5b-1c0ee912a9fb.png)](https://imp.i115008.net/c/2851051/828292/11298)
 
 In this project, I had to take my existing project from the previous lesson which was a monolith application (front-end, back-end and REST-API all in separate packages) named *Udagram* and refactor it into a microservice architecture with lean services. I had to build out a CI/CD process using [Travis CI](https://www.travis-ci.com) that automatically builds and deploys [Docker](https://www.docker.com/) images which were a walk in the park as I already had some experience with Docker and Travis-CI.
 
@@ -115,11 +115,9 @@ S3, and Elasticsearch. The app had to be deployed to Amazon Web Services using a
 
 Github Project Link: [https://github.com/mmphego/cloud-developer/tree/master/course-04/project/c4-final-project-starter-code](https://github.com/mmphego/cloud-developer/tree/master/course-04/project/c4-final-project-starter-code)
 
-I found this [blog post](https://www.g2i.co/blog/react-separation-of-concerns) on [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns) when it comes to React very useful.
-
 # Capstone Project
 
-[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939035-e23d1893-3fa2-4609-ba5b-1c0ee912a9fb.png)](https://imp.i115008.net/c/2851051/828292/11298)
 
 For the capstone project, I decided to build an application based on the lesson I felt strong with which was Serverless. I decided to build a serverless based Diary which allowed creating/removing/updating/fetching diary entries.
 
@@ -132,7 +130,7 @@ Done!
 
 # Conclusion
 
-[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939035-e23d1893-3fa2-4609-ba5b-1c0ee912a9fb.png)](https://imp.i115008.net/c/2851051/828292/11298)
 
 Overall, This was a very good program that gave me an opportunity get out of my comfort zone and enabled me to build actual applications using a wide variety of tools and services offered by AWS (Amazon Web Services). I was able to grasp some concepts that I had ignored or did not know in the past. Throwing myself into the deep-end wrt working with both backend and frontend had its own challenges, however, I endured and ended up completing the program 3 weeks before the deadline, I kind of feel that going into #SALockdown due to COVID-19 enabled me to spend more time on this course else, I wouldn't have made it.
 
@@ -144,5 +142,5 @@ The support system from Udacity was great and it offered a great platform where 
 
 I did not find a lot of cons but the content of the course is pretty densely packed, especially for [Monolith to Microservices](#monolith-to-microservices-at-scale) lesson, I found myself going through the lessons over and over to grasp the concept they (lessons) could have been a lot more comprehensive. I noticed a lot of students in the discussion forums also having issues with the lesson more especially around Kubernetes, I found myself having to spend hours upon hours going to other resources to supplement their theoretical knowledge. In the end, it forced me to go and look at the documentation and figure things out on my own, not sure if this was intentionally or not but overall that helped me significantly.
 
-In the end, [Udacity](https://www.udacity.com) focuses on getting your hands dirty by that I mean building real-world applications to learn the concepts using the learning by doing concept. I would recommend this program to anyone interested in getting into AWS, cloud computing and a bit of frontend & backend development and levelling up their skill. Hopefully, I will get to use the skills I picked up in this program in future projects.
+In the end, [Udacity](https://imp.i115008.net/MXN25Y) focuses on getting your hands dirty by that I mean building real-world applications to learn the concepts using the learning by doing concept. I would recommend this program to anyone interested in getting into AWS, cloud computing and a bit of frontend & backend development and levelling up their skill. Hopefully, I will get to use the skills I picked up in this program in future projects.
 One of the projects in the back of my mind if using the Serverless framework to develop an Amazon Alexa skill for my home automation project.

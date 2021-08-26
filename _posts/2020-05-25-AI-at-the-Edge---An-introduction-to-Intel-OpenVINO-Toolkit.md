@@ -21,7 +21,7 @@ tags:
 
 # The Story
 
-[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
 
 During mid-November 2019, I stumbled upon a [Udacity scholarship](https://www.udacity.com/scholarships) from their website and decided to apply. The course being offered was more on Computer Vision and this is one field that has always interested me from my days interning at CSIR in the robotics department, but I always had that impostor syndrome when it came to CV. This course couple Computer Vision and AI but was more focused on AI on the edge using Intel’s OpenVINO Toolkit.
 
@@ -29,7 +29,7 @@ During mid-November 2019, I stumbled upon a [Udacity scholarship](https://www.ud
 ![post image]({{ "/assets/Intel-Scholarship+2020@2x.jpg" | absolute_url }})
 {: refdef}
 
-A few weeks later, I received an email from Udacity informing me that I was one of 16800 selected for Phase 1 of the scholarship.
+A few weeks later, I received an email from [Udacity](https://imp.i115008.net/c/2851051/803076/11298) informing me that I was one of 16800 selected for Phase 1 of the scholarship.
 
 The scholarship program is structured in two parts:
 
@@ -39,7 +39,7 @@ The scholarship program is structured in two parts:
 >
 > Phase 2: 750 Nanodegree scholarships
 >
-> The top 750 students from the first phase of the program will earn a full scholarship to Udacity's brand new Intel® Edge AI for IoT Developers Nanodegree program.
+> The top 750 students from the first phase of the program will earn a full scholarship to [Udacity](https://imp.i115008.net/c/2851051/803076/11298)'s brand new Intel® Edge AI for IoT Developers Nanodegree program.
 
 Well through hard work and perseverance, I managed to get myself through **Phase 1** and ended up being part of the selected few in **Phase 2**.
 
@@ -48,9 +48,8 @@ As per the title of the post, this post detail the first 2 lessons of the course
 
 ## Overview of the course
 
-[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
-
-Below is a brief overview of the course offered by Udacity on Intel® Edge AI for IoT Developers Nanodegree:
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
+Below is a brief overview of the course offered by [Udacity](https://imp.i115008.net/c/2851051/803076/11298) on Intel® Edge AI for IoT Developers Nanodegree:
 
 {:refdef: style="text-align: center;"}
 ![post image]({{ "/assets/udacity_curriculum.png" | absolute_url }})
@@ -120,8 +119,7 @@ Some examples of why Edge AI is important includes:
 
 ## Leveraging Pre-trained Models
 
-[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
-
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
 The OpenVINO™ Toolkit's name comes from "**Open** **V**isual **I**nferencing and Neural **N**etwork **O**ptimization". It is largely focused around optimizing neural network inference and is open source.
 
 It is developed by Intel® and helps support fast inference across Intel® CPUs, GPUs, FPGAs and Neural Compute Stick with a common API. OpenVINO™ can take models built with multiple different frameworks, like TensorFlow or Caffe, and use its *Model Optimizer* to optimize for inference. This optimized model can then be used with the *[Inference Engine](https://docs.openvinotoolkit.org/latest/_docs_IE_DG_Introduction.html#IE)*, which helps speed inference on the related hardware. The inference is a relatively lower compute-intensive task than training, where latency is of greater importance for providing real-time results on a model. It also has a wide variety of Pre-Trained Models already put through *Model Optimizer*.
@@ -168,8 +166,7 @@ As we step into an ever-increasingly linked global world, knowledge ultimately i
 
 # Conclusion
 
-[![Alt text](https://s3.amazonaws.com/assets.datacamp.com/email/other/728x90Promo.png)](https://www.datacamp.com/?tap_a=5644-dce66f&tap_s=1152067-edcdb0&utm_medium=affiliate&utm_source=mphomphego)
-
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939787-22521541-8b99-4749-9df8-7c6c334f299f.png)](https://imp.i115008.net/c/2851051/803076/11298)
 Intel® Distribution of OpenVINO™ toolkit is an extremely useful framework where we can optimize models and execute computer vision using deep learning on edge systems. This enables us to deploy such systems at edge level where the computational resource is scarce.
 
 Previously, powerful AI applications required large, expensive data centre-class systems to operate. But edge computing devices can reside anywhere. AI at the edge offers endless opportunities that can help society in ways never before imagined.

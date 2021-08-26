@@ -18,7 +18,7 @@ tags:
 ---
 
 # The Story
-
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939035-e23d1893-3fa2-4609-ba5b-1c0ee912a9fb.png)](https://imp.i115008.net/c/2851051/828292/11298)
 Last December, I was awarded an opportunity to become a [Udacity Mentor & Project Reviewer](https://www.udacity.com/start-mentoring). This started as an interest to me while I was working on my 3rd Udacity nanodegree, one of the motivations for me to apply was the idea of learning from other individuals and disseminating what I have already learned.
 
 This is my first post of 2021, I want to give you some insights on how I landed the role and a brief overview of the program I reviewed.
@@ -44,9 +44,9 @@ It was mid-November 2020 when I received a [Slack](https://slack.com/) message f
 
 
 So, as I mentioned Udacity was looking for mentors that would help guide and review projects for upcoming programs and one of those programs interested me; After applying I received and completed the *situational* and *technical assessment* to verify my skills.
-My application was successful and I was accepted to become a mentor on a new program **"Cloud Native Architecture Nanodegree Program"**. This meant that I was one of the few people that had access to the beta version of the course and I could review the course while giving valuable feedback on the content and projects. 
+My application was successful and I was accepted to become a mentor on a new program **"Cloud Native Architecture Nanodegree Program"**. This meant that I was one of the few people that had access to the beta version of the course and I could review the course while giving valuable feedback on the content and projects.
 
-But before that could happen, I needed to complete and graduate from their onboarding Udacity Mentorship Nanodegree Program. The course gives you a better understanding of what it is like to work as a Udacity Mentor and learn how to apply various tools and strategies to provide high-quality student support. In the end, you are assessed on your understanding of course materials through both multiple-choice/short-answer tests and projects where you are asked to apply what you've learned in the courses to real-life examples of student questions and project reviews. 
+But before that could happen, I needed to complete and graduate from their onboarding Udacity Mentorship Nanodegree Program. The course gives you a better understanding of what it is like to work as a Udacity Mentor and learn how to apply various tools and strategies to provide high-quality student support. In the end, you are assessed on your understanding of course materials through both multiple-choice/short-answer tests and projects where you are asked to apply what you've learned in the courses to real-life examples of student questions and project reviews.
 
 That 8 hours course took way longer than I had anticipated... Of course, I had my reasons (Me coming up with excuses!)
 
@@ -78,7 +78,7 @@ So, coming back to the course I am reviewing and you are probably wondering what
 
 - It also gives you an in-depth understanding of how to construct a CI/CD pipeline that will containerise an application and deploy it to a Kubernetes cluster; using *Cloud Native* tools such as Python, Git/GitHub, Docker, Kubernetes (Both [minikube](minikube) & [rancher's k3s](https://k3s.io/)), Vagrant and VirtualBox.
 
-- It also offers some of the foundational concepts that would help you understand; 
+- It also offers some of the foundational concepts that would help you understand;
     - What message passing is? and when to use it.
     - The difference between a [Monolith and Microservice architecture](https://medium.com/koderlabs/introduction-to-monolithic-architecture-and-microservices-architecture-b211a5955c63), the trade-offs and implementing/refactoring these applications.
 
@@ -93,8 +93,8 @@ To graduate (which I haven't) there's 2 project one needs to complete:
 - [Building a Metrics Dashboard](https://github.com/mmphego/Cloud-Native-Observability-Metrics-Dash): This project is about creating dashboards that use multiple graphs to monitor an application that is deployed on a Kubernetes cluster.
 
 # Conclusion
-
-This has been a wild ride for me. I personally didn't enjoy my festive as I had to juggle multiple things at the same time. However, I managed to finish off some of the courses and project I was doing towards the end of 2020. Now, I can put my complete (hahaha) focus on the **"Cloud Native Architecture Nanodegree Program"** before they kick me out. So that I can graduate and become a Full-Mentor and project reviewer for the program. 
+[![Alt text](https://user-images.githubusercontent.com/7910856/130939035-e23d1893-3fa2-4609-ba5b-1c0ee912a9fb.png)](https://imp.i115008.net/c/2851051/828292/11298)
+This has been a wild ride for me. I personally didn't enjoy my festive as I had to juggle multiple things at the same time. However, I managed to finish off some of the courses and project I was doing towards the end of 2020. Now, I can put my complete (hahaha) focus on the **"Cloud Native Architecture Nanodegree Program"** before they kick me out. So that I can graduate and become a Full-Mentor and project reviewer for the program.
 
 # Reference
 
