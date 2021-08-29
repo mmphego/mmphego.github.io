@@ -57,10 +57,14 @@ Use code UPSKILL21 for [50% off online tech courses at Udacity](https://imp.pxf.
 
 This section is divided into 4 parts:
 
-- [Installing Jaeger Operator on Kubernetes](#installing-jaeger-operator-on-kubernetes)
-- [Access Jaeger UI on Browser](#access-jaeger-ui-on-browser)
-- [Configuring Jaeger Data Source on Grafana](#configuring-jaeger-data-source-on-grafana)
-- [Debugging and Troubleshooting](#debugging-and-troubleshooting)
+- [How To Configure Jaeger Data Source On Grafana And Debug Network Issues With Bind-utilities.](#how-to-configure-jaeger-data-source-on-grafana-and-debug-network-issues-with-bind-utilities)
+- [The Story](#the-story)
+  - [The Walk-through](#the-walk-through)
+    - [Installing Jaeger Operator on Kubernetes](#installing-jaeger-operator-on-kubernetes)
+    - [Access Jaeger UI on Browser](#access-jaeger-ui-on-browser)
+    - [Configuring Jaeger Data Source on Grafana](#configuring-jaeger-data-source-on-grafana)
+    - [Debugging and Troubleshooting](#debugging-and-troubleshooting)
+- [Reference](#reference)
 
 ### Installing Jaeger Operator on Kubernetes
 
@@ -122,7 +126,7 @@ kubectl get -n ${namespace} ingress -o yaml | tail
 
 ```bash
 kubectl port-forward -n ${namespace} \
-    $(kubectl get pods -n ${namespace} -l=app="jaeger" -o name) 16686:16686
+    $(kubectl get pods -n ${namespace} -l=app="jaeger" -o name) --address 0.0.0.0 16686:16686
 ```
 
 Then on our browser, we can access the Jaeger UI to validate the installation was successful.
