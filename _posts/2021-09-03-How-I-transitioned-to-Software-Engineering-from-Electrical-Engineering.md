@@ -19,6 +19,7 @@ tags:
 # The Story
 
 The other day, I found myself scrolling through Twitter timeline and stumbled upon a tweet that resonated with me. It was a tweet from @Tebatsomankger2, I took a screenshot and pasted it below. You're also welcome to read the whole thread [here](https://twitter.com/Tebatsomankger2/status/1433138792177754115)
+
 ![image](https://user-images.githubusercontent.com/7910856/131979920-bd0d15e1-f752-439e-a9fd-664b0009fb3e.png)
 
 The reason why I am saying it resonated with me is that for the longest time, I too felt the same way. After graduating with an Electrical Engineering diploma and coming from a disadvantaged background, I too hoped that the hard-earned qualification would take me from rags to riches. That dream quickly faded to the abyss when I constantly found myself seeking employment opportunities and when I did get a job the salary was close to nothing basically it paid for my rent and transport (basically living hand to mouth). I constantly questioned myself and my decisions as to why I pursued a career in electrical engineering instead of a degree in something like medicine where career prospects were much higher.
@@ -35,6 +36,7 @@ Also, the fact that I had been exposed to programming from my qualification was 
 What worked for me was that I was always driven and curious about what I could do and I was always willing to learn new things.
 
 Before I  completely get off-topic (which I usually do), I replied to the tweet above with the following message and was overwhelmed with the number of DMs I received.
+
 ![image](https://user-images.githubusercontent.com/7910856/132011148-744c788b-1499-48d3-9e32-44da73d551d1.png)
 
 At that moment, I decided to write this post which will briefly detail my journey from being an electronic engineering technician to how I become a software engineer and some pointers you can try for yourself.
