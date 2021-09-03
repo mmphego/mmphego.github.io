@@ -100,7 +100,7 @@ Great course to get some Computer Science fundamentals.
 Highly recommended but the use C/C++ programming language
 
 - [Introduction to Linux](https://www.edx.org/course/introduction-to-linux)
--
+
 Everything (server etc) runs on Linux these days.
 
 - [Linux Basics: The Command Line Interface](https://www.edx.org/course/linux-basics-the-command-line-interface)
