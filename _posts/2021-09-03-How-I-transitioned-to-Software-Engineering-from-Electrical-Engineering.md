@@ -39,7 +39,7 @@ Before I  completely get off-topic (which I usually do), I replied to the tweet 
 
 ![image](https://user-images.githubusercontent.com/7910856/132011148-744c788b-1499-48d3-9e32-44da73d551d1.png)
 
-At that moment, I decided to write this post which will briefly detail my journey from being an electronic engineering technician to how I become a software engineer and some pointers you can try for yourself.
+At that moment, I decided to write this post which will briefly detail my journey from being an electronic engineering technician to how I became a software engineer and some pointers you can try for yourself.
 
 ## TL;DR
 
