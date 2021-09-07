@@ -68,7 +68,12 @@ I continue to learn new things and I am always looking for new ways to improve m
 
 I assume that you are reading this post because you are at that point in your life where you want to transition to a different career, it might be software engineering or data science.
 
-Before you continue, **What is your WHY?**
+Before you continue, **What is your WHY?**.
+The reason why I am saying this is because a lot of people want things handed to them on a silver platter and do not want to put in the time and effort to learning something new.
+
+Do yourself a favour and grab a piece of paper and ask yourself the following question:
+**Why do I want to do this?**
+
 {:refdef: style="text-align: center;"}
 <iframe width="100%" height="315" src="https://www.youtube.com/embed/56Qu3MY5EnU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 {: refdef}
