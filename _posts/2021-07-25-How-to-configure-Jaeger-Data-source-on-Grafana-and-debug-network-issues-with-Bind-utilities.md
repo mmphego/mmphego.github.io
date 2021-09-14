@@ -20,8 +20,8 @@ tags:
 
 11 Min Read
 
-<h3 id="1125890"><a href="https://imp.i115008.net/c/2851051/1125890/11298">Get up to 75% OFF online tech courses at Udacity! Unlock your Personalized Discount and start saving today!</a></h3>
-<img height="0" width="0" src="https://imp.pxf.io/i/2851051/1125890/11298" style="position:absolute;visibility:hidden;" border="0" />
+
+ <a href="https://imp.i115008.net/c/2851051/877657/11298" target="_top" id="877657"><img src="//a.impactradius-go.com/display-ad/11298-877657" border="0" alt="" width="100%" height="90"/></a><img height="0" width="0" src="https://imp.pxf.io/i/2851051/877657/11298" style="position:absolute;visibility:hidden;" border="0" />
 
 ---
 
@@ -50,7 +50,7 @@ I, therefore, decided to document this guide below which takes you through the i
 
 If not, refer to a previous post on how to [install Prometheus & Grafana using Helm 3 on Kubernetes cluster running on Vagrant VM](https://blog.mphomphego.co.za/blog/2021/02/01/Install-Prometheus-and-Grafana-with-helm-3-on-Kubernetes-cluster-running-on-Vagrant-VM.html)
 
-Use code UPSKILL21 for [50% off online tech courses at Udacity](https://imp.pxf.io/i/2851051/1131184/11298)! Save up to $200 per month and get the skills you need to increase your salary!
+ <a href="https://imp.i115008.net/c/2851051/877657/11298" target="_top" id="877657"><img src="//a.impactradius-go.com/display-ad/11298-877657" border="0" alt="" width="100%" height="90"/></a><img height="0" width="0" src="https://imp.pxf.io/i/2851051/877657/11298" style="position:absolute;visibility:hidden;" border="0" />
 
 
 ## The Walk-through
@@ -120,6 +120,7 @@ kubectl get -n ${namespace} ingress -o yaml | tail
 
 **Note:** The service name and port number will be useful later when setting up data sources on Grafana.
 
+ <a href="https://imp.i115008.net/c/2851051/895506/11298" target="_top" id="895506"><img src="//a.impactradius-go.com/display-ad/11298-895506" border="0" alt="" width="100%" height="90"/></a><img height="0" width="0" src="https://imp.pxf.io/i/2851051/895506/11298" style="position:absolute;visibility:hidden;" border="0" />
 ### Access Jaeger UI on Browser
 
 (for testing purposes) we can [port-forward](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#port-forward) it such that we access it on our localhost host by running the command:
@@ -173,6 +174,7 @@ The image below shows a successful integration, where we can query Jaeger [Span]
 
 ![image](https://user-images.githubusercontent.com/7910856/126897982-7e76451e-df9c-449f-a8d8-b7d25cc7241d.png)
 
+ <a href="https://imp.i115008.net/c/2851051/895506/11298" target="_top" id="895506"><img src="//a.impactradius-go.com/display-ad/11298-895506" border="0" alt="" width="100%" height="90"/></a><img height="0" width="0" src="https://imp.pxf.io/i/2851051/895506/11298" style="position:absolute;visibility:hidden;" border="0" />
 ### Debugging and Troubleshooting
 
 - Jaeger docs contain a list of commonly encountered issues, hit this [link](https://www.jaegertracing.io/docs/1.24/troubleshooting/) for more information.
@@ -237,6 +239,7 @@ I will try to update this post with new ways to debug as I find my ways around K
 
 If you have any suggestions, leave a comment below and we will get in touch.
 
+ <a href="https://imp.i115008.net/c/2851051/887756/11298" target="_top" id="887756"><img src="//a.impactradius-go.com/display-ad/11298-887756" border="0" alt="" width="100%" height="90"/></a><img height="0" width="0" src="https://imp.pxf.io/i/2851051/887756/11298" style="position:absolute;visibility:hidden;" border="0" />
 # Reference
 
 - [Grafana Data Sources](https://www.metricfire.com/blog/grafana-data-sources/)
@@ -251,3 +254,5 @@ If you have any suggestions, leave a comment below and we will get in touch.
 - [Kubernetes DNS for Services and Pods](https://medium.com/kubernetes-tutorials/kubernetes-dns-for-services-and-pods-664804211501)
 - [How To Use Nmap to Scan for Open Ports](https://www.digitalocean.com/community/tutorials/how-to-use-nmap-to-scan-for-open-ports)
 - [How to Scan & Find All Open Ports with Nmap](https://phoenixnap.com/kb/nmap-scan-open-ports)
+
+ <a href="https://imp.i115008.net/c/2851051/828292/11298" target="_top" id="828292"><img src="//a.impactradius-go.com/display-ad/11298-828292" border="0" alt="" width="100%" height="90"/></a><img height="0" width="0" src="https://imp.pxf.io/i/2851051/828292/11298" style="position:absolute;visibility:hidden;" border="0" />
