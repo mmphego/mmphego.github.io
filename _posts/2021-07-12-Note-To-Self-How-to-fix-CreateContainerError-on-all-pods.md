@@ -24,7 +24,7 @@ I recently upgraded the version of `k3s` on my Vagrant box and as soon as I depl
 
 # The How
 
-A recent update of `k3s` threw me of when all of my pods resulted in `CreateContainerError`. 
+A recent update of `k3s` threw me of when all of my pods resulted in `CreateContainerError`.
 
 ```bash
 $ k3s --version
@@ -62,7 +62,7 @@ kubectl describe pod backend-75fbb7ff65-ss2fk | grep -A20 "Events"
 
 # The Walk-through
 
-Installing `apparmor` fixed the issue. 
+Installing `apparmor` fixed the issue.
 
 - Debian/Ubuntu
 
