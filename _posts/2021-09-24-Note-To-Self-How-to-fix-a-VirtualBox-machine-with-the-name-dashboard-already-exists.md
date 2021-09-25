@@ -12,7 +12,7 @@ tags:
 # Note To Self: How To Fix A VirtualBox Machine With The Name 'dashboard' Already Exists..
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2021-09-24-Note-To-Self-How-to-fix-a-VirtualBox-machine-with-the-name-dashboard-already-exists..png" | absolute_url }})
+![post image]({{ "/assets/2021-09-24-Note-To-Self-How-to-fix-a-VirtualBox-machine-with-the-name-dashboard-already-exists.png" | absolute_url }})
 {: refdef}
 
 3 Min Read
