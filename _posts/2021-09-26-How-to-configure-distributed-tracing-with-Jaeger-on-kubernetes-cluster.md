@@ -17,7 +17,7 @@ tags:
 ![post image]({{ "/assets/2021-09-26-How-to-configure-distributed-tracing-with-Jaeger-on-kubernetes-cluster.png" | absolute_url }})
 {: refdef}
 
-<<TIME TO READ>>
+10 Min Read
 
 ---
 
