@@ -171,6 +171,7 @@ spec:
     spec:
       containers:
         - image: jaegertracing/example-hotrod:latest
+          args: ["all"]
           name: hotrod
           imagePullPolicy: Always
           ports:
