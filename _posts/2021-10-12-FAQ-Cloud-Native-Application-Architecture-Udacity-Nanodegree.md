@@ -115,3 +115,8 @@ This is a personal post of a collection of frequently asked questions and answer
 
 ![image](https://user-images.githubusercontent.com/7910856/138071195-b23f84f9-8108-41df-8952-cde50ad66856.png)
 ![image](https://user-images.githubusercontent.com/7910856/138071246-d7388fb5-3469-4dea-b60b-69d5f48bc305.png)
+
+### [Can't see my applications on grafana](https://knowledge.udacity.com/questions/726806)
+
+![image](https://user-images.githubusercontent.com/7910856/139035462-cdd4dd26-e13a-4bee-8714-4b725c33e944.png)
+![image](https://user-images.githubusercontent.com/7910856/139035676-480966ca-5254-42cc-966f-dbed1f3a93b6.png)
