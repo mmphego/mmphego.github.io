@@ -29,6 +29,11 @@ This is a personal post of a collection of frequently asked questions and answer
 
 ## FAQs
 
+### [Invalid username or password for Grafana](https://knowledge.udacity.com/questions/740949)
+
+![image](https://user-images.githubusercontent.com/7910856/141963084-08f90b43-c0b3-40c1-b17b-5af652a7adcf.png)
+![image](https://user-images.githubusercontent.com/7910856/141963220-7d60ff29-e1eb-454e-9c7d-5c711199f0ca.png)
+
 ### [How to get database connections count](https://knowledge.udacity.com/questions/658736)
 
 ![image](https://user-images.githubusercontent.com/7910856/138064826-2c5fc5f3-a001-43bc-9bc4-2fcc8da52aad.png)
