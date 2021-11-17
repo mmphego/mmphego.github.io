@@ -76,14 +76,14 @@ The command below will create the `observability` namespace and install the Jaeg
 ```bash
 export namespace=observability
 kubectl create namespace ${namespace}
-kubectl create -f https://raw.githubusercontent.com/jaegertracing/jaeger-operator/master/deploy/crds/jaegertracing.io_jaegers_crd.yaml
-kubectl create -n ${namespace} -f https://raw.githubusercontent.com/jaegertracing/jaeger-operator/master/deploy/service_account.yaml
-kubectl create -n ${namespace} -f https://raw.githubusercontent.com/jaegertracing/jaeger-operator/master/deploy/role.yaml
-kubectl create -n ${namespace} -f https://raw.githubusercontent.com/jaegertracing/jaeger-operator/master/deploy/role_binding.yaml
-kubectl create -n ${namespace} -f https://raw.githubusercontent.com/jaegertracing/jaeger-operator/master/deploy/operator.yaml
+kubectl create -f https://raw.githubusercontent.com/jaegertracing/jaeger-operator/v1.27.0/deploy/crds/jaegertracing.io_jaegers_crd.yaml
+kubectl create -n ${namespace} -f https://raw.githubusercontent.com/jaegertracing/jaeger-operator/v1.27.0/deploy/service_account.yaml
+kubectl create -n ${namespace} -f https://raw.githubusercontent.com/jaegertracing/jaeger-operator/v1.27.0/deploy/role.yaml
+kubectl create -n ${namespace} -f https://raw.githubusercontent.com/jaegertracing/jaeger-operator/v1.27.0/deploy/role_binding.yaml
+kubectl create -n ${namespace} -f https://raw.githubusercontent.com/jaegertracing/jaeger-operator/v1.27.0/deploy/operator.yaml
 
-kubectl create -f https://raw.githubusercontent.com/jaegertracing/jaeger-operator/master/deploy/cluster_role.yaml
-kubectl create -f https://raw.githubusercontent.com/jaegertracing/jaeger-operator/master/deploy/cluster_role_binding.yaml
+kubectl create -f https://raw.githubusercontent.com/jaegertracing/jaeger-operator/v1.27.0/deploy/cluster_role.yaml
+kubectl create -f https://raw.githubusercontent.com/jaegertracing/jaeger-operator/v1.27.0/deploy/cluster_role_binding.yaml
 ```
 
 Once we have created the `jaeger-operator` deployment, we need to create a Jaeger instance, see snippet below:
