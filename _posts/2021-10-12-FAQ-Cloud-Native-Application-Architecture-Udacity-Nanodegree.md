@@ -21,6 +21,8 @@ tags:
 
 ---
 
+**Updated: 2021-12-15 08:57:00.000000000 +02:00**
+
 ## The Story
 
 As a mentor, I found myself searching through previous [Udacity Knowledge](https://udacity.zendesk.com/hc/en-us/articles/360039084091-What-is-Knowledge-) Q&A platform for old posts with the intentions of answering or helping other students with similar queries, flipping through links was just a chore.
