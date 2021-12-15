@@ -125,3 +125,11 @@ This is a personal post of a collection of frequently asked questions and answer
 
 ![image](https://user-images.githubusercontent.com/7910856/139035462-cdd4dd26-e13a-4bee-8714-4b725c33e944.png)
 ![image](https://user-images.githubusercontent.com/7910856/139035676-480966ca-5254-42cc-966f-dbed1f3a93b6.png)
+
+### [Helm Declarative Manifest Error](https://knowledge.udacity.com/questions/760744)
+
+![2021-12-15_08-54_1](https://user-images.githubusercontent.com/7910856/146138246-98298d6f-f826-4a11-af24-63ca5521d9be.png)
+![2021-12-15_08-55](https://user-images.githubusercontent.com/7910856/146138244-9577879b-32fe-4b1d-994b-96daf260e0ae.png)
+![2021-12-15_08-55_1](https://user-images.githubusercontent.com/7910856/146138241-2b369134-a113-4b8c-b309-409c746cfdac.png)
+![2021-12-15_08-55_2](https://user-images.githubusercontent.com/7910856/146138237-68d870dc-6020-4d30-a659-de300022380f.png)
+![2021-12-15_08-55_3](https://user-images.githubusercontent.com/7910856/146138233-39dff91f-1b27-4980-bfbf-41ff12e43bd7.png)
