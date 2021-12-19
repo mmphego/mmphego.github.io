@@ -21,7 +21,7 @@ tags:
 
 ---
 
-**Updated: 2021-12-15 08:57:00.000000000 +02:00**
+**Updated: 2021-12-19 16:34:23 +02:00**
 
 ## The Story
 
@@ -135,3 +135,10 @@ This is a personal post of a collection of frequently asked questions and answer
 ![2021-12-15_08-55_1](https://user-images.githubusercontent.com/7910856/146138241-2b369134-a113-4b8c-b309-409c746cfdac.png)
 ![2021-12-15_08-55_2](https://user-images.githubusercontent.com/7910856/146138237-68d870dc-6020-4d30-a659-de300022380f.png)
 ![2021-12-15_08-55_3](https://user-images.githubusercontent.com/7910856/146138233-39dff91f-1b27-4980-bfbf-41ff12e43bd7.png)
+
+### [CrashLoopBackOff of Prometheus Pods](https://knowledge.udacity.com/questions/765569)
+
+![image](https://user-images.githubusercontent.com/7910856/146678674-c6012f58-313d-4a00-8262-1dd735e0bcec.png)
+![image](https://user-images.githubusercontent.com/7910856/146678684-53b14a06-69c4-4f0c-b054-5ef54857d090.png)
+![image](https://user-images.githubusercontent.com/7910856/146678695-c4e5aa12-01ee-4326-ba40-c18702cea365.png)
+
