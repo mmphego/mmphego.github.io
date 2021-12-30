@@ -21,7 +21,7 @@ tags:
 
 ---
 
-**Updated: 2021-12-19 16:34:23 +02:00**
+**Updated: 2021-12-30 19:29:15 +02:00**
 
 ## The Story
 
@@ -141,4 +141,12 @@ This is a personal post of a collection of frequently asked questions and answer
 ![image](https://user-images.githubusercontent.com/7910856/146678674-c6012f58-313d-4a00-8262-1dd735e0bcec.png)
 ![image](https://user-images.githubusercontent.com/7910856/146678684-53b14a06-69c4-4f0c-b054-5ef54857d090.png)
 ![image](https://user-images.githubusercontent.com/7910856/146678695-c4e5aa12-01ee-4326-ba40-c18702cea365.png)
+
+### [My backend service tracing is not reflected in Jaeger](https://knowledge.udacity.com/questions/770024)
+
+![image](https://user-images.githubusercontent.com/7910856/147776664-3154e85d-bad2-40dc-92fe-eaf94caf8381.png)
+![image](https://user-images.githubusercontent.com/7910856/147776680-bbb6904c-e640-42b2-ab03-2b2a71dfc679.png)
+![image](https://user-images.githubusercontent.com/7910856/147776695-f1a0ff41-3853-48b5-95c5-10a36ed4f154.png)
+![image](https://user-images.githubusercontent.com/7910856/147776728-6a75b096-6ce3-4047-bce3-6343830e9579.png)
+![image](https://user-images.githubusercontent.com/7910856/147776743-d57cfc6c-51fc-4b03-8c9e-76e22748b225.png)
 
