@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: mphomphego.co.za
+Token: 81f8f0285207f13b9d354db539ff074188657853f118e8de57b489cbb75ec0fb
