@@ -9,6 +9,7 @@ tags:
 - Vagrant
 - Kubernetes
 - Docker
+- Troubleshooting
 ---
 
 # FAQ: Cloud Native Application Architecture Udacity Nanodegree
@@ -21,7 +22,7 @@ tags:
 
 ---
 
-**Updated: 2021-12-30 19:29:15 +02:00**
+**Updated: 2022-01-02 11:29:15 +02:00**
 
 ## The Story
 
@@ -150,3 +151,13 @@ This is a personal post of a collection of frequently asked questions and answer
 ![image](https://user-images.githubusercontent.com/7910856/147776728-6a75b096-6ce3-4047-bce3-6343830e9579.png)
 ![image](https://user-images.githubusercontent.com/7910856/147776743-d57cfc6c-51fc-4b03-8c9e-76e22748b225.png)
 
+
+## [Prometheus installation keeps failing](https://knowledge.udacity.com/questions/771153)
+
+![2022-01-02_11-19](https://user-images.githubusercontent.com/7910856/147871595-0c7cd52e-0cc6-4ade-8588-dc37ca270643.png)
+![2022-01-02_11-191](https://user-images.githubusercontent.com/7910856/147871594-2d856547-f81b-41c4-bba2-0fea3dcd0439.png)
+![2022-01-02_11-19_1](https://user-images.githubusercontent.com/7910856/147871593-198c7972-5367-4f6a-ae2a-1a4f5a953050.png)
+
+---
+
+![2022-01-02_11-20](https://user-images.githubusercontent.com/7910856/147871592-9618d8d8-d1d4-4410-9257-454c5c1552f4.png)
