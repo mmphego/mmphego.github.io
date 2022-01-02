@@ -22,7 +22,7 @@ Wow, I haven't written a post in a long time. I hope this is a good start. In a 
 
 ![image](https://user-images.githubusercontent.com/7910856/147804190-0eb2defc-ad41-4bd9-b29f-d54cfef2dbea.png)
 
-In this post, I look back at how 2021 was for me and this will just be a little retrospection summary of things that went well and things that did not. I am starting this new tradition of celebrating the end of the year as I look back at some of my highlights of that year.
+In this post, I look back at how 2021 was for me and this will just be a little retrospection summary of things that went well and things that did not. I am continuing with this tradition of celebrating the end of the year as I look back at some of my highlights of that year.
 
 
 Check out my [2020 In Retrospective](https://blog.mphomphego.co.za/blog/2020/12/30/2020-In-Retrospective.html) for a more detailed look at what happened in 2020.
