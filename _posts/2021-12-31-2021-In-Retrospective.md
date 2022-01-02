@@ -51,9 +51,12 @@ We collaborated and gave a talk at the @PyConZA 2021 conference, which was a gre
     ![image](https://user-images.githubusercontent.com/7910856/147813151-d7d38982-867b-4562-978c-914d726258e0.png)
 
 
-    - My experience on how I became a Udacity mentor is documented [here](https://blog.mphomphego.co.za/blog/2021/01/03/How-I-became-a-Udacity-Mentor.html)
+- My experience on how I became a Udacity mentor is documented [here](https://blog.mphomphego.co.za/blog/2021/01/03/How-I-became-a-Udacity-Mentor.html)
 
 - One of my other goals for 2021 was to at least blog twice per month and I started on a clear trajectory averaging 2 posts per month but it all went downhill from Q3 and I managed to publish **17 posts** based on some of my experiences and things learned which is the same number of posts I made in 2020...Go figure!
+
+- I became an [AWS Community Builder](https://aws.amazon.com/developer/community/community-builders/) member and I am now a member of the AWS Community.
+![image](https://user-images.githubusercontent.com/7910856/147874001-47a26a05-3486-453d-b0c3-dca597b9a696.png)
 
 - Made over **1400+** [Github](www.github.com/mmphego) open & close source contributions (which was less than 2020 @ 2400+), **340+** PR's and **5+** projects
 
