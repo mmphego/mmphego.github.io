@@ -116,13 +116,13 @@ The command-line interface is the way to access the world.
 
 This will teach you about the fundamentals of Python programming which will open massive doors for you once you understand it, it should take you a month to complete, at 10 hours per week.
 
-- [Intro to HTML and CSS](https://www.udacity.com/course/intro-to-html-and-css--ud001)
+- [Intro to HTML and CSS](https://imp.i115008.net/a1L2EW)
 
 This will teach your above web development and should take you less than a month at 10 hrs per week to complete.
 
 - [Intro to JavaScript](https://imp.i115008.net/DVk6ob)
 
-This course integrates well with the HTML and CSS, it should take you less than a month and you can do it together with the [Intro to HTML and CSS](https://www.udacity.com/course/intro-to-html-and-css--ud001)
+This course integrates well with the HTML and CSS, it should take you less than a month and you can do it together with the [Intro to HTML and CSS](https://imp.i115008.net/a1L2EW)
 
 - [Software Debugging](https://imp.i115008.net/NK6xa1)
 
