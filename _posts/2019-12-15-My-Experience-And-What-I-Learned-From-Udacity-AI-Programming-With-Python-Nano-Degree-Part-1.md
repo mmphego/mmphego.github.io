@@ -23,12 +23,12 @@ tags:
 -----------------------------------------------------------------------------------------
 
 # The Story
-It has been quite a while since I last wrote a post, but I had reasons. A few months ago I received an email from [Udacity](udacity.com/) and [AAL (African App Launchpad Program)](http://www.aal.gov.eg/) detailing a list of scholarships I could apply for - based on my interest in Machine Learning and Deep Learning.
+It has been quite a while since I last wrote a post, but I had reasons. A few months ago I received an email from [Udacity](https://imp.i115008.net/c/2851051/786224/11298/) and [AAL (African App Launchpad Program)](http://www.aal.gov.eg/) detailing a list of scholarships I could apply for - based on my interest in Machine Learning and Deep Learning.
 {:refdef: style="text-align: center;"}
 ![post image]({{ "/assets/udacity_email.png" | absolute_url }})
 {: refdef}
 
-I have always had an interest in AI and Machine Learning, so when this opportunity came knocking I did not even hesitate so for obvious reason I opted to apply for the scholarship **AI programming with Python Udacity NanoDegree**.
+I have always had an interest in AI and Machine Learning, so when this opportunity came knocking I did not even hesitate so for obvious reason I opted to apply for the scholarship [**AI programming with Python Udacity NanoDegree**](https://imp.i115008.net/NK6x7b).
 
 Completed my application and a few days later my application was **successful**, now it was off to the learning.
 
@@ -42,7 +42,7 @@ In this post, my focus will be directed to the final project that I needed to su
 
 -------------------------------------------------------------------------
 
-More about [Udacity](udacity.com/) and [AAL (African App Launchpad Program)](http://www.aal.gov.eg/) scholarship.
+More about [Udacity](https://imp.i115008.net/c/2851051/786224/11298/) and [AAL (African App Launchpad Program)](http://www.aal.gov.eg/) scholarship.
 
 The scholarship program is aimed at residents of these countries: **Egypt, Cameroon, Madagascar, Uganda, Namibia, Togo, Algeria, Ghana, Angola, Mauritania, Chad, South Africa, Niger, Malawi, The Democratic Republic of the Congo, Rwanda, The Gambia and Côte d'Ivoire.**
 
@@ -57,7 +57,7 @@ If you would like to register for the scholarship, and learn a new skill-set cli
 
 # The How
 
-The course comprised of a few lessons and a project to complete to receive a [Udacity Nanodegree](https://www.udacity.com/course/ai-programming-python-nanodegree--nd089) certificate.
+The course comprised of a few lessons and a project to complete to receive a [Udacity Nanodegree](https://imp.i115008.net/NK6x7b) certificate.
 
 The list below details the lessons/parts that I had to complete:
 
