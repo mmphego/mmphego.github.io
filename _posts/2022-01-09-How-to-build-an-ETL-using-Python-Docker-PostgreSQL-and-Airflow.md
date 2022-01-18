@@ -1426,26 +1426,34 @@ That's it! Now, we can head out to the Airflow UI and check if our DAG was creat
 
 After we log in to the Airflow UI, we should notice that the DAG was created successfully. You should see an image similar to the one below.
 
+{:refdef: style="text-align: center;"}
 ![image](https://user-images.githubusercontent.com/7910856/149836105-d6956b68-7379-46c8-b0c2-0487e64a3e58.png)
+{: refdef}
 
 If we are happy with the DAG, we can now run the DAG by clicking on the green play button and selecting ***Trigger DAG***. This will start the DAG execution
 
 Let's open the last successful run of the DAG and see the logs. The image below shows the graph representation of the DAG
 
+{:refdef: style="text-align: center;"}
 ![image](https://user-images.githubusercontent.com/7910856/149837213-6f97cdfd-a899-4e74-89b9-0be565b7fa1f.png)
+{: refdef}
 
 Looks like the DAG was executed successfully, everything is Green!
 Now, we can check the logs of the DAG to see the execution of the ETL function by clicking on an individual task and then clicking on the ***Logs*** tab.
 
+{:refdef: style="text-align: center;"}
 ![image](https://user-images.githubusercontent.com/7910856/149837366-9623c611-be97-473e-83b0-3c37b98c5d32.png)
+{: refdef}
 
 The logs show that the ETL function was executed successfully.
-
+{:refdef: style="text-align: center;"}
 ![image](https://user-images.githubusercontent.com/7910856/149837428-29fe2ee4-1ee6-4ac2-9ec4-0e7076c23be3.png)
+{: refdef}
 
 This now concludes this post. If you have gotten this far, I hope you enjoyed this post and found it useful.
-
-![image](https://user-images.githubusercontent.com/7910856/149837697-c7bf50ee-e469-4ff1-a7fa-51211558318c.png)
+{:refdef: style="text-align: center;"}
+![image](https://user-images.githubusercontent.com/7910856/149874583-57f6e795-2e62-468b-bd84-a2d8fdb89e3c.png)
+{: refdef}
 
 ## Conclusion
 
