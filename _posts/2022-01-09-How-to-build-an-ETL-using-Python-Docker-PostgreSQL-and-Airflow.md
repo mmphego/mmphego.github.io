@@ -27,22 +27,23 @@ During the past few years, I have developed an interest in Machine Learning but 
 
 This post will detail how to build an [ETL (Extract, Transform and Load)](https://en.wikipedia.org/wiki/Extract,_transform,_load) using Python, [Docker](https://www.docker.com/), [PostgreSQL](https://www.postgresql.org/) and [Airflow](https://airflow.apache.org/).
 
-***You will need to sit down comfortably on this one, it will not be a quick read.***
+***You will need to sit down comfortably for this one, it will not be a quick read.***
 
 Before we get started, let's take a look at what ETL is and why it is important.
 
-One of the foundational layers when it comes to Machine Learning is ETL(Extract, Transform and Load). According to [Wikipedia](https://en.wikipedia.org/wiki/Extract,_transform,_load),
+One of the foundational layers when it comes to Machine Learning is ETL(Extract, Transform and Load). According to [Wikipedia](https://en.wikipedia.org/wiki/Extract,_transform,_load):
 > ETL is the general procedure of copying data from one or more sources into a destination system that represents the data differently from the source(s) or in a different context than the source(s).
 > Data extraction involves **extracting data** from (one or more) homogeneous or heterogeneous sources; **data transformation** processes data by data cleaning and transforming it into a proper storage format/structure for the purposes of querying and analysis; finally, **data loading** describes the insertion of data into the final target database such as an operational data store, a data mart, data lake or a data warehouse.
 
-One might be wondering, Why do we need an ETL pipeline?
-Assume we had a set of data that we wanted to use. However, this data is unclean, missing information, and inconsistent. One solution would be to have a program clean and transform this data so that:
+One might begin to wonder, Why do we need an ETL pipeline?
+
+Assume we had a set of data that we wanted to use. However, this data is unclean, missing information, and inconsistent as with most data. One solution would be to have a program clean and transform this data so that:
 
 - There is no missing information
 - Data is consistent
 - Data is fast to load into another program
 
-With smart devices, online communities, and E-Commerce, there is an abundance of raw, unfiltered data in today's industry. However, most of it is squandered because it is difficult to interpret due to its tangle. ETL pipelines are available to combat this by automating data collection and transformation so that analysts can use them for business insights.
+With smart devices, online communities, and E-Commerce, there is an abundance of raw, unfiltered data in today's industry. However, most of it is squandered because it is difficult to interpret due to it being tangled. ETL pipelines are available to combat this by automating data collection and transformation so that analysts can use them for business insights.
 
 There are a lot of different tools and frameworks that are used to build ETL pipelines. In this post, I will focus on how one can **tediously** build an ETL using Python, [Docker](https://www.docker.com/), [PostgreSQL](https://www.postgresql.org/) and [Airflow](https://airflow.apache.org/) tools.
 
