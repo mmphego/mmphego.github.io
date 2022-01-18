@@ -511,7 +511,7 @@ docker network rm etl_network
 
 ### Extract, Transform and Load
 
-Now that we have Jupyter, Airflow and Postgres services running, we can start creating our ETL. Open the Jupyter notebook and create a new notebook called `Simple ETL`. For this post, we will use the
+Now that we have Jupyter, Airflow and Postgres services running, we can start creating our ETL. Open the Jupyter notebook and create a new notebook called `Simple ETL`.
 
 **Step 0: Install the required libraries**
 
@@ -551,6 +551,7 @@ connection_uri = "postgresql+psycopg2://{}:{}@{}:{}".format(
 ```
 
 **Step 2: Create a connection to the Postgres database**
+
 We will treat this database as a fake production database, that will house both our raw and transformed data.
 
 ```python
