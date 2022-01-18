@@ -73,7 +73,12 @@ Let's start by setting up our environment. First, we will set up our Jupyter Not
 
 #### Setup PostgreSQL and Jupyter Notebook
 
-In this section, we will set up the PostgreSQL database and Jupyter Notebook. First, we will need to create a `.env` file in the project directory. This file will contain the PostgreSQL database credentials which are needed in the `docker-compose.yml` file.
+{:refdef: style="text-align: center;"}
+![image](https://user-images.githubusercontent.com/7910856/149875729-94d167a8-8013-4d5a-bdd8-68e3e541cfd1.png)
+{: refdef}
+
+In this section, we will set up the PostgreSQL database and Jupyter Notebook in a Docker container. First, we will need to create a `.env` file in the project directory. This file will contain the PostgreSQL database credentials which are needed in the `docker-compose.yml` file.
+
 
 ```bash
 cat << EOF > .env
