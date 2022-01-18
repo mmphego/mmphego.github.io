@@ -1298,18 +1298,18 @@ For the sake of simplicity, we will create a simple (decorator) logging function
 
 ```python
 
-def logger(fn):
+def logger(func):
     from datetime import datetime, timezone
 
-    @wraps(fn)
-    def inner(*args, **kwargs):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
         called_at = datetime.now(timezone.utc)
-        print(f">>> Running {fn.__name__!r} function. Logged at {called_at}")
-        to_execute = fn(*args, **kwargs)
-        print(f">>> Function: {fn.__name__!r} executed. Logged at {called_at}")
+        print(f">>> Running {func.__name__!r} function. Logged at {called_at}")
+        to_execute = func(*args, **kwargs)
+        print(f">>> Function: {func.__name__!r} executed. Logged at {called_at}")
         return to_execute
 
-    return inner
+    return wrapper
 ```
 
 {:refdef: style="text-align: center;"}
