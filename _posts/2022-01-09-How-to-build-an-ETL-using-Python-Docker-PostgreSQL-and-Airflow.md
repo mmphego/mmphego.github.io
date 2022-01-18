@@ -11,7 +11,7 @@ tags:
 - Data Engineering
 - Data Wrangling
 ---
-# How To Build An ETL Using Python, Docker, PostgreSQL And Airflow.
+# How To Build An ETL Using Python, Docker, PostgreSQL And Airflow
 
 {:refdef: style="text-align: center;"}
 ![post image]({{ "/assets/2022-01-09-How-to-build-an-ETL-using-Python-Docker-PostgreSQL-and-Airflow.png" | absolute_url }})
@@ -20,6 +20,8 @@ tags:
 30 Min Read
 
 ---
+
+**Updated: 2022-02-18 06:54:15 +02:00**
 
 # The Story
 
@@ -47,6 +49,10 @@ With smart devices, online communities, and E-Commerce, there is an abundance of
 
 There are a lot of different tools and frameworks that are used to build ETL pipelines. In this post, I will focus on how one can **tediously** build an ETL using Python, [Docker](https://www.docker.com/), [PostgreSQL](https://www.postgresql.org/) and [Airflow](https://airflow.apache.org/) tools.
 
+{:refdef: style="text-align: center;"}
+![image](https://user-images.githubusercontent.com/7910856/149873065-2b5d8766-7ae7-452c-8dd8-6b3e3442a63f.png)
+{: refdef}
+
 ## TL;DR
 
 There's no free lunch. Read the whole post.
@@ -55,11 +61,11 @@ There's no free lunch. Read the whole post.
 
 For this post, we will be using the data from [UC-Irvine machine learning recognition datasets](https://archive.ics.uci.edu/ml/datasets/Wine+Quality). This dataset contains Wine Quality information and it is a result of chemical analysis of various wines grown in Portugal.
 
-We will need to extract the data from the public repository (for this post I went ahead and uploaded the data to gist.github.com) and transform it into a format that can be used by the ML algorithms (not part of this post), thereafter we will load both raw and transformed data into a PostgreSQL database running in a Docker container, then create a [DAG](https://airflow.apache.org/tutorial.html) that will run the ETL pipeline. The DAG will be used to run the ETL pipeline in [Airflow](https://airflow.apache.org/).
+We will need to extract the data from a public repository (for this post I went ahead and uploaded the data to [gist.github.com](gist.github.com)) and transform it into a format that can be used by ML algorithms (not part of this post), thereafter we will load both raw and transformed data into a PostgreSQL database running in a Docker container, then create a [DAG](https://airflow.apache.org/tutorial.html) that will run an ETL pipeline periodically. The DAG will be used to run the ETL pipeline in [Airflow](https://airflow.apache.org/).
 
 ## The Walk-through
 
-Before we can do any transformation, we need to extract the data from the public repository. Using Python and Pandas, we will extract the data from the public repository and upload it to a PostgreSQL database. This assumes that we have an existing PostgreSQL database running in a Docker container.
+Before we can do any transformation, we need to extract the data from a public repository. Using Python and Pandas, we will extract the data from a public repository and upload the raw data to a PostgreSQL database. This assumes that we have an existing PostgreSQL database running in a Docker container.
 
 ### The Setup
 
@@ -83,6 +89,7 @@ Once we have the `.env` file, we can create a `Postgres` container instance that
 The code below will create a `docker-compose.yaml` file that will contain all the necessary information to run the container including a Jupyter Notebook that we can use to interact with the container and/or data.
 
 {%raw%}
+
 ```bash
 cat << EOF > postgres-docker-compose.yaml
 version: "3.8"
@@ -144,6 +151,7 @@ networks:
   etl_network: null
 EOF
 ```
+
 {%endraw%}
 
 But before we can run the container, we need to create the `init-db.sql` file that will contain the SQL command to create the database. This file will be our entrypoint into the container. Read more about Postgres Docker entrypoint [here](https://github.com/docker-library/docs/blob/master/postgres/README.md#initialization-scripts).
@@ -178,14 +186,18 @@ Starting jupyter_notebook_1 ... done
 Since the container is running in detached mode, we will need to run the `docker-compose logs` command to see the logs and retrieve the URL of the Jupyter Notebook. The command below will print the URL (with access token) of the Jupyter Notebook.
 
 {%raw%}
+
 ```bash
 docker logs $(docker ps -q --filter "ancestor=jupyter/minimal-notebook") 2>&1 | grep 'http://127.0.0.1' | tail -1
 ```
+
 {%endraw%}
 
 Once everything is running, we can open the Jupyter Notebook in the browser using the URL from the logs and have fun.
 
+{:refdef: style="text-align: center;"}
 ![image](https://user-images.githubusercontent.com/7910856/149630433-be1fe527-7f9e-4041-a824-4c6340fe136e.png)
+{: refdef}
 
 #### Setup Airflow
 
@@ -193,7 +205,9 @@ In this section, we will set up the Airflow environment. A quick overview of the
 
 The image below shows an example of a DAG.
 
+{:refdef: style="text-align: center;"}
 ![](https://airflow.apache.org/docs/apache-airflow/stable/_images/branch_note.png)
+{: refdef}
 
 Read more about DAGs here: [https://airflow.apache.org/docs/apache-airflow/stable/concepts/dags.html](https://airflow.apache.org/docs/apache-airflow/stable/concepts/dags.html)
 
@@ -211,6 +225,10 @@ python-dotenv==0.19.2
 SQLAlchemy==1.3.24
 EOF
 ```
+
+{:refdef: style="text-align: center;"}
+![image](https://user-images.githubusercontent.com/7910856/149872512-c241ada4-5f3a-493c-98b5-932ac459f893.png)
+{: refdef}
 
 Then we will create a Dockerfile that will install the required Python packages (Ideally, we should only install packages in a virtual environment but for this post, we will install all packages in the Dockerfile).
 
@@ -235,7 +253,7 @@ Now we can create a Docker compose file that will run the Airflow container. The
 The `airflow-docker-compose.yaml` file when deployed will start a list of containers namely:
 
 - **airflow-scheduler** - The scheduler monitors all tasks and DAGs, then triggers the task instances once their dependencies are complete.
-- **airflow-webserver** - The webserver is available at http://localhost:8080.
+- **airflow-webserver** - The webserver is available at <http://localhost:8080>.
 - **airflow-worker** - The worker that executes the tasks given by the scheduler.
 - **airflow-init** - The initialization service.
 - **flower** - The flower app for monitoring the environment. It is available at http:/
@@ -243,8 +261,8 @@ The `airflow-docker-compose.yaml` file when deployed will start a list of contai
 - **postgres** - The database.
 - **redis** - The redis-broker that forwards messages from scheduler to worker.
 
-
 {%raw%}
+
 ```bash
 cat << EOF > airflow-docker-compose.yaml
 ---
@@ -399,6 +417,7 @@ networks:
   etl_network: null
 EOF
 ```
+
 {%endraw%}
 
 Before starting Airflow for the first time, we need to prepare our environment. We need to add the Airflow USER to our `.env` file because some of the container's directories that we mount, will not be owned by the `root` user. The directories are:
@@ -410,29 +429,35 @@ Before starting Airflow for the first time, we need to prepare our environment. 
 The following commands will create the Airflow User & Group IDs and directories.
 
 {%raw%}
+
 ```bash
 mkdir -p ./dags ./logs ./plugins
 chmod -R 777 ./dags ./logs ./plugins
 echo -e "AIRFLOW_UID=$(id -u)" >> .env
 echo -e "AIRFLOW_GID=0" >> .env
 ```
+
 {%endraw%}
 
 After that, we need to initialize the Airflow database. We can do this by running the following command:
 
 {%raw%}
+
 ```bash
 docker-compose -f airflow-docker-compose.yaml up airflow-init
 ```
+
 {%endraw%}
 
 This will create the Airflow database and the Airflow USER.
 Once we have the Airflow database and the Airflow USER, we can start the Airflow services.
 
 {%raw%}
+
 ```bash
 docker-compose -f airflow-docker-compose.yaml up -d
 ```
+
 {%endraw%}
 
 Running `docker ps` will show us the list of containers running and we should make sure that the status of all containers is **Up** as shown in the image below.
@@ -441,7 +466,7 @@ Running `docker ps` will show us the list of containers running and we should ma
 
 Once we have confirmed that Airflow, Jupyter and database services are running, we can start the Airflow webserver.
 
-The webserver is available at http://localhost:8080. The default account has the login **airflow** and the password **airflow**.
+The webserver is available at <http://localhost:8080>. The default account has the login **airflow** and the password **airflow**.
 
 Now that all the hard work is done. We can create our ETL and DAGs.
 
@@ -492,7 +517,6 @@ We need to install the required libraries for our ETL, these include:
 - *SQLAlchemy*: Used for connecting to databases (Postgres)
 - *psycopg2*: Postgres adapter for SQLAlchemy
 
-
 ```python
 !pip install -r requirements.txt
 ```
@@ -532,7 +556,6 @@ engine.connect()
 **Step 3: Extract the data from the hosting service**
 
 Once we have a connection to the Postgres database, we can pull a copy of the [UC-Irvine machine learning recognition datasets](https://archive.ics.uci.edu/ml/datasets/Wine+Quality) that I recently uploaded to [https://gist.github.com/mmphego](https://gist.github.com/mmphego)
-
 
 ```python
 dataset = "https://gist.githubusercontent.com/mmphego/5b6fc4d6dc3c8fba4fce9d994a2fe16b/raw/ab5df0e76812e13df5b31e466a5fb787fac0599a/wine_quality.csv"
@@ -665,7 +688,6 @@ df.head()
   </tbody>
 </table>
 </div>
-
 
 We also need to have an understanding of the data types that we will be working with. This will give us a clear indication of some features we need to engineer or any missing values that we need to fill in.
 
@@ -863,7 +885,6 @@ Looking at the data, we can see a few things:
 
 - Since our data contains categorical variables (**winecolor**), we can use one-hot encoding to transform the categorical variables into binary variables
 - We can normalize the data by transforming it to have zero mean, this will ensure that the data is centred around zero ie standardize the data
-
 
 **Step 4: Transform the data into usable format**
 
@@ -1236,9 +1257,9 @@ Now that we have an ETL pipeline that can be run in Airflow, we can start buildi
 
 We can reuse our jupyter notebook and ensure that the DAG is written to file as a Python script by using the magic command `%%writefile dags/simple_etl_dag.py`
 
-**Step 1: Import necesarry**
+**Step 1: Import necessary**
 
-But first, we need to import the necessary libraries and to create a DAG in Airflow, you always have to import the `DAG` class from `airflow.models`. Then import the PythonOperator (since we will be executing Python logic) and finally, import days_ago to get a datetime object representation of `n` days ago.
+But first, we need to import the necessary libraries and to create a DAG in Airflow, you always have to import the `DAG` class from `airflow.models`. Then import the PythonOperator (since we will be executing Python logic) and finally, import `days_ago` to get a `datetime` object representation of `n` days ago.
 
 ```python
 import os
@@ -1267,7 +1288,7 @@ dag = DAG(dag_id="simple_etl_dag", default_args=args, schedule_interval=None)
 
 **Step 3: Define a logging function**
 
-For the sake of simplicity, we will define a (decorator) logging function that will be used to log the execution of the DAG using print statements of course lawl.
+For the sake of simplicity, we will create a simple (decorator) logging function that will be used to log the execution of the DAG using print statements of course.
 
 ```python
 
@@ -1284,6 +1305,10 @@ def logger(fn):
 
     return inner
 ```
+
+{:refdef: style="text-align: center;"}
+![image](https://user-images.githubusercontent.com/7910856/149873808-29d79bc3-714f-42cd-ae5e-2b2da6189cda.png)
+{: refdef}
 
 **Step 4: Create an ETL function**
 
@@ -1335,7 +1360,6 @@ def transform(df):
         ) / df_transform[column].std()
     return df
 
-
 @logger
 def check_table_exists(table_name, engine):
     if table_name in inspect(engine).get_table_names():
@@ -1374,6 +1398,10 @@ def etl():
     db_engine.dispose()
 ```
 
+{:refdef: style="text-align: center;"}
+![image](https://user-images.githubusercontent.com/7910856/149874064-681a3465-353a-4a16-9ae3-11df9cc40a2c.png)
+{: refdef}
+
 **Step 5: Create a PythonOperator**
 
 Now that we have our ETL function defined, we can create a PythonOperator that will execute the ETL and data verification function. One of the best practices is to use context managers thus avoiding the need to add `dag=dag` to your task which might result in Airflow errors.
@@ -1389,6 +1417,10 @@ with dag:
 ```
 
 That's it! Now, we can head out to the Airflow UI and check if our DAG was created successfully.
+
+{:refdef: style="text-align: center;"}
+![image](https://user-images.githubusercontent.com/7910856/149873377-c6cc7601-deed-4ac7-9b2f-e1e1bb31bac3.png)
+{: refdef}
 
 **Step 6: Run the DAG**
 
