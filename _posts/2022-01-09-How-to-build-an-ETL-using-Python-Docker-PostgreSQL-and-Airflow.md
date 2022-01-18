@@ -251,7 +251,7 @@ Now we can create a Docker compose file that will run the Airflow container. The
 - Customized Airflow image that includes the installation of Python dependencies.
 - Removes example DAGs and reloads DAGs every 60seconds.
 - Memory limitation set to 4GB.
-- Allocated on 2 workers to run Gunicorn web server.
+- Allocated only 2 workers to run [Gunicorn web server](https://docs.gunicorn.org/en/stable/).
 - Add our `.env` file to the Airflow container and,
 - A custom network for bridging the containers (Jupyter, PostgresDB and Airflow).
 
