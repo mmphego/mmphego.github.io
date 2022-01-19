@@ -1467,6 +1467,8 @@ In this post, We have covered the basics of creating your very own ETL pipeline,
 
 FYI it took me a week to write this post. I was trying to get a better understanding of Docker networking, Postgres Fundamentals, Airflow ecosystem and how to create a DAG. This was a great learning experience and I hope you found this post useful.
 
+Code used in this post is available on [https://github.com/mmphego/simple-etl](https://github.com/mmphego/simple-etl)
+
 ## Reference
 
 - [Running Airflow in Docker](https://airflow.apache.org/docs/apache-airflow/stable/start/docker.html)
