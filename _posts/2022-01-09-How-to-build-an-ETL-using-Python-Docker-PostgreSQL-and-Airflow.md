@@ -1265,7 +1265,7 @@ We can reuse our jupyter notebook and ensure that the DAG is written to file as 
 
 **Step 1: Import necessary**
 
-But first, we need to import the necessary libraries and to create a DAG in Airflow, you always have to import the `DAG` class from `airflow.models`. Then import the PythonOperator (since we will be executing Python logic) and finally, import `days_ago` to get a `datetime` object representation of `n` days ago.
+But first, we need to import the necessary libraries and to create a DAG in Airflow, you always have to import the `DAG` class from `airflow.models`. Then import the [PythonOperator](https://airflow.apache.org/docs/apache-airflow/stable/howto/operator/python.html) (since we will be executing Python logic) and finally, import `days_ago` to get a `datetime` object representation of `n` days ago.
 
 ```python
 import os
@@ -1373,12 +1373,10 @@ def check_table_exists(table_name, engine):
     else:
         print(f"{table_name} does not exist in the DB!")
 
-
 @logger
 def load_to_db(df, table_name, engine):
     print(f"Loading dataframe to DB on table: {table_name}")
     df.to_sql(table_name, engine, if_exists="replace")
-    check_table_exists(table_name, engine)
 
 @logger
 def tables_exists():
