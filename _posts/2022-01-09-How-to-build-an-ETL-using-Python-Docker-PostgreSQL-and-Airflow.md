@@ -1261,7 +1261,7 @@ Well done, we successfully wrote our data into the database. Our ETL pipeline is
 
 Now that we have an ETL pipeline that can be run in Airflow, we can start building our Airflow DAG.
 
-We can reuse our jupyter notebook and ensure that the DAG is written to file as a Python script by using the magic command `%%writefile dags/simple_etl_dag.py`
+We can reuse our jupyter notebook and ensure that the DAG is written to file as a Python script by using the [magic command](https://ipython.readthedocs.io/en/stable/interactive/magics.html) `%%writefile dags/simple_etl_dag.py`
 
 **Step 1: Import necessary**
 
