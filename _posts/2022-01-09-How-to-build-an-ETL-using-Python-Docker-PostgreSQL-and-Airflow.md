@@ -61,7 +61,7 @@ There's no free lunch. Read the whole post.
 
 For this post, we will be using the data from [UC-Irvine machine learning recognition datasets](https://archive.ics.uci.edu/ml/datasets/Wine+Quality). This dataset contains Wine Quality information and it is a result of chemical analysis of various wines grown in Portugal.
 
-We will need to extract the data from a public repository (for this post I went ahead and uploaded the data to [gist.github.com](gist.github.com)) and transform it into a format that can be used by ML algorithms (not part of this post), thereafter we will load both raw and transformed data into a PostgreSQL database running in a Docker container, then create a [DAG](https://airflow.apache.org/tutorial.html) that will run an ETL pipeline periodically. The DAG will be used to run the ETL pipeline in [Airflow](https://airflow.apache.org/).
+We will need to extract the data from a public repository (for this post I went ahead and uploaded the data to [https://gist.github.com/mmphego/5b6fc4d6dc3c8fba4fce9d994a2fe16b](https://gist.github.com/mmphego/5b6fc4d6dc3c8fba4fce9d994a2fe16b) and transform it into a format that can be used by ML algorithms (not part of this post), thereafter we will load both raw and transformed data into a PostgreSQL database running in a Docker container, then create a [DAG](https://airflow.apache.org/tutorial.html) that will run an ETL pipeline periodically. The DAG will be used to run the ETL pipeline in [Airflow](https://airflow.apache.org/).
 
 ## The Walk-through
 
