@@ -1222,9 +1222,9 @@ df_transform.describe()
 </table>
 </div>
 
-**Step 5: Load the data into a database**
+**Step 5: Ingest the data into a database**
 
-If we are happy with the results, then we can load both dataframes into our database. Since we do not have any tables in our database and our dataset is small, we can get away by using the `.to_sql` method to write the data to a table in the database.
+If we are happy with the results, then we can ingest both dataframes into our database. Since we do not have any tables in our database and our dataset is small, we can get away by using the `.to_sql` method to write the data to a table in the database.
 
 ```python
 raw_table_name = 'raw_wine_quality_dataset'
