@@ -13,7 +13,7 @@ tags:
 ![post image]({{ "/assets/2022-02-14-Lunch-n-Learn-Docker-and-Docker-compose-Noobs.png" | absolute_url }})
 {: refdef}
 
-2 minute read
+2 Min Read
 
 ---
 
