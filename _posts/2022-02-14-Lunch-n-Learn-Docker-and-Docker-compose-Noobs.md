@@ -28,7 +28,7 @@ Please do leave a comment if you have any questions or suggestions.
 ## The Walk-through
 
 {:refdef: style="text-align: center;"}
-<iframe width="100%" height="315" src="https://www.youtube.com/embed/jXZkVjHMYzU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="100%" height="100%" src="https://www.youtube.com/embed/jXZkVjHMYzU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 {: refdef}
 
 ## Reference
