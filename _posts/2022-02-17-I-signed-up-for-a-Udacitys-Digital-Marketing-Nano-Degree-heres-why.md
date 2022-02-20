@@ -29,6 +29,8 @@ As software engineers we are already Technology Professionals, we are aware of t
 
 The other motivation behind the decision to take Udacity's [Digital Marketing Nanodegree](https://imp.i115008.net/do3X5K) is that it is a great opportunity to learn and grow as a professional while learning new skills and technologies outside my comfort zone. The skills learned would benefit my brand as the skills would help me reach and understand my target audience. Help grow the number of people who are interested in my brand the type of content I generate on this blogsite by using social media to amplify my message/content, make content discoverable in search, run ad campaigns and advertise on various platforms. Additionally, learn how display and video ads work and how to market with email, and measure and optimize with Google Analytics.
 
+**Note:** This blog is also a part of the live project, and I am looking forward to executing many such real-time projects and finally earning my Digital Marketing Nanodegree from Udacity.
+
 ## The How
 
 So why Udacity in particular? Having gone through numerous other Udacity nano degrees gave me confidence in the quality of content and projects that I can expect to get from Udacity. This is a beginner program (no prerequisite knowledge required), so you can immediately start learning! Not managing your digital presence properly is planning to fail and with limited knowledge in [digital marketing](https://imp.i115008.net/do3X5K), I decided to take the plunge and enrol in this Nanodegree.
@@ -45,9 +47,7 @@ The sections in this Nanodegree are broken down into:
 - Email Marketing - How to use Mailchimp to create an email campaign for our project.
 - Measure and optimize with Google Analytics - Learning the ins and outs of Google analytics.
 
-See the full syllabus in the [Digital Marketing page on Udacity](https://imp.i115008.net/do3X5K)
-
-This blog is also a part of the live project, and I am looking forward to executing many such real-time projects and finally earning my Digital Marketing Nanodegree from Udacity.
+See the full syllabus: [https://d20vrrgs8k4bvw.cloudfront.net/documents/en-US/DMND+Syllabus+(2).pdf](https://d20vrrgs8k4bvw.cloudfront.net/documents/en-US/DMND+Syllabus+(2).pdf)
 
 ## Reference
 
