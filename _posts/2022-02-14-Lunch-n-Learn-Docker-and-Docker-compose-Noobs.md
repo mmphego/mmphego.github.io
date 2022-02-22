@@ -19,6 +19,10 @@ tags:
 
 # The Story
 
+{:refdef: style="text-align: center;"}
+<a id="nd9991" href="https://imp.i115008.net/c/2851051/788805/11298?prodsku=nd9991&u=https%3A%2F%2Fwww.udacity.com%2Fcourse%2Fcloud-dev-ops-nanodegree--nd9991&intsrc=PUI2_5678" target="_top"><img src="https://d20vrrgs8k4bvw.cloudfront.net/images/degrees/nd9991/nd-card.jpg" border="0" alt=""/></a>
+{: refdef}
+
 Recently I gave a talk to my colleagues and co-worker on how to use Docker and Docker Compose to build a containerized application. This talk was mostly aimed at beginners, and included a short introduction to the concepts.
 
 I thought it would be a good idea to share this experience with you.

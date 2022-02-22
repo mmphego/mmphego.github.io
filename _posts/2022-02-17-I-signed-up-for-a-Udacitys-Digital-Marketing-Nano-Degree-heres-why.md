@@ -11,12 +11,14 @@ tags:
 
 {:refdef: style="text-align: center;"}
 ![post image]({{ "/assets/2022-02-17-I-signed-up-for-a-Udacitys-Digital-Marketing-Nano-Degree-heres-why.png" | absolute_url }})
-<div style="text-align: center;"><figcaption>Wordcloud by author</figcaption></div>
 {: refdef}
 
 5 Min Read
 
 ---
+{:refdef: style="text-align: center;"}
+<a id="nd018" href="https://imp.i115008.net/c/2851051/788805/11298?prodsku=nd018&u=https%3A%2F%2Fwww.udacity.com%2Fcourse%2Fdigital-marketing-nanodegree--nd018&intsrc=PUI2_5678" target="_top"><img src="https://d20vrrgs8k4bvw.cloudfront.net/images/degrees/nd018/nd-card.jpg" border="0" alt=""/></a>
+{: refdef}
 
 # The Story
 

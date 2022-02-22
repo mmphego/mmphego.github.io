@@ -25,6 +25,10 @@ tags:
 
 # The Story
 
+{:refdef: style="text-align: center;"}
+<a id="nd0821" href="https://imp.i115008.net/c/2851051/788805/11298?prodsku=nd0821&u=https%3A%2F%2Fwww.udacity.com%2Fcourse%2Fmachine-learning-dev-ops-engineer-nanodegree--nd0821&intsrc=PUI2_5678" target="_top"><img src="https://www.udacity.com/www-proxy/contentful/assets/2y9b3o528xhq/7vsenFxZEguVh1GwD4zXtR/c1193513dd4f28db7405a4c11628c45b/catalog-card-10.jpg" border="0" alt=""/></a>
+{: refdef}
+
 During the past few years, I have developed an interest in Machine Learning but never wrote much about the topic. In this post, I want to share some insights about the foundational layers of the ML stack. I will start with the basics of the ML stack and then move on to the more advanced topics.
 
 This post will detail how to build an [ETL (Extract, Transform and Load)](https://en.wikipedia.org/wiki/Extract,_transform,_load) using Python, [Docker](https://www.docker.com/), [PostgreSQL](https://www.postgresql.org/) and [Airflow](https://airflow.apache.org/).
@@ -59,6 +63,10 @@ There's no free lunch. Read the whole post.
 
 ## The How
 
+{:refdef: style="text-align: center;"}
+<a id="nd189" href="https://imp.i115008.net/c/2851051/788805/11298?prodsku=nd189&u=https%3A%2F%2Fwww.udacity.com%2Fcourse%2Faws-machine-learning-engineer-nanodegree--nd189&intsrc=PUI2_5678" target="_top"><img src="https://www.udacity.com/www-proxy/contentful/assets/2y9b3o528xhq/4zCg1RJUx9ebzhPWtdCj8u/0ee84b7ec01fda6636a184ff2d56e7a3/catalog-card-17.jpg" border="0" alt=""/></a>
+{: refdef}
+
 For this post, we will be using the data from [UC-Irvine machine learning recognition datasets](https://archive.ics.uci.edu/ml/datasets/Wine+Quality). This dataset contains Wine Quality information and it is a result of chemical analysis of various wines grown in Portugal.
 
 We will need to extract the data from a public repository (for this post I went ahead and uploaded the data to [https://gist.github.com/mmphego/5b6fc4d6dc3c8fba4fce9d994a2fe16b](https://gist.github.com/mmphego/5b6fc4d6dc3c8fba4fce9d994a2fe16b) and transform it into a format that can be used by ML algorithms (not part of this post), thereafter we will load both raw and transformed data into a PostgreSQL database running in a Docker container, then create a [DAG](https://airflow.apache.org/tutorial.html) that will run an ETL pipeline periodically. The DAG will be used to run the ETL pipeline in [Airflow](https://airflow.apache.org/).
@@ -78,7 +86,6 @@ Let's start by setting up our environment. First, we will set up our Jupyter Not
 {: refdef}
 
 In this section, we will set up the PostgreSQL database and Jupyter Notebook in a Docker container. First, we will need to create a `.env` file in the project directory. This file will contain the PostgreSQL database credentials which are needed in the `docker-compose.yml` file.
-
 
 ```bash
 cat << EOF > .env
