@@ -3,9 +3,10 @@ layout: post
 title: "Lunch 'n Learn: Docker And Docker Compose (Noobs)"
 date: 2022-02-14 22:37:00.000000000 +02:00
 tags:
-- Docker
-- Talk
 - DevOps
+- Docker
+- Lunch and Learn
+- Talk
 ---
 # Lunch 'n Learn: Docker And Docker Compose (Noobs)
 
@@ -27,7 +28,7 @@ Recently I gave a talk to my colleagues and co-worker on how to use Docker and D
 
 I thought it would be a good idea to share this experience with you.
 
-Please do leave a comment if you have any questions or suggestions.
+Please do leave a link/comment if you have any questions or suggestions.
 
 ## The Walk-through
 
