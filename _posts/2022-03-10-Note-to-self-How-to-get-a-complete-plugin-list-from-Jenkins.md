@@ -3,7 +3,7 @@ layout: post
 title: "Note To Self: How To Get A Complete Plugin List From Jenkins"
 date: 2022-03-08 08:39:14.000000000 +02:00
 tags:
-- CI
+- Continuous Integration
 - DevOps
 - Docker
 - Jenkins
@@ -27,7 +27,7 @@ This post is just a note to myself, if I ever need to get a list of all plugins 
 ## The Walk-through
 
 First, I logged in to the Jenkins instance and generate a token which I can use to authenticate myself on the CLI.
-Goto: <http://<JENKINS_URL>/user/><USERNAME>/configure>
+Goto: <<<http://<JENKINS_URL>/user/>>><USERNAME>/configure>
 
 Then I generated a token and got a `token-id`.
 
