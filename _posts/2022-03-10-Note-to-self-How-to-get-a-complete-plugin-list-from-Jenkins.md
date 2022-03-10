@@ -27,14 +27,14 @@ This post is just a note to myself, if I ever need to get a list of all plugins 
 ## The Walk-through
 
 First, I logged in to the Jenkins instance and generate a token which I can use to authenticate myself on the CLI.
-Goto: [http://<JENKINS_URL>/user/<USERNAME>/configure](http://<JENKINS_URL>/user/<USERNAME>/configure)
+Goto: <http://<JENKINS_URL>/user/><USERNAME>/configure>
 
 Then I generated a token and got a `token-id`.
 
 ```bash
 JENKINS_USERNAME=<username>
 JENKINS_TOKEN=<token>
-JENKINS_HOST="${JENKINS_USERNAME}:${JENKINS_TOKEN}@jenkins-url:8080"
+JENKINS_HOST="${JENKINS_USERNAME}:${JENKINS_TOKEN}@<jenkins-url>:<port>"
 ```
 
 After that defining my variables, I used the `curl` command to get a list of all plugins installed on the Jenkins instance, and redirected the output to a file.
