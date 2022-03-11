@@ -18,6 +18,7 @@ Inspired by [Derek Sivers' /now page movement](https://sivers.org/now3), here's 
   - [AWS Machine Learning Engineering Nanodegree](https://imp.i115008.net/VyRr4M) [Completed 4 of 6 projects].
   - [Digital Marketing Nanodegree](https://imp.i115008.net/do3X5K) [Completed 4 of 8 projects].
   - [Cloud Architect using Microsoft Azure](https://imp.i115008.net/7mLA1y) [Completed 1 of 3 projects].
+- Optimizing my blog site and improving SEO, as well as adding new features.
 - Attempting to build a writing habit by creating a new article every 2nd week on this blog.
 - Reviving my [YouTube channel](https://www.youtube.com/c/MphoMphego1) and creating videos focused on Python/Linux/Git tips and tricks.
   - My latest video was a [Lunch 'n Learn: Lunch And Learn: Security Hardening For Your Docker Environment](https://bit.ly/3vbaVgp), which was a talk I gave to my colleagues and co-workers at the company I work for.
