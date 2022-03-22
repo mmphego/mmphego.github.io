@@ -13,7 +13,7 @@ css: "/css/aboutme.css"
 Inspired by [Derek Sivers' /now page movement](https://sivers.org/now3), here's what I'm focused on right now in no particular order:
 
 - Daily meditation and Yoga as part of my "Year of Calm".
-- I'm currently reading: [The Clean Coder: A Code of Conduct for Professional Programmers by Robert C. Martin](https://www.goodreads.com/book/show/10284614-the-clean-coder)
+- I'm currently reading: [Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones by James Clear](https://www.goodreads.com/book/show/40121378-atomic-habits)
 - Currently mentoring and completing a number of [Udacity](https://imp.i115008.net/VyRr4M) courses.
   - [AWS Machine Learning Engineering Nanodegree](https://imp.i115008.net/VyRr4M) [Completed 4 of 6 projects].
   - [Digital Marketing Nanodegree](https://imp.i115008.net/do3X5K) [Completed 6 of 8 projects].
