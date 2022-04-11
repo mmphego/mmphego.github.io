@@ -13,7 +13,7 @@ tags:
 ![post image]({{ "/assets/2022-04-11-How-I-uninstalled-YouTube-from-Android-TV.png" | absolute_url }})
 {: refdef}
 
-<<TIME TO READ>>
+5 Min Read
 
 ---
 
