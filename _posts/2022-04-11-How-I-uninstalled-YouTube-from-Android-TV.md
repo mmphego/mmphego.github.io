@@ -94,7 +94,7 @@ Let's quickly break down the command I executed above.
 - **uninstall:** This removes a package from the system.
 - **-k:** Formalized paraphrase This is an option on the uninstall command that retains the data and cache folders after the package is deleted.
 - **-user 0:** This identifies the intended user. In this scenario, we are merely deleting the software from User 0.
-- **<name of package>:** To uninstall the YouTube package, I used 'com.google.android.youtube.tv' in my case.
+- **<<name of package>>:** To uninstall the YouTube package, I used 'com.google.android.youtube.tv' in my case.
 
 Should you want more on how to use ADB, I recommend this cheatsheet: <https://www.automatetheplanet.com/adb-cheat-sheet/>
 
