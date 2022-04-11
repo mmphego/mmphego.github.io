@@ -24,6 +24,7 @@ Not sure about you, but the fact that some apps come pre-installed on your Andro
 Pre-installed apps on any Android device are a mission to remove if your device is not rooted. Rooting is not an option as it might void the manufacturer's warranty; therefore, the reality is that, at least officially, it is not possible to remove pre-installed apps on Android TV. Instead, Android lets you disable such applications which is something I did not want to do as it would be a waste of my time; mainly because it can always be re-enabled by a user.
 
 This post details ways how I managed to uninstall YouTube from Android TV.
+
 **Note:** You can follow the same steps if you want to remove any other pre-installed app on any android device.
 
 ## The How
