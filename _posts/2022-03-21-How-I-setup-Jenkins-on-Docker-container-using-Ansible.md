@@ -418,6 +418,7 @@ Below is the `main.yml` which details the configuration and deployment of the Je
 ```bash
 cat > tasks/main.yml << "EOF"
 ---
+## Remember to fix line spaces
 - name: Configure locale
   block:
     - name: set timezone
