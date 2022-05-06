@@ -100,7 +100,7 @@ ansible-user
 Once we have our ssh-key, we can SSH into the EC2 instance.
 
 ```bash
-ssh -i "jenkins-ec2.pem" ubuntu@my-ec2-host-or-ip.compute-1.amazonaws.com
+ssh -i "jenkins-ec2.pem" ubuntu@<<ec2-host-or-ip>>.compute-1.amazonaws.com
 ```
 
 Then we can create the ansible user on the EC2 instance:
@@ -122,16 +122,72 @@ Going back to the host environment, we can test the SSH connection to the EC2 in
 
 ![image](https://user-images.githubusercontent.com/7910856/167115045-cfea6afa-c896-463f-938b-e7003d0fd212.png)
 
+#### Test Ansible
+
+Let's create a simple Ansible playbook that will test the connection to the EC2 instance and we will setup the `host_inventory` file that will be used by Ansible to connect to the EC2 instance.
+
+```bash
+mkdir -p ~/tmp/jenkins-ansible && cd "$_"
+cat > host_inventory <<EOF
+[jenkins_ec2]
+<<ec2-host-or-ip>>.compute-1.amazonaws.com
+
+[jenkins_ec2:vars]
+ansible_user=ansible
+ansible_ssh_private_key_file=/home/{{ ansible_user }}/.ssh/ansible-user
+EOF
+```
+
+Now, we can create the Ansible playbook that will test the connection to the EC2 instance:
+
+```bash
+cat > test_connection.yml <<EOF
+---
+- hosts: jenkins_ec2
+  tasks:
+      - debug: msg="Ansible is working!"
+EOF
+ansible-playbook -i host_inventory test_connection.yml
+```
+
+You should see the following output:
+
+```bash
+PLAY [jenkins_ec2] **************************************************************************************************************************************************************
+
+TASK [Gathering Facts] **********************************************************************************************************************************************************
+ok: [<<ec2-host-or-ip>>.compute-1.amazonaws.com]
+
+TASK [debug] ********************************************************************************************************************************************************************
+ok: [<<ec2-host-or-ip>>.compute-1.amazonaws.com] => {
+    "msg": "Ansible is working!"
+}
+
+PLAY RECAP **********************************************************************************************************************************************************************
+<<ec2-host-or-ip>>.compute-1.amazonaws.com : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
+
+Now, that our ansible playbook works, we can move on to the next step.
+
 ### Step 2
 
-- Pre configuration:
-  - Export docker(HUB & Registry) credentials
-  - Export jenkins contrainer name
-  - Export jenkins url to point the instance to.
+- Install Ansible dependencies on the EC2 instance
+- Install Ansible plugins
+- Export docker(HUB & Registry) credentials
+- Export jenkins container name
+- Export jenkins url to point the instance to.
 
 ...
 
 ### Step 3
+
+- make jenkins_dev
+
+...
+
+### Step 3
+
+- build jobs
 
 ...
 
