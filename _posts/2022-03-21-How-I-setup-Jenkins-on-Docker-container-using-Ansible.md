@@ -122,32 +122,144 @@ Going back to the host environment, we can test the SSH connection to the EC2 in
 
 ![image](https://user-images.githubusercontent.com/7910856/167115045-cfea6afa-c896-463f-938b-e7003d0fd212.png)
 
-#### Test Ansible
+### Step 2: Create Ansible Playbook
 
-Let's create a simple Ansible playbook that will test the connection to the EC2 instance and we will setup the `host_inventory` file that will be used by Ansible to connect to the EC2 instance.
+Now that we have our EC2 instance, we can start creating our Ansible playbook that will be used to deploy the Jenkins container.
+
+But before we do, let's explore our directory structure as this will help us to understand the Ansible playbook later.
+
+```bash
+tree -L 3
+.
+├── ansible.cfg
+├── ansible-requirements-freeze.txt
+├── host_inventory
+├── Makefile
+├── requirements.yml
+├── roles
+│   └── jenkins_dev
+│       ├── defaults
+│       ├── tasks
+│       └── vars
+└── up_jenkins_ec2.yml
+
+5 directories, 6 files
+```
+
+The following sections will explains some of the files and directories we will be creating.
+
+#### Makefile
+
+First, let's create a Makefile that will be used to run the Ansible playbook. The snippet below is from our Makefile, which makes it a lot easier to install dependencies and deploy our environment. This means that instead of typing the whole `pip` or `ansible-playbook` commands to install dependencies and bring up a Jenkins server, we can run something like:
+
+```bash
+make install_pkgs install_ansible_plugins
+```
+
+The above command will install all the dependencies that we need to run the Ansible playbook, but first we need to generate the `Makefile` below.
+
+{ % raw %}
+
+```bash
+cat > Makefile <<"EOF"
+.DEFAULT_GOAL := help
+
+define PRINT_HELP_PYSCRIPT
+import re, sys
+print("Please use `make <target>` where <target> is one of\n")
+for line in sys.stdin:
+        match = re.match(r'^([a-zA-Z_-]+):.*?## (.*)$$', line)
+        if match:
+                target, help = match.groups()
+                if not target.startswith('--'):
+                        print(f"{target:20} - {help}")
+endef
+
+export PRINT_HELP_PYSCRIPT
+
+.SILENT: --check-installed-packages
+--check-installed-packages:
+        if [ ! -x "$$(command -v ansible-playbook)" ]; then \
+                $(MAKE) install_pkgs; \
+        fi;
+
+help:
+        python3 -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
+
+install_pkgs:  ## Install Ansible dependencies locally.
+        python3 -m pip install -r ansible-requirements-freeze.txt
+
+install_ansible_plugins:  ## Install Ansible plugins
+        ansible-galaxy install -r requirements.yml
+
+lint: *.yml  ## Lint all yaml files
+        echo $^ | xargs ansible-playbook -i host_inventory --syntax-check
+
+jenkins_dev: --check-installed-packages  ## Setup and start Jenkins CI - Dev environment
+        ansible-playbook -i host_inventory -Kk up_jenkins_ec2.yml
+EOF
+```
+
+{ % endraw %}
+
+Now run the following commands to replace the spaces with tabs:
+
+```bash
+unexpand Makefile > Makefile.new
+mv Makefile.new Makefile
+```
+
+You can also check out my over-engineered Makefile [here](https://github.com/mmphego/Generic_Makefile).
+
+#### Ansible Configuration
+
+Certain settings in Ansible are adjustable via a configuration file (`ansible.cfg`). The stock configuration is sufficient for most users, but in our case, we wanted certain configurations. Below is a sample of our `ansible.cfg`
+
+```
+cat >> ansible.cfg << EOF
+[defaults]
+inventory=host_inventory
+EOF
+```
+
+If installing Ansible from a package manager such as `apt`, the latest `ansible.cfg` file should be present in `/etc/ansible`.
+
+If you installed Ansible from `pip` or the source, you may want to create this file to override default settings in Ansible.
+
+```bash
+wget https://raw.githubusercontent.com/ansible/ansible/devel/examples/ansible.cfg
+```
+
+#### Selecting machine to run your commands from inventory
+
+Ansible reads information about which machines you want to manage from your inventory. Although you can pass an IP address to an ad-hoc command, you need inventory to take advantage of the full flexibility and repeatability of Ansible. The Ansible inventory file defines the hosts and groups of hosts upon which commands, modules, and tasks in a playbook will run on.
+
+Setup the `host_inventory` file that will be used by Ansible to connect to our EC2 instance.
 
 ```bash
 mkdir -p ~/tmp/jenkins-ansible && cd "$_"
+export EC2_JENKINS_HOST=jenkins_ec2
 cat > host_inventory <<EOF
-[jenkins_ec2]
+[${EC2_JENKINS_HOST}]
 <<ec2-host-or-ip>>.compute-1.amazonaws.com
 
-[jenkins_ec2:vars]
+[${EC2_JENKINS_HOST}:vars]
 ansible_user=ansible
 ansible_ssh_private_key_file=/home/{{ ansible_user }}/.ssh/ansible-user
 EOF
 ```
 
-Now, we can create the Ansible playbook that will test the connection to the EC2 instance:
+Let's create a simple Ansible playbook on the host, that will test our connection to the EC2 instance. [Sanity Check]
 
 ```bash
 cat > test_connection.yml <<EOF
 ---
-- hosts: jenkins_ec2
+- hosts: ${EC2_JENKINS_HOST}
   tasks:
       - debug: msg="Ansible is working!"
 EOF
 ansible-playbook -i host_inventory test_connection.yml
+rm -rf test_connection.yml
 ```
 
 You should see the following output:
@@ -169,19 +281,206 @@ PLAY RECAP *********************************************************************
 
 Now, that our ansible playbook works, we can move on to the next step.
 
-### Step 2
+----
 
-- Install Ansible dependencies on the EC2 instance
-- Install Ansible plugins
-- Export docker(HUB & Registry) credentials
-- Export jenkins container name
-- Export jenkins url to point the instance to.
+Thereafter run the following command which allows you to install an SSH key on a remote server's authorized keys and it facilitates SSH key login, which removes the need for a password for each login, thus ensuring a password-less, automatic login process.
+
+```bash
+# password: vagrant
+ssh-copy-id vagrant@192.168.50.4
+```
+
+Once the vagrant box is up, use the ping module to ping all the nodes in your inventory:
+
+```bash
+ansible all -m ping
+```
+
+You should see output for each host in your inventory, similar to the image below:
+![image](https://user-images.githubusercontent.com/7910856/122216743-fd0b3900-ceac-11eb-8eaf-099c2c71c837.png)
+
+#### Ansible Roles
+
+According to the [docs](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html):
+>Roles let you automatically load related vars, files, tasks, handlers, and other Ansible artefacts based on a known file structure. After you group your content into roles, you can easily reuse them and share them with other users.
+
+>An Ansible role has a defined directory structure with eight main standard directories. You must include at least one of these directories in each role. You can omit any directories the role does not use.
+
+Using the `ansible-galaxy` CLI tool that comes bundled with Ansible, you can create a role with the `init` command. For example, the following will create a role directory structure called `pypi_server` in the current working directory:
+
+```bash
+ansible-galaxy init pypi_server
+```
+
+See [Directory Structure](#directory-structure) above.
+
+By default Ansible will look in each directory within a role for a `main.yml`file for relevant content:
+
+- `defaults/main.yml`: default variables for the role.
+- `files/main.yml`: files that the role deploys.
+- `handlers/main.yml`: handlers, which may be used within or outside this role.
+- `meta/main.yml`: metadata for the role, including role dependencies.
+- `tasks/main.yml`: the main list of tasks that the role executes.
+- `templates/main.yml`: templates that the role deploys.
+- `vars/main.yml`: other variables for the role.
+
+### Playbook
+
+We defined our playbook which deploys the PyPI server below.
+{% raw %}
+
+```
+cat >> up_pypi.yml <<EOF
+---
+- name: configure and deploy a PyPI server
+  hosts: pypi_server
+  roles:
+    - role: pypi_server
+      vars:
+        fqdn: # Fully qualified domain name
+        fqdn_port: 80
+        host_ip: "{{ hostvars[groups['pypi_server'][0]].ansible_default_ipv4.address }}"
+        nginx_reverse_proxy: reverse_proxy
+EOF
+```
+
+{% endraw %}
+
+I found these posts relevant to the way we set up our `nginx_reverse_proxy`:
+
+- [NGINX Reverse Proxy](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
+- [How to Set Up an Nginx Reverse Proxy](https://www.hostinger.com/tutorials/how-to-set-up-nginx-reverse-proxy/)
+- [How to setup Nginx Reverse Proxy](https://linuxconfig.org/how-to-setup-nginx-reverse-proxy)
+- [How to Deploy NGINX Reverse Proxy on Docker](https://phoenixnap.com/kb/docker-nginx-reverse-proxy)
+- [Setting up a Reverse-Proxy with Nginx and docker-compose](https://www.domysee.com/blogposts/reverse-proxy-nginx-docker-compose)
+
+### Plays
+
+**`files/`**:
+
+This is a simple tester for PyPI upload procedures. I modified [simple_test](https://pypi.org/project/simple_test) package that was downloaded from [https://pypi.org](https://pypi.org)
+
+Download: [simple_test-1.0.zip](https://files.pythonhosted.org/packages/48/1d/73ed6695f69be0f5b3d752b6223e82304239c151cec71a38891b240a4d9c/simple_test-1.0.zip)
+
+**`defaults/main.yml`**:
+
+These are default variables for the role and they have the lowest priority of any variables available and can be easily overridden by any other variable, including inventory variables. They are used as default variables in the `tasks`
+
+```
+cat >> defaults/main.yml << EOF
+---
+container_name : pypi_server
+base_image : << Your Docker Registry>>/pypi_server:latest
+
+devpi_client_ver: '5.2.2'
+
+devpi_port: 3141
+devpi_user: devpi
+devpi_group: devpi
+
+devpi_folder_home: ./.devpi
+devpi_nginx: /var/data/nginx
+
+EOF
+```
+
+**`tasks/main.yml`**:
+
+In this `main.yml` file we have a list of tasks that the role executes in sequence (and the whole play fails if any of these tasks fail):
+
+- Install `apt` and `python` packages.
+  - Update apt cache and install `python3-pip`.
+  - Install `ansible-docker` dependencies.
+- Start `devpi` and configure `nginx` routings.
+  - Start `devpi` server on `docker` container.
+  - Pause for 30 seconds to ensure server is up.
+  - Confirm if `docker` container is up.
+  - Create PyPI user and an index.
+  - Template `nginx` reverse proxy config.
+  - Check if `nginx` reverse proxy is up.
+  - Reload `nginx` reverse proxy.
+- Check if PyPI server is running!
+  - Install `python` dependencies locally in a virtual environment.
+  - Check if `devpi` index is up and confirm `nginx` routing!
+  - Login to `devpi` as PyPI user.
+  - Find path to `simple-test` package.
+  - Upload `simple-test` package to `devpi`.
+  - Check if package was uploaded.
+  - Install `python` package from PyPI server.
+  - Garbage cleaning.
+
+**Note:** These tasks are executed on the remote server, in this case, a vagrant box.
+
+Below is the `main.yml` which details the configuration, deployment and testing of the PyPI server (in a vagrant box).
+{% raw %}
+
+```bash
+ls
+```
+
+{% endraw %}
+
+#### Install Ansible dependencies on the EC2 instance
+
+First, we need to install Ansible dependencies on the EC2 instance.
+
+```bash
+cat > ansible-requirements-freeze.txt <<"EOF"
+# Frozen requirements for Ansible
+ansible==4.8.0
+ansible-core==2.11.8
+bcrypt==3.2.0
+cffi==1.15.0
+cryptography==36.0.1
+Jinja2==3.0.3
+MarkupSafe==2.0.1
+packaging==21.3
+paramiko==2.9.2
+pycparser==2.21
+PyNaCl==1.5.0
+pyparsing==3.0.7
+PyYAML==6.0
+resolvelib==0.5.4
+six==1.16.0
+EOF
+
+make install_pkgs
+```
+
+#### Install Ansible plugins on the EC2 instance
+
+First, we need to install Ansible dependencies on the EC2 instance.
+
+```bash
+cat > requirements.yml <<"EOF"
+collections:
+  - name: ansible.posix
+  - name: community.docker
+  - name: community.general
+EOF
+
+make install_ansible_plugins
+```
+
+### Export Credentials to be used in the playbooks
+
+```bash
+export DOCKER_HUB_USERNAME=<username>
+export DOCKER_HUB_PASSWORD=<password>
+export DOCKER_CAM_REGISTRY_USERNAME=<registry_username>
+export DOCKER_CAM_REGISTRY_PASSWORD=<registry_password>
+export DOCKER_CAM_REGISTRY_URL=<registry_url>
+# Optional environment variables
+export JENKINS_CONTAINER_NAME=<jenkins_container_name>
+# Needed for configuring Jenkins Jobs
+export JENKINS_URL=<jenkins url>
+```
+
+### Test Ansible
 
 ...
 
 ### Step 3
-
-- make jenkins_dev
 
 ...
 
