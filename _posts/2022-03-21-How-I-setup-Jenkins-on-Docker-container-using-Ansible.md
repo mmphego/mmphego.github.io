@@ -19,23 +19,9 @@ tags:
 
 # The Story
 
-Recently, my team found themselves in a situation where they needed to have a staging or development Jenkins environment. The motivation behind the need for a new environment was that, we needed a backup Jenkins environment and a place where new Jenkins users could get their hands dirty with Jenkins without having to worry about changes to the production environment.
-For this task, I decided to pair with my padawan (@AneleMakhaba) as he was a good fit for the task which had been in the backlog for a while.
+This post continues from [How I Setup Jenkins On Docker Container Using Ansible-Part-1](/posts/2022-03-21-How-I-setup-Jenkins-on-Docker-container-using-Ansible.md)
 
-![](https://user-images.githubusercontent.com/7910856/122241859-29ca4b00-cec3-11eb-94ca-ba484c3bb733.png)
-
-The objective of the task was to:
-
-- Create a Docker container that would be able to run Jenkins on a local machine
-- Explore the "As code paradigm":
-  - Create and store Jenkins Configuration using [JCaC(Jenkins Configuration as Code)](https://www.jenkins.io/projects/jcasc/)
-    - Create and store Jenkins Job configuration using [Jenkins Job Builder](https://jenkins-job-builder.readthedocs.io/en/latest/) Python package with ability to restore the configurations during deployment.
-- Deploy new jenkins instance (dev-enviroment) as code.
-- Future work included, the ability to backup and restore jenkins job history to the newly deployed environment.
-
-In this post, we will detail the steps we took to create the environment and deploy it as code on an [EC2 instance](https://aws.amazon.com/ec2/instance-types/) using Ansible.
-
----
+In this post, I will try to detail how to set up a private local PyPI server using Docker And Ansible.
 
 ## TL;DR
 
@@ -49,80 +35,17 @@ In this post, we will detail the steps we took to create the environment and dep
 
 ## The Walk-through
 
-### Step 1: Create an EC2 instance
+The setup is divided into 3 sections, [Instance Creation]({{ "/blog/.<>html" | absolute_url }}), [Containerization][here]({{ "/blog/<>.html" | absolute_url }}) and [Automation]({{ "/blog/2021/06/15/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible.html" | absolute_url }}).
 
-#### Create an EC2 instance
+This post-walk-through mainly focuses on automation. Go [here]([here]({{ "/blog/2021/06/15/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible.html" | absolute_url }})) for the containerisation.
 
-We will need to create an EC2 instance that will be used to run the Jenkins container. Headover to the [AWS Console](https://console.aws.amazon.com/ec2/) and create a new instance.
+### Step 1: Create an EC2 instance (PART1)
 
-See screenshots below on how to create an EC2 instance.
+### Step 2: Create a Docker Image (PART2)
 
-- On console search for EC2 and select the "Launch Instance" button.
-![image](https://user-images.githubusercontent.com/7910856/167109925-8509860a-1ee5-436c-8892-5a320827d41f.png)
-- After selecting the "Launch Instance" button, add a name of your instance (in my case Jenkins-server) then select the "Ubuntu" option.
-![image](https://user-images.githubusercontent.com/7910856/167110033-a0953334-0a0b-406e-8168-f431624cb121.png)
-- Choose an instance of your choice, for this post we chose a `t2.micro`, there after select the `Create new key pair` button (these keys will be used when we SSH into our instance later)
-![image](https://user-images.githubusercontent.com/7910856/167110250-17cdc8d8-38be-418a-8ecc-f528df8bf361.png)
+---
 
-After the instance is created, we will need to wait for it to be ready and then we will be able to SSH into it by clicking on the "Connect" button.
-![image](https://user-images.githubusercontent.com/7910856/167112330-f82f2df3-0f25-408a-af39-fb67a87e66db.png)
-and follow the instructions to SSH into the instance as shown in the image below.
-![image](https://user-images.githubusercontent.com/7910856/167112430-d48bac13-f099-425a-ba6c-7d5e41dcc0e0.png)
-
-Now, ssh into the instance to ensure that everything is working as expected.
-
-![image](https://user-images.githubusercontent.com/7910856/167112879-30d25b3f-c232-4f11-bf90-38eea7ce45c3.png)
-
-#### Create an ansible user
-
-**Note** this is an optional step as we can use the default EC2 user in Ansible as well, but I like creating a specific user for Ansible maily for security reasons.
-
-##### Generate ssh-key for your user
-
-We'll be needing this key pair to connect to the EC2 instance.
-
-In the host environment, we will create an ssh-key that will be used for your Ansible user:
-
-```bash
-ssh-keygen -t rsa -b 4096 -C "ansible-user"
-chmod 400 ~/.ssh/id_rsa
-```
-
-We can leave everything as default - a pair of private/public keys will be generated in `~/.ssh` as `id_rsa` (the private key) and `id_rsa.pub` (the public key).
-
-We need to copy the contents of the public key - `id_rsa.pub` that looks like this:
-
-```bash
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDAudXEIP2qNrYDOVdS5T7ZB7...............
-ansible-user
-```
-
-Once we have our ssh-key, we can SSH into the EC2 instance.
-
-```bash
-ssh -i "jenkins-ec2.pem" ubuntu@<<ec2-host-or-ip>>.compute-1.amazonaws.com
-```
-
-Then we can create the ansible user on the EC2 instance:
-
-```bash
-sudo su -
-adduser ansible
-mkdir -p /home/ansible/.ssh
-cd /home/ansible/.ssh
-```
-
-Then paste the public key contents that we generated earlier on the host environment into the `authorized_keys` file and save.
-
-```bash
-vi authorized_keys
-```
-
-Going back to the host environment, we can test the SSH connection to the EC2 instance using the ansible user that we just created:
-
-![image](https://user-images.githubusercontent.com/7910856/167115045-cfea6afa-c896-463f-938b-e7003d0fd212.png)
-
-### Step 2: Create Ansible Playbook
+### Step 3: Create Ansible Playbook (PART3)
 
 Now that we have our EC2 instance, we can start creating our Ansible playbook that will be used to deploy the Jenkins container.
 
@@ -234,7 +157,7 @@ lint: *.yml  ## Lint all yaml files
         echo $^ | xargs ansible-playbook -i host_inventory --syntax-check
 
 jenkins_dev: --check-installed-packages  ## Setup and start Jenkins CI - Dev environment
-        ansible-playbook -i host_inventory -Kk up_jenkins_ec2.yml
+        ansible-playbook -i host_inventory up_jenkins_ec2.yml
 EOF
 ```
 
@@ -356,9 +279,9 @@ We defined our playbook which deploys the Jenkins server below.
 {% raw %}
 
 ```bash
-cat >> up_jenkins_ec2.yml <<"EOF"
+cat > up_jenkins_ec2.yml <<"EOF"
 ---
-- hosts: ${EC2_JENKINS_HOST}
+- hosts: jenkins_ec2
   pre_tasks:
     - name: Verify that enviromental variables have been provided
       assert:
@@ -376,7 +299,7 @@ cat >> up_jenkins_ec2.yml <<"EOF"
         workspace_dir: /tmp/jenkins_workspace
   vars:
     ansible_python_interpreter: "/usr/bin/python3"
-    jenkins_container_name: "{{ lookup('env', 'JENKINS_CONTAINER_NAME') or 'jenkins_dev' }}"
+    jenkins_container_name: "jenkins_dev"
 EOF
 ```
 
@@ -388,12 +311,12 @@ EOF
 
 ### Plays
 
-**`defaults/main.yml`**:
+**`jenkins_dev/defaults/main.yml`**:
 
 These are default variables for the role and they have the lowest priority of any variables available and can be easily overridden by any other variable, including inventory variables. They are used as default variables in the `tasks`
 
 ```bash
-cat > defaults/main.yml << "EOF"
+cat > jenkins_dev/defaults/main.yml << "EOF"
 ---
 home_dir: /opt/jenkins
 backup_dir: /var/backups/jenkins_home
@@ -401,24 +324,52 @@ workspace_dir: /tmp/jenkins_workspace
 EOF
 ```
 
-**`tasks/main.yml`**:
+**`jenkins_dev/tasks/main.yml`**:
 
 In this `main.yml` file we have a list of tasks that the role executes in sequence (and the whole play fails if any of these tasks fail):
 
-- ensure home, workspace and backup directories exists
-- restart docker service
-- start jenkins docker container
+---
 
-**Note:** These tasks are executed on the remote server, in this case, a vagrant box.
+- Configure locale
+  - set timezone
+  - Set localedef compile local
+  - Generate Locale
+  - Set locals
+- Install dependencies
+  - Install some general useful packages.
+  - install pip
+  - install pip dependencies
+- Install and configure docker
+  - install pre-requisites for docker apt repository
+  - add docker gpg key for apt
+  - add docker apt repo
+  - install docker
+  - ensure systemd override config dir exists
+  - configure systemd overrides (enable remote access over tcp)
+  - reload systemd
+  - ensure docker group exists
+  - add user(s) to docker group
+  - reset connection to make usermod take effect
+  - restart docker service
+  - smoke test docker installation
+  - delete docker test image
+  - share correct host dns config with containers
+  - restart docker service again
+- Configure jenkins enviroment and services
+  - ensure home, workspace and backup directories exists
+  - restart docker service
+  - start jenkins docker container
+
+**Note:** These tasks are executed on the remote server, in this case, the ec2 instance.
 
 Below is the `main.yml` which details the configuration and deployment of the Jenkins server on our EC2 instance.
 
 {% raw %}
 
 ```bash
-cat > tasks/main.yml << "EOF"
+cat > jenkins_dev/tasks/main.yml << "EOF"
 ---
-## Remember to fix line spaces
+
 - name: Configure locale
   block:
     - name: set timezone
@@ -436,7 +387,7 @@ cat > tasks/main.yml << "EOF"
   become: true
   become_user: root
 
-- name: Configure packages
+- name: Install dependencies
   block:
     - name: Install some general useful packages.
       apt:
@@ -446,160 +397,165 @@ cat > tasks/main.yml << "EOF"
           - build-essential
           - dnsutils
           - git
-          - python-dev
+          - python3
           - python3-dev
-          - python3.9-dev
           - software-properties-common
           - vim
-      state: present
+        state: present
 
-  - name: install pip
-    shell: "curl https://bootstrap.pypa.io/pip/get-pip.py -o /tmp/get-pip.py && python3 /tmp/get-pip.py "
-    become: yes
-    ignore_errors: yes
+    - name: install pip
+      shell: "curl https://bootstrap.pypa.io/pip/get-pip.py -o /tmp/get-pip.py && python3 /tmp/get-pip.py "
+      become: yes
+      ignore_errors: yes
 
-  - name: install pip dependencies
-    shell: "python3 -m pip install --upgrade {{item}}"
-    with_items:
-      - docker>=5.8.0
-      - pip
-      - requests
-      - setuptools
-      - wheel
+    - name: install pip dependencies
+      shell: "python3 -m pip install --upgrade {{item}}"
+      with_items:
+        - docker>=5.8.0
+        - pip
+        - requests
+        - setuptools
+        - wheel
 
   become: true
-  become_user: root
 
-- name: Configure docker
+- name: Install and configure docker
   block:
+    - name: install pre-requisites for docker apt repository
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gnupg-agent
+          - software-properties-common
+        state: present
 
-  - name: install pre-requisites for docker apt repository
-    apt:
-      name:
-        - apt-transport-https
-        - ca-certificates
-        - curl
-        - gnupg-agent
-        - software-properties-common
-      state: present
+    - name: add docker gpg key for apt
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+        state: present
 
-  - name: add docker gpg key for apt
-    apt_key:
-      url: https://download.docker.com/linux/ubuntu/gpg
-      id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
-      state: present
+    - name: add docker apt repo
+      apt_repository:
+        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable"
+        state: present
 
-  - name: add docker apt repo
-    apt_repository:
-      repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable"
-      state: present
+    - name: install docker
+      apt:
+        pkg:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+        update_cache: yes
+        state: present
 
-  - name: install docker
-    apt:
-      pkg:
-        - docker-ce
-        - docker-ce-cli
-        - containerd.io
-      update_cache: yes
-      state: present
+    - name: ensure systemd override config dir exists
+      file:
+        path: /etc/systemd/system/docker.service.d
+        state: directory
 
-  - name: ensure systemd override config dir exists
-    file:
-      path: /etc/systemd/system/docker.service.d
-      state: directory
+    - name: configure systemd overrides (enable remote access over tcp)
+      copy:
+        dest: /etc/systemd/system/docker.service.d/override.conf
+        content: |
+          [Service]
+          ExecStart=
+          ExecStart=/usr/bin/dockerd -H fd:// -H unix:///var/run/docker.sock -H tcp://0.0.0.0:{{ tcp_listen_port }}
 
-  - name: configure systemd overrides (enable remote access over tcp)
-    template:
-      src: systemd_docker_override.conf
-      dest: /etc/systemd/system/docker.service.d/override.conf
-    notify: reload systemctl
+    - name: reload systemd
+      shell: "systemctl daemon-reload"
 
-  - name: ensure docker group exists
-    shell: "groupadd docker"
-    ignore_errors: yes
-    become: yes
+    - name: ensure docker group exists
+      shell: "groupadd docker"
+      ignore_errors: yes
 
-  - name: add user(s) to docker group
-    shell: "usermod -aG docker {{ item }}"
-    with_items: "{{ docker_users }}"
-    become: yes
+    - name: add user(s) to docker group
+      shell: "usermod -aG docker {{ item }}"
+      with_items: "{{ docker_users }}"
 
-  - name: reset connection to make usermod take effect
-    meta: reset_connection
+    - name: reset connection to make usermod take effect
+      meta: reset_connection
 
-  - name: restart docker service
-    service:
-      name: docker
-      state: restarted
+    - name: restart docker service
+      service:
+        name: docker
+        state: restarted
 
-  - name: update docker directory permissions
-    shell: "chown -R {{ item }}:{{ item }} /home/{{ item }}/.docker"
-    with_items: "{{ docker_users }}"
-    become: yes
+    - name: smoke test docker installation
+      shell: docker run --rm hello-world
+      become_user: "{{ item }}"
+      with_items: "{{ docker_users }}"
 
-  - name: smoke test docker installation
-    shell: docker run --rm hello-world
-    become_user: "{{ item }}"
-    with_items: "{{ docker_users }}"
+    - name: delete docker test image
+      shell: docker rmi hello-world
+      become_user: "{{ item}}"
+      with_items: "{{ docker_users }}"
 
-  - name: delete docker test image
-    shell: docker rmi hello-world
-    become_user: "{{ item}}"
-    with_items: "{{ docker_users }}"
+    - name: share correct host dns config with containers
+      file:
+        path: /etc/resolv.conf
+        src: /run/systemd/resolve/resolv.conf
+        state: link
+      # notify: restart docker (TODO: Add in the handler/main.yml)
 
-  - name: share correct host dns config with containers
-    file:
-      path: /etc/resolv.conf
-      src: /run/systemd/resolve/resolv.conf
-      state: link
-    notify: restart docker
+    - name: restart docker service again
+      service:
+        name: docker
+        state: restarted
+
+  become: true
 
 - name: Configure jenkins enviroment and services
   block:
-  - name: ensure home, workspace and backup directories exists
-    file:
-      path: "{{ item }}"
-      state: directory
-      owner: "{{ ansible_user }}"
-      group: "{{ ansible_user }}"
-      mode: "0755"
-    with_items:
-      - "{{ home_dir }}"
-      - "{{ workspace_dir }}"
-      - "{{ backup_dir }}"
+    - name: ensure home, workspace and backup directories exists
+      file:
+        path: "{{ item }}"
+        state: directory
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: "0755"
+      with_items:
+        - "{{ home_dir }}"
+        - "{{ workspace_dir }}"
+        - "{{ backup_dir }}"
+      become: true
 
-  - name: restart docker service
-    service:
-      name: docker
-      state: restarted
+    - name: restart docker service
+      service:
+        name: docker
+        state: restarted
+      become: true
 
-  - name: start jenkins docker container
-    docker_container:
-      name: "{{ container_name }}"
-      image: "{{ base_image }}"
-      volumes:
-        - "{{ home_dir }}:/var/jenkins_home"
-        - "{{ backup_dir }}:/var/backups/jenkins_home"
-        - "{{ workspace_dir }}:/var/jenkins_home/workspace"
-        - "/etc/timezone:/etc/timezone"
-        - "/etc/localtime:/etc/localtime"
-      published_ports:
-        - 8080:8080
-        - 50000:50000
-      state: started
-      restart: yes
-      timeout: 120
+    - name: start jenkins docker container
+      docker_container:
+        name: "{{ container_name }}"
+        image: "{{ base_image }}"
+        volumes:
+          - "{{ home_dir }}:/var/jenkins_home"
+          - "{{ backup_dir }}:/var/backups/jenkiInstall and configure  docker
+Install and configure  dockerns_home"
+          - "{{ workspace_dir }}:/var/jenkins_home/workspace"
+          - "/etc/timezone:/etc/timezone"
+          - "/etc/localtime:/etc/localtime"
+        published_ports:
+          - 8080:8080
+          - 50000:50000
+        state: started
+        restart: yes
+        timeout: 120
 EOF
 ```
 
 {% endraw %}
 
-**`vars/main.yml`**:
+**`jenkins_dev/vars/main.yml`**:
 
-{ % raw %}
+The `vars/main.yml` file contains the variables that are used to configure the Jenkins server.
 
 ```bash
-cat > vars/main.yml <<"EOF"
+cat > jenkins_dev/vars/main.yml <<"EOF"
 ---
 tcp_listen_port: 4243
 docker_version: 18.06.3~ce~3-0~ubuntu
@@ -610,8 +566,6 @@ base_image: our_jenkins_image:latest"
 
 EOF
 ```
-
-{% endraw %}
 
 ### Test Ansible
 
