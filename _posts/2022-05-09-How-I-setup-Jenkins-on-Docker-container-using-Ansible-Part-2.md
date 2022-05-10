@@ -110,50 +110,42 @@ EOF
 
 { % endraw %}
 
-Once we have established the sequence of commands that are needed in order to assemble the jenkins image we will be using through the DOCKERFILE above, we need to build the image using the following command.
+Once we have established the sequence of commands that are needed in order to assemble the jenkins image we will be using through the `DOCKERFILE` above, we need to build the image using the following command.
 
 ```bash
 docker build -t jenkins-docker .
 ```
 
-In order to see if our image was succefully built we will list all images we have using
+In order to see if our image was successfully built we will list all images we have using
 
 ```bash
 docker image ls
 ```
 
-which will give us a similar output
+which gives us a similar output
 ![imagels](https://user-images.githubusercontent.com/31302703/167669477-92a28964-b0e2-4bee-aa77-9c630a043252.png)
 
-```bash
-docker build -t jenkins-docker .
-```
+Once established that our image was successfully built, we need to tag the image before publishing (push) it to [Docker Hub](https://hub.docker.com/). To tag a docker image you use the following command:
 
-Once established that our image was succesfully built, we need to tag the image before publishing(push) it to docker hub. To tag a docker image you use the following command.
-
-```bash
-docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
-```
-
-in our instance we used the following command
 ```bash
 docker tag jenkins-docker amakhaba/jenkins-image .
 ```
 
-In order to publish the new image login to docker hub using your docker hub credentials if you have any, if not [Sign up for Docker Hub](https://hub.docker.com/signup). Use the following command to login
+In order to publish the new image login to docker hub using your docker hub credentials, if you do not have any then [sign up for Docker Hub](https://hub.docker.com/signup). Thereafter login using the following command in order to push the image to docker hub.
 
 ```bash
 docker login
 ```
 
-Then push the image to docker hub.
+When you are logged in you can push the image to docker hub using the following command:
+
 ```bash
 docker push
 ```
 
-Verify image is available in [docker hub](https://hub.docker.com/)
-![dockerhub](https://user-images.githubusercontent.com/31302703/167672477-d33d24cb-177e-4e97-80f8-a60233ff94d4.png)
+Thereafter, we verify that the image was successfully pushed to [docker hub](https://hub.docker.com/)
 
+![dockerhub](https://user-images.githubusercontent.com/31302703/167672477-d33d24cb-177e-4e97-80f8-a60233ff94d4.png)
 
 TODO:
 
