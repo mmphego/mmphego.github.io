@@ -110,20 +110,50 @@ EOF
 
 { % endraw %}
 
-Once we have
+Once we have established the sequence of commands that are needed in order to assemble the jenkins image we will be using through the DOCKERFILE above, we need to build the image using the following command.
+
 ```bash
 docker build -t jenkins-docker .
 ```
 
-Document the steps taken
+In order to see if our image was succefully built we will list all images we have using
 
-- docker build
-- docker login
-- docker tag
-- docker push
+```bash
+docker image ls
+```
 
-verify image is available in docker hub
-    - screenshot of docker hub
+which will give us a similar output
+![imagels](https://user-images.githubusercontent.com/31302703/167669477-92a28964-b0e2-4bee-aa77-9c630a043252.png)
+
+```bash
+docker build -t jenkins-docker .
+```
+
+Once established that our image was succesfully built, we need to tag the image before publishing(push) it to docker hub. To tag a docker image you use the following command.
+
+```bash
+docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
+```
+
+in our instance we used the following command
+```bash
+docker tag jenkins-docker amakhaba/jenkins-image .
+```
+
+In order to publish the new image login to docker hub using your docker hub credentials if you have any, if not [Sign up for Docker Hub](https://hub.docker.com/signup). Use the following command to login
+
+```bash
+docker login
+```
+
+Then push the image to docker hub.
+```bash
+docker push
+```
+
+Verify image is available in [docker hub](https://hub.docker.com/)
+![dockerhub](https://user-images.githubusercontent.com/31302703/167672477-d33d24cb-177e-4e97-80f8-a60233ff94d4.png)
+
 
 TODO:
 
