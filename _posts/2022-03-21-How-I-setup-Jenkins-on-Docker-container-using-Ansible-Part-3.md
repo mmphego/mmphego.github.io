@@ -22,35 +22,21 @@ tags:
 
 This post continues from [How I Setup Jenkins On Docker Container Using Ansible-Part-1](/posts/2022-03-21-How-I-setup-Jenkins-on-Docker-container-using-Ansible.md)
 
-In this post, I will try to detail how to set up a private local PyPI server using Docker And Ansible.
+In this post, I will try to detail how to we deployed Jenkins environment using Ansible and configure Jenkins Jobs after system initialization.
 
 ## TL;DR
 
-- Create a Docker container that would be able to run Jenkins on a local machine with configuration.
-
 ## The How
 
-{:refdef: style="text-align: center;"}
-<iframe width="100%" height="315" src="https://www.youtube.com/embed/wEL1KcKTjUw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-{: refdef}
+Now that we have our EC2 instance and a Docker image, we can start creating our Ansible playbook that will be used to deploy the Jenkins container.
 
 ## The Walk-through
 
-The setup is divided into 3 sections, [Instance Creation]({{ "/blog/.<>html" | absolute_url }}), [Containerization][here]({{ "/blog/<>.html" | absolute_url }}) and [Automation]({{ "/blog/2021/06/15/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible.html" | absolute_url }}).
-
 This post-walk-through mainly focuses on automation. Go [here]([here]({{ "/blog/2021/06/15/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible.html" | absolute_url }})) for the containerisation.
 
-### Step 1: Create an EC2 instance (PART1)
+### Create Ansible Playbook
 
-### Step 2: Create a Docker Image (PART2)
-
----
-
-### Step 3: Create Ansible Playbook (PART3)
-
-Now that we have our EC2 instance, we can start creating our Ansible playbook that will be used to deploy the Jenkins container.
-
-But before we do, let's explore our directory structure as this will help us to understand the Ansible playbook later.
+But before continue, the directory structure shown below should resemble what we should have once we are done with the walk-through.
 
 #### Directory Structure
 
@@ -72,7 +58,7 @@ tree -L 3
 5 directories, 6 files
 ```
 
-The following sections will explains some of the files and directories we will be creating.
+The following sections will explain some of the files and directories we will be creating.
 
 #### Dependencies
 
@@ -110,9 +96,16 @@ collections:
 EOF
 ```
 
+Read more about the above Ansible plugins in the following links:
+
+- [Ansible-Posix](https://docs.ansible.com/ansible/latest/collections/ansible/posix/index.html)
+- [Ansible-Docker](https://docs.ansible.com/ansible/latest/collections/community/docker/index.html)
+- [Ansible-General](https://docs.ansible.com/ansible/latest/collections/community/general/index.html)
+
 #### Makefile
 
-First, let's create a Makefile that will be used to run the Ansible playbook. The snippet below is from our Makefile, which makes it a lot easier to install dependencies and deploy our environment. This means that instead of typing the whole `pip` or `ansible-playbook` commands to install dependencies and bring up a Jenkins server, we can run something like:
+Then, let's create a `Makefile` that will be used to run the Ansible playbook and other mundane commands.
+The snippet below is from our `Makefile`, which makes it a lot easier to install dependencies and deploy our environment. This means that instead of typing the whole `pip` or `ansible-playbook` commands to install dependencies and bring up a Jenkins server, we can run something like:
 
 ```bash
 make install_pkgs install_ansible_plugins
@@ -164,7 +157,7 @@ EOF
 
 { % endraw %}
 
-Now run the following commands to replace the spaces with tabs:
+Now run the following commands to replace the spaces with tabs and to make the file executable:
 
 ```bash
 unexpand Makefile > Makefile.new
@@ -227,17 +220,17 @@ rm -rf test_connection.yml
 You should see the following output:
 
 ```bash
-PLAY [jenkins_ec2] **************************************************************************************************************************************************************
+PLAY [jenkins_ec2] *******************************************************************
 
-TASK [Gathering Facts] **********************************************************************************************************************************************************
+TASK [Gathering Facts] ***************************************************************
 ok: [<<ec2-host-or-ip>>.compute-1.amazonaws.com]
 
-TASK [debug] ********************************************************************************************************************************************************************
+TASK [debug] *************************************************************************
 ok: [<<ec2-host-or-ip>>.compute-1.amazonaws.com] => {
     "msg": "Ansible is working!"
 }
 
-PLAY RECAP **********************************************************************************************************************************************************************
+PLAY RECAP ***************************************************************************
 <<ec2-host-or-ip>>.compute-1.amazonaws.com : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
@@ -305,8 +298,6 @@ EOF
 ```
 
 {% endraw %}
-
-@amakhaba, run `make dev_jenkins` to test the playbook.
 
 ---
 
@@ -563,7 +554,7 @@ docker_version: 18.06.3~ce~3-0~ubuntu
 docker_users:
   - ansible
 container_name: "{{ jenkins_container_name }}"
-base_image: our_jenkins_image:latest"
+base_image: amakhaba/jenkins-image:latest
 
 EOF
 ```
