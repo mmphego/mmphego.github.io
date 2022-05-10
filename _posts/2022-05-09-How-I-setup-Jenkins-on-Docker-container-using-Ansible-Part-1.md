@@ -20,7 +20,7 @@ tags:
 
 # The Story
 
-Recently, my team found themselves in a situation where they needed to have a staging or development Jenkins environment. The motivation behind the need for a new environment was that, we needed a backup Jenkins environment and a place where new Jenkins users could get their hands dirty with Jenkins without having to worry about changes to the production environment.
+Recently, my team found themselves in a situation where they needed to have a staging or development Jenkins environment. The motivation behind the need for a new environment was that we needed a backup Jenkins environment and a place where new Jenkins users could get their hands dirty with Jenkins without having to worry about changes to the production environment.
 
 For this task, I decided to pair with my padawan/mentee (@AneleMakhaba) as he was a good fit for the task which had been in the backlog for a while.
 
@@ -31,22 +31,22 @@ I thought this meme was really funny, so I decided to share it with the world.
 Our initial approach to the task was to:
 
 - Create a Docker image that would be used for our Jenkins environment which includes all the necessary dependencies and configuration files.
-  - The configuration should be based of the production environment.
+  - The configuration should be based on the production environment.
 - Explore the "As code paradigm":
-  - Create and version control ***Jenkins Configuration*** using [JCaC(Jenkins Configuration as Code)](https://www.jenkins.io/projects/jcasc/) which is a plugin for Jenkins that provides the ability to define this whole configuration as a simple, human-friendly, plain text YAML syntax.
-  - Create and version control ***Jenkins Job configuration*** using [Jenkins Job Builder](https://jenkins-job-builder.readthedocs.io/en/latest/) which is a Python package with ability to store Jenkins jobs in a YAML format.
-- Deploy new jenkins instance (dev-enviroment) with a single command
-- Future work includes, the ability to backup and restore jenkins job history to the newly deployed environment with a single command.
+  - Create and version control ***Jenkins Configuration*** using [JCaC(Jenkins Configuration as Code)](https://www.jenkins.io/projects/jcasc/), that is a plugin for Jenkins that provides the ability to define this whole configuration as a simple, human-friendly, plain text YAML syntax.
+  - Create and version control ***Jenkins Job configuration*** using [Jenkins Job Builder](https://jenkins-job-builder.readthedocs.io/en/latest/), which is a Python package with the ability to store Jenkins jobs in a YAML format.
+- Deploy a new Jenkins instance (dev-environment) with a single command
+- Future work includes the ability to backup and restore Jenkins job history to the newly deployed environment with a single command.
 
 ---
 
-@AneleMakhaba, recently gave a Lunch 'n Learn talk on this topic which summarises this post. The talk explores the following:
+@AneleMakhaba recently gave a Lunch 'n Learn talk that summarises this post. The talk explores the following:
 
 - Why do we need to configure Jenkins as Code?
 - Managing Jenkins as Code
 - Jenkins infrastructure as Code
 - Jenkins Jobs as Code
-- Some of the benefits of ***'as code'*** paradigm
+- Some of the benefits of ***' as code'*** paradigm
 - and a demo
 
 {:refdef: style="text-align: center;"}
@@ -59,7 +59,7 @@ This collaborated blog post is divided into 3 sections, [Instance Creation]({{ "
 
 In this post, we will detail the steps that we undertook to create an environment ([EC2 instance](https://aws.amazon.com/ec2/instance-types/)) which will host our Jenkins instance.
 
-Thank your @AneleMakhaba for your collaboration in writing this post.
+Thank your @AneleMakhaba, for your collaboration in writing this post.
 
 ---
 
@@ -75,9 +75,9 @@ Thank your @AneleMakhaba for your collaboration in writing this post.
 
 ## The How
 
-This is the first post in the series of posts that will detail the steps that we undertook to create an environment ([EC2 instance](https://aws.amazon.com/ec2/instance-types/)). We launched the instance via the AWS Console and then SSH'd into the instance for further configurations.
+This is the first post in the series of posts that will detail the steps that we undertook to create an environment ([EC2 instance](https://aws.amazon.com/ec2/instance-types/)). We launched the instance via the AWS Console, and then SSH'd into the instance for further configurations.
 
-Future posts will detail the same steps but introducing [Terraform](https://www.terraform.io/) for deterministic deployment.
+Future posts will detail the same steps but introduce [Terraform](https://www.terraform.io/) for deterministic deployment.
 
 ## The Walk-through
 
@@ -85,7 +85,7 @@ This post-walk-through mainly focuses on ***instance creation***. Go [here]() fo
 
 ### Create an EC2 instance
 
-To create an EC2 instance that will be used to run the Jenkins container headover to the [AWS Console](https://console.aws.amazon.com/ec2/) and create a new instance.
+To create an EC2 instance that will be used to run the Jenkins container head over to the [AWS Console](https://console.aws.amazon.com/ec2/) and create a new instance.
 
 - On console, search for **EC2** and select it, then locate the **"Launch Instance"** button.
 ![image](https://user-images.githubusercontent.com/7910856/167109925-8509860a-1ee5-436c-8892-5a320827d41f.png)
@@ -93,10 +93,10 @@ To create an EC2 instance that will be used to run the Jenkins container headove
 - After selecting the **"Launch Instance"** button, add a **name of your instance** (I chose **Jenkins-server**) then select the **"Ubuntu"** option for the AMI (Amazon Machine Image).
 ![image](https://user-images.githubusercontent.com/7910856/167110033-a0953334-0a0b-406e-8168-f431624cb121.png)
 
-- Choose an instance of your choice, for this post we chose a `t2.micro`, there after select the `Create new key pair` button (these keys will be used when we SSH into our instance later)
+- Choose an instance of your choice (for this post we chose a `t2.micro`), then select the `Create new key pair` button (these keys will be used to SSH into our instance later)
 ![image](https://user-images.githubusercontent.com/7910856/167110250-17cdc8d8-38be-418a-8ecc-f528df8bf361.png)
 
-- After the instance is created, we will need to wait for it to be ready and then we will be able to SSH into it by clicking on the **"Connect"** button and,
+- After the instance is created we will need to wait for it to be ready and then we will be able to SSH into it by clicking on the **"Connect"** button and,
 ![image](https://user-images.githubusercontent.com/7910856/167112330-f82f2df3-0f25-408a-af39-fb67a87e66db.png)
 
 - Follow the instructions to SSH into the instance.
@@ -108,11 +108,11 @@ Now, open a new terminal window on the host and SSH into the instance to ensure 
 
 ### Create an Ansible user
 
-**Note** this is an optional step as we can use the default EC2 user in Ansible as well, but due to security reasons it is recommended to create a dedicated Ansible user with sudo rights and only authorized access to the instance.
+**Note** this is an optional step as we can use the default EC2 user in Ansible. Due to security reasons it is recommended to create a dedicated Ansible user with sudo rights and only authorized access to the instance.
 
 #### Generate ssh-key for your user
 
-First, we need to generate a ssh-key for our Ansible user from our localhost. This key will help ease the SSH connection to the instance. The following command will generate a ssh-key for the user `ansible` on localhost:
+First, we need to generate an ssh-key for our Ansible user from our localhost. This key will help ease the SSH connection to the instance. The following command will generate an ssh-key for the user `ansible` on localhost:
 
 ```bash
 ssh-keygen -t rsa -b 4096 -C "ansible-user"
@@ -146,13 +146,13 @@ mkdir -p /home/ansible/.ssh
 cd /home/ansible/.ssh
 ```
 
-Then paste the public key contents that we generated earlier on the host environment into the `authorized_keys` file and save.
+Then paste the public key, contents that we generated earlier on the host environment into the `authorized_keys` file and save.
 
 ```bash
 vi authorized_keys
 ```
 
-This will ensure that we can SSH into the instance without a password and we can run Ansible commands without being prompted for a password each time.
+This will ensure that we can SSH into the instance without a password, and we can run Ansible commands without being prompted for a password each time.
 
 Going back to the host environment, we can test the SSH connection to the EC2 instance using the ansible user that we just created:
 
@@ -162,7 +162,7 @@ Post continues [here]()
 
 ## Conclusion
 
-Congratulations! You have successfully created an EC2 instance with Ansible. You can now use the instance to run Ansible playbooks and containers. Another avenue to explore is [Terraform](https://www.terraform.io/) for deterministic deployment instead of relying on the AWS Console. This is a topic that will be covered in future posts.
+Congratulations! You have successfully created an EC2 instance with Ansible. You can now use the instance to run Ansible playbooks and containers. Another avenue to explore is [Terraform](https://www.terraform.io/) for deterministic deployment instead of relying on the AWS Console. This will be covered in future posts.
 
 ## Reference
 
