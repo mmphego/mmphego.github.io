@@ -3,9 +3,10 @@ layout: post
 title: "How I Setup Jenkins On Docker Container Using Ansible-Part-2"
 date: 2022-05-09 12:22:16.000000000 +02:00
 tags:
--
--
--
+- Jenkins
+- Docker
+- Ansible
+- DevOps
 ---
 # How I Setup Jenkins On Docker Container Using Ansible-Part-2
 
@@ -26,6 +27,22 @@ tags:
 ## The How
 
 ## The Walk-through
+
+The setup is divided into 3 sections, [Instance Creation]({{ "/blog/.<>html" | absolute_url }}), [Containerization][here]({{ "/blog/<>.html" | absolute_url }}) and [Automation]({{ "/blog/2021/06/15/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible.html" | absolute_url }}).
+
+This post-walk-through mainly focuses on automation. Go [here]([here]({{ "/blog/2021/06/15/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible.html" | absolute_url }})) for the containerisation.
+
+### Prerequisites
+
+If you already have [Docker](https://docs.docker.com/get-docker/) and [Docker-Compose]() installed and configured you can skip this step else you can search for your installation methods.
+
+```bash
+sudo apt install docker.io
+# The Docker service needs to be set up to run at startup.
+sudo systemctl start docker
+sudo systemctl enable docker
+python3 -m pip install docker-compose
+```
 
 The setup is divided into 3 sections, [Instance Creation]({{ "/blog/.<>html" | absolute_url }}), [Containerization][here]({{ "/blog/<>.html" | absolute_url }}) and [Automation]({{ "/blog/2021/06/15/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible.html" | absolute_url }}).
 
