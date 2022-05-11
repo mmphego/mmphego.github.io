@@ -1,12 +1,14 @@
 ---
 layout: post
-title: "How I Setup Jenkins On Docker Container Using Ansible"
+title: "How I Setup Jenkins On Docker Container Using Ansible (Part 3)"
 date: 2022-03-21 05:45:52.000000000 +02:00
 tags:
 - Jenkins
 - Docker
 - Ansible
 - DevOps
+- Makefile
+- Python
 ---
 # How I Setup Jenkins On Docker Container Using Ansible
 

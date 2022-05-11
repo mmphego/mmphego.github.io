@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How I Setup Jenkins On Docker Container Using Ansible-Part-2"
+title: "How I Setup Jenkins On Docker Container Using Ansible (Part 2)"
 date: 2022-05-09 12:22:16.000000000 +02:00
 tags:
 - Jenkins

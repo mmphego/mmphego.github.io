@@ -1,12 +1,13 @@
 ---
 layout: post
-title: "How I Setup Jenkins On Docker Container Using Ansible-Part-1"
+title: "How I Setup Jenkins On Docker Container Using Ansible (Part 1)"
 date: 2022-05-09 12:23:50.000000000 +02:00
 tags:
-- Jenkins
-- Docker
 - Ansible
+- AWS
 - DevOps
+- Docker
+- Jenkins
 ---
 # How I Setup Jenkins On Docker Container Using Ansible-Part-1
 
@@ -50,7 +51,7 @@ Our initial approach to the task was to:
 - and a demo
 
 {:refdef: style="text-align: center;"}
-<iframe width="100%" height="315" src="https://www.youtube.com/embed/wEL1KcKTjUw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="100%" height="415" src="https://www.youtube.com/embed/wEL1KcKTjUw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 {: refdef}
 
 ---
