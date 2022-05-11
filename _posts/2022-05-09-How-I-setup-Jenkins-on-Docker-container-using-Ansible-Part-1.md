@@ -9,7 +9,7 @@ tags:
 - Docker
 - Jenkins
 ---
-# How I Setup Jenkins On Docker Container Using Ansible-Part-1
+# How I Setup Jenkins On Docker Container Using Ansible-Part (Part 1)
 
 {:refdef: style="text-align: center;"}
 ![post image]({{ "/assets/2022-05-09-How-I-setup-Jenkins-on-Docker-container-using-Ansible-Part-1.png" | absolute_url }})
@@ -47,7 +47,7 @@ Our initial approach to the task was to:
 - Managing Jenkins as Code
 - Jenkins infrastructure as Code
 - Jenkins Jobs as Code
-- Some of the benefits of ***' as code'*** paradigm
+- Some of the benefits of ***'as code'*** paradigm
 - and a demo
 
 {:refdef: style="text-align: center;"}

@@ -8,7 +8,7 @@ tags:
 - Ansible
 - DevOps
 ---
-# How I Setup Jenkins On Docker Container Using Ansible-Part-2
+# How I Setup Jenkins On Docker Container Using Ansible (Part 2)
 
 {:refdef: style="text-align: center;"}
 ![post image]({{ "/assets/2022-05-09-How-I-setup-Jenkins-on-Docker-container-using-Ansible-Part-2.png" | absolute_url }})
@@ -20,17 +20,19 @@ tags:
 
 # The Story
 
-## TL;DR
+This post continues from [How I Setup Jenkins On Docker Container Using Ansible (Part 2)]()
 
-## TS;RE
+In this post, I will try to detail how we built and deployed a Docker container running a Jenkins environment and configured Jenkins Jobs after system initialization.
+
+## TL;DR
 
 ## The How
 
 ## The Walk-through
 
-The setup is divided into 3 sections, [Instance Creation]({{ "/blog/.<>html" | absolute_url }}), [Containerization][here]({{ "/blog/<>.html" | absolute_url }}) and [Automation]({{ "/blog/2021/06/15/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible.html" | absolute_url }}).
+The setup is divided into 3 sections, [Instance Creation]({{ "/blog/.<>html" | absolute_url }}), [Containerization]({{ "/blog/<>.html" | absolute_url }}) and [Automation]({{ "<>.html" | absolute_url }}).
 
-This post-walk-through mainly focuses on automation. Go [here]([here]({{ "/blog/2021/06/15/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible.html" | absolute_url }})) for the containerisation.
+This post-walk-through mainly focuses on [***containerization***](#containerization).
 
 ### Prerequisites
 
@@ -44,15 +46,40 @@ sudo systemctl enable docker
 python3 -m pip install docker-compose
 ```
 
-The setup is divided into 3 sections, [Instance Creation]({{ "/blog/.<>html" | absolute_url }}), [Containerization][here]({{ "/blog/<>.html" | absolute_url }}) and [Automation]({{ "/blog/2021/06/15/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible.html" | absolute_url }}).
+Using a container offers convenience and ensuring that deployments are deterministic. It also offers a great deal of flexibility.
 
-This post-walk-through mainly focuses on automation. Go [here]([here]({{ "/blog/2021/06/15/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible.html" | absolute_url }})) for the containerisation.
+### Containerization
+
+But before continue, the directory structure shown below should resemble what we should have once we are done with the walk-through.
+
+#### Directory Structure
+
+```bash
+tree -L 3
+.
+├── Dockerfile
+├── jenkins_config.yaml
+├── jenkins_plugins.txt
+└── userContent
+    └── README.md
+
+2 directory, 4 files
+```
+
+The following sections will explain some of the files and directories we will be creating.
+
+#### Create Docker container
+
+First, we need to create 2x empty `jenkins_config.yaml` and `jenkins_plugins.txt` (We will divide into the contents of the files later), `Dockerfile` and include all dependencies we need.
 
 { %raw %}
 
 ```bash
 mkdir -p ~/tmp/jenkins-docker && cd "$_"
-cat > Dockerfile <<"EOF"
+mkdir -p userContent
+touch jenkins_config.yaml jenkins_plugins.txt userContent/README.md
+echo "Files in this directory will be served under your http://<server>/jenkins/userContent/" > userContent/README.md
+cat > Dockerfile << "EOF"
 FROM jenkins/jenkins:2.321
 
 USER root
@@ -91,7 +118,6 @@ RUN apt-get update \
     && apt-get -yq install \
     graphviz \
     rsync \
-    nano \
     vim \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -100,19 +126,19 @@ RUN apt-get update \
 # increase http login session timeout
 ENV JENKINS_OPTS --sessionTimeout=10080
 
-# https://github.commkdir -p ~/tmp/jenkins-docker
-# ENV CASC_JENKINS_CONFIG "/usr/share/jenkins/ref/jenkins.yaml"
+# https://www.jenkins.io/doc/book/managing/casc/
+ENV CASC_JENKINS_CONFIG "/usr/share/jenkins/ref/jenkins_config.yaml"
 
 # disable setup wizard on first start
 ENV JAVA_OPTS=-Djenkins.install.runSetupWizard=false
 
 # install plugins
 # hadolint ignore=DL3059
-# COPY --chown=jenkins:jenkins jenkins_plugins.txt /usr/share/jenkins/ref/jenkins_plugins.txt
-# RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/jenkins_plugins.txt
+COPY --chown=jenkins:jenkins jenkins_plugins.txt /usr/share/jenkins/ref/jenkins_plugins.txt
+RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/jenkins_plugins.txt
 
-# # copy user contents which include images
-# COPY --chown=jenkins:jenkins userContent/* /usr/share/jenkins/ref/userContent/
+# copy user contents which include images
+COPY --chown=jenkins:jenkins userContent/* /usr/share/jenkins/ref/userContent/
 
 # misc:
 # hadolint ignore=DL3059
@@ -122,12 +148,11 @@ RUN chown -R jenkins:jenkins /var/jenkins_home
 # /misc
 USER jenkins
 EOF
-
 ```
 
 { % endraw %}
 
-Once we have established the sequence of commands that are needed in order to assemble the jenkins image we will be using through the `DOCKERFILE` above, we need to build the image using the following command.
+Once we have established the sequence of commands that are needed in order to assemble the Jenkins image we will be using through the `Dockerfile` above, we need to build the image using the following command.
 
 ```bash
 docker build -t jenkins-docker .
@@ -163,6 +188,8 @@ docker push
 Thereafter, we verify that the image was successfully pushed to [docker hub](https://hub.docker.com/)
 
 ![dockerhub](https://user-images.githubusercontent.com/31302703/167672477-d33d24cb-177e-4e97-80f8-a60233ff94d4.png)
+
+#### Jenkins Configuration as Code
 
 TODO:
 
