@@ -69,6 +69,7 @@ The following sections will explain some of the files and directories we will be
 First, we need to create a list of dependencies to ensure that our host contains Ansible and it's plugins.
 
 ```bash
+mkdir -p ~/tmp/jenkins-ansible && cd "$_"
 cat > ansible-requirements-freeze.txt <<"EOF"
 # Frozen requirements for Ansible
 ansible==4.8.0
@@ -92,7 +93,7 @@ EOF
 Create a list of Ansible plugins that will be required on our EC2 instance.
 
 ```bash
-cat > requirements.yml <<"EOF"
+cat > requirements.yaml <<"EOF"
 collections:
   - name: ansible.posix
   - name: community.docker
@@ -136,9 +137,14 @@ endef
 
 export PRINT_HELP_PYSCRIPT
 
+# If `venv/bin/python` exists, it is used. If not, use PATH to find python.
+SYSTEM_PYTHON  = $(or $(shell which python3), $(shell which python))
+PYTHON         = $(wildcard venv/bin/python)
+VENV           = venv/bin/
+
 .SILENT: --check-installed-packages
 --check-installed-packages:
-        if [ ! -x "$$(command -v ansible-playbook)" ]; then \
+        if [ ! -x "$$(command -v $(VENV)ansible-playbook)" ]; then \
                 $(MAKE) install_pkgs; \
         fi;
 
@@ -146,16 +152,21 @@ help:
         python3 -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
 install_pkgs:  ## Install Ansible dependencies locally.
-        python3 -m pip install -r ansible-requirements-freeze.txt
+        test -d venv || virtualenv venv
+        (\
+          . venv/bin/activate; \
+          $(PYTHON) -m pip install -r ansible-requirements-freeze.txt; \
+        )
 
 install_ansible_plugins:  ## Install Ansible plugins
-        ansible-galaxy install -r requirements.yml
+        $(VENV)ansible-galaxy install -r requirements.yaml
 
 lint: *.yml  ## Lint all yaml files
-        echo $^ | xargs ansible-playbook -i host_inventory --syntax-check
+        find roles/ -name '*.yml' -exec $(VENV)ansible-playbook -i host_inventory --syntax-check {} \;
+        ansible-lint -p -v *.yml
 
 jenkins_dev: --check-installed-packages  ## Setup and start Jenkins CI - Dev environment
-        ansible-playbook -i host_inventory up_jenkins_ec2.yml
+        $(VENV)ansible-playbook -i host_inventory up_jenkins_ec2.yml
 EOF
 ```
 
@@ -196,11 +207,11 @@ Ansible reads information about which machines you want to manage from your inve
 Setup the `host_inventory` file that will be used by Ansible to connect to our EC2 instance.
 
 ```bash
-mkdir -p ~/tmp/jenkins-ansible && cd "$_"
 export EC2_JENKINS_HOST=jenkins_ec2
 cat > host_inventory <<EOF
 [${EC2_JENKINS_HOST}]
-<<ec2-host-or-ip>>.compute-1.amazonaws.com
+ec2-54-210-189-63.compute-1.amazonaws.com
+<<replace-with-ec2-host-or-ip>>.compute-1.amazonaws.com
 
 [${EC2_JENKINS_HOST}:vars]
 ansible_user=ansible
@@ -217,6 +228,7 @@ cat > test_connection.yml <<EOF
   tasks:
       - debug: msg="Ansible is working!"
 EOF
+source venv/bin/activate
 ansible-playbook -i host_inventory test_connection.yml
 rm -rf test_connection.yml
 ```
@@ -227,15 +239,15 @@ You should see the following output:
 PLAY [jenkins_ec2] *******************************************************************
 
 TASK [Gathering Facts] ***************************************************************
-ok: [<<ec2-host-or-ip>>.compute-1.amazonaws.com]
+ok: [<<replace-with-ec2-host-or-ip>>.compute-1.amazonaws.com]
 
 TASK [debug] *************************************************************************
-ok: [<<ec2-host-or-ip>>.compute-1.amazonaws.com] => {
+ok: [<<replace-with-ec2-host-or-ip>>.compute-1.amazonaws.com] => {
     "msg": "Ansible is working!"
 }
 
 PLAY RECAP ***************************************************************************
-<<ec2-host-or-ip>>.compute-1.amazonaws.com : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+<<replace-with-ec2-host-or-ip>>.compute-1.amazonaws.com : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 Now, that our ansible playbook works, we can move on to the next step.
@@ -253,7 +265,7 @@ Using the `ansible-galaxy` CLI tool that comes bundled with Ansible, you can cre
 ```bash
 mkdir -p roles && cd "$_"
 ansible-galaxy init jenkins_dev
-rm -rf files handlers meta templates tests
+rm -rf files jenkins_dev/handlers jenkins_dev/meta jenkins_dev/templates jenkins_dev/tests jenkins_dev/.travis.yml
 ```
 
 See [Directory Structure](#directory-structure) above.
@@ -277,9 +289,9 @@ We defined our playbook which deploys the Jenkins server below.
 {% raw %}
 
 ```bash
-cat > up_jenkins_ec2.yml <<"EOF"
+cat > ../up_jenkins_ec2.yml <<EOF
 ---
-- hosts: jenkins_ec2
+- hosts: ${EC2_JENKINS_HOST}
   pre_tasks:
     - name: Verify that enviromental variables have been provided
       assert:
@@ -528,10 +540,10 @@ cat > jenkins_dev/tasks/main.yml << "EOF"
       docker_container:
         name: "{{ container_name }}"
         image: "{{ base_image }}"
+        user: 0
         volumes:
           - "{{ home_dir }}:/var/jenkins_home"
-          - "{{ backup_dir }}:/var/backups/jenkiInstall and configure  docker
-Install and configure  dockerns_home"
+          - "{{ backup_dir }}:/var/backups/jenkins_home"
           - "{{ workspace_dir }}:/var/jenkins_home/workspace"
           - "/etc/timezone:/etc/timezone"
           - "/etc/localtime:/etc/localtime"
@@ -559,17 +571,131 @@ docker_users:
   - ansible
 container_name: "{{ jenkins_container_name }}"
 base_image: amakhaba/jenkins-image:latest
-
 EOF
 ```
 
-### Test Ansible
+### Deploy Jenkins
 
+Once, all the required files are in place, we can check for any linting/syntax errors in the playbook.
+
+```bash
+make lint
+```
+
+If there are no errors, you can fix the syntax errors and run the linter again.
+
+**Note:** This is command can be added into your CI/CD pipeline to ensure that the playbook is valid before running it.
+
+After the playbook is valid, we can run the playbook.
+
+```bash
+make jenkins_dev
+```
+
+This will configure locale, install debian, python dependencies & configure docker and finally start the jenkins container.
+
+You should see the following output:
+
+```bash
+venv/bin/ansible-playbook -i host_inventory up_jenkins_ec2.yml
+
+PLAY [jenkins_ec2] **************************************************************************************************************************************************************
+
+TASK [Gathering Facts] **********************************************************************************************************************************************************
+ok: [<<ec2-or-host-ip>>.compute-1.amazonaws.com]
+
+TASK [Verify that enviromental variables have been provided] ********************************************************************************************************************
+ok: [<<ec2-or-host-ip>>.compute-1.amazonaws.com] => (item=jenkins_container_name)
+
+TASK [jenkins_dev : set timezone] ***********************************************************************************************************************************************
+ok: [<<ec2-or-host-ip>>.compute-1.amazonaws.com]
+
+TASK [jenkins_dev : Set localedef compile local] ********************************************************************************************************************************
+changed: [<<ec2-or-host-ip>>.compute-1.amazonaws.com]
 ...
+TASK [jenkins_dev : ensure home, workspace and backup directories exists] *******************************************************************************************************
+ok: [<<ec2-or-host-ip>>.compute-1.amazonaws.com] => (item=/opt/jenkins)
+ok: [<<ec2-or-host-ip>>.compute-1.amazonaws.com] => (item=/tmp/jenkins_workspace)
+ok: [<<ec2-or-host-ip>>.compute-1.amazonaws.com] => (item=/var/backups/jenkins_home)
 
-### Step 3
+TASK [jenkins_dev : restart docker service] *************************************************************************************************************************************
+changed: [<<ec2-or-host-ip>>.compute-1.amazonaws.com]
 
-...
+TASK [jenkins_dev : start jenkins docker container] *****************************************************************************************************************************
+changed: [<<ec2-or-host-ip>>.compute-1.amazonaws.com]
+
+PLAY RECAP **********************************************************************************************************************************************************************
+<<ec2-or-host-ip>>.compute-1.amazonaws.com : ok=26   changed=14   unreachable=0    failed=0    skipped=0    rescued=0    ignored=1
+```
+
+#### Verify Jenkins is running
+
+Once the Jenkins container is running, we can verify that it is running by running the following command:
+
+```bash
+curl -svo /dev/null <<ec2-or-host-ip>>.compute-1.amazonaws.com:8080
+```
+
+You should see the following output:
+
+```bash
+*   Trying <public-ec2-ip>:8080...
+* TCP_NODELAY set
+* Connected to <<ec2-or-host-ip>>.compute-1.amazonaws.com (<public-ec2-ip>) port 8080 (#0)
+> GET / HTTP/1.1
+> Host: <<ec2-or-host-ip>>.compute-1.amazonaws.com:8080
+> User-Agent: curl/7.68.0
+> Accept: */*
+>
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< Date: Mon, 23 May 2022 07:54:14 GMT
+< X-Content-Type-Options: nosniff
+< Content-Type: text/html;charset=utf-8
+< Expires: Thu, 01 Jan 1970 00:00:00 GMT
+< Cache-Control: no-cache,no-store,must-revalidate
+< X-Hudson-Theme: default
+< Referrer-Policy: same-origin
+< Cross-Origin-Opener-Policy: same-origin
+< Set-Cookie: JSESSIONID.66ccc5a8=node0fb2asft1tfpx18c3hcfc0ytp57.node0; Path=/; HttpOnly
+< X-Hudson: 1.395
+< X-Jenkins: 2.321
+< X-Jenkins-Session: bf3e9bdd
+< X-Frame-Options: sameorigin
+< X-Instance-Identity: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhcd8NDL/PZM3LyfTj6rpZVCPqpTUfXAnSJItZ0XdCmk+J/O8jItxazaA3gEdK9cSTIH2ypGZUo+lSo5Yotcm9cyZIbj7vUpQgU8c6h866m//HeyRKt/ow2PeuI2FQE49CxV/YQZNYAA1/8WkWLRH/1ARIGcXRLmqBkCyhTDyBI1P959tylSvFbSbyHoqeLGHihzn0hoE8GSfuMFx2g72lSWqxEqw7GCouJlxzdNTAmsFJ2JOzAE1bQzDwJOFnhFNmo7hNEJKSxnJ5ly4xKzq9ej0875ccP6eP95VhYZtW0wZU4eCYXT0WEHLZeFxmbyVo0NFo8KmtZtYvHoqcE5/DQIDAQAB
+< Content-Length: 15077
+< Server: Jetty(9.4.43.v20210629)
+<
+{ [7433 bytes data]
+* Connection #0 to host <<ec2-or-host-ip>>.compute-1.amazonaws.com left intact
+```
+
+If you see the above output, Jenkins is running. You can open the Jenkins UI by visiting the following URL:
+
+```bash
+<<ec2-or-host-ip>>.compute-1.amazonaws.com:8080
+```
+
+And you will see the following UI:
+
+![2022-05-23_09-32](https://user-images.githubusercontent.com/7910856/169767081-a49517f8-bbbf-456c-aa34-77ad4647fbd8.png)
+
+#### Troubleshooting
+
+Should, you encounter any issues opening the Jenkins UI, this is a good place to verify if your EC2 instance's security group is configured correctly. Read more about [Amazon EC2 security groups for Linux instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html)
+
+- Go to the AWS console and navigate to your EC2 instance.
+- Find and Click the ***Security*** tab that your instance is apart of
+![2022-05-23_10-08](https://user-images.githubusercontent.com/7910856/169773556-6094eac1-6acf-4671-b244-4a38b9841abd.png)
+- Find and Click the ***Security Groups*** link
+- Click on ***Inbound Rules***, then click on the ***Edit Inbound Rule*** button
+![2022-05-23_09-23](https://user-images.githubusercontent.com/7910856/169766276-e08eca35-31ba-4a8d-8574-2f282350b402.png)
+- Click on the ***Add rule*** button and,
+- Use the drop down and add ***Custom TCP*** (port 8080) to the list
+![2022-05-23_09-24](https://user-images.githubusercontent.com/7910856/169766272-926fda00-127e-4334-b990-3484a73ffdf0.png)
+- Click on the ***Save*** button
+
+That's it! You should now be able to open the Jenkins UI.
 
 ### Step 3
 

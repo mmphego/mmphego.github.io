@@ -191,6 +191,21 @@ Thereafter, we verify that the image was successfully pushed to [docker hub](htt
 
 #### Jenkins Configuration as Code
 
+checkout and get enlightened
+
+- <https://www.digitalocean.com/community/tutorials/how-to-automate-jenkins-setup-with-docker-and-jenkins-configuration-as-code>
+- <https://fauzislami.com/blog/2022/02/18/jcasc-jenkins-configuration-as-code-setting-up-jenkins-in-a-fully-reproducible-way/>
+- <https://medium.com/nerd-for-tech/jenkins-as-code-bfdbd8f3dff9>
+- <https://opensource.com/article/20/4/jcasc-jenkins>
+- <https://devops.com/using-jenkins-configuration-as-code/>
+- <https://dzone.com/articles/jenkins-configuration-as-code-plugins>
+
+-
+
+#### Jenkins Plugins
+
+<https://gist.github.com/noqcks/d2f2156c7ef8955619d45d1fe6daeaa9>
+
 TODO:
 
 - Add jenkins config as code
