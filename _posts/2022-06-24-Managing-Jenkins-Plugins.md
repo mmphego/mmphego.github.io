@@ -184,7 +184,9 @@ JENKINS_HOST="${JENKINS_USERNAME}:${JENKINS_TOKEN}@${JENKINS_URL}"
 - Using the `curl` command query the Jenkins host to get a list of all plugins (versions) installed, and redirect the output to a file (`jenkins_plugin.txt`).
 
 ```bash
-curl -sSL "http://$JENKINS_HOST/pluginManager/api/xml?depth=1&xpath=/*/*/shortName|/*/*/version&wrapper=plugins" | perl -pe 's/.*?<shortName>([\w-]+).*?<version>([^<]+)()(<\/\w+>)+/\1 \2\n/g' | sed 's/ /:/' > jenkins_plugins.txt
+curl -sSL "http://$JENKINS_HOST/pluginManager/api/xml?depth=1&xpath=/*/*/shortName|/*/*/version&wrapper=plugins" | \
+    perl -pe 's/.*?<shortName>([\w-]+).*?<version>([^<]+)()(<\/\w+>)+/\1 \2\n/g' | \
+    sed 's/ /:/' > jenkins_plugins.txt
 ```
 
 The output of the above command is a list of plugins and their versions which is shown above.
