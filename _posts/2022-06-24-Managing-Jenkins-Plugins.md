@@ -18,7 +18,7 @@ tags:
 
 # The Story
 
-I needed a way to get a list of all plugins installed on our production Jenkins instance in the format `<plugin>: <version>`.
+I (well We, @AneleMakhaba and I) needed a way to get a list of all plugins installed on our production Jenkins instance in the format `<plugin>: <version>`.
 
 The motivation for that was to be able to install all plugins on our production Jenkins instance to our development Jenkins instance (from a `Dockerfile`). As I was working on that, I noticed that the Jenkins API didn't provide a simplified way to get a list of all plugins installed on a Jenkins instance.
 
