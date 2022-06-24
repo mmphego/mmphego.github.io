@@ -22,7 +22,7 @@ tags:
 
 # The Story
 
-This post continues from [How I Setup Jenkins On Docker Container Using Ansible (Part 3)]()
+This post continues from [How I Setup Jenkins On Docker Container Using Ansible (Part 2)]({{ "/blog/2022/05/09/How-I-setup-Jenkins-on-Docker-container-using-Ansible-Part-2.html" | absolute_url }})
 
 In this post, I will try to detail how to we deployed Jenkins environment using Ansible and configure Jenkins Jobs after system initialization.
 
@@ -34,9 +34,9 @@ Now that we have our EC2 instance and a Docker image, we can start creating our 
 
 ## The Walk-through
 
-The setup is divided into 3 sections, [Instance Creation]({{ "/blog/.<>html" | absolute_url }}), [Containerization][here]({{ "/blog/<>.html" | absolute_url }}) and [Automation]({{ "<>.html" | absolute_url }}).
+The setup is divided into 3 sections, [Instance Creation]({{ "/blog/2022/05/09/How-I-setup-Jenkins-on-Docker-container-using-Ansible-Part-1.html" | absolute_url }}), [Containerization]({{ "/blog/2022/05/09/How-I-setup-Jenkins-on-Docker-container-using-Ansible-Part-2.html" | absolute_url }}) and [Automation]({{ "/blog/2022/03/21/How-I-setup-Jenkins-on-Docker-container-using-Ansible-Part-3.html" | absolute_url }}).
 
-This post-walk-through mainly focuses on ***automation***.
+This post-walk-through mainly focuses on [***automation***](#create-ansible-playbook)
 
 ### Create Ansible Playbook
 

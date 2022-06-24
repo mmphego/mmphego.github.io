@@ -20,17 +20,13 @@ tags:
 
 # The Story
 
-This post continues from [How I Setup Jenkins On Docker Container Using Ansible (Part 2)]()
+This post continues from [How I Setup Jenkins On Docker Container Using Ansible (Part 1)]({{ "/blog/2022/05/09/How-I-setup-Jenkins-on-Docker-container-using-Ansible-Part-1.html" | absolute_url }})
 
-In this post, I will try to detail how we built and deployed a Docker container running a Jenkins environment and configured Jenkins Jobs after system initialization.
-
-## TL;DR
-
-## The How
+In this post, we will detail how an auto-configured Jenkins environment was built and deployed as a Docker container.
 
 ## The Walk-through
 
-The setup is divided into 3 sections, [Instance Creation]({{ "/blog/.<>html" | absolute_url }}), [Containerization]({{ "/blog/<>.html" | absolute_url }}) and [Automation]({{ "<>.html" | absolute_url }}).
+The setup is divided into 3 sections, [Instance Creation]({{ "/blog/2022/05/09/How-I-setup-Jenkins-on-Docker-container-using-Ansible-Part-1.html" | absolute_url }}), [Containerization]({{ "/blog/2022/05/09/How-I-setup-Jenkins-on-Docker-container-using-Ansible-Part-2.html" | absolute_url }}) and [Automation]({{ "/blog/2022/03/21/How-I-setup-Jenkins-on-Docker-container-using-Ansible-Part-3.html" | absolute_url }}).
 
 This post-walk-through mainly focuses on [***containerization***](#containerization).
 
@@ -60,29 +56,53 @@ tree -L 3
 ├── Dockerfile
 ├── jenkins_config.yaml
 ├── jenkins_plugins.txt
+├── populate_jenkins_casc.py
+├── requirements.txt
 └── userContent
     └── README.md
 
-2 directory, 4 files
+1 directory, 6 files
 ```
 
 The following sections will explain some of the files and directories we will be creating.
 
 #### Create Docker container
 
-First, we need to create 2x empty `jenkins_config.yaml` and `jenkins_plugins.txt` (We will divide into the contents of the files later), `Dockerfile` and include all dependencies we need.
+The code snippets below do the following:
 
-{ %raw %}
+- Creates a directory where we will store all our files and scripts
 
 ```bash
 mkdir -p ~/tmp/jenkins-docker && cd "$_"
 mkdir -p userContent
-touch jenkins_config.yaml jenkins_plugins.txt userContent/README.md
+```
+
+- Creates 5 empty `jenkins_config.yaml`, `jenkins_plugins.txt`, `populate_jenkins_casc.py`, `requirements.txt` and `README.md` files and,
+  - **Note:** The contents of these files are discussed in other posts to avoid this post getting too long and confusing.
+
+```bash
+touch jenkins_config.yaml \
+    jenkins_plugins.txt \
+    populate_jenkins_casc.py \
+    requirements.txt \
+    userContent/README.md
+
 echo "Files in this directory will be served under your http://<server>/jenkins/userContent/" > userContent/README.md
+```
+
+- Creates a `Dockerfile` which includes all relevant dependencies (**Note**: Jenkins is pinned to a specific version to ensure determinism)
+
+{% raw %}
+
+```bash
 cat > Dockerfile << "EOF"
 FROM jenkins/jenkins:2.321
 
 USER root
+
+# set your timezone
+ENV TZ="/usr/share/zoneinfo/Africa/Johannesburg"
+
 # hadolint ignore=DL3008,DL3009,DL3015
 RUN apt-get update && \
     apt-get -yq install \
@@ -110,9 +130,9 @@ RUN apt-get update \
     docker-ce-cli
 
 VOLUME /var/run/docker.sock
-# /docker-cli
 
-# extra-tools:
+# ------------ extra-tools ------------
+
 # hadolint ignore=DL3008,DL3015
 RUN apt-get update \
     && apt-get -yq install \
@@ -121,7 +141,11 @@ RUN apt-get update \
     vim \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
-# /extra-tools
+
+# ------------ Jenkins configurations ------------
+
+# Change to Jenkins user
+USER jenkins
 
 # increase http login session timeout
 ENV JENKINS_OPTS --sessionTimeout=10080
@@ -137,28 +161,51 @@ ENV JAVA_OPTS=-Djenkins.install.runSetupWizard=false
 COPY --chown=jenkins:jenkins jenkins_plugins.txt /usr/share/jenkins/ref/jenkins_plugins.txt
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/jenkins_plugins.txt
 
-# copy user contents which include images
+# copy user contents which might include images and other files
 COPY --chown=jenkins:jenkins userContent/* /usr/share/jenkins/ref/userContent/
 
-# misc:
 # hadolint ignore=DL3059
 RUN chown -R jenkins:jenkins /var/backups
 # hadolint ignore=DL3059
 RUN chown -R jenkins:jenkins /var/jenkins_home
-# /misc
-USER jenkins
 EOF
 ```
 
-{ % endraw %}
+{% endraw %}
 
-Once we have established the sequence of commands that are needed in order to assemble the Jenkins image we will be using through the `Dockerfile` above, we need to build the image using the following command.
+To ensure that we follow the [Docker's best practices](https://docs.docker.com/develop/dev-best-practices/), we use [Hadolint](https://github.com/hadolint/hadolint) which is a `Dockerfile` linter that helps you build best practice Docker images. I use it in all of my projects to ensure I’m creating small, secure, efficient and maintainable images.
+
+Let’s run our `Dockerfile` through `Hadolint`:
+
+```bash
+docker run --rm -i hadolint/hadolint < Dockerfile
+```
+
+If you are a VS Code user, there is the [Hadolint extension](https://marketplace.visualstudio.com/items?itemName=exiasr.hadolint). If you want to use it directly in Github, there is a [Hadolint Github action](https://github.com/marketplace/actions/hadolint-action).
+
+---
+
+Once we have established that our `Dockerfile` is valid (no linting errors), we can explore the `jenkins_config.yaml`, `jenkins_plugins.txt`, `populate_jenkins_casc.py`, `requirements.txt` empty files created above.
+
+#### Jenkins Plugins
+
+To learn more about Jenkins plugins (`jenkins_plugin.txt`), another blog post on [Managing Jenkins Plugins]({{ "/blog/2022/06/24/Managing-Jenkins-Plugins.html" | absolute_url }}) was written.
+
+#### Jenkins Configuration as Code
+
+To learn more about Jenkins configuration as code (`jenkins_config.yaml`, `populate_jenkins_casc.py` and `requirements.txt`), another blog post on [Managing Jenkins Configuration As Code And Secrets Management]({{ "/blog/2022/06/24/Managing-Jenkins-Configuration-as-Code-and-Secrets-Management.html" | absolute_url }}) was written.
+
+#### Putting it all together
+
+Once all of the files are created, we can execute the sequence of commands that are needed to assemble the Jenkins image using through the `Dockerfile` that was created.
+
+Let's build the image using the following command:
 
 ```bash
 docker build -t jenkins-docker .
 ```
 
-In order to see if our image was successfully built we will list all images we have using
+Ensure that the image was successfully built by listing all available images:
 
 ```bash
 docker image ls
@@ -167,54 +214,35 @@ docker image ls
 which gives us a similar output
 ![imagels](https://user-images.githubusercontent.com/31302703/167669477-92a28964-b0e2-4bee-aa77-9c630a043252.png)
 
-Once established that our image was successfully built, we need to tag the image before publishing (push) it to [Docker Hub](https://hub.docker.com/). To tag a docker image you use the following command:
+Now let's tag the image before publishing (push) it to [Docker Hub](https://hub.docker.com/).
+
+To tag a docker image you use the following command:
 
 ```bash
-docker tag jenkins-docker amakhaba/jenkins-image .
+docker tag jenkins-docker <<dockerhub username>>/jenkins-image .
 ```
 
-In order to publish the new image login to docker hub using your docker hub credentials, if you do not have any then [sign up for Docker Hub](https://hub.docker.com/signup). Thereafter login using the following command in order to push the image to docker hub.
+Now let's publish the new image by logging into Docker Hub using our Docker Hub credentials, if you do not have any then [sign up for Docker Hub](https://hub.docker.com/signup).
+
+Thereafter login using the following command in order to push the image to Docker Hub:
 
 ```bash
 docker login
 ```
 
-When you are logged in you can push the image to docker hub using the following command:
+After a successful login, then push the image to Docker Hub using the following command:
 
 ```bash
 docker push
 ```
 
-Thereafter, we verify that the image was successfully pushed to [docker hub](https://hub.docker.com/)
+Thereafter, we verify that the image was successfully pushed to [Docker Hub](https://hub.docker.com/)
 
 ![dockerhub](https://user-images.githubusercontent.com/31302703/167672477-d33d24cb-177e-4e97-80f8-a60233ff94d4.png)
 
-#### Jenkins Configuration as Code
+## Conclusion
 
-checkout and get enlightened
-
-- <https://www.digitalocean.com/community/tutorials/how-to-automate-jenkins-setup-with-docker-and-jenkins-configuration-as-code>
-- <https://fauzislami.com/blog/2022/02/18/jcasc-jenkins-configuration-as-code-setting-up-jenkins-in-a-fully-reproducible-way/>
-- <https://medium.com/nerd-for-tech/jenkins-as-code-bfdbd8f3dff9>
-- <https://opensource.com/article/20/4/jcasc-jenkins>
-- <https://devops.com/using-jenkins-configuration-as-code/>
-- <https://dzone.com/articles/jenkins-configuration-as-code-plugins>
-
--
-
-#### Jenkins Plugins
-
-<https://gist.github.com/noqcks/d2f2156c7ef8955619d45d1fe6daeaa9>
-
-TODO:
-
-- Add jenkins config as code
-
-```bash
-cd ~/tmp/jenkins-docker
-
-
-- Add jenkins plugins
+Congratulations! You have successfully created a Jenkins container (containing jenkins plugins and configuration as code) and published it to Docker Hub. You can now use the instance as part of the Ansible playbooks.
 
 ## Reference
 
