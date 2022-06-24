@@ -37,7 +37,7 @@ curl -sSL "http://$JENKINS_HOST/pluginManager/api/xml?depth=1&xpath=/*/*/shortNa
 
 In addition to Jenkin's fundamental capabilities, extension may be used to increase its capability. Jenkins plugins carry out the same tasks in this situation in accordance with user-specific requirements. Plugins provide Jenkins access to new features. Jenkins offers more than a thousand plugins that are useful for connecting to various pieces of software and outside connectors.
 
-The [Jenkins plugin repository](https://plugins.jenkins.io/) provides a list of those 1000+ plugins that are accessible. Only a small percentage are well maintained and tested, and even fewer are verified and/or compatible plugins - fully tested to interoperate with the rest of the [CloudBees Assurance Program (CAP)](https://go.cloudbees.com/docs/cloudbees-documentation/assurance-program/) plugins (and their dependencies) and with a certain LTS version of Jenkins.
+The [Jenkins plugin repository](https://plugins.jenkins.io/) provides a list of over 1000+ plugins that are accessible. Only a small percentage are well maintained and tested, and even fewer are verified and/or compatible plugins - fully tested to interoperate with the rest of the [CloudBees Assurance Program (CAP)](https://go.cloudbees.com/docs/cloudbees-documentation/assurance-program/) plugins (and their dependencies) and with a certain LTS version of Jenkins.
 
 The image below, shows the jenkins console you can navigate to the button "Manage jenkins" which is on the left side of the console. Once you click on that, you will land on another page where you can see lots of functionality which you can manage if you are the admin of the system. One we are highlighting here is about "Manage Plugins" functionality. By clicking on it you will be able to see plugins which can be integrated, which are already integrated and which need to be updated.
 
@@ -47,7 +47,7 @@ The image below, shows the jenkins console you can navigate to the button "Manag
 
 **Note:** Using Jenkins UI to install plugins is not advised (or best practice). Instead the use of source control, where each new plugin and plugin upgrade can be tracked as commits, is one of the best ways to maintain your plugins.
 
-In my opinion, using a customized Docker image (as described above) that contains the plugins you absolutely must have is the best way to accomplish this. To ensure that your Jenkins master container image starts with all the plugins you want, the Jenkins docker project offers a script for pre-installing plugins from a simple `jenkins_plugins.txt` file.
+In my opinion, using a customized Docker image (as described in [How I Setup Jenkins On Docker Container Using Ansible (Part 2)]()) that contains the plugins you absolutely must have is the best way to accomplish this. To ensure that your Jenkins master container image starts with all the plugins you want, the Jenkins docker project offers a script for pre-installing plugins from a simple `jenkins_plugins.txt` file.
 As a result, testing plugin updates is much simpler, and all of your plugin updates are tracked as code commits.
 
 Below is a simple `jenkins_plugins.txt` file containing an extensive list of the pinned plugins installed in the container:
