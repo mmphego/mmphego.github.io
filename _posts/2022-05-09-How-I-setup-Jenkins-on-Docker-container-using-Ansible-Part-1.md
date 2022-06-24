@@ -21,9 +21,9 @@ tags:
 
 # The Story
 
-Recently, my team found themselves in a situation where they needed to have a staging or development Jenkins environment. The motivation behind the need for a new environment was that we needed a backup Jenkins environment and a place where new Jenkins users could get their hands dirty with Jenkins without having to worry about changes to the production environment.
+Recently, my team found themselves in a situation where they needed to have a staging or development Jenkins environment. The motivation behind the need for a new environment was that we needed a backup Jenkins environment and a place where new Jenkins users could get their hands dirty with Jenkins without having to worry about changes to the production environment and most importantly we needed to ensure that our Jenkins environment is stored as code and could be easily replicated.
 
-For this task, I decided to pair with my padawan/mentee (@AneleMakhaba) as he was a good fit for the task which had been in the backlog for a while.
+For this task, I decided to pair with my padawan/mentee (@AneleMakhaba) as he was a good fit for the task (and I wanted to dissiminate the knowledge as well) which had been in the backlog for a while.
 
 I thought this meme was really funny, so I decided to share it with the world.
 
@@ -60,6 +60,8 @@ This collaborated blog post is divided into 3 sections, [Instance Creation]({{ "
 
 In this post, we will detail the steps that we undertook to create an environment ([EC2 instance](https://aws.amazon.com/ec2/instance-types/)) which will host our Jenkins instance.
 
+**Note:** We did not use any AWS services at our work, instead we used Proxmox containers. I just thought it was a good idea to rather use AWS services than Proxmox containers for this post.
+
 Thank your @AneleMakhaba, for your collaboration in writing this post.
 
 ---
@@ -78,7 +80,7 @@ Thank your @AneleMakhaba, for your collaboration in writing this post.
 
 This is the first post in the series of posts that will detail the steps that we undertook to create an environment ([EC2 instance](https://aws.amazon.com/ec2/instance-types/)). We launched the instance via the AWS Console, and then SSH'd into the instance for further configurations.
 
-Future posts will detail the same steps but introduce [Terraform](https://www.terraform.io/) for deterministic deployment.
+Future post will detail the same steps but introduce [Terraform](https://www.terraform.io/) for deterministic orchestrations.
 
 ## The Walk-through
 
