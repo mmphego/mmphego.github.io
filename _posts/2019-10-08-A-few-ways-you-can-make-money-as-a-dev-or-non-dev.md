@@ -298,9 +298,9 @@ A list of referral programs you can join:
 ## Advertising
 
 ### Wrap your car in advertising
-[brandyourcar](https://byc.cash/) turns your commute into cash, but this money-making opportunity is probably not a good fit for car enthusiasts.
+[brandyourcar](https://app.thesalt.co.za/join/ygmqa) turns your commute into cash, but this money-making opportunity is probably not a good fit for car enthusiasts.
 
-[brandyourcar](https://byc.cash/) is a company that pays you to wrap your car in advertising for their clients. This personally is a great way to make extra cash on the side I have been on the platform for some time now this is best for those with longer commutes think Cape Town N1/N2 peak hour traffic.
+[brandyourcar](https://app.thesalt.co.za/join/ygmqa) is a company that pays you to wrap your car in advertising for their clients. This personally is a great way to make extra cash on the side I have been on the platform for some time now this is best for those with longer commutes think Cape Town N1/N2 peak hour traffic.
 
 In 2017, I signed up to be [CellC's](https://www.cellc.co.za) brand ambassador I made R2000 ~ $160 per months for a year.
 {:refdef: style="text-align: center;"}
