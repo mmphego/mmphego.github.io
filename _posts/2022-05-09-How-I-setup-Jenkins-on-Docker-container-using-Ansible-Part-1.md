@@ -15,7 +15,7 @@ tags:
 ![post image]({{ "/assets/2022-05-09-How-I-setup-Jenkins-on-Docker-container-using-Ansible-Part-1.png" | absolute_url }})
 {: refdef}
 
-<<TIME TO READ>>
+7 Min Read
 
 ---
 
@@ -23,9 +23,9 @@ tags:
 
 Recently, my team found themselves in a situation where they needed to have a staging or development Jenkins environment. The motivation behind the need for a new environment was that we needed a backup Jenkins environment and a place where new Jenkins users could get their hands dirty with Jenkins without having to worry about changes to the production environment and most importantly we needed to ensure that our Jenkins environment is stored as code and could be easily replicated.
 
-For this task, I decided to pair with my padawan/mentee (@AneleMakhaba) as he was a good fit for the task (and I wanted to dissiminate the knowledge as well) which had been in the backlog for a while.
+For this task, I decided to pair with my padawan/mentee (@AneleMakhaba) as he was a good fit for the task (and I wanted to disseminate the knowledge as well) which had been in the backlog for a while.
 
-I thought this meme was really funny, so I decided to share it with the world.
+I thought this meme was relevant to the task.
 
 ![](https://user-images.githubusercontent.com/7910856/122241859-29ca4b00-cec3-11eb-94ca-ba484c3bb733.png)
 
@@ -34,10 +34,10 @@ Our initial approach to the task was to:
 - Create a Docker image that would be used for our Jenkins environment which includes all the necessary dependencies and configuration files.
   - The configuration should be based on the production environment.
 - Explore the "As code paradigm":
-  - Create and version control ***Jenkins Configuration*** using [JCaC(Jenkins Configuration as Code)](https://www.jenkins.io/projects/jcasc/), that is a plugin for Jenkins that provides the ability to define this whole configuration as a simple, human-friendly, plain text YAML syntax.
+  - Create and version control ***Jenkins Configuration*** using [JCaC(Jenkins Configuration as Code[)](https://www.jenkins.io/projects/jcasc/), which is a plugin for Jenkins that provides the ability to define this whole configuration as a simple, human-friendly, plain text YAML syntax.
   - Create and version control ***Jenkins Job configuration*** using [Jenkins Job Builder](https://jenkins-job-builder.readthedocs.io/en/latest/), which is a Python package with the ability to store Jenkins jobs in a YAML format.
 - Deploy a new Jenkins instance (dev-environment) with a single command
-- Future work includes the ability to backup and restore Jenkins job history to the newly deployed environment with a single command.
+- Future work includes the ability to backup and restores Jenkins job history to the newly deployed environment with a single command.
 
 ---
 
@@ -47,8 +47,7 @@ Our initial approach to the task was to:
 - Managing Jenkins as Code
 - Jenkins infrastructure as Code
 - Jenkins Jobs as Code
-- Some of the benefits of ***'as code'*** paradigm
-- and a demo
+- Some of the benefits of ***'as code'*** paradigm, and a demo
 
 {:refdef: style="text-align: center;"}
 <iframe width="100%" height="415" src="https://www.youtube.com/embed/wEL1KcKTjUw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -56,11 +55,11 @@ Our initial approach to the task was to:
 
 ---
 
-This collaborated blog post is divided into 3 sections, [Instance Creation]({{ "/blog/.<>html" | absolute_url }}), [Containerization]({{ "/blog/<>.html" | absolute_url }}) and [Automation]({{ "/blog/2021/06/15/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible.html" | absolute_url }}) to avoid a very long post and,
+This collaborated blog post is divided into 3 sections, [Instance Creation]({{ "/blog/2022/05/09/How-I-setup-Jenkins-on-Docker-container-using-Ansible-Part-1.html" | absolute_url }}), [Containerization]({{ "/blog/2022/05/09/How-I-setup-Jenkins-on-Docker-container-using-Ansible-Part-2.html" | absolute_url }}) and [Automation]({{ "/blog/2021/06/15/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible.html" | absolute_url }}) to avoid a very long post and,
 
-In this post, we will detail the steps that we undertook to create an environment ([EC2 instance](https://aws.amazon.com/ec2/instance-types/)) which will host our Jenkins instance.
+In this post, we will detail the steps that we undertook to create an environment ([EC2 [instance](https://aws.amazon.com/ec2/instance-types/)) that will host our Jenkins instance.
 
-**Note:** We did not use any AWS services at our work, instead we used Proxmox containers. I just thought it was a good idea to rather use AWS services than Proxmox containers for this post.
+**Note:** We did not use any AWS services to host our Jenkins environment at our workplace, instead we used [Proxmox](https://www.proxmox.com/en/) containers.
 
 Thank your @AneleMakhaba, for your collaboration in writing this post.
 
@@ -74,17 +73,15 @@ Thank your @AneleMakhaba, for your collaboration in writing this post.
   - Instance key pair: `jenkins-ec2`
   - AMI: `ami-09d56f8956ab235b3` (Ubuntu 20.04 LTS)
 - SSH into the instance and create an `ansible` user with `sudo` rights.
-- Copy local ssh key to the instance and add it to the `ansible` user's `authorized_keys` file.
+- Copy the local ssh key to the instance and add it to the `ansible` user's `authorized_keys` file.
 
 ## The How
 
-This is the first post in the series of posts that will detail the steps that we undertook to create an environment ([EC2 instance](https://aws.amazon.com/ec2/instance-types/)). We launched the instance via the AWS Console, and then SSH'd into the instance for further configurations.
-
-Future post will detail the same steps but introduce [Terraform](https://www.terraform.io/) for deterministic orchestrations.
+This is the first post in the series of posts that will detail the steps that we undertook to create an environment ([EC2 instance](https://aws.amazon.com/ec2/instance-types/)) for running Jenkins CI. The instance was launched via the AWS Console, a future post will detail the same steps using [Terraform](https://www.terraform.io/) for deterministic orchestrations.
 
 ## The Walk-through
 
-This post-walk-through mainly focuses on ***instance creation***. Go [here]() for the ***containerization*** and [here]() for ***automation*** walk-through.
+This post-walk-through mainly focuses on ***instance creation***. If you would like to read more about the ***containerization*** click [here]({{ "/blog/2022/05/09/How-I-setup-Jenkins-on-Docker-container-using-Ansible-Part-2.html" | absolute_url }}) and [here]({{ "/blog/2021/06/15/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible.html" | absolute_url }}) for ***automation*** walk-through.
 
 ### Create an EC2 instance
 
@@ -93,7 +90,7 @@ To create an EC2 instance that will be used to run the Jenkins container head ov
 - On console, search for **EC2** and select it, then locate the **"Launch Instance"** button.
 ![image](https://user-images.githubusercontent.com/7910856/167109925-8509860a-1ee5-436c-8892-5a320827d41f.png)
 
-- After selecting the **"Launch Instance"** button, add a **name of your instance** (I chose **Jenkins-server**) then select the **"Ubuntu"** option for the AMI (Amazon Machine Image).
+- After selecting the **"Launch Instance"** button, add the **name of your instance** (I chose **Jenkins-server**) then select the **"Ubuntu"** option for the AMI (Amazon Machine Image).
 ![image](https://user-images.githubusercontent.com/7910856/167110033-a0953334-0a0b-406e-8168-f431624cb121.png)
 
 - Choose an instance of your choice (for this post we chose a `t2.micro`), then select the `Create new key pair` button (these keys will be used to SSH into our instance later)
@@ -111,9 +108,9 @@ Now, open a new terminal window on the host and SSH into the instance to ensure 
 
 ### Create an Ansible user
 
-**Note** this is an optional step as we can use the default EC2 user in Ansible. Due to security reasons it is recommended to create a dedicated Ansible user with sudo rights and only authorized access to the instance.
+**Note:** This is an optional step as we can use the default EC2 user in Ansible. Due to security reasons, it is recommended to create a dedicated Ansible user with sudo rights and only authorized access to the instance.
 
-#### Generate ssh-key for your user
+#### Generate the ssh-key for your user
 
 First, we need to generate an ssh-key for our Ansible user from our localhost. This key will help ease the SSH connection to the instance. The following command will generate an ssh-key for the user `ansible` on localhost:
 
@@ -129,6 +126,8 @@ Read more about [SSH Public and Private Key](https://docs.rockylinux.org/pt/guid
 We need to copy the contents of the public key - `id_rsa.pub` that looks like this:
 
 ```bash
+cat ~/.ssh/id_rsa.pub
+
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDAudXEIP2qNrYDOVdS5T7ZB7...............
 ansible-user
 ```
@@ -149,7 +148,7 @@ mkdir -p /home/ansible/.ssh
 cd /home/ansible/.ssh
 ```
 
-Then paste the public key, contents that we generated earlier on the host environment into the `authorized_keys` file and save.
+Then paste the public key, and contents that we generated earlier on the host environment into the `authorized_keys` file and save.
 
 ```bash
 vi authorized_keys
@@ -157,15 +156,17 @@ vi authorized_keys
 
 This will ensure that we can SSH into the instance without a password, and we can run Ansible commands without being prompted for a password each time.
 
+**Note:** This is not the best security practice, but it is a good starting point.
+
 Going back to the host environment, we can test the SSH connection to the EC2 instance using the ansible user that we just created:
 
 ![image](https://user-images.githubusercontent.com/7910856/167115045-cfea6afa-c896-463f-938b-e7003d0fd212.png)
 
-Post continues [here]()
+Once you have a completed instance that you can SSH into, then you can create a Jenkins server on it. The post [How I setup Jenkins on Docker container using Ansible Part 2]({{ "/blog/2022/05/09/How-I-setup-Jenkins-on-Docker-container-using-Ansible-Part-2.html" | absolute_url }}) will detail the steps to create a Jenkins server on an EC2 instance.
 
 ## Conclusion
 
-Congratulations! You have successfully created an EC2 instance with Ansible. You can now use the instance to run Ansible playbooks and containers. Another avenue to explore is [Terraform](https://www.terraform.io/) for deterministic deployment instead of relying on the AWS Console. This will be covered in future posts.
+Congratulations! You have successfully created an EC2 instance that will run the Jenkins environment. You can now use the instance to run Ansible playbooks and containers. Another avenue to explore is [Terraform](https://www.terraform.io/) for deterministic deployment instead of relying on the AWS Console. This will be covered in future posts.
 
 ## Reference
 
