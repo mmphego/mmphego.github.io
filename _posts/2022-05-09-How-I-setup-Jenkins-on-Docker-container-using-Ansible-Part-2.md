@@ -93,6 +93,7 @@ echo "Files in this directory will be served under your http://<server>/jenkins/
 - Creates a `Dockerfile` that includes all relevant dependencies (**Note**: Jenkins is pinned to a specific version to ensure determinism)
 
 {% raw %}
+
 ```bash
 cat > Dockerfile << "EOF"
 FROM jenkins/jenkins:2.321
