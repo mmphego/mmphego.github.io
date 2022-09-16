@@ -118,8 +118,7 @@ make install_pkgs install_ansible_plugins
 
 The above command will install all the dependencies that we need to run the Ansible playbook, but first we need to generate the `Makefile` below.
 
-{ % raw %}
-
+{% raw %}
 ```bash
 cat > Makefile <<"EOF"
 .DEFAULT_GOAL := help
@@ -169,8 +168,7 @@ jenkins_dev: --check-installed-packages  ## Setup and start Jenkins CI - Dev env
         $(VENV)ansible-playbook -i host_inventory up_jenkins_ec2.yml
 EOF
 ```
-
-{ % endraw %}
+{% endraw %}
 
 Now run the following commands to replace the spaces with tabs and to make the file executable:
 
