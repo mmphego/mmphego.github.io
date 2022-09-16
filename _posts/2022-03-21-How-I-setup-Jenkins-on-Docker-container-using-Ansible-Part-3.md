@@ -16,7 +16,7 @@ tags:
 ![post image]({{ "/assets/2022-03-21-How-I-setup-Jenkins-on-Docker-container-using-Ansible.png" | absolute_url }})
 {: refdef}
 
-<<TIME TO READ>>
+10 Min Read
 
 ---
 
@@ -696,12 +696,6 @@ Should, you encounter any issues opening the Jenkins UI, this is a good place to
 - Click on the ***Save*** button
 
 That's it! You should now be able to open the Jenkins UI.
-
-### Step 3
-
-- build jobs
-
-...
 
 ## Reference
 

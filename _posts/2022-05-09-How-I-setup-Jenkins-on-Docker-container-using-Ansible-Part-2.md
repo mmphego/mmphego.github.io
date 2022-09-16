@@ -14,7 +14,7 @@ tags:
 ![post image]({{ "/assets/2022-05-09-How-I-setup-Jenkins-on-Docker-container-using-Ansible-Part-2.png" | absolute_url }})
 {: refdef}
 
-<<TIME TO READ>>
+7 Min Read
 
 ---
 
@@ -42,11 +42,11 @@ sudo systemctl enable docker
 python3 -m pip install docker-compose
 ```
 
-Using a container offers convenience and ensuring that deployments are deterministic. It also offers a great deal of flexibility.
+Using a container offers convenience and ensures that deployments are deterministic. It also offers a great deal of flexibility.
 
 ### Containerization
 
-But before continue, the directory structure shown below should resemble what we should have once we are done with the walk-through.
+But before continuing, the directory structure shown below should resemble what we should have once we are done with the walk-through.
 
 #### Directory Structure
 
@@ -77,7 +77,7 @@ mkdir -p ~/tmp/jenkins-docker && cd "$_"
 mkdir -p userContent
 ```
 
-- Creates 5 empty `jenkins_config.yaml`, `jenkins_plugins.txt`, `populate_jenkins_casc.py`, `requirements.txt` and `README.md` files and,
+- Creates 5 empty `jenkins_config.yaml`, `jenkins_plugins.txt`, `populate_jenkins_casc.py`, `requirements.txt`, and `README.md` files and,
   - **Note:** The contents of these files are discussed in other posts to avoid this post getting too long and confusing.
 
 ```bash
@@ -90,10 +90,9 @@ touch jenkins_config.yaml \
 echo "Files in this directory will be served under your http://<server>/jenkins/userContent/" > userContent/README.md
 ```
 
-- Creates a `Dockerfile` which includes all relevant dependencies (**Note**: Jenkins is pinned to a specific version to ensure determinism)
+- Creates a `Dockerfile` that includes all relevant dependencies (**Note**: Jenkins is pinned to a specific version to ensure determinism)
 
 {% raw %}
-
 ```bash
 cat > Dockerfile << "EOF"
 FROM jenkins/jenkins:2.321
@@ -170,10 +169,9 @@ RUN chown -R jenkins:jenkins /var/backups
 RUN chown -R jenkins:jenkins /var/jenkins_home
 EOF
 ```
-
 {% endraw %}
 
-To ensure that we follow the [Docker's best practices](https://docs.docker.com/develop/dev-best-practices/), we use [Hadolint](https://github.com/hadolint/hadolint) which is a `Dockerfile` linter that helps you build best practice Docker images. I use it in all of my projects to ensure I’m creating small, secure, efficient and maintainable images.
+To ensure that we follow the [Docker's best practices](https://docs.docker.com/develop/dev-best-practices/), we use [Hadolint](https://github.com/hadolint/hadolint) which is a `Dockerfile` linter that helps you build best practice Docker images. I use it in all of my projects to ensure I’m creating small, secure, efficient, and maintainable images.
 
 Let’s run our `Dockerfile` through `Hadolint`:
 
@@ -189,11 +187,11 @@ Once we have established that our `Dockerfile` is valid (no linting errors), we 
 
 #### Jenkins Plugins
 
-To learn more about Jenkins plugins (`jenkins_plugin.txt`), another blog post on [Managing Jenkins Plugins]({{ "/blog/2022/06/24/Managing-Jenkins-Plugins.html" | absolute_url }}) was written.
+To learn more about Jenkins plugins (`jenkins_plugin.txt`), read the blog post on [Managing Jenkins Plugins]({{ "/blog/2022/06/24/Managing-Jenkins-Plugins.html" | absolute_url }}) was written.
 
 #### Jenkins Configuration as Code
 
-To learn more about Jenkins configuration as code (`jenkins_config.yaml`, `populate_jenkins_casc.py` and `requirements.txt`), another blog post on [Managing Jenkins Configuration As Code And Secrets Management]({{ "/blog/2022/06/24/Managing-Jenkins-Configuration-as-Code-and-Secrets-Management.html" | absolute_url }}) was written.
+To learn more about Jenkins configuration as code (`jenkins_config.yaml,`populate_jenkins_casc.py`, and`requirements.txt`), read the blog post on [Managing Jenkins Configuration As Code And Secrets Management]({{ "/blog/2022/06/24/Managing-Jenkins-Configuration-as-Code-and-Secrets-Management.html" | absolute_url }}) was written.
 
 #### Putting it all together
 
@@ -212,7 +210,7 @@ docker image ls
 ```
 
 which gives us a similar output
-![imagels](https://user-images.githubusercontent.com/31302703/167669477-92a28964-b0e2-4bee-aa77-9c630a043252.png)
+![image](https://user-images.githubusercontent.com/31302703/167669477-92a28964-b0e2-4bee-aa77-9c630a043252.png)
 
 Now let's tag the image before publishing (push) it to [Docker Hub](https://hub.docker.com/).
 
@@ -242,9 +240,4 @@ Thereafter, we verify that the image was successfully pushed to [Docker Hub](htt
 
 ## Conclusion
 
-Congratulations! You have successfully created a Jenkins container (containing jenkins plugins and configuration as code) and published it to Docker Hub. You can now use the instance as part of the Ansible playbooks.
-
-## Reference
-
-- []()
-- []()
+Congratulations! You have successfully created a Jenkins container (containing Jenkins plugins and configuration as code) and published it to Docker Hub. You can now use the instance as part of the Ansible playbooks.
