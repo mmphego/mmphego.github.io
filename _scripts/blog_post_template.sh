@@ -60,7 +60,7 @@ tags:
 - []()
 EOF
     if command -v code >/dev/null 2>&1; then
-        code -n "${NEW_POST}"
+        code -nw "${NEW_POST}"
     else
         subl "${NEW_POST}"
     fi
