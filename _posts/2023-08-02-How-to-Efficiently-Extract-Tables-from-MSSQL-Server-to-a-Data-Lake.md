@@ -74,7 +74,7 @@ ORDER BY
 
 
 ### Step 2: Consider Data Dependency
-Another avenue, was to check for any dependencies between tables and determine the correct order for extraction to maintain data integrity. Some tables may rely on data from others, and extracting them out of order could lead to data inconsistencies. By identifying Foreign key relations, analyzing views, stored procedures and functions.
+Another avenue was to check for any dependencies between tables and determine the correct order for extraction to maintain data integrity. Some tables may rely on data from others, and extracting them out of order could lead to data inconsistencies. By identifying Foreign key relations, analyzing views, stored procedures and functions.
 
 ### Step 3: Evaluate Concurrent Connections
 It's essential to assess the number of concurrent connections available for extraction. Based on this evaluation, optimize the extraction process to make the most efficient use of concurrent connections.
@@ -89,7 +89,7 @@ FROM sys.configurations
 WHERE name = 'user connections';
 ```
 
-You can also evaluate if the servers MaxDOP (Maximum Degree of Parallelism) is configured - setting that controls the maximum number of processors used to execute a single query in parallel. Not this may or may not directly impact JDBC concurrent extractions, as it depends on workloads and query complexities and patterns. But worth evaluating, note that by default MSSQL’s MaxDOP is set to 0 - allowing the db engine to use all available processors. Using the SQL code below, you can confirm if it is set.
+You can also evaluate if the server MaxDOP (Maximum Degree of Parallelism) is configured - a setting that controls the maximum number of processors used to execute a single query in parallel. Not this may or may not directly impact JDBC concurrent extractions, as it depends on workloads and query complexities and patterns. But worth evaluating, note that by default MSSQL’s MaxDOP is set to 0 - allowing the DB engine to use all available processors. Using the SQL code below, you can confirm if it is set.
 
 ```sql
 EXEC sp_configure 'max degree of parallelism';
@@ -97,14 +97,14 @@ EXEC sp_configure 'max degree of parallelism';
 
 ![image](https://github.com/mmphego/mmphego.github.io/assets/7910856/4b0cb113-e69c-4266-8fe8-1520a0968806)
 
-Keep in mind that the number of concurrent connections a server can handle depends on various factors, including hardware resources, memory, CPU, and the workload on the server. It's essential to monitor the server's performance, potential query blocking after MaxDOP changes and adjust the maximum connections accordingly to avoid resource contention and performance issues.
+Keep in mind that the number of concurrent connections a server can handle depends on various factors, including hardware resources, memory, CPU, and the workload on the server. It's essential to monitor the server's performance, and potential query blocking after MaxDOP changes and adjust the maximum connections accordingly to avoid resource contention and performance issues.
 
 #### On AWS Glue
-Current JDBC concurrent connections initially set to 10 (for testing purposes),
+Current JDBC concurrent connections were initially set to 10 (for testing purposes),
 
 ![image](https://github.com/mmphego/mmphego.github.io/assets/7910856/cd64838e-7da7-41cf-b690-986c477d2c0a)
 
-resulting in the image shown below.  An analysis on the table extraction and duration is detailed on [How to Visualize EDL2.0's Step Functions Data]()
+resulting in the image shown below.  An analysis of the table extraction and duration is detailed in [How to Visualize EDL2.0's Step Functions Data]()
 
 ![image](https://github.com/mmphego/mmphego.github.io/assets/7910856/d558b1c1-5df7-40f6-a415-9ce26d7a8a5a)
 
@@ -120,3 +120,19 @@ Identify tables that contain sensitive or regulated data and implement appropria
 
 ### Step 6: Plan for Data Growth
 Anticipate future data growth over the next 1-5 years to accommodate scalability needs. Prioritize the extraction of tables that have significant growth potential, ensuring your data lake can handle future expansions.
+
+## Results After Optimizations
+
+In a significant stride toward improving data extraction efficiency, I successfully transformed a time-consuming **5-hour MSSQL table extraction process into a streamlined 44-minute operation**. This achievement was realized through careful analysis, strategic configuration changes, and the integration of advanced technologies.
+
+![image](https://github.com/mmphego/mmphego.github.io/assets/7910856/2ef93961-b902-4236-a440-735e72ad1948)
+
+The initial challenge was a linear extraction approach, where tables were fetched chronologically and in alphabetical order. To address this bottleneck, I thoroughly reviewed best practices and documentation. After comprehensive testing, we initiated an optimization effort that aimed to redefine our data extraction process.
+
+One key change involved reordering the extraction sequence. By simultaneously extracting 3x small and 2x large tables, we harnessed parallel processing to significantly reduce extraction times. This strategic arrangement allowed us to maximize our system's resources, efficiently fetching data from multiple tables concurrently.
+
+Another enhancement leveraged Spark JDBC parallel reads. Through careful configuration of Spark parameters such as partitioning and fetch size, we increased data retrieval speed. These adjustments were guided by thorough scrutiny of documentation and rigorous testing to ensure alignment with our specific requirements.
+
+The final improvement entailed scaling up our AWS Glue workforce. By increasing the `NumberOfWorkers` to 5 and using the `WorkerType`  `G.2X`, we enhanced processing power and computational efficiency. This change had a profound impact on the extraction process, enabling each worker to compute input data partitions more efficiently.
+
+In conclusion, my journey from a time-consuming 5-hour extraction to a swift 44-minute achievement underscores the potential of data engineering innovation. By careful planning, informed configuration changes, and harnessing modern technologies, we not only achieved optimal extraction times but also elevated the overall efficiency and performance of our data ecosystem.
