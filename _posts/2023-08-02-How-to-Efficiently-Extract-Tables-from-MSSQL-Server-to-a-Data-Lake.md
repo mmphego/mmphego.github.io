@@ -19,6 +19,8 @@ tags:
 
 # The Story
 
+As a Data Engineer, one of the core responsibilities is to ensure the optimal utilization of resources and minimize costs while performing data related work such as extractions and transfers.
+
 In this step-by-step guide, I'll walk you through the process I followed when extracting tables from MicroSoft SQL Server, prioritizing the extraction based on data volume, concurrent connections, and more, and then efficiently storing the data on our Enterprise Data Lake running on AWS.
 
 ## The How
@@ -33,6 +35,12 @@ Start by reviewing the existing data extraction process to understand its limita
 * Daily Full-Extractions instead of incremental extractions (HWM)
 
 ![2023-08-02_12-09]({{ "/assets/2023-08-02_12-09.png" | absolute_url }})
+
+### Analyzing Resource Costs
+
+One of the core responsibilities when working with ETL jobs is to monitor and manage the cost of data operations. AWS provides a powerful tool, the **AWS Cost Management and Billing Console**, used to monitor resource costs effectively. This console offers insights into your team's service usage and associated costs, empowering you to make informed decisions. In the image below you will notice a sharp spike on the day the extraction job timed out. Imagine if I did not review the extraction job the following morning?x The cost would have skyrocketed due to prolonged resource usage and inefficiencies.
+
+![2023-08-04_13-50.png]({{ "/assets/2023-08-04_13-50.png" | absolute_url }})
 
 ### Step 2: Analyze Data Volume and Frequency
 
