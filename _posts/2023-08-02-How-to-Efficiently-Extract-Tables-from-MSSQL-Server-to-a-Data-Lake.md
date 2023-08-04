@@ -38,7 +38,9 @@ Start by reviewing the existing data extraction process to understand its limita
 
 ### Analyzing Resource Costs
 
-One of the core responsibilities when working with ETL jobs is to monitor and manage the cost of data operations. AWS provides a powerful tool, the **AWS Cost Management and Billing Console**, used to monitor resource costs effectively. This console offers insights into your team's service usage and associated costs, empowering you to make informed decisions. In the image below you will notice a sharp spike on the day the extraction job timed out. Imagine if I did not review the extraction job the following morning?x The cost would have skyrocketed due to prolonged resource usage and inefficiencies.
+One of the core responsibilities when working with ETL jobs is to monitor and manage the cost of data operations. AWS provides a powerful tool, the **AWS Cost Management and Billing Console**, used to monitor resource costs effectively. This console offers insights into your team's service usage and associated costs, empowering you to make informed decisions.
+
+In the image below you will notice a sharp spike on the day the extraction job timed out. Imagine if I did not review the extraction job the following morning? The cost would have skyrocketed due to prolonged resource usage and inefficiencies.
 
 ![2023-08-04_13-50.png]({{ "/assets/2023-08-04_13-50.png" | absolute_url }})
 
@@ -80,7 +82,6 @@ ORDER BY
 
 ![image](https://github.com/mmphego/mmphego.github.io/assets/7910856/f48edf86-8995-4b54-b119-359dc0b0b868)
 
-
 ### Step 2: Consider Data Dependency
 Another avenue was to check for any dependencies between tables and determine the correct order for extraction to maintain data integrity. Some tables may rely on data from others, and extracting them out of order could lead to data inconsistencies. By identifying Foreign key relations, analyzing views, stored procedures and functions.
 
@@ -89,7 +90,6 @@ It's essential to assess the number of concurrent connections available for extr
 
 #### On SQL Server
 Evaluate if the server supports JDBC concurrent connections, you can check the maximum number of concurrent connections allowed by the SQL server using the query below, where `0` means there is no limit on the number of connections.
-
 
 ```sql
 SELECT value AS MaxUserConnections
@@ -121,7 +121,6 @@ resulting in the image shown below.  An analysis of the table extraction and dur
 Leverage the power of AWS Glue's Extract, Transform, Load (ETL) capabilities to parallelize reads and significantly speed up the extraction process. By using multiple AWS Glue worker nodes, you can achieve efficient parallel processing for faster data extraction.
 
 ![image](https://github.com/mmphego/mmphego.github.io/assets/7910856/723e662d-4c6e-46d2-a8ee-5820aea110f4)
-
 
 ### Step 5: Implement Data Security Measures
 Identify tables that contain sensitive or regulated data and implement appropriate security measures to protect this information during the extraction and migration process.
