@@ -130,7 +130,11 @@ Anticipate future data growth over the next 1-5 years to accommodate scalability
 
 ## Results After Optimizations
 
-In a significant stride toward improving data extraction efficiency, I successfully transformed a time-consuming **5-hour MSSQL table extraction process into a streamlined 44-minute operation**. This achievement was realized through careful analysis, strategic configuration changes, and the integration of advanced technologies.
+In a significant stride toward improving data extraction efficiency, I successfully transformed a time-consuming **5-hour MSSQL table extraction process of over half a Billion records (60GB) into a streamlined 44-minute operation costing an average $12.51**. This achievement was realized through careful analysis, strategic configuration changes, and the integration of advanced technologies.
+
+![image](https://github.com/mmphego/mmphego.github.io/assets/7910856/87c67b1b-85f7-4fbc-abf5-65ba3fc82341)
+
+![image](https://github.com/mmphego/mmphego.github.io/assets/7910856/6b5d20de-13db-4f7e-a653-531b709f6213)
 
 ![image](https://github.com/mmphego/mmphego.github.io/assets/7910856/2ef93961-b902-4236-a440-735e72ad1948)
 
