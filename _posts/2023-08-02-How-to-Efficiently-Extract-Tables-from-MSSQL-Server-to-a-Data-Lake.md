@@ -122,6 +122,11 @@ Leverage the power of AWS Glue's Extract, Transform, Load (ETL) capabilities to 
 
 ![image](https://github.com/mmphego/mmphego.github.io/assets/7910856/723e662d-4c6e-46d2-a8ee-5820aea110f4)
 
+Some of the ways you can utilize Glue for parallel processing includes:
+- Use a good partitioning strategy: Partitioning the data by a high cadinality columns such as `date` or a `bigint` can help to improve the performance of queries that need to be run on the data
+- Define Parallelism: In your Glue job settings, set the number of workers (parallelism) that AWS Glue should use for processing. This can be adjusted based on the available resources and the complexity of the extraction.
+- Using a better worker node: In your Glue job settings, set the `WorkerType` from `G.1X` to a bigger instance
+
 ### Step 5: Implement Data Security Measures
 Identify tables that contain sensitive or regulated data and implement appropriate security measures to protect this information during the extraction and migration process.
 
