@@ -14,7 +14,7 @@ tags:
 ![post image]({{ "/assets/2023-11-11-How-to-Verify-Data-Quality-on-Tables-Landed-on-AWS-Data-Lake-and-Data-Warehouse.png" | absolute_url }})
 {: refdef}
 
-5 Min
+5 Min Read
 
 ---
 
@@ -83,7 +83,7 @@ aws_service:
 EOF
 ```
 
-Once we have the `Config.yaml` file, we can create the script `AWS_Data_Validation.py`
+Once we have the `Config.yaml` file, we can create the script `AWS_Data_Validation.py` applying Python's SOLID principles.
 The code below details shows an `AWS_Credentials` class that provides methods for retrieving and reading AWS credentials from a configuration file (`~/.aws/credentials`).
 
 ```python
