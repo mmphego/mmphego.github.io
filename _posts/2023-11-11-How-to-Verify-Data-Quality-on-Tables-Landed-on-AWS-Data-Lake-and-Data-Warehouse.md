@@ -338,7 +338,7 @@ def arguments():
     pass
 ```
 
-### Usage
+### The Script
 
 Combining all of the classes, we end up with the following `main` function that loads a configuration file, checks if a specific AWS service is configured, and then processes the service based on the provided arguments.
 
@@ -363,7 +363,7 @@ if __name__ == "__main__":
     main()
 ```
 
-#### Usage Example
+### Running the Script
 
 Before you run the tool ensure that you can login to AWS via SSO or AWS Credentials.
 
@@ -389,7 +389,7 @@ Once, the SSO/Credentials are configured then we can run the script:
 python AWS_Data_Validation.py -c Config.yaml --service athena
 ```
 
-#### Interpreting Results
+### Interpreting Results
 
 ```bash
 $ python AWS_Data_Validation.py -c Config.yaml --service athena
@@ -409,6 +409,10 @@ Table: 'table_name': Field-level validation passed.
 Table: 'table_name': Metadata duplicates validation passed.
 Table: 'table_name': Table count per day validation passed.
 ```
+
+## Conclusion
+
+TBD
 
 ## Reference
 
