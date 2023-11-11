@@ -47,7 +47,7 @@ To ensure data synchronization between the EDL and EDW, my script also establish
 
 ## The Walk-Through
 
-In this section, I will detail the script. First, we need to create a `Config.yaml` file in the project directory. This file will contains aws services to be used, connection config, tables, database and column names.
+In this section, I will detail the script. First, we need to create a `Config.yaml` file in the project directory. This file contains AWS services to be used, connection configurations, tables, database and column names.
 
 ```bash
 cat << EOF > Config.yaml
@@ -83,7 +83,7 @@ aws_service:
 EOF
 ```
 
-Once we have the `Config.yaml` file, we can create the script `AWS_Data_Validation.py` applying Python's SOLID principles.
+Once we have the `Config.yaml` file, we can create the script `AWS_Data_Validation.py` applying [Python's SOLID principles](https://realpython.com/solid-principles-python/).
 The code below details shows an `AWS_Credentials` class that provides methods for retrieving and reading AWS credentials from a configuration file (`~/.aws/credentials`).
 
 ```python
@@ -163,7 +163,10 @@ class BotoSession(AWS_Credentials):
         """
         creds = self.read_credentials(**kwargs)
         if creds.get("sso_profile"):
-            session = boto3.Session(profile_name=creds.get("sso_profile"))
+            session = boto3.Session(
+                profile_name=creds.get("sso_profile"),
+                region_name=self.region_name
+            )
         else:
             session = boto3.Session(
                 aws_access_key_id=creds["aws_access_key_id"],
@@ -205,7 +208,7 @@ Once we have all the basic setup ready, we then create an `AthenaClient` class t
 class AthenaClient:
     def __init__(self, boto_session, **kwargs):
         self.athena_client = boto_session.session_client("athena")
-        self.s3_output_bucket = self._get_athena_s3_output_bucket(
+        self._s3_output_bucket = self._get_athena_s3_output_bucket(
             boto_session, **kwargs
         )
 
@@ -249,7 +252,7 @@ class AthenaClient:
         try:
             query_execution = self.athena_client.start_query_execution(
                 QueryString=query,
-                ResultConfiguration={"OutputLocation": f"s3://{self.s3_output_bucket}"},
+                ResultConfiguration={"OutputLocation": f"s3://{self._s3_output_bucket}"},
             )
             assert query_execution["ResponseMetadata"]["HTTPStatusCode"] == 200
         except self.athena_client.exceptions.InvalidRequestException as e:
