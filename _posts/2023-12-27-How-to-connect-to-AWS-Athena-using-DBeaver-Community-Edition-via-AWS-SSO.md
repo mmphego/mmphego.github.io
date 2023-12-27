@@ -142,3 +142,4 @@ With this setup, users can seamlessly access Athena, utilize its querying capabi
 - [AWS Athena](https://aws.amazon.com/athena/)
 - [What is SSO?](https://aws.amazon.com/what-is/sso/)
 - [Getting started with AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+- [What is ODBC?](https://insightsoftware.com/blog/what-is-odbc/#:~:text=Open%20Database%20Connectivity%20(ODBC)%20is,based%20data%20access%20was%20born.)
