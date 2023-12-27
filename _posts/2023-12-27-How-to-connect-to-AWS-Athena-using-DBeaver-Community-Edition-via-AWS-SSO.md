@@ -14,15 +14,15 @@ tags:
 ![post image]({{ "/assets/2023-12-27-How-to-connect-to-AWS-Athena-using-DBeaver-Community-Edition-via-AWS-SSO.png" | absolute_url }})
 {: refdef}
 
-<<TIME TO READ>>
+5 Min Read
 
 ---
 
 # The Story
 
-As a data engineer, I find myself entrenched in Amazon Athena from verifying/validating source extracts to daily analysis, the struggle with AWS console is all too familiar. It's cumbersome nature-repetitive logins, navigations and manual query input challenges efficiency and creativity. Engaging solely through this console impedes agile data exploration and analysis, a crucial aspect of my role.
+As a data engineer, I find myself entrenched in Amazon Athena from verifying/validating source extracts to daily analysis, the struggle with AWS console is all too familiar. Its cumbersome nature-repetitive logins, navigations and manual query input challenges efficiency and creativity. Engaging solely through this console impedes agile data exploration and analysis, a crucial aspect of my role.
 
-To liberate efficiency, I turned to [DBeaver Community Edition](https://dbeaver.io/download/) and AWS SSO in order to query data on Athena. This integration promises an escape from the console's constraints offering a more familiar database tool for executing Athena queries. [AWS SSO](https://aws.amazon.com/iam/identity-center/) makes it easy to centrally manage SSO Access to multiple AWS accounts, moves the authentication to the IdP (Identity Provider) and removes the need for managing static, long-lived credentials.
+To liberate efficiency, I turned to [DBeaver Community Edition](https://dbeaver.io/download/) and AWS SSO to query data on Athena. This integration promises an escape from the console's constraints offering a more familiar database tool for executing Athena queries. [AWS SSO](https://aws.amazon.com/iam/identity-center/) makes it easy to centrally manage SSO Access to multiple AWS accounts, moves the authentication to the IdP (Identity Provider) and removes the need for managing static, long-lived credentials.
 
 In this post, I will detail how one can use DBeaver to execute Athena queries.
 
@@ -67,7 +67,6 @@ aws sso login --profile <copied-profile-name>
 
 ## Configure DBeaver
 
-
 - Open DBeaver
   - Click **"New Database Connection"**
   - Search and select **"Athena"**
@@ -99,8 +98,7 @@ aws sso login --profile <copied-profile-name>
 - Select **"Driver properties"**
 - Update **"AwsCredentialsProviderClass"** with **"com.github.neitomic.aws.SsoCredentialsProvider"**  and,
 - **"AwsCredentialsProviderArguments"** with **"<Profile Name Copied to file above>"**
-    - Alternatively, find the profile name in `~/.aws/config`
-
+  - Alternatively, find the profile name in `~/.aws/config`
 
 Note: This example might look like it references the AWS Team Role - but it is actually the profile name you chose in the step above with the aws configure sso command
 
@@ -136,7 +134,7 @@ Connecting DBeaver Community Edition to AWS Athena through AWS SSO, leveraging A
 
 With this setup, users can seamlessly access Athena, utilize its querying capabilities, and derive insights from their data with ease.
 
-![remember](../assets/remember.jpg)
+![remember]({{ "/assets/remember.jpg" | absolute_url }})
 
 ## Reference
 
