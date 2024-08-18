@@ -34,7 +34,60 @@ In this post, I'll share details on how I setup an EC2 instance as a remote deve
 
 This post assumes you are familiar with the tools mentioned above and/or have installed them.
 
+### Directory Structure
 
+The directory structure below gives a clear view of how the Terraform configuration is organized:
+
+```bash
+>> $ tree -L 4
+.
+├── elastic_ip.tf
+├── iam_role.tf
+├── instance.tf
+├── internet_gateway.tf
+├── lambda.tf
+├── lambda_function
+│   └── lambda_function.py
+├── lambda_function_payload.zip
+├── outputs.tf
+├── provider.tf
+├── routing_table.tf
+├── scripts
+│   └── ec2-manager.py
+├── security_groups.tf
+├── ssh_key_pairs.tf
+├── subnets.tf
+├── terraform.tfvars
+├── userdata.sh.tpl
+├── variables.tf
+└── vpcs.tf
+```
+
+- [Providers](https://developer.hashicorp.com/terraform/language/providers)
+  - `provider.tf`: Configures the provider (e.g. AWS, Azure and/or GCP) and its settings.
+- Network Configurations
+  - `vpcs.tf`: Defines Virtual Private Cloud (VPC) settings.
+  - `subnets.tf`: Configures subnets within the VPC.
+  - `routing_table.tf`: Sets up routing tables for network traffic.
+  - `internet_gateway.tf`: Configures the Internet Gateway for VPC connectivity.
+  - `elastic_ip.tf`: Manages Elastic IP addresses for public accessibility.
+- Security and Access:
+  - `security_groups.tf`: Defines security groups for controlling inbound and outbound traffic.
+  - `ssh_key_pairs.tf`: Manages SSH key pairs for secure access to EC2 instances.
+  - `iam_role.tf`: Configures IAM roles and policies for permissions and access control.
+- [EC2 Instance Configuration](https://registry.terraform.io/providers/hashicorp/aws/2.36.0/docs/resources/instance):
+  - `instance.tf`: Defines the EC2 instance, including its type and configurations.
+  - `userdata.sh.tpl`: Provides a template script for initializing the instance (user data).
+- Lambda Function:
+  - `lambda.tf`: Configures the Lambda function and its triggers.
+  - `lambda_function/lambda_function.py`: Contains the Lambda function code.
+- Scripts:
+  - `scripts/ec2-manager.py`: A custom script for managing the EC2 instance.
+- [Outputs](https://developer.hashicorp.com/terraform/language/values/outputs):
+  - `outputs.tf`: Defines outputs to provide information about the deployed resources.
+- [Variables](https://developer.hashicorp.com/terraform/language/values/variables)
+  - `variables.tf`: Defines variables used across the Terraform configuration.
+  - `terraform.tfvars`: Contains values for the variables defined in `variables.tf`.
 
 ## The Walk-through
 
