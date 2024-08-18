@@ -21,7 +21,15 @@ tags:
 
 Due to strict network security policies enforced by tools like ZScaler causing endless installation failures and security warnings for Python dependencies on local development machine (work laptop). The constant need to reconfigure settings and whitelist packages to bypass these restrictions did not only cause disruption but also pose potential risks to my work laptops security. Faced with these challenges and the alternative being carrying 2x laptops left me with a bitter taste on my mouth. I considered an alternative solution, initially working on a development container. However, even with containers, security warnings persisted. Finally, I decided to shift my development work to a remote environment using an EC2 instance which offered me a more stable and secure solution without constant security warnings.
 
+A remote development environment, such as an EC2 instance, offers several  advantages.
+
+- First, it provides enhanced security and isolation. By separating development activities from your local machine, you reduce the risk of security breaches and maintain a controlled environment for managing dependencies.
+- Also, remote environments allow for precise resource management. You can allocate resources based on your project's specific needs, which is particularly beneficial for handling resource-intensive tasks that might otherwise strain your local hardware such as running multiple Docker containers (Airflow, PySpark and etc)
+- Lastly, remote environments ensure consistency across different workstations since the infrastructure is defined in code. This uniformity helps prevent the common issue of "it works on my machine" making it easier for teams to collaborate effectively.
+
 In this post, I'll share details on how I setup an EC2 instance as a remote development environment using [Terraform](https://www.terraform.io/). This setup has been a ket part of my personal Data Engineering End-to-End project I have been working on and my ongoing learning journey.
+
+Special thanks to  [Ayanda Shiba](https://za.linkedin.com/in/ayanda-shiba) and [Theo Mamoswa](https://za.linkedin.com/in/theo-mamoswa-02103768), whose collaboration and insights were invaluable throughout this process. [Ayanda Shiba](https://za.linkedin.com/in/ayanda-shiba) and [Theo Mamoswa](https://za.linkedin.com/in/theo-mamoswa-02103768), whom I had the pleasure of mentoring, played a significant role in refining the setup and ensuring its effectiveness. Their contributions were instrumental in shaping the final solution detailed below.
 
 ## The How
 
@@ -32,7 +40,9 @@ In this post, I'll share details on how I setup an EC2 instance as a remote deve
 - **Terraform**: This infrastructure-as-code tool helps define and manage the cloud resources.
 - **An SSH Client**
 
-This post assumes you are familiar with the tools mentioned above and/or have installed them.
+This post assumes familiarity with these tools and their installation.
+
+## The Walk-through
 
 ### Architectural Diagram
 
@@ -42,7 +52,11 @@ To better understand the setup, refer to the architectural diagram below:
 
 The diagram above illustrates an AWS setup for a remote development environment consisting of an EC2 with automatic cost optimization. The instance is located in a public subnet and is periodically monitored by a Lambda function triggered by [CloudWatch Events](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-cwe-now-eb.html). If the instance is below a certain threshold defined during provisioning then the lambda function sends a `stop-instance` command via [SSM](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html)
 
-### Directory Structure
+### Setting Up Your EC2 Instance with Terraform
+
+[Terraform](https://www.terraform.io/) manages our infrastructure on AWS and all the configurations is defined in code. This approach ensures a clean, consistent, and dependency-controlled provisioning process by leveraging virtual environments within Terraform.
+
+#### Directory Structure
 
 The directory structure below gives a clear view of how the Terraform configuration is organized:
 
@@ -71,33 +85,693 @@ The directory structure below gives a clear view of how the Terraform configurat
 └── vpcs.tf
 ```
 
-- [Providers](https://developer.hashicorp.com/terraform/language/providers)
-  - `provider.tf`: Configures the provider (e.g. AWS, Azure and/or GCP) and its settings.
-- Network Configurations
-  - `vpcs.tf`: Defines [Virtual Private Cloud](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html) (VPC) settings.
-  - `subnets.tf`: Configures subnets within the VPC.
-  - `routing_table.tf`: Sets up routing tables for network traffic.
-  - `internet_gateway.tf`: Configures the Internet Gateway for VPC connectivity.
-  - `elastic_ip.tf`: Manages Elastic IP addresses for public accessibility.
-- Security and Access:
-  - `security_groups.tf`: Defines security groups for controlling inbound and outbound traffic.
-  - `ssh_key_pairs.tf`: Manages SSH key pairs for secure access to EC2 instances.
-  - `iam_role.tf`: Configures IAM roles and policies for permissions and access control.
-- [EC2 Instance Configuration](https://registry.terraform.io/providers/hashicorp/aws/2.36.0/docs/resources/instance):
-  - `instance.tf`: Defines the EC2 instance, including its type and configurations.
-  - `userdata.sh.tpl`: Provides a template script for initializing the instance (user data).
-- Lambda Function:
-  - `lambda.tf`: Configures the Lambda function and its triggers.
-  - `lambda_function/lambda_function.py`: Contains the Lambda function code.
-- Scripts:
-  - `scripts/ec2-manager.py`: A custom script for managing the EC2 instance.
-- [Outputs](https://developer.hashicorp.com/terraform/language/values/outputs):
-  - `outputs.tf`: Defines outputs to provide information about the deployed resources.
-- [Variables](https://developer.hashicorp.com/terraform/language/values/variables)
-  - `variables.tf`: Defines variables used across the Terraform configuration.
-  - `terraform.tfvars`: Contains values for the variables defined in `variables.tf`.
+Here's a breakdown of the Terraform configurations files illustrated above.
 
-## The Walk-through
+**Providers:**
+
+- `provider.tf`: Configures the provider (e.g. AWS, Azure and/or GCP) and its settings. See <https://developer.hashicorp.com/terraform/language/providers>
+
+```bash
+$ cat provider.tf
+terraform {
+required_providers {
+    aws = {
+    source = "hashicorp/aws"
+    # https://registry.terraform.io/providers/hashicorp/aws/5.37.0
+    version = "~> 5.37.0"
+    }
+}
+
+required_version = ">= 1.2.0"
+}
+
+provider "aws" {
+region  = var.region
+profile = var.profile
+}
+```
+
+In the above, the AWS provider is configured to use version `5.37.0` and specifies that the AWS `region` and `profile` are derived from variables `var.region` and `var.profile`.
+
+**Network Configurations:**
+
+- `vpcs.tf`: Defines [Virtual Private Cloud](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html) (VPC) settings.
+- `subnets.tf`: Configures subnets within the VPC.
+- `routing_table.tf`: Sets up routing tables for network traffic.
+- `internet_gateway.tf`: Configures the Internet Gateway for VPC connectivity.
+- `elastic_ip.tf`: Manages Elastic IP addresses for public accessibility.
+
+```bash
+cat vpcs.tf subnets.tf routing_table.tf internet_gateway.tf elastic_ip.tf
+
+# ------------ VPC ------------
+resource "aws_vpc" "dev_instance_vpc" {
+  cidr_block           = var.network_cidr
+  enable_dns_hostnames = true
+
+  tags = {
+    Name = "${var.tag_name} VPC"
+  }
+}
+# ------------ Subnets ------------
+# Subnets with routes to the internet
+resource "aws_subnet" "public" {
+  vpc_id            = aws_vpc.dev_instance_vpc.id
+  cidr_block        = var.public_subnet_cidr_block
+  availability_zone = var.availability_zone
+  # cidr_block        = cidrsubnet(aws_vpc.dev_instance_vpc.cidr_block, 4, 2)
+  # Double check this by going through the logs:  https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet
+
+  tags = {
+    Name = "${var.tag_name}: Public Subnet"
+  }
+}
+# ------------ Routing Table ------------
+# Route table with a route to the internet
+resource "aws_route_table" "public" {
+  vpc_id = aws_vpc.dev_instance_vpc.id
+
+  tags = {
+    Name = "Public Subnet Route Table"
+  }
+}
+
+resource "aws_route" "public_internet_gateway" {
+  route_table_id         = aws_route_table.public.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.dev_instance_igw.id
+}
+
+# Associate public route table with the public subnets
+resource "aws_route_table_association" "public" {
+  subnet_id      = aws_subnet.public.id
+  route_table_id = aws_route_table.public.id
+}
+# ------------ Internet Gateway ------------
+# Internet gateway to reach the internet
+resource "aws_internet_gateway" "dev_instance_igw" {
+  vpc_id = aws_vpc.dev_instance_vpc.id
+}
+
+# ------------ Elastic IP ------------
+resource "aws_eip" "dev_instance_eip" {
+  instance   = aws_instance.Remote_Dev_Instance.id
+  domain     = "vpc"
+  depends_on = [aws_internet_gateway.dev_instance_igw, aws_instance.Remote_Dev_Instance]
+
+  tags = {
+    Name = "${var.tag_name}: EIP"
+  }
+}
+
+resource "aws_eip_association" "eip_assoc" {
+  instance_id   = aws_instance.Remote_Dev_Instance.id
+  allocation_id = aws_eip.dev_instance_eip.id
+}
+```
+
+In the above, We setting up a VPC with DNS hostnames enabled, creating the base network layer. A public subnet is also created within this VPC. We then configure the routing tables and routes to the internet via an Internet Gateway, ensuring that instances in the public subnet can access the internet. We provision the Internet Gateway for VPC connectivity, and setup a static public IP address. Finally, associating it with the EC2 instance for consistent public accessibility.
+
+**Security and Access:**
+
+- `security_groups.tf`: Defines security groups for controlling inbound and outbound traffic.
+
+  ```bash
+  $ cat security_groups.tf
+
+  # ------------ Security Groups ------------
+  # Create a security group for our instance
+  resource "aws_security_group" "dev_instance_security_group" {
+    name   = var.dev_instance_security_group
+    vpc_id = aws_vpc.dev_instance_vpc.id
+
+    # Incoming traffic
+    ingress {
+      description = "Allow SSH access to the instance"
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      # cidr_blocks = [var.network_cidr]
+      # This is not secure for production environments.
+      # Use a bastian host with more restrictions
+      cidr_blocks = ["0.0.0.0/0"] # Allow all outbound traffic
+    }
+
+    ingress {
+      description = "Allow HTTP access to the instance"
+      from_port   = 8080
+      to_port     = 8080
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"] # Allow all outbound traffic
+    }
+
+    # Outgoing traffic
+    egress {
+      from_port   = 0
+      protocol    = "-1"
+      to_port     = 0
+      cidr_blocks = ["0.0.0.0/0"] # Allow all outbound traffic
+    }
+
+    tags = {
+      Name = "allow network traffic"
+    }
+  }
+  ```
+
+  In the above, we focus on the `security_groups.tf` file that defines the security groups that control inbound and outbound traffic for our EC2 instance. We create a security group with rules that allow SSH access on port 22 and HTTP access to port 8080 (For Airflow UI) from any IP Address.
+
+  **Note:** This open access is primarily for the project development where SSH security concerns are minimal since access is managed through key pairs.
+  For future implementations, we recommend restricting SSH access to specific IP addresses or using a bastion host to enhance security.
+
+- `ssh_key_pairs.tf`: Manages SSH key pairs for secure access to EC2 instances.
+
+  ```bash
+  $ cat ssh_key_pairs.tf
+
+  # ------------ Key-Pair ------------
+  resource "tls_private_key" "dev_key" {
+    algorithm = "RSA"
+    rsa_bits  = 4096
+  }
+
+  resource "aws_key_pair" "generated_key" {
+    key_name   = var.generated_key_name
+    public_key = tls_private_key.dev_key.public_key_openssh
+    tags = {
+      Name = "${var.tag_name}: Key Pairs"
+    }
+  }
+
+  # Not recommended
+  resource "local_file" "ssh_key" {
+    filename        = "${aws_key_pair.generated_key.key_name}.pem"
+    content         = tls_private_key.dev_key.private_key_pem
+    file_permission = "0400"
+  }
+  ```
+
+  The `ssh_key_pairs.tf` file above manages the creation of SSH key pairs for secure access to the EC2 instances. We generate a new RSA key pair and use it to create an AWS key pair resource. The private key is saved locally for easy access.
+
+  **Note:** For future implementations, it is crucial to manage private keys securely and following best practices (MFA, Key rotation and Secure Storage).
+
+- `iam_role.tf`: Configures IAM roles and policies for permissions and access control.
+
+  ```bash
+  $ cat iam_role.tf
+
+  # ------------ IAM ------------
+  # IAM Role for EC2 with SSM SendCommand permission
+
+  resource "aws_iam_role" "ec2_ssm_role" {
+    name = "ec2-ssm-role"
+    assume_role_policy = jsonencode({
+      Version = "2012-10-17"
+      Statement = [
+        {
+          Action = "sts:AssumeRole"
+          Effect = "Allow"
+          Principal = {
+            Service = "ec2.amazonaws.com"
+          }
+        }
+      ]
+    })
+  }
+
+  # IAM Role Policy for SSM SendCommand
+
+  resource "aws_iam_role_policy" "ssm_send_command_policy" {
+    name       = "ssm-send-command-policy"
+    role       = aws_iam_role.ec2_ssm_role.id
+    depends_on = [aws_vpc.dev_instance_vpc]
+    policy     = <<EOF
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "ssmmessages:SendCommand"
+        ],
+        "Resource": [
+          "arn:aws:ssm:${var.region}:${aws_vpc.dev_instance_vpc.owner_id}:instance/*"
+        ]
+      }
+    ]
+  }
+  EOF
+  }
+
+  resource "aws_iam_role_policy_attachment" "ssm_send_command_policy" {
+    role       = aws_iam_role.ec2_ssm_role.name
+    policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+  }
+
+  # Create IAM Instance Profile
+  resource "aws_iam_instance_profile" "ec2_ssm_profile" {
+    name = "ec2-ssm-instance-profile"
+    role = aws_iam_role.ec2_ssm_role.name
+  }
+
+  # ---------------------------------------------------------------
+  # IAM Role for Lambda
+
+  resource "aws_iam_role" "lambda_role" {
+    name = "lambda-role-ssm"
+    path = "/service-role/"
+    assume_role_policy = jsonencode(
+      {
+        Statement = [
+          {
+            Action = "sts:AssumeRole"
+            Effect = "Allow"
+            Principal = {
+              Service = "lambda.amazonaws.com"
+            }
+          },
+        ]
+        Version = "2012-10-17"
+      }
+    )
+  }
+
+  # ---------------------------------------------------------------
+  # IAM Role for Lambda logging
+  resource "aws_iam_policy" "lambda_logging" {
+    name        = "lambda_logging"
+    path        = "/"
+    description = "IAM policy for logging from a lambda"
+
+    policy = jsonencode({
+      Version = "2012-10-17"
+      Statement = [
+        {
+          Action = [
+            "logs:CreateLogGroup",
+            "logs:CreateLogStream",
+            "logs:PutLogEvents"
+          ]
+          Effect   = "Allow"
+          Resource = "arn:aws:logs:*:*:*"
+        }
+      ]
+    })
+  }
+
+  resource "aws_iam_role_policy_attachment" "lambda_logs" {
+    role       = aws_iam_role.lambda_role.name
+    policy_arn = aws_iam_policy.lambda_logging.arn
+  }
+
+  resource "aws_cloudwatch_log_group" "lambda_log_group" {
+    name              = "/aws/lambda/${var.lambda_function_name}"
+    retention_in_days = 3
+  }
+
+  # IAM additional policies for Lambda
+  data "aws_iam_policy" "ssm_access" {
+    arn = "arn:aws:iam::aws:policy/AmazonSSMFullAccess"
+  }
+
+  data "aws_iam_policy" "ec2_readonly_access" {
+    arn = "arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess"
+  }
+
+  data "aws_iam_policy" "lambda_execution_acces" {
+    arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+  }
+
+  resource "aws_iam_role_policy_attachment" "ssm_access_role_attachment" {
+    role       = aws_iam_role.lambda_role.name
+    policy_arn = data.aws_iam_policy.ssm_access.arn
+  }
+  resource "aws_iam_role_policy_attachment" "ec2_readonly_access_role_attachment" {
+    role       = aws_iam_role.lambda_role.name
+    policy_arn = data.aws_iam_policy.ec2_readonly_access.arn
+  }
+  resource "aws_iam_role_policy_attachment" "lambda_execution_acces_role_attachment" {
+    role       = aws_iam_role.lambda_role.name
+    policy_arn = data.aws_iam_policy.lambda_execution_acces.arn
+  }
+  ```
+
+  The `iam_role.tf` file above configures IAM roles and policies required for managing various permissions and access control. We set up IAM roles for EC2 instances and Lambda functions, attaching the necessary policies to grant permissions for SSM commands and logging. The EC2 role is assigned permissions to interact with SSM, while the Lambda role has permissions for logging and accessing EC2 and SSM resources.
+
+**EC2 Instance Configuration:**
+
+- `instance.tf`: Defines the EC2 instance, including its type and configurations.
+
+  ```bash
+  $ cat instance.tf
+
+  # ------------ EC2 Instance ------------
+  data "template_file" "userdata" {
+    template = file("${path.module}/userdata.sh.tpl")
+    vars = {
+      github_auth_token = var.github_auth_token,
+      github_repo_branch = var.github_repo_branch,
+      github_repo_name = var.github_repo_name
+    }
+  }
+
+  resource "aws_instance" "Remote_Dev_Instance" {
+    ami           = var.ami
+    instance_type = var.instance_type
+
+    root_block_device {
+      volume_size = var.root_storage_size
+      volume_type = var.root_storage_type
+    }
+
+    subnet_id                   = aws_subnet.public.id
+    vpc_security_group_ids      = [aws_security_group.dev_instance_security_group.id]
+    associate_public_ip_address = true
+
+    user_data = data.template_file.userdata.rendered
+
+    key_name = var.generated_key_name
+    # This approach guarantees that the key pair is generated and
+    # available before the instance launch, preventing potential
+    # errors due to missing key pairs.
+    depends_on = [
+      aws_key_pair.generated_key
+      , aws_iam_instance_profile.ec2_ssm_profile
+    ]
+
+    iam_instance_profile = aws_iam_instance_profile.ec2_ssm_profile.name
+
+    tags = {
+      Name = "${var.tag_name}"
+    }
+  }
+
+  # Terraform module to configure AWS SSM Default Host Management
+  # Read more: https://docs.aws.amazon.com/systems-manager/latest/userguide/managed-instances-default-host-management.html
+  module "ssm_default_host_management_role" {
+    source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
+    version = "5.20.0"
+
+    create_role = true
+
+    trusted_role_services = [
+      "ssm.amazonaws.com"
+    ]
+
+    role_name         = "AWSSystemsManagerDefaultEC2InstanceManagementRole"
+    role_requires_mfa = false
+
+    custom_role_policy_arns = [
+      "arn:aws:iam::aws:policy/AmazonSSMManagedEC2InstanceDefaultPolicy",
+    ]
+  }
+
+  resource "aws_ssm_service_setting" "default_host_management" {
+    setting_id    = "arn:aws:ssm:${var.region}:${aws_vpc.dev_instance_vpc.owner_id}:servicesetting/ssm/managed-instance/default-ec2-instance-management-role"
+    setting_value = "service-role/AWSSystemsManagerDefaultEC2InstanceManagementRole"
+    depends_on    = [aws_vpc.dev_instance_vpc]
+  }
+  ```
+
+  In the configuration above, we define an EC2 instance with specific settings including AMI, instance type, and storage. The instance is configured to use a `user-data` script during instance initialization, which is provided by the `userdata.sh.tpl` file detailed below. The instance is also associated with a security group and an IAM instance profile for permissions defined above. The setup includes integration with [AWS Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html) for ensuring the instance is managed efficiently.
+
+- `userdata.sh.tpl`: Provides a template script for initializing the instance (user data).
+
+  ```bash
+  $ cat userdata.sh.tpl
+
+  #!/usr/bin/env bash
+
+  # Log file to track the execution of the user data script
+  touch /tmp/userdata_script.log
+  echo "Starting user data script execution: $(date)" >> /tmp/userdata_script.log
+
+  # Update package list and install necessary packages
+  apt-get update -qq
+  apt-get install -y \
+      build-essential \
+      ca-certificates \
+      curl \
+      glibc-source \
+      libc6 \
+      libstdc++6 \
+      lsb-release \
+      net-tools \
+      gnupg \
+      python3-pip\
+      python3-venv \
+      tar
+
+  # Set up Docker repository and install Docker
+  install -m 0755 -d /etc/apt/keyrings
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+  chmod a+r /etc/apt/keyrings/docker.asc
+
+  echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  apt-get update -qq
+  apt-get install -y \
+      containerd.io \
+      docker-buildx-plugin \
+      docker-ce \
+      docker-ce-cli \
+      docker-compose \
+      docker-compose-plugin
+
+  # Set up Docker group and start Docker service
+  su - ubuntu
+  groupadd docker
+  sudo usermod -aG docker ubuntu
+  sudo systemctl enable docker
+  sudo service docker start
+
+  # Set up Python environment and project repository
+  cd /home/ubuntu
+  python3 -m venv /home/ubuntu/.pyenv
+  .pyenv/bin/python -m pip install -U pip
+  git clone -b ${github_repo_branch} "https://oauth2:${github_auth_token}@github.com/${github_repo_name} /home/ubuntu/Data-Engineering-Project"
+  .pyenv/bin/python -m pip install -r /home/ubuntu/Data-Engineering-Project/requirements.out
+
+  # Set permissions and ownership for project files
+  sudo chown -R ubuntu:ubuntu /home/ubuntu/Data-Engineering-Project
+  sudo chmod -R a+rwx /home/ubuntu/.pyenv
+
+  # Add Python virtual environment activation to .bashrc for convenience
+  echo 'source /home/ubuntu/.pyenv/bin/activate' >> /home/ubuntu/.bashrc
+
+  # Create a script to check for active SSH connections on port 22
+  echo '#!/usr/env bash' > /home/ubuntu/check_ssh_connections.sh
+  echo 'netstat -an | grep "ESTABLISHED" | grep ":22 "' >> /home/ubuntu/check_ssh_connections.sh
+  chmod a+x /home/ubuntu/check_ssh_connections.sh
+
+  # Create directories for Airflow configuration and set permissions
+  mkdir -p /home/ubuntu/Data-Engineering-Project/004_Orchestration/AirFlow/{dags,logs,plugins,config}
+  chmod -R 777 /home/ubuntu/Data-Engineering-Project/004_Orchestration/AirFlow/{dags,logs,plugins,config}
+
+  # Configure and run Airflow using Docker Compose
+  echo -e "AIRFLOW_UID=$(id ubuntu -u)" >> /home/ubuntu/Data-Engineering-Project/004_Orchestration/AirFlow/.env
+  echo -e "AIRFLOW_GID=0" >> /home/ubuntu/Data-Engineering-Project/004_Orchestration/AirFlow/.env
+  chmod -R 777 /home/ubuntu/Data-Engineering-Project/004_Orchestration/AirFlow/{dags,logs,plugins,config}
+  docker-compose -f /home/ubuntu/Data-Engineering-Project/004_Orchestration/AirFlow/airflow-docker-compose.yaml up airflow-init
+  docker-compose -f /home/ubuntu/Data-Engineering-Project/004_Orchestration/AirFlow/airflow-docker-compose.yaml up -d
+
+  # Perform system upgrade and clean up
+  sudo apt upgrade -y
+  sudo apt-get autoclean
+  sudo apt-get autoremove
+
+  # Log completion of the user data script
+  echo "User data script execution complete: $(date)" >> /tmp/userdata_script.log
+  ```
+
+  The `userdata.sh.tpl` file provides a script to set up the EC2 instance upon launch. It installs all the necessary packages, sets up Docker, configures Python environments, clones the provided project repository and deploys project-specific Python packages.
+  The script also includes configurations for running Airflow using Docker and performs system maintenance tasks.
+
+The combination of `instance.tf` and `userdata.sh.tpl` ensures that the EC2 instance is properly configured and ready for use in the development environment.
+
+**Lambda Function:**
+
+- `lambda.tf`: Configures the Lambda function and its triggers.
+  ```bash
+  $ cat lambda.tf
+
+  # ------------ Lambda ------------
+  data "archive_file" "lambda" {
+    type        = "zip"
+    source_file = "lambda_function/lambda_function.py"
+    output_path = "lambda_function_payload.zip"
+  }
+
+  resource "aws_lambda_function" "stop_instance" {
+    architectures = [
+      "x86_64",
+    ]
+    description      = "An AWS Lambda function that automatically stops an EC2 instance if there hasn't been an SSH connection to it in over x minutes."
+    function_name    = var.lambda_function_name
+    handler          = "lambda_function.lambda_handler"
+    memory_size      = 128
+    package_type     = "Zip"
+    role             = aws_iam_role.lambda_role.arn
+    filename         = "lambda_function_payload.zip"
+    runtime          = "python3.10"
+    skip_destroy     = false
+    source_code_hash = data.archive_file.lambda.output_base64sha256
+
+    tags = {
+      "lambda-console:blueprint" = "stop-instance-lambda"
+    }
+    timeout = 300
+
+    ephemeral_storage {
+      size = 512
+    }
+
+    logging_config {
+      log_format = "Text"
+    }
+    depends_on = [
+      aws_iam_role_policy_attachment.lambda_logs,
+      aws_cloudwatch_log_group.lambda_log_group,
+    ]
+  }
+
+  # CloudWatch Events rule to trigger an AWS Lambda function at regular intervals
+  resource "aws_cloudwatch_event_rule" "stop_instance" {
+    description         = "Trigger an AWS Lambda function at regular intervals"
+    name                = "stop_instance"
+    schedule_expression = "rate(${var.lambda_event_rate})"
+  }
+
+  resource "aws_cloudwatch_event_target" "check_instance_every_x_minutes" {
+    rule = aws_cloudwatch_event_rule.stop_instance.name
+    arn  = aws_lambda_function.stop_instance.arn
+
+    # Pass the event data as a JSON string
+    input = jsonencode({
+      "tag_key" : "Name",
+      "tag_value" : aws_instance.Remote_Dev_Instance.tags.Name
+    })
+
+    depends_on = [
+      aws_instance.Remote_Dev_Instance,
+      aws_cloudwatch_event_rule.stop_instance,
+      aws_lambda_function.stop_instance,
+    ]
+  }
+
+  resource "aws_lambda_permission" "allow_cloudwatch_to_call_stop_instance" {
+    statement_id  = "AllowExecutionFromCloudWatch"
+    action        = "lambda:InvokeFunction"
+    function_name = aws_lambda_function.stop_instance.function_name
+    principal     = "events.amazonaws.com"
+    source_arn    = aws_cloudwatch_event_rule.stop_instance.arn
+  }
+  ```
+
+  The `lambda.tf` file defines the Lambda function and its event-rule triggers. It packages the Lambda code into a zip file, configures the Lambda function with required properties, and sets up a CloudWatch Events rule to trigger the function at regular intervals. Permissions are also configured to allow CloudWatch to invoke the Lambda function.
+
+- `lambda_function/lambda_function.py`: Contains the Lambda function code.
+  ```bash
+  $ cat lambda_function/lambda_function.py
+  import logging
+  import time
+
+  import boto3
+
+  # Initialize AWS clients
+  ec2_client = boto3.client("ec2")
+  ssm_client = boto3.client("ssm")
+
+  # Configure logging
+  logging.basicConfig(level=logging.INFO)
+  logger = logging.getLogger()
+
+
+  def check_recent_ssh_connection(instance_id):
+      try:
+          response = ssm_client.send_command(
+              InstanceIds=[instance_id],
+              DocumentName="AWS-RunShellScript",
+              Parameters={"commands": ["bash /home/ubuntu/check_ssh_connections.sh"]},
+          )
+          command_id = response["Command"]["CommandId"]
+
+          invocation_response = wait_for_command_invocation(command_id, instance_id)
+          standard_output_content = invocation_response.get("StandardOutputContent", "")
+
+          return "tcp" in standard_output_content
+      except Exception as e:
+          logger.error(f"Failed to check SSH connection: {str(e)}")
+          return False
+
+
+  def wait_for_command_invocation(command_id, instance_id, max_retries=5, wait_interval=4):
+      for _ in range(max_retries):
+          try:
+              get_cmd_invocation = ssm_client.get_command_invocation(
+                  CommandId=command_id, InstanceId=instance_id
+              )
+              if get_cmd_invocation["Status"] in ["Success", "Failed"]:
+                  return get_cmd_invocation
+              time.sleep(wait_interval)
+          except Exception as e:
+              logger.error(f"Could not get command invocation: {str(e)}")
+              time.sleep(wait_interval)
+      raise RuntimeError(f"Command {command_id} failed after {max_retries} retries.")
+
+  def get_instance_id(reservations):
+      return [
+          instance["InstanceId"]
+          for reservation in reservations
+          for instance in reservation["Instances"]
+          if instance["State"]["Name"] == "running"
+      ]
+
+
+  def lambda_handler(event, context):
+      tag_key = event.get("tag_key")
+      tag_value = event.get("tag_value")
+
+      if not tag_key or not tag_value:
+          logger.error("Missing tag_key or tag_value in the event")
+          return
+
+      custom_filter = [{"Name": f"tag:{tag_key}", "Values": [tag_value]}]
+      try:
+          reservations = ec2_client.describe_instances(Filters=custom_filter)["Reservations"]
+          instance_ids = get_instance_id(reservations)
+
+          if len(instance_ids) != 1:
+              logger.info("No or multiple instances found. Skipping stop.")
+              return
+
+          instance_id = instance_ids[0]
+          if not check_recent_ssh_connection(instance_id):
+              logger.info(f"No SSH connection detected on instance {instance_id}. Stopping instance.")
+              ec2_client.stop_instances(InstanceIds=[instance_id])
+          else:
+              logger.info(f"Instance {instance_id} has had an SSH connection. Skipping stop.")
+      except Exception as e:
+          logger.error(f"Error in lambda_handler: {str(e)}")
+  ```
+
+  The Lambda function above, checks if an EC2 instance with a specific tag name has had recent SSH connections by executing a script `check_ssh_connections.sh` via SSM. It retrieves instance IDs based on tags, checks SSH activity, and stops the instance if no recent connections are detected. The function handles edge cases where no or multiple instances are found and manages retries for command execution. This setup helps automate the management of EC2 instances to optimize resource usage and costs.
+
+
+**Scripts:**
+
+- `scripts/ec2-manager.py`: A custom script for managing the EC2 instance.
+
+**Outputs:**
+
+- `outputs.tf`: Defines outputs to provide information about the deployed resources.
+
+**Variables:**
+
+- `variables.tf`: Defines variables used across the Terraform configuration.
+- `terraform.tfvars`: Contains values for the variables defined in `variables.tf`.
 
 ### Connecting to the Instance with VS Code
 
@@ -129,7 +803,7 @@ The directory structure below gives a clear view of how the Terraform configurat
 
 Once connected, your VS Code workspace will switch to the remote environment on your EC2 instance. You should see the hostname of the EC2 instance in the status bar.
 
-For more details on Remote Development using SSH, read:<https://code.visualstudio.com/docs/remote/ssh>
+For more details on Remote Development using SSH, read: <https://code.visualstudio.com/docs/remote/ssh>
 
 ## Reference
 
