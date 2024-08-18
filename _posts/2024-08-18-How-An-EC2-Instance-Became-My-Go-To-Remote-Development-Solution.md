@@ -7,7 +7,7 @@ tags:
 - Remote Development
 - Terraform
 ---
-# How An EC2 Instance Became My Go-To Remote Development Solution Terraform.
+# How An EC2 Instance Became My Go-To Remote Development Solution Terraform
 
 {:refdef: style="text-align: center;"}
 ![post image]({{ "/assets/2024-08-18-How-An-EC2-Instance-Became-My-Go-To-Remote-Development-Solution.png" | absolute_url }})
@@ -39,7 +39,6 @@ This post assumes you are familiar with the tools mentioned above and/or have in
 To better understand the setup, refer to the architectural diagram below:
 
 ![Data-Engineering-Project-Remote Development Instance Arch drawio](https://github.com/user-attachments/assets/4288bd6c-bb65-4949-ba55-fd9ae41ae6c8)
-
 
 The diagram above illustrates an AWS setup for a remote development environment consisting of an EC2 with automatic cost optimization. The instance is located in a public subnet and is periodically monitored by a Lambda function triggered by [CloudWatch Events](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-cwe-now-eb.html). If the instance is below a certain threshold defined during provisioning then the lambda function sends a `stop-instance` command via [SSM](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html)
 
@@ -98,8 +97,6 @@ The directory structure below gives a clear view of how the Terraform configurat
   - `variables.tf`: Defines variables used across the Terraform configuration.
   - `terraform.tfvars`: Contains values for the variables defined in `variables.tf`.
 
-
-
 ## The Walk-through
 
 ### Connecting to the Instance with VS Code
@@ -133,7 +130,6 @@ The directory structure below gives a clear view of how the Terraform configurat
 Once connected, your VS Code workspace will switch to the remote environment on your EC2 instance. You should see the hostname of the EC2 instance in the status bar.
 
 For more details on Remote Development using SSH, read:<https://code.visualstudio.com/docs/remote/ssh>
-
 
 ## Reference
 
