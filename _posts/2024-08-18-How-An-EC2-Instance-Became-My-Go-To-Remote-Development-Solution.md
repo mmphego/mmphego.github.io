@@ -23,15 +23,52 @@ Due to strict network security policies enforced by tools like ZScaler causing e
 
 In this post, I'll share details on how I setup an EC2 instance as a remote development environment using [Terraform](https://www.terraform.io/). This setup has been a ket part of my personal Data Engineering End-to-End project I have been working on and my ongoing learning journey.
 
-
-## TL;DR
-
-## TS;RE
-
 ## The How
+
+### Prerequisite
+
+- **AWS account**: Account needs to have the appropriate permissions to create and manage resources.
+- **AWS CLI**: The AWS command-line interface tool allows us to interact with AWS services.
+- **Terraform**: This infrastructure-as-code tool helps define and manage the cloud resources.
+- **An SSH Client**
+
+This post assumes you are familiar with the tools mentioned above and/or have installed them.
+
 
 
 ## The Walk-through
+
+### Connecting to the Instance with VS Code
+
+- **Configure SSH Access:**
+  - Ensure your EC2 instance has SSH access enabled on port 22 for your security group.
+  - If you haven't already, create an SSH key pair on your local machine using `ssh-keygen` command.
+- **Install the Remote SSH Extension:**
+  - Open VS Code and navigate to the Extensions tab (`Ctrl+Shift+X`).
+  - Search for **"Remote-SSH"** extension and install it.
+- **Configure VS Code Remote Settings:**
+  - Open the Command Palette (`Ctrl+Shift+P`).
+  - Search for "Remote-SSH: Open SSH Configure File" and select it.
+  - Choose an option to create a new SSH configuration file (usually the default option is recommended). This file will store your EC2 instance connection details.
+- **Add Your EC2 Instance Configuration:**
+  - The configuration file will open in your VS Code editor.
+  - Add a new configuration for your EC2 instance following the format below, replacing placeholders with your actual values:
+
+  ```bash
+  Host "your_instance_hostname", // Replace with your EC2 instance hostname or IP address
+    HostName "your_instance_hostname", // Replace with your EC2 instance hostname or IP address
+    IdentityFile "~/.ssh/your_key_pair.pem" // Replace with the path to your private key file
+    User "your_username", // Replace with your username on the EC2 instance (e.g., ubuntu)
+  ```
+
+- **Connect to Your Remote Environment:**
+  - Click on the Remote Status bar indicator (left corner of VS Code) or navigate to the Command Palette again.
+  - Search for "Remote-SSH: Connect to Host" and select it.
+  - Choose the name you assigned to your EC2 instance configuration in the previous step.
+
+Once connected, your VS Code workspace will switch to the remote environment on your EC2 instance. You should see the hostname of the EC2 instance in the status bar.
+
+For more details on Remote Development using SSH, read:<https://code.visualstudio.com/docs/remote/ssh>
 
 
 ## Reference
