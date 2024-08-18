@@ -34,6 +34,15 @@ In this post, I'll share details on how I setup an EC2 instance as a remote deve
 
 This post assumes you are familiar with the tools mentioned above and/or have installed them.
 
+### Architectural Diagram
+
+To better understand the setup, refer to the architectural diagram below:
+
+![Data-Engineering-Project-Remote Development Instance Arch drawio](https://github.com/user-attachments/assets/4288bd6c-bb65-4949-ba55-fd9ae41ae6c8)
+
+
+The diagram above illustrates an AWS setup for a remote development environment consisting of an EC2 with automatic cost optimization. The instance is located in a public subnet and is periodically monitored by a Lambda function triggered by [CloudWatch Events](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-cwe-now-eb.html). If the instance is below a certain threshold defined during provisioning then the lambda function sends a `stop-instance` command via [SSM](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html)
+
 ### Directory Structure
 
 The directory structure below gives a clear view of how the Terraform configuration is organized:
@@ -66,7 +75,7 @@ The directory structure below gives a clear view of how the Terraform configurat
 - [Providers](https://developer.hashicorp.com/terraform/language/providers)
   - `provider.tf`: Configures the provider (e.g. AWS, Azure and/or GCP) and its settings.
 - Network Configurations
-  - `vpcs.tf`: Defines Virtual Private Cloud (VPC) settings.
+  - `vpcs.tf`: Defines [Virtual Private Cloud](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html) (VPC) settings.
   - `subnets.tf`: Configures subnets within the VPC.
   - `routing_table.tf`: Sets up routing tables for network traffic.
   - `internet_gateway.tf`: Configures the Internet Gateway for VPC connectivity.
@@ -88,6 +97,8 @@ The directory structure below gives a clear view of how the Terraform configurat
 - [Variables](https://developer.hashicorp.com/terraform/language/values/variables)
   - `variables.tf`: Defines variables used across the Terraform configuration.
   - `terraform.tfvars`: Contains values for the variables defined in `variables.tf`.
+
+
 
 ## The Walk-through
 
