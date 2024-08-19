@@ -675,6 +675,7 @@ The combination of `instance.tf` and `userdata.sh.tpl` ensures that the EC2 inst
 - `lambda_function/lambda_function.py`: Contains the Lambda function code.
   ```bash
   $ cat lambda_function/lambda_function.py
+
   import logging
   import time
 
@@ -763,6 +764,85 @@ The combination of `instance.tf` and `userdata.sh.tpl` ensures that the EC2 inst
 **Scripts:**
 
 - `scripts/ec2-manager.py`: A custom script for managing the EC2 instance.
+  ```bash
+  import argparse
+  import logging
+
+  import boto3
+
+
+  def parse_arguments():
+      """Parses command-line arguments using argparse."""
+      parser = argparse.ArgumentParser(description="Manage EC2 instances based on tags")
+      parser.add_argument(
+          "action",
+          choices=["start", "stop"],
+          help="Action to perform (start or stop)",
+      )
+      parser.add_argument(
+          "--tag-name", default="Name", help="Tag name to match (Default: %(default)s)"
+      )
+      parser.add_argument(
+          "--tag-value",
+          default="Dev Remote Instance",
+          help="Tag value to match (Default: %(default)s",
+      )
+      parser.add_argument(
+          "--log-level",
+          choices=["debug", "info", "warning", "error", "critical"],
+          default="info",
+          help="Logging level (Default: %(default)s)",
+      )
+      return parser.parse_args()
+
+
+  def get_instances(client, tag_name, tag_value):
+      """Retrieves EC2 instances matching the specified tag."""
+      filters = [{"Name": f"tag:{tag_name}", "Values": [tag_value]}]
+      reservations = client.describe_instances(Filters=filters)["Reservations"]
+      return reservations
+
+
+  def manage_instances(client, action, instance_id, state):
+      """Starts or stops an EC2 instance based on action and current state."""
+      if (state == "running" and action == "stop") or (
+          state == "stopped" and action == "start"
+      ):
+          if action == "start":
+              response = client.start_instances(InstanceIds=[instance_id])
+              logging.info(f"Starting instance {instance_id}")
+          else:
+              response = client.stop_instances(InstanceIds=[instance_id])
+              logging.info(f"Stopping instance {instance_id}")
+          return response
+      else:
+          logging.info(f"Instance {instance_id} is already {state}")
+          return None
+
+
+  def main():
+      args = parse_arguments()
+      logging.basicConfig(level=getattr(logging, args.log_level.upper()))
+
+      client = boto3.client("ec2")
+
+      reservations = get_instances(client, args.tag_name, args.tag_value)
+      if not reservations:
+          logging.info("No instances found with matching tag.")
+          return
+
+      for reservation in reservations:
+          for instance in reservation["Instances"]:
+              instance_id = instance["InstanceId"]
+              state = instance["State"]["Name"]
+              manage_instances(client, args.action, instance_id, state)
+
+
+  if __name__ == "__main__":
+      main()
+  ```
+
+  The script provided above needs to be executed manually once the development instance is no longer needed, it allows you to manually start or stop your EC2 instance based on tags, which can be useful for managing your development environment. Further ensuring that resources are managed effectively.
 
 **Outputs:**
 
