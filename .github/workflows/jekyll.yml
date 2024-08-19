@@ -12,7 +12,8 @@ jobs:
       run: |
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:3 /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
+        jekyll/builder:3@sha256:96a7e98a84f1aeea0b3ab7ff144fd4b6d5a1fa9c4ee690b00a873c895e0793bb \
+        /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
 
     - name: Trigger Second Workflow
       uses: peter-evans/repository-dispatch@v2
