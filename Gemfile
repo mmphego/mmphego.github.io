@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem "ffi", "1.16.3"
 gem "liquid-c"
 gem "github-pages", '163', group: :jekyll_plugins
 gem 'jekyll-admin', group: :jekyll_plugins
