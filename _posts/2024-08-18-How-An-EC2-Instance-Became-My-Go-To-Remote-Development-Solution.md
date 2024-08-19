@@ -31,9 +31,9 @@ In this post, I'll share details on how I setup an EC2 instance as a remote deve
 
 Special thanks to  [Ayanda Shiba](https://za.linkedin.com/in/ayanda-shiba) and [Theo Mamoswa](https://za.linkedin.com/in/theo-mamoswa-02103768), whose collaboration and insights were invaluable throughout this process. [Ayanda Shiba](https://za.linkedin.com/in/ayanda-shiba) and [Theo Mamoswa](https://za.linkedin.com/in/theo-mamoswa-02103768), whom I had the pleasure of mentoring, played a significant role in refining the setup and ensuring its effectiveness. Their contributions were instrumental in shaping the final solution detailed below.
 
-## The How
+# The How
 
-### Prerequisite
+## Prerequisite
 
 - **AWS account**: Account needs to have the appropriate permissions to create and manage resources.
 - **AWS CLI**: The AWS command-line interface tool allows us to interact with AWS services.
@@ -42,9 +42,9 @@ Special thanks to  [Ayanda Shiba](https://za.linkedin.com/in/ayanda-shiba) and [
 
 This post assumes familiarity with these tools and their installation.
 
-## The Walk-through
+# The Walk-through
 
-### Architectural Diagram
+## Architectural Diagram
 
 To better understand the setup, refer to the architectural diagram below:
 
@@ -52,11 +52,11 @@ To better understand the setup, refer to the architectural diagram below:
 
 The diagram above illustrates an AWS setup for a remote development environment consisting of an EC2 with automatic cost optimization. The instance is located in a public subnet and is periodically monitored by a Lambda function triggered by [CloudWatch Events](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-cwe-now-eb.html). If the instance is below a certain threshold defined during provisioning then the lambda function sends a `stop-instance` command via [SSM](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html)
 
-### Setting Up Your EC2 Instance with Terraform
+## Setting Up Your EC2 Instance with Terraform
 
 [Terraform](https://www.terraform.io/) manages our infrastructure on AWS and all the configurations is defined in code. This approach ensures a clean, consistent, and dependency-controlled provisioning process by leveraging virtual environments within Terraform.
 
-#### Directory Structure
+### Directory Structure
 
 The directory structure below gives a clear view of how the Terraform configuration is organized:
 
@@ -85,9 +85,11 @@ The directory structure below gives a clear view of how the Terraform configurat
 └── vpcs.tf
 ```
 
+### File Breakdown
+
 Here's a breakdown of the Terraform configurations files illustrated above.
 
-**Providers:**
+#### **Providers:**
 
 - `provider.tf`: Configures the provider (e.g. AWS, Azure and/or GCP) and its settings. See <https://developer.hashicorp.com/terraform/language/providers>
 
@@ -113,7 +115,7 @@ profile = var.profile
 
 In the above, the AWS provider is configured to use version `5.37.0` and specifies that the AWS `region` and `profile` are derived from variables `var.region` and `var.profile`.
 
-**Network Configurations:**
+#### **Network Configurations:**
 
 - `vpcs.tf`: Defines [Virtual Private Cloud](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html) (VPC) settings.
 - `subnets.tf`: Configures subnets within the VPC.
@@ -192,7 +194,7 @@ resource "aws_eip_association" "eip_assoc" {
 
 In the above, We setting up a VPC with DNS hostnames enabled, creating the base network layer. A public subnet is also created within this VPC. We then configure the routing tables and routes to the internet via an Internet Gateway, ensuring that instances in the public subnet can access the internet. We provision the Internet Gateway for VPC connectivity, and setup a static public IP address. Finally, associating it with the EC2 instance for consistent public accessibility.
 
-**Security and Access:**
+#### **Security and Access:**
 
 - `security_groups.tf`: Defines security groups for controlling inbound and outbound traffic.
 
@@ -416,9 +418,9 @@ In the above, We setting up a VPC with DNS hostnames enabled, creating the base 
   }
   ```
 
-  The `iam_role.tf` file above configures IAM roles and policies required for managing various permissions and access control. We set up IAM roles for EC2 instances and Lambda functions, attaching the necessary policies to grant permissions for SSM commands and logging. The EC2 role is assigned permissions to interact with SSM, while the Lambda role has permissions for logging and accessing EC2 and SSM resources.
+  The `iam_role.tf` file above configures IAM roles and policies required for managing various permissions and access control. We are setting up IAM roles for our EC2 instances and Lambda functions, attaching the necessary policies to grant permissions for SSM (AWS System Manager) commands and logging (via CloudWatch). The EC2 role is assigned permissions to interact with SSM, while the Lambda role has permissions for logging and accessing EC2 and SSM resources.
 
-**EC2 Instance Configuration:**
+#### **EC2 Instance Configuration:**
 
 - `instance.tf`: Defines the EC2 instance, including its type and configurations.
 
@@ -495,7 +497,7 @@ In the above, We setting up a VPC with DNS hostnames enabled, creating the base 
 
   In the configuration above, we define an EC2 instance with specific settings including AMI, instance type, and storage. The instance is configured to use a `user-data` script during instance initialization, which is provided by the `userdata.sh.tpl` file detailed below. The instance is also associated with a security group and an IAM instance profile for permissions defined above. The setup includes integration with [AWS Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html) for ensuring the instance is managed efficiently.
 
-- `userdata.sh.tpl`: Provides a template script for initializing the instance (user data).
+- `userdata.sh.tpl`: Provides a template script for initializing the instance (`userdata`).
 
   ```bash
   $ cat userdata.sh.tpl
@@ -566,6 +568,7 @@ In the above, We setting up a VPC with DNS hostnames enabled, creating the base 
   echo 'netstat -an | grep "ESTABLISHED" | grep ":22 "' >> /home/ubuntu/check_ssh_connections.sh
   chmod a+x /home/ubuntu/check_ssh_connections.sh
 
+  # TODO: Parameterize should I not want to also run Airflow on startup
   # Create directories for Airflow configuration and set permissions
   mkdir -p /home/ubuntu/Data-Engineering-Project/004_Orchestration/AirFlow/{dags,logs,plugins,config}
   chmod -R 777 /home/ubuntu/Data-Engineering-Project/004_Orchestration/AirFlow/{dags,logs,plugins,config}
@@ -591,9 +594,10 @@ In the above, We setting up a VPC with DNS hostnames enabled, creating the base 
 
 The combination of `instance.tf` and `userdata.sh.tpl` ensures that the EC2 instance is properly configured and ready for use in the development environment.
 
-**Lambda Function:**
+#### **Lambda Function:**
 
 - `lambda.tf`: Configures the Lambda function and its triggers.
+
   ```bash
   $ cat lambda.tf
 
@@ -672,7 +676,8 @@ The combination of `instance.tf` and `userdata.sh.tpl` ensures that the EC2 inst
 
   The `lambda.tf` file defines the Lambda function and its event-rule triggers. It packages the Lambda code into a zip file, configures the Lambda function with required properties, and sets up a CloudWatch Events rule to trigger the function at regular intervals. Permissions are also configured to allow CloudWatch to invoke the Lambda function.
 
-- `lambda_function/lambda_function.py`: Contains the Lambda function code.
+- `lambda_function/lambda_function.py`: Contains the Lambda function written in Python.
+
   ```bash
   $ cat lambda_function/lambda_function.py
 
@@ -760,10 +765,10 @@ The combination of `instance.tf` and `userdata.sh.tpl` ensures that the EC2 inst
 
   The Lambda function above, checks if an EC2 instance with a specific tag name has had recent SSH connections by executing a script `check_ssh_connections.sh` via SSM. It retrieves instance IDs based on tags, checks SSH activity, and stops the instance if no recent connections are detected. The function handles edge cases where no or multiple instances are found and manages retries for command execution. This setup helps automate the management of EC2 instances to optimize resource usage and costs.
 
-
-**Scripts:**
+#### **Scripts:**
 
 - `scripts/ec2-manager.py`: A custom script for managing the EC2 instance.
+
   ```bash
   import argparse
   import logging
@@ -844,14 +849,207 @@ The combination of `instance.tf` and `userdata.sh.tpl` ensures that the EC2 inst
 
   The script provided above needs to be executed manually once the development instance is no longer needed, it allows you to manually start or stop your EC2 instance based on tags, which can be useful for managing your development environment. Further ensuring that resources are managed effectively.
 
-**Outputs:**
+#### **Outputs:**
 
 - `outputs.tf`: Defines outputs to provide information about the deployed resources.
 
-**Variables:**
+  ```bash
+  # ------------ Outputs ------------
+
+  output "public_dns" {
+    description = "Public DNS name of the EC2 instance"
+    value       = aws_instance.Remote_Dev_Instance.public_dns
+  }
+
+  output "public_ip" {
+    description = "Public IP address of the EC2 instance"
+    value       = aws_instance.Remote_Dev_Instance.public_ip
+  }
+
+  output "instance_connection_parameters" {
+    description = "SSH connection parameters for the EC2 instance"
+    value       = "-i ${aws_key_pair.generated_key.key_name}.pem ubuntu@${aws_instance.Remote_Dev_Instance.public_dns}"
+  }
+  ```
+
+  The `outputs.tf` config above, defines outputs that are printed to STDOUT once the EC2 instance is deployed. It includes the public DNS name and public IP address which is essential for remote access. Additionally, it also provides the SSH connection paramater string for connecting to the EC2 instance, which details the command needed to connect to the instance using SSH, including the keypair and username.
+
+  Usage: `ssh $(terraform output -raw instance_connection_parameters)`, this will connect to the EC2 instance.
+
+#### **Variables:**
 
 - `variables.tf`: Defines variables used across the Terraform configuration.
-- `terraform.tfvars`: Contains values for the variables defined in `variables.tf`.
+
+  ```bash
+
+  # ------------ Variables ------------
+  variable "generated_key_name" {
+    type        = string
+    default     = "remote-dev-instance-tf-key-pair"
+    description = "Key-pair generated by Terraform"
+  }
+
+  variable "ami" {
+    type = string
+    # List of available AMIs can be found here: https://cloud-images.ubuntu.com/locator/ec2/
+    default     = "ami-0e95d283a666c6ea0"
+    description = "AMI ID for Ubuntu 22.04 LTS"
+  }
+
+  variable "instance_type" {
+    type        = string
+    default     = "t2.medium"
+    description = "EC2 instance type"
+  }
+
+  variable "region" {
+    type    = string
+    default = "eu-west-1"
+  }
+
+  variable "network_cidr" {
+    default     = "10.0.0.0/16"
+    description = "CIDR block for the VPC"
+  }
+
+  variable "public_subnet_cidr_block" {
+    default     = "10.0.1.0/24"
+    description = "CIDR block for the public subnet"
+  }
+
+  variable "availability_zone" {
+    default     = "eu-west-1a"
+    description = "Availability zone to deploy the resources"
+  }
+
+  variable "tag_name" {
+    description = "Tag name for all resources"
+    default     = "Remote Dev Instance"
+  }
+
+  variable "dev_instance_security_group" {
+    type        = string
+    default     = "terraform-security-group"
+    description = "Allow HTTP/SSH traffic from interweb"
+  }
+
+  variable "profile" {
+    type        = string
+    default     = "Terraform_credentials"
+    description = "profile for terraform credentials"
+  }
+
+  variable "root_storage_size" {
+    type        = number
+    default     = 20
+    description = "AWS root storage size"
+  }
+
+  variable "root_storage_type" {
+    type        = string
+    default     = "gp2"
+    description = "root storage type"
+  }
+
+  variable "lambda_function_name" {
+    type        = string
+    default     = "stop_instance"
+    description = "Lambda function that stop instance if it's running and with no SSH connection"
+  }
+
+  variable "lambda_event_rate" {
+    type        = string
+    default     = "rate(30 minute)"
+    description = "Lambda event rate"
+  }
+
+  variable "github_auth_token" {
+    type        = string
+    description = "GitHub token used for authentication"
+    sensitive   = true
+  }
+
+  variable "github_repo_branch" {
+    type        = string
+    description = "GitHub repository branch"
+    default     = "main"
+  }
+
+  variable "github_repo_name" {
+    type        = string
+    description = "GitHub repository name"
+    default     = ""
+  }
+  ```
+
+  The `variables.tf` config above, defines various variaobles that customize the deployment of our EC2 instance and other related resources. These variables enable flexibility and resusability of the terraform scripts.
+
+- `terraform.tfvars`: Contains values for the variables defined in `variables.tf`. This files behaves like a `.env` file where one would define or store sensitive information that they do not wish to version control or if one is working on multiple environment without wanting to make changes on the `variables.tf` file.
+
+### Deploying the EC2 instance
+
+Once we have defined our configuration and resources required for our EC2 instance, we can initialize Terraform thereafter deploy our instance
+
+#### Initialize Terraform
+
+- Initialize Terraform: download the required provider plugins:
+
+  ```bash
+  terraform init
+  ```
+
+- Review the `terraform.tfvars` file and update the variables with your desired values. You can customize parameters such as region, database instance identifier, instance class, storage size, and more in this file.
+
+  See examples of variables you can set manually: `./variables.tf`
+
+- Review the changes that will be made:
+
+  ```bash
+  terraform plan
+  ```
+
+- When satisfied with the resources to be deployed, apply the Terraform config to create the resources:
+
+  ```bash
+  terraform apply
+  ```
+
+You will be prompted to confirm the resources creation, Type in `yes` and hit `Enter`
+
+- Once resources are created, Terraform will display the following as per `outputs.tf` file:
+  - Public DNS name
+  - Public IP address of the EC2 instance and,
+  - The SSH connection parameters for the EC2 instance.
+
+- Navigate to your aws console to check your instance running or run the following command to check the status of the instance:
+
+  ```bash
+  aws ec2 describe-instance-status --include-all-instances
+  ```
+
+- To test, if the instance is running, connect to the new public DNS and verify your config:
+
+  ```bash
+  ssh $(terraform output -raw instance_connection_parameters)
+  ```
+
+- Once logged in, you will need to configure Git:
+
+```bash
+git config --global user.email "<your email>@gmail.com"
+git config --global user.name "Your name"
+```
+
+#### Check whether the user data script was ran successfully
+
+You can verify using the following steps:
+
+Check the log of your user data script in:
+
+- `less /var/log/cloud-init.log` and
+- `less /var/log/cloud-init-output.log`
+
+You can see all logs of your user data script, and it will also create the `/etc/cloud` folder.
 
 ### Connecting to the Instance with VS Code
 
@@ -885,7 +1083,41 @@ Once connected, your VS Code workspace will switch to the remote environment on 
 
 For more details on Remote Development using SSH, read: <https://code.visualstudio.com/docs/remote/ssh>
 
-## Reference
+### Managing the EC2 Instance
+
+#### Start/Stop Instance Manually
+
+When you are done using the instance ensure that it is stopped, to avoid incurring costs when the instance is not in use.
+Run the script provided with the desired action and optional arguments:
+
+  ```bash
+  python scripts/ec2-manager.py start   # Start instances with the matching tag.
+  python scripts/ec2-manager.py stop    # Stop instances with the matching tag.
+
+  # Optionally specify tag details:
+  python scripts/ec2-manager.py stop --tag-name MyCustomTag --tag-value my-instance
+
+  # Optionally control logging verbosity:
+  python scripts/ec2-manager.py start --log-level debug
+  ```
+
+#### Automatic Stop Instance
+
+Every 30 minutes, a **CloudWatch Events rule** triggers an **AWS Lambda function**, this function will perform the following steps:
+
+- Runs a command via **AWS Systems Manager (SSM)** on the EC2 instance to check for active SSH connections.
+- Parses the command output to determine if there has been any SSH activity within the last 30 minutes.
+- If there hasn't been any SSH activity the EC2 instance is stopped.
+
+#### Clean Up
+
+To avoid incurring charges, ensure that you have destroyed your infrastructure after use - should you wish not to use it anymore:
+
+```bash
+terraform destroy
+```
+
+# Reference
 
 - []()
 - []()
