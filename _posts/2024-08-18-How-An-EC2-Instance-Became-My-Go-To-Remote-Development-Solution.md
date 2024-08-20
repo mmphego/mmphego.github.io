@@ -7,7 +7,7 @@ tags:
 - Remote Development
 - Terraform
 ---
-# How An EC2 Instance Became My Go-To Remote Development Solution Terraform
+# How An EC2 Instance Became My Go-To Remote Development Solution Using Terraform
 
 {:refdef: style="text-align: center;"}
 ![post image]({{ "/assets/2024-08-18-How-An-EC2-Instance-Became-My-Go-To-Remote-Development-Solution.png" | absolute_url }})
