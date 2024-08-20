@@ -14,6 +14,8 @@ tags:
 {: refdef}
 
 8 Min Read
+{{ content | reading_time }}
+{{ page.content | reading_time }}
 
 ---
 
