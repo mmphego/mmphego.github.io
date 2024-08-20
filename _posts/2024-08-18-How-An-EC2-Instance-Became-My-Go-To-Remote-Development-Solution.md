@@ -113,7 +113,7 @@ profile = var.profile
 }
 ```
 
-In the above, the AWS provider is configured to use version `5.37.0` and specifies that the AWS `region` and `profile` are derived from variables `var.region` and `var.profile`.
+The AWS provider is configured to use version `5.37.0` and specifies that the AWS `region` and `profile` are derived from variables `var.region` and `var.profile`.
 
 #### **Network Configurations:**
 
@@ -192,7 +192,7 @@ resource "aws_eip_association" "eip_assoc" {
 }
 ```
 
-In the above, We setting up a VPC with DNS hostnames enabled, creating the base network layer. A public subnet is also created within this VPC. We then configure the routing tables and routes to the internet via an Internet Gateway, ensuring that instances in the public subnet can access the internet. We provision the Internet Gateway for VPC connectivity, and setup a static public IP address. Finally, associating it with the EC2 instance for consistent public accessibility.
+The config above, sets up a VPC with DNS hostnames enabled, creating the base network layer. A public subnet is also created within this VPC. We then configure the routing tables and routes to the internet via an Internet Gateway, ensuring that instances in the public subnet can access the internet. We provision the Internet Gateway for VPC connectivity, and setup a static public IP address. Finally, associating it with the EC2 instance for consistent public accessibility.
 
 #### **Security and Access:**
 
@@ -241,7 +241,7 @@ In the above, We setting up a VPC with DNS hostnames enabled, creating the base 
   }
   ```
 
-  In the above, we focus on the `security_groups.tf` file that defines the security groups that control inbound and outbound traffic for our EC2 instance. We create a security group with rules that allow SSH access on port 22 and HTTP access to port 8080 (For Airflow UI) from any IP Address.
+  The config above, focuses on the `security_groups.tf` file that defines the security groups that control inbound and outbound traffic for our EC2 instance. We create a security group with rules that allow SSH access on port 22 and HTTP access to port 8080 (For Airflow UI) from any IP Address.
 
   **Note:** This open access is primarily for the project development where SSH security concerns are minimal since access is managed through key pairs.
   For future implementations, we recommend restricting SSH access to specific IP addresses or using a bastion host to enhance security.
@@ -495,7 +495,7 @@ In the above, We setting up a VPC with DNS hostnames enabled, creating the base 
   }
   ```
 
-  In the configuration above, we define an EC2 instance with specific settings including AMI, instance type, and storage. The instance is configured to use a `user-data` script during instance initialization, which is provided by the `userdata.sh.tpl` file detailed below. The instance is also associated with a security group and an IAM instance profile for permissions defined above. The setup includes integration with [AWS Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html) for ensuring the instance is managed efficiently.
+  The configuration above, defines an EC2 instance with specific settings including AMI, instance type, and storage. The instance is configured to use a `user-data` script during instance initialization, which is provided by the `userdata.sh.tpl` file detailed below. The instance is also associated with a security group and an IAM instance profile for permissions defined above. The setup includes integration with [AWS Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html) for ensuring the instance is managed efficiently.
 
 - `userdata.sh.tpl`: Provides a template script for initializing the instance (`userdata`).
 
@@ -592,7 +592,7 @@ In the above, We setting up a VPC with DNS hostnames enabled, creating the base 
   The `userdata.sh.tpl` file provides a script to set up the EC2 instance upon launch. It installs all the necessary packages, sets up Docker, configures Python environments, clones the provided project repository and deploys project-specific Python packages.
   The script also includes configurations for running Airflow using Docker and performs system maintenance tasks.
 
-The combination of `instance.tf` and `userdata.sh.tpl` ensures that the EC2 instance is properly configured and ready for use in the development environment.
+The combination of `instance.tf` and `userdata.sh.tpl` ensures that the EC2 instance is properly configured and ready for use in the development environment. Ensuring that all package dependencies are installed, repository is installed and Airflow is configured during instance initialization.
 
 #### **Lambda Function:**
 
@@ -695,6 +695,21 @@ The combination of `instance.tf` and `userdata.sh.tpl` ensures that the EC2 inst
   logger = logging.getLogger()
 
 
+  def wait_for_command_invocation(command_id, instance_id, max_retries=5, wait_interval=4):
+      for _ in range(max_retries):
+          try:
+              get_cmd_invocation = ssm_client.get_command_invocation(
+                  CommandId=command_id, InstanceId=instance_id
+              )
+              if get_cmd_invocation["Status"] in ["Success", "Failed"]:
+                  return get_cmd_invocation
+              time.sleep(wait_interval)
+          except Exception as e:
+              logger.error(f"Could not get command invocation: {str(e)}")
+              time.sleep(wait_interval)
+      raise RuntimeError(f"Command {command_id} failed after {max_retries} retries.")
+
+
   def check_recent_ssh_connection(instance_id):
       try:
           response = ssm_client.send_command(
@@ -712,20 +727,6 @@ The combination of `instance.tf` and `userdata.sh.tpl` ensures that the EC2 inst
           logger.error(f"Failed to check SSH connection: {str(e)}")
           return False
 
-
-  def wait_for_command_invocation(command_id, instance_id, max_retries=5, wait_interval=4):
-      for _ in range(max_retries):
-          try:
-              get_cmd_invocation = ssm_client.get_command_invocation(
-                  CommandId=command_id, InstanceId=instance_id
-              )
-              if get_cmd_invocation["Status"] in ["Success", "Failed"]:
-                  return get_cmd_invocation
-              time.sleep(wait_interval)
-          except Exception as e:
-              logger.error(f"Could not get command invocation: {str(e)}")
-              time.sleep(wait_interval)
-      raise RuntimeError(f"Command {command_id} failed after {max_retries} retries.")
 
   def get_instance_id(reservations):
       return [
@@ -988,7 +989,7 @@ The combination of `instance.tf` and `userdata.sh.tpl` ensures that the EC2 inst
 
 ### Deploying the EC2 instance
 
-Once we have defined our configuration and resources required for our EC2 instance, we can initialize Terraform thereafter deploy our instance
+Once we have defined our configuration and resources required for our EC2 instance, we can initialize Terraform thereafter deploy our instance.
 
 #### Initialize Terraform
 
@@ -1040,7 +1041,7 @@ git config --global user.email "<your email>@gmail.com"
 git config --global user.name "Your name"
 ```
 
-#### Check whether the user data script was ran successfully
+#### Check whether the user data script was ran successfully during initialization
 
 You can verify using the following steps:
 
@@ -1051,18 +1052,21 @@ Check the log of your user data script in:
 
 You can see all logs of your user data script, and it will also create the `/etc/cloud` folder.
 
-### Connecting to the Instance with VS Code
+## Connecting to the Instance with VS Code
 
 - **Configure SSH Access:**
   - Ensure your EC2 instance has SSH access enabled on port 22 for your security group.
   - If you haven't already, create an SSH key pair on your local machine using `ssh-keygen` command.
+
 - **Install the Remote SSH Extension:**
   - Open VS Code and navigate to the Extensions tab (`Ctrl+Shift+X`).
   - Search for **"Remote-SSH"** extension and install it.
+
 - **Configure VS Code Remote Settings:**
   - Open the Command Palette (`Ctrl+Shift+P`).
   - Search for "Remote-SSH: Open SSH Configure File" and select it.
   - Choose an option to create a new SSH configuration file (usually the default option is recommended). This file will store your EC2 instance connection details.
+
 - **Add Your EC2 Instance Configuration:**
   - The configuration file will open in your VS Code editor.
   - Add a new configuration for your EC2 instance following the format below, replacing placeholders with your actual values:
@@ -1101,7 +1105,7 @@ Run the script provided with the desired action and optional arguments:
   python scripts/ec2-manager.py start --log-level debug
   ```
 
-#### Automatic Stop Instance
+#### Automatic Stop Instance (Cost Management)
 
 Every 30 minutes, a **CloudWatch Events rule** triggers an **AWS Lambda function**, this function will perform the following steps:
 
@@ -1117,7 +1121,16 @@ To avoid incurring charges, ensure that you have destroyed your infrastructure a
 terraform destroy
 ```
 
-# Reference
+# Conclusion
 
-- []()
-- []()
+Setting up a remote development instance using Terraform not only simplifies the provisioning of resources but also enhances the scalability and managebility of your complete instrastructure. By leveraging infrustructure as code (IaC), you ensure consistancy and detemenistic deployments, minimize clickops and make your environment reproducible.
+
+In this blog post, we explored the process of setting up an EC2 for development purposes from defining various resources to provisioning them via Terraform as well as managing them effeciently. We also intergrated various services such as AWS Lambda, SSM and CloudWatch Events for cost management ensuring that our instance is stopped when not in-use.
+
+As you continue to refine your environment, also consider integrating additional AWS services or automating more aspects of your infrastructure management including cost optimization and management.
+
+# References
+
+- [Terraform](https://developer.hashicorp.com/terraform)
+- [AWS System Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html)
+- [CloudWatch Events](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-cwe-now-eb.html)
