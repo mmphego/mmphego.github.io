@@ -13,7 +13,7 @@ tags:
 ![post image]({{ "/assets/2024-08-18-How-An-EC2-Instance-Became-My-Go-To-Remote-Development-Solution.png" | absolute_url }})
 {: refdef}
 
-<<TIME TO READ>>
+8 Min Read
 
 ---
 
