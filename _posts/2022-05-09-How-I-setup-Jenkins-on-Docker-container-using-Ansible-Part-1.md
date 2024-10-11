@@ -41,7 +41,7 @@ Our initial approach to the task was to:
 
 ---
 
-@AneleMakhaba recently gave a Lunch 'n Learn talk that summarises this post. The talk explores the following:
+[Anele Makhaba](https://za.linkedin.com/in/anele-makhaba-a36692161) recently gave a Lunch 'n Learn talk that summarises this post. The talk explores the following:
 
 - Why do we need to configure Jenkins as Code?
 - Managing Jenkins as Code
@@ -61,7 +61,7 @@ In this post, we will detail the steps that we undertook to create an environmen
 
 **Note:** We did not use any AWS services to host our Jenkins environment at our workplace, instead we used [Proxmox](https://www.proxmox.com/en/) containers.
 
-Thank your @AneleMakhaba, for your collaboration in writing this post.
+Thank your Anele Makhaba (https://za.linkedin.com/in/anele-makhaba-a36692161), for your collaboration in writing this post.
 
 ---
 

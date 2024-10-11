@@ -31,7 +31,7 @@ In response to this challenge and also keeping my skills fresh, I wrote an Attla
 
 ## The Walk-through
 
-Before you continue ensure you have the necessary permissions and API access to interact with Jir in your organization.
+Before you continue ensure you have the necessary permissions and API access to interact with Jira in your organization.
 
 ### Prerequisites
 
