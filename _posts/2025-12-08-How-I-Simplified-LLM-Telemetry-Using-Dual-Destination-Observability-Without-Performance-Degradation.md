@@ -292,14 +292,14 @@ class CircuitBreakerExporter:
 
 ### Architecture Decision: Why Direct Export
 
-```mermaid
+{% mermaid %}
 graph LR
     A[GenAI App] --> B[Telemetry Bridge]
     B --> C[Instana Exporter]
     B --> D[Langfuse Exporter]
     B --> E[Circuit Breaker]
     E --> F[Fallback Storage]
-```
+{% endmermaid %}
 
 **Why direct export over OTEL Collector?**
 
