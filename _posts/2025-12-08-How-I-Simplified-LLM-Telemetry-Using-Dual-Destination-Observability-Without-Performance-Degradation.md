@@ -47,6 +47,8 @@ Meanwhile, Langfuse was sitting there like that perfect tool you can't use becau
 
 You build a bridge.
 
+---
+
 ## TL;DR
 
 When enterprise architecture demands Instana APM but your GenAI applications need Langfuse's granular AI observability, you don't have to choose. I built a dual-export telemetry bridge Python module that simultaneously sends traces to both platforms using [OpenTelemetry](https://opentelemetry.io/) and the [Traceloop SDK](https://www.traceloop.com/), achieving comprehensive observability with minimal performance overhead.
@@ -57,6 +59,8 @@ When enterprise architecture demands Instana APM but your GenAI applications nee
 - < 10ms latency overhead per trace
 - Zero data loss with circuit breaker resilience
 - Minimal resource footprint (< 10MB memory)
+
+---
 
 ## TS;RE
 
@@ -317,9 +321,11 @@ class CircuitBreakerExporter:
 4. Circuit breakers protect against cascading failures
 5. Both platforms receive correlated traces with identical trace IDs
 
-- **Enterprise Architecture Team:** "All our telemetry goes through Instana!"
-- **GenAI Engineering Team:** "We have granular LLM insights in Langfuse!"
-- **Platform Engineering Team:** "It's one simple library with no additional infrastructure!"
+**Enterprise Architecture Team:** "All our telemetry goes through Instana!"
+**GenAI Engineering Team:** "We have granular LLM insights in Langfuse!"
+**Platform Engineering Team:** "It's one simple library with no additional infrastructure!"
+
+---
 
 ## The Walk-through
 
@@ -603,6 +609,8 @@ With the right architectural approach, you can have both. And sometimes, "both" 
 
 **P.S.** – That enterprise architect who initially shut down Langfuse? He's now one of the biggest advocates for our dual-export approach. Turns out, when you solve the compliance problem, people are surprisingly open to better tooling. 😊
 
+---
+
 ## Conclusion
 
 What started as an enterprise constraint — "use only Instana" — turned into an opportunity to build something that benefits everyone. The Python module `genai-telemetry-bridge` isn't just a technical solution; it's proof that pragmatic engineering can bridge organizational divides.
@@ -614,6 +622,8 @@ Few months later, this dual-export approach has become our standard for GenAI ob
 Sometimes the best architecture isn't the most elegant one in the textbook — it's the one that solves real problems for real teams without forcing anyone to compromise their core needs.
 
 And hey, if you're stuck in a similar enterprise tool conflict, remember: you don't always have to choose sides. Sometimes you just need to build a bridge.
+
+---
 
 ## References
 
