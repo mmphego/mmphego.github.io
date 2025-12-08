@@ -113,7 +113,7 @@ On paper, this approach had some compelling advantages:
 It looked good in the architecture review, but something felt off. The idea of managing and deploying an extra service - was a complete Nono from me.
 
 {:refdef: style="text-align: center;"}
-<img width="1536" height="1024" alt="Image" src="https://github.com/user-attachments/assets/0afe8ec4-2094-4744-b119-7e82172877ca" />
+<img width="800" height="533"" alt="Image" src="https://github.com/user-attachments/assets/0afe8ec4-2094-4744-b119-7e82172877ca" />
 {: refdef}
 
 ---
@@ -489,7 +489,9 @@ The response was positive, and discussions are ongoing about the best approach t
 
 After sharing my approach on [LinkedIn](), the Traceloop CEO expressed legitimate concerns about performance impact, suggesting that dual export would "slow down your entire app" and calling direct dual export a "bad practice" that affects production apps for observability.
 
+{:refdef: style="text-align: center;"}
 <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7399438801179246592?collapsed=1" height="264" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+{: refdef}
 
 Valid concerns from someone who built the framework! But rather than argue theoretically, I ran comprehensive benchmarks using the actual test suite to measure real-world impact:
 
