@@ -292,14 +292,10 @@ class CircuitBreakerExporter:
 
 ### Architecture Decision: Why Direct Export
 
-{% mermaid %}
-graph LR
-    A[GenAI App] --> B[Telemetry Bridge]
-    B --> C[Instana Exporter]
-    B --> D[Langfuse Exporter]
-    B --> E[Circuit Breaker]
-    E --> F[Fallback Storage]
-{% endmermaid %}
+{:refdef: style="text-align: center;"}
+![post image]({{ "/assets/mermaid_diag.png" | absolute_url }})
+{: refdef}
+
 
 **Why direct export over OTEL Collector?**
 
@@ -321,9 +317,9 @@ graph LR
 4. Circuit breakers protect against cascading failures
 5. Both platforms receive correlated traces with identical trace IDs
 
-**Enterprise Architecture Team:** "All our telemetry goes through Instana!"
-**GenAI Engineering Team:** "We have granular LLM insights in Langfuse!"
-**Platform Engineering Team:** "It's one simple library with no additional infrastructure!"
+- **Enterprise Architecture Team:** "All our telemetry goes through Instana!"
+- **GenAI Engineering Team:** "We have granular LLM insights in Langfuse!"
+- **Platform Engineering Team:** "It's one simple library with no additional infrastructure!"
 
 ## The Walk-through
 
@@ -494,7 +490,7 @@ Valid concerns from someone who built the framework! But rather than argue theor
 
 **Empirical Results (Corporate Environment):**
 
-*Note: Used Jaeger running in a Docker container to mock Instana export, since I lacked write-capable API key access for Instana and would need K8s deployment to use the Instana agent properly.*
+*Note: Used Jaeger running in a Docker container to mock Instana export, since I lacked write-ce have granular LLM insights in Langfuse!” Papable API key access for Instana and would need K8s deployment to use the Instana agent properly.*
 
 - **Baseline (no telemetry)**: 11.94ms
 - **Single export (Langfuse)**: 12.58ms (+5.4% overhead)
