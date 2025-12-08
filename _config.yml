@@ -241,5 +241,6 @@ plugins:
   - jemoji
   - kramdown
   - jekyll-twitter-plugin
+  - jekyll-mermaid
 
 jekyll-mentions: https://twitter.com
