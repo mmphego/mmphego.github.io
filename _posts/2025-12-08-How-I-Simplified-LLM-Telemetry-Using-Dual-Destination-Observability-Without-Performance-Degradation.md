@@ -415,14 +415,14 @@ async def shutdown():
 
 **Latency Impact (The Good News)**
 
-- Empirical Results from Corporate Environment:
-- Baseline (no telemetry): 11.94ms
-- Single export (Langfuse): 12.58ms (+5.4% overhead)
-- Single export (Instana): 12.80ms (+7.2% overhead)
-- Dual export: 13.06ms (+9.4% overhead)
+- ✅ Empirical Results from Corporate Environment:
+- ✅ Baseline (no telemetry): 11.94ms
+- ✅ Single export (Langfuse): 12.58ms (+5.4% overhead)
+- ✅ Single export (Instana): 12.80ms (+7.2% overhead)
+- ✅ Dual export: 13.06ms (+9.4% overhead)
 
-- For GenAI applications where LLM calls take 1-10 seconds,
-- 1ms telemetry overhead = 0.01-0.1% impact (essentially noise level)
+For GenAI applications where LLM calls take 1-10 seconds,
+- ✅ 1ms telemetry overhead = 0.01-0.1% impact (essentially noise level)
 
 
 **Memory Footprint (Also Good News)**
@@ -437,10 +437,10 @@ async def shutdown():
 **Export Success Rates (The Really Good News)**
 
 
-- Instana Export Success: 99.7%
-- Langfuse Export Success: 99.9%
-- Circuit Breaker Activations: 0.1%
-- Data Loss Events: 0%
+- ✅ Instana Export Success: 99.7%
+- ✅ Langfuse Export Success: 99.9%
+- ✅ Circuit Breaker Activations: 0.1%
+- ✅ Data Loss Events: 0%
 
 
 ### Hard-Earned Lessons
