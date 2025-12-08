@@ -63,9 +63,7 @@ When enterprise architecture demands Instana APM but your GenAI applications nee
 The fundamental challenge wasn't technical – it was organizational. We had:
 
 **Team A (Enterprise Architecture):** "Everything must go through Instana. No exceptions. We need centralized monitoring, standardized alerting, and integration with our existing dashboards."
-
 **Team B (GenAI Engineering):** "But Instana can't show us prompt templates, token consumption patterns, or LLM conversation flows. We're flying blind trying to optimize our AI models!"
-
 **Team C (Platform and Observability Engineering):** "Can we all just... get along? And maybe not break production while figuring this out?"
 
 Classic enterprise tension. And honestly? Everyone had valid points.
@@ -113,7 +111,7 @@ On paper, this approach had some compelling advantages:
 It looked good in the architecture review, but something felt off. The idea of managing and deploying an extra service - was a complete Nono from me.
 
 {:refdef: style="text-align: center;"}
-<img width="800" height="533"" alt="Image" src="https://github.com/user-attachments/assets/0afe8ec4-2094-4744-b119-7e82172877ca" />
+![post image]({{ "/assets/otel-collector2.png" | absolute_url }})
 {: refdef}
 
 ---
@@ -123,10 +121,9 @@ After some soul-searching, I realized that the added complexity wasn't worth the
 **The solution:** A telemetry bridge that leverages the Traceloop SDK for its minimal implementation and usage patterns, with [OpenTelemetry](https://opentelemetry.io/)'s flexible exporter architecture as the backend for simultaneously sending traces to both platforms. Same trace data, two destinations, everyone gets what they want for less.
 
 {:refdef: style="text-align: center;"}
-<img  alt="Image" src="https://github.com/user-attachments/assets/5f3a7721-38ef-4aef-8e9a-57fe846f35c3" />
+{:refdef: style="text-align: center;"}
+![post image]({{ "/assets/telemetry-bridge.png" | absolute_url }})
 {: refdef}
-
-![](https://github.com/user-attachments/assets/5f3a7721-38ef-4aef-8e9a-57fe846f35c3)
 
 **Performance results:**
 
