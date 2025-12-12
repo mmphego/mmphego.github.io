@@ -32,14 +32,14 @@ But then comes the inevitable response:
 
 *Cue internal screaming* 😤
 
-Here's the thing – The architect wasn't wrong. Enterprise observability strategies matter. Standardization makes sense. But Instana's recent GenAI Observability support was... let's be diplomatic... **still finding its footing**.
+Here's the thing - The architect wasn't wrong. Enterprise observability strategies matter. Standardization makes sense. But Instana's recent GenAI Observability support was... let's be diplomatic... **still finding its footing**.
 
 Out of the box, it simply didn't provide the level of detail we desperately needed:
 
-- **No granular prompt analysis** – How do you optimize prompts when you can't see what's actually being sent?
-- **Limited token behavior insights** – Understanding token consumption patterns? Good luck with that.
-- **Shallow cost attribution** – "The LLM calls are expensive" is not actionable feedback.
-- **Poor agent orchestration visibility** – Multi-agent workflows were essentially black boxes.
+- **No granular prompt analysis** - How do you optimize prompts when you can't see what's actually being sent?
+- **Limited token behavior insights** - Understanding token consumption patterns? Good luck with that.
+- **Shallow cost attribution** - "The LLM calls are expensive" is not actionable feedback.
+- **Poor agent orchestration visibility** - Multi-agent workflows were essentially black boxes.
 
 Meanwhile, Langfuse was sitting there like that perfect tool you can't use because "enterprise standards."
 
@@ -92,7 +92,7 @@ The gap was real, and it was hurting our GenAI engineering velocity.
 
 **My first instinct?**
 
-Use an [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/) as a centralized hub. This seemed elegant – one collector, multiple destinations, clean architecture diagrams for the PowerPoint presentations.
+Use an [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/) as a centralized hub. This seemed elegant - one collector, multiple destinations, clean architecture diagrams for the PowerPoint presentations.
 
 On paper, this approach had some compelling advantages:
 
@@ -147,7 +147,7 @@ The TelemetryManager acts as the central coordination point, handling three crit
 - **Exporter Lifecycle**: Initializes, configures, and manages the lifecycle of multiple exporters simultaneously
 - **Instrumentation Coordination**: Automatically instruments AI libraries (Bedrock, Google ADK, LiteLLM) using the Traceloop SDK foundation
 
-**Key design decision:** Built on top of Traceloop SDK rather than raw OpenTelemetry. This gives us AI-specific instrumentation out of the box – automatic token counting, model identification, and conversation threading - while adding our dual-export layer on top.
+**Key design decision:** Built on top of Traceloop SDK rather than raw OpenTelemetry. This gives us AI-specific instrumentation out of the box - automatic token counting, model identification, and conversation threading - while adding our dual-export layer on top.
 
 Handles initialization, configuration, and coordinates between different exporters without breaking existing code:
 
@@ -206,7 +206,7 @@ Each platform expects different data formats and semantic conventions. Our expor
 - Handles nested generations (agent → tool → LLM call chains)
 - Uses Langfuse SDK with custom trace correlation
 
-**The translation layer is critical** – same OpenTelemetry span, different semantic meaning depending on the destination.
+**The translation layer is critical** - same OpenTelemetry span, different semantic meaning depending on the destination.
 
 The dual-export coordination logic handles platform-specific translation:
 
@@ -446,7 +446,7 @@ I spent days having a back and forth with Google Gemini and verifying my thought
 
 **The lesson:** Your architecture should solve problems, not create them. If you need a whiteboard to explain how observability works, you're probably overthinking it.
 
-**2. Circuit Breakers Aren't Optional – They're Insurance**
+**2. Circuit Breakers Aren't Optional - They're Insurance**
 
 Here's what happens without circuit breakers: One bad Langfuse or Clickhouse deployment takes down our entire GenAI application because trace exports start timing out. Yes, I learned this the hard way at 2 AM after deploying this in our ephemeral environment.
 
@@ -498,7 +498,7 @@ Valid concerns from someone who built the framework! But rather than argue theor
 
 **The lesson:** When experts challenge your approach, respond with data, not opinions. Evidence-based engineering beats theoretical arguments every time. Sometimes the "unconventional" solution is actually the pragmatic one.
 
-**6. Diagnostic APIs Are Not Optional – They're Your Troubleshooting Lifeline**
+**6. Diagnostic APIs Are Not Optional - They're Your Troubleshooting Lifeline**
 
 Building 13 diagnostic endpoints (`/telemetry/exported_traces`, `/trace_analyzer/{trace_id}`, etc.) felt like over-engineering at first. In production, they became indispensable. When traces weren't appearing in Langfuse, a quick `/telemetry/exported_traces` check revealed a network timeout issue that would have taken hours to debug otherwise.
 
@@ -508,7 +508,7 @@ Building 13 diagnostic endpoints (`/telemetry/exported_traces`, `/trace_analyzer
 
 "Just set `SSL_VERIFY=false`" works in development. In production with corporate proxies, custom CA bundles, and security policies, you need proper certificate handling. SSL configuration consumed 40% of our integration debugging time.
 
-**The lesson:** Test with production-like SSL/TLS configurations early. Corporate networking complexity is not optional – plan for it from day one.
+**The lesson:** Test with production-like SSL/TLS configurations early. Corporate networking complexity is not optional - plan for it from day one.
 
 **8. Optional Dependencies Are Enterprise-Friendly Dependencies**
 
@@ -516,7 +516,7 @@ Not everyone needs Bedrock or Google ADK instrumentation. Not everyone uses Fast
 
 **The lesson:** Design for modularity from the start. Optional features should be optional dependencies, not forced complexity for everyone.
 
-**9. Observability Needs Observability – Monitor Your Monitoring**
+**9. Observability Needs Observability - Monitor Your Monitoring**
 
 Building telemetry infrastructure without monitoring the telemetry system itself is like building a fire alarm without testing if it can actually make sound. We learned this when traces silently stopped flowing to Langfuse due to a network timeout, and we only discovered it hours later during a demo.
 
@@ -538,7 +538,7 @@ async def telemetry_health():
 
 **10. Graceful Startup and Shutdown Are Not Optional Features**
 
-Nothing screams "amateur hour" like observability code that crashes during application startup because Langfuse is temporarily unavailable, or leaves hanging connections during shutdown. Enterprise applications start and stop frequently – deployments, scaling events, maintenance windows.
+Nothing screams "amateur hour" like observability code that crashes during application startup because Langfuse is temporarily unavailable, or leaves hanging connections during shutdown. Enterprise applications start and stop frequently - deployments, scaling events, maintenance windows.
 
 We learned this during a Kubernetes rolling deployment when half our pods were stuck in terminating state because telemetry exporters weren't properly closing connections.
 
@@ -600,7 +600,7 @@ Few months ago, I was stuck between two teams with valid but conflicting require
 
 With the right architectural approach, you can have both. And sometimes, "both" is the most pragmatic answer to an enterprise dilemma.
 
-**P.S.** – That enterprise architect who initially shut down Langfuse? He's now one of the biggest advocates for our dual-export approach. Turns out, when you solve the compliance problem, people are surprisingly open to better tooling. 😊
+**P.S.** - That enterprise architect who initially shut down Langfuse? He's now one of the biggest advocates for our dual-export approach. Turns out, when you solve the compliance problem, people are surprisingly open to better tooling. 😊
 
 ---
 
