@@ -324,6 +324,13 @@ class CircuitBreakerExporter:
 **GenAI Engineering Team:** "We have granular LLM insights in Langfuse!"
 **Platform Engineering Team:** "It's one simple library with no additional infrastructure!"
 
+{:refdef: style="text-align: center;"}
+<video width="100%" max-width="800px" controls>
+  <source src="{{ '/assets/A_Bridge_for_Observability.mp4' | absolute_url }}" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+{: refdef}
+
 ---
 
 ## The Walk-through

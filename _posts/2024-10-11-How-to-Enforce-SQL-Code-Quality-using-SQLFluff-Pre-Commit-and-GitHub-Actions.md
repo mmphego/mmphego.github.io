@@ -418,17 +418,6 @@ jobs:
       with:
         python-version: '3.10.11'
 
-    - name: Cache Python dependencies
-      uses: actions/cache@v3
-      with:
-        path: |
-          ~/.cache/pip
-          ~/.cache/pip-tools
-          ~/.cache/pre-commit
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.in') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
-
     - id: file_changes
       uses: tj-actions/changed-files@v44
 
