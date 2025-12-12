@@ -64,11 +64,11 @@ When enterprise architecture demands Instana APM but your GenAI applications nee
 
 ## TS;RE
 
-The fundamental challenge wasn't technical – it was organizational. We had:
+The fundamental challenge wasn't technical - it was organizational. We had:
 
-**Team A (Enterprise Architecture):** "Everything must go through Instana. No exceptions. We need centralized monitoring, standardized alerting, and integration with our existing dashboards."
-**Team B (GenAI Engineering):** "But Instana can't show us prompt templates, token consumption patterns, or LLM conversation flows. We're flying blind trying to optimize our AI models!"
-**Team C (Platform and Observability Engineering):** "Can we all just... get along? And maybe not break production while figuring this out?"
+- **Team A (Enterprise Architecture):** "Everything must go through Instana. No exceptions. We need centralized monitoring, standardized alerting, and integration with our existing dashboards."
+- **Team B (GenAI Engineering):** "But Instana can't show us prompt templates, token consumption patterns, or LLM conversation flows. We're flying blind trying to optimize our AI models!"
+- **Team C (Platform and Observability Engineering):** "Can we all just... get along? And maybe not break production while figuring this out?"
 
 Classic enterprise tension. And honestly? Everyone had valid points.
 
@@ -124,7 +124,6 @@ After some soul-searching, I realized that the added complexity wasn't worth the
 
 **The solution:** A telemetry bridge that leverages the Traceloop SDK for its minimal implementation and usage patterns, with [OpenTelemetry](https://opentelemetry.io/)'s flexible exporter architecture as the backend for simultaneously sending traces to both platforms. Same trace data, two destinations, everyone gets what they want for less.
 
-{:refdef: style="text-align: center;"}
 {:refdef: style="text-align: center;"}
 ![post image]({{ "/assets/telemetry-bridge.png" | absolute_url }})
 {: refdef}
@@ -424,7 +423,6 @@ async def shutdown():
 For GenAI applications where LLM calls take 1-10 seconds,
 - ✅ 1ms telemetry overhead = 0.01-0.1% impact (essentially noise level)
 
-
 **Memory Footprint (Also Good News)**
 
 - Memory usage after 10,000 traces:
@@ -433,15 +431,12 @@ For GenAI applications where LLM calls take 1-10 seconds,
     - Total overhead: ~10MB
 - That's less than a single Chrome tab 🙃
 
-
 **Export Success Rates (The Really Good News)**
-
 
 - ✅ Instana Export Success: 99.7%
 - ✅ Langfuse Export Success: 99.9%
 - ✅ Circuit Breaker Activations: 0.1%
 - ✅ Data Loss Events: 0%
-
 
 ### Hard-Earned Lessons
 
@@ -483,11 +478,9 @@ The response was positive, and discussions are ongoing about the best approach t
 
 **5. Evidence-Based Engineering Wins Technical Debates**
 
-After sharing my approach on [LinkedIn](), the Traceloop CEO expressed legitimate concerns about performance impact, suggesting that dual export would "slow down your entire app" and calling direct dual export a "bad practice" that affects production apps for observability.
-
+After sharing my approach on [LinkedIn](https://www.linkedin.com/embed/feed/update/urn:li:share:7399438801179246592), the Traceloop CEO expressed legitimate concerns about performance impact, suggesting that dual export would "slow down your entire app" and calling direct dual export a "bad practice" that affects production apps for observability.
 
 <iframe style="text-align: center;" src="https://www.linkedin.com/embed/feed/update/urn:li:share:7399438801179246592?collapsed=1" height="264" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
-
 
 
 Valid concerns from someone who built the framework! But rather than argue theoretically, I ran comprehensive benchmarks using the actual test suite to measure real-world impact:
