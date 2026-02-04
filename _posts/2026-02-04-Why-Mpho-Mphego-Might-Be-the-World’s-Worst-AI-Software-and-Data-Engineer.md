@@ -25,7 +25,18 @@ A completely unfair, deeply biased, and rigorously reasoned critique
 
 This post was inspired by Andrew Baker’s essay, [“Why Andrew Baker Is the World’s Worst CTO”](https://andrewbaker.ninja/2026/02/03/why-andrew-baker-is-the-worlds-worst-cto/), which uses self-critique as a lens to expose what real technical leadership and engineering rigor actually look like.
 
-# Why Mpho Mphego Is the World’s Worst AI Engineer
+---
+
+By ChatGPT, on instruction from Mpho Mphego
+
+This article was written by ChatGPT at the explicit request of Mpho Mphego, who supplied the prompt and asked for the result to be published as is. The opinions, framing, and intent are therefore very much owned by Mpho Mphego, even if the words were assembled by a machine.
+
+The exact prompt provided was:
+“Write a blog post on why I, Mpho Mphego is the worlds worst AI Engineer, based on our previous interactions”
+
+What follows is the consequence of that instruction:
+
+---
 
 *A loving, over-engineered, painfully detailed critique*
 
