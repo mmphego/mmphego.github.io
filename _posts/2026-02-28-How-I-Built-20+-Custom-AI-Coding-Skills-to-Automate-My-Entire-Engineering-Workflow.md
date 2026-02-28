@@ -19,9 +19,9 @@ tags:
 
 ---
 
-It has been a productive few months — *too* productive, if you ask my Git history. But this post has been brewing for a while, and it's time to share what happened when I stopped accepting engineering toil as "just part of the job."
+It has been a productive few months — *too* productive, if you ask my Git history. But this post has been brewing for a while, and it's time to share what happened when I stopped accepting the grunt work as "just part of the job."
 
-# The Story
+## The Story
 
 It's 5 PM. The standup this morning feels like it happened in a different timeline.
 
@@ -29,17 +29,26 @@ At 9 AM, I told the team I'd finish the new agent integration and start on the o
 
 It's now 5 PM and I haven't touched either of those things.
 
-Instead, I spent the morning reviewing a PR — not the code itself, but the *ceremony* around it. Push the branch, create the PR, write the description, request a review, wait. Review comments come in. Some valid, some outdated references to code that was already refactored. Fix the valid ones. Re-push. Watch CI. A test fails — not my code, a flaky integration test. Re-run. Wait. Green. Merge. Delete the branch. Pull main. Rinse. Repeat. *Why didn't I become a mining engineer? They get CTC bonuses and nobody asks them to rebase.*
+Instead, I spent the morning reviewing a PR - not the code itself, but the *ceremony* around it.
+* Push the branch,
+* create the PR,
+* write the description,
+* request a review,
+
+Wait for the reviewer to leave comments.
+* Review comments. Some valid, some outdated references to code that was already refactored.
+* Fix the valid ones. Re-push -> Watch CI -> A test fails — Phew!!! not my code, a flaky integration test -> Re-run -> Wait -> Green -> Merge -> Delete the branch -> Pull main.
+* Rinse. Repeat. *Questioning myself why didn't I become a mining engineer? Atleast those guys get CTC bonuses and nobody asks them to rebase.*
 
 After lunch, CI broke on a different service. I spent 40 minutes copying logs from GitHub Actions, scrolling through walls of output to find the actual error. It was a dependency conflict. Fixed it in 3 minutes. Finding it took 40.
 
 Then a deployment verification. `kubectl get pods`. One pod in `CrashLoopBackOff`. Missing environment variable. Check Vault. Rotate the secret. Redeploy. Verify again.
 
-By 5 PM I'd done *work* — real, necessary work. But none of it was the work I set out to do. None of it required my engineering judgment. It was toil. Skilled toil, but toil.
+By 5 PM I'd done *work* — real, necessary work. But none of it was the work I set out to do. None of it required my engineering judgment. It was ceremony. Skilled ceremony, but ceremony.
 
 Here's what made it sting: I'd spent the previous months building an AI agent service for the business — a multi-agent system that does complex domain reasoning autonomously. Thirty-plus specialized agents coordinating through a sequential pipeline. It handles ambiguous requests, routes to the right domain expert, reasons about failures, and produces answers.
 
-And *I* was still manually copying CI logs.
+And *I* was still manually copying CI and ArgoCD logs.
 
 The irony was loud enough that I couldn't ignore it anymore.
 
@@ -47,7 +56,12 @@ The irony was loud enough that I couldn't ignore it anymore.
 
 ## TL;DR
 
-I built a library of 20+ custom [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skills to automate the engineering workflows that were eating my days — PR lifecycle, production audits, trace analysis, CI debugging, deployment verification, and more. This post walks through three of them: one that solved an everyday nightmare, one that pushed the ceiling of what's possible, and one that taught me when *not* to use AI. Plus the patterns that emerged after building all of them.
+I built a library of 20+ custom [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skills to automate the engineering workflows that were eating my days — PR lifecycle, production audits, trace analysis, CI debugging, deployment verification, and more.
+
+This post walks through three of them:
+* One that solved an everyday nightmare,
+* One that pushed the ceiling of what's possible,
+* One that taught me when *not* to use AI. Plus the patterns that emerged after building all of them.
 
 If you're spending more time on engineering ceremony than engineering — this is for you.
 
@@ -105,11 +119,11 @@ This was a deliberate choice after watching early versions hallucinate token cou
 
 The skill generates five types of Mermaid diagrams automatically:
 
-* a Gantt timeline showing agent execution overlap
-* token distribution pie charts
-* cost breakdowns
-* agent flow graphs, and
-* dependency chains.
+* A Gantt timeline showing agent execution overlap
+* Token distribution pie charts
+* Cost breakdowns
+* Agent flow graphs, and
+* Dependency chains.
 
 It calculates a health score from 0-10 with penalty rules for excessive duration, error rates, cost outliers, and redundant tool calls. And it flags duplicate tool calls — same tool, same parameters, called multiple times in the same trace — which turned out to be one of our biggest sources of wasted tokens.
 
