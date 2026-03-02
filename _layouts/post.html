@@ -2,6 +2,7 @@
 layout: base
 ---
 
+{% include reading-progress.html %}
 {% include header.html type="post" %}
 {% include advertisements.html %}
 
@@ -37,6 +38,8 @@ layout: base
 
       </article>
 
+      {% include lazy-images.html %}
+
       {% if page.tags.size > 0 %}
         <div class="blog-tags">
           Tags:
@@ -53,6 +56,8 @@ layout: base
       {% if page.social-share %}
         {% include social-share.html %}
       {% endif %}
+
+      {% include related-posts.html %}
 
       <ul class="pager blog-pager">
         {% if page.previous.url %}
@@ -76,6 +81,8 @@ layout: base
           {% include disqus.html %}
         </div>
       {% endif %}
+
+      {% include copy-code.html %}
     </div>
   </div>
 </div>
