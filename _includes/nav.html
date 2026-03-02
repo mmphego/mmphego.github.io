@@ -12,6 +12,9 @@
       {% else %}
         <a class="navbar-brand" href="{{ site.baseurl }}/">{{ site.title }}</a>
       {% endif %}
+      <button onclick="toggleDarkMode()" title="Toggle Dark Mode" class="dark-mode-toggle" aria-label="Toggle dark mode">
+        <i class="fa fa-moon-o" id="dark-mode-icon"></i>
+      </button>
     </div>
 
     <div class="collapse navbar-collapse" id="main-navbar">
@@ -34,11 +37,6 @@
           </li>
           {% endif %}
         {% endfor %}
-        <li>
-          <button onclick="toggleDarkMode()" title="Toggle Dark Mode" class="dark-mode-toggle" aria-label="Toggle dark mode">
-            <i class="fa fa-moon-o" id="dark-mode-icon"></i>
-          </button>
-        </li>
       </ul>
 
     </div>

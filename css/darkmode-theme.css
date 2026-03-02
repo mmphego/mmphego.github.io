@@ -89,6 +89,14 @@ body.dark {
   opacity: 0.9;
 }
 
+.dark .box-warning {
+  background-color: #3a3a1a;
+}
+
+.dark .box-error {
+  background-color: #3a1a1a;
+}
+
 .dark .blog-post table th {
   background-color: #16213e;
   color: #e0e0e0;

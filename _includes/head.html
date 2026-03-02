@@ -37,21 +37,23 @@
     if (isDark) {
       document.documentElement.classList.add('dark');
     }
+    // Apply to body once DOM is ready, and set icon state
+    document.addEventListener('DOMContentLoaded', function() {
+      if (isDark) {
+        document.body.classList.add('dark');
+      }
+      var icon = document.getElementById('dark-mode-icon');
+      if (icon) icon.className = isDark ? 'fa fa-sun-o' : 'fa fa-moon-o';
+    });
   })();
   function toggleDarkMode() {
-    var isDark = document.body.classList.toggle('dark');
+    document.body.classList.toggle('dark');
     document.documentElement.classList.toggle('dark');
+    var isDark = document.documentElement.classList.contains('dark');
     localStorage.setItem('darkMode', isDark);
     var icon = document.getElementById('dark-mode-icon');
     if (icon) icon.className = isDark ? 'fa fa-sun-o' : 'fa fa-moon-o';
   }
-  // Set initial icon state
-  document.addEventListener('DOMContentLoaded', function() {
-    var icon = document.getElementById('dark-mode-icon');
-    if (icon && document.documentElement.classList.contains('dark')) {
-      icon.className = 'fa fa-sun-o';
-    }
-  });
 </script>
 
   {% if page.use-mathjax %}

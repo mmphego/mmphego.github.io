@@ -180,10 +180,17 @@ img {
 
 /* --- Navbar --- */
 
+/* Prevent Mailchimp popup from intercepting navbar clicks */
+#PopupSignupForm_0 {
+  position: relative;
+  z-index: 0;
+}
+
 .navbar-custom {
   background: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
   font-family: var(--font-sans);
+  z-index: 10000 !important;
   {% if site.navbar-col %}
   background: {{ site.navbar-col }};
   {% endif %}
@@ -224,6 +231,9 @@ img {
   width: 36px;
   height: 36px;
   padding: 0;
+  float: right;
+  margin-top: 8px;
+  margin-right: 10px;
   color: var(--color-text);
   border-radius: 50%;
   transition: background var(--duration-fast) var(--ease-out),
@@ -239,10 +249,10 @@ img {
 .dark .navbar-custom .dark-mode-toggle:hover {
   background: rgba(255, 255, 255, 0.08);
 }
-.navbar-custom .nav li:last-child {
-  display: flex;
-  align-items: center;
-  padding: 0 8px;
+@media only screen and (min-width: 768px) {
+  .navbar-custom .dark-mode-toggle {
+    margin-top: 15px;
+  }
 }
 
 .navbar-custom .navbar-brand-logo {
@@ -504,7 +514,7 @@ footer .theme-by {
 
 .blog-tags {
   font-family: var(--font-sans);
-  color: #999;
+  color: var(--color-text-muted);
   font-size: 15px;
   margin-bottom: 30px;
 }
@@ -962,25 +972,12 @@ td.gutter {
   line-height: 1.5;
 }
 .section-nav a {
-  color: #555;
+  color: var(--color-text-muted);
   text-decoration: none;
 }
 .section-nav a:hover {
-  color: #a50509;
+  color: var(--color-accent);
   text-decoration: underline;
-}
-.dark .section-nav {
-  background-color: #1e1e30;
-  border-color: #3a3a5c;
-}
-.dark .section-nav::before {
-  color: #e0e0e0;
-}
-.dark .section-nav a {
-  color: #b0b0b0;
-}
-.dark .section-nav a:hover {
-  color: #64b5f6;
 }
 
 /* --- Related Posts ("Continue Reading") --- */
@@ -1307,7 +1304,7 @@ td.gutter {
   margin-right: 5px;
 }
 .post-preview.featured {
-  border-left: 3px solid #a50509;
+  border-left: 3px solid var(--color-accent);
   padding-left: 15px;
 }
 .dark .featured-posts {
