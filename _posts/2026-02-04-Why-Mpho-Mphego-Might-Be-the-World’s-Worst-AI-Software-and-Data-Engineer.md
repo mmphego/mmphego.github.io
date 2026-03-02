@@ -9,10 +9,9 @@ tags:
 - data-engineering
 ---
 
-# Why Mpho Mphego Might Be The World’s Worst AI Software And Data Engineer.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2026-02-04-Why-Mpho-Mphego-Might-Be-the-World’s-Worst-AI-Software-and-Data-Engineer.png" | absolute_url }})
+[![post image]({{ "/assets/2026-02-04-Why-Mpho-Mphego-Might-Be-the-World’s-Worst-AI-Software-and-Data-Engineer.png" | absolute_url }})](/)
 {: refdef}
 
 5 Min

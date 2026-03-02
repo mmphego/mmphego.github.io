@@ -5,7 +5,6 @@ date: 2019-04-04 07:32:20.000000000 +02:00
 tags:
 - Personal
 ---
-# The Internet is full of chimpanzees.
 
 *Note:* I am not the original author of this piece, I merely found it very profound and had to have it on my blog.
 

@@ -8,7 +8,6 @@ tags:
 - Tips/Tricks
 - Linux/Ubuntu
 ---
-# Useful Bash Aliases and Functions
 
 A number of Linux CLI tools use the "subcommand" pattern, ie the command takes a subcommand argument separated by white-space. For example: git, which uses subcommands like pull, clone, checkout, etc.:
 

@@ -6,13 +6,11 @@ tags:
 - Retrospective
 - Yearend
 ---
-# 2021 In Retrospective...
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2021-12-31-2021-In-Retrospective.png" | absolute_url }})
+[![post image]({{ "/assets/2021-12-31-2021-In-Retrospective.png" | absolute_url }})](/)
 {: refdef}
 
-7 Min Read
 
 ---
 

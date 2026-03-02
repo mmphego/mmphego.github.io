@@ -8,13 +8,11 @@ tags:
 - Data Warehouse
 - AWS
 ---
-# How To Verify Data Quality On Tables Landed On AWS Data Lake And Data Warehouse.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2023-11-11-How-to-Verify-Data-Quality-on-Tables-Landed-on-AWS-Data-Lake-and-Data-Warehouse.png" | absolute_url }})
+[![post image]({{ "/assets/2023-11-11-How-to-Verify-Data-Quality-on-Tables-Landed-on-AWS-Data-Lake-and-Data-Warehouse.png" | absolute_url }})](/)
 {: refdef}
 
-5 Min Read
 
 ---
 

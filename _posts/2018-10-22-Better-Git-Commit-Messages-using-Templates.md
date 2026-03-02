@@ -8,7 +8,6 @@ tags:
 - Linux/Ubuntu
 ---
 
-# Better Commit Messages using Templates
 
 As a *developer*, one always needs to be learning consistently in-order to improve they're skills that is exactly what I told my colleague the other day while I was scrolling through my phone trying to clean up some space, I remember he was like, "Mpho why do you have so many apps?"
 

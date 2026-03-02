@@ -8,13 +8,11 @@ tags:
 - Lunch and Learn
 - Talk
 ---
-# Lunch 'n Learn: Docker And Docker Compose (Noobs)
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2022-02-14-Lunch-n-Learn-Docker-and-Docker-compose-Noobs.png" | absolute_url }})
+[![post image]({{ "/assets/2022-02-14-Lunch-n-Learn-Docker-and-Docker-compose-Noobs.png" | absolute_url }})](/)
 {: refdef}
 
-2 Min Read
 
 ---
 

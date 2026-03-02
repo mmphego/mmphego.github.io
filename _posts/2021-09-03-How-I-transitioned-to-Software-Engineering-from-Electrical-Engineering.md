@@ -6,13 +6,11 @@ tags:
 - Life lessons
 - Learnings
 ---
-# How I Transitioned To Software Engineering From Electrical Engineering.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2021-09-03-How-I-transitioned-to-Software-Engineering-from-Electrical-Engineering.png" | absolute_url }})
+[![post image]({{ "/assets/2021-09-03-How-I-transitioned-to-Software-Engineering-from-Electrical-Engineering.png" | absolute_url }})](/)
 {: refdef}
 
-9 Min Read
 
 ---
 

@@ -9,13 +9,11 @@ tags:
 - Tips and Tricks
 - DevOps
 ---
-# How I Setup A Private Local PyPI Server Using Docker And Ansible.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2021-06-15-How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible.png" | absolute_url }})
+[![post image]({{ "/assets/2021-06-15-How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible.png" | absolute_url }})](/)
 {: refdef}
 
-7 Min Read
 
 -----------------------------------------------------------------------------------------
 

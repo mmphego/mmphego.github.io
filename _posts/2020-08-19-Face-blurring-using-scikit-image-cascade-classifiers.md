@@ -9,13 +9,11 @@ tags:
 - Scikit learn
 - Tips/Tricks
 ---
-# Face Blurring Using Scikit-image Cascade Classifiers.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2020-08-19-Face-blurring-using-scikit-image-cascade-classifiers.png" | absolute_url }})
+[![post image]({{ "/assets/2020-08-19-Face-blurring-using-scikit-image-cascade-classifiers.png" | absolute_url }})](/)
 {: refdef}
 
-9 Min Read
 
 -----------------------------------------------------------------------------------------
 

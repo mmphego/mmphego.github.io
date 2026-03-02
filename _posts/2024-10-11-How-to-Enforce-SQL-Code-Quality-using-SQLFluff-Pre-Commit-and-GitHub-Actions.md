@@ -7,13 +7,11 @@ tags:
 - Data Engineering
 - Code Quality
 ---
-# How To Enforce SQL Code Quality Using SQLFluff, Pre-Commit And GitHub Actions.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2024-10-11-How-to-Enforce-SQL-Code-Quality-using-SQLFluff-Pre-Commit-and-GitHub-Actions.png" | absolute_url }})
+[![post image]({{ "/assets/2024-10-11-How-to-Enforce-SQL-Code-Quality-using-SQLFluff-Pre-Commit-and-GitHub-Actions.png" | absolute_url }})](/)
 {: refdef}
 
-8 Min Read
 
 ---
 

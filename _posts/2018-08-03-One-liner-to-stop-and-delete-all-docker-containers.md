@@ -8,7 +8,6 @@ tags:
 - Tips/Tricks
 - Linux/Ubuntu
 ---
-# One liner to stop / delete all of Docker containers
 
 ```bash
 $ docker stop $(docker ps -a -q); docker rm $(docker ps -a -q); docker rmi $(docker images -q);  docker volume rm $(docker volume ls -q --filter dangling=true)

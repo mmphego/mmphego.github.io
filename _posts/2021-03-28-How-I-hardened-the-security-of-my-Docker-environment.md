@@ -7,13 +7,11 @@ tags:
 - Security
 - Tips and Tricks
 ---
-# How I Hardened The Security Of My Docker Environment.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2021-03-28-How-I-hardened-the-security-of-my-Docker-environment.png" | absolute_url }})
+[![post image]({{ "/assets/2021-03-28-How-I-hardened-the-security-of-my-Docker-environment.png" | absolute_url }})](/)
 {: refdef}
 
-9 Min Read
 
 -----------------------------------------------------------------------------------------
 

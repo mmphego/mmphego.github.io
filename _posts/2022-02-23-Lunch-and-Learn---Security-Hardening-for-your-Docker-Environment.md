@@ -9,13 +9,11 @@ tags:
 - Security
 - Talk
 ---
-# Lunch And Learn: Security Hardening For Your Docker Environment
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2022-02-23-Lunch-and-Learn-Security-Hardening-for-your-Docker-Environment.png" | absolute_url }})
+[![post image]({{ "/assets/2022-02-23-Lunch-and-Learn-Security-Hardening-for-your-Docker-Environment.png" | absolute_url }})](/)
 {: refdef}
 
-3 Min Read
 
 ---
 

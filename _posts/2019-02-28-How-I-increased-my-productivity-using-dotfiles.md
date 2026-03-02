@@ -7,7 +7,6 @@ tags:
 - Tips/Tricks
 - dotfiles
 ---
-# How I increased my productivity using dotfiles
 
 **TLDR**; *You can set up a new system using dotfiles and an installation script in minutes. It’s not hard to create your own repository, and you’ll learn a ton along the road. This is truly more about the journey than the destination!*
 

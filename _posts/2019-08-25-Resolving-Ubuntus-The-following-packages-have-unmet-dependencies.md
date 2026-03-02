@@ -6,7 +6,6 @@ tags:
 - Tips/Tricks
 - Ubuntu
 ---
-# Resolving Ubuntu's 'The Following Packages Have Unmet Dependencies' error.
 
 -----------------------------------------------------------------------------------------
 

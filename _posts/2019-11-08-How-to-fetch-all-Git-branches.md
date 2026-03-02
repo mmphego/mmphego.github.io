@@ -6,10 +6,9 @@ tags:
 - Git
 - Tips/Tricks
 ---
-# How To Fetch All Git Branches.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2019-11-08-How-to-fetch-all-Git-branches.jpg" | absolute_url }})
+[![post image]({{ "/assets/2019-11-08-How-to-fetch-all-Git-branches.jpg" | absolute_url }})](/)
 {: refdef}
 
 -----------------------------------------------------------------------------------------

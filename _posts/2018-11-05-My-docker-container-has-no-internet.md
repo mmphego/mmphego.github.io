@@ -7,7 +7,6 @@ tags:
 - Tips/Tricks
 - Linux/Ubuntu
 ---
-# My Docker container has no internet
 
 I had an issue with my Docker containers building when I am connected to my work network, this post is mainly for my archival and future use.
 

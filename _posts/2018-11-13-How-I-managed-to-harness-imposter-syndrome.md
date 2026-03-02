@@ -6,7 +6,6 @@ tags:
 - Personal
 - Professional
 ---
-# How I managed to harness Imposter Syndrome!
 
 If you are reading this post, either you have suffered from *Imposter Syndrome* knowingly or unknowingly.
 

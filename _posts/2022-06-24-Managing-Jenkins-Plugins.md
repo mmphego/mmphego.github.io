@@ -6,13 +6,11 @@ tags:
 - Jenkins
 - DevOps
 ---
-# Managing Jenkins Plugins
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2022-06-24-Managing-Jenkins-Plugins.png" | absolute_url }})
+[![post image]({{ "/assets/2022-06-24-Managing-Jenkins-Plugins.png" | absolute_url }})](/)
 {: refdef}
 
-3 Min Read
 
 ---
 

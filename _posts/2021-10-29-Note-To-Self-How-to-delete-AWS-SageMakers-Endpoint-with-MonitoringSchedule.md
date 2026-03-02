@@ -8,13 +8,11 @@ tags:
 - MonitoringML
 - Machine Learning
 ---
-# Note To Self: How To Delete AWS SageMaker's Endpoint With MonitoringSchedule
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2021-10-29-Note-To-Self-How-to-delete-AWS-SageMakers-Endpoint-with-MonitoringSchedule.png" | absolute_url }})
+[![post image]({{ "/assets/2021-10-29-Note-To-Self-How-to-delete-AWS-SageMakers-Endpoint-with-MonitoringSchedule.png" | absolute_url }})](/)
 {: refdef}
 
-4 Min Read
 
 ---
 

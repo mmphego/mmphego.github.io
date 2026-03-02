@@ -8,13 +8,11 @@ tags:
 - Linux
 - Tips and Tricks
 ---
-# Note To Self: How To Fix `CreateContainerError` On All Pods.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2021-07-12-Note-To-Self-How-to-fix-CreateContainerError-on-all-pods.png" | absolute_url }})
+[![post image]({{ "/assets/2021-07-12-Note-To-Self-How-to-fix-CreateContainerError-on-all-pods.png" | absolute_url }})](/)
 {: refdef}
 
-3 Min Read
 
 -----------------------------------------------------------------------------------------
 

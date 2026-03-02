@@ -6,10 +6,9 @@ tags:
 - Tips/Tricks
 - GitHub
 ---
-# How To Make Your GitHub Profile Look Fancy.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2020-07-10-How-to-make-your-GitHub-profile-look-fancy.png" | absolute_url }})
+[![post image]({{ "/assets/2020-07-10-How-to-make-your-GitHub-profile-look-fancy.png" | absolute_url }})](/)
 {: refdef}
 
 -----------------------------------------------------------------------------------------

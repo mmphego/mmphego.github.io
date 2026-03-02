@@ -11,13 +11,11 @@ tags:
 - Python
 - Tips/Tricks
 ---
-# How I Deployed A Computer Pointer Controller Using Gaze Estimation.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2020-07-18-How-I-deployed-a-Computer-Pointer-Controller-using-Gaze-Estimation.png" | absolute_url }})
+[![post image]({{ "/assets/2020-07-18-How-I-deployed-a-Computer-Pointer-Controller-using-Gaze-Estimation.png" | absolute_url }})](/)
 {: refdef}
 
-10 Min Read
 
 -----------------------------------------------------------------------------------------
 

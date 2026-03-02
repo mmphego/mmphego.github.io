@@ -8,7 +8,6 @@ tags:
 - Tips/Tricks
 - Linux/Ubuntu
 ---
-# What is your 10 common Linux commands?
 
 Dear command line ninjas, Mr CLI and keyboard pianist:
 

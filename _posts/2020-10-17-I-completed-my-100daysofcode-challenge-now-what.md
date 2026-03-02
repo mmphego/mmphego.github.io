@@ -6,13 +6,11 @@ tags:
 - 100daysofcode
 - Learning
 ---
-# I Completed My #100daysofcode Challenge, Now What!
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2020-10-17-I-completed-my-100daysofcode-now-what.png" | absolute_url }})
+[![post image]({{ "/assets/2020-10-17-I-completed-my-100daysofcode-now-what.png" | absolute_url }})](/)
 {: refdef}
 
-6 Min Read
 
 -----------------------------------------------------------------------------------------
 

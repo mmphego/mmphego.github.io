@@ -9,13 +9,11 @@ tags:
 - DevOps
 - Observability
 ---
-# Install Prometheus & Grafana With Helm 3 On Kubernetes Cluster Running On Vagrant VM.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2021-02-01-Install-Prometheus-and-Grafana-with-helm-3-on-Kubernetes-cluster-running-on-Vagrant-VM.png" | absolute_url }})
+[![post image]({{ "/assets/2021-02-01-Install-Prometheus-and-Grafana-with-helm-3-on-Kubernetes-cluster-running-on-Vagrant-VM.png" | absolute_url }})](/)
 {: refdef}
 
-6 Min Read
 
 -----------------------------------------------------------------------------------------
 

@@ -10,13 +10,11 @@ tags:
 - Pytorch
 - Udacity
 ---
-# My Experience And What I Learned From Udacity AI Programming With Python Nano-Degree: Part 2.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2020-01-06-My-Experience-And-What-I-Learned-From-Udacity-AI-Programming-With-Python-Nano-Degree-Part-2.jpg" | absolute_url }})
+[![post image]({{ "/assets/2020-01-06-My-Experience-And-What-I-Learned-From-Udacity-AI-Programming-With-Python-Nano-Degree-Part-2.jpg" | absolute_url }})](/)
 {: refdef}
 
-27 Min Read
 
 -----------------------------------------------------------------------------------------
 
@@ -100,7 +98,7 @@ In this section, I will detail a step-by-step on how I built an AI-based flower 
 A typical application would be using something like this in as a phone app that tells you the name of the flower (or just about any image) your camera is looking at.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/flower_class_pytorch.png" | absolute_url }})
+[![post image]({{ "/assets/flower_class_pytorch.png" | absolute_url }})](/)
 {:refdef}
 
 This step-by-step assumes you have some knowledge of Python and will not go into the details as to know to install it and the modules used.
@@ -382,7 +380,7 @@ def validation(model, validloader, criterion):
 If everything is set up correctly, you should see something like the following:
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/model_training.png" | absolute_url }})
+[![post image]({{ "/assets/model_training.png" | absolute_url }})](/)
 {:refdef}
 
 The *densenet161* pre-trained model appears to be learning with each epoch, having an accuracy of **90%** in under 20 minutes on training using a **GPU** and it doesn’t appear that our model is over-fitting.
@@ -426,7 +424,7 @@ def test_model(model, test_loaders, _threshold=70):
 
 From the image below one can easily see that the accuracy of the prediction is just over *89%*, which simply means that our model is doing exactly what it's supposed to do.
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/testing_model.png" | absolute_url }})
+[![post image]({{ "/assets/testing_model.png" | absolute_url }})](/)
 {:refdef}
 
 ## Finally using the model
@@ -436,7 +434,7 @@ After confidently building a model with an accuracy of *89%* we can now complete
 Lets randomly select an image from the dataset and parse it through our model to predict if the model with accurately guess what the flower is. From the [flower category](https://www.robots.ox.ac.uk/~vgg/data/flowers/102/categories.html) we know that the flower is a **hibiscus'**
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/show_image.png" | absolute_url }})
+[![post image]({{ "/assets/show_image.png" | absolute_url }})](/)
 {:refdef}
 
 
@@ -488,7 +486,7 @@ Once I got the images in the correct format, it was time to write a function for
 To get the top `K` largest values in a tensor I used `x.topk(k)`. This method returns both the highest k probabilities and the indices of those probabilities corresponding to the classes. I had to convert from these indices to the actual class labels using `class_to_idx` which I added to the model. I had to switch the direction of the `keys` and `values` such that I could index using what was provided back from the model to pull the class number.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/labels_mapping.png" | absolute_url }})
+[![post image]({{ "/assets/labels_mapping.png" | absolute_url }})](/)
 
 ***image*** *label_map: class -> flower, class_to_idx: class -> pred*
 {:refdef}
@@ -590,13 +588,13 @@ sanity_check(image_path, model, cat_to_name)
 The function uses the trained model for predictions, and we need to ensure that it makes sense. Even if the testing accuracy is high, it's always good to check that there aren't obvious bugs. By using `matplotlib` library I was able to plot the probabilities for the top 5 classes as a bar graph, along with the input image. The prediction is shown below.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/image_prediction.png" | absolute_url }})
+[![post image]({{ "/assets/image_prediction.png" | absolute_url }})](/)
 {:refdef}
 
 Upon completion I uploaded my code and a day later after reviewing, I was greeted with the message below:
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/udacity_ai_completion.png" | absolute_url }})
+[![post image]({{ "/assets/udacity_ai_completion.png" | absolute_url }})](/)
 {:refdef}
 
 ----------------------------------------------------------

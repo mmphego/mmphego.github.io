@@ -7,13 +7,11 @@ tags:
 - Makefile
 - Tips/Tricks
 ---
-# Why You Should Add Makefile Into Your Python Project.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2020-09-16-Why-you-should-add-Makefile-into-your-Python-project.png" | absolute_url }})
+[![post image]({{ "/assets/2020-09-16-Why-you-should-add-Makefile-into-your-Python-project.png" | absolute_url }})](/)
 {: refdef}
 
-5 Min Read
 
 -----------------------------------------------------------------------------------------
 

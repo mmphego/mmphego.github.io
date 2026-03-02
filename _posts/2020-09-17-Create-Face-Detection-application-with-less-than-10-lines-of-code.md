@@ -10,13 +10,11 @@ tags:
 - Python
 - Tips/Tricks
 ---
-# Create A Face Detection Application With Less Than 10 Lines Of Code.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2020-09-17-Create-Face-Detection-application-with-less-than-10-lines-of-code.png" | absolute_url }})
+[![post image]({{ "/assets/2020-09-17-Create-Face-Detection-application-with-less-than-10-lines-of-code.png" | absolute_url }})](/)
 {: refdef}
 
-7 Min Read
 
 -----------------------------------------------------------------------------------------
 

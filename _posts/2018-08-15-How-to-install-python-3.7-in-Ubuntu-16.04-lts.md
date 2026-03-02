@@ -8,7 +8,6 @@ tags:
 - Tips/Tricks
 - Linux/Ubuntu
 ---
-# How to install Python 3.7.0 in Ubuntu 16.04 LTS
 
 This quick tutorial is going to show you how to install the latest [Python-3.7.0](https://www.python.org/downloads/release/python-370/) in Ubuntu 16.04 LTS
 

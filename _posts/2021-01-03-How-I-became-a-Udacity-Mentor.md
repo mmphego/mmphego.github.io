@@ -7,13 +7,11 @@ tags:
 - Learning
 - Mentorship
 ---
-# How I Became A Udacity Mentor.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "assets/2021-01-03-How-I-became-a-Udacity-Mentor.png" | absolute_url }})
+[![post image]({{ "assets/2021-01-03-How-I-became-a-Udacity-Mentor.png" | absolute_url }})](/)
 {: refdef}
 
-6 Min Read
 
 ---
 

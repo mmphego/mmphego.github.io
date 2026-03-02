@@ -13,13 +13,11 @@ tags:
 - Retrospective
 - Udacity
 ---
-# 2020 In Retrospective.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2020-12-30-2020-In-Retrospective.png" | absolute_url }})
+[![post image]({{ "/assets/2020-12-30-2020-In-Retrospective.png" | absolute_url }})](/)
 {: refdef}
 
-6 Min Read
 
 -----------------------------------------------------------------------------------------
 

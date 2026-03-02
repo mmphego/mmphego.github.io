@@ -8,7 +8,6 @@ tags:
 - Linux/Ubuntu
 - Tips/Tricks
 ---
-# How I published/deployed my Python package to PYPI easily.
 
 I love reading [Medium](http://medium.com/) post time to time, but never have enough time between juggling school, work and family the dream of reading daily posts just happens to fade into the abyss over time. And the links to posts that interest me keep on piling up and up on my Google Keep.
 

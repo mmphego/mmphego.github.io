@@ -10,7 +10,6 @@ tags:
 - Linux/Ubuntu
 ---
 
-# I gave a talk at the DevOpsDays conference the other day!
 
 ![Devopsdays]({{ "/assets/devopsdays_logo.png" | absolute_url }})
 

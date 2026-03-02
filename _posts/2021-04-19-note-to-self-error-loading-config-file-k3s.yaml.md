@@ -7,13 +7,11 @@ tags:
 - Kubernetes
 - Tips and Tricks
 ---
-# Note To Self: Error Loading Config File `/etc/rancher/k3s/k3s.yaml`
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2021-04-19-note-to-self-error-loading-config-file-k3s.yaml.png" | absolute_url }})
+[![post image]({{ "/assets/2021-04-19-note-to-self-error-loading-config-file-k3s.yaml.png" | absolute_url }})](/)
 {: refdef}
 
-3 Min Read
 
 -----------------------------------------------------------------------------------------
 

@@ -12,13 +12,11 @@ tags:
 - Troubleshooting
 ---
 
-# FAQ: Cloud Native Application Architecture Udacity Nanodegree
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2021-10-12-FAQ-Cloud-Native-Application-Architecture-Udacity-Nanodegree.png" | absolute_url }})
+[![post image]({{ "/assets/2021-10-12-FAQ-Cloud-Native-Application-Architecture-Udacity-Nanodegree.png" | absolute_url }})](/)
 {: refdef}
 
-2 Min Read
 
 ---
 

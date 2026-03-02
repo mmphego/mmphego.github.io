@@ -8,13 +8,11 @@ tags:
 - Automation
 - Tips/Tricks
 ---
-# I Built An Automated Irrigation System, Because I'm Lazy!
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2019-09-02-I-built-an-automated-irrigation-system-because-im-lazy!.jpg" | absolute_url }})
+[![post image]({{ "/assets/2019-09-02-I-built-an-automated-irrigation-system-because-im-lazy!.jpg" | absolute_url }})](/)
 {: refdef}
 
-8 Min Read
 
 {:refdef: style="text-align: right;"}
 <figure>
@@ -222,6 +220,6 @@ It would be great if I add some AI to the system. Adding some blue filters and m
 # Final Implementations
 
 Current setup at the office, Hot glue and prestik mess but works.
-![post image]({{ "assets/IMG_20190902_073749.jpg" | absolute_url }})
+[![post image]({{ "assets/IMG_20190902_073749.jpg" | absolute_url }})](/)
 
-![post image]({{ "assets/IMG_20190902_073801.jpg" | absolute_url }})
+[![post image]({{ "assets/IMG_20190902_073801.jpg" | absolute_url }})](/)

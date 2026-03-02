@@ -8,7 +8,6 @@ tags:
 - Tips/Tricks
 - Linux/Ubuntu
 ---
-# Running code at IPython startup (ever wondered)
 
 Ever wondered, if there was a way you would automagically execute certain codes(eg import modules, etc) upon opening your favourite interactive python command shell (tl;dr [IPython](https://ipython.org/)). I guess that's the reason why you are reading this post.
 

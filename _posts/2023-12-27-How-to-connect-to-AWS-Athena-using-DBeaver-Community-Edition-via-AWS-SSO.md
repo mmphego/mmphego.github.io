@@ -8,13 +8,11 @@ tags:
 - Data Engineering
 - DBeaver
 ---
-# How To Connect To AWS Athena Using DBeaver Community Edition Via AWS SSO
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2023-12-27-How-to-connect-to-AWS-Athena-using-DBeaver-Community-Edition-via-AWS-SSO.png" | absolute_url }})
+[![post image]({{ "/assets/2023-12-27-How-to-connect-to-AWS-Athena-using-DBeaver-Community-Edition-via-AWS-SSO.png" | absolute_url }})](/)
 {: refdef}
 
-5 Min Read
 
 ---
 

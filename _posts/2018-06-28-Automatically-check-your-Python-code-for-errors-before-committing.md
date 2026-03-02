@@ -10,7 +10,6 @@ tags:
 - Linux/Ubuntu
 ---
 
-# Automatically check your Python code for errors before committing
 ## Updated 2018-07-16
 
 Last night I had the opportunity to attend a [Devops for the lone developer:meetup.com](https://www.meetup.com/Cape-Town-DevOps/events/251507121/) and one of the points I took closer to heart was, "Lint your code before committing" - well something along those lines.

@@ -9,10 +9,9 @@ tags:
 - OpenVINO
 - Python
 ---
-# Face Mask Detection Using Intel OpenVINO And OpenCV.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2020-06-02-Face-Mask-Detection-using-Intel-OpenVINO-and-OpenCV.png" | absolute_url }})
+[![post image]({{ "/assets/2020-06-02-Face-Mask-Detection-using-Intel-OpenVINO-and-OpenCV.png" | absolute_url }})](/)
 {: refdef}
 
 -----------------------------------------------------------------------------------------

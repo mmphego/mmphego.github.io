@@ -13,13 +13,11 @@ tags:
 - Travis-CI
 - Udacity
 ---
-# My Experience And What I Learned From Udacity Cloud Developer Nanodegree.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2020-05-08-My-Experience-And-What-I-Learned-From-Udacity-Cloud-Developer-Nanodegree.png" | absolute_url }})
+[![post image]({{ "/assets/2020-05-08-My-Experience-And-What-I-Learned-From-Udacity-Cloud-Developer-Nanodegree.png" | absolute_url }})](/)
 {: refdef}
 
-10 Min Read
 
 -----------------------------------------------------------------------------------------
 
@@ -30,7 +28,7 @@ tags:
 Since completing a [Udacity AI Programming with Python Nanodegree](https://blog.mphomphego.co.za/blog/2019/12/15/My-Experience-And-What-I-Learned-From-Udacity-AI-Programming-With-Python-Nano-Degree-Part-1.html) funded by [AAL (African App Launchpad Program)](http://www.aal.gov.eg/) 2 months earlier than the course completion date, they (AAL) allowed me to apply for a second grant for which I was grateful for.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/aal_cloud.png" | absolute_url }})
+[![post image]({{ "/assets/aal_cloud.png" | absolute_url }})](/)
 {: refdef}
 
 A few days later, I woke up to some good news that my application was a success. After some thought, I decided to enrol for a [**Udacity Cloud Developer Nano degree**](https://imp.i115008.net/MXN25Y) as it aligned with my interest.
@@ -40,7 +38,7 @@ This offered me a great opportunity for me to familiarise myself with the servic
 
 This simply meant that I had to work twice as much, being thrown or throwing myself into the deep-end has always been something I learned to endure and eventually enjoy as Les Brown once said, *"To achieve something you have never achieved before you must become someone you have never been"*. Ok, Ok enough with this motivational talk this is a technical post after all...
 {:refdef: style="text-align: center;"}
-![post image](https://media.giphy.com/media/LOu8FUhPgpeUAi0wiu/giphy.gif)
+[![post image](https://media.giphy.com/media/LOu8FUhPgpeUAi0wiu/giphy.gif)](/)
 {: refdef}
 
 A few weeks ago, I eventually graduated from the [**Udacity Cloud Developer Nano degree**](https://imp.i115008.net/MXN25Y) program. I decided to share my experience and what I learned in the past 4 months (Jan - Apr 2020) in this post.
@@ -82,7 +80,7 @@ This part of the lesson was all about the best practices on how to develop and d
 I learned the hard way that when you are done with your (EC2 and RDS) instances, you need to ensure that they have been terminated and Elastic Beanstalk will not revive them after you have terminated them. I got the surprise of my life when I woke up to a bill of just over R1000. Contacted support and since I was using the platform for educational purposes they gladly waved it, I dodged a bullet.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/aws_bill.png" | absolute_url }})
+[![post image]({{ "/assets/aws_bill.png" | absolute_url }})](/)
 {: refdef}
 
 ### What I learned
@@ -96,7 +94,7 @@ I had to deploy the docker images to a [Kubernetes](https://kubernetes.io/) clus
 **I learned the hard way that, sometimes (Yes, Sometimes) spend more time reading the docs instead of Googling your way out.**
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/read_the_docs.jpg" | absolute_url }})
+[![post image]({{ "/assets/read_the_docs.jpg" | absolute_url }})](/)
 {: refdef}
 
 Github Project Link: [https://github.com/mmphego/cloud-developer-course3-microservices/tree/master/Project_Refactor-Udagram-app-into-Microservices-and-Deploy](https://github.com/mmphego/cloud-developer-course3-microservices/tree/master/Project_Refactor-Udagram-app-into-Microservices-and-Deploy)
@@ -125,7 +123,7 @@ See [TL;DR](#tldr)
 
 Done!
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/cloud_developer_final.png" | absolute_url }})
+[![post image]({{ "/assets/cloud_developer_final.png" | absolute_url }})](/)
 {: refdef}
 
 # Conclusion
@@ -137,7 +135,7 @@ Overall, This was a very good program that gave me an opportunity get out of my 
 The support system from Udacity was great and it offered a great platform where one can discuss the project and ask questions, and when in doubt offered an opportunity to interact one-on-one with a mentor. The code review process was pretty seamless and they generally got back to me within 24 hours with positive feedback (though sometimes they go over this depending on how busy they are). Below I added a snippet from one of the motivating review responses from one of the reviewers.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/project_review.png" | absolute_url }})
+[![post image]({{ "/assets/project_review.png" | absolute_url }})](/)
 {: refdef}
 
 I did not find a lot of cons but the content of the course is pretty densely packed, especially for [Monolith to Microservices](#monolith-to-microservices-at-scale) lesson, I found myself going through the lessons over and over to grasp the concept they (lessons) could have been a lot more comprehensive. I noticed a lot of students in the discussion forums also having issues with the lesson more especially around Kubernetes, I found myself having to spend hours upon hours going to other resources to supplement their theoretical knowledge. In the end, it forced me to go and look at the documentation and figure things out on my own, not sure if this was intentionally or not but overall that helped me significantly.

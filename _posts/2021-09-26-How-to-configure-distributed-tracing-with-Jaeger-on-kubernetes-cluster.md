@@ -11,13 +11,11 @@ tags:
 
 ---
 
-# How To Configure Distributed Tracing With Jaeger On Kubernetes Cluster
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2021-09-26-How-to-configure-distributed-tracing-with-Jaeger-on-kubernetes-cluster.png" | absolute_url }})
+[![post image]({{ "/assets/2021-09-26-How-to-configure-distributed-tracing-with-Jaeger-on-kubernetes-cluster.png" | absolute_url }})](/)
 {: refdef}
 
-10 Min Read
 
 ---
 

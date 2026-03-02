@@ -10,7 +10,6 @@ tags:
 - Linux/Ubuntu
 ---
 
-# How I configured SonarQube for Python code analysis with Jenkins and Docker
 
 As part of the series, *How I configured Jenkins CI server in a Docker container* - I wanted to implement some sort of continuous code quality and integrate it to my continuous testing environment and on this post I will document how I configured [SonarQube](https://www.sonarqube.org/) for continuous inspection of code quality (I have OCD when it comes to code quality) and we will perform a test on our local Git repository.
 

@@ -11,13 +11,11 @@ tags:
 - Data Engineering
 - Data Wrangling
 ---
-# How To Build An ETL Using Python, Docker, PostgreSQL And Airflow
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2022-01-09-How-to-build-an-ETL-using-Python-Docker-PostgreSQL-and-Airflow.png" | absolute_url }})
+[![post image]({{ "/assets/2022-01-09-How-to-build-an-ETL-using-Python-Docker-PostgreSQL-and-Airflow.png" | absolute_url }})](/)
 {: refdef}
 
-30 Min Read
 
 ---
 

@@ -6,13 +6,11 @@ tags:
     - Tips/Tricks
     - Ubuntu
 ---
-# How To Upgrade From Ubuntu 18.04 To 20.04
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2020-04-25-How-to-upgrade-from-Ubuntu-18.04-to-20.04.jpg" | absolute_url }})
+[![post image]({{ "/assets/2020-04-25-How-to-upgrade-from-Ubuntu-18.04-to-20.04.jpg" | absolute_url }})](/)
 {: refdef}
 
-6 Min Read
 
 -----------------------------------------------------------------------------------------
 
@@ -77,7 +75,7 @@ Note: *'-d'* flag denotes upgrade to the development release, If using the lates
 During upgrade procedure, it will prompt you couple of times to type *"Y"* to update package repositories and sometime *"enter"* to confirm to proceed with upgrade.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/upgrading.png" | absolute_url }})
+[![post image]({{ "/assets/upgrading.png" | absolute_url }})](/)
 {: refdef}
 
 Once the download of packages is finished, it will start upgrading and then removing old packages. This process will take time and ultimately prompt you to restart your system.
@@ -86,7 +84,7 @@ We have now successfully upgraded to Ubuntu 20.04.
 
 You can verify if the upgrade was successful by checking the Ubuntu version from the *"About"* section under *"System Settings"*.
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/ubuntu_about.png" | absolute_url }})
+[![post image]({{ "/assets/ubuntu_about.png" | absolute_url }})](/)
 {: refdef}
 
 You can also check the version from command line by running the following command:
@@ -96,7 +94,7 @@ lsb_release -a
 ```
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/ubuntu_lsb.png" | absolute_url }})
+[![post image]({{ "/assets/ubuntu_lsb.png" | absolute_url }})](/)
 {: refdef}
 
 # Troubleshooting
@@ -106,7 +104,7 @@ lsb_release -a
 After multiple failed attempts to upgrade my OS, I was finally able to fix the dreaded `python3 install is corrupted` error.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/python3_corrupted.png" | absolute_url }})
+[![post image]({{ "/assets/python3_corrupted.png" | absolute_url }})](/)
 {: refdef}
 
 The fix:
@@ -134,7 +132,7 @@ The fix:
 
 `sudo nano /etc/update-manager/release-upgrades`
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/release_upgrader.png" | absolute_url }})
+[![post image]({{ "/assets/release_upgrader.png" | absolute_url }})](/)
 {: refdef}
 
 This will enable you to upgrade to Ubuntu 19.10 instead of 20.04, once you have upgraded to 19.10 then upgrade to 20.04.
@@ -146,7 +144,7 @@ Run: `sudo nano /etc/update-manager/release-upgrades` and change `Prompt=lts` an
 Just in case if your Ubuntu system crashes due to power failure or network connectivity issue in the middle of the Upgrade process or gnome fails to start, you might end up with broken Ubuntu. That's exactly what happened in my case, when I was confronted with the screen below.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/IMG_20200421_084335.jpg" | absolute_url }})
+[![post image]({{ "/assets/IMG_20200421_084335.jpg" | absolute_url }})](/)
 {: refdef}
 
 To fix, reboot while repeatedly pressing either the *Shift* or *Esc* key. On newer computers it’s probably *Esc*. FYI the timing has to be near perfect on some computers, so you may have to press it repeatedly.
@@ -154,7 +152,7 @@ To fix, reboot while repeatedly pressing either the *Shift* or *Esc* key. On new
 You will be met with the *Grub menu*, select *Advanced Options* then GRUB will take you to a *Recovery Menu* as shown below.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/ubuntu-recovery.png" | absolute_url }})
+[![post image]({{ "/assets/ubuntu-recovery.png" | absolute_url }})](/)
 {: refdef}
 
 **Note:** Select **Network**  in the Recovery Mode list to get online before attempting to fix the upgrade, as most features requires internet connectivity.

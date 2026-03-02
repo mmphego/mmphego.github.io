@@ -9,7 +9,6 @@ tags:
 ---
 
 
-# How to securely backup your Jenkins Configuration
 ### Updated 21-08-2018
 
 The reason you ended up on this post is either because you once made some changes on your Jenkins configuration and failed to revert back the changes which led to you having to reinstall Jenkins out of frustrations Or you just want to keep a your configurations version controlled as we all know that keeping important files in version control is critical, as it ensures problematic changes can be reverted and can serve as a backup mechanism as well.

@@ -10,22 +10,20 @@ tags:
 - Pytorch
 - Udacity
 ---
-# My Experience And What I Learned From Udacity AI Programming With Python Nano-Degree: Part 1.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2019-12-15-My-Experience-And-What-I-Learned-From-Udacity-AI-Programming-With-Python-Nano-Degree-Part-1.jpg" | absolute_url }})
+[![post image]({{ "/assets/2019-12-15-My-Experience-And-What-I-Learned-From-Udacity-AI-Programming-With-Python-Nano-Degree-Part-1.jpg" | absolute_url }})](/)
 {: refdef}
 
 **Updated: 9 March, 2020**
 
-9 Min Read
 
 -----------------------------------------------------------------------------------------
 
 # The Story
 It has been quite a while since I last wrote a post, but I had reasons. A few months ago I received an email from [Udacity](https://imp.i115008.net/c/2851051/786224/11298/) and [AAL (African App Launchpad Program)](http://www.aal.gov.eg/) detailing a list of scholarships I could apply for - based on my interest in Machine Learning and Deep Learning.
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/udacity_email.png" | absolute_url }})
+[![post image]({{ "/assets/udacity_email.png" | absolute_url }})](/)
 {: refdef}
 
 I have always had an interest in AI and Machine Learning, so when this opportunity came knocking I did not even hesitate so for obvious reason I opted to apply for the scholarship [**AI programming with Python Udacity NanoDegree**](https://imp.i115008.net/NK6x7b).
@@ -33,7 +31,7 @@ I have always had an interest in AI and Machine Learning, so when this opportuni
 Completed my application and a few days later my application was **successful**, now it was off to the learning.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/aal_application.png" | absolute_url }})
+[![post image]({{ "/assets/aal_application.png" | absolute_url }})](/)
 {: refdef}
 
 As part of the course, for someone to graduate/complete one has to complete an AI-based image classification project.
@@ -52,7 +50,7 @@ If you would like to register for the scholarship, and learn a new skill-set cli
 
 **Learner Code/ALL ID: 2-7193**
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/aal_register.png" | absolute_url }})
+[![post image]({{ "/assets/aal_register.png" | absolute_url }})](/)
 {: refdef}
 
 # The How
@@ -85,7 +83,7 @@ Deep learning has several applications such as detecting spam in emails, forecas
 
 Neural networks are considered to be the heart of deep learning. Neural networks vaguely mimics the process of how the brain operates, with neurons that fire the bits of information. A deep neural network (DNN) has lots of nodes, lots of edges, lots of layers, information coming and going through these layers.
 {:refdef: style="text-align: center;"}
-![post image](https://miro.medium.com/max/1920/1*3CIrmxmNJnzNg8J2KFL2AQ.gif)
+[![post image](https://miro.medium.com/max/1920/1*3CIrmxmNJnzNg8J2KFL2AQ.gif)](/)
 {:refdef}
 
 The image above illustrates how a simple neural network does a good job classifying between cats and dogs. Let me explain some terminologies that lets us name all these different parts of the neural network above.
@@ -142,7 +140,7 @@ The last part of the course was more aimed at tools and how to use them. I learn
 By the time I am writing this post there's currently 2 (two) open source libraries that are taking over the world by storm in the AI and Machine Learning field namely: [Facebook's PyTorch](https://pytorch.org/) and [Google's TensorFlow](https://www.tensorflow.org/).
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/google_trends.png" | absolute_url }})
+[![post image]({{ "/assets/google_trends.png" | absolute_url }})](/)
 ***Image:*** *[Pytorch vs Tensorflow](https://trends.google.com/trends/explore?date=today%205-y&q=%2Fg%2F11gd3905v1,%2Fg%2F11bwp1s2k3)*
 {:refdef}
 

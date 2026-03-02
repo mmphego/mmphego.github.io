@@ -7,13 +7,11 @@ tags:
 - How-to
 - Tips and Tricks
 ---
-# How I Uninstalled YouTube From Android TV
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2022-04-11-How-I-uninstalled-YouTube-from-Android-TV.png" | absolute_url }})
+[![post image]({{ "/assets/2022-04-11-How-I-uninstalled-YouTube-from-Android-TV.png" | absolute_url }})](/)
 {: refdef}
 
-5 Min Read
 
 ---
 

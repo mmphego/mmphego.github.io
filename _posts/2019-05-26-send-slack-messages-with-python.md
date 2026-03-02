@@ -6,7 +6,6 @@ tags:
 - Python
 - Tips/Tricks
 ---
-# Send Slack messages with Python.
 
 We use and love [Slack](http://slack.com/) for team messaging, throughout the day. I needed to integrate slack with some of my IoT devices in the office and at home primarily because of its simplistic API as compared to WhatsApp and Telegram (that I never use).
 

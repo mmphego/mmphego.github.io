@@ -10,7 +10,6 @@ tags:
 - Linux/Ubuntu
 ---
 
-# How to rename git branch locally and remotely
 
 Most times I find myself, with the need to rename a git branch I am working on, due to various reasons.
 

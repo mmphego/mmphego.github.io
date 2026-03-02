@@ -8,12 +8,10 @@ tags:
 - Python
 - Security
 ---
-# How To Sign Your Commits On GitHub With GPG.
 
-11 Min Read
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2019-07-18-How-to-sign-your-commits-on-GitHub-with-GPG.jpg" | absolute_url }})
+[![post image]({{ "/assets/2019-07-18-How-to-sign-your-commits-on-GitHub-with-GPG.jpg" | absolute_url }})](/)
 {: refdef}
 
 {:refdef: style="text-align: right;"}
@@ -58,13 +56,13 @@ $ git config --global user.email 'terminator@schwarzenegger.com'
 ```
 
 Add a simple `README.md` to a repo, commit and push.
-![post image]({{ "/assets/git-commit-example.gif" | absolute_url }})
+[![post image]({{ "/assets/git-commit-example.gif" | absolute_url }})](/)
 
 There, I've changed my git configuration to pretend I'm **Arnold Schwarzenegger** - "I'll be back".
-![post image]({{ "/assets/Github-push-terminator.gif" | absolute_url }})
+[![post image]({{ "/assets/Github-push-terminator.gif" | absolute_url }})](/)
 
 And now I can commit away, Imagine those commits somehow make their way into a production system.
-![post image]({{ "/assets/Github-Terminator.gif" | absolute_url }})
+[![post image]({{ "/assets/Github-Terminator.gif" | absolute_url }})](/)
 
 This was a simple example, imagine if someone would impersonate you and make dangerous changes to a production system.
 
@@ -121,7 +119,7 @@ Repeat the above command until you got enough Entropy(at least > 3000) before yo
 To check the number of bytes of entropy available run the command:
 `cat /proc/sys/kernel/random/entropy_avail`
 
-![post image]({{ "/assets/entropy-gen.png" | absolute_url }})
+[![post image]({{ "/assets/entropy-gen.png" | absolute_url }})](/)
 
 # The Walk-through
 
@@ -142,7 +140,7 @@ gpg --armor --export "${MY_GPG_KEY}" > gpg_keys.txt
 echo "export GPG_TTY=$(tty)" >> ~/.bashrc
 ```
 
-![post image]({{ "/assets/gpg-generation.png" | absolute_url }})
+[![post image]({{ "/assets/gpg-generation.png" | absolute_url }})](/)
 
 ## Add PGP Key to GitHub
 
@@ -210,14 +208,14 @@ git config --global user.signingkey "${MY_GPG_KEY}"
 ------------------------------------------------
 Now, when you make any commits, Git will attempt to sign them with your key. It may ask you to unlock your key with a `passphrase` that you entered when generating the keys.
 
-![post image]({{ "/assets/gpg-passphrase.png" | absolute_url }})
+[![post image]({{ "/assets/gpg-passphrase.png" | absolute_url }})](/)
 
 After pushing to GitHub, you should see a nice **“Verified”** badge on the commit...
 
 Any future commits you from your computer or user will be `verified`, proving you are the author of your work.
 
 
-![post image]({{ "/assets/verified-commit.png" | absolute_url }})
+[![post image]({{ "/assets/verified-commit.png" | absolute_url }})](/)
 
 **Note:** Signing git commits won’t stop people from impersonating you, but it will provide assurance of your real commits so they can be properly verified.
 

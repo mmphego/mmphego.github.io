@@ -7,7 +7,6 @@ tags:
 - Windows
 - Tips/Tricks
 ---
-# How I managed to install [X]Ubuntu alongside Windows 10 on my new XPS 15
 
 After almost 4 years of using my [Dell Latitude E5540](https://www.dell.com/en-us/work/shop/cty/latitude-15-5000-series-e5540/spd/latitude-e5540-laptop), I was due for an upgrade.
 Well I must say, this laptop has served it's purpose and I enjoyed every minute of it apart from the battery life and the failing disk which causes my system to just freeze time to time, as I digress.

@@ -7,13 +7,11 @@ tags:
 - Automation
 - Jira
 ---
-# How To Automate Jira And Confluence Using Python.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2024-05-22-How-to-automate-Jira-and-Confluence-using-Python.png" | absolute_url }})
+[![post image]({{ "/assets/2024-05-22-How-to-automate-Jira-and-Confluence-using-Python.png" | absolute_url }})](/)
 {: refdef}
 
-10 Min Read
 
 ---
 

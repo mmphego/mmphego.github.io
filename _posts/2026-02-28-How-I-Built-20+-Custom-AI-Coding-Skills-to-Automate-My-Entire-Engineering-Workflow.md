@@ -12,7 +12,7 @@ tags:
 ---
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2026-02-28-How-I-Built-20+-Custom-AI-Coding-Skills-to-Automate-My-Entire-Engineering-Workflow.png" | absolute_url }})
+[![post image]({{ "/assets/2026-02-28-How-I-Built-20+-Custom-AI-Coding-Skills-to-Automate-My-Entire-Engineering-Workflow.png" | absolute_url }})](/)
 {: refdef}
 
 ---

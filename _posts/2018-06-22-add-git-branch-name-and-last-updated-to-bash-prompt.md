@@ -10,7 +10,6 @@ tags:
 - Linux/Ubuntu
 ---
 
-# Add Git branch name and last updated to bash prompt
 
 In order to add branch name to bash prompt we have to edit the PS1 variable(set value of PS1 in ```~/.bashrc```).
 

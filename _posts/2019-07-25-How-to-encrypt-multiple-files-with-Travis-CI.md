@@ -7,12 +7,11 @@ tags:
 - Tips/Tricks
 - Automation
 ---
-# How To Encrypt Multiple Files With Travis CI.
 
 *4 Min Read*
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2019-07-25-How-to-encrypt-multiple-files-with-Travis-CI.jpg" | absolute_url }})
+[![post image]({{ "/assets/2019-07-25-How-to-encrypt-multiple-files-with-Travis-CI.jpg" | absolute_url }})](/)
 {: refdef}
 
 -----------------------------------------------------------------------------------------

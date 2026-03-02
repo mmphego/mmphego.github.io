@@ -6,7 +6,6 @@ tags:
 - Python
 - Tips/Tricks
 ---
-# How I Resolved Selenium ("Geckodriver") Webdriver Exception.
 
 -------------------------------------------------------
 {:refdef: style="text-align: center;"}

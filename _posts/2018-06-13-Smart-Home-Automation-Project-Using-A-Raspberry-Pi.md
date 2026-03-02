@@ -11,7 +11,6 @@ tags:
 - Tips/Tricks
 ---
 
-# [Project] Smart Home Automation using Raspberry Pi and Arduino
 [Updated]: 17 Jan, 2020
 - Added repo and project repo links.
 

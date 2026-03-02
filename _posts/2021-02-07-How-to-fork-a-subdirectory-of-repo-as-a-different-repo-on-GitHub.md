@@ -7,13 +7,11 @@ tags:
 - Git
 - Tips and Tricks
 ---
-# How To Fork A Subdirectory Of Repo As A Different Repo On GitHub.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2021-02-07-How-to-fork-a-subdirectory-of-repo-as-a-different-repo-on-GitHub.png" | absolute_url }})
+[![post image]({{ "/assets/2021-02-07-How-to-fork-a-subdirectory-of-repo-as-a-different-repo-on-GitHub.png" | absolute_url }})](/)
 {: refdef}
 
-3 Min Read
 
 -----------------------------------------------------------------------------------------
 

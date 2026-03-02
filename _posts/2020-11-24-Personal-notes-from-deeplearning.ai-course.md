@@ -10,13 +10,11 @@ tags:
 - Learning
 - Coursera
 ---
-# Personal Notes From Deeplearning.ai Specialization Course.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2020-11-24-Personal-notes-from-deeplearning.ai-course.png" | absolute_url }})
+[![post image]({{ "/assets/2020-11-24-Personal-notes-from-deeplearning.ai-course.png" | absolute_url }})](/)
 {: refdef}
 
-10 Min Read
 
 -----------------------------------------------------------------------------------------
 

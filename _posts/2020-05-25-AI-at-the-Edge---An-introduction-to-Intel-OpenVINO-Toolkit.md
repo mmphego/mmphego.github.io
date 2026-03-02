@@ -9,13 +9,11 @@ tags:
 - Udacity
 - Learning
 ---
-# AI At The Edge - An Introduction To Intel OpenVINO Toolkit.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2020-05-25-AI-at-the-Edge---An-introduction-to-Intel-OpenVINO-Toolkit.png" | absolute_url }})
+[![post image]({{ "/assets/2020-05-25-AI-at-the-Edge---An-introduction-to-Intel-OpenVINO-Toolkit.png" | absolute_url }})](/)
 {: refdef}
 
-14 Min Read
 
 -----------------------------------------------------------------------------------------
 
@@ -26,7 +24,7 @@ tags:
 During mid-November 2019, I stumbled upon a [Udacity scholarship](https://www.udacity.com/scholarships) from their website and decided to apply. The course being offered was more on Computer Vision and this is one field that has always interested me from my days interning at CSIR in the robotics department, but I always had that impostor syndrome when it came to CV. This course couple Computer Vision and AI but was more focused on AI on the edge using Intel’s OpenVINO Toolkit.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/Intel-Scholarship+2020@2x.jpg" | absolute_url }})
+[![post image]({{ "/assets/Intel-Scholarship+2020@2x.jpg" | absolute_url }})](/)
 {: refdef}
 
 A few weeks later, I received an email from [Udacity](https://imp.i115008.net/c/2851051/803076/11298) informing me that I was one of 16800 selected for Phase 1 of the scholarship.
@@ -52,7 +50,7 @@ As per the title of the post, this post detail the first 2 lessons of the course
 Below is a brief overview of the course offered by [Udacity](https://imp.i115008.net/c/2851051/803076/11298) on Intel® Edge AI for IoT Developers Nanodegree:
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/udacity_curriculum.png" | absolute_url }})
+[![post image]({{ "/assets/udacity_curriculum.png" | absolute_url }})](/)
 {: refdef}
 
 1. **Edge AI Fundamentals with OpenVINO™**
@@ -132,7 +130,7 @@ In general, pre-trained models refer to machine learning models where training h
 In OpenVINO™, Pre-Trained Models refer specifically to the [Model Zoo](https://github.com/opencv/open_model_zoo), in which the Free Model Set contains pre-trained models already converted using the Model Optimizer. These models can be used directly with the *[Inference Engine](https://docs.openvinotoolkit.org/latest/_docs_IE_DG_Introduction.html#IE)*.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/workflow-openvino.png" | absolute_url }})
+[![post image]({{ "/assets/workflow-openvino.png" | absolute_url }})](/)
 {: refdef}
 
 The image above illustrates a typical workflow for deploying a trained deep learning model, the deployment processes which assumes that you have a network model that has already been trained using one of the supported frameworks (Caffe*, TensorFlow*, MXNet*, Kaldi*, ONNX*).

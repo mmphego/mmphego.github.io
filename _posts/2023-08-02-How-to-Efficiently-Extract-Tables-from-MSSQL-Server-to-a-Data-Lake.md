@@ -7,13 +7,11 @@ tags:
 - Data Lake
 - Data Engineering
 ---
-# How To Efficiently Extract Tables From MSSQL Server To A Data Lake.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2023-08-02-How-to-Efficiently-Extract-Tables-from-MSSQL-Server-to-a-Data-Lake.png" | absolute_url }})
+[![post image]({{ "/assets/2023-08-02-How-to-Efficiently-Extract-Tables-from-MSSQL-Server-to-a-Data-Lake.png" | absolute_url }})](/)
 {: refdef}
 
-5 Min Read
 
 ---
 

@@ -7,13 +7,11 @@ tags:
 - Digital Marketing
 - Continuous Learning
 ---
-# I Signed Up For A Udacity's Digital Marketing Nano Degree, Here's Why
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2022-02-17-I-signed-up-for-a-Udacitys-Digital-Marketing-Nano-Degree-heres-why.png" | absolute_url }})
+[![post image]({{ "/assets/2022-02-17-I-signed-up-for-a-Udacitys-Digital-Marketing-Nano-Degree-heres-why.png" | absolute_url }})](/)
 {: refdef}
 
-5 Min Read
 
 ---
 {:refdef: style="text-align: center;"}

@@ -5,13 +5,11 @@ date: 2019-10-08 07:04:09.000000000 +02:00
 tags:
 
 ---
-# A Few Ways You Can Make Money As A Dev Or Non-Dev.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2019-10-08-A-few-ways-you-can-make-money-as-a-dev-or-non-dev.jpg" | absolute_url }})
+[![post image]({{ "/assets/2019-10-08-A-few-ways-you-can-make-money-as-a-dev-or-non-dev.jpg" | absolute_url }})](/)
 {: refdef}
 
-14 Min Read
 
 **[Updated: 14/03/20]**
 
@@ -38,7 +36,7 @@ Note: This will not get you **RICH** but at least ensure that you always have a 
 
 **Donations are welcome in the form of Paypal, Bitcoin or drop me a mail: mpho@mphomphego.co.za**
 {:refdef: style="text-align: center;"}
-[![post image]({{ "/assets/paypal_logo.png" | absolute_url }})](https://paypal.me/mmphego)
+[[![post image]({{ "/assets/paypal_logo.png" | absolute_url }})](https://paypal.me/mmphego)](/)
 {: refdef}
 
 {:refdef: style="text-align: center;"}
@@ -46,7 +44,7 @@ Note: This will not get you **RICH** but at least ensure that you always have a 
 {: refdef}
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/bitcoin_qr_code_png.png" | absolute_url }})
+[![post image]({{ "/assets/bitcoin_qr_code_png.png" | absolute_url }})](/)
 {: refdef}
 
 {:refdef: style="text-align: center;"}
@@ -98,7 +96,7 @@ Hit the button to register your profile. <br/>
 I have a couple of gigs listed on [Fiverr](https://track.fiverr.com/visit/?bta=58226&nci=5718), checkout [my gig list](https://www.fiverr.com/mmphego) for inspirations or purchases.
 
 {:refdef: style="text-align: center;"}
-[![post image]({{ "/assets/fiverr-gigs.png" | absolute_url }})](https://www.fiverr.com/mmphego)
+[[![post image]({{ "/assets/fiverr-gigs.png" | absolute_url }})](https://www.fiverr.com/mmphego)](/)
 {: refdef}
 
 ### Upwork
@@ -108,7 +106,7 @@ I was on [Upwork](https://www.upwork.com/) for over 3 months mainly doing some s
 **If you would like to work with me, link up with me on my [UpWork profile](https://www.upwork.com/o/profiles/users/~018f5d362b03ed799e)**
 
 {:refdef: style="text-align: center;"}
-[![post image]({{ "/assets/upwork_profile1.png" | absolute_url }})](https://www.upwork.com/o/profiles/users/~018f5d362b03ed799e)
+[[![post image]({{ "/assets/upwork_profile1.png" | absolute_url }})](https://www.upwork.com/o/profiles/users/~018f5d362b03ed799e)](/)
 {: refdef}
 
 This platform is great for beginners and hourly jobs are tracked by the UpWork team software from the logged in time till the completion of the project this simply means you'll need to install their app such that it can track your progress as you work. I guess you would need to trade off your privacy for some extra cash else create a virtual machine and use it mainly for [Upwork](https://www.upwork.com/) related work.
@@ -149,7 +147,7 @@ If your videos are special and people like it then you earn revenue by partnerin
 
 Screenshot of my channel (Unfortunately my monetization has been disabled until I get 4000 watch hours Ridiculous.)
 
-![post image]({{ "/assets/youtube-monetisation.png" | absolute_url }})
+[![post image]({{ "/assets/youtube-monetisation.png" | absolute_url }})](/)
 
 **While you are here, please subscribe on my [YouTube channel](https://www.youtube.com/c/MphoMphego1) - I will be uploading content soonish...**
 
@@ -233,7 +231,7 @@ You can get paid for technical articles, share your technical knowledge and get 
 
 
 {:refdef: style="text-align: center;"}
-[![post image]({{ "/assets/paid_articles.png" | absolute_url }})](https://twitter.com/TerraMeijar/status/1237979418825568257?s=20)
+[[![post image]({{ "/assets/paid_articles.png" | absolute_url }})](https://twitter.com/TerraMeijar/status/1237979418825568257?s=20)](/)
 
 Credit @TerraMeijar
 {: refdef}
@@ -304,7 +302,7 @@ A list of referral programs you can join:
 
 In 2017, I signed up to be [CellC's](https://www.cellc.co.za) brand ambassador I made R2000 ~ $160 per months for a year.
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/cellc_car.jpg" | absolute_url }})
+[![post image]({{ "/assets/cellc_car.jpg" | absolute_url }})](/)
 {: refdef}
 
 ### Social Media Influencer/Marketer
@@ -313,7 +311,7 @@ There's a growing trend of social media influencing these days, if you have enou
 You can set up an account to start getting paid for your Tweets/Instagram/Facebook posts and I'm inviting you if you are keen to work with brands to develop content and share with their audiences, [click this link to register](https://webfluential.com/users/register/rs9nv9l4):
 
 {:refdef: style="text-align: center;"}
-[![post image]({{ "/assets/webfluential.jpeg" | absolute_url }})](https://webfluential.com/users/register/rs9nv9l4)
+[[![post image]({{ "/assets/webfluential.jpeg" | absolute_url }})](https://webfluential.com/users/register/rs9nv9l4)](/)
 {: refdef}
 
 ## Buy And Sell
@@ -328,12 +326,12 @@ If you have start up funds you can look at flipping, which is the process of buy
 **Donations are welcome in the form of PayPal, Bitcoin or drop me a mail: mpho@mphomphego.co.za**
 
 {:refdef: style="text-align: center;"}
-[![post image]({{ "/assets/paypal_logo.png" | absolute_url }})](https://paypal.me/mmphego)
+[[![post image]({{ "/assets/paypal_logo.png" | absolute_url }})](https://paypal.me/mmphego)](/)
 {: refdef}
 <!-- [PayPal Donate button that you may click :)](https://paypal.me/mmphego) -->
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/bitcoin_qr_code_png.png" | absolute_url }})
+[![post image]({{ "/assets/bitcoin_qr_code_png.png" | absolute_url }})](/)
 {: refdef}
 {:refdef: style="text-align: center;"}
 **Bitcoin: 12JxrvC3BtfhygBCC6i1dPyF4qwbpERLwu**

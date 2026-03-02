@@ -6,13 +6,11 @@ tags:
 - Docker
 - Tips/Tricks
 ---
-# How I Managed To Remove Dependent Child Images Of A Docker Container.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2020-01-24-How-I-managed-to-remove-dependent-child-images-of-a-docker-container.jpg" | absolute_url }})
+[![post image]({{ "/assets/2020-01-24-How-I-managed-to-remove-dependent-child-images-of-a-docker-container.jpg" | absolute_url }})](/)
 {: refdef}
 
-4 Min Read
 
 -----------------------------------------------------------------------------------------
 

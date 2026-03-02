@@ -8,7 +8,6 @@ tags:
 - Tips/Tricks
 ---
 
-# Reverse sort order of a multicolumn file in BASH
 
 I wanted to do some code clean up with [flake8](https://pypi.org/project/flake8/) and in the midst of it all I wanted to start bottoms up, that way I do not have to re-run flake everytime I make a change as it would eventually messes with the line numbers.
 Reason for doing all this, is that code that isn't [PEP8](https://www.python.org/dev/peps/pep-0008/) gives me goosebumps, some might say I have OCD on non-[PEP8](https://www.python.org/dev/peps/pep-0008/) code

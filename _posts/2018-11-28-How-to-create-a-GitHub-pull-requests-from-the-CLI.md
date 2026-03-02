@@ -6,7 +6,6 @@ tags:
 - Git
 - Tips/Tricks
 ---
-# How to create a GitHub pull requests from the CLI
 
 If like me, you create a lot of pull requests in a day and annoyed of the idea of repeatedly visiting GitHub to create a PR - do not get me wrong the website is great and all, but it can be annoying sometimes having to leave your CLI and open your browser (which has serious implications for your productivity IMHO).
 

@@ -7,10 +7,9 @@ tags:
 ---
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2019-10-03-Why-you-need-to-stop-using-Git-Hooks.jpg" | absolute_url }})
+[![post image]({{ "/assets/2019-10-03-Why-you-need-to-stop-using-Git-Hooks.jpg" | absolute_url }})](/)
 {: refdef}
 
-10 Min Read
 
 {:refdef: style="text-align: right;"}
 <figure>

@@ -10,13 +10,11 @@ tags:
 - Makefile
 - Python
 ---
-# How I Setup Jenkins On Docker Container Using Ansible (Part 3)
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2022-03-21-How-I-setup-Jenkins-on-Docker-container-using-Ansible.png" | absolute_url }})
+[![post image]({{ "/assets/2022-03-21-How-I-setup-Jenkins-on-Docker-container-using-Ansible.png" | absolute_url }})](/)
 {: refdef}
 
-10 Min Read
 
 ---
 

@@ -11,7 +11,7 @@ tags:
 ---
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2025-12-07-How-I-Simplified-LLM-Telemetry-Using-Dual-Destination-Observability-Without-Performance-Degradation.png" | absolute_url }})
+[![post image]({{ "/assets/2025-12-07-How-I-Simplified-LLM-Telemetry-Using-Dual-Destination-Observability-Without-Performance-Degradation.png" | absolute_url }})](/)
 {: refdef}
 
 ---
@@ -111,7 +111,7 @@ On paper, this approach had some compelling advantages:
 It looked good in the architecture review, but something felt off. The idea of managing and deploying an extra service - was a complete Nono from me.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/otel-collector2.png" | absolute_url }})
+[![post image]({{ "/assets/otel-collector2.png" | absolute_url }})](/)
 {: refdef}
 
 ---
@@ -121,7 +121,7 @@ After some soul-searching, I realized that the added complexity wasn't worth the
 **The solution:** A telemetry bridge that leverages the Traceloop SDK for its minimal implementation and usage patterns, with [OpenTelemetry](https://opentelemetry.io/)'s flexible exporter architecture as the backend for simultaneously sending traces to both platforms. Same trace data, two destinations, everyone gets what they want for less.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/telemetry-bridge.png" | absolute_url }})
+[![post image]({{ "/assets/telemetry-bridge.png" | absolute_url }})](/)
 {: refdef}
 
 **Performance results:**
@@ -292,7 +292,7 @@ class CircuitBreakerExporter:
 ### Architecture Decision: Why Direct Export
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/mermaid_diag.png" | absolute_url }})
+[![post image]({{ "/assets/mermaid_diag.png" | absolute_url }})](/)
 {: refdef}
 
 

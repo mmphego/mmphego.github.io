@@ -8,13 +8,11 @@ tags:
 - Ansible
 - DevOps
 ---
-# How I Setup Jenkins On Docker Container Using Ansible (Part 2)
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2022-05-09-How-I-setup-Jenkins-on-Docker-container-using-Ansible-Part-2.png" | absolute_url }})
+[![post image]({{ "/assets/2022-05-09-How-I-setup-Jenkins-on-Docker-container-using-Ansible-Part-2.png" | absolute_url }})](/)
 {: refdef}
 
-7 Min Read
 
 ---
 

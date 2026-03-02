@@ -11,14 +11,12 @@ tags:
 - Prometheus
 - Tips and Tricks
 ---
-# How To Configure Jaeger Data Source On Grafana And Debug Network Issues With Bind-utilities.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2021-07-25-How-to-configure-Jaeger-Data-source-on-Grafana-and-debug-network-issues-with-Bind-utilities.png" | absolute_url }})
+[![post image]({{ "/assets/2021-07-25-How-to-configure-Jaeger-Data-source-on-Grafana-and-debug-network-issues-with-Bind-utilities.png" | absolute_url }})](/)
 {: refdef}
 
 
-11 Min Read
 
 
  <a href="https://imp.i115008.net/c/2851051/877657/11298" target="_top" id="877657"><img src="//a.impactradius-go.com/display-ad/11298-877657" border="0" alt="" width="100%" height="90"/></a><img height="0" width="0" src="https://imp.pxf.io/i/2851051/877657/11298" style="position:absolute;visibility:hidden;" border="0" />

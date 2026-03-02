@@ -6,12 +6,11 @@ tags:
 - Python
 - Tips/Tricks
 ---
-# Automate Boring Things Like Creating A Grocery List With Python And Selenium.
 
 *8 Min Read*
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2019-06-29-Automate-boring-things-with-Python-and-selenium.jpg" | absolute_url }})
+[![post image]({{ "/assets/2019-06-29-Automate-boring-things-with-Python-and-selenium.jpg" | absolute_url }})](/)
 {: refdef}
 
 -------------------------------------------------------------------------------------------------

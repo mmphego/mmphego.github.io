@@ -8,13 +8,11 @@ tags:
 - Docker
 - Jenkins
 ---
-# Note To Self: How To Get A Complete Plugin List From Jenkins
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "/assets/2022-03-10-Note-to-self-How-to-get-a-complete-plugin-list-from-Jenkins.png" | absolute_url }})
+[![post image]({{ "/assets/2022-03-10-Note-to-self-How-to-get-a-complete-plugin-list-from-Jenkins.png" | absolute_url }})](/)
 {: refdef}
 
-3 Min Read
 
 ---
 
