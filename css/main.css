@@ -227,19 +227,12 @@ img {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 18px;
-  width: 36px;
-  height: 36px;
-  padding: 0;
-  float: right;
-  margin-top: 8px;
-  margin-right: 10px;
+  font-size: 16px;
+  padding: 15px;
   color: var(--color-text);
-  border-radius: 50%;
   transition: background var(--duration-fast) var(--ease-out),
               color var(--duration-fast) var(--ease-out),
               transform var(--duration-fast) var(--ease-out);
-  vertical-align: middle;
 }
 .navbar-custom .dark-mode-toggle:hover {
   color: var(--color-accent);
@@ -248,11 +241,6 @@ img {
 }
 .dark .navbar-custom .dark-mode-toggle:hover {
   background: rgba(255, 255, 255, 0.08);
-}
-@media only screen and (min-width: 768px) {
-  .navbar-custom .dark-mode-toggle {
-    margin-top: 15px;
-  }
 }
 
 .navbar-custom .navbar-brand-logo {
