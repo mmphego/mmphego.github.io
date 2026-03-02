@@ -1,0 +1,44 @@
+# Mpho Mphego's Blog
+
+> Personal technical blog by Mpho Mphego, an AI Software Engineer and Technical Lead. Covers Python, DevOps, AWS, AI/ML, Docker, Kubernetes, and practical engineering workflows.
+
+## About
+
+- Author: Mpho Mphego
+- URL: https://blog.mphomphego.co.za
+- GitHub: https://github.com/mmphego
+- LinkedIn: https://linkedin.com/in/mphomphego
+- Topics: Python, Docker, DevOps, AWS, AI, Machine Learning, Kubernetes, Linux, Data Engineering, CI/CD, Observability
+
+## Key Content Areas
+
+### AI & Machine Learning
+Posts on LLM observability, AI coding skills automation, agent frameworks (A2A, Google ADK), and practical ML engineering.
+
+### DevOps & Infrastructure
+Docker containerization, Kubernetes orchestration, Jenkins CI/CD, GitHub Actions workflows, Helm charts, and infrastructure as code.
+
+### Python Development
+Tips, tricks, and best practices for Python development including async patterns, testing with pytest, linting with ruff, and package management with uv.
+
+### AWS & Cloud
+AWS services (Bedrock, EKS, Athena, S3, EC2), data lake architecture, SSO configuration, and cloud-native development.
+
+### Data Engineering
+MSSQL to data lake extraction, data quality verification, SQL code quality enforcement with SQLFluff, and data warehouse patterns.
+
+## Recent Posts
+
+- How I Built 20+ Custom AI Coding Skills to Automate My Entire Engineering Workflow
+- How I Simplified LLM Telemetry Using Dual-Destination Observability Without Performance Degradation
+- How to Enforce SQL Code Quality using SQLFluff Pre-Commit and GitHub Actions
+- How An EC2 Instance Became My Go-To Remote Development Solution
+- How to automate Jira and Confluence using Python
+
+## Site Structure
+
+- Blog posts: https://blog.mphomphego.co.za/
+- Tags/Categories: https://blog.mphomphego.co.za/tags
+- About: https://blog.mphomphego.co.za/aboutme
+- RSS Feed: https://blog.mphomphego.co.za/feed.xml
+- Sitemap: https://blog.mphomphego.co.za/sitemap.xml

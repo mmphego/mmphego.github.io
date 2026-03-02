@@ -2,6 +2,10 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
 
   {% include gtm_head.html %}
   {% include advertisements.html %}
@@ -12,24 +16,26 @@
 
   <meta name="author" content="{{ site.author.name }}" />
   <meta name="theme-color" content="#a50509">
-  <meta name="description" content="Hi! I'm Mpho Mphego, a Python developer and welcome to my blog.">
+  <meta name="description" content="{% if page.meta-description %}{{ page.meta-description }}{% elsif page.subtitle %}{{ page.subtitle }}{% else %}{{ site.description }}{% endif %}">
   <!-- Loves to meet new people, connect, discuss, network and grow, mostly at software developers’ conferences, dev-fests and gaming meet-ups -->
   <meta name="keywords"
     content="Mpho, geek, linux, science, math, mathematics, raspberry pi, music, Internet of Things, Machine Learning, AI, research, android, ubuntu, python, docker">
   <meta name="propeller" content="d92719bb609a7958d423e6eb7c636f68">
   <!-- favicon -->
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
   <!-- Added dark/light mode support -->
   <link id="theme" rel="stylesheet" type="text/css" href="/css/darkmode-theme.css" />
 
+  {% if page.use-mathjax %}
   <!-- MathJax -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({messageStyle: 'none',tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
-  <script type="text/javascript"
+  <script type="text/javascript" defer
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+  {% endif %}
 
   <link rel="alternate" type="application/rss+xml"
     title="{{ site.title }} {{ site.title-separator }} {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
@@ -48,7 +54,7 @@
 
   {% if layout.common-googlefonts %}
   {% for font in layout.common-googlefonts %}
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family={{ font }}" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family={{ font }}&display=swap" />
   {% endfor %}
   {% endif %}
 
@@ -66,7 +72,7 @@
 
   {% if page.googlefonts %}
   {% for font in page.googlefonts %}
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family={{ font }}" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family={{ font }}&display=swap" />
   {% endfor %}
   {% endif %}
 
@@ -138,6 +144,7 @@
 
   <link rel="stylesheet" href="{{ "/css/prism.css" | prepend: site.baseurl }}">
   <!-- https://jekyllcodex.org/without-plugin/lightbox/# -->
-  <script type="text/javascript" src="/js/lightbox.js"></script>
+  <script type="text/javascript" src="/js/lightbox.js" defer></script>
   <link rel="stylesheet" href="/css/lightbox.css">
+  {% seo %}
 </head>
