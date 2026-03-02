@@ -31,7 +31,13 @@
             {% endif %}
 
             {% if include.type == "post" %}
-            <span class="post-meta">Posted on {{ page.date | date: "%B %-d, %Y" }}</span>
+            <span class="post-meta">
+              Posted on {{ page.date | date: "%B %-d, %Y" }}
+              &bull;
+              {% assign words = content | number_of_words %}{% if words < 200 %}1{% else %}{{ words | divided_by: 200 }}{% endif %} min read
+              &bull;
+              <img class="vbr-badge" data-page-id="mmphego.{{ page.url | slugify }}" src="https://vbr.nathanchung.dev/badge?page_id=mmphego.{{ page.url | slugify }}&color=FF69B4&lcolor=555&style=flat-square&text=views&logo=eye&hit=false" alt="views">
+            </span>
             {% endif %}
           </div>
         </div>
@@ -56,7 +62,13 @@
             {% endif %}
 
             {% if include.type == "post" %}
-            <span class="post-meta">Posted on {{ page.date | date: "%B %-d, %Y" }}</span>
+            <span class="post-meta">
+              Posted on {{ page.date | date: "%B %-d, %Y" }}
+              &bull;
+              {% assign words = content | number_of_words %}{% if words < 200 %}1{% else %}{{ words | divided_by: 200 }}{% endif %} min read
+              &bull;
+              <img class="vbr-badge" data-page-id="mmphego.{{ page.url | slugify }}" src="https://vbr.nathanchung.dev/badge?page_id=mmphego.{{ page.url | slugify }}&color=FF69B4&lcolor=555&style=flat-square&text=views&logo=eye&hit=false" alt="views">
+            </span>
             {% endif %}
           </div>
         </div>
@@ -86,5 +98,42 @@
 
 
 {% else %}
-<div class="intro-header"></div>
+<div class="intro-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="{{ include.type }}-heading">
+          {% if include.type == "post" %}
+          <h1>{{ page.title }}</h1>
+          {% if page.subtitle %}
+          <h2 class="post-subheading">{{ page.subtitle }}</h2>
+          {% endif %}
+          <span class="post-meta">
+            Posted on {{ page.date | date: "%B %-d, %Y" }}
+            &bull;
+            {% assign words = content | number_of_words %}{% if words < 200 %}1{% else %}{{ words | divided_by: 200 }}{% endif %} min read
+            &bull;
+            <img class="vbr-badge" data-page-id="mmphego.{{ page.url | slugify }}" src="https://vbr.nathanchung.dev/badge?page_id=mmphego.{{ page.url | slugify }}&color=FF69B4&lcolor=555&style=flat-square&text=views&logo=eye&hit=false" alt="views">
+          </span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endif %}
+
+<script>
+(function() {
+  var badges = document.querySelectorAll('.vbr-badge');
+  if (!badges.length) return;
+  badges.forEach(function(img) {
+    var pageId = img.getAttribute('data-page-id');
+    var key = 'vbr_visited_' + pageId;
+    if (!localStorage.getItem(key)) {
+      localStorage.setItem(key, '1');
+      img.src = img.src.replace('hit=false', 'hit=true');
+    }
+  });
+})();
+</script>

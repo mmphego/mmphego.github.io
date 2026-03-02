@@ -15,8 +15,6 @@ tags:
 ![post image]({{ "/assets/2026-02-28-How-I-Built-20+-Custom-AI-Coding-Skills-to-Automate-My-Entire-Engineering-Workflow.png" | absolute_url }})
 {: refdef}
 
-10 min read
-
 ---
 
 It has been a productive few months — *too* productive, if you ask my Git history. But this post has been brewing for a while, and it's time to share what happened when I stopped accepting the grunt work as "just part of the job."

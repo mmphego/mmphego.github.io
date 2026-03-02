@@ -10,13 +10,9 @@ tags:
 - Traceloop
 ---
 
-# How I Simplified LLM Telemetry Using Dual-Destination Observability Without Performance Degradation.
-
 {:refdef: style="text-align: center;"}
 ![post image]({{ "/assets/2025-12-07-How-I-Simplified-LLM-Telemetry-Using-Dual-Destination-Observability-Without-Performance-Degradation.png" | absolute_url }})
 {: refdef}
-
-12 min read
 
 ---
 
