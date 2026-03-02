@@ -1,7 +1,187 @@
-body {
-  transition: background 1s ease-in, color 1s ease-in;
+/* Dark mode theme */
+body.dark {
+  background-color: #1a1a2e;
+  color: #e0e0e0;
 }
-.dark {
-  color: white;
-  background: black;
+
+.dark .navbar-custom {
+  background-color: #16213e;
+  border-bottom-color: #0f3460;
+}
+
+.dark .navbar-custom .nav li a,
+.dark .navbar-custom .navbar-brand {
+  color: #e0e0e0;
+}
+
+.dark .navbar-custom .nav li a:hover,
+.dark .navbar-custom .nav li a:focus {
+  color: #fff;
+}
+
+.dark .navbar-custom .navbar-toggle .icon-bar {
+  background-color: #e0e0e0;
+}
+
+.dark footer {
+  background-color: #16213e;
+  border-top-color: #0f3460;
+}
+
+.dark footer .copyright,
+.dark footer .theme-by {
+  color: #a0a0a0;
+}
+
+.dark footer a {
+  color: #c0c0c0;
+}
+
+.dark .intro-header .post-heading h1,
+.dark .intro-header .page-heading h1 {
+  color: #e0e0e0;
+}
+
+.dark .intro-header .post-heading .post-meta,
+.dark .intro-header .post-heading .post-subheading,
+.dark .intro-header .page-heading .page-subheading {
+  color: #b0b0b0;
+}
+
+.dark .intro-header.no-img {
+  background-color: #1a1a2e;
+}
+
+.dark .blog-post {
+  color: #e0e0e0;
+}
+
+.dark .blog-post a {
+  color: #64b5f6;
+}
+
+.dark .blog-post a:hover {
+  color: #90caf9;
+}
+
+.dark .blog-post h1, .dark .blog-post h2,
+.dark .blog-post h3, .dark .blog-post h4 {
+  color: #f0f0f0;
+}
+
+.dark .blog-post code {
+  background-color: #2d2d44;
+  color: #e8e8e8;
+}
+
+.dark .blog-post pre {
+  background-color: #1e1e30;
+  border-color: #3a3a5c;
+}
+
+.dark .blog-post blockquote {
+  border-left-color: #0f3460;
+  color: #b0b0b0;
+}
+
+.dark .blog-post img {
+  opacity: 0.9;
+}
+
+.dark .blog-post table th {
+  background-color: #16213e;
+  color: #e0e0e0;
+}
+
+.dark .blog-post table td {
+  background-color: #1a1a2e;
+  color: #e0e0e0;
+  border-color: #3a3a5c;
+}
+
+.dark .post-preview .post-title,
+.dark .post-preview .post-subtitle {
+  color: #e0e0e0;
+}
+
+.dark .post-preview .post-entry {
+  color: #b0b0b0;
+}
+
+.dark .post-preview .post-meta {
+  color: #808080;
+}
+
+.dark .blog-tags a {
+  color: #64b5f6;
+}
+
+.dark .pager li a {
+  background-color: #16213e;
+  border-color: #0f3460;
+  color: #e0e0e0;
+}
+
+.dark .pager li a:hover {
+  background-color: #0f3460;
+  color: #fff;
+}
+
+.dark .disqus-comments {
+  background-color: #1a1a2e;
+}
+
+.dark #header-big-imgs + .header-section .big-img {
+  background-color: #16213e;
+}
+
+.dark .header-section.has-img .no-img {
+  background-color: #1a1a2e;
+}
+
+.dark hr {
+  border-color: #3a3a5c;
+}
+
+.dark .social-share a {
+  color: #b0b0b0;
+}
+
+.dark .social-share a:hover {
+  color: #e0e0e0;
+}
+
+.dark .beautiful-jekyll-footer {
+  border-top-color: #0f3460;
+}
+
+/* Dark mode toggle button */
+.dark-mode-toggle {
+  cursor: pointer;
+  font-size: 24px;
+  padding: 8px 12px;
+  color: inherit;
+  background: none;
+  border: none;
+  transition: transform 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+  transform: scale(1.2);
+}
+
+/* Search input dark mode */
+.dark #search-input {
+  background-color: #2d2d44;
+  color: #e0e0e0;
+  border-color: #3a3a5c;
+}
+
+.dark #results-container a {
+  color: #64b5f6;
+}
+
+/* Typed.js dark */
+.dark .typed-js-hide h1 {
+  color: #e0e0e0;
 }
