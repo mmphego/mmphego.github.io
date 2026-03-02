@@ -1,5 +1,5 @@
 {% if page.tags.size > 0 %}
-{% assign max_related = 3 %}
+{% assign max_related = 6 %}
 {% assign related_count = 0 %}
 {% assign current_url = page.url %}
 
@@ -44,10 +44,49 @@
   <div class="rp-header">
     <span class="rp-label">Continue Reading</span>
     <span class="rp-line" aria-hidden="true"></span>
+    <div class="rp-nav">
+      <button class="rp-nav-btn rp-nav-prev" aria-label="Previous posts" disabled>
+        <i class="fa fa-chevron-left"></i>
+      </button>
+      <button class="rp-nav-btn rp-nav-next" aria-label="Next posts">
+        <i class="fa fa-chevron-right"></i>
+      </button>
+    </div>
   </div>
-  <div class="rp-grid">
-    {{ related_items }}
+  <div class="rp-scroll-container">
+    <div class="rp-grid">
+      {{ related_items }}
+    </div>
   </div>
 </section>
+<script>
+(function() {
+  var container = document.querySelector('.rp-scroll-container');
+  var nav = document.querySelector('.rp-nav');
+  var prev = document.querySelector('.rp-nav-prev');
+  var next = document.querySelector('.rp-nav-next');
+  if (!container || !nav || !prev || !next) return;
+
+  function updateButtons() {
+    var canScroll = container.scrollWidth > container.clientWidth + 1;
+    nav.style.display = canScroll ? 'flex' : 'none';
+    if (!canScroll) return;
+    prev.disabled = container.scrollLeft <= 0;
+    next.disabled = container.scrollLeft + container.clientWidth >= container.scrollWidth - 1;
+  }
+
+  prev.addEventListener('click', function() {
+    container.scrollBy({ left: -container.clientWidth * 0.8, behavior: 'smooth' });
+  });
+  next.addEventListener('click', function() {
+    container.scrollBy({ left: container.clientWidth * 0.8, behavior: 'smooth' });
+  });
+
+  container.addEventListener('scroll', updateButtons);
+  window.addEventListener('resize', updateButtons);
+  window.addEventListener('load', updateButtons);
+  updateButtons();
+})();
+</script>
 {% endif %}
 {% endif %}
