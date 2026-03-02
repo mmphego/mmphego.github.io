@@ -1,0 +1,10 @@
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var images = document.querySelectorAll('.blog-post img');
+  images.forEach(function(img) {
+    if (!img.hasAttribute('loading')) {
+      img.setAttribute('loading', 'lazy');
+    }
+  });
+});
+</script>

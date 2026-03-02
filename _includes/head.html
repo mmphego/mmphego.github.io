@@ -27,6 +27,29 @@
 
   <!-- Added dark/light mode support -->
   <link id="theme" rel="stylesheet" type="text/css" href="/css/darkmode-theme.css" />
+  <script>
+  // Apply dark mode immediately to prevent flash
+  (function() {
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body ? document.body.classList.add('dark') :
+        document.addEventListener('DOMContentLoaded', function() { document.body.classList.add('dark'); });
+      document.documentElement.classList.add('dark');
+    }
+  })();
+  function toggleDarkMode() {
+    var isDark = document.body.classList.toggle('dark');
+    document.documentElement.classList.toggle('dark');
+    localStorage.setItem('darkMode', isDark);
+    var icon = document.getElementById('dark-mode-icon');
+    if (icon) icon.className = isDark ? 'fa fa-sun-o' : 'fa fa-moon-o';
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    var icon = document.getElementById('dark-mode-icon');
+    if (icon && localStorage.getItem('darkMode') === 'true') {
+      icon.className = 'fa fa-sun-o';
+    }
+  });
+</script>
 
   {% if page.use-mathjax %}
   <!-- MathJax -->
