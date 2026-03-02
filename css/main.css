@@ -356,6 +356,11 @@ footer .theme-by {
   font-style: italic;
   margin: 0 0 10px;
 }
+.post-meta img {
+  vertical-align: middle;
+  height: 20px;
+  margin-left: 4px;
+}
 .post-preview .post-entry {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -479,7 +484,7 @@ footer .theme-by {
 }
 .intro-header .post-heading h1 {
   margin-top: 0;
-  font-size: 35px;
+  font-size: 28px;
 }
 .intro-header .page-heading .page-subheading,
 .intro-header .post-heading .post-subheading {
@@ -531,7 +536,7 @@ footer .theme-by {
     font-size: 80px;
   }
   .intro-header .post-heading h1 {
-    font-size: 50px;
+    font-size: 38px;
   }
   .intro-header.big-img .img-desc {
     font-size: 14px;
