@@ -13,10 +13,10 @@ var main = {
             window.requestAnimationFrame(function() {
                 if ($(".navbar").offset().top > 50) {
                     $(".navbar").addClass("top-nav-short");
-                    $(".navbar-custom .avatar-container").fadeOut(500)
+                    $(".navbar-custom .avatar-container").css({opacity: 0, visibility: "hidden"});
                 } else {
                     $(".navbar").removeClass("top-nav-short");
-                    $(".navbar-custom .avatar-container").fadeIn(500);
+                    $(".navbar-custom .avatar-container").css({opacity: 1, visibility: "visible"});
                 }
                 ticking = false;
             });

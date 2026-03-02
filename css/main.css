@@ -277,6 +277,7 @@ img {
   width: 50px;
   margin-top: -25px;
   pointer-events: none;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 .navbar-custom .avatar-container a {
   pointer-events: auto;
@@ -638,10 +639,10 @@ footer .theme-by {
 
 .header-section.has-img .no-img {
   margin-top: 0;
-  background: #FCFCFC;
+  background: var(--color-bg);
   margin: 0 0 40px;
   padding: 20px 0;
-  box-shadow: 0 0 5px #AAA;
+  box-shadow: 0 0 5px rgba(0,0,0,0.15);
 }
 /* Many phones are 320 or 360px, so make sure images are a proper aspect ratio in those cases */
 .header-section.has-img .intro-header.no-img {
@@ -735,23 +736,23 @@ table {
   padding: 0;
 }
 table tr {
-  border-top: 1px solid #cccccc;
-  background-color: #ffffff;
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-bg);
   margin: 0;
   padding: 0;
 }
 table tr:nth-child(2n) {
-  background-color: #f8f8f8;
+  background-color: var(--color-surface);
 }
 table tr th {
   font-weight: bold;
-  border: 1px solid #cccccc;
+  border: 1px solid var(--color-border);
   text-align: left;
   margin: 0;
   padding: 6px 13px;
 }
 table tr td {
-  border: 1px solid #cccccc;
+  border: 1px solid var(--color-border);
   text-align: left;
   margin: 0;
   padding: 6px 13px;
@@ -788,7 +789,7 @@ code table, code table td, code table th, code table tbody, code table tr,
 td.gutter pre {
   padding: 0;
   border: none;
-  background-color: #fff;
+  background-color: var(--color-bg);
 }
 
 .highlight > pre {
@@ -845,13 +846,13 @@ td.gutter {
 .box-note, .box-warning, .box-error {
   padding: 15px 15px 15px 10px;
   margin: 20px 20px 20px 5px;
-  border: 1px solid #eee;
+  border: 1px solid var(--color-border);
   border-left-width: 5px;
   border-radius: 5px 3px 3px 5px;
 }
 
 .box-note {
-  background-color: #eee;
+  background-color: var(--color-surface);
   border-left-color: #2980b9;
 }
 
@@ -933,8 +934,8 @@ td.gutter {
 
 /* Table of Contents */
 .section-nav {
-  background-color: #f8f8f8;
-  border: 1px solid #e7e7e7;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 4px;
   padding: 15px 20px;
   margin-bottom: 25px;
@@ -946,7 +947,7 @@ td.gutter {
   font-weight: 700;
   font-size: 16px;
   margin-bottom: 10px;
-  color: #333;
+  color: var(--color-text);
 }
 .section-nav ul {
   list-style: none;
@@ -1260,20 +1261,20 @@ td.gutter {
   right: 5px;
   padding: 4px 8px;
   font-size: 12px;
-  background: rgba(255,255,255,0.9);
-  border: 1px solid #ddd;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
   border-radius: 3px;
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.2s;
   z-index: 10;
-  color: #333;
+  color: var(--color-text);
 }
 .code-block-wrapper:hover .copy-code-btn {
   opacity: 1;
 }
 .copy-code-btn:hover {
-  background: #f0f0f0;
+  background: var(--color-surface);
 }
 .copy-code-btn.copied {
   background: #28a745;
@@ -1293,11 +1294,11 @@ td.gutter {
 .featured-posts {
   margin-bottom: 30px;
   padding-bottom: 20px;
-  border-bottom: 2px solid #eee;
+  border-bottom: 2px solid var(--color-border);
 }
 .featured-heading {
   font-size: 18px;
-  color: #a50509;
+  color: var(--color-accent);
   margin-bottom: 15px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -1337,16 +1338,17 @@ td.gutter {
 #search-input {
   width: 100%;
   padding: 10px 15px 10px 35px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   border-radius: 4px;
   font-size: 15px;
-  background-color: #fff;
+  background-color: var(--color-bg);
+  color: var(--color-text);
   transition: border-color 0.2s, box-shadow 0.2s;
   box-sizing: border-box;
 }
 #search-input:focus {
   outline: none;
-  border-color: #a50509;
+  border-color: var(--color-accent);
   box-shadow: 0 0 0 2px rgba(165, 5, 9, 0.1);
 }
 #results-container {
@@ -1356,14 +1358,14 @@ td.gutter {
 }
 #results-container li {
   padding: 8px 12px;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--color-border);
 }
 #results-container li a {
-  color: #333;
+  color: var(--color-text);
   text-decoration: none;
 }
 #results-container li a:hover {
-  color: #a50509;
+  color: var(--color-accent);
 }
 .dark #search-input {
   background-color: #2d2d44;
