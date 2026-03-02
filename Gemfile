@@ -1,8 +1,10 @@
 source 'https://rubygems.org'
 
-gem "ffi", "1.16.3"
+gem "rexml"
+gem "webrick"
+gem "ffi"
 gem "liquid-c"
-gem "github-pages", '163', group: :jekyll_plugins
+gem "github-pages", '232', group: :jekyll_plugins
 gem 'jekyll-admin', group: :jekyll_plugins
 
 # enable tzinfo-data for local build
