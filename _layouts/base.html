@@ -7,7 +7,7 @@ common-googlefonts:
 - "Lora:400,700,400italic,700italic"
 - "Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
 common-js:
-- "/js/jquery-1.11.2.min.js"
+- "/js/jquery-3.7.1.slim.min.js"
 - "/js/bootstrap.min.js"
 - "/js/main.js"
 ---
@@ -21,9 +21,36 @@ common-js:
 <body>
   {% include gtm_body.html %}
 
+  <a href="#main-content" class="skip-link sr-only sr-only-focusable">Skip to main content</a>
+
   {% include nav.html %}
 
-  {{ content }}
+  <main id="main-content" tabindex="-1">
+    {{ content }}
+  </main>
+
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top" style="display:none;position:fixed;bottom:2rem;right:2rem;z-index:999;border:none;background:var(--color-primary, #008AFF);color:#fff;width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:1.2rem;box-shadow:0 2px 8px rgba(0,0,0,0.2);transition:opacity 0.3s;">
+    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+  </button>
+  <script>
+  (function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    var ticking = false;
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+          btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
+  </script>
 
   {% include footer.html %}
 

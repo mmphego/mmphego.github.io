@@ -31,16 +31,7 @@
             {% endif %}
 
             {% if include.type == "post" %}
-            <span class="post-meta">
-              Posted on {{ page.date | date: "%B %-d, %Y" }}
-              {% if page.last-updated %}
-              &bull; Updated {{ page.last-updated | date: "%B %-d, %Y" }}
-              {% endif %}
-              &bull;
-              {% assign words = content | number_of_words %}{% if words < 200 %}1{% else %}{{ words | divided_by: 200 }}{% endif %} min read
-              &bull;
-              <img class="vbr-badge" data-page-id="mmphego.{{ page.url | slugify }}" src="https://vbr.nathanchung.dev/badge?page_id=mmphego.{{ page.url | slugify }}&color=FF69B4&lcolor=555&style=flat-square&text=views&logo=eye&hit=false" alt="views">
-            </span>
+            {% include post-meta.html date=page.date updated=page.last-updated show_views=true url=page.url %}
             {% endif %}
           </div>
         </div>
@@ -65,16 +56,7 @@
             {% endif %}
 
             {% if include.type == "post" %}
-            <span class="post-meta">
-              Posted on {{ page.date | date: "%B %-d, %Y" }}
-              {% if page.last-updated %}
-              &bull; Updated {{ page.last-updated | date: "%B %-d, %Y" }}
-              {% endif %}
-              &bull;
-              {% assign words = content | number_of_words %}{% if words < 200 %}1{% else %}{{ words | divided_by: 200 }}{% endif %} min read
-              &bull;
-              <img class="vbr-badge" data-page-id="mmphego.{{ page.url | slugify }}" src="https://vbr.nathanchung.dev/badge?page_id=mmphego.{{ page.url | slugify }}&color=FF69B4&lcolor=555&style=flat-square&text=views&logo=eye&hit=false" alt="views">
-            </span>
+            {% include post-meta.html date=page.date updated=page.last-updated show_views=true url=page.url %}
             {% endif %}
           </div>
         </div>
@@ -114,16 +96,7 @@
           {% if page.subtitle %}
           <h2 class="post-subheading">{{ page.subtitle }}</h2>
           {% endif %}
-          <span class="post-meta">
-            Posted on {{ page.date | date: "%B %-d, %Y" }}
-              {% if page.last-updated %}
-              &bull; Updated {{ page.last-updated | date: "%B %-d, %Y" }}
-              {% endif %}
-            &bull;
-            {% assign words = content | number_of_words %}{% if words < 200 %}1{% else %}{{ words | divided_by: 200 }}{% endif %} min read
-            &bull;
-            <img class="vbr-badge" data-page-id="mmphego.{{ page.url | slugify }}" src="https://vbr.nathanchung.dev/badge?page_id=mmphego.{{ page.url | slugify }}&color=FF69B4&lcolor=555&style=flat-square&text=views&logo=eye&hit=false" alt="views">
-          </span>
+          {% include post-meta.html date=page.date updated=page.last-updated show_views=true url=page.url %}
           {% endif %}
         </div>
       </div>

@@ -1,9 +1,10 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
-  <link rel="dns-prefetch" href="//fonts.googleapis.com">
   <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
   <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
 
@@ -30,9 +31,10 @@
   <script>
   // Apply dark mode immediately to prevent flash
   (function() {
-    if (localStorage.getItem('darkMode') === 'true') {
-      document.body ? document.body.classList.add('dark') :
-        document.addEventListener('DOMContentLoaded', function() { document.body.classList.add('dark'); });
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var savedMode = localStorage.getItem('darkMode');
+    var isDark = savedMode !== null ? savedMode === 'true' : prefersDark;
+    if (isDark) {
       document.documentElement.classList.add('dark');
     }
   })();
@@ -43,9 +45,10 @@
     var icon = document.getElementById('dark-mode-icon');
     if (icon) icon.className = isDark ? 'fa fa-sun-o' : 'fa fa-moon-o';
   }
+  // Set initial icon state
   document.addEventListener('DOMContentLoaded', function() {
     var icon = document.getElementById('dark-mode-icon');
-    if (icon && localStorage.getItem('darkMode') === 'true') {
+    if (icon && document.documentElement.classList.contains('dark')) {
       icon.className = 'fa fa-sun-o';
     }
   });
@@ -120,7 +123,14 @@
   <meta property="og:description" content="{{ page.content | strip_html | xml_escape | truncatewords: 50 }}">
   {% endif %}
 
+  {% if page.layout == "post" %}
+  <meta property="og:type" content="article" />
+  <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}" />
+  {% if page.last-updated %}<meta property="article:modified_time" content="{{ page.last-updated | date_to_xmlschema }}" />{% endif %}
+  {% for tag in page.tags %}<meta property="article:tag" content="{{ tag }}" />{% endfor %}
+  {% else %}
   <meta property="og:type" content="website" />
+  {% endif %}
 
   {% if page.id %}
   <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
@@ -139,7 +149,11 @@
 
   <!-- Twitter summary cards -->
 
+  {% if page.share-img %}
+  <meta name="twitter:card" content="summary_large_image" />
+  {% else %}
   <meta name="twitter:card" content="summary" />
+  {% endif %}
   <meta name="twitter:site" content="@{{ site.author.twitter }}" />
   <meta name="twitter:creator" content="@{{ site.author.twitter }}" />
 
@@ -170,4 +184,36 @@
   <script type="text/javascript" src="/js/lightbox.js" defer></script>
   <link rel="stylesheet" href="/css/lightbox.css">
   {% seo %}
+
+  {% if page.layout == "post" %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{{ page.title | escape }}",
+    "image": "{{ page.share-img | default: site.avatar | absolute_url }}",
+    "datePublished": "{{ page.date | date_to_xmlschema }}",
+    {% if page.last-updated %}"dateModified": "{{ page.last-updated | date_to_xmlschema }}",{% else %}"dateModified": "{{ page.date | date_to_xmlschema }}",{% endif %}
+    "author": {
+      "@type": "Person",
+      "name": "{{ site.author.name }}",
+      "url": "{{ site.url }}"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "{{ site.title }}",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ site.avatar | absolute_url }}"
+      }
+    },
+    "description": "{{ page.meta-description | default: page.subtitle | default: page.excerpt | strip_html | truncatewords: 50 | escape }}",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "{{ page.url | absolute_url }}"
+    }
+    {% if page.tags.size > 0 %},"keywords": "{{ page.tags | join: ', ' }}"{% endif %}
+  }
+  </script>
+  {% endif %}
 </head>

@@ -7,13 +7,20 @@ var main = {
 
   init : function() {
     // Shorten the navbar after scrolling a little bit down
+    var ticking = false;
     $(window).scroll(function() {
-        if ($(".navbar").offset().top > 50) {
-            $(".navbar").addClass("top-nav-short");
-            $(".navbar-custom .avatar-container").fadeOut(500)
-        } else {
-            $(".navbar").removeClass("top-nav-short");
-            $(".navbar-custom .avatar-container").fadeIn(500);
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                if ($(".navbar").offset().top > 50) {
+                    $(".navbar").addClass("top-nav-short");
+                    $(".navbar-custom .avatar-container").fadeOut(500)
+                } else {
+                    $(".navbar").removeClass("top-nav-short");
+                    $(".navbar-custom .avatar-container").fadeIn(500);
+                }
+                ticking = false;
+            });
+            ticking = true;
         }
     });
 

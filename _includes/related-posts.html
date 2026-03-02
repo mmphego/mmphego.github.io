@@ -1,33 +1,53 @@
 {% if page.tags.size > 0 %}
-<div class="related-posts">
-  <h3>Related Posts</h3>
-  <div class="related-posts-list">
-    {% assign max_related = 3 %}
-    {% assign related_count = 0 %}
-    {% assign current_url = page.url %}
-    {% for post in site.posts %}
-      {% if post.url != current_url and related_count < max_related %}
-        {% assign common_tags = 0 %}
-        {% for tag in post.tags %}
-          {% if page.tags contains tag %}
-            {% assign common_tags = common_tags | plus: 1 %}
-          {% endif %}
-        {% endfor %}
-        {% if common_tags > 0 %}
-          <div class="related-post-item">
-            <a href="{{ post.url | prepend: site.baseurl }}">
-              <h4>{{ post.title }}</h4>
-            </a>
-            <span class="post-meta">
-              {{ post.date | date: "%B %-d, %Y" }}
-              &bull;
-              {% assign words = post.content | number_of_words %}{% if words < 200 %}1{% else %}{{ words | divided_by: 200 }}{% endif %} min read
-            </span>
-          </div>
-          {% assign related_count = related_count | plus: 1 %}
-        {% endif %}
+{% assign max_related = 3 %}
+{% assign related_count = 0 %}
+{% assign current_url = page.url %}
+
+{% capture related_items %}
+{% for post in site.posts %}
+  {% if post.url != current_url and related_count < max_related %}
+    {% assign common_tags = 0 %}
+    {% for tag in post.tags %}
+      {% if page.tags contains tag %}
+        {% assign common_tags = common_tags | plus: 1 %}
       {% endif %}
     {% endfor %}
+    {% if common_tags > 0 %}
+      <article class="rp-card">
+        <a href="{{ post.url | prepend: site.baseurl }}" class="rp-card-link">
+          <div class="rp-card-body">
+            <div class="rp-card-tags">
+              {% for tag in post.tags limit:2 %}
+              <span class="rp-tag">{{ tag }}</span>
+              {% endfor %}
+            </div>
+            <h4 class="rp-card-title">{{ post.title }}</h4>
+            <p class="rp-card-excerpt">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+            <div class="rp-card-meta">
+              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+              <span class="rp-dot">&middot;</span>
+              {% assign words = post.content | number_of_words %}{% if words < 200 %}1{% else %}{{ words | divided_by: 200 }}{% endif %} min read
+            </div>
+          </div>
+          <span class="rp-card-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </article>
+      {% assign related_count = related_count | plus: 1 %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+{% endcapture %}
+
+{% assign trimmed = related_items | strip %}
+{% if trimmed != "" %}
+<section class="rp-section" aria-label="Related posts">
+  <div class="rp-header">
+    <span class="rp-label">Continue Reading</span>
+    <span class="rp-line" aria-hidden="true"></span>
   </div>
-</div>
+  <div class="rp-grid">
+    {{ related_items }}
+  </div>
+</section>
+{% endif %}
 {% endif %}

@@ -1,0 +1,16 @@
+<span class="post-meta">
+  <time datetime="{{ include.date | date_to_xmlschema }}">
+    Posted on {{ include.date | date: "%B %-d, %Y" }}
+  </time>
+  {% if include.updated %}
+  &bull; <time datetime="{{ include.updated | date_to_xmlschema }}">
+    Updated {{ include.updated | date: "%B %-d, %Y" }}
+  </time>
+  {% endif %}
+  &bull;
+  {% assign words = content | number_of_words %}{% if words < 200 %}1{% else %}{{ words | divided_by: 200 }}{% endif %} min read
+  {% if include.show_views %}
+  &bull;
+  <img class="vbr-badge" data-page-id="mmphego.{{ include.url | slugify }}" src="https://vbr.nathanchung.dev/badge?page_id=mmphego.{{ include.url | slugify }}&color=FF69B4&lcolor=555&style=flat-square&text=views&logo=eye&hit=false" alt="Page view count">
+  {% endif %}
+</span>

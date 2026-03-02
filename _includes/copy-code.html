@@ -1,4 +1,19 @@
 <script>
+function copyToClipboard(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    return navigator.clipboard.writeText(text);
+  }
+  var textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.style.position = 'fixed';
+  textarea.style.opacity = '0';
+  document.body.appendChild(textarea);
+  textarea.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(textarea);
+  return Promise.resolve();
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   var codeBlocks = document.querySelectorAll('pre');
   codeBlocks.forEach(function(pre) {
@@ -16,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
     btn.addEventListener('click', function() {
       var code = pre.querySelector('code') || pre;
       var text = code.textContent;
-      navigator.clipboard.writeText(text).then(function() {
+      copyToClipboard(text).then(function() {
         btn.textContent = 'Copied!';
         btn.classList.add('copied');
         setTimeout(function() {

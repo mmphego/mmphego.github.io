@@ -1,4 +1,5 @@
-/* Dark mode theme */
+/* Dark mode theme - minimal overrides for complex patterns that CSS variables can't handle */
+
 body.dark {
   background-color: #1a1a2e;
   color: #e0e0e0;
@@ -155,19 +156,12 @@ body.dark {
   border-top-color: #0f3460;
 }
 
-/* Dark mode toggle button */
-.dark-mode-toggle {
-  cursor: pointer;
-  font-size: 24px;
-  padding: 8px 12px;
-  color: inherit;
-  background: none;
-  border: none;
-  transition: transform 0.3s ease;
+/* Dark mode toggle overrides */
+.dark .dark-mode-toggle {
+  color: #e0e0e0;
 }
-
-.dark-mode-toggle:hover {
-  transform: scale(1.2);
+.dark .dark-mode-toggle:hover {
+  color: #64b5f6;
 }
 
 /* Search input dark mode */
@@ -184,4 +178,93 @@ body.dark {
 /* Typed.js dark */
 .dark .typed-js-hide h1 {
   color: #e0e0e0;
+}
+
+/* Section nav dark mode */
+.dark .section-nav {
+  background-color: #1e1e30;
+  border-color: #3a3a5c;
+}
+
+.dark .section-nav::before {
+  color: #e0e0e0;
+}
+
+.dark .section-nav a {
+  color: #b0b0b0;
+}
+
+.dark .section-nav a:hover {
+  color: #64b5f6;
+}
+
+/* Related posts dark mode */
+.dark .related-posts {
+  border-top-color: #3a3a5c;
+}
+
+.dark .related-posts h3 {
+  color: #e0e0e0;
+}
+
+.dark .related-post-item {
+  border-bottom-color: #2d2d44;
+}
+
+.dark .related-post-item a {
+  color: #e0e0e0;
+}
+
+.dark .related-post-item a:hover h4 {
+  color: #64b5f6;
+}
+
+.dark .related-post-item .post-meta {
+  color: #808080;
+}
+
+/* Copy code button dark mode */
+.dark .copy-code-btn {
+  background: rgba(30,30,48,0.9);
+  border-color: #3a3a5c;
+  color: #e0e0e0;
+}
+
+.dark .copy-code-btn:hover {
+  background: #2d2d44;
+}
+
+/* Featured posts dark mode */
+.dark .featured-posts {
+  border-bottom-color: #3a3a5c;
+}
+
+.dark .featured-heading {
+  color: #64b5f6;
+}
+
+.dark .post-preview.featured {
+  border-left-color: #64b5f6;
+}
+
+/* Search dark mode */
+.dark #search-input:focus {
+  border-color: #64b5f6;
+  box-shadow: 0 0 0 2px rgba(100, 181, 246, 0.1);
+}
+
+.dark .search-icon {
+  color: #808080;
+}
+
+.dark #results-container li {
+  border-bottom-color: #3a3a5c;
+}
+
+.dark #results-container li a {
+  color: #e0e0e0;
+}
+
+.dark #results-container li a:hover {
+  color: #64b5f6;
 }

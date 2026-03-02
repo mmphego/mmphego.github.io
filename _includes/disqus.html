@@ -3,7 +3,15 @@
     <div id="disqus_thread"></div>
     <script type="text/javascript">
         var disqus_shortname = '{{ site.disqus }}';
-        /* ensure that pages with query string get the same discussion */
+        var disqus_config = function() {
+            this.page.url = window.location.href.split("?")[0];
+            this.callbacks.onReady = [function() {
+                var rec = document.getElementById('disqus_recommendations');
+                if (rec) rec.style.display = 'none';
+                var recs = document.querySelectorAll('.recommendation-container, .embed-recommendations');
+                recs.forEach(function(el) { el.style.display = 'none'; });
+            }];
+        };
         var url_parts = window.location.href.split("?");
         var disqus_url = url_parts[0];
         (function () {

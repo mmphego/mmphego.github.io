@@ -3,160 +3,59 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <ul class="list-inline text-center footer-links">
-          {% if site.author.facebook and site.footer-links-active.facebook %}
-          <li>
-            <a href="https://www.facebook.com/{{ site.author.facebook }}" title="Facebook">
-              <span class="fa-stack fa-lg" aria-hidden="true">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-              </span>
-              <span class="sr-only">Facebook</span>
-            </a>
-          </li>
-          {% endif %}
-          {% if site.author.github and site.footer-links-active.github %}
-          <li>
-            <a href="https://github.com/{{ site.author.github }}" title="GitHub">
-              <span class="fa-stack fa-lg" aria-hidden="true">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-              </span>
-              <span class="sr-only">GitHub</span>
-            </a>
-          </li>
-          {% endif %}
-          {% if site.author.twitter and site.footer-links-active.twitter %}
-          <li>
-            <a href="https://twitter.com/{{ site.author.twitter }}" title="Twitter">
-              <span class="fa-stack fa-lg" aria-hidden="true">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-              </span>
-              <span class="sr-only">Twitter</span>
-            </a>
-          </li>
-          {% endif %}
-          {% if site.author.reddit and site.footer-links-active.reddit %}
-          <li>
-            <a href="https://reddit.com/u/{{ site.author.reddit }}" title="Reddit">
-              <span class="fa-stack fa-lg" aria-hidden="true">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
-              </span>
-              <span class="sr-only">Reddit</span>
-            </a>
-          </li>
-          {% endif %}
-          {% if site.author.google-plus and site.footer-links-active.google-plus %}
-          <li>
-            <a href="https://plus.google.com/{{ site.author.google-plus }}" title="Google+">
-              <span class="fa-stack fa-lg" aria-hidden="true">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
-              </span>
-              <span class="sr-only">Google+</span>
-            </a>
-          </li>
-          {% endif %}
-          {% if site.author.email and site.footer-links-active.email %}
-          <li>
-            <a href="mailto:{{ site.author.email }}" title="Email me">
-              <span class="fa-stack fa-lg" aria-hidden="true">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-              </span>
-              <span class="sr-only">Email me</span>
-            </a>
-          </li>
-          {% endif %}
-          {% if site.author.linkedin and site.footer-links-active.linkedin %}
-          <li>
-            <a href="https://linkedin.com/in/{{ site.author.linkedin }}" title="LinkedIn">
-              <span class="fa-stack fa-lg" aria-hidden="true">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-              </span>
-              <span class="sr-only">LinkedIn</span>
-            </a>
-          </li>
-          {% endif %}
-          {% if site.author.xing and site.footer-links-active.xing %}
-          <li>
-            <a href="https://www.xing.com/profile/{{ site.author.xing }}" title="Xing">
-              <span class="fa-stack fa-lg" aria-hidden="true">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-xing fa-stack-1x fa-inverse"></i>
-              </span>
-              <span class="sr-only">Xing</span>
-            </a>
-          </li>
-          {% endif %}
-          {% if site.author.stackoverflow and site.footer-links-active.stackoverflow %}
-          <li>
-            <a href="https://stackoverflow.com/users/{{ site.author.stackoverflow }}" title="StackOverflow">
-              <span class="fa-stack fa-lg" aria-hidden="true">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
-              </span>
-              <span class="sr-only">StackOverflow</span>
-            </a>
-          </li>
-          {% endif %}
-          {% if site.author.snapchat and site.footer-links-active.snapchat %}
-          <li>
-            <a href="https://www.snapchat.com/add/{{ site.author.snapchat }}" title="Snapchat">
-              <span class="fa-stack fa-lg" aria-hidden="true">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-snapchat-ghost fa-stack-1x fa-inverse"></i>
-              </span>
-              <span class="sr-only">Snapchat</span>
-            </a>
-          </li>
-          {% endif %}
-          {% if site.author.instagram and site.footer-links-active.instagram %}
-          <li>
-            <a href="https://www.instagram.com/{{ site.author.instagram }}" title="Instagram">
-              <span class="fa-stack fa-lg" aria-hidden="true">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
-              </span>
-              <span class="sr-only">Instagram</span>
-            </a>
-          </li>
-          {% endif %}
-          {% if site.author.youtube and site.footer-links-active.youtube %}
-          <li>
-            <a href="https://www.youtube.com/{{ site.author.youtube }}" title="YouTube">
-              <span class="fa-stack fa-lg" aria-hidden="true">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
-              </span>
-              <span class="sr-only">YouTube</span>
-            </a>
-          </li>
-          {% endif %}
-          {% if site.author.spotify and site.footer-links-active.spotify %}
-          <li>
-            <a href="https://open.spotify.com/user/{{ site.author.spotify }}" title="Spotify">
-              <span class="fa-stack fa-lg" aria-hidden="true">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-spotify fa-stack-1x fa-inverse"></i>
-              </span>
-              <span class="sr-only">Spotify</span>
-            </a>
-          </li>
-          {% endif %}
-          {% if site.author.telephone and site.footer-links-active.telephone %}
-          <li>
-            <a href="tel:{{ site.author.telephone }}" title="Phone">
-              <span class="fa-stack fa-lg" aria-hidden="true">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-phone fa-stack-1x fa-inverse"></i>
-              </span>
-              <span class="sr-only">Phone</span>
-            </a>
-          </li>
-          {% endif %}
+          {% assign social_links = "facebook,github,twitter,reddit,google-plus,email,linkedin,xing,stackoverflow,snapchat,instagram,youtube,spotify,telephone,steam,twitch,yelp,sololearn,codecademy,docker,devto" | split: "," %}
+          {% assign social_config = "facebook|https://www.facebook.com/,github|https://github.com/,twitter|https://twitter.com/,reddit|https://reddit.com/u/,google-plus|https://plus.google.com/,email|mailto:,linkedin|https://linkedin.com/in/,xing|https://www.xing.com/profile/,stackoverflow|https://stackoverflow.com/users/,snapchat|https://www.snapchat.com/add/,instagram|https://www.instagram.com/,youtube|https://www.youtube.com/,spotify|https://open.spotify.com/user/,telephone|tel:,steam|https://steamcommunity.com/id/,twitch|https://www.twitch.tv/,yelp|https://,.yelp.com,sololearn|https://www.sololearn.com/Profile/,codecademy|https://www.codecademy.com/,docker|https://hub.docker.com/u//,devto|https://dev.to/" | split: "," %}
+          {% assign social_icons = "facebook|fa-facebook,github|fa-github,twitter|fa-twitter,reddit|fa-reddit,google-plus|fa-google-plus,email|fa-envelope,linkedin|fa-linkedin,xing|fa-xing,stackoverflow|fa-stack-overflow,snapchat|fa-snapchat-ghost,instagram|fa-instagram,youtube|fa-youtube,spotify|fa-spotify,telephone|fa-phone,steam|fa-steam,twitch|fa-twitch,yelp|fa-yelp,sololearn|fa-chrome,codecademy|fa-connectdevelop,docker|fa-connectdevelop,devto|" | split: "," %}
+
+          {% for platform in social_links %}
+            {% assign active_check = site.footer-links-active[platform] %}
+            {% assign author_value = site.author[platform] %}
+
+            {% if author_value and active_check %}
+              {% for config in social_config %}
+                {% assign config_parts = config | split: "|" %}
+                {% if config_parts[0] == platform %}
+                  {% assign url_prefix = config_parts[1] %}
+                  {% assign url_suffix = config_parts[2] | default: "" %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+
+              {% for icon in social_icons %}
+                {% assign icon_parts = icon | split: "|" %}
+                {% if icon_parts[0] == platform %}
+                  {% assign icon_class = icon_parts[1] %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+
+              <li>
+                {% if platform == "devto" %}
+                <a href="{{ url_prefix }}{{ author_value }}{{ url_suffix }}" title="Dev.to">
+                  <img src="https://d2fltix0v2e0sb.cloudfront.net/dev-badge.svg" height="40" width="40" alt="Dev.to profile" />
+                  <span class="sr-only">Dev.to</span>
+                </a>
+                {% elsif platform == "yelp" %}
+                <a href="https://{{ author_value }}.yelp.com" title="Yelp">
+                  <span class="fa-stack fa-lg" aria-hidden="true">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa {{ icon_class }} fa-stack-1x fa-inverse"></i>
+                  </span>
+                  <span class="sr-only">Yelp</span>
+                </a>
+                {% else %}
+                <a href="{{ url_prefix }}{{ author_value }}{{ url_suffix }}" title="{{ platform | capitalize }}">
+                  <span class="fa-stack fa-lg" aria-hidden="true">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa {{ icon_class }} fa-stack-1x fa-inverse"></i>
+                  </span>
+                  <span class="sr-only">{{ platform | capitalize }}</span>
+                </a>
+                {% endif %}
+              </li>
+            {% endif %}
+          {% endfor %}
+
           {% if site.footer-links-active.rss %}
           <li>
             <a href="{{ '/feed.xml' | prepend: site.baseurl }}" title="RSS">
@@ -165,82 +64,6 @@
                 <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
               </span>
               <span class="sr-only">RSS</span>
-            </a>
-          </li>
-          {% endif %}
-          {% if site.author.steam and site.footer-links-active.steam %}
-          <li>
-            <a href="https://steamcommunity.com/id/{{ site.author.steam }}" title="Steam">
-              <span class="fa-stack fa-lg" aria-hidden="true">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-steam fa-stack-1x fa-inverse"></i>
-              </span>
-              <span class="sr-only">Steam</span>
-            </a>
-          </li>
-          {% endif %}
-          {% if site.author.twitch and site.footer-links-active.twitch %}
-          <li>
-            <a href="https://www.twitch.tv/{{ site.author.twitch }}" title="Twitch">
-              <span class="fa-stack fa-lg" aria-hidden="true">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-twitch fa-stack-1x fa-inverse"></i>
-              </span>
-              <span class="sr-only">Twitch</span>
-            </a>
-          </li>
-          {% endif %}
-          {% if site.author.yelp and site.footer-links-active.yelp %}
-          <li>
-            <a href="https://{{ site.author.yelp }}.yelp.com" title="Yelp">
-              <span class="fa-stack fa-lg" aria-hidden="true">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-yelp fa-stack-1x fa-inverse"></i>
-              </span>
-              <span class="sr-only">Yelp</span>
-            </a>
-          </li>
-          {% endif %}
-          {% if site.author.sololearn and site.footer-links-active.sololearn %}
-          <li>
-            <a href="https://www.sololearn.com/Profile/{{ site.author.sololearn }}" title="Sololearn">
-              <span class="fa-stack fa-lg" aria-hidden="true">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-chrome fa-stack-1x fa-inverse"></i>
-              </span>
-              <span class="sr-only">Sololearn</span>
-            </a>
-          </li>
-          {% endif %}
-          {% if site.author.codecademy and site.footer-links-active.codecademy %}
-          <li>
-            <a href="https://www.codecademy.com/{{ site.author.codecademy }}" title="CodeCademy">
-              <span class="fa-stack fa-lg" aria-hidden="true">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-connectdevelop fa-stack-1x fa-inverse"></i>
-              </span>
-              <span class="sr-only">CodeCademy</span>
-            </a>
-          </li>
-          {% endif %}
-          {% if site.author.docker and site.footer-links-active.docker %}
-          <li>
-            <a href="https://hub.docker.com/u//{{ site.author.docker }}" title="Docker">
-              <span class="fa-stack fa-lg" aria-hidden="true">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-connectdevelop fa-stack-1x fa-inverse"></i>
-              </span>
-              <span class="sr-only">Docker</span>
-            </a>
-          </li>
-          {% endif %}
-          {% if site.author.devto and site.footer-links-active.devto %}
-          <li>
-            <a href="https://dev.to/{{ site.author.devto }}" title="Dev.to">
-              <!-- <span class="fa-stack fa-lg" aria-hidden="true"> -->
-              <img src="https://d2fltix0v2e0sb.cloudfront.net/dev-badge.svg" height="40" width="40" alt="Dev.to profile" />
-              <!-- </span> -->
-              <span class="sr-only">Dev.to</span>
             </a>
           </li>
           {% endif %}

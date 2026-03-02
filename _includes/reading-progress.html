@@ -23,13 +23,20 @@
 </style>
 <script>
 (function() {
-  var fill = document.getElementById('reading-progress-fill');
-  if (!fill) return;
+  var progressBar = document.getElementById('reading-progress-fill');
+  if (!progressBar) return;
+  var ticking = false;
   window.addEventListener('scroll', function() {
-    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    fill.style.width = Math.min(progress, 100) + '%';
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var progress = height > 0 ? (winScroll / height) * 100 : 0;
+        progressBar.style.width = Math.min(progress, 100) + '%';
+        ticking = false;
+      });
+      ticking = true;
+    }
   });
 })();
 </script>

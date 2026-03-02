@@ -9,30 +9,30 @@ bigimg:
 ---
 
 
-<!-- Typed.js -->
-<script src="/js/jquery-1.11.2.min.js"></script>
-<script src="/js/typed.js" type="text/javascript"></script>
+<!-- Typed.js — loaded after jQuery via window.onload -->
 <script>
-  $(function(){
-    $(".typed").typed({
-      strings: [
-        "AI/Machine Learning.",
-        "Arduino's.",
-        "DevOps and Tools.",
-        "Docker.",
-        "Hacks, Tips and Tricks.",
-        "Linux.",
-        "MicroPython and Micro Controllers.",
-        "Open Source.",
-        "Python Programming.",
-        "Raspberry Pi's.",
-        "Space and Universe.",
-        "Technology."],
-      typeSpeed: 100,
-      loop: true,
-      backDelay: 1000
-
-    });
+  window.addEventListener('load', function() {
+    var s = document.createElement('script');
+    s.src = '/js/typed.js';
+    s.onload = function() {
+      $(".typed").typed({
+        strings: [
+          "Python &amp; Automation.",
+          "Docker &amp; Kubernetes.",
+          "AI &amp; Machine Learning.",
+          "AWS &amp; Cloud Infrastructure.",
+          "DevOps &amp; CI/CD Pipelines.",
+          "LLM Agents &amp; AI Engineering.",
+          "Data Engineering.",
+          "Linux Tips &amp; Tricks.",
+          "Observability &amp; Telemetry.",
+          "Engineering Productivity."],
+        typeSpeed: 100,
+        loop: true,
+        backDelay: 1000
+      });
+    };
+    document.body.appendChild(s);
   });
 </script>
 
