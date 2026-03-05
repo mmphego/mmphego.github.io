@@ -192,6 +192,33 @@ Most days now, the answer is yes. That's the win.
 
 ---
 
+## Listen & Watch
+
+If you prefer audio or video, here are AI-generated reviews of this post courtesy of [Google NotebookLM](https://notebooklm.google.com/).
+
+### Video Overview
+
+<video width="100%" controls>
+  <source src="{{ '/assets/Engineer_Automates_Workflow.mp4' | absolute_url }}" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+### Audio Overview
+
+<audio controls>
+  <source src="{{ '/assets/Automating_software_engineering_with_AI_skills.m4a' | absolute_url }}" type="audio/mp4">
+  Your browser does not support the audio element.
+</audio>
+
+### Audio Debate
+
+<audio controls>
+  <source src="{{ '/assets/Twenty_custom_AI_skills_for_engineering_workflows.m4a' | absolute_url }}" type="audio/mp4">
+  Your browser does not support the audio element.
+</audio>
+
+---
+
 ## References
 
 * [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
