@@ -70,15 +70,7 @@ body.dark {
   color: #f0f0f0;
 }
 
-.dark .blog-post code {
-  background-color: #2d2d44;
-  color: #e8e8e8;
-}
-
-.dark .blog-post pre {
-  background-color: #1e1e30;
-  border-color: #3a3a5c;
-}
+/* Code block colours handled by css/prism.css One Dark theme */
 
 .dark .blog-post blockquote {
   border-left-color: #0f3460;
