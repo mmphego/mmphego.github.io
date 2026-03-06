@@ -12,7 +12,7 @@ tags:
 ---
 
 {:refdef: style="text-align: center;"}
-[![post image]({{ "/assets/2026-02-28-How-I-Built-20+-Custom-AI-Coding-Skills-to-Automate-My-Entire-Engineering-Workflow.png" | absolute_url }})](/)
+[![post image]({{ "/assets/2026-02-28-How-I-Built-20+-Custom-AI-Coding-Skills-to-Automate-My-Entire-Engineering-Workflow.png" | absolute_url }}){: loading="lazy"}](/)
 {: refdef}
 
 ---
@@ -56,22 +56,22 @@ If you prefer audio or video, here are AI-generated reviews of this post courtes
 
 #### Video Overview
 
-<video width="100%" controls>
-  <source src="{{ '/assets/Engineer_Automates_Workflow.mp4' | absolute_url }}" type="video/mp4">
+<video width="100%" controls preload="none">
+  <source src="https://github.com/mmphego/mmphego.github.io/releases/download/media-2026-02-28/Engineer_Automates_Workflow.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
 #### Audio Debate
 
-<audio controls>
-  <source src="{{ '/assets/Automating_software_engineering_with_AI_skills.m4a' | absolute_url }}" type="audio/mp4">
+<audio controls preload="none">
+  <source src="https://github.com/mmphego/mmphego.github.io/releases/download/media-2026-02-28/Automating_software_engineering_with_AI_skills.m4a" type="audio/mp4">
   Your browser does not support the audio element.
 </audio>
 
 #### Audio Overview
 
-<audio controls>
-  <source src="{{ '/assets/Twenty_custom_AI_skills_for_engineering_workflows.m4a' | absolute_url }}" type="audio/mp4">
+<audio controls preload="none">
+  <source src="https://github.com/mmphego/mmphego.github.io/releases/download/media-2026-02-28/Twenty_custom_AI_skills_for_engineering_workflows.m4a" type="audio/mp4">
   Your browser does not support the audio element.
 </audio>
 
