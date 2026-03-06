@@ -24,7 +24,7 @@ Suvi. R. - One of the engineers on the team was going to walk me through the cur
 ### What's Identity State Management?
 
 Quick context for why this matters: in a multi-agent system, every agent needs to know *who* it's talking about before the conversation starts.
-Think of it like a hospital - you get there and provide the reception with your medical aid number, file number or ID, before you actually see the doctor. The back office pulls your full profile: name, date of birth, allergies, medical history, what products you're covered for. The doctor never asks "what's your name?" - they already have the complete file.
+Think of it like a hospital - you get there and provide the receptionist with your medical aid number, file number or ID, before you actually see the doctor. The back office pulls your full profile: name, date of birth, allergies, medical history, what products you're covered for. The doctor never asks "what's your name?" - they already have the complete file.
 
 That's what identity state management does for our agents. A single identifier comes in, the system resolves it into a full customer profile - accounts, products, contact details, access boundaries - and stamps it into the agent's session state before the first message is even sent. Every tool the agent calls gets this identity for free. No duplicate API lookups, no inconsistent data, no "which customer are we talking about?" mid-conversation.
 
@@ -32,11 +32,11 @@ The boundaries are the part that matters most.
 Back to the hospital: the paediatric ward checks the patient file and says, "This patient is 45 years old. We only treat children. You shall not pass (*channelling Gandalf*)."
 The orthopaedic ward says, "No surgical history on file. Not our patient." Each ward knows what kind of patients it handles, and it enforces that at the door — not halfway through a consultation. Show up at the wrong ward? You're turned away at the door before you ever see a doctor.
 
-One lookup, shared everywhere, enforced at the gate. But enough about hospitals - you and I aren't doctors anyways. Well, not the useful kind. We're the kind that debug pod restarts at midnight and call it "practice."
+One lookup, shared everywhere, enforced at the gate. But enough about hospitals - you and I aren't doctors anyways. Well, not the useful kind. We're the kind that debug pod restarts at midnight and call it "practice".
 
 ---
 
-Anyways back to the issue -- Before the session, I figured I'd spin up the service and poke around in ADK Web - get a feel for the flow, have something concrete to reference before we go into our session. The responsible thing to do. The *"I'll just do a quick sanity check first"* thing to do. *Famous last words.*
+Anyways back to the issue - before the session, I figured I'd spin up the service and poke around in ADK Web - get a feel for the flow, have something concrete to reference before we go into our session. The responsible thing to do. The *"I'll just do a quick sanity check first"* thing to do. *Famous last words.*
 
 **Memo to self:** Don't Shave the Yak. I own two t-shirts (shoutout OfferZen) that say exactly that, and I still almost always forget this lesson.
 
@@ -56,7 +56,7 @@ litellm.aws_region_name = self.settings.ai_region_name  # eu-central-1
 
 *Configured. Clearly. Obviously. Correctly.*
 
-And yet - LiteLLM was somehow, inexplicably, defiantly routing every single request to `us-west-2`. Not `eu-central-1`. Not even close. `us-west-2` is on the other side of the planet and somehow being set. The `eu.anthropic.*` model IDs don't exist in `us-west-2` - obviously, which is why the error said "invalid model identifier" instead of "wrong region" - a red herring disguised as an error message.
+And yet - LiteLLM was somehow, inexplicably, defiantly routing every single request to `us-west-2`. Not `eu-central-1`. Not even close. `us-west-2` is on the other side of the planet and was somehow being used instead. The `eu.anthropic.*` model IDs don't exist in `us-west-2` - obviously, which is why the error said "invalid model identifier" instead of "wrong region" - a red herring disguised as an error message.
 
 At this point the knowledge transfer session was a distant memory. I was reading LiteLLM's source code at 11 AM on a Thursday, which is not where I expected to be - that's when I knew I'd probably have a late night. No overtime pay, of course. Just the satisfaction of knowing why my config was being ignored. *The things we do for free.*
 
@@ -68,7 +68,7 @@ Never read. Not once. Not by anything in the Bedrock Converse handler. A decorat
 
 What started as a five-minute prep turned into a full rabbit hole - LiteLLM internals, IRSA credential rotation, ADK tool declaration quirks, and a Vertex AI telemetry mismatch (another curveball). The walkthrough session had to wait. The engineer was more patient about the delay than the situation probably deserved.
 
-This post documents some of the curve balls we encountered, the root causes, and the fixes. If you're running Google ADK agents on AWS Bedrock via LiteLLM, these gotchas will save you hours of debugging and days of intermittent failures in production. If you're just curious about the internals of this stack, it's a peek behind the curtain at how these frameworks interact - and sometimes don't - in real-world scenarios.
+This post documents some of the curveballs we encountered, the root causes, and the fixes. If you're running Google ADK agents on AWS Bedrock via LiteLLM, these gotchas will save you hours of debugging and days of intermittent failures in production. If you're just curious about the internals of this stack, it's a peek behind the curtain at how these frameworks interact - and sometimes don't - in real-world scenarios.
 
 ---
 
@@ -204,7 +204,7 @@ litellm.aws_region_name = "eu-central-1"
 
 ### The Problem
 
-In EKS with IRSA (IAM Roles for Service Accounts), AWS credentials are short-lived and rotate automatically. The credentials your pod starts with will expire mid-deployment. When they do, LiteLLM raises an `AuthenticationError` and doesn't try again.
+In EKS with IRSA (IAM Roles for Service Accounts), AWS credentials are short-lived and rotate automatically. The credentials your pod starts with will expire mid-request. When they do, LiteLLM raises an `AuthenticationError` and doesn't try again.
 
 ```text
 botocore.exceptions.ClientError: An error occurred (ExpiredTokenException)
@@ -470,7 +470,7 @@ volumes:
   emptyDir: {}
 ```
 
-This is fragile - it patches internals and will break if ADK refactors the eval storage classes. I've opened [a feature request](https://github.com/google/adk-python/issues/3887) for a proper `eval_storage_dir` parameter or `file://` URI support. It's labelled `planned` by the ADK team, so hopefully this workaround has an expiry date.
+This is fragile - it patches internals and will break if ADK refactors the eval storage classes. I've opened [a feature request on Google ADK](https://github.com/google/adk-python/issues/3887) for a proper `eval_storage_dir` parameter or `file://` URI support. It's labelled `planned` by the ADK team, so hopefully this workaround has an expiry date.
 
 ---
 
@@ -486,7 +486,7 @@ Context Window Error - {"message":"The model returned the following errors:
 prompt is too long: 1001777 tokens > 1000000 maximum"}
 ```
 
-One million, one thousand, seven hundred and seventy-seven tokens. Just barely over the limit. The kind of number that tells you it crept up gradually, not that someone pasted a novel into a prompt.
+One million, one thousand, seven hundred and seventy-seven tokens later. Just barely over the limit. The kind of number that tells you it crept up gradually, not that someone pasted a novel into a prompt.
 
 The root cause was a combination of two things working as designed but scaling badly together:
 
@@ -506,7 +506,7 @@ You won't see this coming from unit tests or local testing with short conversati
 The structural fixes:
 
 - **Truncate or summarise tool outputs** - don't pass raw tool results into the context unchecked. Set a max token budget per tool response and summarise anything that exceeds it before it enters the conversation history.
-- **Monitor token usage per turn** - set up alerts on token count approaching the model's context limit. Langfuse makes this trivial if your spans carry the right attributes (see Gotcha 4).
+- **Monitor token usage per turn** - set up alerts on token count approaching the model's context limit. Langfuse makes this trivial if your spans carry the right attributes (see [Gotcha 4](#gotcha-4---observability-gaps)).
 - **Budget your system prompt** - if your system prompt is 50K+ tokens, that's 5% of Claude's context window consumed before the conversation even starts. Track it. Know the number. Compress it if it grows.
 
 ```python
@@ -520,6 +520,8 @@ def truncate_tool_output(output: str, max_tokens: int = MAX_TOOL_RESPONSE_TOKENS
         return output
     return output[:max_chars] + "\n\n[... truncated: output exceeded token budget]"
 ```
+
+This is also one of the reasons we're migrating agents/specialists from local sub-agents to [A2A](https://google.github.io/A2A/) remote agents. When a specialist runs as a local sub-agent, its entire system prompt and tool outputs live inside the coordinator's context window. Move it behind A2A, and the coordinator only sees a compact request/response envelope - the specialist's context is its own problem, in its own process, with its own token budget. Thirty specialists as local sub-agents means thirty system prompts competing for the same 1M tokens. Thirty specialists behind A2A means the coordinator's context stays lean regardless of how many agents it delegates to.
 
 ---
 
@@ -643,7 +645,12 @@ When you patch `litellm.acompletion`, you're patching a name binding on the `lit
 **The lesson:** In Python, patching a module attribute only affects code that accesses it through the module. Code that imported the function directly holds a stale reference. Always check where the target is bound, not just where it's defined.
 
 **11. The Version You Can't Upgrade To and the Version You Can't Stay On**
-Below ADK 1.20, the Swagger UI (`/docs`) is broken - a Pydantic v1 vs v2 incompatibility causes a 500 error on `/openapi.json`. I [submitted a fix](https://github.com/google/adk-python/pull/3521) and they eventually resolved it upstream in 1.20. Problem solved? Not quite. ADK 1.22+ introduces a [session storage migration](https://google.github.io/adk-docs/sessions/session/migrate/) that changes the database schema. If you're running stateful agents with persistent sessions, upgrading means running a migration on your production database - and if the migration fails or you need to roll back, you're in trouble. So you're pinned: below 1.20 your developer tooling is broken, at 1.22+ your database schema changes. The sweet spot is a narrow window that won't last forever.
+
+In Google ADK versions < [1.20.0](https://github.com/google/adk-python/releases/tag/v1.20.0), the Swagger UI (`/docs`) is broken - a Pydantic v1 vs v2 incompatibility causes a 500 error on `/openapi.json`. I [submitted a PR fix](https://github.com/google/adk-python/pull/3521) and they eventually resolved it upstream in 1.22 by bumping FastAPI version. Problem solved? Not quite.
+
+ADK >= 1.22+ introduces a [session storage migration](https://google.github.io/adk-docs/sessions/session/migrate/) that changes the database schema. If you're running stateful agents with persistent sessions, upgrading means running a migration on your production database - and if the migration fails or you need to roll back, you're in trouble.
+
+So you're pinned: below 1.20 your developer tooling is broken, at 1.22+ your database schema changes. The sweet spot is a narrow window that won't last forever. *Damned if you do, damned if you don't - welcome to dependency management in a fast-moving ecosystem.*
 
 **The lesson:** Pin your framework version deliberately and document *why*. When you're building on a fast-moving framework, the upgrade path is as much a part of your architecture as the code itself. Know what breaks above you and below you.
 
