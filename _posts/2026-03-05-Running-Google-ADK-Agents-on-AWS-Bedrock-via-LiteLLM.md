@@ -84,14 +84,14 @@ This post documents some of the curveballs we encountered, the root causes, and 
 
 If you prefer audio or video, here are AI-generated reviews of this post courtesy of [Google NotebookLM](https://notebooklm.google.com/).
 
-#### Video Overview
+<!-- #### Video Overview
 
 <div style="position: relative; width: 100%; max-width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" controls preload="none">
     <source src="{{ '/assets/ADK_on_Bedrock__7_Gotchas.mp4' | absolute_url }}" type="video/mp4">
     Your browser does not support the video tag.
   </video>
-</div>
+</div> -->
 
 #### Audio Overview: Deep dive
 
