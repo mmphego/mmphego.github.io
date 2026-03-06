@@ -29,10 +29,12 @@ Think of it like a hospital - you get there and provide the receptionist with yo
 That's what identity state management does for our agents. A single identifier comes in, the system resolves it into a full customer profile - accounts, products, contact details, access boundaries - and stamps it into the agent's session state before the first message is even sent. Every tool the agent calls gets this identity for free. No duplicate API lookups, no inconsistent data, no "which customer are we talking about?" mid-conversation.
 
 The boundaries are the part that matters most.
-Back to the hospital: the paediatric ward checks the patient file and says, "This patient is 45 years old. We only treat children. You shall not pass (*channelling Gandalf*)."
+Back to the hospital: the paediatric ward checks the patient file and says, "This patient is 45 years old. We only treat children. You shall not pass (*channelling Gandalf*)!!!"
 The orthopaedic ward says, "No surgical history on file. Not our patient." Each ward knows what kind of patients it handles, and it enforces that at the door — not halfway through a consultation. Show up at the wrong ward? You're turned away at the door before you ever see a doctor.
 
 One lookup, shared everywhere, enforced at the gate. But enough about hospitals - you and I aren't doctors anyways. Well, not the useful kind. We're the kind that debug pod restarts at midnight and call it "practice".
+
+Further reading on identity state management in Agentic AI: https://gemini.google.com/share/48065527603e
 
 ---
 
@@ -531,7 +533,7 @@ You won't see this coming from unit tests or local testing with short conversati
 
 ### The Fix
 
-**Langfuse was the hero here** - good catch, Ockert. The observability investment from Gotcha 4 paid for itself in this single incident. By looking at the trace in Langfuse, the engineer could see the exact token count per turn, identify which tool call returned the oversized payload, and trace the growth curve across the conversation. Without that visibility, this would have been a "works on my machine, fails in prod" mystery.
+**Langfuse was the hero here** - good catch, Ockert. The observability investment from [Gotcha 4](#gotcha-4---observability-gaps) paid for itself in this single incident. By looking at the trace in [Langfuse](https://www.langfuse.com/), the engineer could see the exact token count per turn, identify which tool call returned the oversized payload, and trace the growth curve across the conversation. Without that visibility, this would have been a "works on my machine, fails in prod" mystery.
 
 The structural fixes:
 
@@ -681,6 +683,10 @@ In Google ADK versions < [1.20.0](https://github.com/google/adk-python/releases/
 ADK >= 1.22+ introduces a [session storage migration](https://google.github.io/adk-docs/sessions/session/migrate/) that changes the database schema. If you're running stateful agents with persistent sessions, upgrading means running a migration on your production database - and if the migration fails or you need to roll back, you're in trouble.
 
 So you're pinned: below 1.20 your developer tooling is broken, at 1.22+ your database schema changes. The sweet spot is a narrow window that won't last forever. *Damned if you do, damned if you don't - welcome to dependency management in a fast-moving ecosystem.*
+
+{:refdef: style="text-align: center;"}
+![Damned if you do, damned if you don't]({{ "/assets/damned-if-you-do.jpeg" | absolute_url }})
+{: refdef}
 
 **The lesson:** Pin your framework version deliberately and document *why*. When you're building on a fast-moving framework, the upgrade path is as much a part of your architecture as the code itself. Know what breaks above you and below you.
 
