@@ -84,21 +84,21 @@ This post documents some of the curveballs we encountered, the root causes, and 
 
 If you prefer audio or video, here are AI-generated reviews of this post courtesy of [Google NotebookLM](https://notebooklm.google.com/).
 
-<!-- #### Video Overview
+#### Video Overview
 
 <div style="position: relative; width: 100%; max-width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" controls preload="none">
-    <source src="{{ '/assets/ADK_on_Bedrock__7_Gotchas.mp4' | absolute_url }}" type="video/mp4">
+    <source src="https://github.com/mmphego/mmphego.github.io/releases/download/media-2026-03-05/ADK_on_Bedrock__7_Gotchas.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
-</div> -->
+</div>
 
 #### Audio Overview: Deep dive
 
 A lively conversation between two hosts, unpacking and connecting topics in your sources
 
 <audio style="width: 100%; max-width: 100%;" controls preload="none">
-  <source src="{{ '/assets/Google_ADK_and_Bedrock_Production_Gotchas.m4a' | absolute_url }}" type="audio/mp4">
+  <source src="https://github.com/mmphego/mmphego.github.io/releases/download/media-2026-03-05/Google_ADK_and_Bedrock_Production_Gotchas.m4a" type="audio/mp4">
   Your browser does not support the audio element.
 </audio>
 
@@ -107,7 +107,7 @@ A lively conversation between two hosts, unpacking and connecting topics in your
 A thoughtful debate between two hosts, illuminating different perspectives on your sources
 
 <audio style="width: 100%; max-width: 100%;" controls preload="none">
-  <source src="{{ '/assets/Patching_Google_ADK_for_AWS_Bedrock.m4a' | absolute_url }}" type="audio/mp4">
+  <source src="https://github.com/mmphego/mmphego.github.io/releases/download/media-2026-03-05/Patching_Google_ADK_for_AWS_Bedrock.m4a" type="audio/mp4">
   Your browser does not support the audio element.
 </audio>
 ---
