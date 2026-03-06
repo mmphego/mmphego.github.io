@@ -386,6 +386,7 @@ With GitHub Actions, we can take our static code analysis even a step further ra
 
 Create a directory called `.github/workflows` in your repository (if it doesn't already exist). From the directory, create a new file named `static_code_analysis.yml`:
 
+{% raw %}
 ```yaml
 cat .github/workflows/static_code_analysis.yml
 
@@ -460,6 +461,7 @@ jobs:
           git push origin ${{ github.head_ref || github.ref_name }}
         fi
 ```
+{% endraw %}
 
 By integrating these steps into your GitHub Actions workflow, you create a seamless CI/CD process that not only enforces code quality but also reduces the manual effort required to maintain it. This automated approach helps maintain a high-standard for SQL, Python and other code in your repository eventually leading to a more reliable and robust software development practice.
 

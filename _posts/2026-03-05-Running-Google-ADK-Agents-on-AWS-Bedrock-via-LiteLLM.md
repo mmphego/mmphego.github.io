@@ -18,7 +18,7 @@ tags:
 
 ---
 
-It was supposed to be one of those focused days, the kind where you block off a few hours for deep work and knowledge transfer (set your MS Teams status to "Do Not Disturb" and hope for the best).
+It was supposed to be one of those focused days, the kind where you block off a few hours for deep work and knowledge transfer (set your MS Teams status to "Do Not Disturb" and hope for the best).\
 Suvi. R. - One of the engineers on the team was going to walk me through the current [identity state management](https://gemini.google.com/share/48065527603e) logic. The kind of knowledge transfer session you actually look forward to, because it means you'll finish the day understanding something you didn't before.
 
 ### What's Identity State Management?
@@ -30,6 +30,10 @@ That's what identity state management does for our agents. A single identifier c
 
 The boundaries are the part that matters most.
 Back to the hospital: the paediatric ward checks the patient file and says, "This patient is 45 years old. We only treat children. You shall not pass (*channelling Gandalf*)!!!"
+
+{:refdef: style="text-align: center;"}
+![You shall not pass]({{ "/assets/you-shall-not-pass.jpeg" | absolute_url }})
+{: refdef}
 The orthopaedic ward says, "No surgical history on file. Not our patient." Each ward knows what kind of patients it handles, and it enforces that at the door — not halfway through a consultation. Show up at the wrong ward? You're turned away at the door before you ever see a doctor.
 
 One lookup, shared everywhere, enforced at the gate. But enough about hospitals - you and I aren't doctors anyways. Well, not the useful kind. We're the kind that debug pod restarts at midnight and call it "practice".
@@ -41,6 +45,10 @@ Further reading on identity state management in Agentic AI: https://gemini.googl
 Anyways back to the issue - before the session, I figured I'd spin up the service and poke around in ADK Web - get a feel for the flow, have something concrete to reference before we go into our session. The responsible thing to do. The *"I'll just do a quick sanity check first"* thing to do. *Famous last words.*
 
 **Memo to self:** Don't Shave the Yak. I own two t-shirts (shoutout OfferZen) that say exactly that, and I still almost always forget this lesson.
+
+{:refdef: style="text-align: center;"}
+![Yak Shaving]({{ "/assets/yak-shaving.jpeg" | absolute_url }})
+{: refdef}
 
 Started the service, opened ADK Web, fired off a test request, and was immediately greeted by this:
 
