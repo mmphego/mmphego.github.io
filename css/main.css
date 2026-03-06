@@ -80,12 +80,16 @@ layout: null
 
 /* --- General --- */
 
+html {
+  overflow-x: hidden;
+}
 body {
   font-family: var(--font-serif);
   font-size: 18px;
   color: var(--color-text);
   position: relative;
   background: var(--color-bg);
+  overflow-x: hidden;
   {% if site.page-col %}
   background: {{ site.page-col }};
   {% endif %}
@@ -764,11 +768,31 @@ table tr td :last-child {
   margin-bottom: 0;
 }
 
+/* --- Post content containment (mobile overflow fix) --- */
+
+.blog-post {
+  overflow-x: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+.blog-post img,
+.blog-post video,
+.blog-post audio,
+.blog-post iframe,
+.blog-post embed {
+  max-width: 100%;
+  height: auto;
+}
+
 /* --- Code blocks --- */
 
 pre {
   font-size: 14px;
   line-height: 1.5em;
+}
+pre {
+  overflow-x: auto;
+  max-width: 100%;
 }
 pre code {
   white-space: pre;
