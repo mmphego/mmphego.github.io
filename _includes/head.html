@@ -4,13 +4,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+  <link rel="preconnect" href="https://maxcdn.bootstrapcdn.com" crossorigin>
   <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
   <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
-
-  {% include gtm_head.html %}
-  {% include advertisements.html %}
-  {% include newsletter.html %}
 
   <title>{% if page.use-site-title %}{{ site.title }} {{ site.title-separator }}
     {{ site.description }}{% elsif page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
@@ -24,7 +20,8 @@
   <meta name="propeller" content="d92719bb609a7958d423e6eb7c636f68">
   <!-- favicon -->
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="preload" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" as="style" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></noscript>
 
   <!-- Added dark/light mode support -->
   <link id="theme" rel="stylesheet" type="text/css" href="/css/darkmode-theme.css" />
@@ -82,7 +79,8 @@
 
   {% if layout.common-googlefonts %}
   {% for font in layout.common-googlefonts %}
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family={{ font }}&display=swap" />
+  <link rel="preload" href="https://fonts.googleapis.com/css?family={{ font }}&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family={{ font }}&display=swap"></noscript>
   {% endfor %}
   {% endif %}
 
@@ -183,7 +181,8 @@
 
   <!-- https://jekyllcodex.org/without-plugin/lightbox/# -->
   <script type="text/javascript" src="/js/lightbox.js" defer></script>
-  <link rel="stylesheet" href="/css/lightbox.css">
+  <link rel="preload" href="/css/lightbox.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/css/lightbox.css"></noscript>
   {% seo %}
 
   {% if page.layout == "post" %}
