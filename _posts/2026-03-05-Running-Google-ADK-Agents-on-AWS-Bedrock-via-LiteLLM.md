@@ -13,7 +13,7 @@ tags:
 ---
 
 {:refdef: style="text-align: center;"}
-[![post image]({{ "/assets/2026-03-05-Running-Google-ADK-Agents-on-AWS-Bedrock-via-LiteLLM.jpeg" | absolute_url }})](/)
+[![post image]({{ "/assets/2026-03-05-Running-Google-ADK-Agents-on-AWS-Bedrock-via-LiteLLM.jpeg" | absolute_url }}){: loading="lazy"}](/)
 {: refdef}
 
 ---
