@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Running Google ADK Agents on AWS Bedrock via LiteLLM: A Practical Guide to the Gotchas"
+title: "Running Google ADK Agents on AWS Bedrock via LiteLLM in Prod: A Practical Guide to the Gotchas"
 date: 2026-03-05 22:20:00.000000000 +02:00
 tags:
 - Google ADK
@@ -665,7 +665,7 @@ In a multi-agent system, the context window fills from three directions at once:
 
 The knowledge transfer session happened the next day. The engineer was more patient about the reschedule than the situation deserved. I showed up having read a lot more LiteLLM source code than identity state management logic, but at least the service was running - properly, in the right region, with credentials that would survive the weekend.
 
-This stack is now our standard for new agent services - baked into our scaffolding template so every new service starts with these fixes already applied. The gotchas are real but each has a clean resolution. The biggest risk is not knowing they exist: the region misconfiguration in particular gives you a confident-looking config that silently routes everything to the wrong continent.
+This stack is now our standard for new agent services - baked into our cookiecutter scaffolding template so every new service starts with these fixes already applied. The gotchas are real but each has a clean resolution. The biggest risk is not knowing they exist: the region misconfiguration in particular gives you a confident-looking config that silently routes everything to the wrong continent.
 
 When we started, there was no post on this exact combination of Google ADK, LiteLLM, and AWS Bedrock in production. We spent time reading source code and debugging deployed environments so you don't have to.
 
