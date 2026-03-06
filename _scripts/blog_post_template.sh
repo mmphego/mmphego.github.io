@@ -32,29 +32,46 @@ tags:
 -
 -
 ---
-# ${TITLE}.
 
 {:refdef: style="text-align: center;"}
-![post image]({{ "${NEW_POST_IMG}" | absolute_url }})
+[![post image]({{ "${NEW_POST_IMG}" | absolute_url }})](/)
 {: refdef}
-
-<<TIME TO READ>>
 
 ---
 
-# The Story
+<!-- Opening narrative hook: start with a specific scene (time, place, situation). -->
+<!-- Never start with "In this post I will..." — drop the reader into the scene. -->
+
+---
 
 ## TL;DR
 
-## TS;RE
+-
+-
+-
 
-## The How
+---
 
+<!-- Technical sections: Gotchas, The How, The Walk-through, etc. -->
 
-## The Walk-through
+---
 
+## Hard-Earned Lessons
 
-## Reference
+<!-- Format per lesson: -->
+<!-- **N. Bold Dramatic Title** -->
+<!-- 1-2 paragraphs of context/story -->
+<!-- **The lesson:** one crisp takeaway sentence -->
+
+---
+
+## Conclusion
+
+<!-- Tie back to the opening story. End on a human insight, not a tech recap. -->
+
+---
+
+## References
 
 - []()
 - []()
@@ -64,15 +81,9 @@ EOF
     else
         subl "${NEW_POST}"
     fi
-    echo "Do not forget to Run:"
-    set -x
-    python "${BLOG_DIR}/_scripts/generate_wordcloud.py" -f "${NEW_POST}" -s "${BG_IMG}"
-    cp "${BG_IMG}" "${BLOG_DIR}${NEW_POST_IMG}"
-    set +x
+    echo "Do not forget to run:"
+    echo "  uv run ${BLOG_DIR}/_scripts/generate_wordcloud.py -f \"${NEW_POST}\" -s \"${BG_IMG}\" -c \"${BLOG_DIR}${NEW_POST_IMG}\""
     echo "When you are done editing."
 else
     echo "Could not find blog directory."
 fi
-
-
-

@@ -1,22 +1,17 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.11"
+# dependencies = ["matplotlib", "wordcloud"]
+# ///
+# Usage: uv run generate_wordcloud.py -f <markdown_file> -s <output_image> [-c <asset_copy_path>]
 
 import argparse
 import pathlib
-import random
-
-def install_and_import(package):
-    import importlib
-    try:
-        importlib.import_module(package)
-    except ImportError:
-        import pip
-        pip.main(['install', package])
-    finally:
-        globals()[package] = importlib.import_module(package)
+import shutil
 
 
 def main():
-    parser = argparse.ArgumentParser(description="")
+    parser = argparse.ArgumentParser(description="Generate a word cloud from a markdown file.")
     parser.add_argument(
         "--filename", "-f", dest="filename", required=True, help="Markdown/text file"
     )
@@ -27,9 +22,14 @@ def main():
         required=True,
         help="Location to save the image.",
     )
+    parser.add_argument(
+        "--copy-to",
+        "-c",
+        dest="copy_to",
+        help="Copy the generated image to this path (e.g. assets/ blog post image).",
+    )
 
     args = vars(parser.parse_args())
-    print(args)
     with open(args.get("filename")) as _f:
         contents = [i.strip() for i in _f.readlines()]
         contents = " ".join(set(" ".join(set(contents)).split()))
@@ -470,7 +470,7 @@ def main():
                 "very",
                 "video",
                 "w",
-                "walk"
+                "walk",
                 "want",
                 "wanted",
                 "wanting",
@@ -540,9 +540,15 @@ def main():
         plt.savefig(
             location, dpi=300, transparent=True, bbox_inches="tight", pad_inches=0
         )
+        print(f"Word cloud saved to {location}")
+
+        copy_to = args.get("copy_to")
+        if copy_to:
+            dest = pathlib.Path(copy_to).absolute()
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(location, dest)
+            print(f"Copied to {dest}")
 
 
 if __name__ == "__main__":
-    install_and_import('matplotlib')
-    install_and_import('wordcloud')
     main()
