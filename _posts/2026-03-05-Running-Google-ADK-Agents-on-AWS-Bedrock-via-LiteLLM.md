@@ -80,37 +80,13 @@ What started as a five-minute prep turned into a full rabbit hole - LiteLLM inte
 
 This post documents some of the curveballs we encountered, the root causes, and the fixes. If you're running Google ADK agents on AWS Bedrock via LiteLLM, these gotchas will save you hours of debugging and days of intermittent failures in production. If you're just curious about the internals of this stack, it's a peek behind the curtain at how these frameworks interact - and sometimes don't - in real-world scenarios.
 
-<!-- ### Listen & Watch
+### Listen & Watch
 
-If you prefer audio or video, here are AI-generated reviews of this post courtesy of [Google NotebookLM](https://notebooklm.google.com/).
+AI-generated reviews of this post courtesy of [Google NotebookLM](https://notebooklm.google.com/). Right-click and save, or click to play in a new tab.
 
-#### Video Overview
-
-<div style="position: relative; width: 100%; max-width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" controls preload="none">
-    <source src="https://github.com/mmphego/mmphego.github.io/releases/download/media-2026-03-05/ADK_on_Bedrock__7_Gotchas.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</div>
-
-#### Audio Overview: Deep dive
-
-A lively conversation between two hosts, unpacking and connecting topics in your sources
-
-<audio style="width: 100%; max-width: 100%;" controls preload="none">
-  <source src="https://github.com/mmphego/mmphego.github.io/releases/download/media-2026-03-05/Google_ADK_and_Bedrock_Production_Gotchas.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-
-#### Audio Overview: Audio Debate
-
-A thoughtful debate between two hosts, illuminating different perspectives on your sources
-
-<audio style="width: 100%; max-width: 100%;" controls preload="none">
-  <source src="https://github.com/mmphego/mmphego.github.io/releases/download/media-2026-03-05/Patching_Google_ADK_for_AWS_Bedrock.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
---- -->
+- <i class="fa fa-video-camera"></i> [Video Overview (MP4, 9.8 MB)](https://github.com/mmphego/mmphego.github.io/releases/download/media-2026-03-05/ADK_on_Bedrock__7_Gotchas.mp4) — A visual walkthrough of all 7 gotchas
+- <i class="fa fa-headphones"></i> [Audio Deep Dive (M4A, 9.6 MB)](https://github.com/mmphego/mmphego.github.io/releases/download/media-2026-03-05/Google_ADK_and_Bedrock_Production_Gotchas.m4a) — Two hosts unpacking and connecting topics
+- <i class="fa fa-headphones"></i> [Audio Debate (M4A, 9.4 MB)](https://github.com/mmphego/mmphego.github.io/releases/download/media-2026-03-05/Patching_Google_ADK_for_AWS_Bedrock.m4a) — Two hosts debating different perspectives
 
 ## TL;DR
 

@@ -52,28 +52,11 @@ The irony was loud enough that I couldn't ignore it anymore.
 
 ### Listen & Watch
 
-If you prefer audio or video, here are AI-generated reviews of this post courtesy of [Google NotebookLM](https://notebooklm.google.com/).
+AI-generated reviews of this post courtesy of [Google NotebookLM](https://notebooklm.google.com/). Right-click and save, or click to play in a new tab.
 
-#### Video Overview
-
-<video width="100%" controls preload="none">
-  <source src="https://github.com/mmphego/mmphego.github.io/releases/download/media-2026-02-28/Engineer_Automates_Workflow.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
-#### Audio Debate
-
-<audio controls preload="none">
-  <source src="https://github.com/mmphego/mmphego.github.io/releases/download/media-2026-02-28/Automating_software_engineering_with_AI_skills.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-
-#### Audio Overview
-
-<audio controls preload="none">
-  <source src="https://github.com/mmphego/mmphego.github.io/releases/download/media-2026-02-28/Twenty_custom_AI_skills_for_engineering_workflows.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
+- <i class="fa fa-video-camera"></i> [Video Overview (MP4, 43 MB)](https://github.com/mmphego/mmphego.github.io/releases/download/media-2026-02-28/Engineer_Automates_Workflow.mp4) — A visual walkthrough of the post
+- <i class="fa fa-headphones"></i> [Audio Debate (M4A, 38 MB)](https://github.com/mmphego/mmphego.github.io/releases/download/media-2026-02-28/Automating_software_engineering_with_AI_skills.m4a) — Two hosts debating the ideas
+- <i class="fa fa-headphones"></i> [Audio Overview (M4A, 41 MB)](https://github.com/mmphego/mmphego.github.io/releases/download/media-2026-02-28/Twenty_custom_AI_skills_for_engineering_workflows.m4a) — A conversational summary
 
 ---
 
