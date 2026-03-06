@@ -13,7 +13,7 @@ tags:
 ---
 
 {:refdef: style="text-align: center;"}
-[![post image]({{ "/assets/2026-03-05-Running-Google-ADK-Agents-on-AWS-Bedrock-via-LiteLLM.png" | absolute_url }})](/)
+[![post image]({{ "/assets/2026-03-05-Running-Google-ADK-Agents-on-AWS-Bedrock-via-LiteLLM.jpeg" | absolute_url }})](/)
 {: refdef}
 
 ---
@@ -31,9 +31,9 @@ That's what identity state management does for our agents. A single identifier c
 The boundaries are the part that matters most.
 Back to the hospital: the paediatric ward checks the patient file and says, "This patient is 45 years old. We only treat children. You shall not pass (*channelling Gandalf*)!!!"
 
-{:refdef: style="text-align: center;"}
-![You shall not pass]({{ "/assets/you-shall-not-pass.jpeg" | absolute_url }})
-{: refdef}
+<p style="text-align: center;">
+  <img src="{{ '/assets/you-shall-not-pass.jpeg' | absolute_url }}" alt="You shall not pass" loading="lazy">
+</p>
 The orthopaedic ward says, "No surgical history on file. Not our patient." Each ward knows what kind of patients it handles, and it enforces that at the door — not halfway through a consultation. Show up at the wrong ward? You're turned away at the door before you ever see a doctor.
 
 One lookup, shared everywhere, enforced at the gate. But enough about hospitals - you and I aren't doctors anyways. Well, not the useful kind. We're the kind that debug pod restarts at midnight and call it "practice".
@@ -46,9 +46,9 @@ Anyways back to the issue - before the session, I figured I'd spin up the servic
 
 **Memo to self:** Don't Shave the Yak. I own two t-shirts (shoutout OfferZen) that say exactly that, and I still almost always forget this lesson.
 
-{:refdef: style="text-align: center;"}
-![Yak Shaving]({{ "/assets/yak-shaving.jpeg" | absolute_url }})
-{: refdef}
+<p style="text-align: center;">
+  <img src="{{ '/assets/yak-shaving.jpeg' | absolute_url }}" alt="Yak Shaving" loading="lazy">
+</p>
 
 Started the service, opened ADK Web, fired off a test request, and was immediately greeted by this:
 
@@ -692,9 +692,9 @@ ADK >= 1.22+ introduces a [session storage migration](https://google.github.io/a
 
 So you're pinned: below 1.20 your developer tooling is broken, at 1.22+ your database schema changes. The sweet spot is a narrow window that won't last forever. *Damned if you do, damned if you don't - welcome to dependency management in a fast-moving ecosystem.*
 
-{:refdef: style="text-align: center;"}
-![Damned if you do, damned if you don't]({{ "/assets/damned-if-you-do.jpeg" | absolute_url }})
-{: refdef}
+<p style="text-align: center;">
+  <img src="{{ '/assets/damned-if-you-do.jpeg' | absolute_url }}" alt="Damned if you do, damned if you don't" loading="lazy">
+</p>
 
 **The lesson:** Pin your framework version deliberately and document *why*. When you're building on a fast-moving framework, the upgrade path is as much a part of your architecture as the code itself. Know what breaks above you and below you.
 
