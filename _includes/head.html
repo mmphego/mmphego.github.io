@@ -98,7 +98,8 @@
 
   {% if page.googlefonts %}
   {% for font in page.googlefonts %}
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family={{ font }}&display=swap" />
+  <link rel="preload" href="https://fonts.googleapis.com/css?family={{ font }}&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family={{ font }}&display=swap"></noscript>
   {% endfor %}
   {% endif %}
 
