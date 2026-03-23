@@ -27,13 +27,15 @@ It's a Tuesday afternoon. I'm updating a GitHub Actions workflow when Claude Cod
 
 *The second incident made me pause.*
 
-A few days later, a `TraceCollectorSpanProcessor` shutdown warning appeared in test output. Claude Code said it was a "known bridge issue", harmless noise, nothing to investigate. No linked issue, no search result, no documentation. Just a diagnosis invented to cover for uncertainty. I pushed back and asked it to investigate properly. It turned out the error was real and deserved proper handling.
+A few days later, a `TraceCollectorSpanProcessor` shutdown warning appeared in test output. Claude Code said it was a "known bridge issue", harmless noise, nothing to investigate. No linked issue, no search result, no documentation. Just a diagnosis invented to cover for uncertainty. *(Ah yes, the classic "I don't know, so I'll sound confident" move. I too have done this in meetings.)*
+
+I pushed back and asked it to investigate properly. The error was real and deserved proper handling.
 
 Two confident mistakes in one week. Now I was paying attention. I cared less about the mistakes and more about what happened next.
 
 *The third incident made me stop cold.*
 
-I prompted Claude Code to "revert" after a bad change broke a layout component. Claude Code ran `git checkout -- WelcomeScreen.tsx`, wiping not just the bad edits but every uncommitted change in the file. A whole three hours of work bro, obliterated. Gone. Poof. The command was correct as an interpretation of "revert", but it lacked the context to ask for clarification or refuse.
+I prompted Claude Code to "revert" after a bad change broke a layout component. Claude Code ran `git checkout -- WelcomeScreen.tsx`, wiping not just the bad edits but every uncommitted change in the file. Three hours of work. Obliterated. Gone. Poof. *(Internally screams.)* The command was technically correct as an interpretation of "revert", but it lacked the context to ask "are you sure you want to nuke everything, or just the last change?"
 
 I opened `~/.claude/rules/learnings-behavioral.md` and wrote two entries. Not for me to remember but for Claude Code to remember, every session, across every project. (Claude Code's [memory documentation](https://docs.anthropic.com/en/docs/claude-code/memory) covers exactly how this works.)
 
@@ -52,6 +54,10 @@ I opened `~/.claude/rules/learnings-behavioral.md` and wrote two entries. Not fo
   user explicitly says "discard everything". If unsure, ASK.
 ```
 
+{:refdef: style="text-align: center;"}
+![1774262527688]({{ "assets/2026-03-21-Did-I-Just-Accidentally-Build-a-Memory-Management-System-for-Claude-Code/1774262527688.png" | relative_url }}){: loading="lazy"}
+{: refdef}
+
 That's when I stopped noticing such mistakes. Claude Code didn't get smarter. It loaded the rules from the file at session start.
 
 *I'd built a memory architecture. I'd been calling it "notes".*
@@ -68,7 +74,7 @@ That's when I stopped noticing such mistakes. Claude Code didn't get smarter. It
 
 ## Did I Just Accidentally Build a Memory Management System?
 
-At the time, I thought I was writing notes. The beginning looked minimal just one file with few rules as advised in the docs.
+At the time, I thought I was writing notes. A cheat sheet. The kind of thing you scribble on a sticky note and lose in a week. The beginning looked minimal, one file with a few rules as advised in the docs.
 
 ```bash
 $ cat ~/.claude/CLAUDE.md
@@ -92,10 +98,10 @@ $ cat ~/.claude/CLAUDE.md
 - When unsure, use context7 or web search
 ```
 
-The minimal set of rules to get started. I thought of it as a "cheat sheet", a place to jot down preferences and constraints so I didn't have to repeat them every repository.
+The minimal set of rules to get started. Preferences and constraints so I didn't have to repeat myself every repository. *(If you've ever explained to an AI for the fifth time that you use `uv` and not `pip`, you know the feeling.)*
 
-A few weeks later, CLAUDE.md was getting long. I kept mixing code quality rules with testing discipline and security constraints. Each deserved its own file.
-I had to split them by domain as per Claude Code's [memory documentation](https://docs.anthropic.com/en/docs/claude-code/memory) [Who said engineers do not read docs!]
+A few weeks later, CLAUDE.md was getting long. I kept mixing code quality rules with testing discipline and security constraints, like a junk drawer that starts with batteries and ends with expired coupons. Each category deserved its own file.
+I split them by domain as per Claude Code's [memory documentation](https://docs.anthropic.com/en/docs/claude-code/memory). (Yes, I read the docs. I know, shocking.)
 
 ```bash
 ~/.claude/
@@ -122,7 +128,7 @@ They belonged in a separate layer, not lumped with technical rules.
     learnings-patterns.md
 ```
 
-By the end of the month, the system had grown into something unplanned. Constitution, Persona, Governance rules for agent teams, Workflow verification steps, a dedicated ruleset for pull request review gates, and an index pointing to all of them.
+By the end of the month, the system had grown into something I did not plan for and could not have predicted. Constitution. Persona. Governance rules for agent teams. Workflow verification steps. A dedicated ruleset for pull request review gates. An index pointing to all of them. *(I'm an electronic engineer by training. How did I end up building a cognitive architecture in markdown instead of hardware?)*
 
 ```bash
 ~/.claude/
@@ -148,7 +154,7 @@ By the end of the month, the system had grown into something unplanned. Constitu
         MEMORY.md              # Per-project context
 ```
 
-Then I had to manage multiple projects with distinct contexts. The global rules applied everywhere, but each repo needed its own facts. Claude Code built per-project memory files that loaded at session start. Global corrections benefited future sessions across any project, local context stayed local.
+Then came the multi-project problem. The global rules applied everywhere, but each repo needed its own facts. Claude Code built per-project memory files that loaded at session start. Global corrections benefited future sessions across any project, local context stayed local. Separation of concerns, enforced by directory structure. *(The kind of thing I should have learned in university but instead learned from getting burned.)*
 
 I didn't set out to build a cognitive architecture. I was tired of repeating myself. Fifteen files, four directories, zero planning. It grew from embarrassment and repetition.
 
@@ -156,7 +162,7 @@ I didn't set out to build a cognitive architecture. I was tired of repeating mys
 
 ## Three Kinds of Remembering
 
-While reading [Antonio Gulli's *Agentic Design Patterns: A Hands-On Guide to Building Intelligent Systems* (O'Reilly, 2025)](https://www.amazon.com/Agentic-Design-Patterns-Hands-Intelligent/dp/3032014018), specifically the chapter on memory management, I understood what I'd built.
+While reading [Antonio Gulli's *Agentic Design Patterns: A Hands-On Guide to Building Intelligent Systems* (O'Reilly, 2025)](https://www.amazon.com/Agentic-Design-Patterns-Hands-Intelligent/dp/3032014018), specifically the chapter on memory management, I had one of those moments where you read a sentence and think *"wait, that's what I built."*
 
 Gulli frames agent memory as a dual-component system.
 
@@ -187,9 +193,7 @@ Semantic memory is the stable layer: facts about who you are, how you work, and 
 
 The best persona comes from the AI you already talk to most. I prompted ChatGPT: ***"Based on our conversation history, write a persona document about me. Include communication style, decision-making patterns, technical values, and things that frustrate me. Be brutally honest."***
 
-In the previous post: ["Why Mpho Mphego Might Be the World's Worst AI Software and Data Engineer"](https://blog.mphomphego.co.za/blog/2026/02/04/Why-Mpho-Mphego-Might-Be-the-World's-Worst-AI-Software-and-Data-Engineer.html), I also asked ChatGPT to create a blog post about me. The result was accurate enough to publish as its own blog post - which then boosted my confidence about asking it to write the persona document. I took the content from that post, edited it for clarity and relevance, and made it the first entry in `persona.md`. The rest of the content came from the direct prompt.
-
-That post's content now lives in `persona.md`:
+Now, I'd already tested ChatGPT's model of me in a previous experiment. I asked it to write a blog post about me, and the result was accurate enough to publish: ["Why Mpho Mphego Might Be the World's Worst AI Software and Data Engineer"](https://blog.mphomphego.co.za/blog/2026/02/04/Why-Mpho-Mphego-Might-Be-the-World's-Worst-AI-Software-and-Data-Engineer.html). *(Apparently it knows me better than my own LinkedIn summary does.)* That gave me the confidence to ask for the persona document. I took content from both, edited for clarity, and distilled it into `persona.md`:
 
 ```markdown
 # Working with Mpho
@@ -245,7 +249,7 @@ Claude Code loads `persona.md` at session start. It knows who it's working with 
 
 *What went wrong last time? What actually worked?*
 
-Episodic memory is the narrative layer: specific incidents with timestamps, contexts, and consequences. Rules emerge from experiences, when Claude Code made that first mistake, I opened `learnings-behavioral.md` and added the entry:
+Episodic memory is the narrative layer: specific incidents with timestamps, contexts, and consequences. You and I learn from getting burned. Agents should too. When Claude Code made that first mistake, I opened `learnings-behavioral.md` and added the entry:
 
 ```
 [2026-02-27] confidence-calibration: Never state external facts (versions, API status, feature existence, "known issues") as certain unless verified in this session
@@ -269,7 +273,7 @@ The correction loop works like this:
 ![Post Word Cloud]({{ "/assets/2026-03-21-Did-I-Just-Accidentally-Build-a-Memory-Management-System-for-Claude-Code/1774258717538.png" | relative_url }}){: loading="lazy"}
 {: refdef}
 
-I crammed everything into one `learnings.md` file at first. Trust violations mixed with testing harness gotchas. Trust violations load every session (highest priority). Testing gotchas load only when working on code.
+I crammed everything into one `learnings.md` file at first. Trust violations sitting next to "don't use pytest fixture X" gotchas. *(The junk drawer again.)* Trust violations need to load every session (highest priority). Testing gotchas only matter when working on code.
 
 Splitting them into three files gave each category its own loading rule (separation of concerns). **Claude Code's episodic memory layer:**
 
@@ -304,9 +308,9 @@ paths:
 ---
 ```
 
-My `learnings-pitfalls.md` and `learnings-patterns.md` uses this. They load only when Claude touches code files, not during documentation or blog writing sessions. You don't recall driving skills while cooking. Same principle.
+My `learnings-pitfalls.md` and `learnings-patterns.md` use this. They load only when Claude touches code files, not during documentation or blog writing sessions. You don't recall driving skills while cooking. Same principle. *(Imagine if your brain loaded every skill you've ever learned before making breakfast. You'd never finish the eggs.)*
 
-As the rules files grew, the instructions in them conflicted. Code quality said "keep it simple". Security said "validate everything". Testing said "mock all externals". Performance said "minimise overhead". Two rules pulling in opposite directions, and Claude Code had no way to decide which one won.
+As the rules files grew, the instructions in them conflicted. Code quality said "keep it simple". Security said "validate everything". Testing said "mock all externals". Performance said "minimise overhead". Four files, four opinions, zero tiebreaker. Claude Code had no way to decide which one won.
 
 I added `constitution.md`, the top-level governance file. It defines precedence when rules conflict, mandates analysis before implementation, and controls when Claude Code spins up agent teams:
 
@@ -386,7 +390,7 @@ A subtle hierarchy sits underneath. User-level rules (`~/.claude/rules/`) load f
 
 While researching multi-agent architectures, I had a conversation with Ockert, an AI researcher colleague.
 
-The problem: remote A2A agents completing long-running tasks return 10,000+ token context summaries to the root agent, bloating its context window and degrading reasoning quality. Ockert asked, what if agents published findings to a shared store and the root pulled only what it needed? `~/.claude/rules/` already works this way.
+The problem he raised: remote A2A agents completing long-running tasks return 10,000+ token context summaries to the root agent, bloating its context window and degrading reasoning quality. Ockert asked, what if agents published findings to a shared store and the root pulled only what it needed? I sat with that for a minute, then checked my own `~/.claude/rules/` directory. It already works this way.
 
 > Picture a university lecture room. The lecturer (root agent) writes a problem on the blackboard: "Why did the deployment to production fail at 2 AM?"
 >
@@ -414,7 +418,7 @@ The filesystem is the blackboard. Multiple sessions across repos read and write 
 
 ### Policy-Driven Hierarchical Memory
 
-A tutorial room blackboard works because five students share one problem at one time. Scale that to a customer-facing agent serving millions of independent user threads simultaneously. Every user's context is isolated. High contention on a shared store becomes a bottleneck.
+A tutorial room blackboard works because five students share one problem at one time. Now scale that to a customer-facing agent serving millions of independent user threads simultaneously. Every user's context is isolated. High contention on a shared store becomes a bottleneck. *(The blackboard runs out of chalk, and now everyone is yelling.)*
 
 A Gemini deep research piece, [*Policy-Driven Hierarchical Memory Systems for Distributed Agentic Platforms*](https://gemini.google.com/share/feb45df9fd91?hl=en_GB), covers the production architecture in detail:
 
@@ -441,7 +445,7 @@ Production hierarchical systems layer memory by access pattern and cognitive typ
 
 The cognitive types from the previous section map to these layers. A `MemoryRouter` class mediates every read and write, scoring importance, checking sensitivity, deciding which layer each piece belongs in. This architecture scales from one session to millions.
 
-For a deeper technical treatment of *multi-tenant blackboard architectures with Google ADK, A2A-SDK, and AWS OpenSearch*, see the [Gemini deep research](https://gemini.google.com/share/ba1b19d1f93e?hl=en_GB). Part 2 covers the practical bits.
+For a deeper technical treatment of *multi-tenant blackboard architectures with Google ADK, A2A-SDK, and AWS OpenSearch*, see the [Gemini deep research](https://gemini.google.com/share/ba1b19d1f93e?hl=en_GB). Skip it unless you're implementing this in production. *(If you are, good luck. I'll be writing Part 2 from the same trenches.)*
 
 Part 2 picks up here. Gulli's book walks through Google ADK's three core memory primitives: **Session** (the conversation thread with its event history), **State** (temporary per-session data with scoping prefixes), and **MemoryService** (the searchable long-term knowledge store). I'll show how these map to the cognitive types above, with OpenSearch handling episodic retrieval and Aurora managing structured semantic facts.
 
@@ -449,14 +453,14 @@ Part 2 picks up here. Gulli's book walks through Google ADK's three core memory 
 
 ## Hard-Earned Lessons
 
-**1. Your persona file is the highest-ROI memory investment:**
-One file changes every interaction. Before rules, before learnings, before anything. Write this first. It shifts baseline behaviour and prevents weeks of course-correcting misunderstandings.
+**1. Your persona file is the highest-ROI memory investment.**
+One file changes every interaction. Before rules, before learnings, before anything. Write this first. I spent weeks course-correcting Claude Code's assumptions about my communication style before persona.md existed. After loading it, the misunderstandings dropped to near zero. One file.
 
-**2. Use your primary chatbot to bootstrap it:**
-The AI you talk to most has the best model of you. A direct prompt - *"write a persona document about me, be brutally honest"* - produces a draft more accurate than anything you'd write yourself.
+**2. Use your primary chatbot to bootstrap it.**
+The AI you talk to most has the best model of you. A direct prompt, *"write a persona document about me, be brutally honest"*, produces a draft more accurate than anything you'd write yourself. *(Mine called me "direct, critical, no-fluff." I wanted to argue, but that would have proven the point.)*
 
-**3. Episodic memory without categorisation is a junk drawer:**
-Trust violations and "don't use pytest fixture X" should not live in the same file. Split by severity, or you'll load noise alongside the rules that matter most. Load frequency signals importance; respect that structure.
+**3. Episodic memory without categorisation is a junk drawer.**
+Trust violations and "don't use pytest fixture X" should not live in the same file. I learned this the hard way when Claude Code loaded a testing gotcha during a blog writing session. Split by severity. Load frequency signals importance; respect that structure.
 
 **4. Procedural memory must be non-negotiable:**
 Rules loaded every session, with explicit consequences, change behaviour. Suggestions get dropped under pressure. Tags like "NON-NEGOTIABLE" and "MANDATORY" enforce the distinction between guidance and guardrails.
@@ -499,9 +503,9 @@ The blackboard fits a small, tightly coupled agent team. Production systems with
 | What are the non-negotiable rules and processes? | Procedural | Agent instructions, guardrails |
 | How do agents share knowledge? | Blackboard / Hierarchical | Shared state or stratified layers + router |
 
-**A note on cost.** My full setup (CLAUDE.md + 15 rules files + per-project MEMORY.md) totals ~55KB and ~950 lines. That's roughly 14,000 tokens loaded at every session start. On Claude Opus, that's about $0.21 per session in input tokens. Fourteen months of corrections, governance rules, and persona context for the price of a bad coffee. Worth every token.
+**A note on cost.** My full setup (CLAUDE.md + 15 rules files + per-project MEMORY.md) totals ~55KB and ~950 lines. Roughly 14,000 tokens loaded at every session start. On Claude Opus, that's about $0.21 per session in input tokens. Fourteen months of corrections, governance rules, and persona context for the price of a bad coffee. *(And unlike the coffee, it compounds.)*
 
-In Part 2, I'll take these cognitive types from filesystem markdown into production code: ADK's `Session`, `State`, and `MemoryService` primitives, with OpenSearch for episodic retrieval and Aurora for structured semantic facts.
+In Part 2, I'll take these cognitive types from filesystem markdown into production code: ADK's `Session`, `State`, and `MemoryService` primitives, with OpenSearch for episodic retrieval and Aurora for structured semantic facts. The fun part. *(The part where things break in new and exciting ways.)*
 
 ---
 
