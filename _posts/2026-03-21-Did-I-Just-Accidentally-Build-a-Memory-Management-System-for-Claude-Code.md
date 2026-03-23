@@ -17,7 +17,7 @@ tags:
 
 ---
 
-It has been one of those months where you fix something small and accidentally discover something big.
+It has been one of those months where you fix something small and discover something big.
 
 ## The Story
 
@@ -29,7 +29,7 @@ It's a Tuesday afternoon. I'm updating a GitHub Actions workflow when Claude Cod
 
 A few days later, a `TraceCollectorSpanProcessor` shutdown warning appeared in test output. Claude Code said it was a "known bridge issue", harmless noise, nothing to investigate. No linked issue, no search result, no documentation. Just a diagnosis invented to cover for uncertainty. I pushed back and asked it to investigate properly. It turned out the error was real and deserved proper handling.
 
-Two confident mistakes in one week. Now I was paying attention. The interesting part wasn't the mistakes themselves. It was what happened next.
+Two confident mistakes in one week. Now I was paying attention. I cared less about the mistakes and more about what happened next.
 
 *The third incident made me stop cold.*
 
@@ -52,9 +52,9 @@ I opened `~/.claude/rules/learnings-behavioral.md` and wrote two entries. Not fo
   user explicitly says "discard everything". If unsure, ASK.
 ```
 
-That's when I stopped noticing such mistakes. Claude Code didn't get smarter. It just loaded the rules from the file at session start.
+That's when I stopped noticing such mistakes. Claude Code didn't get smarter. It loaded the rules from the file at session start.
 
-*That's when it hit me. This isn't prompting. It's a memory architecture.*
+*I'd built a memory architecture. I'd been calling it "notes".*
 
 ---
 
@@ -92,9 +92,9 @@ $ cat ~/.claude/CLAUDE.md
 - When unsure, use context7 or web search
 ```
 
-Just the minimal set of rules to get started. I thought of it as a "cheat sheet", a place to jot down preferences and constraints so I didn't have to repeat them every repository.
+The minimal set of rules to get started. I thought of it as a "cheat sheet", a place to jot down preferences and constraints so I didn't have to repeat them every repository.
 
-A few weeks later, CLAUDE.md was getting long. Rules didn't mix. Code quality, testing discipline, security constraints: each deserved its own file.
+A few weeks later, CLAUDE.md was getting long. I kept mixing code quality rules with testing discipline and security constraints. Each deserved its own file.
 I had to split them by domain as per Claude Code's [memory documentation](https://docs.anthropic.com/en/docs/claude-code/memory) [Who said engineers do not read docs!]
 
 ```bash
@@ -106,7 +106,7 @@ I had to split them by domain as per Claude Code's [memory documentation](https:
     security.md
 ```
 
-Then the correction incidents started arriving. The version downgrade. The fabricated diagnosis. The `git checkout` disaster.
+Then the corrections piled up. The version downgrade. The fabricated diagnosis. The `git checkout` disaster.
 These weren't failures I wanted to avoid in the abstract; they were specific things that had happened, with timestamps and consequences.
 They belonged in a separate layer, not lumped with technical rules.
 
@@ -150,7 +150,7 @@ By the end of the month, the system had grown into something unplanned. Constitu
 
 Then I had to manage multiple projects with distinct contexts. The global rules applied everywhere, but each repo needed its own facts. Claude Code built per-project memory files that loaded at session start. Global corrections benefited future sessions across any project, local context stayed local.
 
-I didn't set out to build a cognitive architecture. I was just tired of repeating myself. Fifteen files, four directories, zero planning. It grew from embarrassment and repetition.
+I didn't set out to build a cognitive architecture. I was tired of repeating myself. Fifteen files, four directories, zero planning. It grew from embarrassment and repetition.
 
 ---
 
@@ -234,7 +234,7 @@ Operates at the intersection of AWS, distributed systems, LLM agent frameworks, 
 - Root cause over workaround. Move misplaced files, don't add ignore lists. Fix infra issues at the infra layer, don't patch app code.
 ```
 
-Claude Code loads `persona.md` at session start. It knows who it's working with before the first question lands, not through prompting, but through memory.
+Claude Code loads `persona.md` at session start. It knows who it's working with before the first question lands.
 
 **Claude Code's semantic memory layer:**
 - `persona.md` - who you are, how you think, what you value
@@ -269,8 +269,6 @@ The correction loop works like this:
 ![Post Word Cloud]({{ "/assets/2026-03-21-Did-I-Just-Accidentally-Build-a-Memory-Management-System-for-Claude-Code/1774258717538.png" | relative_url }}){: loading="lazy"}
 {: refdef}
 
-That loop is the whole game.
-
 I crammed everything into one `learnings.md` file at first. Trust violations mixed with testing harness gotchas. Trust violations load every session (highest priority). Testing gotchas load only when working on code.
 
 Splitting them into three files gave each category its own loading rule (separation of concerns). **Claude Code's episodic memory layer:**
@@ -288,13 +286,13 @@ Claude Code has *two* memory systems running in parallel.
 - I write `CLAUDE.md` and the rules files.
 - Claude writes its own notes to `MEMORY.md` ([auto memory](https://code.claude.com/docs/en/memory#auto-memory)).
 
-I built the *semantic and procedural layers*. Claude built its own *episodic layer* alongside mine, accumulating debugging insights, build commands, and project conventions it discovered on its own. The first 200 lines of `MEMORY.md` load at session start; anything beyond that gets offloaded to topic files (`debugging.md`, `api-conventions.md`) that Claude reads on demand. The 200-line cap forces a concise index with detail pushed to separate files. That's not a limitation. That's a design pattern.
+I built the *semantic and procedural layers*. Claude built its own *episodic layer* alongside mine, accumulating debugging insights, build commands, and project conventions it discovered on its own. The first 200 lines of `MEMORY.md` load at session start; anything beyond that gets offloaded to topic files (`debugging.md`, `api-conventions.md`) that Claude reads on demand. The 200-line cap forces a concise index with detail pushed to separate files. A constraint that doubles as an architecture decision.
 
 ### Procedural Memory - Remembering Rules
 
 *What's the process? What's non-negotiable?*
 
-Procedural memory is the operating system: rules governing how work gets done. Not knowledge, not experiences. Procedures encoded in markdown with explicit weight markers.
+Procedural memory is the operating system: rules governing how work gets done. Procedures encoded in markdown with explicit weight markers.
 
 Some rules activate conditionally. Claude Code supports [path-scoped rules](https://code.claude.com/docs/en/memory#path-specific-rules) via YAML frontmatter:
 
@@ -308,9 +306,9 @@ paths:
 
 My `learnings-pitfalls.md` and `learnings-patterns.md` uses this. They load only when Claude touches code files, not during documentation or blog writing sessions. You don't recall driving skills while cooking. Same principle.
 
-As the rules files grew, they started contradicting each other. Code quality said "keep it simple". Security said "validate everything". Testing said "mock all externals". Performance said "minimise overhead". When two rules pulled in opposite directions, Claude Code had no way to decide which one won.
+As the rules files grew, the instructions in them conflicted. Code quality said "keep it simple". Security said "validate everything". Testing said "mock all externals". Performance said "minimise overhead". Two rules pulling in opposite directions, and Claude Code had no way to decide which one won.
 
-That's when I added `constitution.md` — the top-level governance file. It defines precedence when rules conflict, mandates analysis before implementation, and controls when Claude Code should spin up agent teams:
+I added `constitution.md`, the top-level governance file. It defines precedence when rules conflict, mandates analysis before implementation, and controls when Claude Code spins up agent teams:
 
 ```markdown
 # Constitution
@@ -340,7 +338,7 @@ The constitution also embeds a complexity gate. Before any task starts, Claude C
 | Risk | Cosmetic/docs | Logic/behaviour | Security/data/production |
 | Ambiguity | Clear requirements | Some unknowns | Open-ended or exploratory |
 
-**Composite complexity** = average of all dimensions. If it hits 0.3 or above, four agents spin up automatically: an Orchestrator to define scope, an Implementer for scoped changes, a Structural Reviewer for contract validation, and a Behavioural Tester for edge cases. Below 0.3, Claude Code works solo. No negotiation, no prompting — the rule is loaded at session start and it just runs.
+**Composite complexity** = average of all dimensions. If it hits 0.3 or above, four agents spin up: an Orchestrator to define scope, an Implementer for scoped changes, a Structural Reviewer for contract validation, and a Behavioural Tester for edge cases. Below 0.3, Claude Code works solo. The rule loads at session start and runs without prompting.
 
 The TDD workflow lives the same way:
 
@@ -362,7 +360,7 @@ All code MUST be covered by:
 - **Performance tests**: response time validation against budgets
 ```
 
-**"NON-NEGOTIABLE"** tags the rule as architecture, not emphasis. Deadlines drop suggestions. Explicit procedural rules stay. They're algorithms encoded as markdown, executed at session start, and treated as system constraints.
+**"NON-NEGOTIABLE"** tags the rule as architecture. Deadlines drop suggestions. Explicit procedural rules stay. Algorithms encoded as markdown, loaded at session start, treated as system constraints.
 
 **Claude Code's procedural memory layer:**
 
@@ -371,7 +369,7 @@ All code MUST be covered by:
 - `testing.md` - TDD workflow, four-layer strategy, coverage targets
 - `security.md` - OWASP checklist, credential management, input validation
 
-So that covers what Claude Code remembers: identity, corrections, and processes. Three types of memory, three directories of markdown files, zero databases. The interesting question is *how* it remembers across sessions and repos. That part surprised me.
+Identity, corrections, and processes. Three types of memory, three directories of markdown files, zero databases. The next question: how does it carry memory across sessions and repos?
 
 ---
 
@@ -384,11 +382,11 @@ Tomorrow, in a completely different repo, Claude Code loads `learnings-behaviora
 
 That is the blackboard pattern: agents write to and read from a shared store, no direct coordination required.
 
-There's a subtle hierarchy here too. User-level rules (`~/.claude/rules/`) load first. Project rules (`.claude/rules/` in the repo) load second and take [higher priority](https://code.claude.com/docs/en/memory#choose-where-to-put-claude-md-files). Global corrections form the baseline; project-specific overrides refine it. Not a flat blackboard. A layered one.
+A subtle hierarchy sits underneath. User-level rules (`~/.claude/rules/`) load first. Project rules (`.claude/rules/` in the repo) load second and take [higher priority](https://code.claude.com/docs/en/memory#choose-where-to-put-claude-md-files). Global corrections form the baseline; project-specific overrides refine it. A layered blackboard.
 
 While researching multi-agent architectures, I had a conversation with Ockert, an AI researcher colleague.
 
-The problem: Remote A2A agents completing long-running tasks return 10,000+ token context summaries to the root agent, bloating its context window and degrading reasoning quality. Ockert asked, what if agents published findings to a shared store and the root pulled only what it needed? That's when it clicked. `~/.claude/rules/` already does exactly this.
+The problem: remote A2A agents completing long-running tasks return 10,000+ token context summaries to the root agent, bloating its context window and degrading reasoning quality. Ockert asked, what if agents published findings to a shared store and the root pulled only what it needed? `~/.claude/rules/` already works this way.
 
 > Picture a university lecture room. The lecturer (root agent) writes a problem on the blackboard: "Why did the deployment to production fail at 2 AM?"
 >
@@ -412,7 +410,7 @@ The problem: Remote A2A agents completing long-running tasks return 10,000+ toke
 ![Blackboard Pattern: Root Agent spawns specialists that read and write to a shared rules directory]({{ "/assets/2026/03/blackboard-pattern.png" | relative_url }}){: loading="lazy"}
 {: refdef}
 
-The filesystem is the blackboard. Multiple sessions across repos read and write the same global files. A correction made during one session becomes available to every future session without any explicit handoff.
+The filesystem is the blackboard. Multiple sessions across repos read and write the same global files. You correct Claude Code once, and every future session in every repo loads that correction at startup. No handoff required.
 
 ### Policy-Driven Hierarchical Memory
 
@@ -441,11 +439,11 @@ Production hierarchical systems layer memory by access pattern and cognitive typ
 ![Post Word Cloud]({{ "/assets/2026-03-21-Did-I-Just-Accidentally-Build-a-Memory-Management-System-for-Claude-Code/1774259620612.png" | relative_url }}){: loading="lazy"}
 {: refdef}
 
-The cognitive types from the previous section map directly to these layers. A `MemoryRouter` class will mediate every read and write, scoring importance, checking sensitivity, deciding which layer each piece belongs in. This architecture scales from one session to millions without collapse.
+The cognitive types from the previous section map to these layers. A `MemoryRouter` class mediates every read and write, scoring importance, checking sensitivity, deciding which layer each piece belongs in. This architecture scales from one session to millions.
 
 For a deeper technical treatment of *multi-tenant blackboard architectures with Google ADK, A2A-SDK, and AWS OpenSearch*, see the [Gemini deep research](https://gemini.google.com/share/ba1b19d1f93e?hl=en_GB). Part 2 covers the practical bits.
 
-This is where Part 2 starts. Gulli's book walks through Google ADK's three core memory primitives: **Session** (the conversation thread with its event history), **State** (temporary per-session data with scoping prefixes), and **MemoryService** (the searchable long-term knowledge store). I'll show how these map to the cognitive types above, with OpenSearch handling episodic retrieval and Aurora managing structured semantic facts.
+Part 2 picks up here. Gulli's book walks through Google ADK's three core memory primitives: **Session** (the conversation thread with its event history), **State** (temporary per-session data with scoping prefixes), and **MemoryService** (the searchable long-term knowledge store). I'll show how these map to the cognitive types above, with OpenSearch handling episodic retrieval and Aurora managing structured semantic facts.
 
 ---
 
@@ -463,11 +461,11 @@ Trust violations and "don't use pytest fixture X" should not live in the same fi
 **4. Procedural memory must be non-negotiable:**
 Rules loaded every session, with explicit consequences, change behaviour. Suggestions get dropped under pressure. Tags like "NON-NEGOTIABLE" and "MANDATORY" enforce the distinction between guidance and guardrails.
 
-**5. The correction loop is the whole game:**
+**5. The correction loop drives improvement:**
 Mistake, learning entry, durable rule, never repeated. The entry alone changes nothing. The rule derived from it, loaded every session, closes the loop. Sessions without corrections plateau.
 
-**6. Memory needs governance, not just storage:**
-Without a `constitution.md` - a file that arbitrates when rules conflict - your rules accumulate contradictions as they grow. The filesystem expands; the signal degrades. Governance scales clarity.
+**6. Memory needs governance:**
+Without a `constitution.md`, a file that arbitrates when rules conflict, your rules accumulate contradictions as they grow. The filesystem expands; the signal degrades. Governance scales clarity.
 
 **7. Blackboard for squads; hierarchy for scale:**
 The blackboard fits a small, tightly coupled agent team. Production systems with independent user threads need stratified layers and a policy router from day one. Ignore this boundary and you'll rewrite the system at 1 million concurrent users.
