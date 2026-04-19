@@ -13,7 +13,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /site
-COPY Gemfile Gemfile.lock ./
+COPY Gemfile* ./
 RUN bundle install --jobs 4 --retry 3
 
 COPY entrypoint.sh /usr/local/bin/

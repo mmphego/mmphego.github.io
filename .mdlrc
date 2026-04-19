@@ -1,0 +1,4 @@
+rules "~MD013",  # line-length — blog posts have long lines
+      "~MD033",  # no-inline-html — Jekyll posts use HTML blocks
+      "~MD034",  # no-bare-urls
+      "~MD041"   # first-line-heading — posts start with YAML front matter

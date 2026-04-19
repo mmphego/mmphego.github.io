@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=$(jq -r '.tool_input.file_path // empty'); [[ \"$f\" == *\"_posts/\"*.md ]] && slug=$(basename \"$f\" .md) && printf '{\"systemMessage\":\"Word cloud reminder:\\n  uv run _scripts/generate_wordcloud.py -f %s -s img/new_post_word_cloud.png -c assets/%s.png\"}\\n' \"$f\" \"$slug\" 2>/dev/null || true",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

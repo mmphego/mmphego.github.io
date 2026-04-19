@@ -4,3 +4,4 @@ custom-ca.pem
 .claude-flow
 .playwright*
 .vscode
+CLAUDE.local.md
