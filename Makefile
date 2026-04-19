@@ -1,4 +1,4 @@
-.PHONY: help build run stop start clean superclean log shell optimize-images
+.PHONY: help build run stop start clean superclean log shell optimize-images lint test
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -11,6 +11,8 @@ help:
 	@echo "  clean      		to stop and delete jekyll container"
 	@echo "  superclean     	to clean and delete jekyll images"
 	@echo "  optimize-images    	to optimize images in assets/"
+	@echo "  lint      			to lint markdown posts with mdl"
+	@echo "  test      			to build site and run HTML proofer"
 
 CA_CERT ?= $(HOME)/.certs/system-ca-bundle.pem
 
@@ -44,3 +46,10 @@ shell:
 optimize-images:
 	@echo "Optimizing images..."
 	@bash scripts/optimize-images.sh assets
+
+lint:
+	@docker run --rm -v "$(PWD)":/site mmphego/jekyll bundle exec mdl _posts/
+
+test:
+	@docker run --rm -v "$(PWD)":/site mmphego/jekyll /bin/bash -c \
+		"bundle exec jekyll build && bundle exec htmlproofer _site --disable-external"
