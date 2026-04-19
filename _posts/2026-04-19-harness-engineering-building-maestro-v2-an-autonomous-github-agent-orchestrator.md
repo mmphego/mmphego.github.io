@@ -21,12 +21,13 @@ created: 2026-04-19
 
 ---
 
-<p>
-  <audio controls preload="none" style="width: 100%;"
-    src="{{ "/assets/2026-04-19-harness-engineering-building-maestro-v2-an-autonomous-github-agent-orchestrator.mp3" | relative_url }}">
-    Your browser does not support the <code>audio</code> element.
-  </audio>
-</p>
+{:refdef: style="text-align: right;"}
+<figure>
+    <figcaption>Listen to this article:</figcaption>
+    <audio controls preload="none" style="width: 100%;" src="{{ "/assets/2026-04-19-harness-engineering-building-maestro-v2-an-autonomous-github-agent-orchestrator.mp3" | relative_url }}"> Your browser does not support the <code>audio</code> element.
+    </audio>
+</figure>
+{: refdef}
 
 ---
 
