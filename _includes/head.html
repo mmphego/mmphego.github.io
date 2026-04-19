@@ -74,27 +74,30 @@
       max-width: none;
     }
     pre.mermaid svg {
-      width: 100%;
-      max-width: 100%;
-      height: auto;
+      width: 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
       min-height: 300px;
     }
   </style>
   <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    const nodes = [];
     document.querySelectorAll('pre > code.language-mermaid').forEach(function(codeEl) {
       var pre = codeEl.parentElement;
       var text = codeEl.textContent;
       pre.removeChild(codeEl);
       pre.className = 'mermaid';
       pre.textContent = text;
+      nodes.push(pre);
     });
     mermaid.initialize({
-      startOnLoad: true,
+      startOnLoad: false,
       theme: document.documentElement.classList.contains('dark') ? 'dark' : 'default',
       flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis', padding: 20, nodeSpacing: 50, rankSpacing: 60 },
       fontSize: 16
     });
+    if (nodes.length > 0) { await mermaid.run({ nodes: nodes }); }
   </script>
   {% endif %}
 

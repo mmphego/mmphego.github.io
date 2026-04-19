@@ -83,6 +83,19 @@ document.addEventListener("DOMContentLoaded", function() {
     newdiv.setAttribute('id',"lightbox");
     document.body.appendChild(newdiv);
 
+    //auto-wrap bare post images in anchor tags so the lightbox scanner picks them up
+    document.querySelectorAll('.blog-post img').forEach(function(img) {
+        if (!img.closest('a')) {
+            var src = img.getAttribute('src');
+            if (src && is_imagelink(src)) {
+                var a = document.createElement('a');
+                a.setAttribute('href', src);
+                img.parentNode.insertBefore(a, img);
+                a.appendChild(img);
+            }
+        }
+    });
+
     //add classes to links to be able to initiate lightboxes
     var elements = document.querySelectorAll('a');
     elements.forEach(element => {
