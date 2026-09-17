@@ -36,9 +36,9 @@ tags:
 
 One `::varchar` cast. That's it. That's the whole blast radius of what you're about to read.
 
-I needed one of our AI agent's tool to return a record plus its latest history entry and its latest processing status in one round trip instead of three. I wrote a CTE, joined three tables, cast a mismatched column so the join key would line up, and moved on. Tests passed. QA passed. Correct rows, correct order, every time I ran it.
+I needed one of our AI agent's tools to return a record plus its latest history entry and its latest processing status in one round trip instead of three. I wrote a CTE, joined three tables, cast a mismatched column so the join key would line up, and moved on. Tests passed. QA passed. Correct rows, correct order, every time I ran it.
 
-Then it shipped, and a table with over 9 million rows stopped being partitioned in any way that mattered. Every call from the agent's tool turned into a full scan across every partition instead of the one holding that customer's rows. Average latency on that endpoint climbed to around 3 seconds. The app team felt it first, not me. Their principal engineer saw degradation and a dashboard lighting up, chased it down to a service account hammering the database, and only then traced that account back to my query. By the time anyone knew it was me, they'd already done most of the diagnosis.
+Then it shipped, and the planner appeared to stop pruning a table with over 9 million rows in any way that mattered. Every call from the agent's tool scanned far more data than the one partition holding that customer's rows. Average latency on that endpoint climbed to around 3 seconds. The app team felt it first, not me. Their principal engineer saw degradation and a dashboard lighting up, chased it down to a service account hammering the database, and only then traced that account back to my query. By the time anyone knew it was me, they'd already done most of the diagnosis.
 
 {:refdef: style="text-align: center;"}
 ![this is fine, prod edition]({{ "/assets/2026-09-16-this-is-fine-prod.png" | relative_url }}){: loading="lazy"}
@@ -53,7 +53,7 @@ The SQL mistake is the easy part of this story to recognise. The harder part is 
 ## TL;DR
 
 - A join inside an AI agent's tool call cast a column to match a type mismatch, correctly, but that column belonged to a table with over 9 million rows partitioned by customer identifier.
-- The cast defeated partition pruning. A per-customer lookup turned into a scan across every partition. Average latency on the endpoint climbed to around 3 seconds.
+- The incident evidence pointed to lost partition pruning, and a per-customer lookup scanned far more data than expected. Average latency on the endpoint climbed to around 3 seconds. We did not retain the incident's execution plan, so I cannot prove that the cast alone caused the pruning failure.
 - The table I joined against had no index on the join column at all, same gap as its sibling tables, because it was recently added and hadn't been fully commissioned into the rest of the schema's indexing story yet. I picked it anyway because it had a field I wanted.
 - No load or performance test existed before the incident. QA validated correctness only. Nobody exercised this query at production data volume before it shipped.
 - The fix removed the join entirely: three independent, parameterised queries run concurrently and merged in application code.
@@ -83,18 +83,18 @@ The tool's underlying query needed three pieces of information:
 
 Three separate tables. My data engineering instinct was like, "Dude, just create a CTE bro and join everything in one go -- it'll be way cleaner and probably faster too."
 
-What came next was a CTE (Common Table Expression)   selecting the customer's records, then two `LEFT JOIN`s pulling in the latest history and the latest status, each narrowed with `DISTINCT ON` to just the newest row per record. Simple, elegant, and exactly what my data engineering instinct had suggested.
+What came next was a CTE (Common Table Expression) selecting the customer's records, then two `LEFT JOIN`s pulling in the latest history and the latest status, each narrowed with `DISTINCT ON` to just the newest row per record. Simple, elegant, and exactly what my data engineering instinct had suggested.
 
 However, unbeknownst to me at the time, this elegant query was about to run into a performance nightmare.
-One of the join keys was a numeric ID/`bigint` on one side and a text ID on the other, a mismatch that happens constantly when two tables get designed months apart by two different owners -- I suspect.
+One of the join keys was a numeric ID/`bigint` on one side and a text ID on the other, a mismatch that happens constantly when two tables get designed months apart by two different owners -- or so I suspect.
 
-I mean in my previous life I worked with analytical databases so casting the numeric ID to text felt completely natural to me. I mean the production postgres database didn't complain either, so I figured I was in the clear and I was like oh well, what's the worst that could happen?
+I mean, in my previous life I worked with analytical databases, so casting the numeric ID to text felt completely natural to me. The production PostgreSQL database didn't complain either, so I figured I was in the clear. I was like, oh well, what's the worst that could happen?
 
-The table on the other side of that join, the one holding the latest processing status, was a genuinely new addition to the schema it seems. It had exactly the field I needed and nothing else did which would improve my LLM tool's ability to answer the customer's question accurately.
+The table on the other side of that join, the one holding the latest processing status, seemed to be a genuinely new addition to the schema. It had exactly the field I needed, and nothing else did. That field would improve my LLM tool's ability to answer the customer's question accurately.
 
-So this was an obvious choice, and so I reached for it. What I didn't check first: The table I am joining against had no index on the column I was about to join against, same gap its older sibling tables had already had fixed months earlier. It just hadn't been fully commissioned into that cleanup pass yet.
+So this was an obvious choice, and so I reached for it. What I didn't check first: the table I was joining against had no index on the column I was about to join against, same gap its older sibling tables had already had fixed months earlier. It just hadn't been fully commissioned into that cleanup pass yet.
 
-A quick check would have shown it, but what did I do -- Assume (we all know Assume means "ass of u and me" right?)
+A quick check would have shown it, but what did I do? Assume. We all know assume means "ass of u and me," right?
 
 ```sql
 SELECT indexname, indexdef
@@ -105,7 +105,7 @@ WHERE schemaname = 'records' AND tablename = 'record_events';
 
 I didn't run that query before shipping. I ran it during the postmortem -- I mean we all learn eventually, right?
 
-Here's a shape of what that CTE looked like, with the real table and column names replaced obviously -- I still want to keep my job:
+Here's roughly what that CTE looked like, with the real table and column names replaced, obviously -- I still want to keep my job:
 
 ```sql
 WITH customer_records AS (
@@ -140,20 +140,23 @@ And that, my friends, is how a single query inside an AI agent took down a clien
 
 ### Why QA Never Caught It
 
-Database owners first question, did you test your query against QA? Why does it seem like you were running debug queries directly against production?
+The database owner's first question was: did you test your query against QA? Why does it seem like you were running debug queries directly against production?
+
 But yes, I had tested it against QA. It returned the right data. Every field was correct, every join matched the right rows, every edge case I'd thought to test (missing history, missing status, empty result set) came back clean.
 
-Nobody ran this query against anything resembling production data volume before it shipped. There was no load test in the pipeline at the time, for this query or its neighbours. *(There is now. That part of the story comes later.)* QA's dataset was small enough that any reasonable execution plan finishes fast regardless of whether the database chooses an efficient one. Correctness and performance are different questions, and QA was only ever answering the first one.
+Nobody ran this query against anything resembling production data volume before it shipped. There was no load test in the pipeline at the time, for this query or its neighbours. *(There is now. That part of the story comes later.)* QA's dataset was small enough that any reasonable execution plan finished fast, regardless of whether the database chose an efficient one. Correctness and performance are different questions, and QA was only ever answering the first one.
 
 ### The Cast I Never Thought Twice About
 
 Here's the part that took me longest to understand properly, and the part I got wrong in my own head for a while: I assumed the danger of a cast on a join key was that it stops the database from using an index on that column. That's true, and it's the story most people tell about this class of bug. It is not the whole story here.
 
-`customer_records` was pulling directly from a table partitioned by customer identifier. The cast I added was on a column belonging to that partitioned table, not on the partition key itself, just a regular column on the same table. Casting any column on a partitioned table's own row can be enough to stop PostgreSQL's planner from [pruning partitions](https://www.postgresql.org/docs/current/ddl-partitioning.html) for that query. Instead of narrowing down to the one partition holding this customer's rows, the plan widens out to scan across all of them -- a full partition scan instead of a targeted one.
+`customer_records` was pulling directly from a table partitioned by customer identifier. The cast I added was on a column belonging to that partitioned table, not on the partition key itself, just a regular column on the same table. At the time, we concluded that the cast contributed to PostgreSQL failing to [prune partitions](https://www.postgresql.org/docs/current/ddl-partitioning.html) for that query.
+
+I need to be precise here: casting a non-partition-key column does not, by itself, disable partition pruning. Pruning is driven by predicates PostgreSQL can relate to the partition key. The incident evidence pointed to broad scans, but because we did not retain the execution plan, I cannot prove the exact planner decision that caused them.
 
 That's a different, larger failure mode than "missing index." A missing index makes one table slow to scan. Losing partition pruning makes the database treat a partitioned table as if it weren't partitioned at all, for every query shaped like this one.
 
-And I'd stacked both. The partitioned table lost pruning because of the cast. The table I joined it against, the new one with the field I wanted, had no index on the join column to fall back on either. Two independent gaps, on two different tables, in the same query. Either one alone would have been a slow query. Both together, against a table north of 9 million rows, were a full scan on one side feeding a full scan on the other. Average latency on the endpoint sat around 3 seconds under load, up from what should have been a single-digit-millisecond lookup.
+And I'd stacked both warning signs: a cross-type cast in the join and no index on the join column of the new table. The incident notes also pointed to lost partition pruning, although I cannot prove from the evidence I still have that the cast caused it. Together, against a table north of 9 million rows, the query processed far more data than it should have. Average latency on the endpoint sat around 3 seconds under load, up from what should have been a single-digit-millisecond lookup.
 
 Ok, Ok I probably lost some of you with that explanation. Let me simplify it for the people at the back!
 
@@ -161,21 +164,21 @@ Ok, Ok I probably lost some of you with that explanation. Let me simplify it for
 
 Picture a table with over 9 million rows chopped up into, say, a hundred smaller filing cabinets, one cabinet per customer group. That chopping up is the "partitioning." When you ask for one customer's records, PostgreSQL is supposed to be smart enough to open exactly one cabinet and ignore the other ninety-nine. That's "partition pruning," and it's the entire reason partitioning is worth doing in the first place.
 
-The cast broke that. The moment I wrote `r.id::varchar`, I changed the shape of the comparison just enough that the planner couldn't prove which single cabinet held the answer anymore. So it played it safe and opened all hundred. Every query, every customer, every time.
+Our working theory was that the overall query shape, including the `r.id::varchar` comparison, prevented the planner from narrowing the work as expected. The monitoring showed broad scans; what I no longer have is the execution plan needed to prove exactly why the planner chose them.
 
-Now stack the second table on top. That one wasn't chopped into cabinets at all, it was one giant pile of paper with no index card telling you where anything was. So for every row that came out of the "open all hundred cabinets" step, PostgreSQL then had to flip through the entire pile by hand to find the matching status.
+Now stack the second table on top. That one wasn't chopped into cabinets at all, it was one giant pile of paper with no index card telling you where anything was. With no index card for that pile, PostgreSQL had to scan or otherwise process far more of it to find the matching status. The exact behaviour depends on the join plan.
 
-All hundred cabinets, times one giant unsorted pile, on every single tool call. That's the whole bug. One character (`::varchar`) plus one missing index, multiplied by 9 million rows, however many times an hour an AI agent decided to ask.
+All hundred cabinets, times one giant unsorted pile, on every single tool call. That's the whole bug as we understood it at the time. One cast (`::varchar`) plus one missing index, multiplied by 9 million rows, however many times an hour an AI agent decided to ask.
 
 {:refdef: style="text-align: center;"}
 ![partition pruning broken vs no index brute force]({{ "/assets/2026-09-16-cabinets-vs-pile-diagram.png" | relative_url }}){: loading="lazy"}
 {: refdef}
 
-*(I want to be honest about the limits of what I can show here: there's no saved execution plan from the incident itself. What follows is the mechanism that the fix and my own notes from that week point to, not something I can paste a `EXPLAIN` screenshot to prove.)*
+*(I want to be honest about the limits of what I can show here: there's no saved execution plan from the incident itself. What follows is the mechanism that the fix and my own notes from that week point to, not something I can paste an `EXPLAIN` screenshot to prove.)*
 
 ### Correct Results Are Not Operational Evidence
 
-The lesson I kept circling back to while writing this: a query returning the right rows tells you almost nothing about whether it is safe to run in production. Correctness is about the `WHERE` and the `JOIN` conditions matching the data model. **Cost is about cardinality, index usage, and, in this case, whether the planner can still prune partitions once you've touched a column it didn't expect you to touch.** Nothing about a passing test suite exercises that second dimension.
+The lesson I kept circling back to while writing this: a query returning the right rows tells you almost nothing about whether it is safe to run in production. Correctness is about the `WHERE` and the `JOIN` conditions matching the data model. **Cost is about cardinality, index usage, join strategy, and whether the planner can still prune partitions from the predicates it has.** Nothing about a passing test suite exercises that second dimension.
 
 ## The Fix
 
@@ -227,28 +230,28 @@ for record in records:
     record["status"] = status["status"] if status else None
 ```
 
-Two dictionary lookups per record, built once from the two independent result sets. No `JOIN`, no shared execution plan across three tables, just a plain `dict` keyed by ID. `asyncio.gather` is doing the same job the database used to do when it ran both lookups inside one plan, it's just doing it at the application layer instead, where I can see and control it.
+Two dictionary lookups per record, built once from the two independent result sets. No `JOIN`, no shared execution plan across three tables, just a plain `dict` keyed by ID. `asyncio.gather` runs the two independent lookups concurrently. The dictionaries and merge loop do the joining at the application layer, where I can see and control it.
 
-A load test for this exact access pattern went in alongside the fix. It hadn't existed before. Roughly what it does: sample real record IDs from the database at runtime, fire several hundred concurrent lookups ramped over a fixed window instead of one instant burst, and report a latency distribution plus a failure breakdown, including anything that fails because the connection pool ran out before the query even got a chance to run slow.
+A load test for this exact access pattern went in alongside the fix. It hadn't existed before. Roughly what it does: sample real customer IDs from the database at runtime, fire several hundred concurrent lookups ramped over a fixed window instead of one instant burst, and report a latency distribution plus a failure breakdown, including anything that fails because the connection pool ran out before the query even got a chance to run slow.
 
 ```python
-async def one_call(repo, record_id, idx):
+async def one_call(repo, customer_id, idx):
     t0 = time.perf_counter()
     try:
-        rows = await repo.query_by_customer(record_id)
+        rows = await repo.query_by_customer(customer_id)
         return {"idx": idx, "ok": True, "elapsed": time.perf_counter() - t0, "count": len(rows)}
     except Exception as exc:
         return {"idx": idx, "ok": False, "elapsed": time.perf_counter() - t0, "error": str(exc)}
 
 
 async def main(count=500, ramp_seconds=20.0):
-    ids = await sample_record_ids(count)
+    customer_ids = await sample_customer_ids(count)
     interval = ramp_seconds / count
 
     tasks = []
     start = time.perf_counter()
     for i in range(count):
-        tasks.append(asyncio.create_task(one_call(repo, ids[i], i)))
+        tasks.append(asyncio.create_task(one_call(repo, customer_ids[i], i)))
         await asyncio.sleep(interval)
 
     results = await asyncio.gather(*tasks)
@@ -280,11 +283,11 @@ Failure breakdown:
   PoolTimeoutError: 13
 ```
 
-That's the boring, correct outcome. p50 stays low, p95 climbs a bit under concurrent load, and the handful of failures are honest pool-exhaustion timeouts, not the database choking on a bad plan. The point of running this isn't to prove the query is fast, it's to prove the query still behaves once several hundred calls land on it at once, which is the exact thing an AI agent can do without anyone scheduling it. That number, `p95: 0.312`, is what should have existed before the original query ever shipped. It didn't.
+That's a boring and useful outcome, but not a clean pass. p50 stays low and p95 climbs under concurrent load, while the 2.6% pool-exhaustion failure rate exposes the next constraint that needs attention. The point of running this isn't to prove the query is fast, it's to prove the query still behaves once several hundred calls land on it at once, which is the exact thing an AI agent can do without anyone scheduling it. That number, `p95: 0.312`, is what should have existed before the original query ever shipped. It didn't.
 
 ## Building a Guardrail, Honestly
 
-Once the immediate fire was out, I messaged the team the postmortem, and how we resolved it including following steps which led to the team building something longer-lived:
+Once the immediate fire was out, I sent the team the postmortem, explained how we resolved it, and included follow-up steps. That led the team to build something longer-lived:
 
 - A background process that registers the read queries repositories run, checks each one against a stored snapshot of the schema, and, when both of those pass, asks the live database for an execution plan and inspects it for warning signs. Sequential scans on large tables. Cross-type casts that aren't the free string-to-string kind. Nested loops with a large, unindexed side. A single plan node eating most of the total estimated cost.
 
@@ -309,7 +312,7 @@ RECORD_QUERY_ID = RecordRepository.register_query(
 )
 ```
 
-`register_query` hashes the SQL text into a short stable ID and stores `{name, sql}` in a per-class registry. Nothing runs yet, this only happens once, when the module loads. The point of doing it this way is that every registered statement becomes something a background process can iterate and check on its own schedule, without needing the application to run first: pull every `{query_id: sql}` pair out of the registry, run each one through `EXPLAIN` against a schema snapshot, and flag anything with a sequential scan on a large table, a cross-type cast, or a plan node with a wildly inflated cost estimate. Flagged query IDs get added to a blocked set, and the next time that query is called by ID, the repository refuses before it ever reaches the database:
+`register_query` hashes the SQL text into a short stable ID and stores `{name, sql}` in a per-class registry. Nothing runs yet, this only happens once, when the module loads. The point of doing it this way is that every registered statement becomes something a background process can iterate and check on its own schedule, without needing production traffic first. The background process imports the repository modules, then pulls every `{query_id: sql}` pair out of the registry, run each one through `EXPLAIN` against a schema snapshot, and flag anything with a sequential scan on a large table, a cross-type cast, or a plan node with a wildly inflated cost estimate. A reviewer can add flagged query IDs to a blocked set, and the next time a blocked query is called by ID, the repository refuses before it ever reaches the database:
 
 ```python
 if query_id in blocked_query_ids:
@@ -318,7 +321,7 @@ if query_id in blocked_query_ids:
     skip_execution = True
 ```
 
-That's the guardrail in outline: catalogue what runs, check it on a schedule that doesn't depend on traffic, and log & notify the team with the ones that fail. It would have caught the cast in this incident, a cross-type cast on the partitioned table's own column is exactly the kind of thing the plan inspection looks for. It didn't exist yet when this query shipped, and even now it stops at the alert. Nothing gets blocked automatically, someone still has to see it and act.
+That's the guardrail in outline: catalogue what runs, check it on a schedule that doesn't depend on traffic, log the failures, and notify the team. It would have flagged the cross-type cast and the broad scans for review; it would not, by itself, prove that the cast caused the pruning failure. It didn't exist yet when this query shipped, and even now it stops at the alert. Nothing gets blocked automatically, someone still has to see it and act.
 
 ## The Part I Didn't Catch First
 
@@ -342,26 +345,15 @@ Since this incident, `EXPLAIN` on any new or changed query is not optional for m
 bash scripts/dbquery.sh --host RECORDS_DB_HOST --output aligned --explain --query "SELECT r.id FROM records.records r JOIN records.record_events e ON r.id::varchar = e.record_id WHERE r.customer_id = 12345;"
 ```
 
-For the query in this incident, that comes back with something like:
-
-```text
-Gather  (cost=1000.00..8452301.55 rows=1 width=8)
-  Workers Planned: 2
-  ->  Parallel Seq Scan on record_events e  (cost=0.00..8451301.45 rows=1 width=16)
-        Filter: ((r.id)::text = record_id)
-  ->  Index Scan using records_pkey on records r  (cost=0.29..8.31 rows=1 width=8)
-        Index Cond: (id = 12345)
-```
-
-The important signals in a plan like that are the `Parallel Seq Scan`, the large table on the unindexed side, and the cast sitting in the comparison. They are not subtle once you ask for them. The hard part is remembering to ask before the query ships.
+I am deliberately not reproducing a made-up plan here because we did not preserve the incident's one. The important signals to inspect are broad sequential scans, a large unindexed side, unexpected row estimates, and casts sitting inside join conditions. They are not subtle once you ask for the plan. The hard part is remembering to ask before the query ships.
 
 *The lesson: passing tests prove correctness, not cost. Ask for the execution plan separately, every time.*
 
 ### 2. Identify the Partitioned Side Before You Cast Anything
 
-I knew the general folklore that casting a join key can hurt index use. I didn't know, at the time, that casting any column on a partitioned table's own row, not just the partition key, can be enough to lose partition pruning for that query. The large or partitioned table in a join deserves extra scrutiny for every column you touch on it, not just the ones in the WHERE clause.
+I knew the general folklore that casting a join key can hurt index use. What I got wrong afterward was treating the cast on a non-partition-key column as proof that partition pruning had failed because of that cast. That conclusion needs the actual execution plan.
 
-*The lesson: before writing a cast in a join condition, know which side is partitioned, and don't touch its columns if you can cast the other side instead.*
+*The lesson: before writing a cast in a join condition, know which side is indexed and which key controls partitioning. Then check the plan instead of relying on folklore.*
 
 ### 3. QA Environments Rarely Argue With the Planner
 
@@ -379,7 +371,7 @@ The team that found this wasn't watching my code. They were watching their own d
 
 ## Trade-offs Worth Naming
 
-- **Merging in application code instead of SQL moves work, not away.** Three round trips and an in-memory join by ID is easier for the database to reason about, but it's more code, more places for an off-by-one ID mismatch to hide, and it makes the database do less thinking at the cost of the application doing more.
+- **Merging in application code instead of SQL moves work, not away.** Three SQL statements and an in-memory join by ID is easier for the database to reason about, but it's more code, more places for an off-by-one ID mismatch to hide, and it makes the database do less thinking at the cost of the application doing more.
 - **Running queries concurrently instead of sequentially trades total latency for connection pressure.** The fix kept latency close to the original by running two lookups at once, which means every request now briefly holds more than one connection out of a pool that isn't infinite.
 - **Splitting one query into three shifts complexity toward the caller, not away from the system.** The database plan got simpler. The number of things that have to go right at the call site (three queries, a concurrent gather, a correct merge) went up.
 - **Agent tooling makes ownership cross-layer.** The model decides whether to call the tool, the application decides how to execute it, and the database absorbs the cost. A guardrail that watches only one layer will miss the interaction between them.
