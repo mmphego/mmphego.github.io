@@ -19,7 +19,7 @@ tags:
 
 ---
 
-> _Disclaimer: AI-assisted post. Structure and phrasing are Claude's. The decisions, war stories, and opinions are mine._
+> _Disclaimer: AI-assisted editing and structure. The incident, technical decisions, analysis, and opinions are mine._
 
 ---
 
@@ -45,6 +45,8 @@ Then it shipped, and a table with over 9 million rows stopped being partitioned 
 
 The table I'd joined against also turned out to have no index on the column I was joining on, same as its neighbours, because it was newly commissioned and not yet fully wired into the indexing story everyone else had already been through. I'd picked it because it had exactly the extra field I wanted. That's the part that still stings a little.
 
+The SQL mistake is the easy part of this story to recognise. The harder part is why it became an incident so quickly: this was not an ordinary endpoint with a predictable caller. It was a database query behind an agent tool. The model could invoke it zero times, once, or repeatedly depending on the conversation, orchestration, retries, delegation, and model behaviour. A query that might have been merely "a bit expensive" under deterministic application traffic had become a resource multiplier at an autonomous boundary.
+
 ---
 
 ## TL;DR
@@ -54,6 +56,7 @@ The table I'd joined against also turned out to have no index on the column I wa
 - The table I joined against had no index on the join column at all, same gap as its sibling tables, because it was recently added and hadn't been fully commissioned into the rest of the schema's indexing story yet. I picked it anyway because it had a field I wanted.
 - No load or performance test existed before the incident. QA validated correctness only. Nobody exercised this query at production data volume before it shipped.
 - The fix removed the join entirely: three independent, parameterised queries run concurrently and merged in application code.
+- The important change was not only the SQL. It was recognising that an agent tool has no naturally bounded invocation pattern, so its database work needs an operational bar designed for variable, bursty, model-driven traffic.
 - The team built a background guardrail afterward that checks registered queries against a live execution plan, but it only ever asks the database for a plan. It never executes the query. That distinction matters, and it's easy to get backwards.
 - Downstream systems noticed the problem from their own dashboards before the team that shipped the query did. That's the real lesson.
 
@@ -61,7 +64,7 @@ The table I'd joined against also turned out to have no index on the column I wa
 
 ## The Story
 
-The setup: an AI agent built on [Google ADK](https://google.github.io/adk-docs/), had a tool whose only job was to look up a customer's saved records. An orchestrator agent decided when to hand the turn off to this agent, and this agent decided when to call the tool, as part of answering whatever the customer had asked. Nothing about that call pattern was scheduled or predictable. It fired however often the agent decided the customer's question warranted it, which means it ran on conversational time, not clock time. No cron, no fixed batch, no ceiling anyone had designed on purpose.
+The setup: an AI agent built on [Google ADK](https://google.github.io/adk-docs/) had a tool whose only job was to look up a customer's saved records. An orchestrator agent decided when to hand the turn off to this agent, and this agent decided when to call the tool as part of answering whatever the customer had asked. Nothing about that call pattern was scheduled or predictable. It could fire zero times, once, or repeatedly on conversational time, not clock time. No cron, no fixed batch, and no ceiling anyone had designed on purpose.
 
 That call chain is the whole reason this bug behaved the way it did. It sits at the bottom of a stack that looks roughly like this:
 
@@ -69,7 +72,7 @@ That call chain is the whole reason this bug behaved the way it did. It sits at 
 [![agentic query path diagram]({{ "/assets/2026-09-16-agentic-query-path-diagram.png" | absolute_url }})](/)
 {: refdef}
 
-Every layer above the SQL query is a decision an LLM made about whether to call the tool at all. Every layer below it is a database doing exactly what the query asked. The failure lived at the bottom, but the traffic pattern hitting it was set by whatever the top of that stack decided a customer's question was worth.
+Every layer above the SQL query is a decision an LLM made about whether, when, and how often to call the tool. Every layer below it is a database doing exactly what the query asked. The failure lived at the bottom, but the traffic pattern hitting it was set by whatever the top of that stack decided a customer's question was worth. That is the operational difference: an ordinary backend tool often inherits a traffic pattern its team can describe; an agent tool inherits a decision process.
 
 The tool's underlying query needed three pieces of information:
 
@@ -130,7 +133,7 @@ LEFT JOIN latest_status AS s ON s.record_id = r.id
 ORDER BY r.id;
 ```
 
-Every part of that query is defensible on its own. The CTEs are readable. The `DISTINCT ON` pattern is a normal way to get the latest row per group in PostgreSQL. The cast is a one-character fix for a type mismatch that a code reviewer would nod at and move on from. Individually, none of it looks like the kind of thing that takes down a client-facing app.
+Every part of that query is defensible on its own. The CTEs are readable. The `DISTINCT ON` pattern is a normal way to get the latest row per group in PostgreSQL. The cast is a fix for a type mismatch that a code reviewer would nod at and move on from. Individually, none of it looks like the kind of thing that takes down a client-facing app.
 
 And that, my friends, is how a single query inside an AI agent took down a client-facing app.
 
@@ -141,7 +144,7 @@ But yes, I had tested it against QA. It returned the right data. Every field was
 
 Nobody ran this query against anything resembling production data volume before it shipped. There was no load test in the pipeline at the time, for this query or its neighbours. *(There is now. That part of the story comes later.)* QA's dataset was small enough that any reasonable execution plan finishes fast regardless of whether the database chooses an efficient one. Correctness and performance are different questions, and QA was only ever answering the first one.
 
-### The Cast Nobody Thought Twice About
+### The Cast I Never Thought Twice About
 
 Here's the part that took me longest to understand properly, and the part I got wrong in my own head for a while: I assumed the danger of a cast on a join key was that it stops the database from using an index on that column. That's true, and it's the story most people tell about this class of bug. It is not the whole story here.
 
@@ -326,7 +329,9 @@ That's an uncomfortable thing to write plainly, so I will: the people who felt t
 
 ## Hard-Earned Lessons
 
-### 1. Correct Results and a Safe Query Are Different Claims
+The SQL lessons are real, but they are not the whole takeaway. The larger lesson is that exposing ordinary backend work through an agent changes the assumptions around cost, frequency, and ownership.
+
+### 1. An Agent Tool Is Not an Ordinary Endpoint
 
 A test suite checks whether a query returns the right rows. It says nothing about whether the database had to scan everything to get them. I treated "the tests pass" as evidence the query was fine. It was only evidence the query was correct.
 
@@ -339,19 +344,15 @@ bash scripts/dbquery.sh --host RECORDS_DB_HOST --output aligned --explain --quer
 For the query in this incident, that comes back with something like:
 
 ```text
-Gather  (cost=1000.00..8452301.55 rows=1 width=8) (actual time=2891.442..2891.448 rows=1 loops=1)
+Gather  (cost=1000.00..8452301.55 rows=1 width=8)
   Workers Planned: 2
-  Workers Launched: 2
-  ->  Parallel Seq Scan on record_events e  (cost=0.00..8451301.45 rows=1 width=16) (actual time=1902.117..2887.903 rows=0 loops=3)
+  ->  Parallel Seq Scan on record_events e  (cost=0.00..8451301.45 rows=1 width=16)
         Filter: ((r.id)::text = record_id)
-        Rows Removed by Filter: 3021847
-  ->  Index Scan using records_pkey on records r  (cost=0.29..8.31 rows=1 width=8) (actual time=0.021..0.023 rows=1 loops=1)
+  ->  Index Scan using records_pkey on records r  (cost=0.29..8.31 rows=1 width=8)
         Index Cond: (id = 12345)
-Planning Time: 0.612 ms
-Execution Time: 2891.501 ms
 ```
 
-`Parallel Seq Scan` on a 9-million-row table, 3 million rows removed by filter on one worker alone, and `Filter: ((r.id)::text = record_id)`, the cast sitting right there in the plan, not hidden anywhere. That output is the whole argument for this habit: it's not subtle once you ask for it, it just has to occur to you to ask.
+The important signals in a plan like that are the `Parallel Seq Scan`, the large table on the unindexed side, and the cast sitting in the comparison. They are not subtle once you ask for them. The hard part is remembering to ask before the query ships.
 
 *The lesson: passing tests prove correctness, not cost. Ask for the execution plan separately, every time.*
 
@@ -371,7 +372,7 @@ My QA dataset was too small to expose a bad plan. Any reasonable execution strat
 
 The team that found this wasn't watching my code. They were watching their own dashboards, and the pattern was obvious enough from their side that they traced it back to my query faster than I noticed anything myself. That's not a story about their vigilance, it's a story about my blind spot.
 
-*The lesson: if the only way you find out your query is expensive is a downstream team's dashboard, you don't have observability into your own queries, you have someone else's goodwill.*
+*The lesson: if an agent tool can create load that your own team cannot attribute, you do not have observability into the tool. You have someone else's dashboard and goodwill.*
 
 ---
 
@@ -380,16 +381,17 @@ The team that found this wasn't watching my code. They were watching their own d
 - **Merging in application code instead of SQL moves work, not away.** Three round trips and an in-memory join by ID is easier for the database to reason about, but it's more code, more places for an off-by-one ID mismatch to hide, and it makes the database do less thinking at the cost of the application doing more.
 - **Running queries concurrently instead of sequentially trades total latency for connection pressure.** The fix kept latency close to the original by running two lookups at once, which means every request now briefly holds more than one connection out of a pool that isn't infinite.
 - **Splitting one query into three shifts complexity toward the caller, not away from the system.** The database plan got simpler. The number of things that have to go right at the call site (three queries, a concurrent gather, a correct merge) went up.
+- **Agent tooling makes ownership cross-layer.** The model decides whether to call the tool, the application decides how to execute it, and the database absorbs the cost. A guardrail that watches only one layer will miss the interaction between them.
 
 ---
 
 ## Conclusion
 
-The query that took the app down wasn't wrong. It returned the right data, in the right shape, every time anyone tested it. What it lacked was any evidence that it would behave the same way at the scale and frequency an AI agent actually calls its tools, which is not scheduled, not predictable, and not something a small QA dataset was ever going to simulate.
+The query that took the app down wasn't wrong. It returned the right data, in the right shape, every time anyone tested it. What it lacked was evidence that it would behave the same way when placed behind an agent tool: a boundary where the caller could invoke it zero times, once, or repeatedly based on a conversation and a chain of model decisions.
 
 I still think about the fact that a different team found this before I did, from their own dashboard, not from anything I'd built to tell them. Building a guardrail that checks plans is a reasonable response to that. It is not the same as giving the teams downstream of your queries the visibility they'd need to not have to find out the hard way again.
 
-Going forward, the bar for me is simple: no query ships without its plan checked, no access pattern an agent can call unpredictably ships without a load test that proves it survives concurrency, not just correctness. Those two habits would have caught this before it ever reached production. The guardrail catches what I miss next time. It's the visibility gap for downstream teams that's still open.
+Going forward, the bar for me is simple: no query ships without its plan checked, and no access pattern an agent can call unpredictably ships without a load test that exercises its real invocation shape, not just one successful request. Agent tools need explicit limits, query identity that survives the whole call chain, and dashboards that let downstream teams see which tool is creating the load. The SQL guardrail catches one class of mistake. The operational model has to account for the caller above it.
 
 ---
 
