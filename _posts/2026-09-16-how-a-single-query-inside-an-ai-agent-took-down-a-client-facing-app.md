@@ -14,8 +14,9 @@ tags:
 ---
 
 {:refdef: style="text-align: center;"}
-[![post image]({{ "/assets/2026-09-16-how-a-single-query-inside-an-ai-agent-took-down-a-client-facing-app.png" | absolute_url }})](/)
+![post image]({{ "/assets/2026-09-16-how-a-single-query-inside-an-ai-agent-took-down-a-client-facing-app.png" | relative_url }}){: loading="lazy"}
 {: refdef}
+
 
 ---
 
@@ -23,7 +24,7 @@ tags:
 
 ---
 
-{:refdef: style="text-align: right;"}
+<!-- {:refdef: style="text-align: right;"}
 <figure>
     <figcaption>Listen to this article:</figcaption>
     <audio controls preload="none" style="width: 100%;" src="{{ "/assets/2026-09-16-how-a-single-query-inside-an-ai-agent-took-down-a-client-facing-app.mp3" | relative_url }}"> Your browser does not support the <code>audio</code> element.
@@ -31,7 +32,7 @@ tags:
 </figure>
 {: refdef}
 
----
+--- -->
 
 One `::varchar` cast. That's it. That's the whole blast radius of what you're about to read.
 
@@ -40,7 +41,7 @@ I needed one of our AI agent's tool to return a record plus its latest history e
 Then it shipped, and a table with over 9 million rows stopped being partitioned in any way that mattered. Every call from the agent's tool turned into a full scan across every partition instead of the one holding that customer's rows. Average latency on that endpoint climbed to around 3 seconds. The app team felt it first, not me. Their principal engineer saw degradation and a dashboard lighting up, chased it down to a service account hammering the database, and only then traced that account back to my query. By the time anyone knew it was me, they'd already done most of the diagnosis.
 
 {:refdef: style="text-align: center;"}
-[![this is fine, prod edition]({{ "/assets/2026-09-16-this-is-fine-prod.png" | absolute_url }})](/)
+![this is fine, prod edition]({{ "/assets/2026-09-16-this-is-fine-prod.png" | relative_url }}){: loading="lazy"}
 {: refdef}
 
 The table I'd joined against also turned out to have no index on the column I was joining on, same as its neighbours, because it was newly commissioned and not yet fully wired into the indexing story everyone else had already been through. I'd picked it because it had exactly the extra field I wanted. That's the part that still stings a little.
@@ -69,7 +70,7 @@ The setup: an AI agent built on [Google ADK](https://google.github.io/adk-docs/)
 That call chain is the whole reason this bug behaved the way it did. It sits at the bottom of a stack that looks roughly like this:
 
 {:refdef: style="text-align: center;"}
-[![agentic query path diagram]({{ "/assets/2026-09-16-agentic-query-path-diagram.png" | absolute_url }})](/)
+![agentic query path diagram]({{ "/assets/2026-09-16-agentic-query-path-diagram.png" | relative_url }}){: loading="lazy"}
 {: refdef}
 
 Every layer above the SQL query is a decision an LLM made about whether, when, and how often to call the tool. Every layer below it is a database doing exactly what the query asked. The failure lived at the bottom, but the traffic pattern hitting it was set by whatever the top of that stack decided a customer's question was worth. That is the operational difference: an ordinary backend tool often inherits a traffic pattern its team can describe; an agent tool inherits a decision process.
@@ -167,7 +168,7 @@ Now stack the second table on top. That one wasn't chopped into cabinets at all,
 All hundred cabinets, times one giant unsorted pile, on every single tool call. That's the whole bug. One character (`::varchar`) plus one missing index, multiplied by 9 million rows, however many times an hour an AI agent decided to ask.
 
 {:refdef: style="text-align: center;"}
-[![partition pruning broken vs no index brute force]({{ "/assets/2026-09-16-cabinets-vs-pile-diagram.png" | absolute_url }})](/)
+![partition pruning broken vs no index brute force]({{ "/assets/2026-09-16-cabinets-vs-pile-diagram.png" | relative_url }}){: loading="lazy"}
 {: refdef}
 
 *(I want to be honest about the limits of what I can show here: there's no saved execution plan from the incident itself. What follows is the mechanism that the fix and my own notes from that week point to, not something I can paste a `EXPLAIN` screenshot to prove.)*
@@ -289,7 +290,7 @@ Once the immediate fire was out, I messaged the team the postmortem, and how we 
 
 
 {:refdef: style="text-align: center;"}
-[![query catalog guardrail diagram]({{ "/assets/2026-09-17-query-catalog-guardrail-diagram.png" | absolute_url }})](/)
+![query catalog guardrail diagram]({{ "/assets/2026-09-17-query-catalog-guardrail-diagram.png" | relative_url }}){: loading="lazy"}
 {: refdef}
 
 Every repository already registers its SQL up front, at class-definition time, instead of building query strings inline wherever they're called:
