@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "A 0.1-Second Tool Call Filled My Agent's Context Window: Handling Large Tool Responses at Scale"
+title: "How a 0.1-Second Tool Call Flooded My AI Agent With 180,000 Tokens: Handling Large Tool Responses at Scale"
 date: 2026-10-23 22:34:12.000000000 +02:00
 use-mermaid: true
 css:
@@ -23,25 +23,24 @@ tags:
 
 ---
 
-> _Disclaimer: AI-assisted editing and structure. The incident, technical decisions, analysis, and opinions are mine. The domain, tables, SQL and code below are invented (an online store) so nothing here points at a real system. The measurements from the incident are real._
+> *Disclaimer: AI-assisted editing and structure. The incident, technical decisions, analysis, and opinions are mine. The domain, tables, SQL and code below are invented (an online store) so nothing here points at a real system. The measurements from the incident are real.*
 
 ---
 
-A user opened a chat with our AI agent, asked a follow-up question, and got an error two seconds later. Two seconds. That was not a timeout, that was the system slamming the door on the users face.
+A user opened a chat with our AI agent, asked a follow-up question, and got an error two seconds later. Two seconds. That was not a timeout. That was the system slamming the door in the user’s face.
 
-I went to opensearch expecting a crash from the logs and found nothing of the sort. Turn one ran for 8 minutes 39 seconds, made 15 LLM calls and 24 tool calls, and finished with zero errors. Turn two died about two seconds after its model call started. The one number I could pull from that turn was its context size: **463,976 tokens.** *(Yes, that is a lot of tokens. No, I did not type that much.)*
+I went to OpenSearch expecting a crash in the logs and found nothing of the sort. Turn one ran for 8 minutes 39 seconds, made 15 LLM calls and 24 tool calls, and finished with zero errors. Turn two died about two seconds after its model call started. The one number I could pull from that turn was its context size: **463,976 tokens.** *(Yes, that is a lot of tokens. No, I did not type that much.)*
 
-That number is where this story starts, not where it ends. I could show how the context grew. I couldn't show that it killed turn two. The last section says what I have and what I don't. *(The logs also didn't say much about exceptions in general. That's a different post.)*
+That number is where this story starts, not where it ends. I could show how the context grew. I couldn't show that it killed turn two. I’ll separate what I measured from what I suspect later in the post. *(The logs also didn't say much about exceptions in general. That's a different post.)*
 
 ---
 
 ## TL;DR
 
 The tool was correct. The design around it was not. A deterministic function returned exactly what it was asked for, and nothing at the boundary to the model said how much was too much.
-
 - A tool call that returned in **0.10 seconds** took a specialist agent's context from 5.5k to 186k tokens. Another agent went from 10k to as high as 224k after six parallel tool calls.
 - My first guard counted **rows** (200 max). Each row was about 900 tokens, so one call put roughly 180k tokens into context and the guard never fired. Every later LLM call in that turn re-sent it.
-- Cap by **tokens, not rows**, after the page size. A cap that is strong but not hard: one row bigger than the budget still goes out, so the tool must handle that row itself.
+- Cap by **tokens, not rows**, after the page size. A useful cap, not a hard guarantee: one row bigger than the budget still goes out, so the tool must handle that row itself.
 - Don't let the model add up numbers. Compute exact totals in code.
 - My guard was opt-in per tool, which means it **fails open**. That is the weakest part of what I built.
 
@@ -49,11 +48,15 @@ The tool was correct. The design around it was not. A deterministic function ret
 
 ## The Story
 
+The setup: a multi-agent system built on [Google ADK](https://google.github.io/adk-docs/), running Claude on AWS Bedrock through LiteLLM. An orchestrator hands the turn to a specialist agent. The specialist calls tools, reads the results, and writes an answer back.
+
+> If you haven't worked with multi-agent systems, think of the orchestrator as the person at the front desk. You ask about your order; it sends the question to the orders specialist. Ask where the parcel is; it calls in the shipping specialist. The specialists do the actual lookup, and the orchestrator helps get the answer back to you.
+
 {:refdef: style="text-align: center;"}
 ![fast tool call context growth]({{ "/assets/2026-10-23-fast-tool-call-context-growth.png" | relative_url }}){: loading="lazy"}
 {: refdef}
 
-The setup: a multi-agent system built on [Google ADK](https://google.github.io/adk-docs/), running Claude on AWS Bedrock through LiteLLM. An orchestrator hands the turn to a specialist agent. The specialist calls tools, reads the results, and writes an answer back.
+In this setup, Google ADK coordinates those agents, LiteLLM connects the application to the model, and Claude runs through AWS Bedrock. The database tools are ordinary application code. No magic there. The surprise is what happens **after** the tool has done its job.
 
 A tool's return value becomes a `function_response` event in the session. The next model call is built from the session's events, so that result is in the prompt for every later call in the same turn. The tool's job ends at the return. Its output does not.
 
@@ -64,9 +67,11 @@ I pulled up the token metrics and found two things that made me put my coffee do
 | Order history | 5.5k tokens | **186k tokens** | One tool call, 0.10 seconds |
 | Shipping | 10k tokens | **224k tokens** | Six parallel tool calls |
 
-The tool was fast. It also returned a *lot* of rows, very quickly.
+The tool was fast. It also returned a **lot** of rows, very quickly.
 
-Nothing was slow. Nothing errored. Every row was correct. The tool did what its docstring promised: "return the customer's orders". The customer just had hundreds of them, and I had never asked what "all the orders" costs when the reader is a language model that re-reads everything on every call.
+> Picture the customer asking, "What happened to my last few orders?" The specialist opens the order history, and instead of bringing back the handful of orders relevant to the question, it brings back the whole filing cabinet. That's an illustration, not a transcript of the real user's question. But it is a useful way of understanding the mistake: the lookup succeeded; we just let the answer to the lookup become much bigger than the answer the user needed.
+
+Nothing was slow. Nothing errored. Every row was correct. The tool did what its docstring promised: *"return the customer's orders"*. The customer just had hundreds of them, and I had never asked what *"all the orders"* costs when the reader is a language model that re-reads everything on every call.
 
 The wider logs told the same story. Over 7 days of production logs (counts only):
 
@@ -74,20 +79,27 @@ The wider logs told the same story. Over 7 days of production logs (counts only)
 - First failure came on turn 1 for 6 sessions, turn 2 for 3, turn 3 for 2 and turn 4 for 2. "Turn" here means completed responses logged before the failure. I did not verify session start times.
 - The context-size figure I logged at failure clustered near **1.4M** and **2.8M** tokens. I have not checked whether that is window size or cumulative input. Treat it as open until I have.
 
+
 ---
 
-## "But I Had a Guard!"
+## "But I Had a Guard! So I Thought"
 
-I mean I did. I want that on the record. We have a helper/decorator function that said: *if a tool returns more than 200 rows, truncate and warn.* Responsible adult behaviour right!
+I mean I did. I want that on the record. We have a helper/decorator function that says: ***if a tool returns more than 200 rows, truncate and warn.*** Responsible adult behaviour, right?
+
+{:refdef: style="text-align: center;"}
+![1793037839765]({{ "/assets/2026-10-23-a-0-1-second-tool-call-filled-my-agents-context-window-1793037839765.png" | relative_url }}){: loading="lazy"}
+{: refdef}
 
 A row limit caps rows, not tokens. Illustrative numbers, not measured:
 
-- 200 rows of 5 tokens each: 1,000 tokens. The row guard passes it, and it should.
-- 200 rows of 900 tokens each: 180,000 tokens. The row guard also passes it. Same rule, 180 times the cost.
+- 200 rows of 5 tokens each -> 1,000 tokens. The row guard passes it, as it should.
+- 200 rows of 900 tokens each -> 180,000 tokens. The row guard also passes it. Same rule, 180 times the cost.
 
-The tool returned fewer than 200 rows. *(Famous last words: "it's capped at 200, what's the worst that could happen?")* Each row carried free-text notes and nested fields, about 900 tokens per row. A single call was roughly 180k tokens, sitting comfortably under a limit that only knew how to count rows. Worse, the helper treated dict-shaped payloads as empty, so those never tripped it at all.
+Well the tool returned fewer than 200 rows. **(Famous last words: "it's capped at 200, what's the worst that could happen?")** Each row carried free-text notes and nested fields, about 900 tokens per row. A single call was roughly 180k tokens, sitting comfortably under a limit that only knew how to count rows. Worse, the helper treated dict-shaped payloads as empty, so those never tripped it at all.
 
-I also assumed history compaction would rescue me. It doesn't. The current setup trims old tool content but keeps the most recent events raw, so a huge result inside the retained window just sits there. Compaction is a late, lossy backstop. It is not a control.
+> Here's the trap. Imagine a rule saying a delivery van may carry only 200 boxes. Sensible, until you discover the boxes can be anything from a packet of paper clips to a refrigerator. Counting boxes tells you nothing about the weight. I counted rows. The model had to carry their contents.
+
+The assumption I had was that history compaction would rescue me. In this setup, it didn’t. The current setup trims old tool content but keeps the most recent events raw, so a huge result inside the retained window just sits there. Compaction is a late, lossy backstop. It is not a control.
 
 For illustration:
 
@@ -99,24 +111,32 @@ For illustration:
 
 ## The Boundary Nobody Owned
 
-Two kinds of component met in that tool call. The tool is deterministic: same query, same rows, same output every time. The model is probabilistic: it reads whatever arrives and writes the next step from it. Each side did its job. The problem sat in the gap between them.
+Two very different kinds of component met in that tool call.
+- The tool is **deterministic**: same query, same rows, same output every time.
+- The model is **probabilistic**: it reads what arrives and decides what to do next.
 
-The tool's contract said "return the customer's orders". It said nothing about size, and the model's contract said nothing about how much input it can take. Neither side owned the number that mattered most, so a single fast call could fill the window and the next call would pay for it again.
+Each side did its job. The problem sat in the gap between them.
 
-I can't prove this shape is common. It is one incident. But any time deterministic output feeds a model, the same gap is there. The controls in this post sit at that boundary:
+The tool's contract said *"return the customer's orders"*. It said nothing about size, and our integration contract did not enforce a limit on what the model would receive. Neither side owned the number that mattered most, so a single fast call could fill the window and the next call would pay for it again.
+
+I can't prove this shape is common. It is one incident, a single data point. But any time deterministic output feeds a model, the same gap is there. The controls in this post sit at that boundary:
 
 - **At the source:** the query decides what is fetched.
 - **At the boundary:** a wrapper sizes the output, pages it, and reports the total, whatever the tool returned.
 - **Outside the context:** the full result lives in a store, and the model holds only a page and a key.
 
-The rest of the post is these three controls, and the reason each one exists.
+The rest of the post discussess these three controls, and the reason each one exists.
 
 ## Why One Result Costs More Than Once
 
 Two numbers get mixed up here. They are different things.
 
+{:refdef: style="text-align: center;"}
+![Illustration](https://i.makeagif.com/media/5-21-2015/zlQRKF.gif){: loading="lazy"}
+{: refdef}
+
 - **Window occupancy:** how many tokens the model sees on one call. A 15k result adds 15k to it, and it stays until something removes it.
-- **Cumulative input:** the sum of input tokens over every call in the turn. Each call re-sends the whole context, so one result is billed once for every later call.
+- **Cumulative input:** the sum of input tokens over every call in the turn. In the observed call pattern, later requests include that result again. So a large result can contribute to input usage repeatedly, not just when the tool returns.
 
 Illustrative numbers, not measured. Assume 5k of history, a 15k tool result that arrives after call 2, and 10 model calls in the turn. Output tokens are left out.
 
@@ -127,26 +147,33 @@ Illustrative numbers, not measured. Assume 5k of history, a 15k tool result that
 
 Occupancy at call 10 goes from 5k to 20k. Cumulative input goes from 50k to 170k. One 15k result adds 120k billed input across the turn.
 
-So a result that arrives on call 2 costs more than the same result on call 14. And the "over 1 million input tokens" figure in the TL;DR is a sum across calls, not a window size.
+> That is the bit that caught me. It's like a meeting where everyone must reread the entire minutes before speaking. Someone drops a 200-page attachment into the minutes, and suddenly every follow-up question comes with 200 pages of homework. The file didn't get bigger. The number of times it had to be read did.
+
+For clarity, the table is deliberately simplified. Real requests also have instructions, messages, tool metadata and changing output; provider billing can involve caching and other details. The point is the repeated *input*, not an exact invoice calculation.
+
+So a result that arrives on call 2 costs more than the same result on call 14. And the *"over 1 million input tokens"* figure in the TL;DR is a sum across calls, not a window size.
 
 ---
 
 ## How ADK Holds the Context
 
-Google ADK keeps each session as a list of **events**. A user message, a model reply, a tool call and a tool result are each one event. Every model call is built from the session's events, so a big tool result stays in the session until something removes it.
+Google ADK keeps each session as a list of **events**. User messages, model replies, tool calls and tool results are represented in session events. Model requests are constructed from session history, subject to the framework’s context handling. A big tool response may therefore keep appearing in later requests; the persisted event count alone does not prove exactly which content was sent.
 
-- The orchestrator picks which specialist gets the turn. The specialist's tool calls and results are written to the same session.
+> Think of the session database as a notebook and the model request as the pages you actually hand to the reader. Finding 70 pages in the notebook doesn't prove the reader saw all 70. That's why I distinguish **events stored** from **events included in the next prompt**. I had evidence of the former, not a complete end-to-end trace of the latter after compaction.
+
+
+- The orchestrator routes work to a specialist. The specialist’s tool calls and responses appear in the session history.
 - A tool result is stored as a `function_response` event.
-- Compaction adds a summary event. It records a start and end time for the range it covers. The raw events in that range stay in the database.
+- Compaction adds a summary event. It records a start and end time for the range it covers. In the production records I inspected, the raw events in that range were still present in the database. That is a storage observation, not proof they were all sent to the model.
 
-What I measured on production (counts only, names removed):
+What I measured on production (counts only):
 
 - The 8 newest compaction events each covered **2 to 35 raw events**. Their sessions kept **44 to 77 events** in total.
 - In 3 of those sessions, I counted raw tool results inside the compacted range: **2, 0 and 10**.
 
 What I read in the code but did not measure end to end: what the model sees after compaction. I still need to verify that in practice.
 
-The check I ran to see how much one time range holds. Table and column names are invented, and I have not run this against a database (hides):
+An illustrative query for counting events inside a time range follows:
 
 ```sql
 -- How many raw events fall inside one compaction range?
@@ -155,10 +182,10 @@ FROM agent_events
 WHERE app_name = 'my_app'
   AND user_id = 'user-123'
   AND session_id = 'sess-456'
-  AND event_time BETWEEN '2026-10-22 00:00' AND '2026-10-23 00:00';
+  AND event_time BETWEEN '2026-10-22 00:00'::date AND '2026-10-23 00:00'::date;
 ```
 
-And the check that showed the cost problem. Same invented names:
+I also investigated the query-plan cost of a time-only event lookup:
 
 ```sql
 EXPLAIN
@@ -167,7 +194,7 @@ FROM agent_events
 WHERE event_time >= now() - interval '30 days';
 ```
 
-On production, a 30-day range like this had **no index to use**. The plan was a parallel sequential scan with cost **228,490**. Lookups by `app, user and session` used a composite index. A time-only range had no index at all. Memo-to-self: Check the plan before you trust a range query.
+On production, a 30-day range like this had **no index to use**. The plan was a parallel sequential scan with cost **228,490**. Lookups by `app, user and session` used a composite index. A time-only range had no index at all. **Memo-to-self:** Check the plan before you trust a range query.
 
 ---
 
@@ -175,11 +202,11 @@ On production, a 30-day range like this had **no index to use**. The plan was a 
 
 ```mermaid
 flowchart TB
-    A[Agent calls tool] --> B[Clamp limit<br/>and offset]
-    B --> C[Query with LIMIT<br/>and needed fields]
-    C --> D[Fit rows to<br/>token budget]
-    D --> E[Return rows<br/>+ paging + totals]
-    D --> F[(Stored outside<br/>the context)]
+    A[Agent calls tool] --> B[Clamp limit\<br/>and offset]
+    B --> C[Query with LIMIT\<br/>and needed fields]
+    C --> D[Fit rows to\<br/>token budget]
+    D --> E[Return rows\<br/>+ paging + totals]
+    D --> F[(Stored in session db \<br/>the context)]
     F -. read in pages by key .-> A
 ```
 
@@ -189,15 +216,20 @@ Three things get mixed up in this design. They are not the same:
 - **Token estimation** guesses how big the rows are. It is a guess, so it can be wrong in either direction.
 - **A hard budget** guarantees the output never exceeds N tokens. This code does not give that guarantee. One oversized row still goes out.
 
+> Put another way: pagination decides how many suitcases you send. Token estimation guesses what they weigh. A hard budget is the scale at the airport that refuses an overweight suitcase. My code has the first two; it does not have the third. And calling a guess a guarantee doesn't make the luggage any lighter.
+
+
 ### Layer 1: shrink at the source
 
 The cheapest token is the one you never fetch. So:
 
 - `LIMIT` to the most recent N rows.
 - Return only the fields the model needs. The free-text notes and nested blobs were most of the weight, and the model never needed them to answer anything.
-- Return the true total in the summary, so "showing 17 of 791" is a fact and not a guess.
+- Return the true total in the summary, so *"showing 17 of 791"* is a fact and not a guess.
 
-And **compute totals in code.** I watched an agent summarise a table of 10 items that sum to 620 and confidently report 700. Twice. Same answer both runs and it wen't like "trust me bro". Re-reading the table didn't help. So now the tool returns the exact count, sum and group-by totals, and the prompt says: quote the totals, never add amounts yourself. (LLMs are brilliant at many things. Arithmetic on a markdown table is not one of them.)
+Consider a customer asking, "How much did I spend last month?" The agent might need hundreds of orders to discover that total, but the user needs one number, perhaps with a breakdown. The database can calculate it exactly with a sum. Passing every receipt to the LLM and hoping it adds them correctly is a surprisingly expensive way to use a calculator.
+
+And **compute totals in code.** I watched an agent summarise a table of 10 items that sum to 620 and confidently report 700. Twice. Same answer both runs and it went with the equivalent of *“trust me, bro”*. Re-reading the table didn't help. So now the tool returns the exact count, sum and group-by totals, and the prompt says: *quote the totals, never add amounts yourself.* (LLMs are brilliant at many things. Arithmetic on a markdown table is not one of them.)
 
 ### Layer 2: cap by tokens, not rows
 
@@ -276,13 +308,13 @@ Edge cases the code does not currently handle:
 Four decisions in there matter more than the arithmetic:
 
 1. **The cap runs after the page size.** A model that asks for `limit=1000000` gets 200 at most, and the token fit trims it further. The cap is strong, but not hard: one row over budget still goes out (gotcha 3).
-2. **Model-supplied arguments get clamped, and bad ones fail loudly.** Negative offset or zero limit? Error. Never a silent fallback to some default. *A guard the caller can override is not a guard.*
+2. **Model-supplied arguments get clamped, and bad ones fail loudly.** Negative offset or zero limit? Error. Never a silent fallback to some default. **A guard the caller can override is not a guard.**
 3. **The paging block tells the model the data was cut** (`truncated`, `total`, `next_offset`). The prompt then tells it to say so to the user, and to page only if the question really needs more.
 4. **Cap off must behave exactly like before.** I kept a switch so I can compare behaviour with and without it. Remember that, it comes back later.
 
 ### Where the cap sits: the `output_guard` decorator
 
-Every tool in our agent is wrapped by an `@output_guard` decorator. The wrapper runs the tool, then decides what goes back to the model. This is a sanitised copy of the shape, with names changed and the session storage and paging left out.
+Every tool in our agent is wrapped by an `@output_guard` decorator. The wrapper runs the tool, then decides what goes back to the model.
 
 ```python
 import asyncio
@@ -346,7 +378,10 @@ The investigatory script was run on fake rows, so its numbers differ from the re
 
 ### Layer 3: store the full result outside the context
 
-The model doesn't need 791 rows. It needs the first page, the total, and a way to ask for more. So the full result goes into a session store under a key, and the model gets a page plus that key. A second tool, `read_stored_data(key, limit, offset)`, reads the following pages, with the same clamps.
+For this question, the model doesn’t need 791 rows. It needs the first page, the total, and a way to ask for more.
+
+Say the customer wants the latest ten orders. Give the agent ten orders and the total count. If the follow-up is *"What about the ones from June?"*, it can request the next relevant page by key. There's no reason to stuff every order into the first reply just in case the customer might ask.
+So the full result goes into a session store under a key, and the model gets a page plus that key. A second tool, `read_stored_data(key, limit, offset)`, reads the following pages, with the same clamps.
 
 **Shipped now:** token caps on the tools that opted in, paging blocks, exact totals, and the store-and-page pattern.
 
@@ -356,20 +391,21 @@ One more trick for flat tables: rendering rows as a markdown table cost about 2.
 
 ---
 
-## Gotchas (a.k.a. the stuff that bit me)
+## Gotchas (the stuff that bit me)
 
-1. **My own metering lied.** The token estimate I logged counted text parts only, so on tool-heavy calls it read close to zero. I was debugging a context problem with a gauge that couldn't see the context. *(Ah yes, the classic "the dashboard is green because the dashboard is blind".)* Fix the gauge first: log the real size per call, split by role.
+1. **My own metering lied.** The token estimate I logged counted text parts only, so on tool-heavy calls it read close to zero. I was debugging a context problem with a gauge that couldn't see the context. **(Ah yes, the classic "the dashboard is green because the dashboard is blind".)** Fix the gauge first: log the real size per call, split by role.
 2. **Concurrent count queries overflowed the connection pool.** A page query plus a count query for every parent record, all at once, ate a pool of 10 connections (and 10 more waiting) and tripped its circuit breaker. Run the second round after the first.
 3. **One row bigger than the budget.** If the first row alone exceeds the budget, `fit_rows` returns 0 and `next_offset` points back at the same row. The model loops. My version returns at least one row, so that row goes out over budget. A better version would also trim the fat fields inside that row.
 4. **Summaries and side lists count too.** If a customer has hundreds of saved addresses, a neat little "list of addresses" in your summary can eat the whole budget by itself. Bound them, and report the true total.
-5. **A stale comment hid the real limit.** A config comment said the cap was off. The value next to it was a 16,000-token cap. Trust the value, not the comment.
-6. **A guard that was switched off.** Our query audit logged problems but its blocking was off, so nothing was ever stopped. Also, by reading the code, I found one read tool with no cap on its result. Both are fail-open. Check that each guard is actually on.
+5. **A guard that was switched off.** Our query audit logged problems but its blocking was off, so nothing was ever stopped. Also, by reading the code, I found one read tool with no cap on its result. Both are fail-open. Check that each guard is actually on.
 
 ---
 
 ## What would have caught this earlier
 
 None of this needed new tooling. Four signals would have shown the problem before the failures:
+
+If I had to explain this to someone staring at an all-green dashboard: we were watching **how long** the tool took, not **how much** it delivered. A tap can fill a glass or a swimming pool quickly depending on the pipe; the stopwatch won't tell you how much water went through it. That is why tool output size belongs next to latency in the trace.
 
 - **Tool result size, per call.** Estimated tokens and the tool name, logged on every call. A 0.10-second call that returns about 180k tokens is visible here. Latency alone was not.
 - **Occupancy per LLM call, by role.** Gotcha 1 is what hid this. Once the gauge saw the tool results, the growth was obvious.
@@ -402,7 +438,7 @@ This is the section I'd want to read, so here it is, no varnish.
 
 The admission from the intro, plainly: I can't prove what killed turn two. Bedrock throttling, a replayed history the model rejected, and the context limit were all on the list. The logs didn't pick one. Context size is the lead suspect because it's the one thing I measured that grew fast. That's a reason to fix it. It is not proof that it did it.
 
-And the weakest design choice: the opt-in. *Every tool author has to remember to turn the cap on.* A guard that depends on remembering fails open, which is precisely the thing I tell other people not to do. If I did it again, the cap would be on by default at the one place every tool call passes through, and a tool would opt out only with a written reason. Lesson learned, the slightly embarrassing way.
+And the weakest design choice: the opt-in. **Every tool author has to remember to turn the cap on.** A guard that depends on remembering fails open, which is precisely the thing I tell other people not to do. If I did it again, the cap would be on by default at the one place every tool call passes through, and a tool would opt out only with a written reason. Lesson learned, the slightly embarrassing way.
 
 ---
 
@@ -423,10 +459,8 @@ And the weakest design choice: the opt-in. *Every tool author has to remember to
 
 Tools that return fast are not tools that return small. The agent can't tell the difference, and neither can your latency dashboard.
 
-The tool did its job. The failure was architectural: a deterministic component handed unbounded output to a probabilistic one, and no control sat at that handoff. The fix is not a better decorator. It is a boundary with a size contract, enforced where every call passes through, and tested on the cases that break it: the big result, the single oversized row, the bad argument, and the guard turned off.
+The tool did its job. The design flaw I could verify was architectural: a deterministic component handed an enormous output to a probabilistic one without a reliably enforced size contract. Whether that specifically killed turn two remains unproven. The fix is not a better decorator. It is a boundary with a size contract, enforced where every call passes through, and tested on the cases that break it: the big result, the single oversized row, the bad argument, and the guard turned off.
 
 The principle I'd keep: **a tool's output size is part of its contract.** If nothing states the size, the model's context becomes the place where you find out.
 
-What is the largest response your agents' tools can return today, and what enforces that number?
-
-If you're running tool-calling agents in production, go open the metrics for whichever agent's context grows the fastest and find the single tool call that moved it. I'd bet money it took less than a second.
+If you’re running tool-calling agents in production, find the tool call that made your agent’s context grow the fastest. Then ask yourself: **what is the largest response that tool can return, and what actually enforces that number?** I’d bet the call was faster than you think.
