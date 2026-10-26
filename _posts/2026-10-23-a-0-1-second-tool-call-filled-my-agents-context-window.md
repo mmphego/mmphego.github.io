@@ -17,11 +17,9 @@ tags:
   - reliability
 ---
 
-<!-- TODO before publishing: remove `published: false`, add header image, re-read the "What's Measured" section. -->
-<!--
 {:refdef: style="text-align: center;"}
 ![post image]({{ "/assets/2026-10-23-a-0-1-second-tool-call-filled-my-agents-context-window.png" | relative_url }}){: loading="lazy"}
-{: refdef} -->
+{: refdef}
 
 ---
 
