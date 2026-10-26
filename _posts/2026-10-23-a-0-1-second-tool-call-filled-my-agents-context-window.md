@@ -89,8 +89,9 @@ The tool returned fewer than 200 rows. *(Famous last words: "it's capped at 200,
 
 Then comes the part I hadn't thought through: **context is re-sent on every LLM call.** A fat tool result doesn't cost you once. It costs you again on every call after it, for the rest of the turn. That's how one turn ended up over a million input tokens.
 
-I also assumed history compaction would rescue me. It doesn't. In my setup it trims old tool content but keeps the most recent events raw, so a huge result inside the retained window just sits there, untouched. Compaction is a late, lossy backstop. It is not a control.
+I also assumed history compaction would rescue me. It doesn't. The current setup trims old tool content but keeps the most recent events raw, so a huge result inside the retained window just sits there, untouched. Compaction is a late, lossy backstop. It is not a control.
 
+![1793013545544](image/2026-10-23-a-0-1-second-tool-call-filled-my-agents-context-window/1793013545544.png)
 ---
 
 ## How ADK Holds the Context
@@ -106,7 +107,7 @@ What I measured on production (counts only, names removed):
 - The 8 newest compaction events each covered **2 to 35 raw events**. Their sessions kept **44 to 77 events** in total.
 - In 3 of those sessions, I counted raw tool results inside the compacted range: **2, 0 and 10**.
 
-What I read in the code but did not measure end to end: what the model sees after compaction. Treat that as unverified.
+What I read in the code but did not measure end to end: what the model sees after compaction. I still need to verify that in practice.
 
 The check I ran to see how much one time range holds. Table and column names are invented:
 
@@ -114,7 +115,7 @@ The check I ran to see how much one time range holds. Table and column names are
 -- How many raw events fall inside one compaction range?
 SELECT count(*)
 FROM agent_events
-WHERE app_name = 'support_app'
+WHERE app_name = 'my_app'
   AND user_id = 'user-123'
   AND session_id = 'sess-456'
   AND event_time BETWEEN 1729670400 AND 1729756800;
