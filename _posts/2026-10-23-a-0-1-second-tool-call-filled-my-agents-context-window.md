@@ -29,6 +29,11 @@ tags:
 
 A user opened a chat with our AI agent, asked a follow-up question, and got an error two seconds later. Two seconds. That was not a timeout. That was the system slamming the door in the user’s face.
 
+{:refdef: style="text-align: center;"}
+![post image]({{ "/assets/2026-10-23-a-0-1-second-tool-call-filled-my-agents-context-window-1793044675537.png" | relative_url }}){: loading="lazy"}
+{: refdef}
+
+
 I went to OpenSearch expecting a crash in the logs and found nothing of the sort. Turn one ran for 8 minutes 39 seconds, made 15 LLM calls and 24 tool calls, and finished with zero errors. Turn two died about two seconds after its model call started. The one number I could pull from that turn was its context size: **463,976 tokens.** *(Yes, that is a lot of tokens. No, I did not type that much.)*
 
 That number is where this story starts, not where it ends. I could show how the context grew. I couldn't show that it killed turn two. I’ll separate what I measured from what I suspect later in the post. *(The logs also didn't say much about exceptions in general. That's a different post.)*
@@ -155,12 +160,11 @@ So a result that arrives on call 2 costs more than the same result on call 14. A
 
 ---
 
-## How ADK Holds the Context
+## How ADK Holds the Context (Learned the hard way)
 
 Google ADK keeps each session as a list of **events**. User messages, model replies, tool calls and tool results are represented in session events. Model requests are constructed from session history, subject to the framework’s context handling. A big tool response may therefore keep appearing in later requests; the persisted event count alone does not prove exactly which content was sent.
 
 > Think of the session database as a notebook and the model request as the pages you actually hand to the reader. Finding 70 pages in the notebook doesn't prove the reader saw all 70. That's why I distinguish **events stored** from **events included in the next prompt**. I had evidence of the former, not a complete end-to-end trace of the latter after compaction.
-
 
 - The orchestrator routes work to a specialist. The specialist’s tool calls and responses appear in the session history.
 - A tool result is stored as a `function_response` event.
