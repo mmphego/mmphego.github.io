@@ -23,7 +23,7 @@ build:
 	@rm -f custom-ca.pem
 
 run:
-	@docker run --rm --memory 512mb --cpus="1.5" --name jekyll -i -v "$(PWD)":/site -p 8085:4000 mmphego/jekyll
+	@docker run --rm --memory 2g --cpus="1.5" --name jekyll -i -v "$(PWD)":/site -p 8085:4000 mmphego/jekyll
 
 start:
 	@docker start jekyll || true
@@ -52,4 +52,4 @@ lint:
 
 test:
 	@docker run --rm -v "$(PWD)":/site mmphego/jekyll /bin/bash -c \
-		"bundle exec jekyll build && bundle exec htmlproofer _site --disable-external"
+		"bundle exec jekyll build && python3 _scripts/validate_site.py _site"

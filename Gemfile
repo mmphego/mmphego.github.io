@@ -4,7 +4,14 @@ gem "rexml"
 gem "webrick"
 gem "ffi"
 gem "liquid-c"
-gem "github-pages", '232', group: :jekyll_plugins
+gem "jekyll", "~> 4.4"
+gem "jekyll-sass-converter", "~> 2.2" # Native Sass; avoid build-time binary downloads.
+gem "jekyll-feed"
+gem "jekyll-gist"
+gem "jekyll-mentions"
+gem "jekyll-redirect-from"
+gem "jekyll-seo-tag"
+gem "jekyll-sitemap"
 gem 'jekyll-admin', group: :jekyll_plugins
 
 # enable tzinfo-data for local build

@@ -167,7 +167,7 @@ I should be able to:
 - Be able to apply sequence models to audio applications, including speech recognition and music synthesis.
 
 This is the fifth and final course of the Deep Learning Specialization.
-[deeplearning.ai](deeplearning.ai) is also partnering with the NVIDIA Deep Learning Institute (DLI) in Course 5, Sequence Models, to provide a programming assignment on Machine Translation with deep learning. You will have the opportunity to build a deep learning project with cutting-edge, industry-relevant content.
+[deeplearning.ai](https://deeplearning.ai) is also partnering with the NVIDIA Deep Learning Institute (DLI) in Course 5, Sequence Models, to provide a programming assignment on Machine Translation with deep learning. You will have the opportunity to build a deep learning project with cutting-edge, industry-relevant content.
 
 ---
 

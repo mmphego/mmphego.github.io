@@ -52,7 +52,7 @@ I could have just [bash scripted](https://www.linux.com/training-tutorials/writi
 
 # The Walk-through
 
-The setup is divided into two sections, [Containerization](#Containerization) and [Automation](#automation).
+The setup is divided into two sections, [Containerization](#containerization) and [Automation](#automation).
 
 This post-walk-through mainly focuses on containerisation. Go [here]({{ "/blog/2021/06/16/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible-Continues.html" | absolute_url }}) for the automation.
 
@@ -334,7 +334,7 @@ EOF
 
 I didn't want the post to be too long.
 
-Post continues [here]({{ "/blog/2021/06/15/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible-Continues.html" | absolute_url }})
+Post continues [here]({{ "/blog/2021/06/16/How-I-setup-a-private-PyPI-server-using-Docker-and-Ansible-Continues.html" | absolute_url }})
 
 # Conclusion
 

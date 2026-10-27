@@ -5,3 +5,15 @@ custom-ca.pem
 .playwright*
 .vscode
 CLAUDE.local.md
+!Gemfile.lock
+!package-lock.json
+vendor/
+node_modules/
+assets/responsive/
+_data/responsive_images.json
+test-results/
+playwright-report/
+
+.bundle/
+.venv/
+__pycache__/

@@ -49,7 +49,7 @@ A few weeks ago, I eventually graduated from the [**Udacity Cloud Developer Nano
 
 As part of the Nanodegree program, I needed to come up with a project using the skills I learned and I decided to build a serverless-based diary before I could graduate.
 
-For my capstone project, I decided to create a simple daily diary based serverless application consisting of a [React](https://reactjs.org/) front-end and Node.js/TypeScript/Serverless backend with login authentication using [Auth0](auth0.com/), and that could be deployed to AWS using the [Serverless Framework](https://www.serverless.com/). It uses [DynamoDB](https://aws.amazon.com/dynamodb/) database, an S3 bucket for storing attachments and connects to the application via a [Lambda](https://docs.aws.amazon.com/lambda/index.html) based API.
+For my capstone project, I decided to create a simple daily diary based serverless application consisting of a [React](https://reactjs.org/) front-end and Node.js/TypeScript/Serverless backend with login authentication using [Auth0](https://auth0.com/), and that could be deployed to AWS using the [Serverless Framework](https://www.serverless.com/). It uses [DynamoDB](https://aws.amazon.com/dynamodb/) database, an S3 bucket for storing attachments and connects to the application via a [Lambda](https://docs.aws.amazon.com/lambda/index.html) based API.
 
 A link to the Github project repo: [https://github.com/mmphego/udacity-cloud-developer-capstone-project/](https://github.com/mmphego/udacity-cloud-developer-capstone-project/)
 
@@ -108,7 +108,7 @@ Learn both the theory of using serverless technologies with the practice of deve
 In this project, I had to develop a TODO app based on serverless service.
 The application allowed creating/removing/updating/fetching TODO items. Each TODO item could optionally have an attachment image and each user only had access to TODO items that he/she has created.
 
-This application consisted of a React-based front-end which allowed user authentication when logging in using [Auth0](auth0.com/) and a backend with individual-based functions. I began by building serverless REST APIs using API Gateway and AWS Lambda, which form part of serverless technologies stack on AWS. I implemented an API to interact with the application, store data in AWS DynamoDB,
+This application consisted of a React-based front-end which allowed user authentication when logging in using [Auth0](https://auth0.com/) and a backend with individual-based functions. I began by building serverless REST APIs using API Gateway and AWS Lambda, which form part of serverless technologies stack on AWS. I implemented an API to interact with the application, store data in AWS DynamoDB,
 S3, and Elasticsearch. The app had to be deployed to Amazon Web Services using a [Serverless Framework](https://serverless.com/).
 
 Github Project Link: [https://github.com/mmphego/cloud-developer/tree/master/course-04/project/c4-final-project-starter-code](https://github.com/mmphego/cloud-developer/tree/master/course-04/project/c4-final-project-starter-code)

@@ -12,6 +12,10 @@ bigimg:
 <!-- Typed.js — loaded after jQuery via window.onload -->
 <script>
   window.addEventListener('load', function() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelector('.typed').textContent = 'AI, data platforms, and reliable software.';
+      return;
+    }
     var s = document.createElement('script');
     s.src = '/js/typed.js';
     s.onload = function() {
@@ -36,11 +40,7 @@ bigimg:
   });
 </script>
 
-<script type="text/javascript">
-    if ( !document.getElementById('test-block') ) {
-        document.getElementById('banner-12345').style.display='block';
-    }
-</script>
+
 
 <div class="typed-js-hide">
   <div class="row">
@@ -51,27 +51,11 @@ bigimg:
     </div>
   </div>
 </div>
-<div class="search-container">
-  <div class="search-wrapper">
-    <i class="fa fa-search search-icon"></i>
-    <input type="text" id="search-input" placeholder="Search posts...">
-  </div>
-  <ul id="results-container"></ul>
-</div>
-
-<script src="{{ site.baseurl }}/js/simple-jekyll-search.min.js"></script>
-<script>
-  window.simpleJekyllSearch = new SimpleJekyllSearch({
-      searchInput: document.getElementById('search-input'),
-      resultsContainer: document.getElementById('results-container'),
-      json: '{{ site.baseurl }}/search.json',
-      searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a></li>',
-      noResultsText: 'No results found',
-      limit: 20,
-      fuzzy: false,
-      // exclude: ['Welcome']
-  })
-</script>
+<form class="search-container" action="{{ '/search.html' | relative_url }}" method="get" role="search">
+  <label for="search-input" class="sr-only">Search articles</label>
+  <div class="search-wrapper"><input type="search" id="search-input" name="q" placeholder="Search explanations, commands, and topics…" required></div>
+  <button type="submit">Search</button>
+</form>
 
 <!-- Featured Posts -->
 {% assign featured_posts = site.posts | where: "featured", true %}

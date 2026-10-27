@@ -49,7 +49,7 @@ Or in other words: instead of a human end-user clicking away in their web browse
 
 While many languages have libraries to help with web scraping, According to me, Python's libraries have the most advanced tools and features.
 
-In this post/project, I used Selenium to scrap websites such as [www.makro.co.za](www.makro.co.za), [www.game.co.za](www.game.co.za) and etc, Google sheet to store the results, [travis-ci](http://travis-ci.com/) to automate it such that it runs weekly, smtp/slack for price change notification.
+In this post/project, I used Selenium to scrap websites such as [www.makro.co.za](https://www.makro.co.za), [www.game.co.za](https://www.game.co.za) and etc, Google sheet to store the results, [travis-ci](http://travis-ci.com/) to automate it such that it runs weekly, smtp/slack for price change notification.
 
 ### Why Selenium instead of Beautiful Soup
 

@@ -43,7 +43,7 @@ Find the code [here](http://bit.ly/2jTerdl)
 # The How
 
 The automagic plant watering system runs on a [Wemos D1 esp8266](https://www.wemos.cc/) running <s>Arduino</s>
- [uPython](http://www.micropython.org/), a capacitive soil moisture sensor reads the moisture content in the soil and uploads the data to [ubidots](https://ubidots.com/) which is a data collection, analysis, and visualization tool. A [Slack](slack.com) message is sent to a specific channel when soil moisture reaches a threshold and a water pump notification is sent.
+ [uPython](http://www.micropython.org/), a capacitive soil moisture sensor reads the moisture content in the soil and uploads the data to [ubidots](https://ubidots.com/) which is a data collection, analysis, and visualization tool. A [Slack](https://slack.com) message is sent to a specific channel when soil moisture reaches a threshold and a water pump notification is sent.
 
 The system operates 24/7. Every 15 minutes it checks sensors in the following order and acts based on this:
 
@@ -59,7 +59,7 @@ In this section, I will detail the implementation.
 
 ## Circuit Diagram
 ![circuit](https://raw.githubusercontent.com/mmphego/uPython-Plant-Irrigation-System/master/assets/soilmoisture.jpg)
-Circuit designed with [fritzing.org](fritzing.org/)
+Circuit designed with [fritzing.org](https://fritzing.org/)
 
 ### Parts Checklist
 
@@ -137,7 +137,7 @@ The [config](https://raw.githubusercontent.com/mmphego/uPython-Plant-Irrigation-
 
 ### Setup Slack
 
-I previously added a blog post on how to send [Slack](slack.com) messages using Python, you can find the post [here](http://bit.ly/2K46XP8)
+I previously added a blog post on how to send [Slack](https://slack.com) messages using Python, you can find the post [here](http://bit.ly/2K46XP8)
 
 ![image](https://raw.githubusercontent.com/mmphego/uPython-Plant-Irrigation-System/master/assets/slack.png)
 

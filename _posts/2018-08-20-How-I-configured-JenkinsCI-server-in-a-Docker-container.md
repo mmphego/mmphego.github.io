@@ -19,7 +19,7 @@ In this post, I will go through the software installation, on the next post I wi
 A basic understanding of Continuous Integration/Deployment/Testing is required before proceeding unless like me, you want to learn by breaking stuff.
 A great article I recommend reading is one from our friends at @digitalocean: [Introduction to Continuous Integration Delivery and Deployment](https://www.digitalocean.com/community/tutorials/an-introduction-to-continuous-integration-delivery-and-deployment)
 
-If you are also unfamiliar with what Jenkins is - I strongly recommend firstly reading up on what Jenkins is. You can find plenty of documentation at the [official Jenkins](Jenkins.io) website.
+If you are also unfamiliar with what Jenkins is - I strongly recommend firstly reading up on what Jenkins is. You can find plenty of documentation at the [official Jenkins](https://Jenkins.io) website.
 
 The Jenkins build server will be running in a Docker container, I would also strongly recommend firstly reading up on what [Docker](https://docker.com) is. You can find plenty of documentation on the [official Docker Documentation](https://docs.docker.com/) website.
 
@@ -47,7 +47,7 @@ We will need to install Docker, I have (in the past) written a detailed installa
 
 ### Java
 
-Jenkins swarm client (another fancy way of calling slave nodes) requires Java8 Runtime installed. You can find more informations about Jenkins swarm client plugin [here](https://wiki.jenkins.io/display/JENKINS/Swarm+Plugin) and you can find plenty of documentation about Java Runtime Environment on the [Official Oracle](www.oracle.com/technetwork/java/javase/overview/index.html) website.
+Jenkins swarm client (another fancy way of calling slave nodes) requires Java8 Runtime installed. You can find more informations about Jenkins swarm client plugin [here](https://wiki.jenkins.io/display/JENKINS/Swarm+Plugin) and you can find plenty of documentation about Java Runtime Environment on the [Official Oracle](https://www.oracle.com/technetwork/java/javase/overview/index.html) website.
 
 @digitalocean [website](https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-18-04) has a great tutorial on how to setup Java with apt in @ubuntu 18.04 else, if you do not want to be opening multiple tabs - you can just follow some steps, I have added below.
 

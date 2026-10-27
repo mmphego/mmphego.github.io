@@ -1,0 +1,7 @@
+{% if page.last_verified or page.tested_versions or page.superseded_by %}
+<aside class="content-status" aria-label="Technical verification">
+  {% if page.superseded_by %}<p><strong>Newer guidance available:</strong> <a href="{{ page.superseded_by | relative_url }}">Read the replacement article</a>. This article is retained for historical context.</p>{% endif %}
+  {% if page.last_verified %}<p>Technically verified <time datetime="{{ page.last_verified | date: '%Y-%m-%d' }}">{{ page.last_verified | date: '%B %-d, %Y' }}</time>.</p>{% endif %}
+  {% if page.tested_versions %}<p>Tested with: {{ page.tested_versions | join: ', ' | escape }}.</p>{% endif %}
+</aside>
+{% endif %}

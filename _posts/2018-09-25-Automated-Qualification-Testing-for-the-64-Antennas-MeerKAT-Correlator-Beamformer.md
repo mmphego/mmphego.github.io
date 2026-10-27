@@ -62,7 +62,7 @@ The conference was streamed on YouTube and it is available to watch.
 </p>
 
 ### My Talk: Automated Qualification Testing for the 64 Antennas MeerKAT Correlator-Beamformer
-Initially, I planned to include a demo but had technical issues - I will upload the demo on a later stage as it forms part of the series, [*How I configured Jenkins CI server in a Docker container*]({{ site.baseurl }}blog/2018/08/20/How-I-configured-JenkinsCI-server-in-a-Docker-container.html).
+Initially, I planned to include a demo but had technical issues - I will upload the demo on a later stage as it forms part of the series, [*How I configured Jenkins CI server in a Docker container*]({{ site.baseurl }}/blog/2018/08/20/How-I-configured-JenkinsCI-server-in-a-Docker-container.html).
 
 <p>
     <div>

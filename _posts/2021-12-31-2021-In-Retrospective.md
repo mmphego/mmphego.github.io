@@ -56,7 +56,7 @@ We collaborated and gave a talk at the @PyConZA 2021 conference, which was a gre
 - I became an [AWS Community Builder](https://aws.amazon.com/developer/community/community-builders/) member and I am now a member of the AWS Community.
 ![image](https://user-images.githubusercontent.com/7910856/147874001-47a26a05-3486-453d-b0c3-dca597b9a696.png)
 
-- Made over **1400+** [Github](www.github.com/mmphego) open & close source contributions (which was less than 2020 @ 2400+), **340+** PR's and **5+** projects
+- Made over **1400+** [Github](https://www.github.com/mmphego) open & close source contributions (which was less than 2020 @ 2400+), **340+** PR's and **5+** projects
 
     ![image](https://user-images.githubusercontent.com/7910856/147805173-5c2344b8-f9db-4965-be91-374cd1a60ff6.png)
 
