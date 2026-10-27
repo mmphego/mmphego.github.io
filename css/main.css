@@ -81,7 +81,8 @@ layout: null
 /* --- General --- */
 
 html {
-  overflow-x: hidden;
+  /* Clip sideways overflow without creating a second vertical scroller. */
+  overflow-x: clip;
 }
 body {
   font-family: var(--font-serif);
@@ -89,7 +90,6 @@ body {
   color: var(--color-text);
   position: relative;
   background: var(--color-bg);
-  overflow-x: hidden;
   {% if site.page-col %}
   background: {{ site.page-col }};
   {% endif %}
@@ -768,10 +768,24 @@ table tr td :last-child {
   margin-bottom: 0;
 }
 
+/* Keep table semantics intact; only the wrapper scrolls horizontally. */
+.blog-post .table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+.blog-post .table-scroll > table {
+  width: 100%;
+  min-width: 480px;
+}
+.blog-post .table-scroll:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
 /* --- Post content containment (mobile overflow fix) --- */
 
 .blog-post {
-  overflow-x: hidden;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
