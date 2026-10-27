@@ -1,0 +1,45 @@
+name: Update profile blog feed
+
+# Profile updates are independent of the build check and never run for PRs.
+on:
+  workflow_run:
+    workflows: [Jekyll site CI]
+    types: [completed]
+    branches: [master]
+
+permissions: {}
+
+jobs:
+  notify:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_branch == 'master' &&
+      github.event.workflow_run.head_repository.full_name == github.repository &&
+      (github.event.workflow_run.event == 'push' ||
+       github.event.workflow_run.event == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+    # Do not check out or execute code from the triggering run here.
+    - name: Check profile dispatch credential
+      env:
+        PROFILE_TOKEN: ${{ secrets.REPO2_ACCESS_TOKEN }}
+      run: |
+        if [ -z "$PROFILE_TOKEN" ]; then
+          echo "::error::REPO2_ACCESS_TOKEN is missing. Configure a token with Contents write access to mmphego/mmphego."
+          exit 1
+        fi
+
+    - name: Trigger profile blog feed update
+      id: dispatch
+      uses: peter-evans/repository-dispatch@28959ce8df70de7be546dd1250a005dd32156697 # v4.0.1
+      with:
+        token: ${{ secrets.REPO2_ACCESS_TOKEN }}
+        repository: mmphego/mmphego
+        event-type: trigger-latest-blog-post-workflow
+
+    - name: Explain notification failure
+      if: failure()
+      run: |
+        echo "::warning::The site build passed, but the profile feed update failed. Check the dispatch error and REPO2_ACCESS_TOKEN validity and access to mmphego/mmphego."
+        echo "Profile notification failed. The site build is unaffected. For Bad credentials, replace REPO2_ACCESS_TOKEN with a valid token scoped to mmphego/mmphego with Contents read/write access." >> "$GITHUB_STEP_SUMMARY"

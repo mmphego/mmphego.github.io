@@ -1,32 +1,28 @@
 name: Jekyll site CI
 on:
   push:
+    branches: [master]
+  pull_request:
   repository_dispatch:
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
-    - uses: actions/checkout@v5
-
-    - uses: actions/cache@v4
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-gems-
+        persist-credentials: false
 
+    # The container installs its gems internally. The old vendor/bundle cache
+    # was unused, and its Gemfile.lock hash was empty (no committed lockfile).
     - name: Build the site in the jekyll/builder container
       run: |
-        docker run \
-        -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
+        docker run --rm \
+        -v "${{ github.workspace }}:/srv/jekyll" -v "${{ github.workspace }}/_site:/srv/jekyll/_site" \
         jekyll/builder:4.2.2 \
         /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
-
-    - name: Trigger Second Workflow
-      uses: peter-evans/repository-dispatch@v2
-      with:
-        token: ${{ secrets.REPO2_ACCESS_TOKEN }}
-        repository: mmphego/mmphego
-        event-type: trigger-latest-blog-post-workflow
