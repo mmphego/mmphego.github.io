@@ -97,7 +97,7 @@ GEM
       rackup (~> 2.0)
       sinatra (~> 4.0)
       sinatra-contrib (~> 4.0)
-    jekyll-feed (0.17.0)
+    jekyll-feed (0.18.0)
       jekyll (>= 3.7, < 5.0)
     jekyll-gist (1.5.0)
       octokit (~> 4.2)
