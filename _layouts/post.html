@@ -38,6 +38,8 @@ layout: base
 
       </article>
 
+      <script src="{{ site.baseurl }}/js/responsive-tables.js" defer></script>
+
       {% include lazy-images.html %}
 
       {% if page.tags.size > 0 %}
@@ -79,6 +81,7 @@ layout: base
       </nav>
       <script>
       document.addEventListener('keydown', function(e) {
+        if (e.defaultPrevented || e.target.closest('.table-scroll, pre, a, button, select, [role="slider"]')) return;
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) return;
         if (e.key === 'ArrowLeft') {
           var prev = document.querySelector('.post-nav-prev');
