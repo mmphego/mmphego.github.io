@@ -5,7 +5,7 @@ gem "webrick"
 gem "ffi"
 gem "liquid-c"
 gem "jekyll", "~> 4.4"
-gem "jekyll-sass-converter", "~> 2.2" # Native Sass; avoid build-time binary downloads.
+gem "jekyll-sass-converter", "~> 3.1" # Native Sass; avoid build-time binary downloads.
 gem "jekyll-feed"
 gem "jekyll-gist"
 gem "jekyll-mentions"
