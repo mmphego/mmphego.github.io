@@ -3,6 +3,7 @@ common-css:
 - "/css/bootstrap.min.css"
 - "/css/bootstrap-social.css"
 - "/css/main.css"
+- "/css/reader.css"
 common-googlefonts:
 - "Lora:400,700,400italic,700italic"
 - "Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
@@ -59,10 +60,10 @@ common-js:
   {% include gtm_head.html %}
   {% include advertisements.html %}
   {% include newsletter.html %}
+  <script src="{{ "/js/on-demand.js" | relative_url }}" defer></script>
 
   <script src="{{ site.baseurl }}/js/ads.js" type="text/javascript" defer></script>
-  <amp-auto-ads type="adsense" data-ad-client="{{ site.google_adsense}}">
-  </amp-auto-ads>
+
 
 </body>
 

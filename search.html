@@ -1,0 +1,17 @@
+---
+layout: page
+title: Search articles
+description: Search explanations, commands, and lessons across the blog.
+js:
+  - /js/search.js
+---
+<section class="search-page">
+  <form action="{{ '/search.html' | relative_url }}" method="get" role="search" id="article-search">
+    <label for="search-query">Search articles</label>
+    <input id="search-query" name="q" type="search" autocomplete="off" required>
+    <button type="submit">Search</button>
+  </form>
+  <p id="search-status" role="status" aria-live="polite"></p>
+  <ol id="search-results"></ol>
+  <noscript><p>Search requires JavaScript. <a href="{{ '/tags.html' | relative_url }}">Browse articles by topic instead.</a></p></noscript>
+</section>

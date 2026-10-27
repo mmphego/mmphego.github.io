@@ -74,7 +74,7 @@ So, coming back to the course I am reviewing and you are probably wondering what
 </div></p>
 {: refdef}
 
-- It also gives you an in-depth understanding of how to construct a CI/CD pipeline that will containerise an application and deploy it to a Kubernetes cluster; using *Cloud Native* tools such as Python, Git/GitHub, Docker, Kubernetes (Both [minikube](minikube) & [rancher's k3s](https://k3s.io/)), Vagrant and VirtualBox.
+- It also gives you an in-depth understanding of how to construct a CI/CD pipeline that will containerise an application and deploy it to a Kubernetes cluster; using *Cloud Native* tools such as Python, Git/GitHub, Docker, Kubernetes (Both [minikube](https://minikube.sigs.k8s.io/) & [rancher's k3s](https://k3s.io/)), Vagrant and VirtualBox.
 
 - It also offers some of the foundational concepts that would help you understand;
     - What message passing is? and when to use it.

@@ -247,7 +247,7 @@ Below is a detailed template which I followed when creating my `README.md` and y
 
 Mostly standardized by [badges/shields](https://github.com/badges/shields), GitHub badges are one of the first things a visitor sees as they scroll down. Build status badges describe the stability of a project. In my case, I have Python version badge which state which version of Python is supported, Licence badge, PyPi version release badge, Number of package downloads from PyPi, and [Thank You](https://github.com/kennethreitz/saythanks.io) badge. Badges aren't compulsory but much like GIFs/Memes, they are a huge bonus.
 
-[shields.io](shields.io) have an API for creating your own badges, If you would like to create your own SVG badges locally there's a Python package owned by Google called [pybadges](https://github.com/google/pybadges).
+[shields.io](https://shields.io) have an API for creating your own badges, If you would like to create your own SVG badges locally there's a Python package owned by Google called [pybadges](https://github.com/google/pybadges).
 
 Read more about badges and README files [here](https://dev.to/healeycodes/how-to-write-an-awesome-github-readme-2ldc)
 

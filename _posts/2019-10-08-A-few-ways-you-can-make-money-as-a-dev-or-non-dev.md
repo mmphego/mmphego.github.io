@@ -306,7 +306,7 @@ In 2017, I signed up to be [CellC's](https://www.cellc.co.za) brand ambassador I
 {: refdef}
 
 ### Social Media Influencer/Marketer
-There's a growing trend of social media influencing these days, if you have enough social media followers on [Instagram](instagram.com), [Twitter](twitter.com), [Facebook](facebook.com) etc you can make extra income by means of personalized adverts. Small companies are in great need of social media influencers.
+There's a growing trend of social media influencing these days, if you have enough social media followers on [Instagram](https://instagram.com), [Twitter](https://twitter.com), [Facebook](https://facebook.com) etc you can make extra income by means of personalized adverts. Small companies are in great need of social media influencers.
 
 You can set up an account to start getting paid for your Tweets/Instagram/Facebook posts and I'm inviting you if you are keen to work with brands to develop content and share with their audiences, [click this link to register](https://webfluential.com/users/register/rs9nv9l4):
 

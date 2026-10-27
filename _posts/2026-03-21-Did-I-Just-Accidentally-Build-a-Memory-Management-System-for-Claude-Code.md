@@ -193,7 +193,7 @@ Semantic memory is the stable layer: facts about who you are, how you work, and 
 
 The best persona comes from the AI you already talk to most. I prompted ChatGPT: ***"Based on our conversation history, write a persona document about me. Include communication style, decision-making patterns, technical values, and things that frustrate me. Be brutally honest."***
 
-Now, I'd already tested ChatGPT's model of me in a previous experiment. I asked it to write a blog post about me, and the result was accurate enough to publish: ["Why Mpho Mphego Might Be the World's Worst AI Software and Data Engineer"](https://blog.mphomphego.co.za/blog/2026/02/04/Why-Mpho-Mphego-Might-Be-the-World's-Worst-AI-Software-and-Data-Engineer.html). *(Apparently it knows me better than my own LinkedIn summary does.)* That gave me the confidence to ask for the persona document. I took content from both, edited for clarity, and distilled it into `persona.md`:
+Now, I'd already tested ChatGPT's model of me in a previous experiment. I asked it to write a blog post about me, and the result was accurate enough to publish: ["Why Mpho Mphego Might Be the World's Worst AI Software and Data Engineer"](https://blog.mphomphego.co.za/blog/2026/02/04/Why-Mpho-Mphego-Might-Be-the-World-s-Worst-AI-Software-and-Data-Engineer.html). *(Apparently it knows me better than my own LinkedIn summary does.)* That gave me the confidence to ask for the persona document. I took content from both, edited for clarity, and distilled it into `persona.md`:
 
 ```markdown
 # Working with Mpho
@@ -515,7 +515,7 @@ In Part 2, I'll take these cognitive types from filesystem markdown into product
 - [Antonio Gulli, *Agentic Design Patterns: A Hands-On Guide to Building Intelligent Systems*, O'Reilly, 2025](https://www.amazon.com/Agentic-Design-Patterns-Hands-Intelligent/dp/3032014018)
 - [Gemini Deep Research: Policy-Driven Hierarchical Memory Systems for Distributed Agentic Platforms](https://gemini.google.com/share/feb45df9fd91?hl=en_GB)
 - [Gemini Deep Research: Multi-Tenant Blackboard Shared Memory with Google ADK, A2A-SDK, and AWS OpenSearch](https://gemini.google.com/share/ba1b19d1f93e?hl=en_GB)
-- [Why Mpho Mphego Might Be the World's Worst AI Software and Data Engineer](https://blog.mphomphego.co.za/blog/2026/02/04/Why-Mpho-Mphego-Might-Be-the-World's-Worst-AI-Software-and-Data-Engineer.html)
+- [Why Mpho Mphego Might Be the World's Worst AI Software and Data Engineer](https://blog.mphomphego.co.za/blog/2026/02/04/Why-Mpho-Mphego-Might-Be-the-World-s-Worst-AI-Software-and-Data-Engineer.html)
 - [Running Google ADK Agents on AWS Bedrock via LiteLLM](https://blog.mphomphego.co.za/blog/2026/03/05/Running-Google-ADK-Agents-on-AWS-Bedrock-via-LiteLLM.html)
 
 ---

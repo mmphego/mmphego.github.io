@@ -21,7 +21,7 @@ title: Mpho Mphego
 # use subtitle: to set the sub heading for that title(meta-title). NOTE: if(meta-title exists){subtilel visiblity = true}
 
 # Short description of your site
-description: "Hi! I'm Mpho Mphego, a self-taught Python developer."
+description: "Practical lessons in AI engineering, data platforms, Python, and reliable software."
 #  Loves to meet new people, connect, discuss, network and grow, mostly at software developer’s conferences, dev-fests and meet-ups
 
 # --- Navigation bar options --- #
@@ -29,6 +29,7 @@ description: "Hi! I'm Mpho Mphego, a self-taught Python developer."
 # List of links in the navigation bar
 navbar-links:
   Blog: ""
+  Search: "search.html"
   # "@Mentions": "mentions"
   # "Must-Watch Talks": "must-watch-talks"
   Now: "now"
@@ -174,7 +175,20 @@ exclude:
   - LICENSE
   - README.md
   - Vagrantfile
+  - requirements-images.txt
   - _site
+  - vendor
+  - node_modules
+  - tests
+  - docs
+  - package.json
+  - package-lock.json
+  - playwright.config.js
+  - test-results
+  - scripts
+  - CLAUDE.md
+  - Makefile
+  - entrypoint.sh
 
 #Meta data for your Posts
 metadata:
@@ -227,8 +241,6 @@ jekyll-archives:
 
 plugins:
   - jekyll-admin
-  - jekyll-archives
-  - jekyll-categories
   - jekyll-feed
   - jekyll-gist
   - jekyll-include-cache
@@ -249,3 +261,6 @@ jekyll-mentions: https://twitter.com
 mermaid:
   src: 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'
 
+
+# Future-dated posts are only included in explicit preview builds.
+future: false

@@ -55,7 +55,7 @@ If not, refer to a previous post on how to [install Prometheus & Grafana using H
 
 This section is divided into 4 parts:
 
-- [How To Configure Jaeger Data Source On Grafana And Debug Network Issues With Bind-utilities.](#how-to-configure-jaeger-data-source-on-grafana-and-debug-network-issues-with-bind-utilities)
+- [How To Configure Jaeger Data Source On Grafana And Debug Network Issues With Bind-utilities.](#main-content)
 - [The Story](#the-story)
   - [The Walk-through](#the-walk-through)
     - [Installing Jaeger Operator on Kubernetes](#installing-jaeger-operator-on-kubernetes)

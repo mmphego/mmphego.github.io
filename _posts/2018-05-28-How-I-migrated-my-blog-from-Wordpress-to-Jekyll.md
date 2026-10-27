@@ -10,7 +10,7 @@ tags:
 - Personal
 ---
 
-I have always  been using [Wordpress](mmphego.wordpress.com) to host and publish my blog post, with no custom domain the whole idea of paying $8 per month was just foreign to me. The idea of monetization and being able to install plug-ins has always been in the back of my head especially with my blog stats at over 16000 hits, that would make me rich - # hahaha
+I have always  been using [Wordpress](https://mmphego.wordpress.com) to host and publish my blog post, with no custom domain the whole idea of paying $8 per month was just foreign to me. The idea of monetization and being able to install plug-ins has always been in the back of my head especially with my blog stats at over 16000 hits, that would make me rich - # hahaha
 
 While I’ve been thinking of doing the move for quite some time, until I recently found out about Jekyll and GitHub pages, that is when I finally decided to move.
 The idea of writing my posts in MarkDown was a win, as compared to HTML on Wordpress.

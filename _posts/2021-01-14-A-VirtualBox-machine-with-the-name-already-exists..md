@@ -2,12 +2,14 @@
 layout: post
 title: "Note To Self: A VirtualBox Machine With The Name Already Exists."
 date: 2021-01-14 23:31:18.000000000 +02:00
+permalink: /blog/2021/01/14/A-VirtualBox-machine-with-the-name-already-exists/html
+redirect_from: /blog/2021/01/14/A-VirtualBox-machine-with-the-name-already-exists.html
 tags:
 
 ---
 
 {:refdef: style="text-align: center;"}
-[![post image]({{ "/assets/2021-01-14-A-VirtualBox-machine-with-the-name-already-exists..png" | absolute_url }})](/)
+[![post image]({{ "/assets/2021-01-14-A-VirtualBox-machine-with-the-name-already-exists.png" | absolute_url }})](/)
 {: refdef}
 
 

@@ -25,7 +25,7 @@ When creating and working on a new Python or related project, I would find mysel
 For example:
 
 - Creating a Python virtual environment, install all the packages I would need into it and cleaning up Python byte codes and other artefacts. `virtualenv .venv && source .venv/bin/activate && pip install .`
-- Run code linters and formatters as I develop or before pushing to [GitHub](github.com/). `black -l 90 && isort -rc . && flake8 .`
+- Run code linters and formatters as I develop or before pushing to [GitHub](https://github.com/). `black -l 90 && isort -rc . && flake8 .`
 - Running unittests and generating documentation (if any). `pytest -sv . && sphinx-apidoc . -o ./docs -f tests`
 
 All the example I've listed above assumes you know what shell command to execute and when most times this can be cumbersome or tedious to juniors.

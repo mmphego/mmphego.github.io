@@ -65,6 +65,10 @@ These affect the entire site. Always surface the blast radius before modifying:
 
 ## CI/CD
 
-- Builds via `jekyll/builder:4.2.2` with `jekyll build --future` (includes future-dated posts)
-- On build success: dispatches to `mmphego/mmphego` repo — requires `REPO2_ACCESS_TOKEN` secret
-- Gemfile.lock is gitignored; gems are resolved fresh in CI
+- Runtime is pinned in `.ruby-version`; commit `Gemfile.lock` and `package-lock.json`.
+- Prepare responsive media with `python _scripts/build_images.py` before Jekyll.
+- CI builds without `--future`, validates generated HTML/resources/JSON, and runs browser tests.
+- Actions deploys the tested artifact on master. Pages source must be GitHub Actions.
+- Preview-only config `_config.preview.yml` includes future posts/drafts and never deploys.
+- Optional profile notifications use the separate workflow and `REPO2_ACCESS_TOKEN`.
+- See `docs/reader-maintenance.md` for publishing, metadata and technical verification fields.

@@ -2,6 +2,8 @@
 layout: post
 title: "How a 0.1-Second Tool Call Flooded My AI Agent With 180,000 Tokens: Handling Large Tool Responses at Scale"
 date: 2026-10-23 22:34:12.000000000 +02:00
+description: "How a fast tool response flooded an AI agent’s context window, and the limits of row caps, token budgets, compaction, and pagination."
+image: /assets/2026-10-23-fast-tool-call-context-growth.png
 use-mermaid: true
 css:
   - /css/monokai.css

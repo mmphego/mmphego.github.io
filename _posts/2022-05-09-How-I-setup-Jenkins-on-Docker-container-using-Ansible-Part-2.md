@@ -190,7 +190,7 @@ To learn more about Jenkins plugins (`jenkins_plugin.txt`), read the blog post o
 
 #### Jenkins Configuration as Code
 
-To learn more about Jenkins configuration as code (`jenkins_config.yaml,`populate_jenkins_casc.py`, and`requirements.txt`), read the blog post on [Managing Jenkins Configuration As Code And Secrets Management]({{ "/blog/2022/06/24/Managing-Jenkins-Configuration-as-Code-and-Secrets-Management.html" | absolute_url }}) was written.
+To learn more about Jenkins configuration as code (`jenkins_config.yaml,`populate_jenkins_casc.py`, and`requirements.txt`), read the blog post on Managing Jenkins Configuration As Code And Secrets Management (referenced article currently unavailable) was written.
 
 #### Putting it all together
 

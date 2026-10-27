@@ -137,7 +137,7 @@ shell:
 In the initial post - I drew myself up a plan as follows:
 Reasons why I decided to set up a Jenkins server via Docker to address some key points:
 - **I wanted all Jenkins configurations to be available on my local machine (maintained by a jenkins user, uuid: 1000), version controlled and preferably on a private repository.**
-    - Created a private repository on GitHub(It can also be public), such that I can at least keep my secret files that aren't supposed to be of public knowledge. [GitLab](gitlab.com) and [Bitbucket](bitbucket.org) offers free private repositories, if one does not want to pay [GitHub](github.com).
+    - Created a private repository on GitHub(It can also be public), such that I can at least keep my secret files that aren't supposed to be of public knowledge. [GitLab](https://gitlab.com) and [Bitbucket](https://bitbucket.org) offers free private repositories, if one does not want to pay [GitHub](https://github.com).
 - **I wanted all tests to be run by a specific user with limited rights.**
     - A script that creates two new local system users, namely: *Jenkins* and *cbf-test* with limited rights
 - **I wanted Jenkins to automatically run tests when a git commit/change is experienced and file a [Jira](https://www.atlassian.com/software/jira) ticket or email when build fails.**
@@ -187,7 +187,7 @@ At this point you should have a fully functional Jenkins master server image set
 - [https://thepracticalsysadmin.com/setting-up-a-github-webhook-in-jenkins/](https://thepracticalsysadmin.com/setting-up-a-github-webhook-in-jenkins/)
 - [https://live-rg-engineering.pantheon.io/news/putting-jenkins-docker-container](https://live-rg-engineering.pantheon.io/news/putting-jenkins-docker-container)
 - [https://github.com/boxboat/jenkins-demo/blob/develop/docs/part1-jenkins-setup.md](https://github.com/boxboat/jenkins-demo/blob/develop/docs/part1-jenkins-setup.md)
-- [www.donaldsimpson.co.uk/category/jenkins/page/2/](www.donaldsimpson.co.uk/category/jenkins/page/2/)
+- [www.donaldsimpson.co.uk/category/jenkins/page/2/](https://www.donaldsimpson.co.uk/category/jenkins/page/2/)
 
 
 "If you are an intelligent person, you will try to do what you love most. But if you're a Genius, you will do what is needed!" - Sadhguru

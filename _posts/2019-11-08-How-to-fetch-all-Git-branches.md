@@ -7,9 +7,7 @@ tags:
 - Tips/Tricks
 ---
 
-{:refdef: style="text-align: center;"}
-[![post image]({{ "/assets/2019-11-08-How-to-fetch-all-Git-branches.jpg" | absolute_url }})](/)
-{: refdef}
+<!-- The original decorative cover image is unavailable. -->
 
 -----------------------------------------------------------------------------------------
 

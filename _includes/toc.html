@@ -1,0 +1,14 @@
+{% if page.toc and page.reader_headings.size > 2 %}
+<aside class="article-toc">
+  <details id="article-contents">
+    <summary>On this page</summary>
+    <nav aria-label="Article sections">
+      <ol>
+        {% for heading in page.reader_headings %}
+        <li class="toc-{{ heading.level }}"><a href="#{{ heading.id | escape }}">{{ heading.text | escape }}</a></li>
+        {% endfor %}
+      </ol>
+    </nav>
+  </details>
+</aside>
+{% endif %}

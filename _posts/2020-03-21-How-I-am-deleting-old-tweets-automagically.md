@@ -91,7 +91,7 @@ Settings are stored in `~/.semiphemeral/settings.json`. All tweets (including ex
 *Credit goes to the @micahflee*
 
 # The Walk-through
-It's all fun and games running `semipheral` manually until you forget to and then boom a year passes. This walkthrough details an automated approach on dealing this the nuking of old tweets. To set up the automagic tweeter deleter I used [Docker](docker.com) and [Travis CI](travis-ci.com/) - *configured to run each week.*
+It's all fun and games running `semipheral` manually until you forget to and then boom a year passes. This walkthrough details an automated approach on dealing this the nuking of old tweets. To set up the automagic tweeter deleter I used [Docker](https://docker.com) and [Travis CI](https://travis-ci.com/) - *configured to run each week.*
 
 The docker build assumes you have installed, configured semipheral and copied `~/.semipheral` directory in the current working directory. This build will just copy the `.semipheral` directory to our image, create a script that fetches your old tweets and deletes them.
 
@@ -174,7 +174,7 @@ rm -rf secrets.zip .semipheral
 
 **DO NOT UPLOAD YOUR SECRETS TO THE CLOUD.**
 
-Checkout my minimalistic repo: [github.com/mmphego/nuke-old-tweets](github.com/mmphego/nuke-old-tweets)
+Checkout my minimalistic repo: [github.com/mmphego/nuke-old-tweets](https://github.com/mmphego/nuke-old-tweets)
 
 # Reference
 

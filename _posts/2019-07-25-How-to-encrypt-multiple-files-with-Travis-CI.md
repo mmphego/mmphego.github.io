@@ -18,7 +18,7 @@ tags:
 
 # The Story
 
-I have been constantly improving one of my side project that scrapes e-commerce websites and extracts some data then uploads the data to a Google sheet. One of my recent update was to add email notifications, but since I use [Travis CI](travis-ci.com) to run the script as a [cron-job](https://docs.travis-ci.com/user/cron-jobs/) I needed to encrypt my [Google Dev](https://developers.google.com/) `client_secret.json` file (for obvious reasons) as well as my new email configuration file such that Travis CI runs my script which contains sensitive information on a public platform.
+I have been constantly improving one of my side project that scrapes e-commerce websites and extracts some data then uploads the data to a Google sheet. One of my recent update was to add email notifications, but since I use [Travis CI](https://travis-ci.com) to run the script as a [cron-job](https://docs.travis-ci.com/user/cron-jobs/) I needed to encrypt my [Google Dev](https://developers.google.com/) `client_secret.json` file (for obvious reasons) as well as my new email configuration file such that Travis CI runs my script which contains sensitive information on a public platform.
 
 However, Travis CI doesn't support multiple file encryptions, which took me a while to realize...
 ![image]({{ "/assets/travis_error.png" | absolute_url }})

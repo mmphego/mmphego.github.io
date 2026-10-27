@@ -36,7 +36,7 @@ Completed my application and a few days later my application was **successful**,
 
 As part of the course, for someone to graduate/complete one has to complete an AI-based image classification project.
 
-In this post, my focus will be directed to the final project that I needed to submit in order to receive the certificate. I had to build a state-of-the-art image classification application using [PyTorch](pytorch.org/) library.
+In this post, my focus will be directed to the final project that I needed to submit in order to receive the certificate. I had to build a state-of-the-art image classification application using [PyTorch](https://pytorch.org/) library.
 
 -------------------------------------------------------------------------
 
@@ -135,7 +135,7 @@ A great illustration for Convolutional Neural Networks using excel spreadsheet @
 
 ## Part 6: Image Classifier Project
 
-The last part of the course was more aimed at tools and how to use them. I learnt about techniques on how to improve the training of a neural network, and how to use [PyTorch](pytorch.org) library for building deep learning models.
+The last part of the course was more aimed at tools and how to use them. I learnt about techniques on how to improve the training of a neural network, and how to use [PyTorch](https://pytorch.org) library for building deep learning models.
 
 By the time I am writing this post there's currently 2 (two) open source libraries that are taking over the world by storm in the AI and Machine Learning field namely: [Facebook's PyTorch](https://pytorch.org/) and [Google's TensorFlow](https://www.tensorflow.org/).
 

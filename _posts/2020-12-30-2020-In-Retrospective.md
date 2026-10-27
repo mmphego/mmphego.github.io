@@ -52,7 +52,7 @@ Most of my other goals were financial and personal, however, I would like to ref
 - I wanted to make more YouTube videos this year but I hadn't put a number which I should have. However, I was able to make **3 YouTube video tutorials**: 
     -  If you are reading this please subscribe to my channel 2021 we going big: [https://www.youtube.com/mphomphego1](https://www.youtube.com/mphomphego1)
 
-- Made over **2400+** [Github](www.github.com/mmphego) open&close source contributions (which was less than 2019 @ 2500+), **340+** PR's and **5+** projects
+- Made over **2400+** [Github](https://www.github.com/mmphego) open&close source contributions (which was less than 2019 @ 2500+), **340+** PR's and **5+** projects
 
     ![image](https://user-images.githubusercontent.com/7910856/103354260-bfa82000-4ab3-11eb-95ca-7683327288af.png)
 

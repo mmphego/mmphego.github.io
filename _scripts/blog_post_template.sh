@@ -27,6 +27,11 @@ if [ -d "${BLOG_DIR}" ]; then
 layout: post
 title: "${TITLE}"
 date: ${DATE} ${TIME}.000000000 +02:00
+description: "" # Add an article-specific summary before publishing.
+image: ${NEW_POST_IMG}
+# last_verified: YYYY-MM-DD  # Only after re-testing the technical steps.
+# tested_versions: ["Python 3.12"]
+# superseded_by: /blog/YYYY/MM/DD/replacement.html
 tags:
 -
 -
